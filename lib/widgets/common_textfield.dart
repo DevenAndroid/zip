@@ -62,7 +62,7 @@ class _CommonTextfieldState extends State<CommonTextfield> {
   Widget build(BuildContext context) {
     return TextFormField(
         style: const TextStyle(
-            color: AppTheme.secondaryColor
+            color: AppTheme.primaryColor
         ),
         autofocus: false, textInputAction: TextInputAction.next,
         onFieldSubmitted: widget.onFieldSubmitted,
@@ -79,7 +79,7 @@ class _CommonTextfieldState extends State<CommonTextfield> {
         controller: widget.controller,
         decoration: InputDecoration(
           counterStyle: const TextStyle(
-            color: Color(0xffA7ACCF),
+            color: AppTheme.primaryColor,
             fontSize: 25,
           ),
           counter: const Offstage(),
@@ -93,26 +93,31 @@ class _CommonTextfieldState extends State<CommonTextfield> {
           prefixIcon: widget.prefix,
           suffixIcon: widget.suffixIcon,
           hintStyle: const TextStyle(
-            color: Color(0xffA7ACCF),
+            color: AppTheme.primaryColor,
             fontSize: 15,
           ),
           /*errorStyle: const TextStyle(
               overflow: TextOverflow.clip,
             ),*/
           contentPadding: const EdgeInsets.only(left: 15, top: 10),
+          disabledBorder: OutlineInputBorder(
+            borderSide:
+            const BorderSide(color: AppTheme.primaryColor, width: 1.5),
+            borderRadius: BorderRadius.circular(15),
+          ),
           focusedBorder: OutlineInputBorder(
             borderSide:
-            const BorderSide(color: AppTheme.primaryColor, width: 1.0),
-            borderRadius: BorderRadius.circular(25),
+            const BorderSide(color: AppTheme.secondaryColor, width: 1.5),
+            borderRadius: BorderRadius.circular(15),
           ),
           enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Color(0xFFC1C1EA), width: 1.0),
-            borderRadius: BorderRadius.circular(25),
+            borderSide: const BorderSide(color:AppTheme.primaryColor, width: 1.5),
+            borderRadius: BorderRadius.circular(15),
           ),
           border: OutlineInputBorder(
               borderSide:
-              const BorderSide(color: Color(0xFFC1C1EA), width: 1.0),
-              borderRadius: BorderRadius.circular(25)),
+              const BorderSide(color: AppTheme.secondaryColor, width: 1.5),
+              borderRadius: BorderRadius.circular(15)),
         ),
         validator: widget.validator);
   }

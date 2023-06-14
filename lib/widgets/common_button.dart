@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'common_colour.dart';
 
@@ -14,48 +15,73 @@ class CustomOutlineButton extends StatelessWidget {
       {Key? key,
         required this.title,
         this.onPressed,
-        required this.backgroundColor,
+         this.backgroundColor,
         this.textColor,
         this.expandedValue = false})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return Padding(
+        padding: const EdgeInsets.only(left: 20.0,right: 20),
+      child: Container(
 
-        style: ElevatedButton.styleFrom(
-            side:  BorderSide(
-              color:  AppTheme.buttonColor,
-            ),
-            shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(25),
-                )),
-             backgroundColor: AppTheme.buttonColor,
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-            textStyle: const TextStyle(
-              fontWeight: FontWeight.bold,
-            )),
-        onPressed: onPressed,
-        child: expandedValue == true ? SizedBox(
-          width: double.maxFinite,
-          child: Center(
-            child: Text(
-              title,
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 18,
-                color: textColor,
-              ),
-            ),
-          ),        )
-            : Text(
-          title,
-          style: TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: 18,
-            color: textColor,
+        width: MediaQuery.of(context).size.width,
+
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+
+              Color(0xFFF0D75F),
+              Color(0xFFB2802A),
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter
           ),
-        ));
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: ElevatedButton(
+
+
+            style: ElevatedButton.styleFrom(
+                side:  BorderSide(
+                  color:  Colors.transparent,
+                ),
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(15),
+                    )),
+
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                textStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                )),
+            onPressed: onPressed,
+            child: expandedValue == true ? SizedBox(
+              width: double.maxFinite,
+              child: Center(
+                child: Text(
+                  title,
+                  style:GoogleFonts.poppins(
+                      color:  Color(
+                          0xFFFFFFFF),
+                      fontSize: 14,
+                      fontWeight:
+                      FontWeight
+                          .w700),
+                ),
+              ),        )
+                : Text(
+              title,
+              style: GoogleFonts.poppins(
+                  color:  Color(
+                      0xFFFFFFFF),
+                  fontSize: 14,
+                  fontWeight:
+                  FontWeight
+                      .w700),
+            )),
+      ),
+    );
   }
 }
