@@ -2,10 +2,11 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:zip/resources.dart';
+
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
+import 'package:zip/widgets/common_colour.dart';
 
 class MobileNumberScreen extends StatefulWidget {
   const MobileNumberScreen({Key? key}) : super(key: key);
@@ -66,7 +67,7 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                      Expanded(
                         child: InkWell(
                           onTap: (){
-                            Get.toNamed(MyRouters.enterEmailScreen);
+                              Get.toNamed(MyRouters.enterEmailScreen);
                           },
                           child: CustomOutlineBoder(
                               title: "Email",
@@ -140,11 +141,7 @@ SizedBox(height: 25,),
     ),
                 SizedBox(height:size.height*.4,),
 
-                InkWell
-
-
-
-                  (
+                InkWell(
                     onTap: (){
                       Get.toNamed(MyRouters.mobileOtpScreen);
                     },
