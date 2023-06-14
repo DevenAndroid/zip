@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../resources.dart';
+import 'common_colour.dart';
 
 
 class CommonTextfield extends StatefulWidget {
@@ -64,11 +64,7 @@ class _CommonTextfieldState extends State<CommonTextfield> {
         style: const TextStyle(
             color: AppTheme.primaryColor
         ),
-        autofocus: false,
-
-
-        // autovalidateMode: AutovalidateMode.onUserInteraction,
-        textInputAction: TextInputAction.next,
+        autofocus: false, textInputAction: TextInputAction.next,
         onFieldSubmitted: widget.onFieldSubmitted,
         inputFormatters: widget.inputFormatters,
         onChanged: widget.onChanged,

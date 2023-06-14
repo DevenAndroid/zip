@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../resources.dart';
+import 'common_colour.dart';
 
 
 class CustomOutlineButton extends StatelessWidget {
