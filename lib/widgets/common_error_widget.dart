@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 
-import '../resources.dart';
+import 'common_colour.dart';
 import '../resourses/size.dart';
 import 'common_button.dart';
 

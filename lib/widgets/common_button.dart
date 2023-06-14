@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../resources.dart';
+import 'common_colour.dart';
 
 
 class CustomOutlineButton extends StatelessWidget {
