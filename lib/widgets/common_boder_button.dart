@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zip/widgets/common_colour.dart';
 
-import '../resources.dart';
+
 
 
 class CustomOutlineBoder extends StatelessWidget {
