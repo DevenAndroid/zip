@@ -5,6 +5,7 @@ import 'package:zip/screens/enter_email.dart';
 import 'package:zip/screens/onboarding.dart';
 import 'package:zip/screens/otpemail.dart';
 import 'package:zip/screens/otpmobile.dart';
+import 'package:zip/screens/regestration_selectable.dart';
 
 import '../splash1.dart';
 
@@ -16,6 +17,7 @@ class MyRouters{
   static var mobileNumber = "/mobileNumber";
   static var mobileOtpScreen = "/mobileOtpScreen";
   static var otpEmailScreen = "/otpEmailScreen";
+  static var selectableScreen = "/selectableScreen";
 
   static var route = [
     GetPage(name: '/', page: () =>  const Splash()),
@@ -25,6 +27,7 @@ class MyRouters{
   GetPage(name: '/mobileNumber', page: () =>  const MobileNumberScreen()),
   GetPage(name: '/mobileOtpScreen', page: () =>  const MobileOtpScreen()),
   GetPage(name: '/otpEmailScreen', page: () =>  const EmailOtpScreen()),
+  GetPage(name: '/selectableScreen', page: () =>  const SelectableScreen()),
 
   ];
 }
