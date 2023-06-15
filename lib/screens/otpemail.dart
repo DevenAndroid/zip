@@ -22,6 +22,17 @@ class _EmailOtpScreenState extends State<EmailOtpScreen> {
         .size;
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
+        appBar: AppBar(
+          leading:   InkWell(
+
+            onTap: (){
+              Get.back();
+            },
+            child: const Icon(
+              Icons.arrow_back_rounded,
+              color: AppTheme.primaryColor,
+            ),
+          ),),
     body: SingleChildScrollView(
     child: Padding(
     padding: const EdgeInsets.all(12.0),
@@ -29,21 +40,7 @@ class _EmailOtpScreenState extends State<EmailOtpScreen> {
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-    const SizedBox(
-    height: 20,
-    ),
-    InkWell(
-      onTap: (){
-        Get.back();
-      },
-      child: const Icon(
-      Icons.arrow_back_rounded,
-      color: AppTheme.primaryColor,
-      ),
-    ),
-    const SizedBox(
-    height: 20,
-    ),
+
     Text(
     "Please enter 6 digits code we sent to",
     style: GoogleFonts.poppins(

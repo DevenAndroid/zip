@@ -22,6 +22,17 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
         .size;
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
+        appBar: AppBar(
+          leading:   InkWell(
+
+            onTap: (){
+              Get.back();
+            },
+            child: const Icon(
+              Icons.arrow_back_rounded,
+              color: AppTheme.primaryColor,
+            ),
+          ),),
         body: SingleChildScrollView(
             child: Padding(
                 padding: const EdgeInsets.all(12.0),
@@ -29,21 +40,7 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      InkWell(
-                        onTap: (){
-                          Get.back();
-                        },
-                        child: const Icon(
-                          Icons.arrow_back_rounded,
-                          color: AppTheme.primaryColor,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
+
                       Text(
                         "Please enter 6 digits code we sent to",
                         style: GoogleFonts.poppins(
@@ -76,7 +73,7 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
                       SizedBox(height: 15,),
                       InkWell(
                           onTap: (){
-                            Get.toNamed(MyRouters.otpEmailScreen);
+                            Get.toNamed(MyRouters.selectableScreen);
                           },
                           child: CustomOutlineButton(title: "Tap to verify using USSD",)),
                       SizedBox(height: 15,),

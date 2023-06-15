@@ -23,6 +23,17 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
         .size;
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
+    appBar: AppBar(
+    leading:   InkWell(
+
+    onTap: (){
+    Get.back();
+    },
+    child: const Icon(
+    Icons.arrow_back_rounded,
+    color: AppTheme.primaryColor,
+    ),
+    ),),
         body: SingleChildScrollView(
             child: Padding(
           padding: const EdgeInsets.all(12.0),
@@ -30,16 +41,7 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(
-                  height: 20,
-                ),
-                const Icon(
-                  Icons.arrow_back_rounded,
-                  color: AppTheme.primaryColor,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
+
                 Text(
                   "Enter your mobile number to continue",
                   style: GoogleFonts.poppins(

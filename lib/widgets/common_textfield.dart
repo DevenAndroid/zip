@@ -92,6 +92,10 @@ class _CommonTextfieldState extends State<CommonTextfield> {
           labelText: widget.labelText,
           prefixIcon: widget.prefix,
           suffixIcon: widget.suffixIcon,
+          labelStyle: const TextStyle(
+            color: AppTheme.primaryColor,
+            fontSize: 15,
+          ),
           hintStyle: const TextStyle(
             color: AppTheme.primaryColor,
             fontSize: 15,
@@ -99,7 +103,7 @@ class _CommonTextfieldState extends State<CommonTextfield> {
           /*errorStyle: const TextStyle(
               overflow: TextOverflow.clip,
             ),*/
-          contentPadding: const EdgeInsets.only(left: 15, top: 10),
+          contentPadding: const EdgeInsets.only(left: 18, top: 10),
           disabledBorder: OutlineInputBorder(
             borderSide:
             const BorderSide(color: AppTheme.primaryColor, width: 1.5),
