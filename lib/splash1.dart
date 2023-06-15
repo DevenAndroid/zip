@@ -42,8 +42,8 @@ class _SplashState extends State<Splash> {
         body: Container(
           height: size.height,
           width: size.width,
-          child: Image.asset((
-                'assets/images/Splash Screen.png'
+          child: SvgPicture.asset((
+                'assets/images/Splash Screen.svg'
             ),
           fit: BoxFit.fill,),
         ));
