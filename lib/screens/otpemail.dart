@@ -75,7 +75,7 @@ CommonTextfield(obSecure: false, hintText: "000-000",),
       SizedBox(height: 15,),
       InkWell(
           onTap: (){
-            Get.toNamed(MyRouters.otpEmailScreen);
+            // Get.toNamed(MyRouters.otpEmailScreen);
           },
           child: CustomOutlineButton(title: "Tap to verify using USSD",)),
 SizedBox(height: 15,),

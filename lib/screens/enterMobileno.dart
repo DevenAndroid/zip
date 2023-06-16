@@ -17,9 +17,7 @@ class MobileNumberScreen extends StatefulWidget {
 class _MobileNumberScreenState extends State<MobileNumberScreen> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery
-        .of(context)
-        .size;
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         body: SingleChildScrollView(
@@ -53,9 +51,7 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                   children: [
                     Expanded(
                       child: InkWell(
-                          onTap: () {
-
-                          },
+                          onTap: () {},
                           child: const CustomOutlineButton(
                             title: "Phone Number",
                           )),
@@ -63,18 +59,20 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                     const SizedBox(
                       height: 15,
                     ),
-                     Expanded(
+                    Expanded(
                         child: InkWell(
-                          onTap: (){
-                            Get.toNamed(MyRouters.enterEmailScreen);
-                          },
-                          child: CustomOutlineBoder(
-                              title: "Email",
-                              backgroundColor: Colors.white,
-                              textColor: AppTheme.buttonColor,onPressed: (){
-                    Get.toNamed(MyRouters.enterEmailScreen);
-                    },),
-                        )),
+                      onTap: () {
+                        Get.toNamed(MyRouters.enterEmailScreen);
+                      },
+                      child: CustomOutlineBoder(
+                        title: "Email",
+                        backgroundColor: Colors.white,
+                        textColor: AppTheme.buttonColor,
+                        onPressed: () {
+                          Get.toNamed(MyRouters.enterEmailScreen);
+                        },
+                      ),
+                    )),
                   ],
                 ),
                 const SizedBox(
@@ -123,7 +121,9 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                     ],
                   ),
                 ),
-SizedBox(height: 25,),
+                SizedBox(
+                  height: 25,
+                ),
                 Text(
                   "By opening an account, you agree to our",
                   style: GoogleFonts.poppins(
@@ -131,35 +131,39 @@ SizedBox(height: 25,),
                       fontSize: 16,
                       fontWeight: FontWeight.w500),
                 ),
-        Text(
-            "Terms of Use",
-        style: GoogleFonts.poppins(
-            color: const Color(0xFFB5832C),
-        fontSize: 16,
-        fontWeight: FontWeight.w500),
-    ),
-                SizedBox(height:size.height*.4,),
-
-                InkWell
-
-
-
-                  (
-                    onTap: (){
+                Text(
+                  "Terms of Use",
+                  style: GoogleFonts.poppins(
+                      color: const Color(0xFFB5832C),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500),
+                ),
+                SizedBox(
+                  height: size.height * .4,
+                ),
+                InkWell(
+                    onTap: () {
                       Get.toNamed(MyRouters.mobileOtpScreen);
                     },
-                    child: CustomOutlineButton(title: "Next",)),
-                SizedBox(height: 15,),
-                 InkWell(
-                   onTap: (){
-                     Get.toNamed(MyRouters.enterEmailScreen);
-                   },
-                   child: CustomOutlineBoder(title: "Use Email", backgroundColor: Colors.white,textColor: AppTheme.buttonColor,onPressed: (){
+                    child: CustomOutlineButton(
+                      title: "Next",
+                    )),
+                SizedBox(
+                  height: 15,
+                ),
+                InkWell(
+                  onTap: () {
                     Get.toNamed(MyRouters.enterEmailScreen);
-                },),
-                 ),
-
-
+                  },
+                  child: CustomOutlineBoder(
+                    title: "Use Email",
+                    backgroundColor: Colors.white,
+                    textColor: AppTheme.buttonColor,
+                    onPressed: () {
+                      Get.toNamed(MyRouters.enterEmailScreen);
+                    },
+                  ),
+                ),
               ]),
         )));
   }
