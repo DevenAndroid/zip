@@ -14,7 +14,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 
 
-import '../resources.dart';
+import '../widgets/common_colour.dart';
 import '../widgets/size.dart';
 
 

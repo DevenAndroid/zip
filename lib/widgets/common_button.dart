@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../resources.dart';
+import 'common_colour.dart';
 
 
 class CustomOutlineButton extends StatelessWidget {
@@ -23,11 +23,11 @@ class CustomOutlineButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.only(left: 20.0,right: 20),
+      padding: const EdgeInsets.only(left: 10.0,right: 10),
       child: Container(
 
         width: MediaQuery.of(context).size.width,
-
+height: 55,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
@@ -65,7 +65,7 @@ class CustomOutlineButton extends StatelessWidget {
                   style:GoogleFonts.poppins(
                       color:  Color(
                           0xFFFFFFFF),
-                      fontSize: 14,
+                      fontSize: 15,
                       fontWeight:
                       FontWeight
                           .w700),
@@ -76,7 +76,7 @@ class CustomOutlineButton extends StatelessWidget {
               style: GoogleFonts.poppins(
                   color:  Color(
                       0xFFFFFFFF),
-                  fontSize: 14,
+                  fontSize: 15,
                   fontWeight:
                   FontWeight
                       .w700),

@@ -3,11 +3,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:zip/resources.dart';
+
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/screens/onboarding_list.dart';
 import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
+import 'package:zip/widgets/common_colour.dart';
 class OBScreen extends StatefulWidget {
   const OBScreen({Key? key}) : super(key: key);
 
@@ -28,9 +29,9 @@ class _OBScreenState extends State<OBScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-
+SizedBox(height: size.height*.1,),
     SizedBox(
-      height: size.height*.8,
+      height: size.height*.7,
       child: PageView.builder(
       itemCount: page1.length,
       controller: controller,
@@ -50,7 +51,7 @@ class _OBScreenState extends State<OBScreen> {
           height: 50,
         ),
       Image(
-      image: AssetImage(page1[index].img,),
+      image: AssetImage(page1[index].img,),width: 200,height: 200,
       ),
 
 
@@ -74,11 +75,11 @@ class _OBScreenState extends State<OBScreen> {
         fontWeight:
         FontWeight
             .bold),
-      textAlign: TextAlign.center,
+      textAlign: TextAlign.start,
       ),
       const SizedBox(
 
-      height: 18,
+      height: 8,
       ),
       Text(
       page1[index].description,
@@ -89,14 +90,14 @@ class _OBScreenState extends State<OBScreen> {
             fontWeight:
             FontWeight
                 .w300),
-      textAlign: TextAlign.center,
+      textAlign: TextAlign.start,
       ),
         const SizedBox(
 
-          height: 22,
+          height: 12,
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SmoothPageIndicator(
 
@@ -107,7 +108,7 @@ class _OBScreenState extends State<OBScreen> {
                 activeDotColor: Color(0xFFF0D75F),
                 dotWidth: 10,
                 dotHeight: 10,
-                dotColor: Colors.grey,
+                dotColor: Colors.black12,
               ),
             ),
           ],

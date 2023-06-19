@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 
-import '../resources.dart';
+import '../widgets/common_colour.dart';
 
 
 class AddSize {

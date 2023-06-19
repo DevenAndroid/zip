@@ -2,10 +2,11 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:zip/resources.dart';
+
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
+import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
 class EmailScreen extends StatefulWidget {
@@ -23,6 +24,17 @@ class _EmailScreenState extends State<EmailScreen> {
         .size;
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
+        appBar: AppBar(
+          leading:   InkWell(
+
+            onTap: (){
+              Get.back();
+            },
+            child: const Icon(
+              Icons.arrow_back_rounded,
+              color: AppTheme.primaryColor,
+            ),
+          ),),
         body: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(12.0),
@@ -30,22 +42,16 @@ class _EmailScreenState extends State<EmailScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Icon(
-                      Icons.arrow_back_rounded,
-                      color: AppTheme.primaryColor,
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      "Enter your email to continue",
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF1D1D1D),
-                          fontSize: 22,
-                          fontWeight: FontWeight.w500),
+
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0,right: 10),
+                      child: Text(
+                        "Enter your email to continue",
+                        style: GoogleFonts.poppins(
+                            color: const Color(0xFF1D1D1D),
+                            fontSize: 22,
+                            fontWeight: FontWeight.w500),
+                      ),
                     ),
                     const SizedBox(
                       height: 20,
@@ -84,21 +90,27 @@ class _EmailScreenState extends State<EmailScreen> {
                     ),
                  CommonTextfield(obSecure: false, hintText: "",labelText: "Email",),
                     SizedBox(height: 25,),
-                    Text(
-                      "By opening an account, you agree to our",
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF1D1D1D),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0,right: 10),
+                      child: Text(
+                        "By opening an account, you agree to our",
+                        style: GoogleFonts.poppins(
+                            color: const Color(0xFF1D1D1D),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500),
+                      ),
                     ),
-                    Text(
-                      "Terms of Use",
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFFB5832C),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0,right: 10),
+                      child: Text(
+                        "Terms of Use",
+                        style: GoogleFonts.poppins(
+                            color: const Color(0xFFB5832C),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500),
+                      ),
                     ),
-                    SizedBox(height:size.height*.4,),
+                    SizedBox(height:size.height*.35,),
 
                     InkWell(
                         onTap: (){
