@@ -63,7 +63,7 @@ class MyRouters{
   static var chooseBank = "/chooseBank";
 
   static var route = [
-    GetPage(name: '/', page: () =>  const BottomNavbar()),
+    GetPage(name: '/', page: () =>  const Splash()),
   GetPage(name: '/oBScreen', page: () =>  const OBScreen()),
   GetPage(name: '/sendCash1', page: () =>  const SendCash1()),
   GetPage(name: '/sendCash2', page: () =>  const SendCash2()),

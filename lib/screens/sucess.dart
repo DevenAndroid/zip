@@ -55,7 +55,7 @@ class _SuccessScreenState extends State<SuccessScreen> {
                       SizedBox(height: size.height*.5,),
                       InkWell(
                           onTap: (){
-                            Get.toNamed(MyRouters.dashBoard);
+                            Get.toNamed(MyRouters.bottomNavbar);
                           },
                           child: CustomOutlineButton(title: "Done",)),
                     ]
