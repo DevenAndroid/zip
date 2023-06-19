@@ -5,8 +5,9 @@ import 'package:get/get.dart';
 import 'package:zip/controller/bottomnavbar_controller.dart';
 import 'package:zip/screens/bottom_nav_screens/send_cash1.dart';
 import 'package:zip/screens/bottom_nav_screens/dashboard_screen.dart';
-import 'package:zip/screens/bottom_nav_screens/profile_screen.dart';
-import 'package:zip/screens/bottom_nav_screens/wallet_screen.dart';
+import 'package:zip/screens/profile_screen.dart';
+import 'package:zip/screens/wallet_screen.dart';
+
 
 import 'package:zip/widgets/common_colour.dart';
 
@@ -27,8 +28,8 @@ class _BottomNavbarState extends State<BottomNavbar> {
   final pages = [
     const DashBoard(),
 
-    const WalletScreen(),
-    const ProfileScreen(),
+     WalletScreen(),
+     ProfileScreen(),
 
   ];
 

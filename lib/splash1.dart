@@ -21,7 +21,7 @@ class _SplashState extends State<Splash> {
     Timer(const Duration(seconds: 5), () async {
       SharedPreferences pref = await SharedPreferences.getInstance();
       // if(pref.getInt("role") == 0){
-        Get.offAllNamed(MyRouters.oBScreen);
+        Get.offAllNamed(MyRouters.onBoardingScreen);
       // }
       // else if(pref.getInt("role") == 1 ){
       //   Get.offAllNamed(MyRouters.);
