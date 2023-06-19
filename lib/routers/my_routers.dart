@@ -1,8 +1,15 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:zip/screens/birthday_screen.dart';
+import 'package:zip/screens/bottom_nav_screens/choose_bank.dart';
+import 'package:zip/screens/bottom_nav_screens/send_cash1.dart';
+import 'package:zip/screens/bottom_nav_screens/dashboard_screen.dart';
+import 'package:zip/screens/bottom_nav_screens/profile_screen.dart';
+import 'package:zip/screens/bottom_nav_screens/send_cash2.dart';
+import 'package:zip/screens/bottom_nav_screens/wallet_screen.dart';
+import 'package:zip/screens/bottomnav_bar.dart';
 import 'package:zip/screens/confirm_bank.dart';
 import 'package:zip/screens/country_page.dart';
-import 'package:zip/screens/dashboard_screen.dart';
+
 import 'package:zip/screens/enterMobileno.dart';
 import 'package:zip/screens/enter_email.dart';
 import 'package:zip/screens/exchange_screen.dart';
@@ -48,10 +55,22 @@ class MyRouters{
   static var selectMethod = "/selectMethod";
   static var confirmBankScreen = "/confirmBankScreen";
   static var successScreen = "/successScreen";
+  static var sendCash1 = "/sendCash1";
+  static var walletScreen = "/walletScreen";
+  static var profileScreen = "/profileScreen";
+  static var bottomNavbar = "/bottomNavbar";
+  static var sendCash2 = "/sendCash2";
+  static var chooseBank = "/chooseBank";
 
   static var route = [
-    GetPage(name: '/', page: () =>  const Splash()),
+    GetPage(name: '/', page: () =>  const BottomNavbar()),
   GetPage(name: '/oBScreen', page: () =>  const OBScreen()),
+  GetPage(name: '/sendCash1', page: () =>  const SendCash1()),
+  GetPage(name: '/sendCash2', page: () =>  const SendCash2()),
+  GetPage(name: '/chooseBank', page: () =>  const ChooseBank()),
+  GetPage(name: '/bottomNavbar', page: () =>  const BottomNavbar()),
+  GetPage(name: '/walletScreen', page: () =>  const WalletScreen()),
+  GetPage(name: '/profileScreen', page: () =>  const ProfileScreen()),
   GetPage(name: '/dashBoard', page: () =>  const DashBoard()),
   GetPage(name: '/enterEmailScreen', page: () =>  const EmailScreen()),
   GetPage(name: '/mobileNumber', page: () =>  const MobileNumberScreen()),
