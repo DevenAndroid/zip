@@ -3,18 +3,19 @@ import 'package:zip/screens/birthday_screen.dart';
 import 'package:zip/screens/bottom_nav_screens/choose_bank.dart';
 import 'package:zip/screens/bottom_nav_screens/send_cash1.dart';
 import 'package:zip/screens/bottom_nav_screens/dashboard_screen.dart';
-import 'package:zip/screens/bottom_nav_screens/profile_screen.dart';
+
 import 'package:zip/screens/bottom_nav_screens/send_cash2.dart';
-import 'package:zip/screens/bottom_nav_screens/wallet_screen.dart';
+
 import 'package:zip/screens/bottomnav_bar.dart';
 import 'package:zip/screens/confirm_bank.dart';
 import 'package:zip/screens/country_page.dart';
+
 
 import 'package:zip/screens/enterMobileno.dart';
 import 'package:zip/screens/enter_email.dart';
 import 'package:zip/screens/exchange_screen.dart';
 import 'package:zip/screens/faq_screen.dart';
-import 'package:zip/screens/onboarding.dart';
+
 import 'package:zip/screens/otp_screen.dart';
 import 'package:zip/screens/otpemail.dart';
 import 'package:zip/screens/otpmobile.dart';
@@ -29,11 +30,42 @@ import 'package:zip/screens/transaction_history.dart';
 import 'package:zip/screens/your_balance_screen.dart';
 import 'package:zip/screens/zipTag)_screen.dart';
 
+import 'package:get/get.dart';
+import 'package:zip/screens/accountsinbank.dart';
+import 'package:zip/screens/add_card.dart';
+import 'package:zip/screens/addapayer.dart';
+import 'package:zip/screens/addrecipients.dart';
+import 'package:zip/screens/addrecipientstart.dart';
+import 'package:zip/screens/buyservices.dart';
+import 'package:zip/screens/createrecipients.dart';
+import 'package:zip/screens/enterMobileno.dart';
+import 'package:zip/screens/enter_email.dart';
+import 'package:zip/screens/generatepaymentlink.dart';
+import 'package:zip/screens/mycard.dart';
+import 'package:zip/screens/otpemail.dart';
+import 'package:zip/screens/otpmobile.dart';
+import 'package:zip/screens/paybillsservices.dart';
+import 'package:zip/screens/paynowbalance.dart';
+import 'package:zip/screens/request_payment.dart';
+import 'package:zip/screens/requestapayment.dart';
+import 'package:zip/screens/requestapaymentconfirm.dart';
+import 'package:zip/screens/requestapaymentcontinue.dart';
+import 'package:zip/screens/sendcash.dart';
+import 'package:zip/screens/sendcashyourbalance.dart';
+import 'package:zip/screens/setting.dart';
+import 'package:zip/screens/sharepaymentlink.dart';
+import 'package:zip/screens/transfer_limit.dart';
+import 'package:zip/screens/wallet_screen.dart';
+import 'package:zip/screens/yourrecipient.dart';
+
+import '../screens/addfundsinbank.dart';
+import '../screens/onboardingScreen.dart';
+import '../screens/profile_screen.dart';
 import '../splash1.dart';
 
 class MyRouters{
   static var splash = "/splash";
-  static var oBScreen = "/oBScreen";
+  static var onBoardingScreen = "/onBoardingScreen";
   static var dashBoard = "/dashBoard";
   static var enterEmailScreen = "/enterEmailScreen";
   static var mobileNumber = "/mobileNumber";
@@ -62,20 +94,46 @@ class MyRouters{
   static var sendCash2 = "/sendCash2";
   static var chooseBank = "/chooseBank";
 
+
+
+  static var addCard = "/addCard";
+  static var myCard = "/myCard";
+  static var buyServices = "/buyServices";
+  static var payBillsServices = "/payBillsServices";
+  static var profile = "/profile";
+  static var setting = "/setting";
+  static var transferLimit = "/transferLimit";
+  static var requestPayment = "/requestPayment";
+  static var addAPayer = "/addAPayer";
+  static var requestAPayment = "/requestAPayment";
+  static var requestAPaymentConfirm = "/requestAPaymentConfirm";
+  static var addFundsInBank = "/addFundsInBank";
+  static var accountsInBank = "/addFundsInBank";
+  static var payNowBalance = "/payNowBalance";
+  static var sendCash = "/sendCash";
+  static var addRecipients = "/addRecipients";
+  static var createRecipients = "/createRecipients";
+  static var addRecipientsStart = "/addRecipientsStart";
+  static var sendCashYourBalance = "/sendCashYourBalance";
+  static var yourRecipient = "/yourRecipient";
+
   static var route = [
-    GetPage(name: '/', page: () =>  const Splash()),
-  GetPage(name: '/oBScreen', page: () =>  const OBScreen()),
+    GetPage(name: '/', page: () =>   const Splash()),
+
+
+
+  GetPage(name: '/onBoardingScreen', page: () =>   const OnBoardingScreen()),
   GetPage(name: '/sendCash1', page: () =>  const SendCash1()),
   GetPage(name: '/sendCash2', page: () =>  const SendCash2()),
   GetPage(name: '/chooseBank', page: () =>  const ChooseBank()),
   GetPage(name: '/bottomNavbar', page: () =>  const BottomNavbar()),
-  GetPage(name: '/walletScreen', page: () =>  const WalletScreen()),
+  GetPage(name: '/walletScreen', page: () =>   WalletScreen()),
   GetPage(name: '/profileScreen', page: () =>  const ProfileScreen()),
   GetPage(name: '/dashBoard', page: () =>  const DashBoard()),
-  GetPage(name: '/enterEmailScreen', page: () =>  const EmailScreen()),
+
   GetPage(name: '/mobileNumber', page: () =>  const MobileNumberScreen()),
-  GetPage(name: '/mobileOtpScreen', page: () =>  const MobileOtpScreen()),
-  GetPage(name: '/otpEmailScreen', page: () =>  const EmailOtpScreen()),
+
+
     GetPage(name: '/selectableScreen', page: () =>  const SelectableScreen()),
     GetPage(name: '/userScreen', page: () =>   const UserScreen()),
     GetPage(name: '/birthdayScreen', page: () =>   const BirthdayScreen()),
@@ -92,5 +150,29 @@ class MyRouters{
     GetPage(name: '/selectMethod', page: () =>   const SelectMethod()),
     GetPage(name: '/confirmBankScreen', page: () =>   const ConfirmBank()),
     GetPage(name: '/successScreen', page: () =>   const SuccessScreen()),
+
+  GetPage(name: '/enterEmailScreen', page: () =>   const EmailScreen()),
+  GetPage(name: '/otpEmailScreen', page: () =>   const EmailOtpScreen()),
+  GetPage(name: '/mobileOtpScreen', page: () =>   const MobileOtpScreen()),
+    GetPage(name: "/walletScreen", page: ()=>  WalletScreen()),
+    GetPage(name: "/addCard", page: ()=>  AddCard()),
+    GetPage(name: "/myCard", page: ()=>  MyCard()),
+    GetPage(name: "/buyServices", page: ()=>  BuyServices()),
+    GetPage(name: "/payBillsServices", page: ()=>  const PayBillsServices()),
+    GetPage(name: "/profile", page: ()=>  const ProfileScreen()),
+    GetPage(name: "/setting", page: ()=>  const Setting()),
+    GetPage(name: "/requestPayment", page: ()=>  const RequestPayment()),
+    GetPage(name: "/addAPayer", page: ()=>  const AddAPayer()),
+    GetPage(name: "/addFundsInBank", page: ()=>  const AddFundsInBank()),
+    GetPage(name: "/accountsInBank", page: ()=>  const AccountsInBank()),
+    GetPage(name: "/payNowBalance", page: ()=>  const PayNowBalance()),
+    GetPage(name: "/sendCash", page: ()=>  const SendCash()),
+    GetPage(name: "/addRecipients", page: ()=>  const AddRecipients()),
+    GetPage(name: "/createRecipients", page: ()=>  const CreateRecipients()),
+    GetPage(name: "/addRecipientsStart", page: ()=>  const AddRecipientStart()),
+    GetPage(name: "/sendCashYourBalance", page: ()=>  const SendCashYourBalance()),
+    GetPage(name: "/yourRecipient", page: ()=>  const YourRecipient()),
+
+
   ];
 }

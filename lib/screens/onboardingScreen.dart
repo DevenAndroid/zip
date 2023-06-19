@@ -9,14 +9,14 @@ import 'package:zip/screens/onboarding_list.dart';
 import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
-class OBScreen extends StatefulWidget {
-  const OBScreen({Key? key}) : super(key: key);
+class OnBoardingScreen extends StatefulWidget {
+  const OnBoardingScreen({Key? key}) : super(key: key);
 
   @override
-  State<OBScreen> createState() => _OBScreenState();
+  State<OnBoardingScreen> createState() => _OnBoardingScreenState();
 }
 
-class _OBScreenState extends State<OBScreen> {
+class _OnBoardingScreenState extends State<OnBoardingScreen> {
   PageController controller = PageController();
   int currentIndex = 0;
   @override

@@ -47,7 +47,7 @@ dependencies:
   country_code_picker: ^3.0.0
   pinput: ^2.2.21
   dotted_line: ^3.2.2
-
+  share_plus: ^7.0.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
