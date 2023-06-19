@@ -44,33 +44,40 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
     const SizedBox(
     height: 20,
     ),
-    Row(
-      children: [
-        Text(
-        "Welcome to Zip Daniel ",
-        style: GoogleFonts.poppins(
-        color: const Color(0xFF1D1D1D),
-        fontSize: 22,
-        fontWeight: FontWeight.w500),
-        ),
-        SvgPicture.asset('assets/images/Hand.svg',),
-        Text(
-          " !",
+    Padding(
+      padding: const EdgeInsets.only(left: 10.0,right: 10),
+      child: Row(
+        children: [
+          Text(
+          "Welcome to Zip Daniel ",
+          style: GoogleFonts.poppins(
+          color: const Color(0xFF1D1D1D),
+          fontSize: 22,
+          fontWeight: FontWeight.w500),
+          ),
+          SvgPicture.asset('assets/images/Hand.svg',),
+          Text(
+            " !",
+            style: GoogleFonts.poppins(
+                color: const Color(0xFF1D1D1D),
+                fontSize: 22,
+                fontWeight: FontWeight.w500),
+          ),
+
+        ],
+      ),
+    ),
+      SizedBox(height: 10,),
+      Padding(
+        padding: const EdgeInsets.only(left: 10.0,right: 10),
+        child: Text(
+
+          "When is your birthday? ",
           style: GoogleFonts.poppins(
               color: const Color(0xFF1D1D1D),
               fontSize: 22,
               fontWeight: FontWeight.w500),
         ),
-
-      ],
-    ),
-      SizedBox(height: 10,),
-      Text(
-        "When is your birthday? ",
-        style: GoogleFonts.poppins(
-            color: const Color(0xFF1D1D1D),
-            fontSize: 22,
-            fontWeight: FontWeight.w500),
       ),
     SizedBox(height: 40,),
       CommonTextfield(obSecure: false, hintText: "15-09-2005"),

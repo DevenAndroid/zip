@@ -55,31 +55,42 @@ class _OtpScreenState extends State<OtpScreen> {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
 
-    Text(
-    "Create your unique 4-digits pin!",
-    style: GoogleFonts.poppins(
-    color: const Color(0xFF1D1D1D),
-    fontSize: 22,
-    fontWeight: FontWeight.w500),
+    Padding(
+      padding: const EdgeInsets.only(left: 10.0,right: 10),
+      child: Text(
+      "Create your unique 4-digits pin!",
+      style: GoogleFonts.poppins(
+      color: const Color(0xFF1D1D1D),
+      fontSize: 22,
+      fontWeight: FontWeight.w500),
+      ),
     ),
     SizedBox(height: 10,),
-    Text(
-    "Please remember this pin. It’ll be used to keep your account secure ",
-    style: GoogleFonts.poppins(
-    color: const Color(0xFF1D1D1D),
-    fontSize: 15,
-    fontWeight: FontWeight.w400),
+    Padding(
+      padding: const EdgeInsets.only(left: 10.0,right: 10),
+      child: Text(
+
+      "Please remember this pin. It’ll be used to keep your account secure ",
+      style: GoogleFonts.poppins(
+      color: const Color(0xFF1D1D1D),
+      fontSize: 15,
+      fontWeight: FontWeight.w400),
+      ),
     ),
     SizedBox(height: 40,),
 
-      Center(
-        child: Form(
-          key: formKey99,
-          child:  Pinput(
-            controller: otpcontroller,
-            keyboardType: TextInputType.number,
-            length: 4,
-            defaultPinTheme: defaultPinTheme,
+      Padding(
+        padding: const EdgeInsets.only(left: 10.0,right: 10),
+        child: Center(
+          child: Form(
+            key: formKey99,
+            child:  Pinput(
+mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              controller: otpcontroller,
+              keyboardType: TextInputType.number,
+              length: 4,
+              defaultPinTheme: defaultPinTheme,
+            ),
           ),
         ),
       ),

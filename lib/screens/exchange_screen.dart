@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 class ExchangeMoney extends StatefulWidget {
   const ExchangeMoney({Key? key}) : super(key: key);
@@ -29,12 +30,17 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
     color: AppTheme.primaryColor,
     ),
     ),
-    title: Text(
-    "Exchange Moeney",
-    style: GoogleFonts.poppins(
-    color: const Color(0xFF1D1D1D),
-    fontSize: 20,
-    fontWeight: FontWeight.w500),
+    title: InkWell(
+      onTap: (){
+        Get.toNamed(MyRouters.yourBalanceScreen);
+      },
+      child: Text(
+      "Exchange Moeney",
+      style: GoogleFonts.poppins(
+      color: const Color(0xFF1D1D1D),
+      fontSize: 20,
+      fontWeight: FontWeight.w500),
+      ),
     ),
 
     centerTitle: true,
@@ -102,7 +108,7 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
               padding: const EdgeInsets.only(left: 13.0),
               child: SizedBox(
                 width: 10,
-                height: 50,
+                height: 40,
                 child: DottedLine(
                   direction: Axis.vertical,
                   alignment: WrapAlignment.center,
@@ -142,7 +148,7 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
               padding: const EdgeInsets.only(left: 13.0),
               child: SizedBox(
                 width: 10,
-                height: 50,
+                height: 35,
                 child: DottedLine(
                   direction: Axis.vertical,
                   alignment: WrapAlignment.center,
@@ -188,7 +194,7 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
               padding: const EdgeInsets.only(left: 13.0),
               child: SizedBox(
                 width: 10,
-                height: 50,
+                height: 35,
                 child: DottedLine(
                   direction: Axis.vertical,
                   alignment: WrapAlignment.center,

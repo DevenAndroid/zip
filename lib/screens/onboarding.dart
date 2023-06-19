@@ -29,9 +29,9 @@ class _OBScreenState extends State<OBScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-
+SizedBox(height: size.height*.1,),
     SizedBox(
-      height: size.height*.8,
+      height: size.height*.7,
       child: PageView.builder(
       itemCount: page1.length,
       controller: controller,
@@ -51,7 +51,7 @@ class _OBScreenState extends State<OBScreen> {
           height: 50,
         ),
       Image(
-      image: AssetImage(page1[index].img,),
+      image: AssetImage(page1[index].img,),width: 200,height: 200,
       ),
 
 
@@ -75,11 +75,11 @@ class _OBScreenState extends State<OBScreen> {
         fontWeight:
         FontWeight
             .bold),
-      textAlign: TextAlign.center,
+      textAlign: TextAlign.start,
       ),
       const SizedBox(
 
-      height: 18,
+      height: 8,
       ),
       Text(
       page1[index].description,
@@ -90,14 +90,14 @@ class _OBScreenState extends State<OBScreen> {
             fontWeight:
             FontWeight
                 .w300),
-      textAlign: TextAlign.center,
+      textAlign: TextAlign.start,
       ),
         const SizedBox(
 
-          height: 22,
+          height: 12,
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SmoothPageIndicator(
 
@@ -108,7 +108,7 @@ class _OBScreenState extends State<OBScreen> {
                 activeDotColor: Color(0xFFF0D75F),
                 dotWidth: 10,
                 dotHeight: 10,
-                dotColor: Colors.grey,
+                dotColor: Colors.black12,
               ),
             ),
           ],

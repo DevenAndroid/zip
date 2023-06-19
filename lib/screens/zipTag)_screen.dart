@@ -39,16 +39,19 @@ class _TagScreenState extends State<TagScreen> {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
 
-    Text(
-    "Choose a @Zip Tag, your unique name for getting paid by anyone ",
-    style: GoogleFonts.poppins(
-    color: const Color(0xFF1D1D1D),
-    fontSize: 22,
-    fontWeight: FontWeight.w500),
+    Padding(
+      padding: const EdgeInsets.only(left: 10.0,right: 10),
+      child: Text(
+      "Choose a @Zip Tag, your unique name for getting paid by anyone ",
+      style: GoogleFonts.poppins(
+      color: const Color(0xFF1D1D1D),
+      fontSize: 22,
+      fontWeight: FontWeight.w500),
+      ),
     ),
     SizedBox(height: 40,),
       CommonTextfield(obSecure: false, hintText: "@"),
-      SizedBox(height: size.height*.6,),
+      SizedBox(height: size.height*.52,),
       InkWell(
           onTap: (){
             Get.toNamed(MyRouters.addressScreen);

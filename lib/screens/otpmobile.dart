@@ -41,19 +41,25 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
 
-                      Text(
-                        "Please enter 6 digits code we sent to",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 22,
-                            fontWeight: FontWeight.w500),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: Text(
+                          "Please enter 6 digits code we sent to",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500),
+                        ),
                       ),
-                      Text(
-                        "+234 xxxxxxxxxxx",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFFB2802A),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0,right: 10),
+                        child: Text(
+                          "+234 xxxxxxxxxxx",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFFB2802A),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500),
+                        ),
                       ),
                       const SizedBox(
                         height: 20,
@@ -85,7 +91,7 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
                             fontWeight: FontWeight.w300),
                       ),
 
-                      SizedBox(height: size.height*0.5,),
+                      SizedBox(height: size.height*0.44,),
                       InkWell(
                         onTap: (){
                           Get.back();

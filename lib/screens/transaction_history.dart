@@ -39,11 +39,16 @@ class _TransactionsHistoryState extends State<TransactionsHistory> {
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 8.0),
-              child: Container(
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(color: AppTheme.primaryColor, width: 2)),
-                child: Icon(Icons.question_mark_rounded),
+              child: GestureDetector(
+                onTap: (){
+                  Get.toNamed(MyRouters.fAQScreens);
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: AppTheme.primaryColor, width: 2)),
+                  child: Icon(Icons.question_mark_rounded),
+                ),
               ),
             )
           ],

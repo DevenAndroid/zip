@@ -58,7 +58,7 @@ class _SelectableScreenState extends State<SelectableScreen> {
           },
           child: Container(
               width: MediaQuery.of(context).size.width,
-              height: 45,
+              height: 55,
               decoration:   currentDrawer == 0 ?  BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: AppTheme.secondaryColor ,width: 1.3)
@@ -67,7 +67,7 @@ class _SelectableScreenState extends State<SelectableScreen> {
                   border: Border.all(color:AppTheme.buttonColor ,width: 1.3)
               ),
           child: Padding(
-            padding: const EdgeInsets.only(left: 9.0,top: 12),
+            padding: const EdgeInsets.only(left: 9.0,top: 18),
             child: Text("Family Support"),
           ),
 
@@ -83,7 +83,7 @@ class _SelectableScreenState extends State<SelectableScreen> {
         },
         child: Container(
           width: MediaQuery.of(context).size.width,
-          height: 45,
+          height: 55,
           decoration:   currentDrawer == 1 ?  BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               border: Border.all(color:AppTheme.secondaryColor,width: 1.3)
@@ -92,7 +92,7 @@ class _SelectableScreenState extends State<SelectableScreen> {
               border: Border.all(color:  AppTheme.buttonColor,width: 1.3)
           ),
           child: Padding(
-            padding: const EdgeInsets.only(left: 9.0,top: 12),
+            padding: const EdgeInsets.only(left: 9.0,top: 18),
             child: Text("Buy Airtime & Pay Bills"),
           ),
 
@@ -108,7 +108,7 @@ class _SelectableScreenState extends State<SelectableScreen> {
         },
         child: Container(
           width: MediaQuery.of(context).size.width,
-          height: 45,
+          height: 55,
           decoration:   currentDrawer == 2 ?  BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               border: Border.all(color:AppTheme.secondaryColor,width: 1.3)
@@ -117,7 +117,7 @@ class _SelectableScreenState extends State<SelectableScreen> {
               border: Border.all(color:  AppTheme.buttonColor,width: 1.3)
           ),
           child: Padding(
-            padding: const EdgeInsets.only(left: 9.0,top: 12),
+            padding: const EdgeInsets.only(left: 9.0,top: 18),
             child: Text("Buy Goods & Services"),
           ),
 
@@ -133,7 +133,7 @@ class _SelectableScreenState extends State<SelectableScreen> {
         },
         child: Container(
           width: MediaQuery.of(context).size.width,
-          height: 45,
+          height: 55,
           decoration:   currentDrawer == 3 ?  BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               border: Border.all(color:AppTheme.secondaryColor,width: 1.3)
@@ -142,7 +142,7 @@ class _SelectableScreenState extends State<SelectableScreen> {
               border: Border.all(color:  AppTheme.buttonColor,width: 1.3)
           ),
           child: Padding(
-            padding: const EdgeInsets.only(left: 9.0,top: 12),
+            padding: const EdgeInsets.only(left: 9.0,top: 18),
             child: Text("My Business"),
           ),
 
@@ -157,7 +157,7 @@ class _SelectableScreenState extends State<SelectableScreen> {
         },
         child: Container(
           width: MediaQuery.of(context).size.width,
-          height: 45,
+          height: 55,
           decoration:   currentDrawer == 4?  BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               border: Border.all(color:AppTheme.secondaryColor,width: 1.3)
@@ -166,13 +166,13 @@ class _SelectableScreenState extends State<SelectableScreen> {
               border: Border.all(color:  AppTheme.buttonColor,width: 1.3)
           ),
           child: Padding(
-            padding: const EdgeInsets.only(left: 9.0,top: 12),
+            padding: const EdgeInsets.only(left: 9.0,top: 18),
             child: Text("Saving & Investing"),
           ),
 
         ),
       ),
-      SizedBox(height: size.height*.3,),
+      SizedBox(height: size.height*.2,),
       GestureDetector(
           onTap: (){
           Get.toNamed(MyRouters.userScreen);

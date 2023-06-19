@@ -40,12 +40,15 @@ class _AddressScreenState extends State<AddressScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
 
-                      Text(
-                        "What is your residential address?",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 22,
-                            fontWeight: FontWeight.w500),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0,right: 10),
+                        child: Text(
+                          "What is your residential address?",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 22,
+                              fontWeight: FontWeight.w500),
+                        ),
                       ),
                       SizedBox(height: 40,),
                       CommonTextfield(obSecure: false, hintText: "Start typing your address",prefix: Icon(Icons.search),suffixIcon:    Padding(

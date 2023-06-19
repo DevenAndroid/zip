@@ -60,69 +60,74 @@ class _CommonTextfieldState extends State<CommonTextfield> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-        style: const TextStyle(
-            color: AppTheme.primaryColor
-        ),
-        autofocus: false, textInputAction: TextInputAction.next,
-        onFieldSubmitted: widget.onFieldSubmitted,
-        inputFormatters: widget.inputFormatters,
-        onChanged: widget.onChanged,
-        onEditingComplete: widget.onEditingCompleted,
-        obscureText: widget.obSecure,
-        minLines: widget.isMulti ? 4 : 1,
-        maxLines: widget.isMulti ? null : 1,
-        onTap: widget.onTap,
-        enabled: widget.enabled,
-        readOnly: widget.readOnly,
-        keyboardType: widget.keyboardType,
-        controller: widget.controller,
-        decoration: InputDecoration(
-          counterStyle: const TextStyle(
-            color: AppTheme.primaryColor,
-            fontSize: 25,
+    return Padding(
+      padding: const EdgeInsets.only(left: 10.0,right: 10),
+      child: TextFormField(
+
+          style: const TextStyle(
+              color: AppTheme.primaryColor
           ),
-          counter: const Offstage(),
-          //    filled: true,
-          errorMaxLines: 2,
+          autofocus: false, textInputAction: TextInputAction.next,
+          onFieldSubmitted: widget.onFieldSubmitted,
+          inputFormatters: widget.inputFormatters,
+          onChanged: widget.onChanged,
+          onEditingComplete: widget.onEditingCompleted,
+          obscureText: widget.obSecure,
+          minLines: widget.isMulti ? 4 : 1,
+          maxLines: widget.isMulti ? null : 1,
+          onTap: widget.onTap,
           enabled: widget.enabled,
-          //   fillColor: Colors.transparent,
-          hintText: widget.hintText,
-          errorText: widget.errorText,
-          labelText: widget.labelText,
-          prefixIcon: widget.prefix,
-          suffixIcon: widget.suffixIcon,
-          labelStyle: const TextStyle(
-            color: AppTheme.primaryColor,
-            fontSize: 15,
-          ),
-          hintStyle: const TextStyle(
-            color: AppTheme.primaryColor,
-            fontSize: 15,
-          ),
-          /*errorStyle: const TextStyle(
-              overflow: TextOverflow.clip,
-            ),*/
-          contentPadding: const EdgeInsets.only(left: 18, top: 10),
-          disabledBorder: OutlineInputBorder(
-            borderSide:
-            const BorderSide(color: AppTheme.primaryColor, width: 1.5),
-            borderRadius: BorderRadius.circular(15),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide:
-            const BorderSide(color: AppTheme.secondaryColor, width: 1.5),
-            borderRadius: BorderRadius.circular(15),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color:AppTheme.primaryColor, width: 1.5),
-            borderRadius: BorderRadius.circular(15),
-          ),
-          border: OutlineInputBorder(
+          readOnly: widget.readOnly,
+          keyboardType: widget.keyboardType,
+          controller: widget.controller,
+          decoration: InputDecoration(
+            counterStyle: const TextStyle(
+              color: AppTheme.primaryColor,
+              fontSize: 25,
+            ),
+            counter: const Offstage(),
+            //    filled: true,
+            errorMaxLines: 2,
+            enabled: widget.enabled,
+            //   fillColor: Colors.transparent,
+            hintText: widget.hintText,
+            errorText: widget.errorText,
+            labelText: widget.labelText,
+            prefixIcon: widget.prefix,
+            suffixIcon: widget.suffixIcon,
+            labelStyle: const TextStyle(
+              color: AppTheme.primaryColor,
+              fontSize: 15,
+            ),
+            hintStyle: const TextStyle(
+
+              color: AppTheme.primaryColor,
+              fontSize: 15,
+            ),
+            /*errorStyle: const TextStyle(
+                overflow: TextOverflow.clip,
+              ),*/
+            contentPadding: const EdgeInsets.symmetric(vertical: 18,horizontal: 12),
+            disabledBorder: OutlineInputBorder(
+              borderSide:
+              const BorderSide(color: AppTheme.primaryColor, width: 1.5),
+              borderRadius: BorderRadius.circular(15),
+            ),
+            focusedBorder: OutlineInputBorder(
               borderSide:
               const BorderSide(color: AppTheme.secondaryColor, width: 1.5),
-              borderRadius: BorderRadius.circular(15)),
-        ),
-        validator: widget.validator);
+              borderRadius: BorderRadius.circular(15),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color:AppTheme.primaryColor, width: 1.5),
+              borderRadius: BorderRadius.circular(15),
+            ),
+            border: OutlineInputBorder(
+                borderSide:
+                const BorderSide(color: AppTheme.secondaryColor, width: 1.5),
+                borderRadius: BorderRadius.circular(15)),
+          ),
+          validator: widget.validator),
+    );
   }
 }

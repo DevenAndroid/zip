@@ -43,12 +43,15 @@ class _EmailScreenState extends State<EmailScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
 
-                    Text(
-                      "Enter your email to continue",
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF1D1D1D),
-                          fontSize: 22,
-                          fontWeight: FontWeight.w500),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0,right: 10),
+                      child: Text(
+                        "Enter your email to continue",
+                        style: GoogleFonts.poppins(
+                            color: const Color(0xFF1D1D1D),
+                            fontSize: 22,
+                            fontWeight: FontWeight.w500),
+                      ),
                     ),
                     const SizedBox(
                       height: 20,
@@ -87,21 +90,27 @@ class _EmailScreenState extends State<EmailScreen> {
                     ),
                  CommonTextfield(obSecure: false, hintText: "",labelText: "Email",),
                     SizedBox(height: 25,),
-                    Text(
-                      "By opening an account, you agree to our",
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF1D1D1D),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0,right: 10),
+                      child: Text(
+                        "By opening an account, you agree to our",
+                        style: GoogleFonts.poppins(
+                            color: const Color(0xFF1D1D1D),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500),
+                      ),
                     ),
-                    Text(
-                      "Terms of Use",
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFFB5832C),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0,right: 10),
+                      child: Text(
+                        "Terms of Use",
+                        style: GoogleFonts.poppins(
+                            color: const Color(0xFFB5832C),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500),
+                      ),
                     ),
-                    SizedBox(height:size.height*.4,),
+                    SizedBox(height:size.height*.35,),
 
                     InkWell(
                         onTap: (){

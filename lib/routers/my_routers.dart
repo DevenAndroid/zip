@@ -1,10 +1,12 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:zip/screens/birthday_screen.dart';
+import 'package:zip/screens/confirm_bank.dart';
 import 'package:zip/screens/country_page.dart';
 import 'package:zip/screens/dashboard_screen.dart';
 import 'package:zip/screens/enterMobileno.dart';
 import 'package:zip/screens/enter_email.dart';
 import 'package:zip/screens/exchange_screen.dart';
+import 'package:zip/screens/faq_screen.dart';
 import 'package:zip/screens/onboarding.dart';
 import 'package:zip/screens/otp_screen.dart';
 import 'package:zip/screens/otpemail.dart';
@@ -13,8 +15,11 @@ import 'package:zip/screens/regestration_address.dart';
 import 'package:zip/screens/regestration_extra_details.dart';
 import 'package:zip/screens/regestration_selectable.dart';
 import 'package:zip/screens/resgestration_name.dart';
+import 'package:zip/screens/select_payment.dart';
+import 'package:zip/screens/sucess.dart';
 import 'package:zip/screens/transaction1_page.dart';
 import 'package:zip/screens/transaction_history.dart';
+import 'package:zip/screens/your_balance_screen.dart';
 import 'package:zip/screens/zipTag)_screen.dart';
 
 import '../splash1.dart';
@@ -38,6 +43,11 @@ class MyRouters{
   static var transactionsFirst = "/transactionsFirst";
   static var transactionsHistory = "/transactionsHistory";
   static var exchangeMoney = "/exchangeMoney";
+  static var fAQScreens = "/fAQScreen";
+  static var yourBalanceScreen = "/yourBalanceScreen";
+  static var selectMethod = "/selectMethod";
+  static var confirmBankScreen = "/confirmBankScreen";
+  static var successScreen = "/successScreen";
 
   static var route = [
     GetPage(name: '/', page: () =>  const Splash()),
@@ -58,5 +68,10 @@ class MyRouters{
     GetPage(name: '/transactionsFirst', page: () =>   const TransactionsFirst()),
     GetPage(name: '/transactionsHistory', page: () =>   const TransactionsHistory()),
     GetPage(name: '/exchangeMoney', page: () =>   const ExchangeMoney()),
+    GetPage(name: '/fAQScreen', page: () =>   const FAQScreen()),
+    GetPage(name: '/yourBalanceScreen', page: () =>   const YourBalanceScreen()),
+    GetPage(name: '/selectMethod', page: () =>   const SelectMethod()),
+    GetPage(name: '/confirmBankScreen', page: () =>   const ConfirmBank()),
+    GetPage(name: '/successScreen', page: () =>   const SuccessScreen()),
   ];
 }

@@ -24,14 +24,19 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
     appBar: AppBar(
+      elevation: 1,
+      backgroundColor: Colors.white,
+
+
     leading:   InkWell(
 
     onTap: (){
     Get.back();
     },
+
     child: const Icon(
     Icons.arrow_back_rounded,
-    color: AppTheme.primaryColor,
+    // color: AppTheme.primaryColor,
     ),
     ),),
         body: SingleChildScrollView(
@@ -42,12 +47,15 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
 
-                Text(
-                  "Enter your mobile number to continue",
-                  style: GoogleFonts.poppins(
-                      color: const Color(0xFF1D1D1D),
-                      fontSize: 22,
-                      fontWeight: FontWeight.w500),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0,right: 10),
+                  child: Text(
+                    "Enter your mobile number to continue",
+                    style: GoogleFonts.poppins(
+                        color: const Color(0xFF1D1D1D),
+                        fontSize: 22,
+                        fontWeight: FontWeight.w500),
+                  ),
                 ),
                 const SizedBox(
                   height: 20,
@@ -83,65 +91,74 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                 const SizedBox(
                   height: 23,
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                      border:
-                          Border.all(color: AppTheme.primaryColor, width: 1.3),
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Row(
-                    children: [
-                      const CountryCodePicker(
-                        onChanged: print,
-                        initialSelection: 'IT',
-                        favorite: ['+39', 'FR'],
-                        showCountryOnly: false,
-                        showOnlyCountryWhenClosed: false,
-                        alignLeft: false,
-                      ),
-                      const SizedBox(
-                        height: 30,
-                        child: VerticalDivider(
-                          thickness: 1,
-                          color: Colors.grey,
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0,right: 10),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        border:
+                            Border.all(color: AppTheme.primaryColor, width: 1.3),
+                        borderRadius: BorderRadius.circular(15)),
+                    child: Row(
+                      children: [
+                        const CountryCodePicker(
+                          onChanged: print,
+                          initialSelection: 'IT',
+                          favorite: ['+39', 'FR'],
+                          showCountryOnly: false,
+                          showOnlyCountryWhenClosed: false,
+                          alignLeft: false,
                         ),
-                      ),
-                      SizedBox(
-                        width: 120,
-                        child: TextFormField(
-                            decoration: const InputDecoration(
-                          hintText: "XXXXXXXXX",
-                          border: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          enabledBorder: InputBorder.none,
-                          errorBorder: InputBorder.none,
-                          disabledBorder: InputBorder.none,
-                          hintStyle: TextStyle(
-                              color: Color(0xFF1D1D1D),
-                              fontSize: 16,
-                              decorationColor: Colors.transparent,
-                              decorationThickness: 0,
-                              fontWeight: FontWeight.w600),
-                        )),
-                      ),
-                    ],
+                        const SizedBox(
+                          height: 30,
+                          child: VerticalDivider(
+                            thickness: 1,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 120,
+                          child: TextFormField(
+                              decoration: const InputDecoration(
+                            hintText: "XXXXXXXXX",
+                            border: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            enabledBorder: InputBorder.none,
+                            errorBorder: InputBorder.none,
+                            disabledBorder: InputBorder.none,
+                            hintStyle: TextStyle(
+                                color: Color(0xFF1D1D1D),
+                                fontSize: 16,
+                                decorationColor: Colors.transparent,
+                                decorationThickness: 0,
+                                fontWeight: FontWeight.w600),
+                          )),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
 SizedBox(height: 25,),
-                Text(
-                  "By opening an account, you agree to our",
-                  style: GoogleFonts.poppins(
-                      color: const Color(0xFF1D1D1D),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0,right: 10),
+                  child: Text(
+                    "By opening an account, you agree to our",
+                    style: GoogleFonts.poppins(
+                        color: const Color(0xFF1D1D1D),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500),
+                  ),
                 ),
-        Text(
-            "Terms of Use",
-        style: GoogleFonts.poppins(
-            color: const Color(0xFFB5832C),
-        fontSize: 16,
-        fontWeight: FontWeight.w500),
+        Padding(
+          padding: const EdgeInsets.only(left: 10.0,right: 10),
+          child: Text(
+              "Terms of Use",
+          style: GoogleFonts.poppins(
+              color: const Color(0xFFB5832C),
+          fontSize: 16,
+          fontWeight: FontWeight.w500),
     ),
-                SizedBox(height:size.height*.4,),
+        ),
+                SizedBox(height:size.height*.35,),
 
                 InkWell(
                     onTap: (){

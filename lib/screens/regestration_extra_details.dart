@@ -60,12 +60,15 @@ class _ExtraDetailsScreenState extends State<ExtraDetailsScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
 
-                      Text(
-                        "Please add any extra details to complete this  ",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 22,
-                            fontWeight: FontWeight.w500),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0,right: 10),
+                        child: Text(
+                          "Please add any extra details to complete this  ",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 22,
+                              fontWeight: FontWeight.w500),
+                        ),
                       ),
                       SizedBox(height: 40,),
                       CommonTextfield(obSecure: false, labelText: "Street Name", hintText: '',),

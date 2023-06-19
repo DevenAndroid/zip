@@ -8,7 +8,7 @@ class OnBoarding {
 
 List<OnBoarding> page1 = [
   OnBoarding(
-      title: "Welcome to Zip",
+      title: "Welcome to Zip                                                     ",
       img: "assets/images/logo.png",
       description:"Quis ut dolorum architecto dolorem ipsum aperiam eligendi."),
   OnBoarding(

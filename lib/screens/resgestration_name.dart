@@ -39,12 +39,15 @@ class _UserScreenState extends State<UserScreen> {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
 
-    Text(
-    "Please enter your first & last name",
-    style: GoogleFonts.poppins(
-    color: const Color(0xFF1D1D1D),
-    fontSize: 22,
-    fontWeight: FontWeight.w500),
+    Padding(
+      padding: const EdgeInsets.only(left: 10.0,right: 10),
+      child: Text(
+      "Please enter your first & last name",
+      style: GoogleFonts.poppins(
+      color: const Color(0xFF1D1D1D),
+      fontSize: 22,
+      fontWeight: FontWeight.w500),
+      ),
     ),
     SizedBox(height: 40,),
 

@@ -22,6 +22,20 @@ class _CountryScreenState extends State<CountryScreen> {
         .size;
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
+        appBar: AppBar(
+          leading: InkWell(
+            onTap: () {
+              Get.back();
+            },
+            child: const Icon(
+              Icons.arrow_back_rounded,
+              color: AppTheme.primaryColor,
+            ),
+          ),
+
+
+          centerTitle: true,
+        ),
         body: SingleChildScrollView(
             child: Padding(
                 padding: const EdgeInsets.all(12.0),
@@ -29,37 +43,27 @@ class _CountryScreenState extends State<CountryScreen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      InkWell(
 
-                        onTap: (){
-                          Get.back();
-                        },
-                        child: const Icon(
-                          Icons.arrow_back_rounded,
-                          color: AppTheme.primaryColor,
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0,right: 10),
+                        child: Text(
+                          "Please tell us your nationality and place of birth",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 22,
+                              fontWeight: FontWeight.w500),
                         ),
                       ),
-
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "Please tell us your nationality and place of birth",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 22,
-                            fontWeight: FontWeight.w500),
-                      ),
                       SizedBox(height: 10,),
-                      Text(
-                        "This is needed for regulatory and feature customizations. ",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 15,
-                            fontWeight: FontWeight.w400),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0,right: 10),
+                        child: Text(
+                          "This is needed for regulatory and feature customizations. ",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                       SizedBox(height: 40,),
                       CommonTextfield(obSecure: false, labelText: " Nationality Country", hintText: '',prefix:    Padding(
@@ -74,12 +78,15 @@ class _CountryScreenState extends State<CountryScreen> {
                         child: SvgPicture.asset('assets/images/address.svg',width: 20,height: 10,),
                       ),),
                       SizedBox(height: 15,),
-                      Text(
-                        "What is your gender? ",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0,right: 10),
+                        child: Text(
+                          "What is your gender? ",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500),
+                        ),
                       ),
 
 SizedBox(height: 20,),
