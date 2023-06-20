@@ -29,9 +29,14 @@ class _MyCardState extends State<MyCard> {
               fontWeight: FontWeight.w500),
         ),
         centerTitle: true,
-        leading: Icon(
-          Icons.arrow_back_rounded,
-          color: AppTheme.primaryColor,
+        leading: InkWell(
+          onTap: (){
+            Get.back();
+          },
+          child: Icon(
+            Icons.arrow_back_rounded,
+            color: AppTheme.primaryColor,
+          ),
         ),
       ),
       body: SingleChildScrollView(
@@ -379,13 +384,16 @@ class _MyCardState extends State<MyCard> {
             SizedBox(
               height: 48,
             ),
-            InkWell(
-              onTap: (){
-                 Get.to(BuyServices());
-              },
-              child: CustomOutlineBoder(title: "Add to GPay", backgroundColor: Colors.white,textColor: AppTheme.buttonColor,onPressed: (){
+            Padding(
+              padding: const EdgeInsets.only(left: 18.0,right: 18),
+              child: InkWell(
+                onTap: (){
+                   Get.to(BuyServices());
+                },
+                child: CustomOutlineBoder(title: "Add to GPay", backgroundColor: Colors.white,textColor: AppTheme.buttonColor,onPressed: (){
 
-              },),
+                },),
+              ),
             ),
             SizedBox(
               height: 15,

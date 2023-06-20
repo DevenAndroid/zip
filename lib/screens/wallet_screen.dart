@@ -31,9 +31,14 @@ class _WalletScreenState extends State<WalletScreen> {
                 fontWeight: FontWeight.w500),
           ),
           centerTitle: true,
-          leading: Icon(
-            Icons.arrow_back_rounded,
-            color: AppTheme.primaryColor,
+          leading: InkWell(
+            onTap: (){
+              Get.back();
+            },
+            child: Icon(
+              Icons.arrow_back_rounded,
+              color: AppTheme.primaryColor,
+            ),
           ),
         ),
         backgroundColor: const Color(0xFFFFFFFF),
@@ -52,7 +57,7 @@ class _WalletScreenState extends State<WalletScreen> {
                     Expanded(
                         child: InkWell(
                       onTap: () {
-                        Get.toNamed(MyRouters.mobileNumber);
+                        // Get.toNamed(MyRouters.mobileNumber);
                       },
                       child: CustomOutlineBoder(
                         title: "Cards",
@@ -304,41 +309,47 @@ class _WalletScreenState extends State<WalletScreen> {
                 SizedBox(
                   height: 20,
                 ),
-                Container(
-                  height: 71,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(21),
-                      border: Border.all(color: Color(0xff1D1D1D))),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        "assets/images/Group.png",
-                        height: 45,
-                        width: 44,
-                      ),
-                      SizedBox(width: 5,),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Get your Virtual Card',
-                            style: GoogleFonts.poppins(
-                                color: Color(0xff1D1D1D),
-                                fontSize: 13,
-                                fontWeight: FontWeight.w400),
-                          ),
-                          Text(
-                            'Rem nemo rerum sint dolor quae repellat.',
-                            style: GoogleFonts.poppins(
-                                color: Color(0xff1D1D1D),
-                                fontSize: 10,
-                                fontWeight: FontWeight.w300),
-                          )
-                        ],
-                      )
-                    ],
+                Padding(
+                  padding: const EdgeInsets.only(left: 15.0,right: 10),
+                  child: Container(
+
+                    padding: EdgeInsets.all(8),
+                    height: 65,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(21),
+                        border: Border.all(color: Color(0xff1D1D1D))),
+                    child: Row(
+
+                      children: [
+                        SizedBox(width: 15,),
+                        Image.asset(
+                          "assets/images/Group.png",
+                          height: 45,
+                          width: 44,
+                        ),
+                        SizedBox(width: 10,),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Get your Virtual Card',
+                              style: GoogleFonts.poppins(
+                                  color: Color(0xff1D1D1D),
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                            Text(
+                              'Rem nemo rerum sint dolor quae repellat.',
+                              style: GoogleFonts.poppins(
+                                  color: Color(0xff1D1D1D),
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w300),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -353,11 +364,11 @@ class _WalletScreenState extends State<WalletScreen> {
                         Get.to(AddCard());
                       },
                       child: CustomOutlineButton(
-                        title: "Next",
+                        title: "Add Cards",
                       ),
                     )),
                 SizedBox(
-                  height: 15,
+                  height: 50,
                 ),
               ]),
         )));

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
 
@@ -27,9 +29,12 @@ class _AddFundsInBankState extends State<AddFundsInBank> {
               fontWeight: FontWeight.w500),
         ),
         centerTitle: true,
-        leading: const Icon(
-          Icons.arrow_back_rounded,
-          color: AppTheme.primaryColor,
+        leading: InkWell(
+          onTap: (){ Get.back();},
+          child: const Icon(
+            Icons.arrow_back_rounded,
+            color: AppTheme.primaryColor,
+          ),
         ),
         actions: const [
           Padding(
@@ -39,7 +44,7 @@ class _AddFundsInBankState extends State<AddFundsInBank> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 30, right: 30),
+        padding: const EdgeInsets.only(left: 6, right: 6),
         child: Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,49 +62,52 @@ class _AddFundsInBankState extends State<AddFundsInBank> {
               const SizedBox(
                 height: 26,
               ),
-              DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: Colors.black, width: 1),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Padding(
-                      padding: const EdgeInsets.only(left: 15, right: 30),
-                      child: DropdownButton(
-                        value: "United Kingdom",
-                        items: [
-                          DropdownMenuItem(
-                            value: "United Kingdom",
-                            child: Row(
-                              children: [
-                                Text(
-                                  "PPAYCOM(OPAY)",
-                                  style: GoogleFonts.poppins(
-                                      color: const Color(0xFF1D1D1D),
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w300),
-                                ),
-                              ],
+              Padding(
+                padding: const EdgeInsets.only(left: 10, right: 10),
+                child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: Colors.black, width: 1),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Padding(
+                        padding: const EdgeInsets.only(left: 15, right: 30),
+                        child: DropdownButton(
+                          value: "United Kingdom",
+                          items: [
+                            DropdownMenuItem(
+                              value: "United Kingdom",
+                              child: Row(
+                                children: [
+                                  Text(
+                                    "PPAYCOM(OPAY)",
+                                    style: GoogleFonts.poppins(
+                                        color: const Color(0xFF1D1D1D),
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w300),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          const DropdownMenuItem(
-                              value: "Canada", child: Text("Canada")),
-                          const DropdownMenuItem(
-                            value: "Russia",
-                            child: Text("Russia"),
-                          )
-                        ],
-                        onChanged: (value) {},
-                        icon: const Padding(
-                            padding: EdgeInsets.only(left: 20),
-                            child: Icon(Icons.keyboard_arrow_down_outlined)),
-                        iconEnabledColor: Colors.black, //Icon color
-                        style:
-                            const TextStyle(color: Colors.black, fontSize: 20),
-                        dropdownColor: Colors.white,
-                        underline: Container(),
-                        isExpanded: true,
-                      ))),
+                            const DropdownMenuItem(
+                                value: "Canada", child: Text("Canada")),
+                            const DropdownMenuItem(
+                              value: "Russia",
+                              child: Text("Russia"),
+                            )
+                          ],
+                          onChanged: (value) {},
+                          icon: const Padding(
+                              padding: EdgeInsets.only(left: 20),
+                              child: Icon(Icons.keyboard_arrow_down_outlined)),
+                          iconEnabledColor: Colors.black, //Icon color
+                          style:
+                              const TextStyle(color: Colors.black, fontSize: 20),
+                          dropdownColor: Colors.white,
+                          underline: Container(),
+                          isExpanded: true,
+                        ))),
+              ),
               const SizedBox(height: 27,),
 
               CommonTextfield(
@@ -118,7 +126,9 @@ class _AddFundsInBankState extends State<AddFundsInBank> {
                 height: size.height * .4,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Get.toNamed(MyRouters.bottomNavbar);
+                },
                 child: const CustomOutlineButton(
                   title: "Continue",
                 ),

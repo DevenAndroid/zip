@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zip/routers/my_routers.dart';
 
 import '../widgets/common_button.dart';
 
@@ -52,7 +54,7 @@ class _RequestAPaymentContiuneState extends State<RequestAPaymentContiune> {
           ),
           InkWell(
             onTap: () {
-
+Get.toNamed(MyRouters.sharePaymentLink);
             },
             child: CustomOutlineButton(
               title: "Next",

@@ -29,7 +29,7 @@ class _RequestAPaymentState extends State<RequestAPayment> {
         centerTitle: true,
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 20),
+            padding: const EdgeInsets.only(right: 20,top: 20),
             child: Text(
               "Cancel",
               style: GoogleFonts.poppins(
@@ -39,6 +39,10 @@ class _RequestAPaymentState extends State<RequestAPayment> {
             ),
           )
         ],
+        leading: InkWell(
+          onTap: (){Get.back();},
+          child: Icon(Icons.arrow_back),
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

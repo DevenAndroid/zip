@@ -55,7 +55,7 @@ class _SendCash2State extends State<SendCash2> {
           padding: const EdgeInsets.only(bottom: 20.0),
           child: InkWell(
               onTap: () {
-Get.toNamed(MyRouters.chooseBank);
+Get.toNamed(MyRouters.sendCashYourBalance);
               },
               child: const CustomOutlineButton(
                 title: "Continue",

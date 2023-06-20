@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
 
@@ -27,16 +29,20 @@ class _AccountsInBankState extends State<AccountsInBank> {
               fontWeight: FontWeight.w500),
         ),
         centerTitle: true,
-        leading: const Icon(
-          Icons.arrow_back_rounded,
-          color: AppTheme.primaryColor,
+        leading: InkWell(
+          onTap: (){ Get.back();},
+          child: const Icon(
+            Icons.arrow_back_rounded,
+            color: AppTheme.primaryColor,
+          ),
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 30, right: 28),
+        padding: const EdgeInsets.only(left: 12, right: 12),
         child: Container(
           child: Column(
             children: [
+              SizedBox(height: 20,),
               Container(
                   height: 62,
                   decoration: BoxDecoration(
@@ -196,7 +202,9 @@ class _AccountsInBankState extends State<AccountsInBank> {
                 height: size.height * .4,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Get.toNamed(MyRouters.addFundsInBank);
+                },
                 child: const CustomOutlineButton(
                   title: "Contacts",
                 ),

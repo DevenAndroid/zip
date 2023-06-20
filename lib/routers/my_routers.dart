@@ -108,7 +108,7 @@ class MyRouters{
   static var requestAPayment = "/requestAPayment";
   static var requestAPaymentConfirm = "/requestAPaymentConfirm";
   static var addFundsInBank = "/addFundsInBank";
-  static var accountsInBank = "/addFundsInBank";
+  static var accountsInBank = "/accountsInBank";
   static var payNowBalance = "/payNowBalance";
   static var sendCash = "/sendCash";
   static var addRecipients = "/addRecipients";
@@ -116,6 +116,11 @@ class MyRouters{
   static var addRecipientsStart = "/addRecipientsStart";
   static var sendCashYourBalance = "/sendCashYourBalance";
   static var yourRecipient = "/yourRecipient";
+  static var paymentLink = "/paymentLink";
+  static var requestAPaymentContiune = "/requestAPaymentContiune";
+  static var sharePaymentLink = "/sharePaymentLink";
+
+
 
   static var route = [
     GetPage(name: '/', page: () =>   const Splash()),
@@ -123,7 +128,9 @@ class MyRouters{
 
 
   GetPage(name: '/onBoardingScreen', page: () =>   const OnBoardingScreen()),
+  GetPage(name: '/requestAPaymentContiune', page: () =>   const RequestAPaymentContiune()),
   GetPage(name: '/sendCash1', page: () =>  const SendCash1()),
+  GetPage(name: '/sharePaymentLink', page: () =>  const SharePaymentLink()),
   GetPage(name: '/sendCash2', page: () =>  const SendCash2()),
   GetPage(name: '/chooseBank', page: () =>  const ChooseBank()),
   GetPage(name: '/bottomNavbar', page: () =>  const BottomNavbar()),
@@ -159,6 +166,7 @@ class MyRouters{
     GetPage(name: "/myCard", page: ()=>  MyCard()),
     GetPage(name: "/buyServices", page: ()=>  BuyServices()),
     GetPage(name: "/payBillsServices", page: ()=>  const PayBillsServices()),
+    GetPage(name: "/paymentLink", page: ()=>  const GeneratePaymentLink()),
     GetPage(name: "/profile", page: ()=>  const ProfileScreen()),
     GetPage(name: "/setting", page: ()=>  const Setting()),
     GetPage(name: "/requestPayment", page: ()=>  const RequestPayment()),
@@ -172,6 +180,7 @@ class MyRouters{
     GetPage(name: "/addRecipientsStart", page: ()=>  const AddRecipientStart()),
     GetPage(name: "/sendCashYourBalance", page: ()=>  const SendCashYourBalance()),
     GetPage(name: "/yourRecipient", page: ()=>  const YourRecipient()),
+    GetPage(name: "/transferLimit", page: ()=>  const Transferlimit()),
 
 
   ];

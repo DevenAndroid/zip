@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
 import '../widgets/common_boder_button.dart';
@@ -26,9 +28,12 @@ class _SendCashState extends State<SendCash> {
               fontWeight: FontWeight.w500),
         ),
         centerTitle: true,
-        leading: const Icon(
-          Icons.arrow_back_rounded,
-          color: AppTheme.primaryColor,
+        leading: InkWell(
+        onTap: (){ Get.back();},
+          child: const Icon(
+            Icons.arrow_back_rounded,
+            color: AppTheme.primaryColor,
+          ),
         ),
       ),
       body: Column(
@@ -93,7 +98,9 @@ class _SendCashState extends State<SendCash> {
             height: 43,
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Get.toNamed(MyRouters.payNowBalance);
+            },
             child: Padding(
               padding: const EdgeInsets.only(left: 10, right: 10),
               child: CustomOutlineBoder(
@@ -108,9 +115,11 @@ class _SendCashState extends State<SendCash> {
             height: 20,
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+
+            },
             child: const Padding(
-              padding: EdgeInsets.only(left: 30, right: 28),
+              padding: EdgeInsets.only(left: 10, right: 10),
               child: CustomOutlineButton(
                 title: "Contacts",
               ),

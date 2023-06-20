@@ -375,10 +375,12 @@ class _TransactionsFirstState extends State<TransactionsFirst> {
                                   ),
                                 ],
                               ),
-                            )
+                            ),
+
                           ],
                         ),
-                      )
+                      ),
+                      SizedBox(height: 100,)
                     ]))));
   }
 }

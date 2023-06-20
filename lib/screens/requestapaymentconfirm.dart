@@ -1,6 +1,8 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zip/routers/my_routers.dart';
 
 import '../widgets/common_button.dart';
 
@@ -24,10 +26,14 @@ class _RequestApaymentConfirmState extends State<RequestApaymentConfirm> {
               fontSize: 20,
               fontWeight: FontWeight.w500),
         ),
+        leading: InkWell(
+          onTap: (){Get.back();},
+          child: Icon(Icons.arrow_back),
+        ),
         centerTitle: true,
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 20),
+            padding: const EdgeInsets.only(right: 20,top: 20),
             child: Text(
               "Cancel",
               style: GoogleFonts.poppins(
@@ -36,6 +42,7 @@ class _RequestApaymentConfirmState extends State<RequestApaymentConfirm> {
                   fontWeight: FontWeight.w400),
             ),
           )
+
         ],
       ),
       body: Column(
@@ -68,7 +75,7 @@ class _RequestApaymentConfirmState extends State<RequestApaymentConfirm> {
           ),
           InkWell(
             onTap: () {
-
+Get.toNamed(MyRouters.paymentLink);
             },
             child: CustomOutlineButton(
               title: "Confirm",

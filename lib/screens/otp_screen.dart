@@ -97,7 +97,7 @@ mainAxisAlignment: MainAxisAlignment.spaceBetween,
       SizedBox(height: size.height*.6,),
       InkWell(
         onTap: (){
-       Get.toNamed(MyRouters.transactionsFirst );
+       Get.toNamed(MyRouters.bottomNavbar );
         },
         child: CustomOutlineBoder(title: "Skip", backgroundColor: Colors.white,textColor: AppTheme.buttonColor,onPressed: (){
           Get.toNamed(MyRouters.otpScreen);

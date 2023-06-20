@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
 
@@ -28,9 +30,14 @@ class _AddRecipientsState extends State<AddRecipients> {
               fontWeight: FontWeight.w500),
         ),
         centerTitle: true,
-        leading: const Icon(
-          Icons.arrow_back_rounded,
-          color: AppTheme.primaryColor,
+        leading: InkWell(
+          onTap: (){
+           Get.back();
+          },
+          child: const Icon(
+            Icons.arrow_back_rounded,
+            color: AppTheme.primaryColor,
+          ),
         ),
         actions: const [
           Padding(
@@ -87,7 +94,7 @@ class _AddRecipientsState extends State<AddRecipients> {
             height: 27,
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
+            padding: const EdgeInsets.only(left: 6, right: 6),
             child: CommonTextfield(
               obSecure: false,
               hintText: "@",
@@ -98,7 +105,7 @@ class _AddRecipientsState extends State<AddRecipients> {
             height: size.height * .5,
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {Get.toNamed(MyRouters.sendCash);},
             child: const CustomOutlineButton(
               title: "Continue",
             ),

@@ -28,10 +28,16 @@ class _SettingState extends State<Setting> {
               fontWeight: FontWeight.w500),
         ),
         centerTitle: true,
-        leading: Icon(
-          Icons.arrow_back_rounded,
-          color: AppTheme.primaryColor,
+        leading: InkWell(
+          onTap: (){
+            Get.back();
+          },
+          child: Icon(
+            Icons.arrow_back_rounded,
+            color: AppTheme.primaryColor,
+          ),
         ),
+
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -407,7 +413,7 @@ class _SettingState extends State<Setting> {
           ),
         ),
       ),
-
+SizedBox(height: 30,),
           ],
         ),
       ),
