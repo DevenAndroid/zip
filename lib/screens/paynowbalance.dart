@@ -21,6 +21,8 @@ class _PayNowBalanceState extends State<PayNowBalance> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
         title: Text(
           "Your Balance",
           style: GoogleFonts.poppins(

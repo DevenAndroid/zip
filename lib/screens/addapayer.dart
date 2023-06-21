@@ -23,6 +23,8 @@ class _AddAPayerState extends State<AddAPayer> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
         title: Text(
           "Add a payer",
           style: GoogleFonts.poppins(

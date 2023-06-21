@@ -22,6 +22,27 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
         .size;
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          title: Text(
+            "",
+            style: GoogleFonts.poppins(
+                color: const Color(0xFF1D1D1D),
+                fontSize: 20,
+                fontWeight: FontWeight.w500),
+          ),
+          centerTitle: true,
+          leading: InkWell(
+            onTap: (){
+              Get.back();
+            },
+            child: Icon(
+              Icons.arrow_back_rounded,
+              color: AppTheme.primaryColor,
+            ),
+          ),
+        ),
     body: SingleChildScrollView(
     child: Padding(
     padding: const EdgeInsets.all(12.0),
@@ -29,21 +50,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-    const SizedBox(
-    height: 20,
-    ),
-    InkWell(
-    onTap: (){
-    Get.back();
-    },
-    child: const Icon(
-    Icons.arrow_back_rounded,
-    color: AppTheme.primaryColor,
-    ),
-    ),
-    const SizedBox(
-    height: 20,
-    ),
+
     Padding(
       padding: const EdgeInsets.only(left: 10.0,right: 10),
       child: Row(

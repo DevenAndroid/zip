@@ -20,6 +20,8 @@ class _TransactionsHistoryState extends State<TransactionsHistory> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
           leading: InkWell(
             onTap: () {
               Get.back();
@@ -47,7 +49,7 @@ class _TransactionsHistoryState extends State<TransactionsHistory> {
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(color: AppTheme.primaryColor, width: 2)),
-                  child: Icon(Icons.question_mark_rounded),
+                  child: Icon(Icons.question_mark_rounded,color: Colors.black,),
                 ),
               ),
             )

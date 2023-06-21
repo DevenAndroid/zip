@@ -22,6 +22,8 @@ class _RequestPaymentState extends State<RequestPayment> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
         title: Text(
           "Payment request",
           style: GoogleFonts.poppins(

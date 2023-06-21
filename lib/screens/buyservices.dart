@@ -23,6 +23,8 @@ class _BuyServicesState extends State<BuyServices> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
         title: Text(
           "Buy Airtime",
           style: GoogleFonts.poppins(

@@ -20,6 +20,8 @@ class _YourRecipientState extends State<YourRecipient> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
         title: Text(
           "Add Recipients",
           style: GoogleFonts.poppins(

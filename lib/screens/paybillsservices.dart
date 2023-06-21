@@ -25,6 +25,8 @@ class _PayBillsServicesState extends State<PayBillsServices> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
         title: Text(
           "Pay Bills",
           style: GoogleFonts.poppins(

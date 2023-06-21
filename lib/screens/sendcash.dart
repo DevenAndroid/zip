@@ -20,6 +20,8 @@ class _SendCashState extends State<SendCash> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
         title: Text(
           "",
           style: GoogleFonts.poppins(

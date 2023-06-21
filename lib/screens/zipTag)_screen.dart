@@ -21,6 +21,8 @@ class _TagScreenState extends State<TagScreen> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
           leading:   InkWell(
 
             onTap: (){

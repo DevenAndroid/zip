@@ -19,6 +19,8 @@ class _RequestAPaymentContiuneState extends State<RequestAPaymentContiune> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
         title: Text(
           "Request a payment",
           style: GoogleFonts.poppins(

@@ -23,6 +23,8 @@ class _TransferlimitState extends State<Transferlimit> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
         title: Text(
           "Transfer Limit",
           style: GoogleFonts.poppins(

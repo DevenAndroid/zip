@@ -21,6 +21,8 @@ class _AddFundsInBankState extends State<AddFundsInBank> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
         title: Text(
           "Add Funds",
           style: GoogleFonts.poppins(

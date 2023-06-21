@@ -21,6 +21,8 @@ class _AccountsInBankState extends State<AccountsInBank> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
         title: Text(
           "Accounts",
           style: GoogleFonts.poppins(
