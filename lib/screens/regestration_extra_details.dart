@@ -21,6 +21,8 @@ class _ExtraDetailsScreenState extends State<ExtraDetailsScreen> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+
+          elevation: 0,
           backgroundColor: Colors.white,
           leading:   InkWell(
 

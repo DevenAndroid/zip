@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+      import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,6 +28,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       backgroundColor: Color(0xFFFFFFFF),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
 SizedBox(height: size.height*.1,),
     SizedBox(
@@ -44,14 +46,17 @@ SizedBox(height: size.height*.1,),
       return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 8),
       child: Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         const SizedBox(
 
           height: 50,
         ),
-      Image(
-      image: AssetImage(page1[index].img,),width: 200,height: 200,
+      Center(
+        child: Image(
+        image: AssetImage(page1[index].img,),width: 180,height: 160,
+        ),
       ),
 
 
@@ -61,6 +66,8 @@ SizedBox(height: size.height*.1,),
       ),
       Padding(padding: const EdgeInsets.symmetric(horizontal: 15),
       child :Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         const SizedBox(
 
@@ -75,7 +82,7 @@ SizedBox(height: size.height*.1,),
         fontWeight:
         FontWeight
             .bold),
-      textAlign: TextAlign.start,
+
       ),
       const SizedBox(
 

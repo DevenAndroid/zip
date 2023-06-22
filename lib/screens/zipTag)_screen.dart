@@ -21,6 +21,8 @@ class _TagScreenState extends State<TagScreen> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
           leading:   InkWell(
 
             onTap: (){
@@ -49,14 +51,26 @@ class _TagScreenState extends State<TagScreen> {
       fontWeight: FontWeight.w500),
       ),
     ),
+
     SizedBox(height: 40,),
       CommonTextfield(obSecure: false, hintText: "@"),
+      Padding(
+        padding: const EdgeInsets.only(left: 10.0,right: 10),
+        child: Text(
+          "Please enter a tag",
+          style: GoogleFonts.poppins(
+              color: const Color(0xFFB6B6B6),
+              fontSize: 15,
+              fontWeight: FontWeight.w300),
+        ),
+      ),
       SizedBox(height: size.height*.52,),
       InkWell(
           onTap: (){
             Get.toNamed(MyRouters.addressScreen);
           },
           child: CustomOutlineButton(title: "Next",)),
+
 
     ]
     ))));

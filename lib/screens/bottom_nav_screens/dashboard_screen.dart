@@ -38,16 +38,16 @@ class _DashBoardState extends State<DashBoard> {
                   textStyle: const TextStyle(fontSize: 18,),
                 ),
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    height: size.height*.29,
-                    width: size.width*.50,
+
+                    width: size.width*.47,
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
+                      gradient: const LinearGradient(
                           colors: [
 
                             Color(0xFFF0D75F),
@@ -65,24 +65,24 @@ class _DashBoardState extends State<DashBoard> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(height: 5,),
+                        const SizedBox(height: 5,),
                         Text("Current Balance",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF2E2E2E),
                               fontSize: 18,
                               fontWeight: FontWeight.w500),),
-                        SizedBox(height: 8,),
+                        const SizedBox(height: 5,),
                         Text("\$276.00",
                           style: GoogleFonts.poppins(
                               color:  Colors.white,
                               fontSize: 35,
                               fontWeight: FontWeight.w500),),
-             SizedBox(height: 95,),
+             const SizedBox(height: 110,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         SvgPicture.asset('assets/images/swap.svg',),
-                        Icon(Icons.arrow_forward_rounded,size: 25,)
+                        const Icon(Icons.arrow_forward_rounded,size: 25,)
                       ],
                     )
 
@@ -94,12 +94,12 @@ class _DashBoardState extends State<DashBoard> {
                   Column(
                     children: [
                       Container(
-                        height: size.height*.14,
-                        width: size.width*.37,
+
+                        width: size.width*.39,
                         decoration: BoxDecoration(
 
 
-                               color: Color(0xFF1D1D1D),
+                               color: const Color(0xFF1D1D1D),
 
 
                           borderRadius: BorderRadius.circular(15),
@@ -111,8 +111,8 @@ class _DashBoardState extends State<DashBoard> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Icon(Icons.arrow_downward,color: Colors.white,),
-                            SizedBox(height: 42,),
+                            const Icon(Icons.arrow_downward,color: Colors.white,),
+                            const SizedBox(height: 50,),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               crossAxisAlignment: CrossAxisAlignment.end,
@@ -131,12 +131,12 @@ class _DashBoardState extends State<DashBoard> {
                       ),
 
                       ),
-                      SizedBox(height: 8,),
+                      const SizedBox(height: 8,),
                       Container(
-                        height: size.height*.14,
-                        width: size.width*.37,
+
+                        width: size.width*.39,
                         decoration: BoxDecoration(
-                          color: Color(0xFF1D1D1D),
+                          color: const Color(0xFF1D1D1D),
 
                           borderRadius: BorderRadius.circular(15),
                         ),
@@ -148,7 +148,7 @@ class _DashBoardState extends State<DashBoard> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                           SvgPicture.asset("assets/images/arrow.svg"),
-                            SizedBox(height: 45,),
+                            const SizedBox(height: 50,),
                             Text("Cash Out",
                               style: GoogleFonts.poppins(
                                   color:  Colors.white,
@@ -166,7 +166,7 @@ class _DashBoardState extends State<DashBoard> {
                   ),
                 ],
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               Text(
                 'My ZIP',
                 style: GoogleFonts.poppins(
@@ -179,17 +179,27 @@ class _DashBoardState extends State<DashBoard> {
                   textStyle: const TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: Color(0xFF1D1D1D)),
                 ),
               ),
-SizedBox(height: 10,),
+const SizedBox(height: 10,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-padding: EdgeInsets.all(8),
+padding: const EdgeInsets.all(8),
 
                 decoration: BoxDecoration(
-
-                  borderRadius: BorderRadius.circular(10)
-                ),
+                    color: const Color(0xFFFAFAFA),
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: const [
+                      BoxShadow(
+                        color:   Colors.black26,
+                        offset: Offset(
+                          0.5,
+                          0.5,
+                        ), //Offset
+                        blurRadius:    0.5,
+                        spreadRadius: 0.0,
+                      ), //BoxShadow
+                    ]),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -197,16 +207,16 @@ padding: EdgeInsets.all(8),
 Row(
   mainAxisAlignment: MainAxisAlignment.end,
   crossAxisAlignment: CrossAxisAlignment.end,
-  children: [
+  children: const [
     SizedBox(width: 60,),
     Icon(Icons.arrow_forward,size: 20,),
 
   ],
 ),
                   SvgPicture.asset("assets/images/i1.svg",width: 50,),
-                  SizedBox(height: 8,),
+                  const SizedBox(height: 8,),
                   Text(
-                    'Bank Transfer',
+                    'Bank\nTransfer',
                     style: GoogleFonts.poppins(
                       textStyle: const TextStyle(fontSize: 16,fontWeight: FontWeight.w400,color: Color(0xFF2E2E2E)),
                     ),
@@ -215,12 +225,22 @@ Row(
               ),
               ),
               Container(
-padding: EdgeInsets.all(8),
+padding: const EdgeInsets.all(8),
 
                 decoration: BoxDecoration(
-
-                  borderRadius: BorderRadius.circular(10)
-                ),
+                    color: const Color(0xFFFAFAFA),
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: const [
+                      BoxShadow(
+                        color:   Colors.black26,
+                        offset: Offset(
+                          0.5,
+                          0.5,
+                        ), //Offset
+                        blurRadius:    0.5,
+                        spreadRadius: 0.0,
+                      ), //BoxShadow
+                    ]),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -228,16 +248,16 @@ padding: EdgeInsets.all(8),
 Row(
   mainAxisAlignment: MainAxisAlignment.end,
   crossAxisAlignment: CrossAxisAlignment.end,
-  children: [
+  children: const [
     SizedBox(width: 60,),
     Icon(Icons.arrow_forward,size: 20,),
 
   ],
 ),
                   SvgPicture.asset("assets/images/i2.svg",width: 50,),
-                  SizedBox(height: 8,),
+                  const SizedBox(height: 8,),
                   Text(
-                    'Add Cash',
+                    'Add\nCash',
                     style: GoogleFonts.poppins(
                       textStyle: const TextStyle(fontSize: 16,fontWeight: FontWeight.w400,color: Color(0xFF2E2E2E)),
                     ),
@@ -246,12 +266,22 @@ Row(
               ),
               ),
               Container(
-padding: EdgeInsets.all(8),
+padding: const EdgeInsets.all(8),
 
                 decoration: BoxDecoration(
-
-                  borderRadius: BorderRadius.circular(10)
-                ),
+                    color: const Color(0xFFFAFAFA),
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: const [
+                      BoxShadow(
+                        color:   Colors.black26,
+                        offset: Offset(
+                          0.5,
+                          0.5,
+                        ), //Offset
+                        blurRadius:    0.5,
+                        spreadRadius: 0.0,
+                      ), //BoxShadow
+                    ]),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -259,16 +289,16 @@ padding: EdgeInsets.all(8),
 Row(
   mainAxisAlignment: MainAxisAlignment.end,
   crossAxisAlignment: CrossAxisAlignment.end,
-  children: [
+  children: const [
     SizedBox(width: 60,),
     Icon(Icons.arrow_forward,size: 20,),
 
   ],
 ),
                   SvgPicture.asset("assets/images/i3.svg",width: 50,height: 50,),
-                  SizedBox(height: 8,),
+                  const SizedBox(height: 8,),
                   Text(
-                    'Buy Anytime',
+                    'Buy\nAnytime',
                     style: GoogleFonts.poppins(
                       textStyle: const TextStyle(fontSize: 16,fontWeight: FontWeight.w400,color: Color(0xFF2E2E2E)),
                     ),
@@ -278,17 +308,27 @@ Row(
               ),
             ],
           ),
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-padding: EdgeInsets.all(8),
+padding: const EdgeInsets.all(8),
 
                 decoration: BoxDecoration(
-
-                  borderRadius: BorderRadius.circular(10)
-                ),
+                    color: const Color(0xFFFAFAFA),
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: const [
+                      BoxShadow(
+                        color:   Colors.black26,
+                        offset: Offset(
+                          0.5,
+                          0.5,
+                        ), //Offset
+                        blurRadius:    0.5,
+                        spreadRadius: 0.0,
+                      ), //BoxShadow
+                    ]),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -296,16 +336,16 @@ padding: EdgeInsets.all(8),
 Row(
   mainAxisAlignment: MainAxisAlignment.end,
   crossAxisAlignment: CrossAxisAlignment.end,
-  children: [
+  children: const [
     SizedBox(width: 60,),
     Icon(Icons.arrow_forward,size: 20,),
 
   ],
 ),
                   SvgPicture.asset("assets/images/i4.svg",width: 50,),
-                  SizedBox(height: 8,),
+                  const SizedBox(height: 8,),
                   Text(
-                    'Buy Electricity',
+                    'Buyn\nElectricity',
                     style: GoogleFonts.poppins(
                       textStyle: const TextStyle(fontSize: 16,fontWeight: FontWeight.w400,color: Color(0xFF2E2E2E)),
                     ),
@@ -314,12 +354,22 @@ Row(
               ),
               ),
               Container(
-padding: EdgeInsets.all(8),
+padding: const EdgeInsets.all(8),
 
                 decoration: BoxDecoration(
-
-                  borderRadius: BorderRadius.circular(10)
-                ),
+                    color: const Color(0xFFFAFAFA),
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: const [
+                      BoxShadow(
+                        color:   Colors.black26,
+                        offset: Offset(
+                          0.5,
+                          0.5,
+                        ), //Offset
+                        blurRadius:    0.5,
+                        spreadRadius: 0.0,
+                      ), //BoxShadow
+                    ]),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -327,14 +377,14 @@ padding: EdgeInsets.all(8),
 Row(
   mainAxisAlignment: MainAxisAlignment.end,
   crossAxisAlignment: CrossAxisAlignment.end,
-  children: [
+  children: const [
     SizedBox(width: 60,),
     Icon(Icons.arrow_forward,size: 20,),
 
   ],
 ),
                   SvgPicture.asset("assets/images/i5.svg",width: 50,),
-                  SizedBox(height: 8,),
+                  const SizedBox(height: 8,),
                   Text(
                     'Buy Internet\n Data',
                     style: GoogleFonts.poppins(
@@ -345,12 +395,22 @@ Row(
               ),
               ),
               Container(
-padding: EdgeInsets.all(8),
+padding: const EdgeInsets.all(8),
 
                 decoration: BoxDecoration(
-
-                  borderRadius: BorderRadius.circular(10)
-                ),
+                    color: const Color(0xFFFAFAFA),
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: const [
+                      BoxShadow(
+                        color:   Colors.black26,
+                        offset: Offset(
+                          0.5,
+                          0.5,
+                        ), //Offset
+                        blurRadius:    0.5,
+                        spreadRadius: 0.0,
+                      ), //BoxShadow
+                    ]),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -358,16 +418,16 @@ padding: EdgeInsets.all(8),
 Row(
   mainAxisAlignment: MainAxisAlignment.end,
   crossAxisAlignment: CrossAxisAlignment.end,
-  children: [
+  children: const [
     SizedBox(width: 60,),
     Icon(Icons.arrow_forward,size: 20,),
 
   ],
 ),
                   SvgPicture.asset("assets/images/i6.svg",width: 50,height: 50,),
-                  SizedBox(height: 8,),
+                  const SizedBox(height: 8,),
                   Text(
-                    'Pay Bills',
+                    'Pay\nBills',
                     style: GoogleFonts.poppins(
                       textStyle: const TextStyle(fontSize: 16,fontWeight: FontWeight.w400,color: Color(0xFF2E2E2E)),
                     ),
@@ -377,7 +437,7 @@ Row(
               ),
             ],
           ),
-SizedBox(height: 20,),
+const SizedBox(height: 20,),
 Row(
   mainAxisAlignment: MainAxisAlignment.spaceBetween,
   children: [
@@ -399,10 +459,10 @@ Row(
         ],
     ),
 
-    Icon(Icons.arrow_forward_ios,size: 20,)
+    const Icon(Icons.arrow_forward_ios,size: 20,)
   ],
 ),
-              SizedBox(height: 30,),
+              const SizedBox(height: 30,),
               Row(
                 children: [
                   Expanded(

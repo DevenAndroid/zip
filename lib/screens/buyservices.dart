@@ -23,6 +23,8 @@ class _BuyServicesState extends State<BuyServices> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
         title: Text(
           "Buy Airtime",
           style: GoogleFonts.poppins(
@@ -31,9 +33,14 @@ class _BuyServicesState extends State<BuyServices> {
               fontWeight: FontWeight.w500),
         ),
         centerTitle: true,
-        leading: Icon(
-          Icons.arrow_back_rounded,
-          color: AppTheme.primaryColor,
+        leading: InkWell(
+          onTap: (){
+            Get.back();
+          },
+          child: Icon(
+            Icons.arrow_back_rounded,
+            color: AppTheme.primaryColor,
+          ),
         ),
       ),
       body: SingleChildScrollView(
@@ -55,9 +62,12 @@ class _BuyServicesState extends State<BuyServices> {
               height: 44,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
+              padding: const EdgeInsets.only(left: 6, right: 6),
               child: CommonTextfield(
-                prefix: Image.asset('assets/images/nigeria.png',height: 20,),
+                prefix: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.asset('assets/images/nigeria.png',height: 20,),
+                ),
                 obSecure: false,
                 hintText: "Nigeria",
                 labelText: "Country",
@@ -67,7 +77,7 @@ class _BuyServicesState extends State<BuyServices> {
               height: 27,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
+              padding: const EdgeInsets.only(left: 6, right: 6),
               child: CommonTextfield(
                 obSecure: false,
                 hintText: "+234 xxxxxxxxxx",

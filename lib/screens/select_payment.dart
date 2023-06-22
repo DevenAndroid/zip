@@ -18,6 +18,8 @@ class _SelectMethodState extends State<SelectMethod> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
     appBar: AppBar(
+      backgroundColor: Colors.white,
+      elevation: 0,
     leading: InkWell(
     onTap: () {
     Get.back();
@@ -39,7 +41,7 @@ class _SelectMethodState extends State<SelectMethod> {
     ),
     body: SingleChildScrollView(
     child: Padding(
-    padding: const EdgeInsets.all(12.0),
+    padding: const EdgeInsets.only(left: 12.0),
     child: Column(
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,

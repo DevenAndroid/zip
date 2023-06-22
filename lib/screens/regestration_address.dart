@@ -22,6 +22,8 @@ class _AddressScreenState extends State<AddressScreen> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
           leading:   InkWell(
 
             onTap: (){
@@ -55,6 +57,16 @@ class _AddressScreenState extends State<AddressScreen> {
                         padding: const EdgeInsets.only(right: 9.0),
                         child: SvgPicture.asset('assets/images/address.svg',width: 20,height: 10,),
                       ),),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0,right: 10),
+                        child: Text(
+                          "Don’t know your address?",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFFB6B6B6),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w300),
+                        ),
+                      ),
                       SizedBox(height: size.height*.6,),
                       InkWell(
                           onTap: (){

@@ -24,7 +24,8 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
-          elevation: 1,
+
+          elevation: 0,
           backgroundColor: Colors.white,
 
 
@@ -35,7 +36,7 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
             },
 
             child: const Icon(
-              Icons.arrow_back_rounded,
+              Icons.arrow_back_rounded,color: Colors.black,
               // color: AppTheme.primaryColor,
             ),
           ),),
@@ -71,9 +72,7 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                                 title: "Phone Number",
                               )),
                         ),
-                        const SizedBox(
-                          height: 15,
-                        ),
+
                         Expanded(
                             child: InkWell(
                               onTap: (){

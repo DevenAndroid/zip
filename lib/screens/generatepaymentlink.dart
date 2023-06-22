@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
 
@@ -20,6 +22,8 @@ class _GeneratePaymentLinkState extends State<GeneratePaymentLink> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
         title: Text(
           "Request a payment",
           style: GoogleFonts.poppins(
@@ -218,7 +222,7 @@ class _GeneratePaymentLinkState extends State<GeneratePaymentLink> {
             ),
             InkWell(
               onTap: () {
-
+Get.toNamed(MyRouters.requestAPaymentContiune);
               },
               child: CustomOutlineButton(
                 title: "Request Payment",

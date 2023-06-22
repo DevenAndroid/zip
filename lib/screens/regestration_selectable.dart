@@ -22,6 +22,8 @@ class _SelectableScreenState extends State<SelectableScreen> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
           leading:   InkWell(
 
             onTap: (){
@@ -40,12 +42,15 @@ class _SelectableScreenState extends State<SelectableScreen> {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
 
-      Text(
-        "What is primary purpose for using Zip?",
-        style: GoogleFonts.poppins(
-            color: const Color(0xFF1D1D1D),
-            fontSize: 22,
-            fontWeight: FontWeight.w500),
+      Padding(
+        padding: const EdgeInsets.only(left: 10.0),
+        child: Text(
+          "What is primary purpose for using Zip?",
+          style: GoogleFonts.poppins(
+              color: const Color(0xFF1D1D1D),
+              fontSize: 22,
+              fontWeight: FontWeight.w500),
+        ),
       ),
      SizedBox(height: 20,),
 
@@ -56,21 +61,24 @@ class _SelectableScreenState extends State<SelectableScreen> {
                currentDrawer = 0;
             });
           },
-          child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: 55,
-              decoration:   currentDrawer == 0 ?  BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: AppTheme.secondaryColor ,width: 1.3)
-              ):  BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color:AppTheme.buttonColor ,width: 1.3)
-              ),
           child: Padding(
-            padding: const EdgeInsets.only(left: 9.0,top: 18),
-            child: Text("Family Support"),
-          ),
+            padding: const EdgeInsets.only(left: 8.0,right: 8),
+            child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 55,
+                decoration:   currentDrawer == 0 ?  BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: AppTheme.secondaryColor ,width: 1.3)
+                ):  BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color:AppTheme.buttonColor ,width: 1.3)
+                ),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 9.0,top: 18),
+              child: Text("Family Support"),
+            ),
 
+            ),
           ),
         ),
       SizedBox(height: 15,),
@@ -81,21 +89,24 @@ class _SelectableScreenState extends State<SelectableScreen> {
             currentDrawer = 1;
           });
         },
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: 55,
-          decoration:   currentDrawer == 1 ?  BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color:AppTheme.secondaryColor,width: 1.3)
-          ):  BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color:  AppTheme.buttonColor,width: 1.3)
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 9.0,top: 18),
-            child: Text("Buy Airtime & Pay Bills"),
-          ),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0,right: 8),
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: 55,
+            decoration:   currentDrawer == 1 ?  BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color:AppTheme.secondaryColor,width: 1.3)
+            ):  BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color:  AppTheme.buttonColor,width: 1.3)
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 9.0,top: 18),
+              child: Text("Buy Airtime & Pay Bills"),
+            ),
 
+          ),
         ),
       ),
       SizedBox(height: 15,),
@@ -106,21 +117,24 @@ class _SelectableScreenState extends State<SelectableScreen> {
             currentDrawer = 2;
           });
         },
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: 55,
-          decoration:   currentDrawer == 2 ?  BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color:AppTheme.secondaryColor,width: 1.3)
-          ):  BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color:  AppTheme.buttonColor,width: 1.3)
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 9.0,top: 18),
-            child: Text("Buy Goods & Services"),
-          ),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0,right: 8),
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: 55,
+            decoration:   currentDrawer == 2 ?  BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color:AppTheme.secondaryColor,width: 1.3)
+            ):  BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color:  AppTheme.buttonColor,width: 1.3)
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 9.0,top: 18),
+              child: Text("Buy Goods & Services"),
+            ),
 
+          ),
         ),
       ),
       SizedBox(height: 15,),
@@ -131,21 +145,24 @@ class _SelectableScreenState extends State<SelectableScreen> {
             currentDrawer = 3;
           });
         },
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: 55,
-          decoration:   currentDrawer == 3 ?  BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color:AppTheme.secondaryColor,width: 1.3)
-          ):  BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color:  AppTheme.buttonColor,width: 1.3)
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 9.0,top: 18),
-            child: Text("My Business"),
-          ),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0,right: 8),
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: 55,
+            decoration:   currentDrawer == 3 ?  BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color:AppTheme.secondaryColor,width: 1.3)
+            ):  BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color:  AppTheme.buttonColor,width: 1.3)
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 9.0,top: 18),
+              child: Text("My Business"),
+            ),
 
+          ),
         ),
       ),
       SizedBox(height: 15,),
@@ -155,21 +172,24 @@ class _SelectableScreenState extends State<SelectableScreen> {
             currentDrawer = 4;
           });
         },
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: 55,
-          decoration:   currentDrawer == 4?  BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color:AppTheme.secondaryColor,width: 1.3)
-          ):  BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color:  AppTheme.buttonColor,width: 1.3)
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 9.0,top: 18),
-            child: Text("Saving & Investing"),
-          ),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0,right: 8),
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: 55,
+            decoration:   currentDrawer == 4?  BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color:AppTheme.secondaryColor,width: 1.3)
+            ):  BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color:  AppTheme.buttonColor,width: 1.3)
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 9.0,top: 18),
+              child: Text("Saving & Investing"),
+            ),
 
+          ),
         ),
       ),
       SizedBox(height: size.height*.2,),

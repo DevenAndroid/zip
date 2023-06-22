@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zip/routers/my_routers.dart';
 
 import '../widgets/common_button.dart';
 
@@ -17,6 +19,8 @@ class _RequestAPaymentContiuneState extends State<RequestAPaymentContiune> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
         title: Text(
           "Request a payment",
           style: GoogleFonts.poppins(
@@ -29,10 +33,15 @@ class _RequestAPaymentContiuneState extends State<RequestAPaymentContiune> {
       body: Column(
         children: [
           SizedBox(height: 48,),
-          Image.asset(
-            'assets/images/right.png',
-            height: 121,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(30),
+            child: Image.asset(
+              'assets/images/right.png',
+              height: 121,
+            ),
           ),
+          SizedBox(height: 25,),
+
           Text(
             "You requested 100.00 USD",
             style: GoogleFonts.poppins(
@@ -52,10 +61,10 @@ class _RequestAPaymentContiuneState extends State<RequestAPaymentContiune> {
           ),
           InkWell(
             onTap: () {
-
+Get.toNamed(MyRouters.sharePaymentLink);
             },
             child: CustomOutlineButton(
-              title: "Next",
+              title: "Continue",
             ),
           ),
         ],

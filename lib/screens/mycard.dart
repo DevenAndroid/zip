@@ -2,8 +2,10 @@ import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zip/routers/my_routers.dart';
 import 'package:zip/screens/buyservices.dart';
 import 'package:zip/widgets/common_colour.dart';
 
@@ -21,6 +23,8 @@ class _MyCardState extends State<MyCard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
         title: Text(
           "Card",
           style: GoogleFonts.poppins(
@@ -29,9 +33,14 @@ class _MyCardState extends State<MyCard> {
               fontWeight: FontWeight.w500),
         ),
         centerTitle: true,
-        leading: Icon(
-          Icons.arrow_back_rounded,
-          color: AppTheme.primaryColor,
+        leading: InkWell(
+          onTap: (){
+            Get.back();
+          },
+          child: Icon(
+            Icons.arrow_back_rounded,
+            color: AppTheme.primaryColor,
+          ),
         ),
       ),
       body: SingleChildScrollView(
@@ -315,8 +324,19 @@ class _MyCardState extends State<MyCard> {
                   height: 98,
                   width: 98,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(21),
-                    color: Color(0xffFAFAFA),),
+                      color: const Color(0xFFFAFAFA),
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: const [
+                        BoxShadow(
+                          color:   Colors.black26,
+                          offset: Offset(
+                            0.5,
+                            0.5,
+                          ), //Offset
+                          blurRadius:    0.5,
+                          spreadRadius: 0.0,
+                        ), //BoxShadow
+                      ]),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -336,8 +356,19 @@ class _MyCardState extends State<MyCard> {
                   height: 98,
                   width: 98,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(21),
-                    color: Color(0xffFAFAFA),),
+                      color: const Color(0xFFFAFAFA),
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: const [
+                        BoxShadow(
+                          color:   Colors.black26,
+                          offset: Offset(
+                            0.5,
+                            0.5,
+                          ), //Offset
+                          blurRadius:    0.5,
+                          spreadRadius: 0.0,
+                        ), //BoxShadow
+                      ]),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -357,8 +388,19 @@ class _MyCardState extends State<MyCard> {
                   height: 98,
                   width: 98,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(21),
-                    color: Color(0xffFAFAFA), ),
+                      color: const Color(0xFFFAFAFA),
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: const [
+                        BoxShadow(
+                          color:   Colors.black26,
+                          offset: Offset(
+                            0.5,
+                            0.5,
+                          ), //Offset
+                          blurRadius:    0.5,
+                          spreadRadius: 0.0,
+                        ), //BoxShadow
+                      ]),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -379,14 +421,43 @@ class _MyCardState extends State<MyCard> {
             SizedBox(
               height: 48,
             ),
-            InkWell(
-              onTap: (){
-                 Get.to(BuyServices());
-              },
-              child: CustomOutlineBoder(title: "Add to GPay", backgroundColor: Colors.white,textColor: AppTheme.buttonColor,onPressed: (){
 
-              },),
-            ),
+    Padding(
+    padding: const EdgeInsets.only(left: 18.0,right: 18),
+    child: InkWell(
+      onTap: (){
+        Get.toNamed(MyRouters.buyServices);
+      },
+      child: Container(
+      width: MediaQuery.of(context).size.width,
+      height: 49,
+      decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+      border: Border.all(color: AppTheme.buttonColor,width: 1.3)
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text("Add to ",
+            style: GoogleFonts.poppins(
+                color: AppTheme.buttonColor,
+                fontSize: 16,
+                fontWeight:
+                FontWeight
+                    .w700),),
+          SvgPicture.asset('assets/images/google.svg'),
+          Text(" Pay",
+            style: GoogleFonts.poppins(
+                color: AppTheme.buttonColor,
+                fontSize: 16,
+                fontWeight:
+                FontWeight
+                    .w700),),
+        ],
+      ),
+      ),
+    )),
+
             SizedBox(
               height: 15,
             ),

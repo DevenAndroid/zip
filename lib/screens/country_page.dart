@@ -23,6 +23,8 @@ class _CountryScreenState extends State<CountryScreen> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
           leading: InkWell(
             onTap: () {
               Get.back();
@@ -96,15 +98,38 @@ SizedBox(height: 20,),
 
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image.asset(
-                                'assets/images/boy.png',),
+                            Column(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Image.asset(
+                                    'assets/images/boy.png',),
+                                ),
+                                Text(
+                                  "Male",
+                                  style: GoogleFonts.poppins(
+                                      color: const Color(0xFF1D1D1D),
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500),
+                                ),
+
+                              ],
                             ),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image.asset(
-                                'assets/images/girl.png',),
+                            Column(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Image.asset(
+                                    'assets/images/girl.png',),
+                                ),
+                                Text(
+                                  "Female",
+                                  style: GoogleFonts.poppins(
+                                      color: const Color(0xFF1D1D1D),
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ],
                             ),
 
                           ],

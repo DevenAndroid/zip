@@ -36,7 +36,7 @@ class _SendCash1State extends State<SendCash1> {
     },
 
     child: const Icon(
-    Icons.arrow_back_rounded,
+    Icons.arrow_back_rounded,color: Colors.black,
     // color: AppTheme.primaryColor,
     ),
     ),
@@ -58,7 +58,7 @@ class _SendCash1State extends State<SendCash1> {
             Get.toNamed(MyRouters.sendCash2);
           },
           child: const CustomOutlineButton(
-            title: "New",
+            title: "Next",
           )),
     ),
     body: SingleChildScrollView(

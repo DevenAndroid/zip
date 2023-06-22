@@ -37,6 +37,8 @@ class _OtpScreenState extends State<OtpScreen> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
           leading:   InkWell(
 
             onTap: (){
@@ -80,7 +82,7 @@ class _OtpScreenState extends State<OtpScreen> {
     SizedBox(height: 40,),
 
       Padding(
-        padding: const EdgeInsets.only(left: 10.0,right: 10),
+        padding: const EdgeInsets.only(left: 25.0,right: 25),
         child: Center(
           child: Form(
             key: formKey99,
@@ -97,7 +99,7 @@ mainAxisAlignment: MainAxisAlignment.spaceBetween,
       SizedBox(height: size.height*.6,),
       InkWell(
         onTap: (){
-       Get.toNamed(MyRouters.transactionsFirst );
+       Get.toNamed(MyRouters.bottomNavbar );
         },
         child: CustomOutlineBoder(title: "Skip", backgroundColor: Colors.white,textColor: AppTheme.buttonColor,onPressed: (){
           Get.toNamed(MyRouters.otpScreen);

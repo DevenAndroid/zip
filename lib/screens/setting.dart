@@ -20,6 +20,8 @@ class _SettingState extends State<Setting> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
         title: Text(
           "Setting",
           style: GoogleFonts.poppins(
@@ -28,10 +30,16 @@ class _SettingState extends State<Setting> {
               fontWeight: FontWeight.w500),
         ),
         centerTitle: true,
-        leading: Icon(
-          Icons.arrow_back_rounded,
-          color: AppTheme.primaryColor,
+        leading: InkWell(
+          onTap: (){
+            Get.back();
+          },
+          child: const Icon(
+            Icons.arrow_back_rounded,
+            color: AppTheme.primaryColor,
+          ),
         ),
+
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -47,11 +55,11 @@ class _SettingState extends State<Setting> {
                     fontWeight: FontWeight.w500),
               ),
             ),
-            SizedBox(height: 35,),
+            const SizedBox(height: 35,),
 
             Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
                 Text(
@@ -61,16 +69,16 @@ class _SettingState extends State<Setting> {
                       fontSize: 13,
                       fontWeight: FontWeight.w400),
                 ),
-                Spacer(),
+                const Spacer(),
 
-                Icon(Icons.arrow_forward_ios,size: 15,),
-                SizedBox(
+                const Icon(Icons.arrow_forward_ios,size: 15,),
+                const SizedBox(
                   width: 20,
                 ),
               ],
             ),
-            SizedBox(height: 12,),
-            Divider(
+            const SizedBox(height: 12,),
+            const Divider(
               thickness: 5,
               color: Color(0x1A000000),
             ),
@@ -84,10 +92,10 @@ class _SettingState extends State<Setting> {
                     fontWeight: FontWeight.w500),
               ),
             ),
-            SizedBox(height: 12,),
+            const SizedBox(height: 12,),
             Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 30,
                 ),
                 Column(
@@ -109,23 +117,23 @@ class _SettingState extends State<Setting> {
                     ),
                   ],
                 ),
-                Spacer(),
-                Icon(Icons.arrow_forward_ios,size: 15,),
+                const Spacer(),
+                const Icon(Icons.arrow_forward_ios,size: 15,),
 
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
               ],
             ),
-            SizedBox(height: 12,),
-            Divider(
+            const SizedBox(height: 12,),
+            const Divider(
               thickness: 1,
               color: Color(0x1A000000),
             ),
-            SizedBox(height: 12,),
+            const SizedBox(height: 12,),
             Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 30,
                 ),
                 Column(
@@ -147,11 +155,11 @@ class _SettingState extends State<Setting> {
                     ),
                   ],
                 ),
-                Spacer(),
+                const Spacer(),
 
                 CupertinoSwitch(
                   value: isSwitched,
-                  activeColor: Color(0xffF0D75F),
+                  activeColor: const Color(0xffF0D75F),
                   onChanged: (value) {
                     setState(() {
                       isSwitched = value;
@@ -160,20 +168,20 @@ class _SettingState extends State<Setting> {
 
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
               ],
             ),
-            SizedBox(height: 12,),
-            Divider(
+            const SizedBox(height: 12,),
+            const Divider(
               thickness: 1,
               color: Color(0x1A000000),
             ),
-            SizedBox(height: 12,),
+            const SizedBox(height: 12,),
             Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 30,
                 ),
                 Column(
@@ -195,11 +203,11 @@ class _SettingState extends State<Setting> {
                     ),
                   ],
                 ),
-                Spacer(),
+                const Spacer(),
 
                 CupertinoSwitch(
                   value: isSwitched,
-                  activeColor: Color(0xffF0D75F),
+                  activeColor: const Color(0xffF0D75F),
                   onChanged: (value) {
                     setState(() {
                       isSwitched = value;
@@ -208,20 +216,20 @@ class _SettingState extends State<Setting> {
 
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
               ],
             ),
-            SizedBox(height: 12,),
-            Divider(
+            const SizedBox(height: 12,),
+            const Divider(
               thickness: 1,
               color: Color(0x1A000000),
             ),
-            SizedBox(height: 12,),
+            const SizedBox(height: 12,),
             Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 30,
                 ),
                 Column(
@@ -243,11 +251,11 @@ class _SettingState extends State<Setting> {
                     ),
                   ],
                 ),
-                Spacer(),
+                const Spacer(),
 
                 CupertinoSwitch(
                   value: isSwitched,
-                  activeColor: Color(0xffF0D75F),
+                  activeColor: const Color(0xffF0D75F),
                   onChanged: (value) {
                     setState(() {
                       isSwitched = value;
@@ -256,20 +264,20 @@ class _SettingState extends State<Setting> {
 
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
               ],
             ),
-            SizedBox(height: 12,),
-            Divider(
+            const SizedBox(height: 12,),
+            const Divider(
               thickness: 1,
               color: Color(0x1A000000),
             ),
-            SizedBox(height: 12,),
+            const SizedBox(height: 12,),
             Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 30,
                 ),
                 Column(
@@ -291,11 +299,11 @@ class _SettingState extends State<Setting> {
                     ),
                   ],
                 ),
-                Spacer(),
+                const Spacer(),
 
                 CupertinoSwitch(
                   value: isSwitched,
-                  activeColor: Color(0xffF0D75F),
+                  activeColor: const Color(0xffF0D75F),
                   onChanged: (value) {
                     setState(() {
                       isSwitched = value;
@@ -304,20 +312,20 @@ class _SettingState extends State<Setting> {
 
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
               ],
             ),
-            SizedBox(height: 12,),
-            Divider(
+            const SizedBox(height: 12,),
+            const Divider(
               thickness: 1,
               color: Color(0x1A000000),
             ),
-            SizedBox(height: 12,),
+            const SizedBox(height: 12,),
             Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 30,
                 ),
                 Column(
@@ -339,17 +347,17 @@ class _SettingState extends State<Setting> {
                     ),
                   ],
                 ),
-                Spacer(),
+                const Spacer(),
 
-                Icon(Icons.arrow_forward_ios,size: 15,),
+                const Icon(Icons.arrow_forward_ios,size: 15,),
 
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
               ],
             ),
-            SizedBox(height: 12,),
-            Divider(
+            const SizedBox(height: 12,),
+            const Divider(
               thickness: 5,
               color: Color(0x1A000000),
             ),
@@ -363,10 +371,10 @@ class _SettingState extends State<Setting> {
                     fontWeight: FontWeight.w500),
               ),
             ),
-            SizedBox(height: 12,),
+            const SizedBox(height: 12,),
             Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 30,
                 ),
                 Text(
@@ -377,26 +385,26 @@ class _SettingState extends State<Setting> {
                       fontWeight: FontWeight.w400),
                 ),
 
-                Spacer(),
+                const Spacer(),
 
-                Icon(Icons.arrow_forward_ios,size: 15,),
+                const Icon(Icons.arrow_forward_ios,size: 15,),
 
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
               ],
             ),
-            SizedBox(height: 12,),
-            Divider(
+            const SizedBox(height: 12,),
+            const Divider(
               thickness: 5,
               color: Color(0x1A000000),
             ),
-            SizedBox(height: 12,),
+            const SizedBox(height: 12,),
       Padding(
         padding: const EdgeInsets.only(left: 29),
         child: InkWell(
           onTap: (){
-            Get.to(Transferlimit());
+            Get.to(const Transferlimit());
           },
           child: Text(
             "Sign Out",
@@ -407,7 +415,7 @@ class _SettingState extends State<Setting> {
           ),
         ),
       ),
-
+const SizedBox(height: 30,),
           ],
         ),
       ),

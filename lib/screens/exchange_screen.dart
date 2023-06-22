@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
+import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 class ExchangeMoney extends StatefulWidget {
   const ExchangeMoney({Key? key}) : super(key: key);
@@ -21,6 +22,8 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
     appBar: AppBar(
+      backgroundColor: Colors.white,
+      elevation: 0,
     leading: InkWell(
     onTap: () {
     Get.back();
@@ -300,7 +303,11 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
           ],
         ),
       ),
-
+    InkWell(
+        onTap: (){
+          Get.toNamed(MyRouters.bottomNavbar);
+        },
+        child: CustomOutlineButton(title: "Continue"))
 
    ] ))));
   }

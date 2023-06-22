@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zip/routers/my_routers.dart';
 import 'package:zip/screens/request_payment.dart';
 import 'package:zip/widgets/common_colour.dart';
 
@@ -22,6 +23,8 @@ class _TransferlimitState extends State<Transferlimit> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
         title: Text(
           "Transfer Limit",
           style: GoogleFonts.poppins(
@@ -30,9 +33,14 @@ class _TransferlimitState extends State<Transferlimit> {
               fontWeight: FontWeight.w500),
         ),
         centerTitle: true,
-        leading: Icon(
-          Icons.arrow_back_rounded,
-          color: AppTheme.primaryColor,
+        leading: InkWell(
+          onTap: (){
+            Get.back();
+          },
+          child: Icon(
+            Icons.arrow_back_rounded,
+            color: AppTheme.primaryColor,
+          ),
         ),
       ),
       body: Column(
@@ -68,7 +76,7 @@ class _TransferlimitState extends State<Transferlimit> {
                 )),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
+            padding: const EdgeInsets.only(left: 6, right: 6),
             child: CommonTextfield(
               obSecure: false,
               hintText: "20,000",
@@ -79,7 +87,7 @@ class _TransferlimitState extends State<Transferlimit> {
             height: 18,
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
+            padding: const EdgeInsets.only(left: 6, right: 6),
             child: CommonTextfield(
               obSecure: false,
               hintText: "1234",
@@ -90,7 +98,7 @@ class _TransferlimitState extends State<Transferlimit> {
             height: 18,
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
+            padding: const EdgeInsets.only(left: 6, right: 6),
             child: CommonTextfield(
               obSecure: false,
               suffixIcon: Icon(Icons.remove_red_eye),

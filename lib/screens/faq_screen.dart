@@ -17,6 +17,8 @@ class _FAQScreenState extends State<FAQScreen> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
     appBar: AppBar(
+      backgroundColor: Colors.white,
+      elevation: 0,
     leading: InkWell(
     onTap: () {
     Get.back();
@@ -40,7 +42,7 @@ class _FAQScreenState extends State<FAQScreen> {
     onTap: (){
     // Get.toNamed(MyRouters.fAQScreens);
     },
-    child: Icon(Icons.search),
+    child: Icon(Icons.search,color: Colors.black,),
     ),
     )
     ],
@@ -111,7 +113,8 @@ class _FAQScreenState extends State<FAQScreen> {
                               0xFF07B6CA),
                           isThreeLine: true,
                           subtitle: Text(
-                            'Enim perferendis quia eaque corrupti. Aut non quisquamlaboriosam ut minus. Quidem sit facere et cum fuga eosdeserunt odio. Consectetur deleniti est veniam. Voluptasatque et expedita illum.',
+                            'Enum dispenser qua claque corrupt. Aut non quisquamlaboriosam ut minus. '
+                                'Quid sit face et cum fugal desertion Podio. Consecrate deletion est venial. Voluptuousness et expedite illumos.',
                             style: GoogleFonts
                                 .poppins(
                               color: const Color(

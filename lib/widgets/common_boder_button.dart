@@ -27,7 +27,7 @@ class CustomOutlineBoder extends StatelessWidget {
       padding: const EdgeInsets.only(left: 10.0,right: 10),
       child: Container(
         width: MediaQuery.of(context).size.width,
-        height: 55,
+        height: 49,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           border: Border.all(color: AppTheme.buttonColor,width: 1.3)
