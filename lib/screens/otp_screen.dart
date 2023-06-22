@@ -82,7 +82,7 @@ class _OtpScreenState extends State<OtpScreen> {
     SizedBox(height: 40,),
 
       Padding(
-        padding: const EdgeInsets.only(left: 10.0,right: 10),
+        padding: const EdgeInsets.only(left: 25.0,right: 25),
         child: Center(
           child: Form(
             key: formKey99,

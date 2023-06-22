@@ -48,6 +48,8 @@ dependencies:
   pinput: ^2.2.21
   dotted_line: ^3.2.2
   share_plus: ^7.0.2
+  intl: ^0.17.0
+  mask_text_input_formatter: ^2.4.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

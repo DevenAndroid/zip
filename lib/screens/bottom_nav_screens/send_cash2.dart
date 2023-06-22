@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -17,6 +18,8 @@ class SendCash2 extends StatefulWidget {
 }
 
 class _SendCash2State extends State<SendCash2> {
+  bool isSwitched = false;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery
@@ -107,6 +110,7 @@ Get.toNamed(MyRouters.sendCashYourBalance);
                         readOnly: true,
                         obSecure: false,
                         hintText: "AG mortgage bank",
+                        labelText: "Select Bank",
 
                       ),
                       SizedBox(
@@ -115,14 +119,14 @@ Get.toNamed(MyRouters.sendCashYourBalance);
                       CommonTextfield(
                         obSecure: false,
                         hintText: "",
-                        labelText: "Mobile Number",
+                        labelText: "Account Number",
                       ),
                       SizedBox(height: 20,),
 
                       CommonTextfield(
                         obSecure: false,
                         hintText: "",
-                        labelText: "Mobile Number",
+                        labelText: "Account Name",
                       ),
                       SizedBox(height: 20,),
 Padding(
@@ -136,7 +140,25 @@ Padding(
         style: GoogleFonts.poppins(
           textStyle: const TextStyle(fontSize: 16,fontWeight: FontWeight.w400,color: Color(0xFF1D1D1D)),
         ),),
-    Icon(Icons.circle,color: Colors.black,)
+      SizedBox(
+        width: 50,
+        height: 20,
+        child: CupertinoSwitch(
+          thumbColor: Colors.black,
+
+
+          value: isSwitched,
+          activeColor: Color(0xffF0D75F),
+
+          onChanged: (value) {
+            setState(() {
+              isSwitched = value;
+              print(isSwitched);
+            });
+
+          },
+        ),
+      ),
     ],
   ),
 )

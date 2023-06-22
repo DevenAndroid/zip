@@ -49,7 +49,7 @@ class _AddAPayerState extends State<AddAPayer> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 28,
             ),
             Row(
@@ -74,7 +74,7 @@ class _AddAPayerState extends State<AddAPayer> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 27,
             ),
             Padding(
@@ -86,7 +86,7 @@ class _AddAPayerState extends State<AddAPayer> {
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Padding(
-                      padding: EdgeInsets.only(left: 15, right: 30),
+                      padding: const EdgeInsets.only(left: 15, right: 30),
                       child: DropdownButton(
                         value: "United Kingdom",
                         items: [
@@ -94,7 +94,7 @@ class _AddAPayerState extends State<AddAPayer> {
                             child: Row(
                               children: [
                                 Image.asset('assets/images/nigeria.png',height: 30,),
-                                SizedBox(width: 10,),
+                                const SizedBox(width: 10,),
                                 Text(
                                   "Nigeria",
                                   style: GoogleFonts.poppins(
@@ -106,19 +106,19 @@ class _AddAPayerState extends State<AddAPayer> {
                             ),
                             value: "United Kingdom",
                           ),
-                          DropdownMenuItem(
+                          const DropdownMenuItem(
                               child: Text("Canada"), value: "Canada"),
-                          DropdownMenuItem(
+                          const DropdownMenuItem(
                             child: Text("Russia"),
                             value: "Russia",
                           )
                         ],
                         onChanged: (value) {},
-                        icon: Padding(
+                        icon: const Padding(
                             padding: EdgeInsets.only(left: 20),
                             child: Icon(Icons.keyboard_arrow_down_outlined)),
                         iconEnabledColor: Colors.black, //Icon color
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 20),
                         dropdownColor: Colors.white,
@@ -126,7 +126,7 @@ class _AddAPayerState extends State<AddAPayer> {
                         isExpanded: true,
                       ))),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Padding(
@@ -137,7 +137,7 @@ class _AddAPayerState extends State<AddAPayer> {
                 labelText: "Mobile Number",
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Padding(
@@ -148,7 +148,7 @@ class _AddAPayerState extends State<AddAPayer> {
                 labelText: "Name",
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Padding(
@@ -164,13 +164,13 @@ class _AddAPayerState extends State<AddAPayer> {
             ),
             InkWell(
               onTap: () {
-                Get.to(RequestAPayment());
+                Get.to(const RequestAPayment());
               },
-              child: CustomOutlineButton(
+              child: const CustomOutlineButton(
                 title: "Next",
               ),
             ),
-        SizedBox(height: 30,),
+        const SizedBox(height: 30,),
           ],
         ),
       ),

@@ -58,7 +58,7 @@ class _SendCash1State extends State<SendCash1> {
             Get.toNamed(MyRouters.sendCash2);
           },
           child: const CustomOutlineButton(
-            title: "New",
+            title: "Next",
           )),
     ),
     body: SingleChildScrollView(

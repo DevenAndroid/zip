@@ -15,7 +15,9 @@ class AccountsInBank extends StatefulWidget {
 }
 
 class _AccountsInBankState extends State<AccountsInBank> {
-  String? gender;
+
+  String _selectedGender = 'male';
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -39,179 +41,201 @@ class _AccountsInBankState extends State<AccountsInBank> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 12, right: 12),
-        child: Container(
-          child: Column(
-            children: [
-              SizedBox(height: 20,),
-              Container(
-                  height: 62,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: const Color(0xff1D1D1D))),
-                  child: Column(
-                    children: [
-                      ListTile(
-                          visualDensity:
-                              const VisualDensity(horizontal: 0, vertical: -4),
-                          leading: Image.asset(
-                            'assets/images/nigeria.png',
-                            height: 35,
-                          ),
-                          title: Text(
-                            "NG Naira",
-                            style: GoogleFonts.poppins(
-                                color: const Color(0xFF1D1D1D),
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500),
-                          ),
-                          subtitle: Text(
-                            "N1098.00",
-                            style: GoogleFonts.poppins(
-                                color: const Color(0x571D1D1D),
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400),
-                          ),
-                          trailing: Radio(
-                              value: "radio value",
-                              groupValue: "group value",
-                              onChanged: (value) {
-                                setState(() {
-                                  gender = value.toString();
-                                }); //selected value
-                              })),
-                    ],
-                  )),
-              const SizedBox(height: 14,),
-              Container(
-                  height: 62,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: const Color(0xff1D1D1D))),
-                  child: Column(
-                    children: [
-                      ListTile(
-                          visualDensity:
-                          const VisualDensity(horizontal: 0, vertical: -4),
-                          leading: Image.asset(
-                            'assets/images/euro.png',
-                            height: 35,
-                          ),
-                          title: Text(
-                            "Euro",
-                            style: GoogleFonts.poppins(
-                                color: const Color(0xFF1D1D1D),
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500),
-                          ),
-                          subtitle: Text(
-                            "E0.00",
-                            style: GoogleFonts.poppins(
-                                color: const Color(0x571D1D1D),
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400),
-                          ),
-                          trailing: Radio(
-                              value: "radio value",
-                              groupValue: "group value",
-                              onChanged: (value) {
-                                setState(() {
-                                  gender = value.toString();
-                                }); //selected value
-                              })),
-                    ],
-                  )),
-              const SizedBox(height: 14,),
-              Container(
-                  height: 62,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: const Color(0xff1D1D1D))),
-                  child: Column(
-                    children: [
-                      ListTile(
-                          visualDensity:
-                          const VisualDensity(horizontal: 0, vertical: -4),
-                          leading: Image.asset(
-                            'assets/images/pound.png',
-                            height: 35,
-                          ),
-                          title: Text(
-                            "British pounds",
-                            style: GoogleFonts.poppins(
-                                color: const Color(0xFF1D1D1D),
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500),
-                          ),
-                          subtitle: Text(
-                            "E0.00",
-                            style: GoogleFonts.poppins(
-                                color: const Color(0x571D1D1D),
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400),
-                          ),
-                          trailing: Radio(
-                              value: "radio value",
-                              groupValue: "group value",
-                              onChanged: (value) {
-                                setState(() {
-                                  gender = value.toString();
-                                }); //selected value
-                              })),
-                    ],
-                  )),
-              const SizedBox(height: 14,),
-              Container(
-                  height: 62,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: const Color(0xff1D1D1D))),
-                  child: Column(
-                    children: [
-                      ListTile(
-                          visualDensity:
-                          const VisualDensity(horizontal: 0, vertical: -4),
-                          leading: Image.asset(
-                            'assets/images/doller.png',
-                            height: 35,
-                          ),
-                          title: Text(
-                            "US Dollers",
-                            style: GoogleFonts.poppins(
-                                color: const Color(0xFF1D1D1D),
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500),
-                          ),
-                          subtitle: Text(
-                            "\$6.00",
-                            style: GoogleFonts.poppins(
-                                color: const Color(0x571D1D1D),
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400),
-                          ),
-                          trailing: Radio(
-                              value: "radio value",
-                              groupValue: "group value",
-                              onChanged: (value) {
-                                setState(() {
-                                  gender = value.toString();
-                                }); //selected value
-                              })),
-                    ],
-                  )),
-              SizedBox(
-                height: size.height * .4,
-              ),
-              InkWell(
-                onTap: () {
-                  Get.toNamed(MyRouters.addFundsInBank);
-                },
-                child: const CustomOutlineButton(
-                  title: "Contacts",
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 12, right: 12),
+          child: Container(
+            child: Column(
+              children: [
+                SizedBox(height: 20,),
+                InkWell(
+                  onTap: (){
+                    _selectedGender ;
+                  },
+                  child: Container(
+                      height: 62,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(color: const Color(0xff1D1D1D))),
+                      child: Column(
+                        children: [
+                          ListTile(
+                              visualDensity:
+                                  const VisualDensity(horizontal: 0, vertical: -4),
+                              leading: Image.asset(
+                                'assets/images/nigeria.png',
+                                height: 35,
+                              ),
+                              title: Text(
+                                "NG Naira",
+                                style: GoogleFonts.poppins(
+                                    color: const Color(0xFF1D1D1D),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              subtitle: Text(
+                                "N1098.00",
+                                style: GoogleFonts.poppins(
+                                    color: const Color(0x571D1D1D),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                              trailing :Radio<String>(
+                    value: 'male',
+                    groupValue: _selectedGender,
+                                activeColor: AppTheme.secondaryColor,
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedGender = value!;
+                      });
+                    },
+                  ),
+                  ),
+                        ],
+                      )),
                 ),
-              ),
-            ],
+                const SizedBox(height: 14,),
+                GestureDetector(
+                  onTap: (){
+                    _selectedGender;
+                  },
+                  child: Container(
+                      height: 62,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(color: const Color(0xff1D1D1D))),
+                      child: Column(
+                        children: [
+                          ListTile(
+                              visualDensity:
+                              const VisualDensity(horizontal: 0, vertical: -4),
+                              leading: Image.asset(
+                                'assets/images/euro.png',
+                                height: 35,
+                              ),
+                              title: Text(
+                                "Euro",
+                                style: GoogleFonts.poppins(
+                                    color: const Color(0xFF1D1D1D),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              subtitle: Text(
+                                "E0.00",
+                                style: GoogleFonts.poppins(
+                                    color: const Color(0x571D1D1D),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                              trailing:Radio<String>(
+                                value: 'other',
+                                activeColor: AppTheme.secondaryColor,
+                                groupValue: _selectedGender,
+
+                                onChanged: (value) {
+                                  setState(() {
+                                    _selectedGender = value!;
+                                  });
+                                },
+                              ),),
+                        ],
+                      )),
+                ),
+                const SizedBox(height: 14,),
+                Container(
+                    height: 62,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(color: const Color(0xff1D1D1D))),
+                    child: Column(
+                      children: [
+                        ListTile(
+                            visualDensity:
+                            const VisualDensity(horizontal: 0, vertical: -4),
+                            leading: Image.asset(
+                              'assets/images/pound.png',
+                              height: 35,
+                            ),
+                            title: Text(
+                              "British pounds",
+                              style: GoogleFonts.poppins(
+                                  color: const Color(0xFF1D1D1D),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            subtitle: Text(
+                              "E0.00",
+                              style: GoogleFonts.poppins(
+                                  color: const Color(0x571D1D1D),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                            trailing: Radio<String>(
+                              value: 'Binary',
+                              activeColor: AppTheme.secondaryColor,
+                              groupValue: _selectedGender,
+                              onChanged: (value) {
+                                setState(() {
+                                  _selectedGender = value!;
+                                });
+                              },
+                            ),),
+                      ],
+                    )),
+                const SizedBox(height: 14,),
+                Container(
+                    height: 62,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(color: const Color(0xff1D1D1D))),
+                    child: Column(
+                      children: [
+                        ListTile(
+                            visualDensity:
+                            const VisualDensity(horizontal: 0, vertical: -4),
+                            leading: Image.asset(
+                              'assets/images/doller.png',
+                              height: 35,
+                            ),
+                            title: Text(
+                              "US Dollers",
+                              style: GoogleFonts.poppins(
+                                  color: const Color(0xFF1D1D1D),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            subtitle: Text(
+                              "\$6.00",
+                              style: GoogleFonts.poppins(
+                                  color: const Color(0x571D1D1D),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                            trailing:Radio<String>(
+                              activeColor: AppTheme.secondaryColor,
+                              value: 'nonBi',
+                              groupValue: _selectedGender,
+                              onChanged: (value) {
+                                setState(() {
+                                  _selectedGender = value!;
+                                });
+                              },
+                            ),),
+                      ],
+                    )),
+                SizedBox(
+                  height: size.height * .4,
+                ),
+                InkWell(
+                  onTap: () {
+                    Get.toNamed(MyRouters.addFundsInBank);
+                  },
+                  child: const CustomOutlineButton(
+                    title: "Create new account",
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

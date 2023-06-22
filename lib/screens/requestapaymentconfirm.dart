@@ -47,43 +47,45 @@ class _RequestApaymentConfirmState extends State<RequestApaymentConfirm> {
 
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: 37),
-          Padding(
-            padding: const EdgeInsets.only(left: 35),
-            child: Text(
-              "0/250",
-              style: GoogleFonts.poppins(
-                  color: const Color(0xFF1D1D1D),
-                  fontSize: 13,
-                  fontWeight: FontWeight.w400),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 37),
+            Padding(
+              padding: const EdgeInsets.only(left: 35),
+              child: Text(
+                "0/250",
+                style: GoogleFonts.poppins(
+                    color: const Color(0xFF1D1D1D),
+                    fontSize: 13,
+                    fontWeight: FontWeight.w400),
+              ),
             ),
-          ),
-          SizedBox(height: 4,),
-          Padding(
-            padding: const EdgeInsets.only(left: 35,right: 35),
-            child: Text(
-              "Add a description for your payer of the services or goods provided",
-              style: GoogleFonts.poppins(
-                  color: const Color(0x3D1D1D1D),
-                  fontSize: 13,
-                  fontWeight: FontWeight.w400),
+            SizedBox(height: 4,),
+            Padding(
+              padding: const EdgeInsets.only(left: 35,right: 35),
+              child: Text(
+                "Add a description for your payer of the services or goods provided",
+                style: GoogleFonts.poppins(
+                    color: const Color(0x3D1D1D1D),
+                    fontSize: 13,
+                    fontWeight: FontWeight.w400),
+              ),
             ),
-          ),
-          SizedBox(
-            height: size.height * .6,
-          ),
-          InkWell(
-            onTap: () {
+            SizedBox(
+              height: size.height * .6,
+            ),
+            InkWell(
+              onTap: () {
 Get.toNamed(MyRouters.paymentLink);
-            },
-            child: CustomOutlineButton(
-              title: "Confirm",
+              },
+              child: CustomOutlineButton(
+                title: "Confirm",
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -86,7 +86,8 @@ class _BottomNavbarState extends State<BottomNavbar> {
 
                       },
 
-                      child: Column(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
 
                          bottomController. pageIndex.value == 0
@@ -95,6 +96,10 @@ class _BottomNavbarState extends State<BottomNavbar> {
                           )
                               : SvgPicture.asset('assets/images/home.svg',),
 
+
+                          bottomController. pageIndex.value == 0
+                              ?
+                          Text("  Home",style: TextStyle(color: AppTheme.secondaryColor,fontSize: 15,fontWeight: FontWeight.w400),):Text("")
 
                         ],
                       ),

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
@@ -15,11 +18,16 @@ class BirthdayScreen extends StatefulWidget {
 }
 
 class _BirthdayScreenState extends State<BirthdayScreen> {
+  var maskFormatter = new MaskTextInputFormatter(
+      mask: '####-##-##', filter: {"#": RegExp(r'[0-9]')});
+  TextEditingController dateOfBirthController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery
         .of(context)
         .size;
+
+    double doubleVar;
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
@@ -74,7 +82,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
         ],
       ),
     ),
-      SizedBox(height: 10,),
+      SizedBox(height: 4,),
       Padding(
         padding: const EdgeInsets.only(left: 10.0,right: 10),
         child: Text(
@@ -87,7 +95,60 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
         ),
       ),
     SizedBox(height: 40,),
-      CommonTextfield(obSecure: false, hintText: "15-09-2005"),
+      CommonTextfield(
+        onTap: ()async{
+
+          DateTime? pickedDate = await showDatePicker(
+            builder: (context, child) {
+              return Theme(
+                data: Theme.of(context).copyWith(
+                  colorScheme: ColorScheme.light(
+                      primary:AppTheme.primaryColor, // header background color
+                      onPrimary: Colors.white, // header text color
+                      onSurface: AppTheme.buttonColor// body text color
+                  ),
+                  textButtonTheme: TextButtonThemeData(
+                    style: TextButton.styleFrom(
+                      foregroundColor:AppTheme.buttonColor, // button text color
+                    ),
+                  ),
+                ),
+                child: child!,
+              );
+            },
+
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(1950),
+            //DateTime.now() - not to allow to choose before today.
+            lastDate: DateTime.now(),);
+
+          if (pickedDate != null) {
+            print(pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+            String formattedDate =
+            DateFormat('yyyy-MM-dd').format(pickedDate);
+            print(
+                formattedDate); //formatted date output using intl package =>  2021-03-16
+            setState(() {
+              dateOfBirthController.text =
+                  formattedDate; //set output date to TextField value.
+            });
+          } else {}
+        },
+        controller: dateOfBirthController,
+        keyboardType: const TextInputType.numberWithOptions(
+            decimal: true),
+        inputFormatters: [maskFormatter],
+        onChanged: (value) =>
+        doubleVar = double.parse(value),
+        validator: MultiValidator([
+          RequiredValidator(
+              errorText: 'Please enter your DOB  '),
+        ]),
+        obSecure: false,
+        readOnly: true,
+        hintText: "2005-09-15",
+      ),
 SizedBox(height: size.height*.5,),
         InkWell(
         onTap: (){

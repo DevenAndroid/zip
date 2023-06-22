@@ -46,70 +46,72 @@ class _RequestAPaymentState extends State<RequestAPayment> {
           child: Icon(Icons.arrow_back),
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(height: 27,),
-          Text(
-            "Enter amount to request from Daneil",
-            style: GoogleFonts.poppins(
-                color: const Color(0xFF1D1D1D),
-                fontSize: 13,
-                fontWeight: FontWeight.w400),
-          ),
-          SizedBox(height: 30,),
-          Container(
-            height: 28,
-            width: 38,
-            decoration: BoxDecoration(
-                color: Color(0x1a1d1d1d),
-                borderRadius: BorderRadius.circular(5)),
-            child: Padding(
-              padding: const EdgeInsets.all(1.0),
-              child:  Center(
-                child: Text(
-                  "USD",
-                  style: GoogleFonts.poppins(
-                      color: const Color(0xFF1D1D1D),
-                      fontSize: 13,
-                      fontWeight: FontWeight.w400),
-                ),
-              ) ,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(height: 27,),
+            Text(
+              "Enter amount to request from Daneil",
+              style: GoogleFonts.poppins(
+                  color: const Color(0xFF1D1D1D),
+                  fontSize: 13,
+                  fontWeight: FontWeight.w400),
             ),
-          ),
-          Text(
-            "0.00",
-            style: GoogleFonts.poppins(
-                color: const Color(0xFF1D1D1D),
-                fontSize: 70,
-                fontWeight: FontWeight.w400),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 70,right: 70),
-            child: Divider(
-              thickness: 1,
-              color: Colors.black,
+            SizedBox(height: 30,),
+            Container(
+              height: 28,
+              width: 38,
+              decoration: BoxDecoration(
+                  color: Color(0x1a1d1d1d),
+                  borderRadius: BorderRadius.circular(5)),
+              child: Padding(
+                padding: const EdgeInsets.all(1.0),
+                child:  Center(
+                  child: Text(
+                    "USD",
+                    style: GoogleFonts.poppins(
+                        color: const Color(0xFF1D1D1D),
+                        fontSize: 13,
+                        fontWeight: FontWeight.w400),
+                  ),
+                ) ,
+              ),
             ),
-          ),
-          Text(
-            "0.00 - 0.00",
-            style: GoogleFonts.poppins(
-                color: const Color(0xFF1D1D1D),
-                fontSize: 13,
-                fontWeight: FontWeight.w400),
-          ),
-          SizedBox(
-            height: size.height * .5,
-          ),
-          InkWell(
-            onTap: () {
-            Get.to(RequestApaymentConfirm());
-            },
-            child: CustomOutlineButton(
-              title: "Next",
+            Text(
+              "0.00",
+              style: GoogleFonts.poppins(
+                  color: const Color(0xFF1D1D1D),
+                  fontSize: 70,
+                  fontWeight: FontWeight.w400),
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.only(left: 70,right: 70),
+              child: Divider(
+                thickness: 1,
+                color: Colors.black,
+              ),
+            ),
+            Text(
+              "0.00 - 0.00",
+              style: GoogleFonts.poppins(
+                  color: const Color(0xFF1D1D1D),
+                  fontSize: 13,
+                  fontWeight: FontWeight.w400),
+            ),
+            SizedBox(
+              height: size.height * .5,
+            ),
+            InkWell(
+              onTap: () {
+              Get.to(RequestApaymentConfirm());
+              },
+              child: CustomOutlineButton(
+                title: "Next",
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

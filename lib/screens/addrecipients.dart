@@ -44,75 +44,79 @@ class _AddRecipientsState extends State<AddRecipients> {
         actions: const [
           Padding(
             padding: EdgeInsets.only(right: 20),
-            child: Icon(Icons.search),
+            child: Icon(Icons.search,color: Colors.black,),
           )
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(
-            height: 20,
-          ),
-          Row(
-            children: [
-              Expanded(
-                  child: InkWell(
-                onTap: () {},
-                child: CustomOutlineBoder(
-                  title: "Add Manually",
-                  backgroundColor: Colors.white,
-                  textColor: AppTheme.buttonColor,
-                  onPressed: () {},
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(
+              height: 20,
+            ),
+            Row(
+              children: [
+                Expanded(
+                    child: InkWell(
+                  onTap: () {
+                    Get.toNamed(MyRouters.createRecipients);
+                  },
+                  child: CustomOutlineBoder(
+                    title: "Add Manually",
+                    backgroundColor: Colors.white,
+                    textColor: AppTheme.buttonColor,
+                    onPressed: () {},
+                  ),
+                )),
+                const SizedBox(
+                  height: 15,
                 ),
-              )),
-              const SizedBox(
-                height: 15,
-              ),
-              Expanded(
-                child: InkWell(
-                    onTap: () {},
-                    child: const CustomOutlineButton(
-                      title: "Use @Zip Tag",
-                    )),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 25,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 30),
-            child: Text(
-              "Zip Account Details",
-              style: GoogleFonts.poppins(
-                  color: const Color(0xFF2E2E2E),
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400),
+                Expanded(
+                  child: InkWell(
+                      onTap: () {},
+                      child: const CustomOutlineButton(
+                        title: "Use @Zip Tag",
+                      )),
+                ),
+              ],
             ),
-          ),
+            const SizedBox(
+              height: 25,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 30),
+              child: Text(
+                "Zip Account Details",
+                style: GoogleFonts.poppins(
+                    color: const Color(0xFF2E2E2E),
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400),
+              ),
+            ),
 
-          const SizedBox(
-            height: 27,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 6, right: 6),
-            child: CommonTextfield(
-              obSecure: false,
-              hintText: "@",
-              labelText: "ZIP Tag",
+            const SizedBox(
+              height: 27,
             ),
-          ),
-          SizedBox(
-            height: size.height * .5,
-          ),
-          InkWell(
-            onTap: () {Get.toNamed(MyRouters.sendCash);},
-            child: const CustomOutlineButton(
-              title: "Continue",
+            Padding(
+              padding: const EdgeInsets.only(left: 6, right: 6),
+              child: CommonTextfield(
+                obSecure: false,
+                hintText: "@",
+                labelText: "ZIP Tag",
+              ),
             ),
-          ),
-        ],
+            SizedBox(
+              height: size.height * .5,
+            ),
+            InkWell(
+              onTap: () {Get.toNamed(MyRouters.sendCash);},
+              child: const CustomOutlineButton(
+                title: "Continue",
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

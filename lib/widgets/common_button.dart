@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'common_colour.dart';
 
 
-class CustomOutlineButton extends StatelessWidget {
+  class CustomOutlineButton extends StatelessWidget {
   final String title;
   final VoidCallback? onPressed;
   final Color? backgroundColor;
@@ -27,7 +27,7 @@ class CustomOutlineButton extends StatelessWidget {
       child: Container(
 
         width: MediaQuery.of(context).size.width,
-height: 55,
+        height: 49,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [

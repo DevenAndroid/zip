@@ -18,7 +18,7 @@ class _SharePaymentLinkState extends State<SharePaymentLink> {
     return Scaffold(
      body:  Column(
        children: [
-         SizedBox(height: 169,),
+         SizedBox(height: 140,),
          Image.asset(
            'assets/images/linkicon.png',
            height: 51,
@@ -27,7 +27,7 @@ class _SharePaymentLinkState extends State<SharePaymentLink> {
            height: 30,
          ),
          Text(
-           "You requested 100.00 USD",
+           "Payment link has been generated",
            style: GoogleFonts.poppins(
                color: const Color(0xFF1D1D1D),
                fontSize: 18,
@@ -35,7 +35,7 @@ class _SharePaymentLinkState extends State<SharePaymentLink> {
          ),
 
          Text(
-           "From Daneil",
+           "After it is paid, ypu will receive payment imediately",
            style: GoogleFonts.poppins(
                color: const Color(0xFF1D1D1D),
                fontSize: 16,

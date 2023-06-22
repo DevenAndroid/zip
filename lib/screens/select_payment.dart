@@ -41,7 +41,7 @@ class _SelectMethodState extends State<SelectMethod> {
     ),
     body: SingleChildScrollView(
     child: Padding(
-    padding: const EdgeInsets.all(12.0),
+    padding: const EdgeInsets.only(left: 12.0),
     child: Column(
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,

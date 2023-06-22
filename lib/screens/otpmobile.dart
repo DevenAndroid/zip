@@ -42,27 +42,53 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+Padding(
+  padding: const EdgeInsets.only(left: 10.0),
+  child:   Row(children: [
 
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10.0),
-                        child: Text(
-                          "Please enter 6 digits code we sent to",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10.0,right: 10),
-                        child: Text(
-                          "+234 xxxxxxxxxxx",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFFB2802A),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
+    Expanded(
+
+      child: RichText(
+
+        text: TextSpan(
+
+          text:  "Please enter 6 digits code we sent to",
+
+          style: GoogleFonts.poppins(
+
+              color: const Color(0xFF1D1D1D),
+
+              fontSize: 18,
+
+              fontWeight: FontWeight.w500),
+
+          children:  <TextSpan>[
+
+            TextSpan(text:  " +234 xxxxxxxxxxx",
+
+              style: GoogleFonts.poppins(
+
+                  color: const Color(0xFFB2802A),
+
+                  fontSize: 16,
+
+                  fontWeight: FontWeight.w500),
+
+            ),
+
+
+
+          ],
+
+        ),
+
+      ),
+
+    )
+
+  ],),
+),
+                  
                       const SizedBox(
                         height: 20,
                       ),
@@ -85,12 +111,15 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
                           },
                           child: CustomOutlineButton(title: "Tap to verify using USSD",)),
                       SizedBox(height: 15,),
-                      Text(
-                        "This is free and will verify instantly",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 15,
-                            fontWeight: FontWeight.w300),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: Text(
+                          "This is free and will verify instantly",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w300),
+                        ),
                       ),
 
                       SizedBox(height: size.height*0.44,),

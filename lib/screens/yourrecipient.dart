@@ -42,7 +42,7 @@ class _YourRecipientState extends State<YourRecipient> {
         actions: const [
           Padding(
             padding: EdgeInsets.only(right: 20),
-            child: Icon(Icons.search),
+            child: Icon(Icons.search,color: Colors.black,),
           )
         ],
       ),
@@ -57,29 +57,30 @@ class _YourRecipientState extends State<YourRecipient> {
             Row(
               children: [
                 Expanded(
-                    child: InkWell(
-                  onTap: () {},
-                  child: CustomOutlineBoder(
-                    title: "Add +",
-                    backgroundColor: Colors.white,
-                    textColor: AppTheme.buttonColor,
-                    onPressed: () {},
-                  ),
-                )),
+                  child: InkWell(
+                      onTap: () {},
+                      child: const CustomOutlineButton(
+                        title: "Add +",
+                      )),
+                ),
                 const SizedBox(
                   height: 15,
                 ),
                 Expanded(
-                  child: InkWell(
+                    child: InkWell(
                       onTap: () {},
-                      child: const CustomOutlineButton(
+                      child: CustomOutlineBoder(
                         title: "Favorites +",
-                      )),
-                ),
+                        backgroundColor: Colors.white,
+                        textColor: AppTheme.buttonColor,
+                        onPressed: () {},
+                      ),
+                    )),
               ],
             ),
+            SizedBox(height: 25,),
             Padding(
-              padding: const EdgeInsets.only(left: 29,top: 44,bottom: 12),
+              padding: const EdgeInsets.only(left: 10,bottom: 12),
               child: Text(
                 "Your Recipients",
                 style: GoogleFonts.poppins(
@@ -98,11 +99,11 @@ class _YourRecipientState extends State<YourRecipient> {
                   Get.toNamed(MyRouters.addRecipientsStart);
                 },
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 6,right: 6,bottom: 12),
+                  padding: const EdgeInsets.only(left: 10,right: 10,bottom: 12),
                   child: Container(
-                    height: 78,
+                    height: 75,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(21),
+                        borderRadius: BorderRadius.circular(16),
                         border: Border.all(color: const Color(0xff1D1D1D))),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -143,10 +144,11 @@ class _YourRecipientState extends State<YourRecipient> {
                             )
                           ],
                         ),
-                        SizedBox(
-                          width: 55,
-                        ),
-                        Icon(Icons.arrow_forward_ios)
+                       Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 10.0),
+                          child: Icon(Icons.arrow_forward_ios,size: 20,),
+                        )
                       ],
                     ),
                   ),

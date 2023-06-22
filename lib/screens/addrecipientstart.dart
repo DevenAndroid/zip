@@ -40,7 +40,7 @@ class _AddRecipientStartState extends State<AddRecipientStart> {
         actions: const [
           Padding(
             padding: EdgeInsets.only(right: 20),
-            child: Icon(Icons.search),
+            child: Icon(Icons.search,color: Colors.black,),
           )
         ],
       ),

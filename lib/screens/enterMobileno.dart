@@ -72,9 +72,7 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                                 title: "Phone Number",
                               )),
                         ),
-                        const SizedBox(
-                          height: 15,
-                        ),
+
                         Expanded(
                             child: InkWell(
                               onTap: (){

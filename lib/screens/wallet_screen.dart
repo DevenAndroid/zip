@@ -37,7 +37,7 @@ class _WalletScreenState extends State<WalletScreen> {
             onTap: (){
               Get.back();
             },
-            child: Icon(
+            child: const Icon(
               Icons.arrow_back_rounded,
               color: AppTheme.primaryColor,
             ),
@@ -57,32 +57,32 @@ class _WalletScreenState extends State<WalletScreen> {
                 Row(
                   children: [
                     Expanded(
-                        child: InkWell(
-                      onTap: () {
-                        // Get.toNamed(MyRouters.mobileNumber);
-                      },
-                      child: CustomOutlineBoder(
-                        title: "Cards",
-                        backgroundColor: Colors.white,
-                        textColor: AppTheme.buttonColor,
-                        onPressed: () {
-                          Get.toNamed(MyRouters.mobileNumber);
-                        },
-                      ),
-                    )),
+                      child: InkWell(
+                          onTap: () {},
+                          child: const CustomOutlineButton(
+                            title: "Cards",
+                          )),
+                    ),
                     const SizedBox(
                       height: 15,
                     ),
                     Expanded(
-                      child: InkWell(
-                          onTap: () {},
-                          child: const CustomOutlineButton(
-                            title: "Accounts",
-                          )),
-                    ),
+                        child: InkWell(
+                          onTap: () {
+                            // Get.toNamed(MyRouters.mobileNumber);
+                          },
+                          child: CustomOutlineBoder(
+                            title: "Account",
+                            backgroundColor: Colors.white,
+                            textColor: AppTheme.buttonColor,
+                            onPressed: () {
+                              Get.toNamed(MyRouters.mobileNumber);
+                            },
+                          ),
+                        )),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 33,
                 ),
                 CarouselSlider(
@@ -111,116 +111,116 @@ class _WalletScreenState extends State<WalletScreen> {
                             ),
                             Row(
                               children: [
-                                CircleAvatar(
+                                const CircleAvatar(
                                   maxRadius: 4,
                                   backgroundColor: Colors.white,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 3,
                                 ),
-                                CircleAvatar(
+                                const CircleAvatar(
                                   maxRadius: 4,
                                   backgroundColor: Colors.white,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 3,
                                 ),
-                                CircleAvatar(
+                                const CircleAvatar(
                                   maxRadius: 4,
                                   backgroundColor: Colors.white,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 3,
                                 ),
-                                CircleAvatar(
+                                const CircleAvatar(
                                   maxRadius: 4,
                                   backgroundColor: Colors.white,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 8,
                                 ),
-                                CircleAvatar(
+                                const CircleAvatar(
                                   maxRadius: 4,
                                   backgroundColor: Colors.white,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 3,
                                 ),
-                                CircleAvatar(
+                                const CircleAvatar(
                                   maxRadius: 4,
                                   backgroundColor: Colors.white,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 3,
                                 ),
-                                CircleAvatar(
+                                const CircleAvatar(
                                   maxRadius: 4,
                                   backgroundColor: Colors.white,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 3,
                                 ),
-                                CircleAvatar(
+                                const CircleAvatar(
                                   maxRadius: 4,
                                   backgroundColor: Colors.white,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 8,
                                 ),
-                                CircleAvatar(
+                                const CircleAvatar(
                                   maxRadius: 4,
                                   backgroundColor: Colors.white,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 3,
                                 ),
-                                CircleAvatar(
+                                const CircleAvatar(
                                   maxRadius: 4,
                                   backgroundColor: Colors.white,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 3,
                                 ),
-                                CircleAvatar(
+                                const CircleAvatar(
                                   maxRadius: 4,
                                   backgroundColor: Colors.white,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 3,
                                 ),
-                                CircleAvatar(
+                                const CircleAvatar(
                                   maxRadius: 4,
                                   backgroundColor: Colors.white,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 8,
                                 ),
-                                CircleAvatar(
+                                const CircleAvatar(
                                   maxRadius: 4,
                                   backgroundColor: Colors.white,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 3,
                                 ),
-                                CircleAvatar(
+                                const CircleAvatar(
                                   maxRadius: 4,
                                   backgroundColor: Colors.white,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 3,
                                 ),
-                                CircleAvatar(
+                                const CircleAvatar(
                                   maxRadius: 4,
                                   backgroundColor: Colors.white,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 3,
                                 ),
-                                CircleAvatar(
+                                const CircleAvatar(
                                   maxRadius: 4,
                                   backgroundColor: Colors.white,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 8,
                                 ),
                               ],
@@ -246,7 +246,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                     )
                                   ],
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                                 Column(
@@ -268,7 +268,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                     )
                                   ],
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 15,
                                 ),
                                 Stack(
@@ -304,32 +304,32 @@ class _WalletScreenState extends State<WalletScreen> {
                     aspectRatio: 16 / 9,
                     autoPlayCurve: Curves.fastOutSlowIn,
                     enableInfiniteScroll: true,
-                    autoPlayAnimationDuration: Duration(milliseconds: 800),
+                    autoPlayAnimationDuration: const Duration(milliseconds: 800),
                     viewportFraction: 0.8,
                   ),
                 ),
-                SizedBox(
-                  height: 20,
+                const SizedBox(
+                  height: 30,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 15.0,right: 10),
+                  padding: const EdgeInsets.only(left: 10.0,right: 10),
                   child: Container(
 
-                    padding: EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(8),
                     height: 65,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(21),
-                        border: Border.all(color: Color(0xff1D1D1D))),
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(color: const Color(0xff1D1D1D))),
                     child: Row(
 
                       children: [
-                        SizedBox(width: 15,),
+const SizedBox(width: 5,),
                         Image.asset(
                           "assets/images/Group.png",
                           height: 45,
                           width: 44,
                         ),
-                        SizedBox(width: 10,),
+                        const SizedBox(width: 10,),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -337,14 +337,14 @@ class _WalletScreenState extends State<WalletScreen> {
                             Text(
                               'Get your Virtual Card',
                               style: GoogleFonts.poppins(
-                                  color: Color(0xff1D1D1D),
+                                  color: const Color(0xff1D1D1D),
                                   fontSize: 13,
                                   fontWeight: FontWeight.w400),
                             ),
                             Text(
                               'Rem nemo rerum sint dolor quae repellat.',
                               style: GoogleFonts.poppins(
-                                  color: Color(0xff1D1D1D),
+                                  color: const Color(0xff1D1D1D),
                                   fontSize: 10,
                                   fontWeight: FontWeight.w300),
                             )
@@ -355,7 +355,7 @@ class _WalletScreenState extends State<WalletScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: size.height * .3,
+                  height: size.height * .25,
                 ),
                 InkWell(
                     onTap: () {
@@ -365,11 +365,11 @@ class _WalletScreenState extends State<WalletScreen> {
                       onTap: (){
                         Get.to(AddCard());
                       },
-                      child: CustomOutlineButton(
+                      child: const CustomOutlineButton(
                         title: "Add Cards",
                       ),
                     )),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
               ]),

@@ -53,9 +53,9 @@ class _UserScreenState extends State<UserScreen> {
     ),
     SizedBox(height: 40,),
 
-CommonTextfield(obSecure: false, hintText: "Piyush"),
+CommonTextfield(obSecure: false, hintText: "Daniel"),
 SizedBox(height: 10,),
-CommonTextfield(obSecure: false, hintText: "Prajapati"),
+CommonTextfield(obSecure: false, hintText: "Last Name"),
       SizedBox(height: size.height*.5,),
       GestureDetector(
           onTap: (){
