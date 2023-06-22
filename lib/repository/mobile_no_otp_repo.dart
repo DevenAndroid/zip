@@ -15,21 +15,24 @@ Future<ModelCommonResponse> loginUserRepo({name,email,context,phone}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
+  var map1 = <String, dynamic>{};
   map['length'] = 7;
-  map['name'] = name;
-  map['email'] = email;
-  map['phone'] = phone;
+  map['customer'] = map1;
+
+  map1['name'] = name;
+  map1['email'] = email;
+  map1['phone'] = phone;
   map['sender'] = "Example Business";
   map['send'] = true;
-  map['medium'] = "email";
+  map['medium'] =  ["email"];
   map['expiry'] = "5";
 
 
   print(map);
   // try {
   http.Response response = await http.post(Uri.parse(ApiUrls.otps),
-      headers:{HttpHeaders.contentTypeHeader: 'application/json',
-        HttpHeaders.acceptHeader: 'application/json'},body: jsonEncode(map));
+      headers: await getAuthHeader(),
+      body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
   // http.Response response = await http.post(Uri.parse(ApiUrls.loginUser),
   //     headers: await getAuthHeader(),body: jsonEncode(map) );
