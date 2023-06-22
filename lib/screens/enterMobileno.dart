@@ -8,6 +8,10 @@ import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 
+import '../models/registor_model.dart';
+import '../repository/mobile_no_otp_repo.dart';
+import '../resourses/api_constant.dart';
+
 class MobileNumberScreen extends StatefulWidget {
   const MobileNumberScreen({Key? key}) : super(key: key);
 
@@ -16,6 +20,31 @@ class MobileNumberScreen extends StatefulWidget {
 }
 
 class _MobileNumberScreenState extends State<MobileNumberScreen> {
+
+  final formKey = GlobalKey<FormState>();
+
+  Rx<RxStatus> statusOfLogin = RxStatus.empty().obs;
+
+  Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
+  TextEditingController mobileNoController = TextEditingController();
+
+  Login() {
+    loginUserRepo(
+      name: "Example User",
+      context: context,
+      phone:mobileNoController.text.trim(),
+      email:"user@gmail.com"
+    ).then((value) {
+      login.value = value;
+
+
+
+      // showToast(value.message.toString());
+    });
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery
@@ -117,6 +146,7 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                             SizedBox(
                               width: 120,
                               child: TextFormField(
+                                controller: mobileNoController,
                                   decoration: const InputDecoration(
                                     hintText: "XXXXXXXXX",
                                     border: InputBorder.none,
@@ -161,7 +191,8 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
 
                     InkWell(
                         onTap: (){
-                          Get.toNamed(MyRouters.mobileOtpScreen);
+                          Login();
+                          // Get.toNamed(MyRouters.mobileOtpScreen);
                         },
                         child: CustomOutlineButton(title: "Next",)),
                     SizedBox(height: 15,),

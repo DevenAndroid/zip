@@ -17,12 +17,13 @@ import '../widgets/common_colour.dart';
 
  Future getAuthHeader() async {
    SharedPreferences pref = await SharedPreferences.getInstance();
-   print(pref.getString("cookie")!.toString().replaceAll('\"', ''));
+   // pref.getString("cookie")!.toString().replaceAll('\"', '');
    return {
    HttpHeaders.contentTypeHeader: 'application/json',
    HttpHeaders.acceptHeader: 'application/json',
-     if(pref.getString("cookie") != null)
-       HttpHeaders.authorizationHeader: 'Bearer ${pref.getString("cookie")!.toString().replaceAll('\"', '')}',
+     HttpHeaders.authorizationHeader:"FLWSECK_TEST-SANDBOXDEMOKEY-X"
+     // if(pref.getString("cookie") != null)
+     //   HttpHeaders.authorizationHeader: 'Bearer ${pref.getString("cookie")!.toString().replaceAll('\"', '')}',
    };
  }
  // HttpHeaders.contentTypeHeader: 'application/json',
