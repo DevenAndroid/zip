@@ -88,7 +88,7 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                       ),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 21,
                     ),
                     Row(
                       children: [
