@@ -7,6 +7,11 @@ import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
+
+import '../models/model_verify_otp.dart';
+import '../models/registor_model.dart';
+import '../repository/verify_otp_repo.dart';
+import '../resourses/api_constant.dart';
 class MobileOtpScreen extends StatefulWidget {
   const MobileOtpScreen({Key? key}) : super(key: key);
 
@@ -15,6 +20,28 @@ class MobileOtpScreen extends StatefulWidget {
 }
 
 class _MobileOtpScreenState extends State<MobileOtpScreen> {
+  Rx<RxStatus> statusOfVerify = RxStatus.empty().obs;
+
+  Rx<ModelVerifyOtp> verifyOtp = ModelVerifyOtp().obs;
+  TextEditingController mobileOtpController = TextEditingController();
+  Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
+
+  var initStateBlank = Get.arguments[0];
+  VerifyOtp() {
+    verifyOtpRepo(
+      refrence:  "/${ Get.arguments[0]}/validate",
+        otp:mobileOtpController.text.trim() ,
+        context: context,
+
+
+    ).then((value) {
+      verifyOtp.value = value;
+    Get.toNamed(MyRouters.bottomNavbar);
+
+
+       showToast(value.message.toString());
+    });
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery
@@ -93,7 +120,7 @@ Padding(
                         height: 20,
                       ),
 
-                      CommonTextfield(obSecure: false, hintText: "000-000",),
+                      CommonTextfield(controller: mobileOtpController,obSecure: false, hintText: "000-000",),
                       SizedBox(height: 15,),
                       Center(
                         child: Text(
@@ -107,7 +134,8 @@ Padding(
                       SizedBox(height: 15,),
                       InkWell(
                           onTap: (){
-                            Get.toNamed(MyRouters.selectableScreen);
+                            VerifyOtp();
+                            // Get.toNamed(MyRouters.selectableScreen);
                           },
                           child: CustomOutlineButton(title: "Tap to verify using USSD",)),
                       SizedBox(height: 15,),

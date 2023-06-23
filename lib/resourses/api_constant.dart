@@ -12,6 +12,7 @@ import '../widgets/common_colour.dart';
  class ApiUrls {
    static const String apiBaseUrl = 'https://api.flutterwave.com/v3/';
    static const String otps = "${apiBaseUrl}otps";
+   static const String verifyOtp = "${apiBaseUrl}otps/";
 
  }
 
@@ -37,7 +38,7 @@ import '../widgets/common_colour.dart';
        toastLength: Toast.LENGTH_LONG,
        gravity: ToastGravity.BOTTOM,
        timeInSecForIosWeb: 1,
-       backgroundColor: AppTheme.primaryColor,
+       backgroundColor: AppTheme.secondaryColor,
        textColor: Color(0xffffffff),
        fontSize: 14);
  }

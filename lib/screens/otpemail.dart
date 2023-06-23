@@ -8,6 +8,12 @@ import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
+import '../models/model_verify_otp.dart';
+import '../models/registor_model.dart';
+import '../repository/mobile_no_otp_repo.dart';
+import '../repository/verify_otp_repo.dart';
+import '../resourses/api_constant.dart';
+
 class EmailOtpScreen extends StatefulWidget {
   const EmailOtpScreen({Key? key}) : super(key: key);
 
@@ -16,6 +22,29 @@ class EmailOtpScreen extends StatefulWidget {
 }
 
 class _EmailOtpScreenState extends State<EmailOtpScreen> {
+  Rx<RxStatus> statusOfVerify = RxStatus.empty().obs;
+
+  Rx<ModelVerifyOtp> verifyOtp = ModelVerifyOtp().obs;
+  TextEditingController emailOtpController = TextEditingController();
+  Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
+
+  var initStateBlank = Get.arguments[0];
+  VerifyOtp() {
+    verifyOtpRepo(
+      refrence:  "/${ Get.arguments[0]}/validate",
+      otp:emailOtpController.text.trim() ,
+      context: context,
+
+
+    ).then((value) {
+      verifyOtp.value = value;
+     Get.toNamed(MyRouters.bottomNavbar);
+
+
+      showToast(value.message.toString());
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -72,6 +101,7 @@ class _EmailOtpScreenState extends State<EmailOtpScreen> {
                         height: 20,
                       ),
                       CommonTextfield(
+                        controller: emailOtpController,
                         obSecure: false,
                         hintText: "000-000",
                       ),
@@ -92,6 +122,7 @@ class _EmailOtpScreenState extends State<EmailOtpScreen> {
                       ),
                       InkWell(
                           onTap: () {
+                            VerifyOtp();
                             // Get.toNamed(MyRouters.otpEmailScreen);
                           },
                           child: CustomOutlineButton(

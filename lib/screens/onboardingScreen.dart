@@ -128,7 +128,7 @@ SizedBox(height: size.height*.1,),
 
         InkWell(
             onTap: (){
-              Get.toNamed(MyRouters.mobileNumber);
+              Get.toNamed(MyRouters.userScreen);
             },
             child: CustomOutlineButton(title: "Open free account",)),
            SizedBox(height: 15,),
