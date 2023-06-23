@@ -13,6 +13,8 @@ class UserScreen extends StatefulWidget {
 }
 
 class _UserScreenState extends State<UserScreen> {
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery
@@ -53,13 +55,13 @@ class _UserScreenState extends State<UserScreen> {
     ),
     SizedBox(height: 40,),
 
-CommonTextfield(obSecure: false, hintText: "Daniel"),
+CommonTextfield(controller: firstNameController,obSecure: false, hintText: "Daniel"),
 SizedBox(height: 10,),
-CommonTextfield(obSecure: false, hintText: "Last Name"),
+CommonTextfield(controller: lastNameController,obSecure: false, hintText: "Last Name"),
       SizedBox(height: size.height*.5,),
       GestureDetector(
           onTap: (){
-            Get.toNamed(MyRouters.birthdayScreen);
+            Get.toNamed(MyRouters.mobileNumber,arguments: [firstNameController.text]);
           },
           child: CustomOutlineButton(title: "Next",)),
 

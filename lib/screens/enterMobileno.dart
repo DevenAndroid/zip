@@ -27,23 +27,30 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
 
   Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
   TextEditingController mobileNoController = TextEditingController();
+  var initStateBlank = Get.arguments[0];
 
   Login() {
     loginUserRepo(
-      name: "Example User",
+
+      name: Get.arguments[0],
       context: context,
       phone:mobileNoController.text.trim(),
       email:"user@gmail.com"
     ).then((value) {
       login.value = value;
+ Get.toNamed(MyRouters.mobileOtpScreen,arguments: [value.data![0].reference.toString()]);
 
 
-
-      // showToast(value.message.toString());
+      showToast(value.message.toString());
     });
   }
 
-
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+   var userName=  Get.arguments[0];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +112,7 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                         Expanded(
                             child: InkWell(
                               onTap: (){
-                                Get.toNamed(MyRouters.enterEmailScreen);
+                                Get.toNamed(MyRouters.enterEmailScreen,arguments: [initStateBlank]);
                               },
                               child: CustomOutlineBoder(
                                 title: "Email",
@@ -130,8 +137,8 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                           children: [
                             const CountryCodePicker(
                               onChanged: print,
-                              initialSelection: 'IT',
-                              favorite: ['+39', 'FR'],
+                              initialSelection: 'NG',
+                              favorite: ['+234', 'NG'],
                               showCountryOnly: false,
                               showOnlyCountryWhenClosed: false,
                               alignLeft: false,

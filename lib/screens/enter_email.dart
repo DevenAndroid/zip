@@ -9,6 +9,10 @@ import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
+import '../models/registor_model.dart';
+import '../repository/mobile_no_otp_repo.dart';
+import '../resourses/api_constant.dart';
+
 class EmailScreen extends StatefulWidget {
   const EmailScreen({Key? key}) : super(key: key);
 
@@ -17,6 +21,29 @@ class EmailScreen extends StatefulWidget {
 }
 
 class _EmailScreenState extends State<EmailScreen> {
+
+  var initStateBlank = Get.arguments[0];
+  Rx<RxStatus> statusOfLogin = RxStatus.empty().obs;
+
+  Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
+  TextEditingController emailNoController = TextEditingController();
+
+  emailLogin() {
+    loginUserRepo(
+      name: Get.arguments[0],
+      context: context,
+      phone:"08130000000",
+      email:emailNoController.text.trim(),
+    ).then((value) {
+      login.value = value;
+      Get.toNamed(MyRouters.otpEmailScreen,arguments: [value.data![0].reference.toString()]);
+      // Get.toNamed(MyRouters.otpEmailScreen);
+
+
+      showToast(value.message.toString());
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery
@@ -63,7 +90,7 @@ class _EmailScreenState extends State<EmailScreen> {
                         Expanded(
                             child: InkWell(
                               onTap: (){
-                                Get.toNamed(MyRouters.mobileNumber);
+                                Get.back();
                               },
                               child: CustomOutlineBoder(
                                 title: "Phone",
@@ -90,7 +117,7 @@ class _EmailScreenState extends State<EmailScreen> {
                     const SizedBox(
                       height: 23,
                     ),
-                 CommonTextfield(obSecure: false, hintText: "",labelText: "Email",),
+                 CommonTextfield(controller: emailNoController,obSecure: false, hintText: "",labelText: "Email",),
                     SizedBox(height: 25,),
                     Padding(
                       padding: const EdgeInsets.only(left: 10.0,right: 10),
@@ -116,7 +143,8 @@ class _EmailScreenState extends State<EmailScreen> {
 
                     InkWell(
                         onTap: (){
-                          Get.toNamed(MyRouters.otpEmailScreen);
+                          emailLogin();
+                          //
                         },
                         child: CustomOutlineButton(title: "Next",)),
                     SizedBox(height: 15,),
