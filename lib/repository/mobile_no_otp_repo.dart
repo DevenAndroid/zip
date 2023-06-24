@@ -16,7 +16,7 @@ Future<ModelCommonResponse> loginUserRepo({name,email,context,phone,}) async {
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
   var map1 = <String, dynamic>{};
-  map['length'] = 7;
+  map['length'] = 4;
   map['customer'] = map1;
 
   map1['name'] = name;

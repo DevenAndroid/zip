@@ -1,5 +1,7 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -28,21 +30,25 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
   Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
   TextEditingController mobileNoController = TextEditingController();
   var initStateBlank = Get.arguments[0];
-
+  final formKey4 = GlobalKey<FormState>();
   Login() {
-    loginUserRepo(
+    if (formKey4.currentState!.validate()) {
+      loginUserRepo(
 
-      name: Get.arguments[0],
-      context: context,
-      phone:mobileNoController.text.trim(),
-      email:"user@gmail.com"
-    ).then((value) {
-      login.value = value;
- Get.toNamed(MyRouters.mobileOtpScreen,arguments: [value.data![0].reference.toString()]);
+          name: Get.arguments[0],
+          context: context,
+          phone: mobileNoController.text.trim(),
+          email: "user@gmail.com"
+      ).then((value) {
+        login.value = value;
+        Get.toNamed(MyRouters.mobileOtpScreen,
+            arguments: [value.data![0].reference.toString()]);
 
 
-      showToast(value.message.toString());
-    });
+        showToast(value.message.toString());
+        showToast(value.data![0].otp.toString());
+      });
+    }
   }
 
 @override
@@ -57,6 +63,7 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
     Size size = MediaQuery
         .of(context)
         .size;
+    double doubleVar;
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
@@ -77,143 +84,170 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
             ),
           ),),
         body: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+            child: Form(
+              key: formKey4,
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
 
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0,right: 10),
-                      child: Text(
-                        "Enter your mobile number to continue",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 22,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 21,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: InkWell(
-                              onTap: () {
-
-                              },
-                              child: const CustomOutlineButton(
-                                title: "Phone Number",
-                              )),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0,right: 10),
+                        child: Text(
+                          "Enter your mobile number to continue",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 22,
+                              fontWeight: FontWeight.w500),
                         ),
-
-                        Expanded(
+                      ),
+                      const SizedBox(
+                        height: 21,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
                             child: InkWell(
-                              onTap: (){
-                                Get.toNamed(MyRouters.enterEmailScreen,arguments: [initStateBlank]);
-                              },
-                              child: CustomOutlineBoder(
-                                title: "Email",
-                                backgroundColor: Colors.white,
-                                textColor: AppTheme.buttonColor,onPressed: (){
-                                Get.toNamed(MyRouters.enterEmailScreen);
-                              },),
-                            )),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 23,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0,right: 10),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border:
-                            Border.all(color: AppTheme.primaryColor, width: 1.3),
-                            borderRadius: BorderRadius.circular(15)),
-                        child: Row(
-                          children: [
-                            const CountryCodePicker(
-                              onChanged: print,
-                              initialSelection: 'NG',
-                              favorite: ['+234', 'NG'],
-                              showCountryOnly: false,
-                              showOnlyCountryWhenClosed: false,
-                              alignLeft: false,
-                            ),
-                            const SizedBox(
-                              height: 30,
-                              child: VerticalDivider(
-                                thickness: 1,
-                                color: Colors.grey,
+                                onTap: () {
+
+                                },
+                                child: const CustomOutlineButton(
+                                  title: "Phone Number",
+                                )),
+                          ),
+
+                          Expanded(
+                              child: InkWell(
+                                onTap: (){
+                                  Get.toNamed(MyRouters.enterEmailScreen,arguments: [initStateBlank]);
+                                },
+                                child: CustomOutlineBoder(
+                                  title: "Email",
+                                  backgroundColor: Colors.white,
+                                  textColor: AppTheme.buttonColor,onPressed: (){
+                                  Get.toNamed(MyRouters.enterEmailScreen);
+                                },),
+                              )),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 23,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0,right: 10),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border:
+                              Border.all(color: AppTheme.primaryColor, width: 1.3),
+                              borderRadius: BorderRadius.circular(15)),
+                          child: Row(
+                            children: [
+                              const CountryCodePicker(
+                                onChanged: print,
+                                initialSelection: 'NG',
+                                favorite: ['+234', 'NG'],
+                                showCountryOnly: false,
+                                showOnlyCountryWhenClosed: false,
+                                alignLeft: false,
                               ),
-                            ),
-                            SizedBox(
-                              width: 120,
-                              child: TextFormField(
-                                controller: mobileNoController,
-                                  decoration: const InputDecoration(
-                                    hintText: "XXXXXXXXX",
-                                    border: InputBorder.none,
-                                    focusedBorder: InputBorder.none,
-                                    enabledBorder: InputBorder.none,
-                                    errorBorder: InputBorder.none,
-                                    disabledBorder: InputBorder.none,
-                                    hintStyle: TextStyle(
-                                        color: Color(0xFF1D1D1D),
-                                        fontSize: 16,
-                                        decorationColor: Colors.transparent,
-                                        decorationThickness: 0,
-                                        fontWeight: FontWeight.w600),
-                                  )),
-                            ),
-                          ],
+                              const SizedBox(
+                                height: 30,
+                                child: VerticalDivider(
+                                  thickness: 1,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 120,
+                                child: TextFormField(
+                                    keyboardType:
+                                    const TextInputType.numberWithOptions(
+                                        decimal: true),
+                                    inputFormatters: [
+                                      LengthLimitingTextInputFormatter(10),
+                                      FilteringTextInputFormatter.allow(
+                                          RegExp('[0-9]+')),
+                                    ],
+                                    onChanged: (value) =>
+                                    doubleVar = double.parse(value),
+                                    validator: MultiValidator([
+                                      RequiredValidator(
+                                          errorText:
+                                          'Please enter your contact number '),
+                                      MinLengthValidator(10,
+                                          errorText:
+                                          'Please enter 10 digit number'),
+                                      MaxLengthValidator(10,
+                                          errorText:
+                                          'Please enter 10 digit number'),
+                                      PatternValidator(
+                                          r'(^(?:[+0]9)?[0-9]{10,12}$)',
+                                          errorText: '')
+                                    ]),
+                                  controller: mobileNoController,
+                                    decoration: const InputDecoration(
+                                      hintText: "XXXXXXXXX",
+                                      border: InputBorder.none,
+                                      focusedBorder: InputBorder.none,
+                                      enabledBorder: InputBorder.none,
+                                      errorBorder: InputBorder.none,
+                                      disabledBorder: InputBorder.none,
+                                      hintStyle: TextStyle(
+                                          color: Color(0xFF1D1D1D),
+                                          fontSize: 16,
+                                          decorationColor: Colors.transparent,
+                                          decorationThickness: 0,
+                                          fontWeight: FontWeight.w600),
+                                    )),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(height: 25,),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0,right: 10),
-                      child: Text(
-                        "By opening an account, you agree to our",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500),
+                      SizedBox(height: 25,),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0,right: 10),
+                        child: Text(
+                          "By opening an account, you agree to our",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500),
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0,right: 10),
-                      child: Text(
-                        "Terms of Use",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFFB5832C),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0,right: 10),
+                        child: Text(
+                          "Terms of Use",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFFB5832C),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500),
+                        ),
                       ),
-                    ),
-                    SizedBox(height:size.height*.35,),
+                      SizedBox(height:size.height*.35,),
 
-                    InkWell(
+                      InkWell(
+                          onTap: (){
+                            Login();
+                            // Get.toNamed(MyRouters.mobileOtpScreen);
+                          },
+                          child: CustomOutlineButton(title: "Next",)),
+                      SizedBox(height: 15,),
+                      InkWell(
                         onTap: (){
-                          Login();
-                          // Get.toNamed(MyRouters.mobileOtpScreen);
+                          Get.toNamed(MyRouters.enterEmailScreen);
                         },
-                        child: CustomOutlineButton(title: "Next",)),
-                    SizedBox(height: 15,),
-                    InkWell(
-                      onTap: (){
-                        Get.toNamed(MyRouters.enterEmailScreen);
-                      },
-                      child: CustomOutlineBoder(title: "Use Email", backgroundColor: Colors.white,textColor: AppTheme.buttonColor,onPressed: (){
-                        Get.toNamed(MyRouters.enterEmailScreen);
-                      },),
-                    ),
+                        child: CustomOutlineBoder(title: "Use Email", backgroundColor: Colors.white,textColor: AppTheme.buttonColor,onPressed: (){
+                          Get.toNamed(MyRouters.enterEmailScreen);
+                        },),
+                      ),
 
 
-                  ]),
+                    ]),
+              ),
             )));
   }
 }

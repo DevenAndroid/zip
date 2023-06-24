@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -27,20 +28,30 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
   Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
 
   var initStateBlank = Get.arguments[0];
+  final formKey1 = GlobalKey<FormState>();
   VerifyOtp() {
-    verifyOtpRepo(
-      refrence:  "/${ Get.arguments[0]}/validate",
-        otp:mobileOtpController.text.trim() ,
+    if (formKey1.currentState!.validate()) {
+      verifyOtpRepo(
+        refrence: "/${ Get.arguments[0]}/validate",
+        otp: mobileOtpController.text.trim(),
         context: context,
 
+      ).then((value) {
+        verifyOtp.value = value;
+        if (value.status == "success") {
+          setState(() {
+            Get.toNamed(MyRouters.bottomNavbar);
+            statusOfVerify.value = RxStatus.success();
+          });
 
-    ).then((value) {
-      verifyOtp.value = value;
-    Get.toNamed(MyRouters.bottomNavbar);
 
-
-       showToast(value.message.toString());
-    });
+          showToast(value.message.toString());
+        } else {
+          statusOfVerify.value = RxStatus.error();
+          showToast(value.message.toString());
+        }
+      });
+    }
   }
   @override
   Widget build(BuildContext context) {
@@ -63,12 +74,14 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
             ),
           ),),
         body: SingleChildScrollView(
-            child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+            child: Form(
+              key: formKey1,
+              child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
 Padding(
   padding: const EdgeInsets.only(left: 10.0),
   child:   Row(children: [
@@ -83,25 +96,25 @@ Padding(
 
           style: GoogleFonts.poppins(
 
-              color: const Color(0xFF1D1D1D),
+                color: const Color(0xFF1D1D1D),
 
-              fontSize: 18,
+                fontSize: 18,
 
-              fontWeight: FontWeight.w500),
+                fontWeight: FontWeight.w500),
 
           children:  <TextSpan>[
 
-            TextSpan(text:  " +234 xxxxxxxxxxx",
+              TextSpan(text:  " +234 xxxxxxxxxxx",
 
-              style: GoogleFonts.poppins(
+                style: GoogleFonts.poppins(
 
-                  color: const Color(0xFFB2802A),
+                    color: const Color(0xFFB2802A),
 
-                  fontSize: 16,
+                    fontSize: 16,
 
-                  fontWeight: FontWeight.w500),
+                    fontWeight: FontWeight.w500),
 
-            ),
+              ),
 
 
 
@@ -115,52 +128,62 @@ Padding(
 
   ],),
 ),
-                  
-                      const SizedBox(
-                        height: 20,
-                      ),
 
-                      CommonTextfield(controller: mobileOtpController,obSecure: false, hintText: "000-000",),
-                      SizedBox(height: 15,),
-                      Center(
-                        child: Text(
-                          "Or",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 15,
-                              fontWeight: FontWeight.w300),
+                        const SizedBox(
+                          height: 20,
                         ),
-                      ),
-                      SizedBox(height: 15,),
-                      InkWell(
+
+                        CommonTextfield(
+                          keyboardType:
+                          const TextInputType.numberWithOptions(
+                              decimal: true),
+                          validator: MultiValidator([
+                            RequiredValidator(
+                                errorText: 'Please enter your otp'),
+                          ]),
+                          controller: mobileOtpController,obSecure: false, hintText: "000-000",),
+                        SizedBox(height: 15,),
+                        Center(
+                          child: Text(
+                            "Or",
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF1D1D1D),
+                                fontSize: 15,
+                                fontWeight: FontWeight.w300),
+                          ),
+                        ),
+                        SizedBox(height: 15,),
+                        InkWell(
+                            onTap: (){
+                              VerifyOtp();
+                              // Get.toNamed(MyRouters.selectableScreen);
+                            },
+                            child: CustomOutlineButton(title: "Tap to verify using USSD",)),
+                        SizedBox(height: 15,),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10.0),
+                          child: Text(
+                            "This is free and will verify instantly",
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF1D1D1D),
+                                fontSize: 15,
+                                fontWeight: FontWeight.w300),
+                          ),
+                        ),
+
+                        SizedBox(height: size.height*0.44,),
+
+                        InkWell(
                           onTap: (){
-                            VerifyOtp();
-                            // Get.toNamed(MyRouters.selectableScreen);
+                            Get.back();
                           },
-                          child: CustomOutlineButton(title: "Tap to verify using USSD",)),
-                      SizedBox(height: 15,),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10.0),
-                        child: Text(
-                          "This is free and will verify instantly",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 15,
-                              fontWeight: FontWeight.w300),
+                          child: CustomOutlineBoder(title: "Go Back", backgroundColor: Colors.white,textColor: AppTheme.buttonColor,onPressed: (){
+                            Get.back();
+                          },),
                         ),
-                      ),
 
-                      SizedBox(height: size.height*0.44,),
-                      InkWell(
-                        onTap: (){
-                          Get.back();
-                        },
-                        child: CustomOutlineBoder(title: "Go Back", backgroundColor: Colors.white,textColor: AppTheme.buttonColor,onPressed: (){
-                          Get.back();
-                        },),
-                      ),
-
-                    ]))));
+                      ])),
+            )));
   }
 }
 
