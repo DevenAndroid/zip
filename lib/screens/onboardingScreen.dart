@@ -106,6 +106,7 @@ SizedBox(height: size.height*.1,),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
+
             SmoothPageIndicator(
 
               axisDirection: Axis.horizontal,
