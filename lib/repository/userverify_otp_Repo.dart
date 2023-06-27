@@ -9,9 +9,8 @@ import '../resourses/helper.dart';
 
 
 
-Future<UserVerifyOtpModel> userVerifyOtpRepo({phone_email,context,otp}) async {
-  OverlayEntry loader = Helpers.overlayLoader(context);
-  Overlay.of(context)!.insert(loader);
+Future<UserVerifyOtpModel> userVerifyOtpRepo({phone_email,otp}) async {
+
   var map = <String, dynamic>{};
 
   map['phone_email'] = phone_email;
@@ -28,16 +27,17 @@ Future<UserVerifyOtpModel> userVerifyOtpRepo({phone_email,context,otp}) async {
   //     headers: await getAuthHeader(),body: jsonEncode(map) );
 
   if (response.statusCode == 200) {
-    Helpers.hideLoader(loader);
+
     print(jsonDecode(response.body));
-    return UserVerifyOtpModel.fromJson(jsonDecode(response.body));
+    return  UserVerifyOtpModel.fromJson(jsonDecode(response.body));
 
   } else {
-    Helpers.hideLoader(loader);
+
     print(jsonDecode(response.body));
-    return UserVerifyOtpModel(message: jsonDecode(response.body)["message"], );
+    return UserVerifyOtpModel(message: jsonDecode(response.body)["message"], status: false);
   }
-  // }  catch (e) {
-  //   Helpers.hideLoader(loader);
-  //   return ModelCommonResponse(message: e.toString(), success: false);
+ // catch (e) {
+
+// return  UserVerifyOtpModel(message: e.toString(), status: false);
+// }
 }

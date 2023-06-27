@@ -175,20 +175,36 @@ class _EmailScreenState extends State<EmailScreen> {
                         },
                         controller: emailNoController,obSecure: false, hintText: "pkp@gmail.com",labelText: "Email",),
                       SizedBox(height: 15,),
-                      CommonTextfield(validator: MultiValidator([
+                      CommonTextfield(
+                        validator: MultiValidator([
                         RequiredValidator(
                             errorText:
                             'Please enter your BVN number '),]),controller: BVNController,obSecure: false, labelText: "BVN Number", hintText: 'BVN Number',),
                       SizedBox(height: 15,),
-                      CommonTextfield(validator: MultiValidator([
-                        RequiredValidator(
-                            errorText:
-                            'Please enter your password '),]),controller: passwordController,obSecure: false, labelText: "Password", hintText: 'Password',),
+                      CommonTextfield(
+                        validator: MultiValidator([
+                          RequiredValidator(
+                              errorText: 'Please enter your password'),
+                          MinLengthValidator(8,
+                              errorText: 'Password must be at least 8 characters, with 1 special character & 1 numerical'),
+                          PatternValidator(
+                              r"(?=.*\W)(?=.*?[#?!@$%^&*-])(?=.*[0-9])",
+                              errorText: "Password must be at least with 1 special character & 1 numerical"),
+                        ]),
+                        obSecure: false,
+                    controller: passwordController, labelText: "Password", hintText: 'Password',),
                       SizedBox(height: 15,),
-                      CommonTextfield(validator: MultiValidator([
-                        RequiredValidator(
-                            errorText:
-                            'Please enter your confirm password '),]),controller: confirmPasswordController,obSecure: false, labelText: "Confirm Password", hintText: 'Confirm Password',),
+                      CommonTextfield(
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter your password';
+                            }
+                            if (value.toString() ==
+                                passwordController.text) {
+                              return null;
+                            }
+                            return "Confirm password not matching with password";
+                          },controller: confirmPasswordController,obSecure: false, labelText: "Confirm Password", hintText: 'Confirm Password',),
                       SizedBox(height: 25,),
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0,right: 10),
