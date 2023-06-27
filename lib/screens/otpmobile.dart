@@ -57,30 +57,30 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
   //   }
   // }
 
-  VerifyOtp() {
-    if (formKey1.currentState!.validate()) {
-      verifyOtpRepo(
-        refrence: "/${ Get.arguments[0]}/validate",
-        otp: mobileOtpController.text.trim(),
-        context: context,
-
-      ).then((value) {
-        verifyOtp.value = value;
-        if (value.status == "success") {
-          setState(() {
-            Get.toNamed(MyRouters.bottomNavbar);
-            statusOfVerify.value = RxStatus.success();
-          });
-
-
-          showToast(value.message.toString());
-        } else {
-          statusOfVerify.value = RxStatus.error();
-          showToast(value.message.toString());
-        }
-      });
-    }
-  }
+  // VerifyOtp() {
+  //   if (formKey1.currentState!.validate()) {
+  //     verifyOtpRepo(
+  //       refrence: "/${ Get.arguments[0]}/validate",
+  //       otp: mobileOtpController.text.trim(),
+  //       context: context,
+  //
+  //     ).then((value) {
+  //       verifyOtp.value = value;
+  //       if (value.status == "success") {
+  //         setState(() {
+  //           Get.toNamed(MyRouters.bottomNavbar);
+  //           statusOfVerify.value = RxStatus.success();
+  //         });
+  //
+  //
+  //         showToast(value.message.toString());
+  //       } else {
+  //         statusOfVerify.value = RxStatus.error();
+  //         showToast(value.message.toString());
+  //       }
+  //     });
+  //   }
+  // }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery

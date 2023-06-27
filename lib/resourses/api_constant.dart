@@ -16,7 +16,7 @@ import '../widgets/common_colour.dart';
    static const String chooseBank = "${apiBaseUrl}banks/";
    static const String registerUser = "${apiBaseUrl}register";
    static const String userVerifyOtp = "${apiBaseUrl}verify-otp";
-
+   static const String updateDetails = "${apiBaseUrl}update-details";
  }
 
  Future getAuthHeader() async {
