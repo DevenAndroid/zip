@@ -9,9 +9,11 @@ import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
+import '../models/login_model.dart';
 import '../models/model_userverify_otp.dart';
 import '../models/model_verify_otp.dart';
 import '../models/registor_model.dart';
+import '../repository/login_repo.dart';
 import '../repository/mobile_no_otp_repo.dart';
 import '../repository/userverify_otp_Repo.dart';
 import '../repository/verify_otp_repo.dart';
@@ -25,10 +27,12 @@ class EmailLoginScreen extends StatefulWidget {
 }
 
 class _EmailLoginScreenState extends State<EmailLoginScreen> {
-  // Rx<RxStatus> statusOfVerify = RxStatus.empty().obs;
   final formKey2 = GlobalKey<FormState>();
-  // Rx<ModelVerifyOtp> verifyOtp = ModelVerifyOtp().obs;
   TextEditingController emailOtpController = TextEditingController();
+
+  Rx<RxStatus> statusOflogin = RxStatus.empty().obs;
+
+  Rx<LoginModel> login = LoginModel().obs;
   // Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
   // Rx<RxStatus> statusOfuserVerifyOtp = RxStatus.empty().obs;
   //
@@ -86,6 +90,30 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
   final formKey6 = GlobalKey<FormState>();
   TextEditingController emailNoController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  Login() {
+    if (formKey2.currentState!.validate()) {
+
+      loginRepo(
+          context: context,
+          password:passwordController.text.trim(),
+          phone_email:emailOtpController.text.trim(),
+          type: "email"
+      ).then((value) {
+        login.value = value;
+        if (value.status == true) {
+          Get.toNamed(MyRouters.profileScreen);
+          statusOflogin.value = RxStatus.success();
+          showToast(value.message.toString());
+        } else {
+          statusOflogin.value = RxStatus.error();
+          showToast(value.message.toString());
+        }
+      }
+
+      );
+    }
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery

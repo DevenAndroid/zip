@@ -8,6 +8,8 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_notifier.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../models/login_model.dart';
+import '../repository/login_repo.dart';
+import '../resourses/api_constant.dart';
 import '../routers/my_routers.dart';
 import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
@@ -29,12 +31,33 @@ class _LoginScreenState extends State<LoginScreen> {
   Rx<LoginModel> login = LoginModel().obs;
   TextEditingController mobileNoController = TextEditingController();
   TextEditingController nopasswordController = TextEditingController();
-  TextEditingController noconfirmPasswordController = TextEditingController();
   // var initStateBlank = Get.arguments[0];
   final formKey4 = GlobalKey<FormState>();
 
 
+  Login() {
+    if (formKey4.currentState!.validate()) {
 
+      loginRepo(
+          context: context,
+          password:nopasswordController.text.trim(),
+          phone_email:mobileNoController.text.trim(),
+          type: "phone"
+      ).then((value) {
+        login.value = value;
+        if (value.status == true) {
+          Get.toNamed(MyRouters.profileScreen);
+          statusOflogin.value = RxStatus.success();
+          showToast(value.message.toString());
+        } else {
+          statusOflogin.value = RxStatus.error();
+          showToast(value.message.toString());
+        }
+      }
+
+      );
+    }
+  }
   /* Login() {
     if (formKey4.currentState!.validate()) {
       loginUserRepo(
@@ -224,7 +247,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       InkWell(
                           onTap: (){
-                            // Login();
+                            Login();
                             // Get.toNamed(MyRouters.mobileOtpScreen);
                           },
                           child: CustomOutlineButton(title: "SignIn",)),
