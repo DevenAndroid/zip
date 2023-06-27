@@ -7,6 +7,8 @@ import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
+
+import '../controller/update_user.dart';
 class CountryScreen extends StatefulWidget {
   const CountryScreen({Key? key}) : super(key: key);
 
@@ -15,6 +17,7 @@ class CountryScreen extends StatefulWidget {
 }
 
 class _CountryScreenState extends State<CountryScreen> {
+  final registorController = Get.put(registerController());
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery
@@ -68,12 +71,12 @@ class _CountryScreenState extends State<CountryScreen> {
                         ),
                       ),
                       SizedBox(height: 40,),
-                      CommonTextfield(obSecure: false, labelText: " Nationality Country", hintText: '',prefix:    Padding(
+                      CommonTextfield(controller: registorController.countryController,obSecure: false, labelText: " Nationality Country", hintText: '',prefix:    Padding(
                         padding: const EdgeInsets.only(left: 12.0),
                         child: SvgPicture.asset('assets/images/address.svg',width: 20,height: 10,),
                       ),),
                       SizedBox(height: 15,),
-                      CommonTextfield(obSecure: false, labelText: "City", hintText: '',),
+                      CommonTextfield(controller: registorController.regionController,obSecure: false, labelText: "City", hintText: '',),
                       SizedBox(height: 15,),
                       CommonTextfield(obSecure: false, labelText: " Country of Birth", hintText: '',prefix:    Padding(
                         padding: const EdgeInsets.only(left: 12.0),

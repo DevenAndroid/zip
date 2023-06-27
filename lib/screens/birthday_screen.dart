@@ -10,6 +10,8 @@ import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
+
+import '../controller/update_user.dart';
 class BirthdayScreen extends StatefulWidget {
   const BirthdayScreen({Key? key}) : super(key: key);
 
@@ -18,9 +20,12 @@ class BirthdayScreen extends StatefulWidget {
 }
 
 class _BirthdayScreenState extends State<BirthdayScreen> {
+
+
   var maskFormatter = new MaskTextInputFormatter(
       mask: '####-##-##', filter: {"#": RegExp(r'[0-9]')});
-  TextEditingController dateOfBirthController = TextEditingController();
+  final registorController = Get.put(registerController());
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery
@@ -130,12 +135,12 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
             print(
                 formattedDate); //formatted date output using intl package =>  2021-03-16
             setState(() {
-              dateOfBirthController.text =
+              registorController.dateOfBirthController.text =
                   formattedDate; //set output date to TextField value.
             });
           } else {}
         },
-        controller: dateOfBirthController,
+        controller: registorController.dateOfBirthController,
         keyboardType: const TextInputType.numberWithOptions(
             decimal: true),
         inputFormatters: [maskFormatter],
@@ -152,7 +157,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
 SizedBox(height: size.height*.5,),
         InkWell(
         onTap: (){
- Get.toNamed(MyRouters.tagScreen);
+ Get.toNamed(MyRouters.tagScreen,);
     },
         child: CustomOutlineButton(title: "Next",)),
         SizedBox(height: 20,),

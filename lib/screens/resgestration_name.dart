@@ -5,6 +5,8 @@ import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
+
+import '../controller/update_user.dart';
 class UserScreen extends StatefulWidget {
   const UserScreen({Key? key}) : super(key: key);
 
@@ -13,8 +15,7 @@ class UserScreen extends StatefulWidget {
 }
 
 class _UserScreenState extends State<UserScreen> {
-  TextEditingController firstNameController = TextEditingController();
-  TextEditingController lastNameController = TextEditingController();
+  final registorController = Get.put(registerController());
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery
@@ -55,15 +56,15 @@ class _UserScreenState extends State<UserScreen> {
     ),
     SizedBox(height: 40,),
 
-CommonTextfield(controller: firstNameController,obSecure: false, hintText: "Daniel"),
+CommonTextfield(controller: registorController.firstNameController,obSecure: false, hintText: "Daniel"),
 SizedBox(height: 10,),
-CommonTextfield(controller: lastNameController,obSecure: false, hintText: "Last Name"),
+CommonTextfield(controller: registorController.lastNameController,obSecure: false, hintText: "Last Name"),
       SizedBox(height: size.height*.5,),
       GestureDetector(
           onTap: (){
-            Get.toNamed(MyRouters.mobileNumber,arguments: [firstNameController.text]);
+            Get.toNamed(MyRouters.birthdayScreen,);
           },
-          child: CustomOutlineButton(title: "Next",)),
+          child: CustomOutlineButton(title: "Next ",)),
 
     ]
     ))));
