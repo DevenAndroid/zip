@@ -38,17 +38,11 @@ import 'package:zip/screens/addrecipients.dart';
 import 'package:zip/screens/addrecipientstart.dart';
 import 'package:zip/screens/buyservices.dart';
 import 'package:zip/screens/createrecipients.dart';
-import 'package:zip/screens/enterMobileno.dart';
-import 'package:zip/screens/enter_email.dart';
 import 'package:zip/screens/generatepaymentlink.dart';
 import 'package:zip/screens/mycard.dart';
-import 'package:zip/screens/otpemail.dart';
-import 'package:zip/screens/otpmobile.dart';
 import 'package:zip/screens/paybillsservices.dart';
 import 'package:zip/screens/paynowbalance.dart';
 import 'package:zip/screens/request_payment.dart';
-import 'package:zip/screens/requestapayment.dart';
-import 'package:zip/screens/requestapaymentconfirm.dart';
 import 'package:zip/screens/requestapaymentcontinue.dart';
 import 'package:zip/screens/sendcash.dart';
 import 'package:zip/screens/sendcashyourbalance.dart';
@@ -157,10 +151,9 @@ class MyRouters{
     GetPage(name: '/selectMethod', page: () =>   const SelectMethod()),
     GetPage(name: '/confirmBankScreen', page: () =>   const ConfirmBank()),
     GetPage(name: '/successScreen', page: () =>   const SuccessScreen()),
-
-  GetPage(name: '/enterEmailScreen', page: () =>   const EmailScreen()),
-  GetPage(name: '/otpEmailScreen', page: () =>   const EmailOtpScreen()),
-  GetPage(name: '/mobileOtpScreen', page: () =>   const MobileOtpScreen()),
+    GetPage(name: '/enterEmailScreen', page: () =>   const EmailScreen()),
+    GetPage(name: '/otpEmailScreen', page: () =>   const EmailOtpScreen()),
+    GetPage(name: '/mobileOtpScreen', page: () =>   const MobileOtpScreen()),
     GetPage(name: "/walletScreen", page: ()=>  WalletScreen()),
     GetPage(name: "/addCard", page: ()=>  AddCard()),
     GetPage(name: "/myCard", page: ()=>  MyCard()),

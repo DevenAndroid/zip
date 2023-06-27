@@ -28,6 +28,9 @@ class _EmailScreenState extends State<EmailScreen> {
 
   Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
   TextEditingController emailNoController = TextEditingController();
+  TextEditingController BVNController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
   final formKey3 = GlobalKey<FormState>();
   emailLogin() {
     if (formKey3.currentState!.validate()) {
@@ -137,7 +140,22 @@ class _EmailScreenState extends State<EmailScreen> {
                          return 'Please type a valid email address';
                        }
                      },
-                     controller: emailNoController,obSecure: false, hintText: "",labelText: "Email",),
+                     controller: emailNoController,obSecure: false, hintText: "pkp@gmail.com",labelText: "Email",),
+                      SizedBox(height: 15,),
+                      CommonTextfield(validator: MultiValidator([
+                        RequiredValidator(
+                            errorText:
+                            'Please enter your BVN number '),]),controller: BVNController,obSecure: false, labelText: "BVN Number", hintText: 'BVN Number',),
+                      SizedBox(height: 15,),
+                      CommonTextfield(validator: MultiValidator([
+                        RequiredValidator(
+                            errorText:
+                            'Please enter your password '),]),controller: passwordController,obSecure: false, labelText: "Password", hintText: 'Password',),
+                      SizedBox(height: 15,),
+                      CommonTextfield(validator: MultiValidator([
+                        RequiredValidator(
+                            errorText:
+                            'Please enter your confirm password '),]),controller: confirmPasswordController,obSecure: false, labelText: "Confirm Password", hintText: 'Confirm Password',),
                       SizedBox(height: 25,),
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0,right: 10),
@@ -159,7 +177,7 @@ class _EmailScreenState extends State<EmailScreen> {
                               fontWeight: FontWeight.w500),
                         ),
                       ),
-                      SizedBox(height:size.height*.35,),
+                      SizedBox(height:size.height*.1,),
 
                       InkWell(
                           onTap: (){

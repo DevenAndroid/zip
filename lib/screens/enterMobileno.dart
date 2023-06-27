@@ -13,6 +13,7 @@ import 'package:zip/widgets/common_colour.dart';
 import '../models/registor_model.dart';
 import '../repository/mobile_no_otp_repo.dart';
 import '../resourses/api_constant.dart';
+import '../widgets/common_textfield.dart';
 
 class MobileNumberScreen extends StatefulWidget {
   const MobileNumberScreen({Key? key}) : super(key: key);
@@ -29,6 +30,8 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
 
   Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
   TextEditingController mobileNoController = TextEditingController();
+  TextEditingController nopasswordController = TextEditingController();
+  TextEditingController noconfirmPasswordController = TextEditingController();
   var initStateBlank = Get.arguments[0];
   final formKey4 = GlobalKey<FormState>();
   Login() {
@@ -206,6 +209,19 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                           ),
                         ),
                       ),
+                      SizedBox(height: 15,),
+                      CommonTextfield(
+                        validator: MultiValidator([
+                        RequiredValidator(
+                        errorText:
+                        'Please enter your password '),])
+,
+                        controller: nopasswordController,obSecure: false, labelText: "Password", hintText: 'Password',),
+                      SizedBox(height: 15,),
+                      CommonTextfield( validator: MultiValidator([
+                        RequiredValidator(
+                            errorText:
+                            'Please enter your Confirm password '),]),controller: noconfirmPasswordController,obSecure: false, labelText: "Confirm Password", hintText: 'Confirm Password',),
                       SizedBox(height: 25,),
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0,right: 10),
@@ -227,7 +243,7 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                               fontWeight: FontWeight.w500),
                         ),
                       ),
-                      SizedBox(height:size.height*.35,),
+                      SizedBox(height:size.height*.14,),
 
                       InkWell(
                           onTap: (){
