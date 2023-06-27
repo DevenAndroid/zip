@@ -133,7 +133,10 @@ SizedBox(height: size.height*.1,),
             },
             child: CustomOutlineButton(title: "Open free account",)),
            SizedBox(height: 15,),
-           const CustomOutlineBoder(title: "I have an account", backgroundColor: Colors.white,textColor: AppTheme.buttonColor),
+           InkWell(onTap:(){
+             Get.toNamed(MyRouters.loginScreen);
+           },
+               child: const CustomOutlineBoder(title: "I have an account", backgroundColor: Colors.white,textColor: AppTheme.buttonColor)),
 
 
           ],

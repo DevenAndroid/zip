@@ -9,8 +9,10 @@ import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
+import '../models/model_userverify_otp.dart';
 import '../models/model_verify_otp.dart';
 import '../models/registor_model.dart';
+import '../repository/userverify_otp_Repo.dart';
 import '../repository/verify_otp_repo.dart';
 import '../resourses/api_constant.dart';
 class MobileOtpScreen extends StatefulWidget {
@@ -24,13 +26,14 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
   // Rx<RxStatus> statusOfVerify = RxStatus.empty().obs;
   //
   // Rx<ModelVerifyOtp> verifyOtp = ModelVerifyOtp().obs;
-  Rx<RxStatus> statusOfVerify = RxStatus.empty().obs;
+  Rx<RxStatus> statusOfuserVerifyOtp = RxStatus.empty().obs;
 
-  Rx<ModelVerifyOtp> userVerifyOtp = ModelVerifyOtp().obs;
+  Rx<UserVerifyOtpModel> userVerifyOtp = UserVerifyOtpModel().obs;
   TextEditingController mobileOtpController = TextEditingController();
   Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
 
-  // var initStateBlank = Get.arguments[0];
+
+   var initStateBlank = Get.arguments[0];
   final formKey1 = GlobalKey<FormState>();
   // VerifyOtp() {
   //   if (formKey1.currentState!.validate()) {
@@ -81,6 +84,30 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
   //     });
   //   }
   // }
+  verifyOtpRepo() {
+    if (formKey1.currentState!.validate()) {
+      userVerifyOtpRepo(
+        phone_email: initStateBlank,
+        otp: mobileOtpController.text.trim(),
+        context: context,
+
+      ).then((value) {
+        userVerifyOtp.value = value;
+        if (value.status == "success") {
+          setState(() {
+            Get.toNamed(MyRouters.bottomNavbar);
+            statusOfuserVerifyOtp.value = RxStatus.success();
+          });
+
+
+          showToast(value.message.toString());
+        } else {
+          statusOfuserVerifyOtp.value = RxStatus.error();
+          showToast(value.message.toString());
+        }
+      });
+    }
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery
@@ -183,8 +210,11 @@ Padding(
                         SizedBox(height: 15,),
                         InkWell(
                             onTap: (){
+                              verifyOtpRepo();
                               // VerifyOtp();
+
                               Get.toNamed(MyRouters.selectableScreen);
+
                             },
                             child: CustomOutlineButton(title: "Tap to verify using USSD",)),
                         SizedBox(height: 15,),

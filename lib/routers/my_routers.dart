@@ -15,6 +15,7 @@ import 'package:zip/screens/enterMobileno.dart';
 import 'package:zip/screens/enter_email.dart';
 import 'package:zip/screens/exchange_screen.dart';
 import 'package:zip/screens/faq_screen.dart';
+import 'package:zip/screens/login_screen.dart';
 
 import 'package:zip/screens/otp_screen.dart';
 import 'package:zip/screens/otpemail.dart';
@@ -53,6 +54,7 @@ import 'package:zip/screens/wallet_screen.dart';
 import 'package:zip/screens/yourrecipient.dart';
 
 import '../screens/addfundsinbank.dart';
+import '../screens/email_login.dart';
 import '../screens/onboardingScreen.dart';
 import '../screens/profile_screen.dart';
 import '../splash1.dart';
@@ -113,6 +115,8 @@ class MyRouters{
   static var paymentLink = "/paymentLink";
   static var requestAPaymentContiune = "/requestAPaymentContiune";
   static var sharePaymentLink = "/sharePaymentLink";
+  static var loginScreen = "/loginScreen";
+  static var emailLoginScreen = "/emailLoginScreen";
 
 
 
@@ -174,6 +178,8 @@ class MyRouters{
     GetPage(name: "/sendCashYourBalance", page: ()=>  const SendCashYourBalance()),
     GetPage(name: "/yourRecipient", page: ()=>  const YourRecipient()),
     GetPage(name: "/transferLimit", page: ()=>  const Transferlimit()),
+    GetPage(name: "/loginScreen", page: ()=>  const LoginScreen()),
+    GetPage(name: "/emailLoginScreen", page: ()=>  const EmailLoginScreen()),
 
 
   ];
