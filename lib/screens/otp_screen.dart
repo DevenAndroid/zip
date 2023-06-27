@@ -6,6 +6,8 @@ import 'package:pinput/pinput.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_colour.dart';
+
+import '../controller/update_user.dart';
 class OtpScreen extends StatefulWidget {
   const OtpScreen({Key? key}) : super(key: key);
 
@@ -15,7 +17,7 @@ class OtpScreen extends StatefulWidget {
 
 class _OtpScreenState extends State<OtpScreen> {
   final formKey99 = GlobalKey<FormState>();
-  TextEditingController otpcontroller = TextEditingController();
+  final registorController = Get.put(registerController());
   @override
   Widget build(BuildContext context) {
     final defaultPinTheme =  PinTheme(
@@ -88,7 +90,7 @@ class _OtpScreenState extends State<OtpScreen> {
             key: formKey99,
             child:  Pinput(
 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              controller: otpcontroller,
+              controller: registorController.otpcontroller,
               keyboardType: TextInputType.number,
               length: 4,
               defaultPinTheme: defaultPinTheme,
@@ -99,7 +101,8 @@ mainAxisAlignment: MainAxisAlignment.spaceBetween,
       SizedBox(height: size.height*.6,),
       InkWell(
         onTap: (){
-       Get.toNamed(MyRouters.bottomNavbar );
+          registorController.updateUser();
+
         },
         child: CustomOutlineBoder(title: "Skip", backgroundColor: Colors.white,textColor: AppTheme.buttonColor,onPressed: (){
           Get.toNamed(MyRouters.otpScreen);

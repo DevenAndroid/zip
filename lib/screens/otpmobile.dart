@@ -212,7 +212,9 @@ Padding(
                             onTap: (){
                               verifyOtpRepo();
                               // VerifyOtp();
-                               Get.toNamed(MyRouters.profileScreen);
+
+                              Get.toNamed(MyRouters.selectableScreen);
+
                             },
                             child: CustomOutlineButton(title: "Tap to verify using USSD",)),
                         SizedBox(height: 15,),

@@ -8,9 +8,8 @@ import '../resourses/helper.dart';
 
 
 
-Future<ModelUpdateUser> userUpdateRepo({fname,lname,dob,nationality,pin,context,birth_place,gender,zip_tag}) async {
-  OverlayEntry loader = Helpers.overlayLoader(context);
-  Overlay.of(context)!.insert(loader);
+Future<ModelUpdateUser> userUpdateRepo({fname,lname,dob,nationality,pin,birth_place,gender,zip_tag}) async {
+
   var map = <String, dynamic>{};
   map['primary_purpose'] = "Family Support";
   map['fname'] = fname;
@@ -30,17 +29,17 @@ Future<ModelUpdateUser> userUpdateRepo({fname,lname,dob,nationality,pin,context,
         ,body: jsonEncode(map) );
 
     if (response.statusCode == 200) {
-      Helpers.hideLoader(loader);
+
       print(jsonDecode(response.body));
       return  ModelUpdateUser.fromJson(jsonDecode(response.body));
 
     } else {
-      Helpers.hideLoader(loader);
+
       print(jsonDecode(response.body));
       return ModelUpdateUser(message: jsonDecode(response.body)["message"], status: false);
     }
   }  catch (e) {
-    Helpers.hideLoader(loader);
+
     return  ModelUpdateUser(message: e.toString(), status: false);
   }
 }
