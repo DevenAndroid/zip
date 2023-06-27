@@ -5,6 +5,8 @@ import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
+
+import '../controller/update_user.dart';
 class TagScreen extends StatefulWidget {
   const TagScreen({Key? key}) : super(key: key);
 
@@ -13,6 +15,8 @@ class TagScreen extends StatefulWidget {
 }
 
 class _TagScreenState extends State<TagScreen> {
+  final registorController = Get.put(registerController());
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery
@@ -53,7 +57,7 @@ class _TagScreenState extends State<TagScreen> {
     ),
 
     SizedBox(height: 40,),
-      CommonTextfield(obSecure: false, hintText: "@"),
+      CommonTextfield(controller: registorController.zipController,obSecure: false, hintText: "@"),
       Padding(
         padding: const EdgeInsets.only(left: 10.0,right: 10),
         child: Text(

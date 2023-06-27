@@ -184,7 +184,7 @@ Padding(
                         InkWell(
                             onTap: (){
                               // VerifyOtp();
-                              // Get.toNamed(MyRouters.selectableScreen);
+                              Get.toNamed(MyRouters.selectableScreen);
                             },
                             child: CustomOutlineButton(title: "Tap to verify using USSD",)),
                         SizedBox(height: 15,),
