@@ -21,14 +21,42 @@ class MobileOtpScreen extends StatefulWidget {
 }
 
 class _MobileOtpScreenState extends State<MobileOtpScreen> {
+  // Rx<RxStatus> statusOfVerify = RxStatus.empty().obs;
+  //
+  // Rx<ModelVerifyOtp> verifyOtp = ModelVerifyOtp().obs;
   Rx<RxStatus> statusOfVerify = RxStatus.empty().obs;
 
-  Rx<ModelVerifyOtp> verifyOtp = ModelVerifyOtp().obs;
+  Rx<ModelVerifyOtp> userVerifyOtp = ModelVerifyOtp().obs;
   TextEditingController mobileOtpController = TextEditingController();
   Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
 
-  var initStateBlank = Get.arguments[0];
+  // var initStateBlank = Get.arguments[0];
   final formKey1 = GlobalKey<FormState>();
+  // VerifyOtp() {
+  //   if (formKey1.currentState!.validate()) {
+  //     verifyOtpRepo(
+  //       refrence: "/${ Get.arguments[0]}/validate",
+  //       otp: mobileOtpController.text.trim(),
+  //       context: context,
+  //
+  //     ).then((value) {
+  //       verifyOtp.value = value;
+  //       if (value.status == "success") {
+  //         setState(() {
+  //           Get.toNamed(MyRouters.bottomNavbar);
+  //           statusOfVerify.value = RxStatus.success();
+  //         });
+  //
+  //
+  //         showToast(value.message.toString());
+  //       } else {
+  //         statusOfVerify.value = RxStatus.error();
+  //         showToast(value.message.toString());
+  //       }
+  //     });
+  //   }
+  // }
+
   VerifyOtp() {
     if (formKey1.currentState!.validate()) {
       verifyOtpRepo(
@@ -155,7 +183,7 @@ Padding(
                         SizedBox(height: 15,),
                         InkWell(
                             onTap: (){
-                              VerifyOtp();
+                              // VerifyOtp();
                               // Get.toNamed(MyRouters.selectableScreen);
                             },
                             child: CustomOutlineButton(title: "Tap to verify using USSD",)),

@@ -10,8 +10,10 @@ import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 
+import '../models/modal_registor.dart';
 import '../models/registor_model.dart';
 import '../repository/mobile_no_otp_repo.dart';
+import '../repository/registor_repo.dart';
 import '../resourses/api_constant.dart';
 import '../widgets/common_textfield.dart';
 
@@ -25,16 +27,44 @@ class MobileNumberScreen extends StatefulWidget {
 class _MobileNumberScreenState extends State<MobileNumberScreen> {
 
   final formKey = GlobalKey<FormState>();
+  Rx<RxStatus> statusOfregister = RxStatus.empty().obs;
 
-  Rx<RxStatus> statusOfLogin = RxStatus.empty().obs;
-
-  Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
+  Rx<RegisterModel> register = RegisterModel().obs;
+  // Rx<RxStatus> statusOfLogin = RxStatus.empty().obs;
+  //
+  // Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
   TextEditingController mobileNoController = TextEditingController();
   TextEditingController nopasswordController = TextEditingController();
   TextEditingController noconfirmPasswordController = TextEditingController();
-  var initStateBlank = Get.arguments[0];
+  // var initStateBlank = Get.arguments[0];
   final formKey4 = GlobalKey<FormState>();
+
   Login() {
+    if (formKey4.currentState!.validate()) {
+
+      registerRepo(
+        context: context,
+        password:nopasswordController.text.trim(),
+        password_confirmation: noconfirmPasswordController.text.trim(),
+        phone_email:mobileNoController.text.trim(),
+       type: "phone"
+      ).then((value) {
+        register.value = value;
+          if (value.status == true) {
+            Get.toNamed(MyRouters.mobileOtpScreen,);
+            statusOfregister.value = RxStatus.success();
+             showToast(value.message.toString());
+          } else {
+            statusOfregister.value = RxStatus.error();
+        showToast(value.message.toString());
+          }
+        }
+
+        );
+      }
+  }
+
+ /* Login() {
     if (formKey4.currentState!.validate()) {
       loginUserRepo(
 
@@ -52,14 +82,14 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
         showToast(value.data![0].otp.toString());
       });
     }
-  }
+  }*/
 
-@override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-   var userName=  Get.arguments[0];
-  }
+// @override
+//   void initState() {
+//     // TODO: implement initState
+//     super.initState();
+//    var userName=  Get.arguments[0];
+//   }
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +154,7 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                           Expanded(
                               child: InkWell(
                                 onTap: (){
-                                  Get.toNamed(MyRouters.enterEmailScreen,arguments: [initStateBlank]);
+                                  Get.toNamed(MyRouters.enterEmailScreen,);
                                 },
                                 child: CustomOutlineBoder(
                                   title: "Email",
