@@ -10,11 +10,13 @@ import '../widgets/common_colour.dart';
 
 
  class ApiUrls {
-   static const String apiBaseUrl = 'https://api.flutterwave.com/v3/';
+   static const String apiBaseUrl = 'https://zipfintech.eoxyslive.com/api/';
    static const String otps = "${apiBaseUrl}otps";
    static const String verifyOtp = "${apiBaseUrl}otps/";
    static const String chooseBank = "${apiBaseUrl}banks/";
-
+   static const String registerUser = "${apiBaseUrl}register";
+   static const String userVerifyOtp = "${apiBaseUrl}verify-otp";
+   static const String updateDetails = "${apiBaseUrl}update-details";
  }
 
  Future getAuthHeader() async {
