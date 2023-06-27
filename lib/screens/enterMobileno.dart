@@ -43,28 +43,28 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
     if (formKey4.currentState!.validate()) {
 
       registerRepo(
-        context: context,
-        password:nopasswordController.text.trim(),
-        password_confirmation: noconfirmPasswordController.text.trim(),
-        phone_email:mobileNoController.text.trim(),
-       type: "phone"
+          context: context,
+          password:nopasswordController.text.trim(),
+          password_confirmation: noconfirmPasswordController.text.trim(),
+          phone_email:mobileNoController.text.trim(),
+          type: "phone"
       ).then((value) {
         register.value = value;
-          if (value.status == true) {
-            Get.toNamed(MyRouters.mobileOtpScreen,arguments: [mobileNoController.text]);
-            statusOfregister.value = RxStatus.success();
-             showToast(value.message.toString());
-          } else {
-            statusOfregister.value = RxStatus.error();
-        showToast(value.message.toString());
-          }
+        if (value.status == true) {
+          Get.toNamed(MyRouters.mobileOtpScreen,arguments: [mobileNoController.text]);
+          statusOfregister.value = RxStatus.success();
+          showToast(value.message.toString());
+        } else {
+          statusOfregister.value = RxStatus.error();
+          showToast(value.message.toString());
         }
-
-        );
       }
+
+      );
+    }
   }
 
- /* Login() {
+  /* Login() {
     if (formKey4.currentState!.validate()) {
       loginUserRepo(
 
@@ -219,7 +219,7 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                                           r'(^(?:[+0]9)?[0-9]{10,12}$)',
                                           errorText: '')
                                     ]),
-                                  controller: mobileNoController,
+                                    controller: mobileNoController,
                                     decoration: const InputDecoration(
                                       hintText: "XXXXXXXXX",
                                       border: InputBorder.none,
@@ -242,10 +242,10 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                       SizedBox(height: 15,),
                       CommonTextfield(
                         validator: MultiValidator([
-                        RequiredValidator(
-                        errorText:
-                        'Please enter your password '),])
-,
+                          RequiredValidator(
+                              errorText:
+                              'Please enter your password '),])
+                        ,
                         controller: nopasswordController,obSecure: false, labelText: "Password", hintText: 'Password',),
                       SizedBox(height: 15,),
                       CommonTextfield( validator: MultiValidator([

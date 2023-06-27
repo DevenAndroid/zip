@@ -25,9 +25,9 @@ class EmailOtpScreen extends StatefulWidget {
 }
 
 class _EmailOtpScreenState extends State<EmailOtpScreen> {
- // Rx<RxStatus> statusOfVerify = RxStatus.empty().obs;
+  // Rx<RxStatus> statusOfVerify = RxStatus.empty().obs;
   final formKey2 = GlobalKey<FormState>();
- // Rx<ModelVerifyOtp> verifyOtp = ModelVerifyOtp().obs;
+  // Rx<ModelVerifyOtp> verifyOtp = ModelVerifyOtp().obs;
   TextEditingController emailOtpController = TextEditingController();
   Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
   Rx<RxStatus> statusOfuserVerifyOtp = RxStatus.empty().obs;

@@ -125,18 +125,18 @@ class MyRouters{
 
 
 
-  GetPage(name: '/onBoardingScreen', page: () =>   const OnBoardingScreen()),
-  GetPage(name: '/requestAPaymentContiune', page: () =>   const RequestAPaymentContiune()),
-  GetPage(name: '/sendCash1', page: () =>  const SendCash1()),
-  GetPage(name: '/sharePaymentLink', page: () =>  const SharePaymentLink()),
-  GetPage(name: '/sendCash2', page: () =>  const SendCash2()),
-  GetPage(name: '/chooseBank', page: () =>  const ChooseBank()),
-  GetPage(name: '/bottomNavbar', page: () =>  const BottomNavbar()),
-  GetPage(name: '/walletScreen', page: () =>   WalletScreen()),
-  GetPage(name: '/profileScreen', page: () =>  const ProfileScreen()),
-  GetPage(name: '/dashBoard', page: () =>  const DashBoard()),
+    GetPage(name: '/onBoardingScreen', page: () =>   const OnBoardingScreen()),
+    GetPage(name: '/requestAPaymentContiune', page: () =>   const RequestAPaymentContiune()),
+    GetPage(name: '/sendCash1', page: () =>  const SendCash1()),
+    GetPage(name: '/sharePaymentLink', page: () =>  const SharePaymentLink()),
+    GetPage(name: '/sendCash2', page: () =>  const SendCash2()),
+    GetPage(name: '/chooseBank', page: () =>  const ChooseBank()),
+    GetPage(name: '/bottomNavbar', page: () =>  const BottomNavbar()),
+    GetPage(name: '/walletScreen', page: () =>   WalletScreen()),
+    GetPage(name: '/profileScreen', page: () =>  const ProfileScreen()),
+    GetPage(name: '/dashBoard', page: () =>  const DashBoard()),
 
-  GetPage(name: '/mobileNumber', page: () =>  const MobileNumberScreen()),
+    GetPage(name: '/mobileNumber', page: () =>  const MobileNumberScreen()),
 
 
     GetPage(name: '/selectableScreen', page: () =>  const SelectableScreen()),
