@@ -29,9 +29,9 @@ class _BottomNavbarState extends State<BottomNavbar> {
 
   final pages = [
     const DashBoard(),
-    TransactionsFirst(),
+    const TransactionsFirst(),
      WalletScreen(),
-     ProfileScreen(),
+      const ProfileScreen(),
 
   ];
 
@@ -68,8 +68,8 @@ class _BottomNavbarState extends State<BottomNavbar> {
               ),
             ],
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(25),
-              topRight: Radius.circular(25),
+              topLeft: Radius.circular(0),
+              topRight: Radius.circular(0),
             ),
           ),
           child: Column(
@@ -86,20 +86,21 @@ class _BottomNavbarState extends State<BottomNavbar> {
 
                       },
 
-                      child: Row(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          SizedBox(height: 8,),
 
                          bottomController. pageIndex.value == 0
                               ?  SvgPicture.asset('assets/images/home.svg',
                             color: AppTheme.secondaryColor,
                           )
                               : SvgPicture.asset('assets/images/home.svg',),
-
+SizedBox(height: 5,),
 
                           bottomController. pageIndex.value == 0
                               ?
-                          Text("  Home",style: TextStyle(color: AppTheme.secondaryColor,fontSize: 15,fontWeight: FontWeight.w400),):Text("")
+                          Text(" Home",style: TextStyle(color: AppTheme.secondaryColor,fontSize: 15,fontWeight: FontWeight.w400),):  Text(" Home",style: TextStyle(color: AppTheme.primaryColor,fontSize: 15,fontWeight: FontWeight.w400),)
 
                         ],
                       ),
@@ -115,13 +116,18 @@ class _BottomNavbarState extends State<BottomNavbar> {
                       },
                       child: Column(
                         children: [
-
+                          SizedBox(height: 8,),
                         bottomController. pageIndex.value == 1
                               ? SvgPicture.asset('assets/images/card.svg',
                             color: AppTheme.secondaryColor,
                           )
                               :  SvgPicture.asset('assets/images/card.svg',),
 
+                          SizedBox(height: 8,),
+
+                          bottomController. pageIndex.value == 1
+                              ?
+                          Text("Cards",style: TextStyle(color: AppTheme.secondaryColor,fontSize: 15,fontWeight: FontWeight.w400),):  Text("Cards",style: TextStyle(color: AppTheme.primaryColor,fontSize: 15,fontWeight: FontWeight.w400),)
 
                         ],
                       ),
@@ -141,12 +147,16 @@ class _BottomNavbarState extends State<BottomNavbar> {
                        },
                         child: Column(
                           children: [
-
+                            SizedBox(height: 8,),
                         bottomController.pageIndex.value == 2
                                 ?  SvgPicture.asset('assets/images/Wallet.svg',
                               color: AppTheme.secondaryColor,
                             )
                                 : SvgPicture.asset('assets/images/Wallet.svg',),
+                            SizedBox(height: 5,),
+                            bottomController. pageIndex.value == 2
+                                ?
+                            Text("Wallets",style: TextStyle(color: AppTheme.secondaryColor,fontSize: 15,fontWeight: FontWeight.w400),):  Text("Wallets",style: TextStyle(color: AppTheme.primaryColor,fontSize: 15,fontWeight: FontWeight.w400),)
 
                           ],
                         ),
@@ -161,13 +171,17 @@ class _BottomNavbarState extends State<BottomNavbar> {
                       },
                       child: Column(
                         children: [
-
+                          SizedBox(height: 8,),
                          bottomController. pageIndex.value == 3
                               ?  SvgPicture.asset('assets/images/profile.svg',
                             color: AppTheme.secondaryColor,
                           )
                               : SvgPicture.asset('assets/images/profile.svg',),
 
+                          SizedBox(height: 5,),
+                          bottomController. pageIndex.value == 3
+                              ?
+                          Text("Account",style: TextStyle(color: AppTheme.secondaryColor,fontSize: 15,fontWeight: FontWeight.w400),):  Text("Account",style: TextStyle(color: AppTheme.primaryColor,fontSize: 15,fontWeight: FontWeight.w400),)
 
                         ],
                       ),

@@ -1,36 +1,31 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-
-
-import '../models/registor_model.dart';
+import '../models/modal_registor.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
 
 
-Future<ModelCommonResponse> loginUserRepo({name,email,context,phone,}) async {
+Future<RegisterModel> registerRepo({password_confirmation,phone_email,context,bvn,type,password}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
-  var map1 = <String, dynamic>{};
-  map['length'] = 4;
-  map['customer'] = map1;
 
-  map1['name'] = name;
-  map1['email'] = email;
-  map1['phone'] = phone;
-  map['sender'] = "Example Business";
-  map['send'] = true;
-  map['medium'] =  ["email"];
-  map['expiry'] = "5";
+  map['phone_email'] = phone_email;
+  if(type != "phone") {
+    map['bvn'] = bvn;
+    }
+
+  map['type'] =  type;
+  map['password_confirmation'] = password_confirmation;
+  map['password'] = password;
 
 
   print(map);
   // try {
-  http.Response response = await http.post(Uri.parse(ApiUrls.otps),
+  http.Response response = await http.post(Uri.parse(ApiUrls.registerUser),
       headers: await getAuthHeader(),
       body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
@@ -40,12 +35,12 @@ Future<ModelCommonResponse> loginUserRepo({name,email,context,phone,}) async {
   if (response.statusCode == 200) {
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
-    return ModelCommonResponse.fromJson(jsonDecode(response.body));
+    return RegisterModel.fromJson(jsonDecode(response.body));
 
   } else {
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
-    return ModelCommonResponse(message: jsonDecode(response.body)["message"], );
+    return RegisterModel(message: jsonDecode(response.body)["message"], );
   }
   // }  catch (e) {
   //   Helpers.hideLoader(loader);

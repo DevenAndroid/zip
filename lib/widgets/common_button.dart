@@ -52,7 +52,7 @@ import 'common_colour.dart';
                       Radius.circular(15),
                     )),
 
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
                 textStyle: const TextStyle(
                   fontWeight: FontWeight.bold,
                 )),
