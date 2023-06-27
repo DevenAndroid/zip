@@ -241,17 +241,29 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                       ),
                       SizedBox(height: 15,),
                       CommonTextfield(
-                        validator: MultiValidator([
-                          RequiredValidator(
-                              errorText:
-                              'Please enter your password '),])
-                        ,
+                          validator: MultiValidator([
+                            RequiredValidator(
+                                errorText: 'Please enter your password'),
+                            MinLengthValidator(8,
+                                errorText: 'Password must be at least 8 characters, with 1 special character & 1 numerical'),
+                            PatternValidator(
+                                r"(?=.*\W)(?=.*?[#?!@$%^&*-])(?=.*[0-9])",
+                                errorText: "Password must be at least with 1 special character & 1 numerical"),
+                          ]),
+
                         controller: nopasswordController,obSecure: false, labelText: "Password", hintText: 'Password',),
                       SizedBox(height: 15,),
-                      CommonTextfield( validator: MultiValidator([
-                        RequiredValidator(
-                            errorText:
-                            'Please enter your Confirm password '),]),controller: noconfirmPasswordController,obSecure: false, labelText: "Confirm Password", hintText: 'Confirm Password',),
+                      CommonTextfield(
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter your password';
+                            }
+                            if (value.toString() ==
+                                noconfirmPasswordController.text) {
+                              return null;
+                            }
+                            return "Confirm password not matching with password";
+                          },controller: noconfirmPasswordController,obSecure: false, labelText: "Confirm Password", hintText: 'Confirm Password',),
                       SizedBox(height: 25,),
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0,right: 10),

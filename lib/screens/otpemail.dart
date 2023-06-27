@@ -64,13 +64,12 @@ class _EmailOtpScreenState extends State<EmailOtpScreen> {
       userVerifyOtpRepo(
         phone_email: initStateBlank,
         otp: emailOtpController.text.trim(),
-        context: context,
 
       ).then((value) {
         userVerifyOtp.value = value;
-        if (value.status == "success") {
+        if (value.status == true) {
           setState(() {
-            Get.toNamed(MyRouters.bottomNavbar);
+            Get.toNamed(MyRouters.selectableScreen);
             statusOfuserVerifyOtp.value = RxStatus.success();
           });
 

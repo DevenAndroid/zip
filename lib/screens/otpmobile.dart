@@ -89,15 +89,15 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
       userVerifyOtpRepo(
         phone_email: initStateBlank,
         otp: mobileOtpController.text.trim(),
-        context: context,
+
 
       ).then((value) {
         userVerifyOtp.value = value;
-        if (value.status = true) {
-          setState(() {
-            Get.toNamed(MyRouters.bottomNavbar);
+        if (value.status == true) {
+
+            Get.toNamed(MyRouters.selectableScreen);
             statusOfuserVerifyOtp.value = RxStatus.success();
-          });
+
 
 
           showToast(value.message.toString());
@@ -212,7 +212,7 @@ Padding(
                             onTap: (){
                               verifyOtpRepo();
                               // VerifyOtp();
-                               Get.toNamed(MyRouters.profileScreen);
+                              //  Get.toNamed(MyRouters.profileScreen);
                             },
                             child: CustomOutlineButton(title: "Tap to verify using USSD",)),
                         SizedBox(height: 15,),
