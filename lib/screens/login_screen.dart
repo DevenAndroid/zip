@@ -1,70 +1,41 @@
 import 'package:country_code_picker/country_code_picker.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_notifier.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:zip/routers/my_routers.dart';
-import 'package:zip/widgets/common_boder_button.dart';
-import 'package:zip/widgets/common_button.dart';
-import 'package:zip/widgets/common_colour.dart';
-
-import '../models/modal_registor.dart';
-import '../models/registor_model.dart';
-import '../repository/mobile_no_otp_repo.dart';
-import '../repository/registor_repo.dart';
-import '../resourses/api_constant.dart';
+import '../models/login_model.dart';
+import '../routers/my_routers.dart';
+import '../widgets/common_boder_button.dart';
+import '../widgets/common_button.dart';
+import '../widgets/common_colour.dart';
 import '../widgets/common_textfield.dart';
 
-class MobileNumberScreen extends StatefulWidget {
-  const MobileNumberScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<MobileNumberScreen> createState() => _MobileNumberScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _MobileNumberScreenState extends State<MobileNumberScreen> {
-
+class _LoginScreenState extends State<LoginScreen> {
   final formKey = GlobalKey<FormState>();
-  Rx<RxStatus> statusOfregister = RxStatus.empty().obs;
 
-  Rx<RegisterModel> register = RegisterModel().obs;
-  // Rx<RxStatus> statusOfLogin = RxStatus.empty().obs;
-  //
-  // Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
+  Rx<RxStatus> statusOflogin = RxStatus.empty().obs;
+
+  Rx<LoginModel> login = LoginModel().obs;
   TextEditingController mobileNoController = TextEditingController();
   TextEditingController nopasswordController = TextEditingController();
   TextEditingController noconfirmPasswordController = TextEditingController();
   // var initStateBlank = Get.arguments[0];
   final formKey4 = GlobalKey<FormState>();
 
-  Login() {
-    if (formKey4.currentState!.validate()) {
 
-      registerRepo(
-        context: context,
-        password:nopasswordController.text.trim(),
-        password_confirmation: noconfirmPasswordController.text.trim(),
-        phone_email:mobileNoController.text.trim(),
-       type: "phone"
-      ).then((value) {
-        register.value = value;
-          if (value.status == true) {
-            Get.toNamed(MyRouters.mobileOtpScreen,arguments: [mobileNoController.text]);
-            statusOfregister.value = RxStatus.success();
-             showToast(value.message.toString());
-          } else {
-            statusOfregister.value = RxStatus.error();
-        showToast(value.message.toString());
-          }
-        }
 
-        );
-      }
-  }
-
- /* Login() {
+  /* Login() {
     if (formKey4.currentState!.validate()) {
       loginUserRepo(
 
@@ -154,7 +125,7 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                           Expanded(
                               child: InkWell(
                                 onTap: (){
-                                  Get.toNamed(MyRouters.enterEmailScreen,);
+                                  Get.toNamed(MyRouters.emailLoginScreen);
                                 },
                                 child: CustomOutlineBoder(
                                   title: "Email",
@@ -219,7 +190,7 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                                           r'(^(?:[+0]9)?[0-9]{10,12}$)',
                                           errorText: '')
                                     ]),
-                                  controller: mobileNoController,
+                                    controller: mobileNoController,
                                     decoration: const InputDecoration(
                                       hintText: "XXXXXXXXX",
                                       border: InputBorder.none,
@@ -242,52 +213,28 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                       SizedBox(height: 15,),
                       CommonTextfield(
                         validator: MultiValidator([
-                        RequiredValidator(
-                        errorText:
-                        'Please enter your password '),])
-,
+                          RequiredValidator(
+                              errorText:
+                              'Please enter your password '),])
+                        ,
                         controller: nopasswordController,obSecure: false, labelText: "Password", hintText: 'Password',),
                       SizedBox(height: 15,),
-                      CommonTextfield( validator: MultiValidator([
-                        RequiredValidator(
-                            errorText:
-                            'Please enter your Confirm password '),]),controller: noconfirmPasswordController,obSecure: false, labelText: "Confirm Password", hintText: 'Confirm Password',),
-                      SizedBox(height: 25,),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10.0,right: 10),
-                        child: Text(
-                          "By opening an account, you agree to our",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10.0,right: 10),
-                        child: Text(
-                          "Terms of Use",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFFB5832C),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                      SizedBox(height:size.height*.14,),
+
+                      SizedBox(height:size.height*.3,),
 
                       InkWell(
                           onTap: (){
-                            Login();
+                            // Login();
                             // Get.toNamed(MyRouters.mobileOtpScreen);
                           },
-                          child: CustomOutlineButton(title: "Next",)),
+                          child: CustomOutlineButton(title: "SignIn",)),
                       SizedBox(height: 15,),
                       InkWell(
                         onTap: (){
-                          Get.toNamed(MyRouters.enterEmailScreen);
+                          Get.toNamed(MyRouters.emailLoginScreen);
                         },
                         child: CustomOutlineBoder(title: "Use Email", backgroundColor: Colors.white,textColor: AppTheme.buttonColor,onPressed: (){
-                          Get.toNamed(MyRouters.enterEmailScreen);
+                          Get.toNamed(MyRouters.emailLoginScreen);
                         },),
                       ),
 

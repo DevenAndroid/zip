@@ -51,7 +51,7 @@ class _EmailScreenState extends State<EmailScreen> {
       ).then((value) {
         emailregister.value = value;
         if (value.status == true) {
-          Get.toNamed(MyRouters.mobileOtpScreen,);
+          Get.toNamed(MyRouters.mobileOtpScreen,arguments: [emailNoController.text]);
           statusOfemailregister.value = RxStatus.success();
           showToast(value.message.toString());
         } else {
