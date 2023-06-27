@@ -14,7 +14,6 @@ import '../widgets/common_colour.dart';
    static const String otps = "${apiBaseUrl}otps";
    static const String verifyOtp = "${apiBaseUrl}otps/";
    static const String chooseBank = "${apiBaseUrl}banks/";
-   static const String updateDetails = "${apiBaseUrl}update-details";
 
  }
 
@@ -24,9 +23,9 @@ import '../widgets/common_colour.dart';
    return {
    HttpHeaders.contentTypeHeader: 'application/json',
    HttpHeaders.acceptHeader: 'application/json',
-     // HttpHeaders.authorizationHeader:"FLWSECK_TEST-SANDBOXDEMOKEY-X"
-      if(pref.getString("cookie") != null)
-        HttpHeaders.authorizationHeader: 'Bearer ${pref.getString("cookie")!.toString().replaceAll('\"', '')}',
+     HttpHeaders.authorizationHeader:"FLWSECK_TEST-SANDBOXDEMOKEY-X"
+     // if(pref.getString("cookie") != null)
+     //   HttpHeaders.authorizationHeader: 'Bearer ${pref.getString("cookie")!.toString().replaceAll('\"', '')}',
    };
  }
  // HttpHeaders.contentTypeHeader: 'application/json',

@@ -10,8 +10,10 @@ import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
+import '../models/modal_registor.dart';
 import '../models/registor_model.dart';
 import '../repository/mobile_no_otp_repo.dart';
+import '../repository/registor_repo.dart';
 import '../resourses/api_constant.dart';
 
 class EmailScreen extends StatefulWidget {
@@ -23,34 +25,65 @@ class EmailScreen extends StatefulWidget {
 
 class _EmailScreenState extends State<EmailScreen> {
 
-  var initStateBlank = Get.arguments[0];
-  Rx<RxStatus> statusOfLogin = RxStatus.empty().obs;
+  // var initStateBlank = Get.arguments[0];
+  // Rx<RxStatus> statusOfLogin = RxStatus.empty().obs;
+  //
+  // Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
+  Rx<RxStatus> statusOfemailregister = RxStatus.empty().obs;
 
-  Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
+  Rx<RegisterModel> emailregister = RegisterModel().obs;
+
   TextEditingController emailNoController = TextEditingController();
   TextEditingController BVNController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
-  final formKey3 = GlobalKey<FormState>();
-  emailLogin() {
-    if (formKey3.currentState!.validate()) {
-      loginUserRepo(
-        name: Get.arguments[0],
-        context: context,
-        phone: "08130000000",
-        email: emailNoController.text.trim(),
+  final formKey5 = GlobalKey<FormState>();
+  emailRegister() {
+    if (formKey5.currentState!.validate()) {
+
+      registerRepo(
+          context: context,
+          password:passwordController.text.trim(),
+          bvn: BVNController.text.trim(),
+          password_confirmation: confirmPasswordController.text.trim(),
+          phone_email:emailNoController.text.trim(),
+          type: "email"
       ).then((value) {
-        login.value = value;
-        Get.toNamed(MyRouters.otpEmailScreen,
-            arguments: [value.data![0].reference.toString()]);
-        // Get.toNamed(MyRouters.otpEmailScreen);
+        emailregister.value = value;
+        if (value.status == true) {
+          Get.toNamed(MyRouters.mobileOtpScreen,);
+          statusOfemailregister.value = RxStatus.success();
+          showToast(value.message.toString());
+        } else {
+          statusOfemailregister.value = RxStatus.error();
+          showToast(value.message.toString());
+        }
+      }
 
-
-        showToast(value.message.toString());
-        showToast(value.data![0].otp.toString());
-      });
+      );
     }
   }
+
+  // emailLogin() {
+  //   if (formKey3.currentState!.validate()) {
+  //     loginUserRepo(
+  //       name: Get.arguments[0],
+  //       context: context,
+  //       phone: "08130000000",
+  //       email: emailNoController.text.trim(),
+  //     ).then((value) {
+  //       login.value = value;
+  //       Get.toNamed(MyRouters.otpEmailScreen,
+  //           arguments: [value.data![0].reference.toString()]);
+  //       // Get.toNamed(MyRouters.otpEmailScreen);
+  //
+  //
+  //       showToast(value.message.toString());
+  //       showToast(value.data![0].otp.toString());
+  //     });
+  //   }
+  // }
+
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +107,7 @@ class _EmailScreenState extends State<EmailScreen> {
           ),),
         body: SingleChildScrollView(
             child: Form(
-              key:formKey3 ,
+              key:formKey5 ,
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Column(
@@ -181,7 +214,8 @@ class _EmailScreenState extends State<EmailScreen> {
 
                       InkWell(
                           onTap: (){
-                            emailLogin();
+                            emailRegister();
+                            // emailLogin();
                             //
                           },
                           child: CustomOutlineButton(title: "Next",)),
