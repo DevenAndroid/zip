@@ -93,7 +93,7 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
 
       ).then((value) {
         userVerifyOtp.value = value;
-        if (value.status == "success") {
+        if (value.status = true) {
           setState(() {
             Get.toNamed(MyRouters.bottomNavbar);
             statusOfuserVerifyOtp.value = RxStatus.success();
