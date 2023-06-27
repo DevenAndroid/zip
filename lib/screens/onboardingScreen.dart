@@ -1,4 +1,4 @@
-      import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -31,112 +31,112 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-SizedBox(height: size.height*.1,),
-    SizedBox(
-      height: size.height*.7,
-      child: PageView.builder(
-      itemCount: page1.length,
-      controller: controller,
-      onPageChanged: (newValue) {
-      setState(() {
-      currentIndex = newValue;
-      });
-      },
-      itemBuilder: (context, index) {
-      return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 8),
-      child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        const SizedBox(
+            SizedBox(height: size.height*.1,),
+            SizedBox(
+              height: size.height*.7,
+              child: PageView.builder(
+                  itemCount: page1.length,
+                  controller: controller,
+                  onPageChanged: (newValue) {
+                    setState(() {
+                      currentIndex = newValue;
+                    });
+                  },
+                  itemBuilder: (context, index) {
+                    return SingleChildScrollView(
+                        padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 8),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const SizedBox(
 
-          height: 50,
-        ),
-      Center(
-        child: Image(
-        image: AssetImage(page1[index].img,),width: 180,height: 160,
-        ),
-      ),
+                                height: 50,
+                              ),
+                              Center(
+                                child: Image(
+                                  image: AssetImage(page1[index].img,),width: 180,height: 160,
+                                ),
+                              ),
 
 
-      const SizedBox(
+                              const SizedBox(
 
-      height: 20,
-      ),
-      Padding(padding: const EdgeInsets.symmetric(horizontal: 15),
-      child :Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        const SizedBox(
+                                height: 20,
+                              ),
+                              Padding(padding: const EdgeInsets.symmetric(horizontal: 15),
+                                  child :Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: <Widget>[
+                                        const SizedBox(
 
-          height: 18,
-        ),
-      Text(
-      page1[index].title,
-         style:GoogleFonts.poppins(
-        color:  const Color(
-        0xFF1D1D1D),
-        fontSize: 30,
-        fontWeight:
-        FontWeight
-            .bold),
+                                          height: 18,
+                                        ),
+                                        Text(
+                                          page1[index].title,
+                                          style:GoogleFonts.poppins(
+                                              color:  const Color(
+                                                  0xFF1D1D1D),
+                                              fontSize: 30,
+                                              fontWeight:
+                                              FontWeight
+                                                  .bold),
 
-      ),
-      const SizedBox(
+                                        ),
+                                        const SizedBox(
 
-      height: 8,
-      ),
-      Text(
-      page1[index].description,
-        style:GoogleFonts.poppins(
-            color:  const Color(
-                0xFF1D1D1D),
-            fontSize: 20,
-            fontWeight:
-            FontWeight
-                .w300),
-      textAlign: TextAlign.start,
-      ),
-        const SizedBox(
+                                          height: 8,
+                                        ),
+                                        Text(
+                                          page1[index].description,
+                                          style:GoogleFonts.poppins(
+                                              color:  const Color(
+                                                  0xFF1D1D1D),
+                                              fontSize: 20,
+                                              fontWeight:
+                                              FontWeight
+                                                  .w300),
+                                          textAlign: TextAlign.start,
+                                        ),
+                                        const SizedBox(
 
-          height: 12,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
+                                          height: 12,
+                                        ),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
 
-            SmoothPageIndicator(
+                                            SmoothPageIndicator(
 
-              axisDirection: Axis.horizontal,
-              controller: controller,
-              count: page1.length,
-              effect: const WormEffect(
-                activeDotColor: Color(0xFFF0D75F),
-                dotWidth: 10,
-                dotHeight: 10,
-                dotColor: Colors.black12,
-              ),
+                                              axisDirection: Axis.horizontal,
+                                              controller: controller,
+                                              count: page1.length,
+                                              effect: const WormEffect(
+                                                activeDotColor: Color(0xFFF0D75F),
+                                                dotWidth: 10,
+                                                dotHeight: 10,
+                                                dotColor: Colors.black12,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ]))]));}),
             ),
-          ],
-        ),
-      ]))]));}),
-    ),
             const SizedBox(
               height: 10,
             ),
 
-        InkWell(
-            onTap: (){
-              Get.toNamed(MyRouters.mobileNumber);
+            InkWell(
+                onTap: (){
+                  Get.toNamed(MyRouters.mobileNumber);
+                },
+                child: CustomOutlineButton(title: "Open free account",)),
+            SizedBox(height: 15,),
+            InkWell(onTap:(){
+              Get.toNamed(MyRouters.loginScreen);
             },
-            child: CustomOutlineButton(title: "Open free account",)),
-           SizedBox(height: 15,),
-           InkWell(onTap:(){
-             Get.toNamed(MyRouters.loginScreen);
-           },
-               child: const CustomOutlineBoder(title: "I have an account", backgroundColor: Colors.white,textColor: AppTheme.buttonColor)),
+                child: const CustomOutlineBoder(title: "I have an account", backgroundColor: Colors.white,textColor: AppTheme.buttonColor)),
 
 
           ],

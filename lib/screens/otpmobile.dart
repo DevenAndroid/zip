@@ -33,7 +33,7 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
   Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
 
 
-   var initStateBlank = Get.arguments[0];
+  var initStateBlank = Get.arguments[0];
   final formKey1 = GlobalKey<FormState>();
   // VerifyOtp() {
   //   if (formKey1.currentState!.validate()) {
@@ -137,52 +137,52 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-Padding(
-  padding: const EdgeInsets.only(left: 10.0),
-  child:   Row(children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10.0),
+                          child:   Row(children: [
 
-    Expanded(
+                            Expanded(
 
-      child: RichText(
+                              child: RichText(
 
-        text: TextSpan(
+                                text: TextSpan(
 
-          text:  "Please enter 6 digits code we sent to",
+                                  text:  "Please enter 6 digits code we sent to",
 
-          style: GoogleFonts.poppins(
+                                  style: GoogleFonts.poppins(
 
-                color: const Color(0xFF1D1D1D),
+                                      color: const Color(0xFF1D1D1D),
 
-                fontSize: 18,
+                                      fontSize: 18,
 
-                fontWeight: FontWeight.w500),
+                                      fontWeight: FontWeight.w500),
 
-          children:  <TextSpan>[
+                                  children:  <TextSpan>[
 
-              TextSpan(text:  " +234 xxxxxxxxxxx",
+                                    TextSpan(text:  " +234 xxxxxxxxxxx",
 
-                style: GoogleFonts.poppins(
+                                      style: GoogleFonts.poppins(
 
-                    color: const Color(0xFFB2802A),
+                                          color: const Color(0xFFB2802A),
 
-                    fontSize: 16,
+                                          fontSize: 16,
 
-                    fontWeight: FontWeight.w500),
+                                          fontWeight: FontWeight.w500),
 
-              ),
+                                    ),
 
 
 
-          ],
+                                  ],
 
-        ),
+                                ),
 
-      ),
+                              ),
 
-    )
+                            )
 
-  ],),
-),
+                          ],),
+                        ),
 
                         const SizedBox(
                           height: 20,
@@ -212,7 +212,7 @@ Padding(
                             onTap: (){
                               verifyOtpRepo();
                               // VerifyOtp();
-                               Get.toNamed(MyRouters.profileScreen);
+                              Get.toNamed(MyRouters.profileScreen);
                             },
                             child: CustomOutlineButton(title: "Tap to verify using USSD",)),
                         SizedBox(height: 15,),

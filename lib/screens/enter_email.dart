@@ -160,20 +160,20 @@ class _EmailScreenState extends State<EmailScreen> {
                       const SizedBox(
                         height: 23,
                       ),
-                   CommonTextfield(
-                     validator: (value) {
-                       if (emailNoController.text.isEmpty) {
-                         return "Please enter your email";
-                       } else if (emailNoController.text.contains('+') || emailNoController.text.contains(' ')) {
-                         return "Email is invalid";
-                       } else if (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                           .hasMatch(emailNoController.text)) {
-                         return null;
-                       } else {
-                         return 'Please type a valid email address';
-                       }
-                     },
-                     controller: emailNoController,obSecure: false, hintText: "pkp@gmail.com",labelText: "Email",),
+                      CommonTextfield(
+                        validator: (value) {
+                          if (emailNoController.text.isEmpty) {
+                            return "Please enter your email";
+                          } else if (emailNoController.text.contains('+') || emailNoController.text.contains(' ')) {
+                            return "Email is invalid";
+                          } else if (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                              .hasMatch(emailNoController.text)) {
+                            return null;
+                          } else {
+                            return 'Please type a valid email address';
+                          }
+                        },
+                        controller: emailNoController,obSecure: false, hintText: "pkp@gmail.com",labelText: "Email",),
                       SizedBox(height: 15,),
                       CommonTextfield(validator: MultiValidator([
                         RequiredValidator(
