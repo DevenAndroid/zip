@@ -18,6 +18,7 @@ class ApiUrls {
   static const String userVerifyOtp = "${apiBaseUrl}verify-otp";
   static const String updateDetails = "${apiBaseUrl}update-details";
   static const String loginUser = "${apiBaseUrl}login";
+  static const String zipTag = "${apiBaseUrl}check-zip-tag";
 }
 
 Future getAuthHeader() async {
