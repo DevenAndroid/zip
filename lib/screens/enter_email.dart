@@ -239,6 +239,7 @@ class _EmailScreenState extends State<EmailScreen> {
                       SizedBox(height: 15,),
                       InkWell(
                         onTap: (){
+
                           Get.toNamed(MyRouters.mobileNumber);
                         },
                         child: CustomOutlineBoder(title: "Use Mobile Number", backgroundColor: Colors.white,textColor: AppTheme.buttonColor,onPressed: (){

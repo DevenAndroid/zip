@@ -26,17 +26,17 @@ class UserVerifyOtpModel {
 }
 
 class Data {
-  int? id;
-  String? latitude;
-  String? longitude;
-  String? location;
-  String? name;
-  String? fname;
-  String? lname;
-  String? email;
-  String? phone;
-  String? countryCode;
-  String? profileImage;
+ dynamic id;
+ dynamic latitude;
+ dynamic longitude;
+ dynamic location;
+ dynamic name;
+ dynamic fname;
+ dynamic lname;
+ dynamic email;
+ dynamic phone;
+ dynamic countryCode;
+ dynamic profileImage;
   bool? isProfileComplete;
   bool? status;
 

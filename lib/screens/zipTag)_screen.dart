@@ -8,6 +8,9 @@ import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
 import '../controller/update_user.dart';
+import '../models/ziptagmodel.dart';
+import '../repository/ziptag_repo.dart';
+import '../resourses/api_constant.dart';
 class TagScreen extends StatefulWidget {
   const TagScreen({Key? key}) : super(key: key);
 
@@ -17,7 +20,32 @@ class TagScreen extends StatefulWidget {
 
 class _TagScreenState extends State<TagScreen> {
   final registorController = Get.put(registerController());
+
+  Rx<RxStatus> statusOfZipTag = RxStatus.empty().obs;
+  Rx<ZipTagModel> zipTag = ZipTagModel().obs;
+
   final formKeyTag = GlobalKey<FormState>();
+  checkZipTag() {
+    if (formKeyTag.currentState!.validate()) {
+      zipTagRepo(
+         zip_tag: registorController.zipController.text.trim(),
+
+
+      ).then((value) async {
+        zipTag.value = value;
+        if (value.status == true) {
+          Get.toNamed(MyRouters.addressScreen);
+          statusOfZipTag.value = RxStatus.success();
+
+          showToast(value.message.toString());
+
+        } else {
+          statusOfZipTag.value = RxStatus.error();
+          showToast(value.message.toString());
+        }
+      });
+    }
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery
@@ -92,9 +120,9 @@ class _TagScreenState extends State<TagScreen> {
         SizedBox(height: size.height*.52,),
         InkWell(
             onTap: (){
-      // if (formKeyTag.currentState!.validate()) {
-        Get.toNamed(MyRouters.addressScreen);
-      // }
+              checkZipTag();
+        // Get.toNamed(MyRouters.addressScreen);
+
             },
             child: CustomOutlineButton(title: "Next",)),
 
