@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -114,6 +115,7 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
     Size size = MediaQuery
         .of(context)
         .size;
+    double doubleVar;
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
@@ -190,13 +192,30 @@ Padding(
                         ),
 
                         CommonTextfield(
+
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(6),
+                            FilteringTextInputFormatter.allow(
+                                RegExp('[0-9]+')),
+                          ],
+                          onChanged: (value) =>
+                          doubleVar = double.parse(value),
+                          validator: MultiValidator([
+                            RequiredValidator(
+                                errorText:
+                                'Please enter your otp '),
+                            MinLengthValidator(6,
+                                errorText:
+                                'Please enter   6 digit otp'),
+                            MaxLengthValidator(6,
+                                errorText:
+                                'Please enter 6 digit otp'),
+
+                          ]),
                           keyboardType:
                           const TextInputType.numberWithOptions(
                               decimal: true),
-                          validator: MultiValidator([
-                            RequiredValidator(
-                                errorText: 'Please enter your otp'),
-                          ]),
+
                           controller: mobileOtpController,obSecure: false, hintText: "000-000",),
                         SizedBox(height: 15,),
                         Center(

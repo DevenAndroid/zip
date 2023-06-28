@@ -47,12 +47,12 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
           context: context,
           password:nopasswordController.text.trim(),
           password_confirmation: noconfirmPasswordController.text.trim(),
-          phone_email:mobileNoController.text.trim(),
+          phone_email:"+234"+mobileNoController.text.trim(),
           type: "phone"
       ).then((value) {
         register.value = value;
         if (value.status == true) {
-          Get.toNamed(MyRouters.mobileOtpScreen,arguments: [mobileNoController.text]);
+          Get.toNamed(MyRouters.mobileOtpScreen,arguments: ["+234"+mobileNoController.text]);
           statusOfregister.value = RxStatus.success();
          showToast(value.data!.otp.toString());
     // showToast(value.message.toString());
@@ -211,9 +211,9 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                                       RequiredValidator(
                                           errorText:
                                           'Please enter your contact number '),
-                                      MinLengthValidator(12,
+                                      MinLengthValidator(10,
                                           errorText:
-                                          'Please enter 12 digit number'),
+                                          'Please enter minumum  10 digit number'),
                                       MaxLengthValidator(12,
                                           errorText:
                                           'Please enter 12 digit number'),

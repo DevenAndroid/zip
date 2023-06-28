@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
@@ -94,15 +95,20 @@ class _TagScreenState extends State<TagScreen> {
             //       RegExp("[a-z0-9@._-]")),
             //
             // ],
-          validator: (value) {
-            if (registorController.zipController.text.isEmpty) {
-              return "Please enter your email";
-            }
-            if(!value!.trim().contains("@zip")){
-              return "dfgfrgergv";
-            }
-          },
-          controller: registorController.zipController,obSecure: false, hintText: "@"),
+            validator: MultiValidator([
+            RequiredValidator(
+            errorText:
+            'Please enter your tag '),]),
+            suffixIcon: Padding(
+              padding: const EdgeInsets.only(top: 15.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(topRight:Radius.circular(10),bottomRight: Radius.circular(10)) ,),
+                child: Text("@zip",style: TextStyle(color: AppTheme.primaryColor,fontWeight: FontWeight.w500,fontSize: 15),),
+              ),
+            ),
+
+          controller: registorController.zipController,obSecure: false, hintText: "Enter your tag"),
         Padding(
           padding: const EdgeInsets.only(left: 10.0,right: 10),
           child: Text(

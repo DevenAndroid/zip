@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
       loginRepo(
           context: context,
           password:nopasswordController.text.trim(),
-          phone_email:mobileNoController.text.trim(),
+          phone_email:"+234"+mobileNoController.text.trim(),
           type: "phone"
       ).then((value) {
         login.value = value;
@@ -204,9 +204,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                       RequiredValidator(
                                           errorText:
                                           'Please enter your contact number '),
-                                      MinLengthValidator(12,
+                                      MinLengthValidator(10,
                                           errorText:
-                                          'Please enter 12 digit number'),
+                                          'Please enter minumum 10 digit number'),
                                       MaxLengthValidator(12,
                                           errorText:
                                           'Please enter 12 digit number'),

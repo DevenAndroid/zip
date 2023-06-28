@@ -34,7 +34,7 @@ class registerController extends GetxController {
         nationality:  countryController.text.trim(),
         gender:  genderType.value,
         pin: otpcontroller.text.trim(),
-        zip_tag: zipController.text.trim()
+        zip_tag: zipController.text.trim()+"@zip"
 
 
     ).then((value) {
