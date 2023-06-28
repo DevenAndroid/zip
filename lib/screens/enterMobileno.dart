@@ -47,6 +47,7 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
           context: context,
           password:nopasswordController.text.trim(),
           password_confirmation: noconfirmPasswordController.text.trim(),
+          bvn: BVNController1.text.trim(),
           phone_email:"+234"+mobileNoController.text.trim(),
           type: "phone"
       ).then((value) {
@@ -65,7 +66,7 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
       );
     }
   }
-
+  TextEditingController BVNController1 = TextEditingController();
   /* Login() {
     if (formKey4.currentState!.validate()) {
       loginUserRepo(
@@ -241,6 +242,12 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                           ),
                         ),
                       ),
+                      SizedBox(height: 15,),
+                      CommonTextfield(
+                        validator: MultiValidator([
+                          RequiredValidator(
+                              errorText:
+                              'Please enter your BVN number '),]),controller: BVNController1,obSecure: false, labelText: "BVN Number", hintText: 'BVN Number',),
                       SizedBox(height: 15,),
                       CommonTextfield(
                         suffixIcon: GestureDetector(

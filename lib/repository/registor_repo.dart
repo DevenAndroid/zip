@@ -14,9 +14,9 @@ Future<RegisterModel> registerRepo({password_confirmation,phone_email,context,bv
   var map = <String, dynamic>{};
 
   map['phone_email'] = phone_email;
-  if(type != "phone") {
+
     map['bvn'] = bvn;
-    }
+
 
   map['type'] =  type;
   map['password_confirmation'] = password_confirmation;
