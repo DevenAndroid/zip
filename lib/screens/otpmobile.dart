@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_boder_button.dart';
@@ -91,16 +92,16 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
         otp: mobileOtpController.text.trim(),
 
 
-      ).then((value) {
+      ).then((value) async {
         userVerifyOtp.value = value;
         if (value.status == true) {
-
+          SharedPreferences pref = await SharedPreferences.getInstance();
+          pref.setString('cookie', value.authToken.toString());
             Get.toNamed(MyRouters.selectableScreen);
             statusOfuserVerifyOtp.value = RxStatus.success();
 
-
-
           showToast(value.message.toString());
+
         } else {
           statusOfuserVerifyOtp.value = RxStatus.error();
           showToast(value.message.toString());
@@ -147,7 +148,7 @@ Padding(
 
         text: TextSpan(
 
-          text:  "Please enter 6 digits code we sent to",
+          text:  "Please enter 6 digits code we sent to  ",
 
           style: GoogleFonts.poppins(
 
@@ -159,7 +160,7 @@ Padding(
 
           children:  <TextSpan>[
 
-              TextSpan(text:  " +234 xxxxxxxxxxx",
+              TextSpan(text:  initStateBlank,
 
                 style: GoogleFonts.poppins(
 

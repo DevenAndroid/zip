@@ -25,8 +25,7 @@ Future<ModelUpdateUser> userUpdateRepo({fname,lname,dob,nationality,pin,birth_pl
   print(map);
   try {
     http.Response response = await http.post(Uri.parse(ApiUrls.updateDetails),
-        headers: await getAuthHeader()
-        ,body: jsonEncode(map) );
+        headers: await getAuthHeader(),body: jsonEncode(map) );
 
     if (response.statusCode == 200) {
 

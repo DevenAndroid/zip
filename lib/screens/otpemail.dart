@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_boder_button.dart';
@@ -65,7 +68,9 @@ class _EmailOtpScreenState extends State<EmailOtpScreen> {
         phone_email: initStateBlank,
         otp: emailOtpController.text.trim(),
 
-      ).then((value) {
+      ).then((value) async {
+        SharedPreferences pref = await SharedPreferences.getInstance();
+        pref.setString('cookie', value.authToken.toString());
         userVerifyOtp.value = value;
         if (value.status == true) {
           setState(() {
@@ -116,14 +121,14 @@ class _EmailOtpScreenState extends State<EmailOtpScreen> {
                               Expanded(
                                 child: RichText(
                                   text: TextSpan(
-                                    text: "Please enter 6 digits code we sent to",
+                                    text: "Please enter 6 digits code we sent to  ",
                                     style: GoogleFonts.poppins(
                                         color: const Color(0xFF1D1D1D),
                                         fontSize: 18,
                                         fontWeight: FontWeight.w500),
                                     children: <TextSpan>[
                                       TextSpan(
-                                        text: "  daniel@gmail.com",
+                                        text: initStateBlank,
                                         style: GoogleFonts.poppins(
                                             color: const Color(0xFFB2802A),
                                             fontSize: 16,

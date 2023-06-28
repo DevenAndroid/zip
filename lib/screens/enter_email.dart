@@ -51,9 +51,10 @@ class _EmailScreenState extends State<EmailScreen> {
       ).then((value) {
         emailregister.value = value;
         if (value.status == true) {
-          Get.toNamed(MyRouters.mobileOtpScreen,arguments: [emailNoController.text]);
+          Get.toNamed(MyRouters.otpEmailScreen,arguments: [emailNoController.text]);
           statusOfemailregister.value = RxStatus.success();
-          showToast(value.message.toString());
+          showToast(value.data!.otp.toString());
+          // showToast(value.message.toString());
         } else {
           statusOfemailregister.value = RxStatus.error();
           showToast(value.message.toString());
@@ -118,7 +119,7 @@ class _EmailScreenState extends State<EmailScreen> {
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0,right: 10),
                         child: Text(
-                          "Enter your email to continue",
+                          "Enter your email to continue ",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
                               fontSize: 22,
