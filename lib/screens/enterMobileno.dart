@@ -53,7 +53,7 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
         if (value.status == true) {
           Get.toNamed(MyRouters.mobileOtpScreen,arguments: [mobileNoController.text]);
           statusOfregister.value = RxStatus.success();
-          // showToast(value.data!.otp.toString());
+         showToast(value.data!.otp.toString());
     showToast(value.message.toString());
         } else {
           statusOfregister.value = RxStatus.error();
