@@ -24,7 +24,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final formKey = GlobalKey<FormState>();
+  var obscureText1 = true;
+  var obscureText2 = true;
 
   Rx<RxStatus> statusOflogin = RxStatus.empty().obs;
 
@@ -46,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ).then((value) {
         login.value = value;
         if (value.status == true) {
-          Get.toNamed(MyRouters.profileScreen);
+          Get.toNamed(MyRouters.bottomNavbar);
           statusOflogin.value = RxStatus.success();
           showToast(value.message.toString());
         } else {
@@ -193,7 +194,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     const TextInputType.numberWithOptions(
                                         decimal: true),
                                     inputFormatters: [
-                                      LengthLimitingTextInputFormatter(10),
+                                      LengthLimitingTextInputFormatter(12),
                                       FilteringTextInputFormatter.allow(
                                           RegExp('[0-9]+')),
                                     ],
@@ -203,12 +204,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                       RequiredValidator(
                                           errorText:
                                           'Please enter your contact number '),
-                                      MinLengthValidator(10,
+                                      MinLengthValidator(12,
                                           errorText:
-                                          'Please enter 10 digit number'),
-                                      MaxLengthValidator(10,
+                                          'Please enter 12 digit number'),
+                                      MaxLengthValidator(12,
                                           errorText:
-                                          'Please enter 10 digit number'),
+                                          'Please enter 12 digit number'),
                                       PatternValidator(
                                           r'(^(?:[+0]9)?[0-9]{10,12}$)',
                                           errorText: '')
@@ -235,12 +236,33 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       SizedBox(height: 15,),
                       CommonTextfield(
+
+                        suffixIcon: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                obscureText2 =
+                                !obscureText2;
+                              });
+                            },
+                            child: obscureText2
+                                ? const Icon(
+                              Icons.visibility_off,
+                              color: Color(0xFF8487A1),
+                            )
+                                : const Icon(
+                                Icons.visibility,
+                                color: Color(
+                                    0xFF8487A1))),
                         validator: MultiValidator([
                           RequiredValidator(
-                              errorText:
-                              'Please enter your password '),])
-                        ,
-                        controller: nopasswordController,obSecure: false, labelText: "Password", hintText: 'Password',),
+                              errorText: 'Please enter your password'),
+                          MinLengthValidator(8,
+                              errorText: 'Password must be at least 8 characters, with 1 special character & 1 numerical'),
+                          PatternValidator(
+                              r"(?=.*\W)(?=.*?[#?!@$%^&*-])(?=.*[0-9])",
+                              errorText: "Password must be at least with 1 special character & 1 numerical"),
+                        ]),
+                        controller: nopasswordController,obSecure: obscureText2, labelText: "Password", hintText: 'Password',),
                       SizedBox(height: 15,),
 
                       SizedBox(height:size.height*.3,),

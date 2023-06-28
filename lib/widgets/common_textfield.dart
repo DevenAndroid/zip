@@ -68,6 +68,7 @@ class _CommonTextfieldState extends State<CommonTextfield> {
               color: AppTheme.primaryColor
           ),
           autofocus: false, textInputAction: TextInputAction.next,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           onFieldSubmitted: widget.onFieldSubmitted,
           inputFormatters: widget.inputFormatters,
           onChanged: widget.onChanged,

@@ -38,7 +38,8 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
   TextEditingController noconfirmPasswordController = TextEditingController();
   // var initStateBlank = Get.arguments[0];
   final formKey4 = GlobalKey<FormState>();
-
+  var obscureText5 = true;
+  var obscureText6 = true;
   Login() {
     if (formKey4.currentState!.validate()) {
 
@@ -54,7 +55,7 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
           Get.toNamed(MyRouters.mobileOtpScreen,arguments: [mobileNoController.text]);
           statusOfregister.value = RxStatus.success();
          showToast(value.data!.otp.toString());
-    showToast(value.message.toString());
+    // showToast(value.message.toString());
         } else {
           statusOfregister.value = RxStatus.error();
           showToast(value.message.toString());
@@ -200,7 +201,7 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                                     const TextInputType.numberWithOptions(
                                         decimal: true),
                                     inputFormatters: [
-                                      LengthLimitingTextInputFormatter(10),
+                                      LengthLimitingTextInputFormatter(12),
                                       FilteringTextInputFormatter.allow(
                                           RegExp('[0-9]+')),
                                     ],
@@ -210,12 +211,12 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                                       RequiredValidator(
                                           errorText:
                                           'Please enter your contact number '),
-                                      MinLengthValidator(10,
+                                      MinLengthValidator(12,
                                           errorText:
-                                          'Please enter 10 digit number'),
-                                      MaxLengthValidator(10,
+                                          'Please enter 12 digit number'),
+                                      MaxLengthValidator(12,
                                           errorText:
-                                          'Please enter 10 digit number'),
+                                          'Please enter 12 digit number'),
                                       PatternValidator(
                                           r'(^(?:[+0]9)?[0-9]{10,12}$)',
                                           errorText: '')
@@ -242,6 +243,22 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                       ),
                       SizedBox(height: 15,),
                       CommonTextfield(
+                        suffixIcon: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                obscureText5 =
+                                !obscureText5;
+                              });
+                            },
+                            child: obscureText5
+                                ? const Icon(
+                              Icons.visibility_off,
+                              color: Color(0xFF8487A1),
+                            )
+                                : const Icon(
+                                Icons.visibility,
+                                color: Color(
+                                    0xFF8487A1))),
                           validator: MultiValidator([
                             RequiredValidator(
                                 errorText: 'Please enter your password'),
@@ -252,9 +269,25 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                                 errorText: "Password must be at least with 1 special character & 1 numerical"),
                           ]),
 
-                        controller: nopasswordController,obSecure: false, labelText: "Password", hintText: 'Password',),
+                        controller: nopasswordController,obSecure: obscureText5, labelText: "Password", hintText: 'Password',),
                       SizedBox(height: 15,),
                       CommonTextfield(
+                        suffixIcon: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                obscureText6 =
+                                !obscureText6;
+                              });
+                            },
+                            child: obscureText6
+                                ? const Icon(
+                              Icons.visibility_off,
+                              color: Color(0xFF8487A1),
+                            )
+                                : const Icon(
+                                Icons.visibility,
+                                color: Color(
+                                    0xFF8487A1))),
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Please enter your password';
@@ -264,7 +297,7 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                               return null;
                             }
                             return "Confirm password not matching with password";
-                          },controller: noconfirmPasswordController,obSecure: false, labelText: "Confirm Password", hintText: 'Confirm Password',),
+                          },controller: noconfirmPasswordController,obSecure: obscureText6, labelText: "Confirm Password", hintText: 'Confirm Password',),
                       SizedBox(height: 25,),
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0,right: 10),

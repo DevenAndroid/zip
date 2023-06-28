@@ -22,19 +22,19 @@ class registerController extends GetxController {
   TextEditingController otpcontroller = TextEditingController();
   Rx<RxStatus> statusOfUpdate = RxStatus.empty().obs;
   Rx<ModelUpdateUser> userUpdate = ModelUpdateUser().obs;
-   RxString genderType = "".obs;
+  RxString genderType = "".obs;
 
   updateUser() {
     userUpdateRepo(
 
-      birth_place: regionController.text.trim(),
-      dob: dateOfBirthController.text.trim(),
-      fname:  firstNameController.text.trim(),
-      lname:  lastNameController.text.trim(),
-      nationality:  countryController.text.trim(),
-      gender:  genderType.value,
-      pin: otpcontroller.text.trim(),
-      zip_tag: zipController.text.trim()
+        birth_place: regionController.text.trim(),
+        dob: dateOfBirthController.text.trim(),
+        fname:  firstNameController.text.trim(),
+        lname:  lastNameController.text.trim(),
+        nationality:  countryController.text.trim(),
+        gender:  genderType.value,
+        pin: otpcontroller.text.trim(),
+        zip_tag: zipController.text.trim()
 
 
     ).then((value) {

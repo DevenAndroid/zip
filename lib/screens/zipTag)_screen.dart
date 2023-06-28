@@ -94,18 +94,14 @@ class _TagScreenState extends State<TagScreen> {
             //       RegExp("[a-z0-9@._-]")),
             //
             // ],
-            // validator: (value) {
-            //   if (registorController.zipController.text.isEmpty) {
-            //     return "Please enter your email";
-            //   } else if (registorController.zipController.text.contains('+') || registorController.zipController.text.contains(' ')) {
-            //     return "Email is invalid";
-            //   } else if (RegExp(r"^[a-zA-Z0-9 a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-            //       .hasMatch(registorController.zipController.text)) {
-            //     return null;
-            //   } else {
-            //     return 'Please type a @ in last ';
-            //   }
-            // },
+          validator: (value) {
+            if (registorController.zipController.text.isEmpty) {
+              return "Please enter your email";
+            }
+            if(!value!.trim().contains("@zip")){
+              return "dfgfrgergv";
+            }
+          },
           controller: registorController.zipController,obSecure: false, hintText: "@"),
         Padding(
           padding: const EdgeInsets.only(left: 10.0,right: 10),

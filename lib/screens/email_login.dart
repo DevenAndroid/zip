@@ -28,7 +28,7 @@ class EmailLoginScreen extends StatefulWidget {
 
 class _EmailLoginScreenState extends State<EmailLoginScreen> {
   final formKey2 = GlobalKey<FormState>();
-  TextEditingController emailOtpController = TextEditingController();
+
 
   Rx<RxStatus> statusOflogin = RxStatus.empty().obs;
 
@@ -90,19 +90,20 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
   final formKey6 = GlobalKey<FormState>();
   TextEditingController emailNoController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  var obscureText1 = true;
 
-  Login() {
-    if (formKey2.currentState!.validate()) {
+  Email() {
+    if (formKey6.currentState!.validate()) {
 
       loginRepo(
           context: context,
           password:passwordController.text.trim(),
-          phone_email:emailOtpController.text.trim(),
+          phone_email:emailNoController.text.trim(),
           type: "email"
       ).then((value) {
         login.value = value;
         if (value.status == true) {
-          Get.toNamed(MyRouters.profileScreen);
+          Get.toNamed(MyRouters.bottomNavbar);
           statusOflogin.value = RxStatus.success();
           showToast(value.message.toString());
         } else {
@@ -207,16 +208,40 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                         controller: emailNoController,obSecure: false, hintText: "pkp@gmail.com",labelText: "Email",),
                       SizedBox(height: 15,),
 
-                      CommonTextfield(validator: MultiValidator([
-                        RequiredValidator(
-                            errorText:
-                            'Please enter your password '),]),controller: passwordController,obSecure: false, labelText: "Password", hintText: 'Password',),
+                      CommonTextfield(
+                        suffixIcon: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                obscureText1 =
+                                !obscureText1;
+                              });
+                            },
+                            child: obscureText1
+                                ? const Icon(
+                              Icons.visibility_off,
+                              color: Color(0xFF8487A1),
+                            )
+                                : const Icon(
+                                Icons.visibility,
+                                color: Color(
+                                    0xFF8487A1))),
+
+                        validator: MultiValidator([
+                          RequiredValidator(
+                              errorText: 'Please enter your password'),
+                          MinLengthValidator(8,
+                              errorText: 'Password must be at least 8 characters, with 1 special character & 1 numerical'),
+                          PatternValidator(
+                              r"(?=.*\W)(?=.*?[#?!@$%^&*-])(?=.*[0-9])",
+                              errorText: "Password must be at least with 1 special character & 1 numerical"),
+                        ]),controller: passwordController,obSecure: obscureText1, labelText: "Password", hintText: 'Password',),
                       SizedBox(height: 15,),
 
                       SizedBox(height:size.height*.3,),
 
                       InkWell(
                           onTap: (){
+                            Email();
                             // emailRegister();
                             // emailLogin();
                             //
