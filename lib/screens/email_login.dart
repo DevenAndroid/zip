@@ -108,6 +108,8 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
         } else {
           statusOflogin.value = RxStatus.error();
           showToast(value.message.toString());
+
+
         }
       }
 
