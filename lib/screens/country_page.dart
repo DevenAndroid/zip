@@ -71,17 +71,23 @@ class _CountryScreenState extends State<CountryScreen> {
                         ),
                       ),
                       SizedBox(height: 40,),
-                      CommonTextfield(controller: registorController.countryController,obSecure: false, labelText: " Nationality Country", hintText: '',prefix:    Padding(
-                        padding: const EdgeInsets.only(left: 12.0),
-                        child: SvgPicture.asset('assets/images/address.svg',width: 20,height: 10,),
-                      ),),
+                      CommonTextfield(controller: registorController.countryController,obSecure: false, labelText: " Nationality Country", hintText: '',
+                      //   prefix:    Padding(
+                      //   padding: const EdgeInsets.only(left: 12.0),
+                      //   child: SvgPicture.asset('assets/images/address.svg',width: 20,height: 10,),
+                      // ),
+                      ),
                       SizedBox(height: 15,),
                       CommonTextfield(controller: registorController.regionController,obSecure: false, labelText: "City", hintText: '',),
                       SizedBox(height: 15,),
-                      CommonTextfield(obSecure: false, labelText: " Country of Birth", hintText: '',prefix:    Padding(
-                        padding: const EdgeInsets.only(left: 12.0),
-                        child: SvgPicture.asset('assets/images/address.svg',width: 20,height: 10,),
-                      ),),
+                      CommonTextfield(obSecure: false, labelText: " Country of Birth", hintText: ' ',
+                      //   prefix:    Padding(
+                      //
+                      //   padding: const EdgeInsets.only(left: 12.0),
+                      //   child: SvgPicture.asset('assets/images/address.svg',width: 20,height: 10,),
+                      // ),
+
+                      ),
                       SizedBox(height: 15,),
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0,right: 10),
@@ -103,10 +109,21 @@ SizedBox(height: 20,),
                           children: [
                             Column(
                               children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Image.asset(
-                                    'assets/images/boy.png',),
+                                InkWell(
+                                  onTap: (){
+                                    print(registorController.genderType.value);
+                                    registorController.genderType.value="male" ;
+                                  },
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        border: Border.all(color: AppTheme.primaryColor)
+                                      ),
+                                      child: Image.asset(
+                                        'assets/images/boy.png',),
+                                    ),
+                                  ),
                                 ),
                                 Text(
                                   "Male",
@@ -120,10 +137,16 @@ SizedBox(height: 20,),
                             ),
                             Column(
                               children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Image.asset(
-                                    'assets/images/girl.png',),
+                                InkWell(
+                                  onTap: (){
+                                    print(registorController.genderType.value);
+                                    registorController.genderType.value="female" ;
+                                  },
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Image.asset(
+                                      'assets/images/girl.png',),
+                                  ),
                                 ),
                                 Text(
                                   "Female",

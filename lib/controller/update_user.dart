@@ -20,12 +20,9 @@ class registerController extends GetxController {
   TextEditingController countryController = TextEditingController();
   TextEditingController regionController = TextEditingController();
   TextEditingController otpcontroller = TextEditingController();
-  Rx<RxStatus> statusOfUpdate = RxStatus
-      .empty()
-      .obs;
-
+  Rx<RxStatus> statusOfUpdate = RxStatus.empty().obs;
   Rx<ModelUpdateUser> userUpdate = ModelUpdateUser().obs;
-
+   RxString genderType = "".obs;
 
   updateUser() {
     userUpdateRepo(
@@ -35,7 +32,7 @@ class registerController extends GetxController {
       fname:  firstNameController.text.trim(),
       lname:  lastNameController.text.trim(),
       nationality:  countryController.text.trim(),
-      gender:  "Male",
+      gender:  genderType.value,
       pin: otpcontroller.text.trim(),
       zip_tag: zipController.text.trim()
 
