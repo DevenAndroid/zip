@@ -59,7 +59,7 @@ class _CountryScreenState extends State<CountryScreen> {
                             fontWeight: FontWeight.w500),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Padding(
@@ -72,12 +72,13 @@ class _CountryScreenState extends State<CountryScreen> {
                             fontWeight: FontWeight.w400),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
                     CommonTextfield(
                       validator: MultiValidator([
-                        RequiredValidator(errorText: 'Enter Nationality Country')
+                        RequiredValidator(
+                            errorText: 'Enter Nationality Country')
                       ]),
                       controller: registorController.countryController,
                       obSecure: false,
@@ -92,19 +93,18 @@ class _CountryScreenState extends State<CountryScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     CommonTextfield(
-                      validator: MultiValidator([
-                        RequiredValidator(errorText: 'Enter City')
-                      ]),
+                      validator: MultiValidator(
+                          [RequiredValidator(errorText: 'Enter City')]),
                       controller: registorController.regionController,
                       obSecure: false,
                       labelText: "City",
                       hintText: '',
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     CommonTextfield(
@@ -123,7 +123,7 @@ class _CountryScreenState extends State<CountryScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     Padding(
@@ -136,7 +136,7 @@ class _CountryScreenState extends State<CountryScreen> {
                             fontWeight: FontWeight.w500),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Padding(
@@ -161,7 +161,6 @@ class _CountryScreenState extends State<CountryScreen> {
                               ),
                             ],
                           ),
-
                           Column(
                             children: [
                               ClipRRect(
@@ -191,15 +190,15 @@ class _CountryScreenState extends State<CountryScreen> {
                             Get.toNamed(MyRouters.otpScreen);
                           }
                         },
-                        child: CustomOutlineButton(
+                        child: const CustomOutlineButton(
                           title: "Next",
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     InkWell(
                       onTap: () {
-                          Get.toNamed(MyRouters.otpScreen);
+                        Get.toNamed(MyRouters.otpScreen);
                       },
                       child: CustomOutlineBoder(
                         title: "Skip",

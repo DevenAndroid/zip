@@ -93,13 +93,12 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
 
   Login() {
     if (formKey2.currentState!.validate()) {
-
       loginRepo(
-          context: context,
-          password:passwordController.text.trim(),
-          phone_email:emailOtpController.text.trim(),
-          type: "email"
-      ).then((value) {
+              context: context,
+              password: passwordController.text.trim(),
+              phone_email: emailOtpController.text.trim(),
+              type: "email")
+          .then((value) {
         login.value = value;
         if (value.status == true) {
           Get.toNamed(MyRouters.profileScreen);
@@ -108,133 +107,149 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
         } else {
           statusOflogin.value = RxStatus.error();
           showToast(value.message.toString());
-
-
         }
-      }
-
-      );
+      });
     }
   }
+
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery
-        .of(context)
-        .size;
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
-          leading:   InkWell(
-
-            onTap: (){
+          leading: InkWell(
+            onTap: () {
               Get.back();
             },
             child: const Icon(
               Icons.arrow_back_rounded,
               color: AppTheme.primaryColor,
             ),
-          ),),
+          ),
+        ),
         body: SingleChildScrollView(
             child: Form(
-              key:formKey6 ,
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+          key: formKey6,
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10),
+                    child: Text(
+                      "Enter your email to continue",
+                      style: GoogleFonts.poppins(
+                          color: const Color(0xFF1D1D1D),
+                          fontSize: 22,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
                     children: [
-
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10.0,right: 10),
-                        child: Text(
-                          "Enter your email to continue",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 22,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                              child: InkWell(
-                                onTap: (){
-                                  Get.toNamed(MyRouters.loginScreen);
-                                },
-                                child: CustomOutlineBoder(
-                                  title: "Phone",
-                                  backgroundColor: Colors.white,
-                                  textColor: AppTheme.buttonColor,onPressed: (){
-                                  Get.toNamed(MyRouters.mobileNumber);
-                                },),
-                              )),
-
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          Expanded(
-                            child: InkWell(
-                                onTap: () {
-
-                                },
-                                child: const CustomOutlineButton(
-                                  title: "Email",
-                                )),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 23,
-                      ),
-                      CommonTextfield(
-                        validator: (value) {
-                          if (emailNoController.text.isEmpty) {
-                            return "Please enter your email";
-                          } else if (emailNoController.text.contains('+') || emailNoController.text.contains(' ')) {
-                            return "Email is invalid";
-                          } else if (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                              .hasMatch(emailNoController.text)) {
-                            return null;
-                          } else {
-                            return 'Please type a valid email address';
-                          }
+                      Expanded(
+                          child: InkWell(
+                        onTap: () {
+                          Get.toNamed(MyRouters.loginScreen);
                         },
-                        controller: emailNoController,obSecure: false, hintText: "pkp@gmail.com",labelText: "Email",),
-                      SizedBox(height: 15,),
-
-                      CommonTextfield(validator: MultiValidator([
-                        RequiredValidator(
-                            errorText:
-                            'Please enter your password '),]),controller: passwordController,obSecure: false, labelText: "Password", hintText: 'Password',),
-                      SizedBox(height: 15,),
-
-                      SizedBox(height:size.height*.3,),
-
-                      InkWell(
-                          onTap: (){
-                            // emailRegister();
-                            // emailLogin();
-                            //
+                        child: CustomOutlineBoder(
+                          title: "Phone",
+                          backgroundColor: Colors.white,
+                          textColor: AppTheme.buttonColor,
+                          onPressed: () {
+                            Get.toNamed(MyRouters.mobileNumber);
                           },
-                          child: CustomOutlineButton(title: "Next",)),
-                      SizedBox(height: 15,),
-                      InkWell(
-                        onTap: (){
-                          Get.toNamed(MyRouters.loginScreen);
-                        },
-                        child: CustomOutlineBoder(title: "Use Mobile Number", backgroundColor: Colors.white,textColor: AppTheme.buttonColor,onPressed: (){
-                          Get.toNamed(MyRouters.loginScreen);
-                        },),
+                        ),
+                      )),
+                      const SizedBox(
+                        height: 15,
                       ),
-
-
+                      Expanded(
+                        child: InkWell(
+                            onTap: () {},
+                            child: const CustomOutlineButton(
+                              title: "Email",
+                            )),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 23,
+                  ),
+                  CommonTextfield(
+                    validator: (value) {
+                      if (emailNoController.text.isEmpty) {
+                        return "Please enter your email";
+                      } else if (emailNoController.text.contains('+') ||
+                          emailNoController.text.contains(' ')) {
+                        return "Email is invalid";
+                      } else if (RegExp(
+                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                          .hasMatch(emailNoController.text)) {
+                        return null;
+                      } else {
+                        return 'Please type a valid email address';
+                      }
+                    },
+                    controller: emailNoController,
+                    obSecure: false,
+                    hintText: "pkp@gmail.com",
+                    labelText: "Email",
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  CommonTextfield(
+                    validator: MultiValidator([
+                      RequiredValidator(
+                          errorText: 'Please enter your password '),
                     ]),
-              ),
-            )));
+                    controller: passwordController,
+                    obSecure: false,
+                    labelText: "Password",
+                    hintText: 'Password',
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  SizedBox(
+                    height: size.height * .3,
+                  ),
+                  InkWell(
+                      onTap: () {
+                        Login();
+                        // emailRegister();
+                        // emailLogin();
+                        //
+                      },
+                      child: CustomOutlineButton(
+                        title: "Next",
+                      )),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Get.toNamed(MyRouters.loginScreen);
+                    },
+                    child: CustomOutlineBoder(
+                      title: "Use Mobile Number",
+                      backgroundColor: Colors.white,
+                      textColor: AppTheme.buttonColor,
+                      onPressed: () {
+                        Get.toNamed(MyRouters.loginScreen);
+                      },
+                    ),
+                  ),
+                ]),
+          ),
+        )));
   }
 }

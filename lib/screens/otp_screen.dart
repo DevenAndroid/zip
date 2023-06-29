@@ -6,7 +6,6 @@ import 'package:pinput/pinput.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_colour.dart';
-
 import '../controller/update_user.dart';
 
 class OtpScreen extends StatefulWidget {
@@ -66,7 +65,7 @@ class _OtpScreenState extends State<OtpScreen> {
                             fontWeight: FontWeight.w500),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Padding(
@@ -79,7 +78,7 @@ class _OtpScreenState extends State<OtpScreen> {
                             fontWeight: FontWeight.w400),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
                     Padding(
