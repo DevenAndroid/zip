@@ -2,30 +2,32 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
+import '../models/login_model.dart';
 import '../models/modal_registor.dart';
+import '../models/model_update_address.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
 
 
-Future<RegisterModel> registerRepo({password_confirmation,phone_email,context,bvn,type,password}) async {
+Future<ModelUpdateAddress> updateAddressRepo({street_name,context,house_number,additional,postal_code,state,city,country}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
 
-  map['phone_email'] = phone_email;
-
-    map['bvn'] = bvn;
-
-
-  map['type'] =  type;
-  map['password_confirmation'] = password_confirmation;
-  map['password'] = password;
+  map['street_name'] = street_name;
+  map['house_number'] =  house_number;
+  map['additional'] = additional;
+  map['postal_code'] = postal_code;
+  map['state'] = state;
+  map['city'] = city;
+  map['country'] = country;
+  map['is_first_time'] = "1";
 
 
   print(map);
   // try {
-  http.Response response = await http.post(Uri.parse(ApiUrls.registerUser),
+  http.Response response = await http.post(Uri.parse(ApiUrls.userAddress),
       headers: await getAuthHeader(),
       body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
@@ -35,12 +37,12 @@ Future<RegisterModel> registerRepo({password_confirmation,phone_email,context,bv
   if (response.statusCode == 200) {
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
-    return RegisterModel.fromJson(jsonDecode(response.body));
+    return ModelUpdateAddress.fromJson(jsonDecode(response.body));
 
   } else {
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
-    return RegisterModel(message: jsonDecode(response.body)["message"], );
+    return ModelUpdateAddress(message: jsonDecode(response.body)["message"], );
   }
   // }  catch (e) {
   //   Helpers.hideLoader(loader);

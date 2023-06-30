@@ -57,6 +57,7 @@ import '../screens/addfundsinbank.dart';
 import '../screens/email_login.dart';
 import '../screens/onboardingScreen.dart';
 import '../screens/profile_screen.dart';
+
 import '../splash1.dart';
 
 class MyRouters{
@@ -121,7 +122,7 @@ class MyRouters{
 
 
   static var route = [
-    GetPage(name: '/', page: () =>   const Splash()),
+    GetPage(name: '/', page: () =>    Splash()),
 
 
 

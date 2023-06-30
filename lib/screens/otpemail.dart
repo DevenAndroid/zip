@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -90,6 +91,7 @@ class _EmailOtpScreenState extends State<EmailOtpScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    double doubleVar;
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
@@ -145,13 +147,29 @@ class _EmailOtpScreenState extends State<EmailOtpScreen> {
                           height: 20,
                         ),
                         CommonTextfield(
+
+                          controller: emailOtpController,
                           keyboardType:
                           const TextInputType.numberWithOptions(
                               decimal: true),
-                          controller: emailOtpController,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(6),
+                            FilteringTextInputFormatter.allow(
+                                RegExp('[0-9]+')),
+                          ],
+                          onChanged: (value) =>
+                          doubleVar = double.parse(value),
                           validator: MultiValidator([
                             RequiredValidator(
-                                errorText: 'Please enter your otp'),
+                                errorText:
+                                'Please enter your otp '),
+                            MinLengthValidator(6,
+                                errorText:
+                                'Please enter   6 digit otp'),
+                            MaxLengthValidator(6,
+                                errorText:
+                                'Please enter 6 digit otp'),
+
                           ]),
                           obSecure: false,
                           hintText: "000-000",

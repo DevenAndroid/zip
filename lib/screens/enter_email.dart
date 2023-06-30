@@ -54,7 +54,7 @@ class _EmailScreenState extends State<EmailScreen> {
           Get.toNamed(MyRouters.otpEmailScreen,arguments: [emailNoController.text]);
           statusOfemailregister.value = RxStatus.success();
           showToast(value.data!.otp.toString());
-          showToast(value.message.toString());
+          // showToast(value.message.toString());
         } else {
           statusOfemailregister.value = RxStatus.error();
           showToast(value.message.toString());
@@ -64,7 +64,8 @@ class _EmailScreenState extends State<EmailScreen> {
       );
     }
   }
-
+  var obscureText4 = true;
+  var obscureText3 = true;
   // emailLogin() {
   //   if (formKey3.currentState!.validate()) {
   //     loginUserRepo(
@@ -183,6 +184,22 @@ class _EmailScreenState extends State<EmailScreen> {
                             'Please enter your BVN number '),]),controller: BVNController,obSecure: false, labelText: "BVN Number", hintText: 'BVN Number',),
                       SizedBox(height: 15,),
                       CommonTextfield(
+                        suffixIcon: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                obscureText4 =
+                                !obscureText4;
+                              });
+                            },
+                            child: obscureText4
+                                ? const Icon(
+                              Icons.visibility_off,
+                              color: Color(0xFF8487A1),
+                            )
+                                : const Icon(
+                                Icons.visibility,
+                                color: Color(
+                                    0xFF8487A1))),
                         validator: MultiValidator([
                           RequiredValidator(
                               errorText: 'Please enter your password'),
@@ -192,10 +209,26 @@ class _EmailScreenState extends State<EmailScreen> {
                               r"(?=.*\W)(?=.*?[#?!@$%^&*-])(?=.*[0-9])",
                               errorText: "Password must be at least with 1 special character & 1 numerical"),
                         ]),
-                        obSecure: false,
+                        obSecure: obscureText4,
                     controller: passwordController, labelText: "Password", hintText: 'Password',),
                       SizedBox(height: 15,),
                       CommonTextfield(
+                        suffixIcon: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                obscureText3 =
+                                !obscureText3;
+                              });
+                            },
+                            child: obscureText3
+                                ? const Icon(
+                              Icons.visibility_off,
+                              color: Color(0xFF8487A1),
+                            )
+                                : const Icon(
+                                Icons.visibility,
+                                color: Color(
+                                    0xFF8487A1))),
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Please enter your password';
@@ -205,7 +238,7 @@ class _EmailScreenState extends State<EmailScreen> {
                               return null;
                             }
                             return "Confirm password not matching with password";
-                          },controller: confirmPasswordController,obSecure: false, labelText: "Confirm Password", hintText: 'Confirm Password',),
+                          },controller: confirmPasswordController,obSecure: obscureText3, labelText: "Confirm Password", hintText: 'Confirm Password',),
                       SizedBox(height: 25,),
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0,right: 10),
