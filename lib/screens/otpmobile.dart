@@ -218,15 +218,7 @@ Padding(
 
                           controller: mobileOtpController,obSecure: false, hintText: "000-000",),
                         SizedBox(height: 15,),
-                        Center(
-                          child: Text(
-                            "Or",
-                            style: GoogleFonts.poppins(
-                                color: const Color(0xFF1D1D1D),
-                                fontSize: 15,
-                                fontWeight: FontWeight.w300),
-                          ),
-                        ),
+
                         SizedBox(height: 15,),
                         InkWell(
                             onTap: (){
@@ -234,7 +226,7 @@ Padding(
                               // VerifyOtp();
                               //  Get.toNamed(MyRouters.profileScreen);
                             },
-                            child: CustomOutlineButton(title: "Tap to verify using USSD",)),
+                            child: CustomOutlineButton(title: "Verify ",)),
                         SizedBox(height: 15,),
                         Padding(
                           padding: const EdgeInsets.only(left: 10.0),
