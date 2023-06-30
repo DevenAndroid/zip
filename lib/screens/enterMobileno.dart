@@ -10,6 +10,7 @@ import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 
+import '../controller/number_controller.dart';
 import '../models/modal_registor.dart';
 import '../models/registor_model.dart';
 import '../repository/mobile_no_otp_repo.dart';
@@ -37,6 +38,7 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
   TextEditingController nopasswordController = TextEditingController();
   TextEditingController noconfirmPasswordController = TextEditingController();
   // var initStateBlank = Get.arguments[0];
+  final numbercontroller = Get.put(numberController());
   final formKey4 = GlobalKey<FormState>();
   var obscureText5 = true;
   var obscureText6 = true;
@@ -51,6 +53,9 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
           phone_email:"+234"+mobileNoController.text.trim(),
           type: "phone"
       ).then((value) {
+
+        numbercontroller.isNumber =false;
+        numbercontroller.email="+234"+mobileNoController.text.trim();
         register.value = value;
         if (value.status == true) {
           Get.toNamed(MyRouters.mobileOtpScreen,arguments: ["+234"+mobileNoController.text]);

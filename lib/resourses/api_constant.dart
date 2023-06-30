@@ -15,11 +15,13 @@ class ApiUrls {
   static const String verifyOtp = "${apiBaseUrl}otps/";
   static const String chooseBank = "${apiBaseUrl}banks/";
   static const String registerUser = "${apiBaseUrl}register";
+  static const String verificationAfrica = "${apiBaseUrl}verification-africa";
   static const String userVerifyOtp = "${apiBaseUrl}verify-otp";
   static const String updateDetails = "${apiBaseUrl}update-details";
   static const String loginUser = "${apiBaseUrl}login";
   static const String userAddress = "${apiBaseUrl}add-user-address";
   static const String zipTag = "${apiBaseUrl}check-zip-tag";
+  static const String benificeryList  = "https://api.flutterwave.com/v3/beneficiaries";
 }
 
 Future getAuthHeader() async {
@@ -35,6 +37,21 @@ Future getAuthHeader() async {
   print(gg);
   return gg;
 }
+Future getAuthHeaderApi() async {
+  SharedPreferences pref = await SharedPreferences.getInstance();
+  // pref.getString("cookie")!.toString().replaceAll('\"', '');
+  var gg ={
+    HttpHeaders.contentTypeHeader: 'application/json',
+    HttpHeaders.acceptHeader: 'application/json',
+     HttpHeaders.authorizationHeader:"FLWSECK_TEST-SANDBOXDEMOKEY-X"
+    // if(pref.getString("cookie") != null)
+    //   HttpHeaders.authorizationHeader: 'Bearer ${pref.getString("cookie")!.toString().replaceAll('\"', '')}',
+  };
+  print(gg);
+  return gg;
+}
+
+
 // HttpHeaders.contentTypeHeader: 'application/json',
 // HttpHeaders.acceptHeader: 'application/json',
 //     HttpHeaders.authorizationHeader: 'Bearer ${pref.getString("cookie")!.toString().replaceAll('\"', '')}',

@@ -226,7 +226,7 @@ Padding(
                               // VerifyOtp();
                               //  Get.toNamed(MyRouters.profileScreen);
                             },
-                            child: CustomOutlineButton(title: "Verify ",)),
+                            child: CustomOutlineButton(title: "Tap to Verify ",)),
                         SizedBox(height: 15,),
                         Padding(
                           padding: const EdgeInsets.only(left: 10.0),

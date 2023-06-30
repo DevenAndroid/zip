@@ -184,7 +184,7 @@ class _EmailOtpScreenState extends State<EmailOtpScreen> {
                               // Get.toNamed(MyRouters.otpEmailScreen);
                             },
                             child: CustomOutlineButton(
-                              title: "Verify",
+                              title: "Tap to Verify",
                             )),
                         SizedBox(
                           height: 15,

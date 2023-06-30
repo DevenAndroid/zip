@@ -1,13 +1,21 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pinput/pinput.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 
+import '../controller/number_controller.dart';
 import '../controller/update_user.dart';
+import '../models/model_verify_africa.dart';
+import '../models/verify_africa.dart';
+import '../resourses/api_constant.dart';
 
 class OtpScreen extends StatefulWidget {
   const OtpScreen({Key? key}) : super(key: key);
@@ -17,8 +25,24 @@ class OtpScreen extends StatefulWidget {
 }
 
 class _OtpScreenState extends State<OtpScreen> {
+  Rx<ModelVerifyAfrica> modelVerifyAfrica = ModelVerifyAfrica().obs;
   final formKeypin = GlobalKey<FormState>();
   final registorController = Get.put(registerController());
+  File image = File("");
+
+  final numbercontroller = Get.put(numberController());
+  Future pickImage() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (image == null) return;
+      final imageTemporary = File(image.path);
+      setState(() {
+        this.image = imageTemporary;
+      });
+    } on PlatformException catch (e) {
+      print('Field to pick img : $e');
+    }
+  }
   @override
   Widget build(BuildContext context) {
     final defaultPinTheme = PinTheme(
@@ -69,6 +93,31 @@ class _OtpScreenState extends State<OtpScreen> {
                     SizedBox(
                       height: 10,
                     ),
+
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: AppTheme.primaryColor)),
+                      child: Center(
+                        child: InkWell(
+                          onTap: () => pickImage(),
+                          // child: image.path != ""
+                          //     ?
+                          //
+                          child:     ClipOval(
+                            child: Image.file(
+                              image,
+                              width: 120,
+                              height: 120,
+                              fit: BoxFit.cover,
+                              errorBuilder: (_,__,___)=> Icon(Icons.person),
+                            ),
+                          )
+
+                        ),
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10.0, right: 10),
                       child: Text(
@@ -103,9 +152,32 @@ class _OtpScreenState extends State<OtpScreen> {
                     InkWell(
                       onTap: () {
                         if (formKeypin.currentState!.validate()) {
-                          registorController.updateUser();
-                        }
-                      },
+                          // registorController.updateUser();
+
+
+                            Map map = <String, String>{};
+                            //
+                           map['phone_email'] = "ayoodapo@yahoo.com";
+
+                           // numbercontroller.isNumber ? numbercontroller.number:numbercontroller.email;
+
+                          verifyAfricaRepo(
+                              fieldName1: 'selfie',
+                              mapData: map,
+                              context: context,
+                              file1: image,
+                            ).then((value) {
+                              if (value.status == true) {
+                                // doctorprofileController.getDataProfile();
+                              }
+                              showToast(value.message.toString());
+                            });
+
+                            // Get.toNamed(MyRouters.doctorNavbar);
+
+                          }
+                        },
+
                       child: CustomOutlineBoder(
                         title: "Next",
                         backgroundColor: Colors.white,
