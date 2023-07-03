@@ -136,7 +136,7 @@ class _OtpScreenState extends State<OtpScreen> {
                       child: Center(
                         child: Pinput(
                           validator: MultiValidator([
-                            RequiredValidator(errorText: 'Enter 4 Digit Pin')
+                            RequiredValidator(errorText: 'Ente r 4 Digit Pin')
                           ]),
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           controller: registorController.otpcontroller,
