@@ -177,25 +177,14 @@ class _EmailOtpScreenState extends State<EmailOtpScreen> {
                         SizedBox(
                           height: 15,
                         ),
-                        Center(
-                          child: Text(
-                            "Or",
-                            style: GoogleFonts.poppins(
-                                color: const Color(0xFF1D1D1D),
-                                fontSize: 15,
-                                fontWeight: FontWeight.w300),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
+
                         InkWell(
                             onTap: () {
                               verifyOtpRepo();
                               // Get.toNamed(MyRouters.otpEmailScreen);
                             },
                             child: CustomOutlineButton(
-                              title: "Tap to verify using USSD",
+                              title: "Tap to Verify",
                             )),
                         SizedBox(
                           height: 15,

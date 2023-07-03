@@ -10,6 +10,7 @@ import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
+import '../controller/number_controller.dart';
 import '../models/modal_registor.dart';
 import '../models/registor_model.dart';
 import '../repository/mobile_no_otp_repo.dart';
@@ -30,7 +31,7 @@ class _EmailScreenState extends State<EmailScreen> {
   //
   // Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
   Rx<RxStatus> statusOfemailregister = RxStatus.empty().obs;
-
+  final numbercontroller = Get.put(numberController());
   Rx<RegisterModel> emailregister = RegisterModel().obs;
 
   TextEditingController emailNoController = TextEditingController();
@@ -49,6 +50,8 @@ class _EmailScreenState extends State<EmailScreen> {
           phone_email:emailNoController.text.trim(),
           type: "email"
       ).then((value) {
+        numbercontroller.isNumber =false;
+        numbercontroller.email=emailNoController.text.trim();
         emailregister.value = value;
         if (value.status == true) {
           Get.toNamed(MyRouters.otpEmailScreen,arguments: [emailNoController.text]);
