@@ -8,6 +8,8 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_notifier.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../models/login_model.dart';
+import '../repository/login_repo.dart';
+import '../resourses/api_constant.dart';
 import '../routers/my_routers.dart';
 import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
@@ -22,19 +24,41 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final formKey = GlobalKey<FormState>();
+  var obscureText1 = true;
+  var obscureText2 = true;
 
   Rx<RxStatus> statusOflogin = RxStatus.empty().obs;
 
   Rx<LoginModel> login = LoginModel().obs;
   TextEditingController mobileNoController = TextEditingController();
   TextEditingController nopasswordController = TextEditingController();
-  TextEditingController noconfirmPasswordController = TextEditingController();
   // var initStateBlank = Get.arguments[0];
   final formKey4 = GlobalKey<FormState>();
 
 
+  Login() {
+    if (formKey4.currentState!.validate()) {
 
+      loginRepo(
+          context: context,
+          password:nopasswordController.text.trim(),
+          phone_email:"+234"+mobileNoController.text.trim(),
+          type: "phone"
+      ).then((value) {
+        login.value = value;
+        if (value.status == true) {
+          Get.toNamed(MyRouters.bottomNavbar);
+          statusOflogin.value = RxStatus.success();
+          showToast(value.message.toString());
+        } else {
+          statusOflogin.value = RxStatus.error();
+          showToast(value.message.toString());
+        }
+      }
+
+      );
+    }
+  }
   /* Login() {
     if (formKey4.currentState!.validate()) {
       loginUserRepo(
@@ -170,7 +194,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     const TextInputType.numberWithOptions(
                                         decimal: true),
                                     inputFormatters: [
-                                      LengthLimitingTextInputFormatter(10),
+                                      LengthLimitingTextInputFormatter(12),
                                       FilteringTextInputFormatter.allow(
                                           RegExp('[0-9]+')),
                                     ],
@@ -182,10 +206,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                           'Please enter your contact number '),
                                       MinLengthValidator(10,
                                           errorText:
-                                          'Please enter 10 digit number'),
-                                      MaxLengthValidator(10,
+                                          'Please enter minumum 10 digit number'),
+                                      MaxLengthValidator(12,
                                           errorText:
-                                          'Please enter 10 digit number'),
+                                          'Please enter 12 digit number'),
                                       PatternValidator(
                                           r'(^(?:[+0]9)?[0-9]{10,12}$)',
                                           errorText: '')
@@ -212,19 +236,40 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       SizedBox(height: 15,),
                       CommonTextfield(
+
+                        suffixIcon: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                obscureText2 =
+                                !obscureText2;
+                              });
+                            },
+                            child: obscureText2
+                                ? const Icon(
+                              Icons.visibility_off,
+                              color: Color(0xFF8487A1),
+                            )
+                                : const Icon(
+                                Icons.visibility,
+                                color: Color(
+                                    0xFF8487A1))),
                         validator: MultiValidator([
                           RequiredValidator(
-                              errorText:
-                              'Please enter your password '),])
-                        ,
-                        controller: nopasswordController,obSecure: false, labelText: "Password", hintText: 'Password',),
+                              errorText: 'Please enter your password'),
+                          MinLengthValidator(8,
+                              errorText: 'Password must be at least 8 characters, with 1 special character & 1 numerical'),
+                          PatternValidator(
+                              r"(?=.*\W)(?=.*?[#?!@$%^&*-])(?=.*[0-9])",
+                              errorText: "Password must be at least with 1 special character & 1 numerical"),
+                        ]),
+                        controller: nopasswordController,obSecure: obscureText2, labelText: "Password", hintText: 'Password',),
                       SizedBox(height: 15,),
 
                       SizedBox(height:size.height*.3,),
 
                       InkWell(
                           onTap: (){
-                            // Login();
+                            Login();
                             // Get.toNamed(MyRouters.mobileOtpScreen);
                           },
                           child: CustomOutlineButton(title: "SignIn",)),

@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_boder_button.dart';
@@ -25,9 +29,9 @@ class EmailOtpScreen extends StatefulWidget {
 }
 
 class _EmailOtpScreenState extends State<EmailOtpScreen> {
- // Rx<RxStatus> statusOfVerify = RxStatus.empty().obs;
+  // Rx<RxStatus> statusOfVerify = RxStatus.empty().obs;
   final formKey2 = GlobalKey<FormState>();
- // Rx<ModelVerifyOtp> verifyOtp = ModelVerifyOtp().obs;
+  // Rx<ModelVerifyOtp> verifyOtp = ModelVerifyOtp().obs;
   TextEditingController emailOtpController = TextEditingController();
   Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
   Rx<RxStatus> statusOfuserVerifyOtp = RxStatus.empty().obs;
@@ -64,13 +68,14 @@ class _EmailOtpScreenState extends State<EmailOtpScreen> {
       userVerifyOtpRepo(
         phone_email: initStateBlank,
         otp: emailOtpController.text.trim(),
-        context: context,
 
-      ).then((value) {
+      ).then((value) async {
+        SharedPreferences pref = await SharedPreferences.getInstance();
+        pref.setString('cookie', value.authToken.toString());
         userVerifyOtp.value = value;
-        if (value.status == "success") {
+        if (value.status == true) {
           setState(() {
-            Get.toNamed(MyRouters.bottomNavbar);
+            Get.toNamed(MyRouters.selectableScreen);
             statusOfuserVerifyOtp.value = RxStatus.success();
           });
 
@@ -86,6 +91,7 @@ class _EmailOtpScreenState extends State<EmailOtpScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    double doubleVar;
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
@@ -117,14 +123,14 @@ class _EmailOtpScreenState extends State<EmailOtpScreen> {
                               Expanded(
                                 child: RichText(
                                   text: TextSpan(
-                                    text: "Please enter 6 digits code we sent to",
+                                    text: "Please enter 6 digits code we sent to  ",
                                     style: GoogleFonts.poppins(
                                         color: const Color(0xFF1D1D1D),
                                         fontSize: 18,
                                         fontWeight: FontWeight.w500),
                                     children: <TextSpan>[
                                       TextSpan(
-                                        text: "  daniel@gmail.com",
+                                        text: initStateBlank,
                                         style: GoogleFonts.poppins(
                                             color: const Color(0xFFB2802A),
                                             fontSize: 16,
@@ -141,13 +147,29 @@ class _EmailOtpScreenState extends State<EmailOtpScreen> {
                           height: 20,
                         ),
                         CommonTextfield(
+
+                          controller: emailOtpController,
                           keyboardType:
                           const TextInputType.numberWithOptions(
                               decimal: true),
-                          controller: emailOtpController,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(6),
+                            FilteringTextInputFormatter.allow(
+                                RegExp('[0-9]+')),
+                          ],
+                          onChanged: (value) =>
+                          doubleVar = double.parse(value),
                           validator: MultiValidator([
                             RequiredValidator(
-                                errorText: 'Please enter your otp'),
+                                errorText:
+                                'Please enter your otp '),
+                            MinLengthValidator(6,
+                                errorText:
+                                'Please enter   6 digit otp'),
+                            MaxLengthValidator(6,
+                                errorText:
+                                'Please enter 6 digit otp'),
+
                           ]),
                           obSecure: false,
                           hintText: "000-000",
@@ -155,25 +177,14 @@ class _EmailOtpScreenState extends State<EmailOtpScreen> {
                         SizedBox(
                           height: 15,
                         ),
-                        Center(
-                          child: Text(
-                            "Or",
-                            style: GoogleFonts.poppins(
-                                color: const Color(0xFF1D1D1D),
-                                fontSize: 15,
-                                fontWeight: FontWeight.w300),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
+
                         InkWell(
                             onTap: () {
                               verifyOtpRepo();
                               // Get.toNamed(MyRouters.otpEmailScreen);
                             },
                             child: CustomOutlineButton(
-                              title: "Tap to verify using USSD",
+                              title: "Tap to Verify",
                             )),
                         SizedBox(
                           height: 15,

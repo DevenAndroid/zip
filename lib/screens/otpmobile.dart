@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_boder_button.dart';
@@ -89,18 +91,18 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
       userVerifyOtpRepo(
         phone_email: initStateBlank,
         otp: mobileOtpController.text.trim(),
-        context: context,
 
-      ).then((value) {
+
+      ).then((value) async {
         userVerifyOtp.value = value;
-        if (value.status == "success") {
-          setState(() {
-            Get.toNamed(MyRouters.bottomNavbar);
+        if (value.status == true) {
+          SharedPreferences pref = await SharedPreferences.getInstance();
+          pref.setString('cookie', value.authToken.toString());
+            Get.toNamed(MyRouters.selectableScreen);
             statusOfuserVerifyOtp.value = RxStatus.success();
-          });
-
 
           showToast(value.message.toString());
+
         } else {
           statusOfuserVerifyOtp.value = RxStatus.error();
           showToast(value.message.toString());
@@ -113,6 +115,7 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
     Size size = MediaQuery
         .of(context)
         .size;
+    double doubleVar;
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
@@ -147,7 +150,7 @@ Padding(
 
         text: TextSpan(
 
-          text:  "Please enter 6 digits code we sent to",
+          text:  "Please enter 6 digits code we sent to  ",
 
           style: GoogleFonts.poppins(
 
@@ -159,7 +162,7 @@ Padding(
 
           children:  <TextSpan>[
 
-              TextSpan(text:  " +234 xxxxxxxxxxx",
+              TextSpan(text:  initStateBlank,
 
                 style: GoogleFonts.poppins(
 
@@ -189,34 +192,41 @@ Padding(
                         ),
 
                         CommonTextfield(
+
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(6),
+                            FilteringTextInputFormatter.allow(
+                                RegExp('[0-9]+')),
+                          ],
+                          onChanged: (value) =>
+                          doubleVar = double.parse(value),
+                          validator: MultiValidator([
+                            RequiredValidator(
+                                errorText:
+                                'Please enter your otp '),
+                            MinLengthValidator(6,
+                                errorText:
+                                'Please enter   6 digit otp'),
+                            MaxLengthValidator(6,
+                                errorText:
+                                'Please enter 6 digit otp'),
+
+                          ]),
                           keyboardType:
                           const TextInputType.numberWithOptions(
                               decimal: true),
-                          validator: MultiValidator([
-                            RequiredValidator(
-                                errorText: 'Please enter your otp'),
-                          ]),
+
                           controller: mobileOtpController,obSecure: false, hintText: "000-000",),
                         SizedBox(height: 15,),
-                        Center(
-                          child: Text(
-                            "Or",
-                            style: GoogleFonts.poppins(
-                                color: const Color(0xFF1D1D1D),
-                                fontSize: 15,
-                                fontWeight: FontWeight.w300),
-                          ),
-                        ),
+
                         SizedBox(height: 15,),
                         InkWell(
                             onTap: (){
                               verifyOtpRepo();
                               // VerifyOtp();
-
-                              Get.toNamed(MyRouters.selectableScreen);
-
+                              //  Get.toNamed(MyRouters.profileScreen);
                             },
-                            child: CustomOutlineButton(title: "Tap to verify using USSD",)),
+                            child: CustomOutlineButton(title: "Tap to Verify ",)),
                         SizedBox(height: 15,),
                         Padding(
                           padding: const EdgeInsets.only(left: 10.0),

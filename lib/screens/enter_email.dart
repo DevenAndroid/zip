@@ -10,6 +10,7 @@ import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
+import '../controller/number_controller.dart';
 import '../models/modal_registor.dart';
 import '../models/registor_model.dart';
 import '../repository/mobile_no_otp_repo.dart';
@@ -30,7 +31,7 @@ class _EmailScreenState extends State<EmailScreen> {
   //
   // Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
   Rx<RxStatus> statusOfemailregister = RxStatus.empty().obs;
-
+  final numbercontroller = Get.put(numberController());
   Rx<RegisterModel> emailregister = RegisterModel().obs;
 
   TextEditingController emailNoController = TextEditingController();
@@ -49,11 +50,14 @@ class _EmailScreenState extends State<EmailScreen> {
           phone_email:emailNoController.text.trim(),
           type: "email"
       ).then((value) {
+        numbercontroller.isNumber =false;
+        numbercontroller.email=emailNoController.text.trim();
         emailregister.value = value;
         if (value.status == true) {
-          Get.toNamed(MyRouters.mobileOtpScreen,arguments: [emailNoController.text]);
+          Get.toNamed(MyRouters.otpEmailScreen,arguments: [emailNoController.text]);
           statusOfemailregister.value = RxStatus.success();
-          showToast(value.message.toString());
+          showToast(value.data!.otp.toString());
+          // showToast(value.message.toString());
         } else {
           statusOfemailregister.value = RxStatus.error();
           showToast(value.message.toString());
@@ -63,7 +67,8 @@ class _EmailScreenState extends State<EmailScreen> {
       );
     }
   }
-
+  var obscureText4 = true;
+  var obscureText3 = true;
   // emailLogin() {
   //   if (formKey3.currentState!.validate()) {
   //     loginUserRepo(
@@ -118,7 +123,7 @@ class _EmailScreenState extends State<EmailScreen> {
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0,right: 10),
                         child: Text(
-                          "Enter your email to continue",
+                          "Enter your email to continue ",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
                               fontSize: 22,
@@ -160,35 +165,83 @@ class _EmailScreenState extends State<EmailScreen> {
                       const SizedBox(
                         height: 23,
                       ),
-                   CommonTextfield(
-                     validator: (value) {
-                       if (emailNoController.text.isEmpty) {
-                         return "Please enter your email";
-                       } else if (emailNoController.text.contains('+') || emailNoController.text.contains(' ')) {
-                         return "Email is invalid";
-                       } else if (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                           .hasMatch(emailNoController.text)) {
-                         return null;
-                       } else {
-                         return 'Please type a valid email address';
-                       }
-                     },
-                     controller: emailNoController,obSecure: false, hintText: "pkp@gmail.com",labelText: "Email",),
+                      CommonTextfield(
+                        validator: (value) {
+                          if (emailNoController.text.isEmpty) {
+                            return "Please enter your email";
+                          } else if (emailNoController.text.contains('+') || emailNoController.text.contains(' ')) {
+                            return "Email is invalid";
+                          } else if (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                              .hasMatch(emailNoController.text)) {
+                            return null;
+                          } else {
+                            return 'Please type a valid email address';
+                          }
+                        },
+                        controller: emailNoController,obSecure: false, hintText: "pkp@gmail.com",labelText: "Email",),
                       SizedBox(height: 15,),
-                      CommonTextfield(validator: MultiValidator([
+                      CommonTextfield(
+                        validator: MultiValidator([
                         RequiredValidator(
                             errorText:
                             'Please enter your BVN number '),]),controller: BVNController,obSecure: false, labelText: "BVN Number", hintText: 'BVN Number',),
                       SizedBox(height: 15,),
-                      CommonTextfield(validator: MultiValidator([
-                        RequiredValidator(
-                            errorText:
-                            'Please enter your password '),]),controller: passwordController,obSecure: false, labelText: "Password", hintText: 'Password',),
+                      CommonTextfield(
+                        suffixIcon: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                obscureText4 =
+                                !obscureText4;
+                              });
+                            },
+                            child: obscureText4
+                                ? const Icon(
+                              Icons.visibility_off,
+                              color: Color(0xFF8487A1),
+                            )
+                                : const Icon(
+                                Icons.visibility,
+                                color: Color(
+                                    0xFF8487A1))),
+                        validator: MultiValidator([
+                          RequiredValidator(
+                              errorText: 'Please enter your password'),
+                          MinLengthValidator(8,
+                              errorText: 'Password must be at least 8 characters, with 1 special character & 1 numerical'),
+                          PatternValidator(
+                              r"(?=.*\W)(?=.*?[#?!@$%^&*-])(?=.*[0-9])",
+                              errorText: "Password must be at least with 1 special character & 1 numerical"),
+                        ]),
+                        obSecure: obscureText4,
+                    controller: passwordController, labelText: "Password", hintText: 'Password',),
                       SizedBox(height: 15,),
-                      CommonTextfield(validator: MultiValidator([
-                        RequiredValidator(
-                            errorText:
-                            'Please enter your confirm password '),]),controller: confirmPasswordController,obSecure: false, labelText: "Confirm Password", hintText: 'Confirm Password',),
+                      CommonTextfield(
+                        suffixIcon: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                obscureText3 =
+                                !obscureText3;
+                              });
+                            },
+                            child: obscureText3
+                                ? const Icon(
+                              Icons.visibility_off,
+                              color: Color(0xFF8487A1),
+                            )
+                                : const Icon(
+                                Icons.visibility,
+                                color: Color(
+                                    0xFF8487A1))),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter your password';
+                            }
+                            if (value.toString() ==
+                                passwordController.text) {
+                              return null;
+                            }
+                            return "Confirm password not matching with password";
+                          },controller: confirmPasswordController,obSecure: obscureText3, labelText: "Confirm Password", hintText: 'Confirm Password',),
                       SizedBox(height: 25,),
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0,right: 10),
@@ -222,6 +275,7 @@ class _EmailScreenState extends State<EmailScreen> {
                       SizedBox(height: 15,),
                       InkWell(
                         onTap: (){
+
                           Get.toNamed(MyRouters.mobileNumber);
                         },
                         child: CustomOutlineBoder(title: "Use Mobile Number", backgroundColor: Colors.white,textColor: AppTheme.buttonColor,onPressed: (){

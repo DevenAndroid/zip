@@ -1,15 +1,13 @@
-class UserVerifyOtpModel {
+class ProfileModel {
   bool? status;
   String? message;
-  String? authToken;
   Data? data;
 
-  UserVerifyOtpModel({this.status, this.message, this.authToken, this.data});
+  ProfileModel({this.status, this.message, this.data});
 
-  UserVerifyOtpModel.fromJson(Map<String, dynamic> json) {
+  ProfileModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
-    authToken = json['auth_token'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }
 
@@ -17,7 +15,6 @@ class UserVerifyOtpModel {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['status'] = this.status;
     data['message'] = this.message;
-    data['auth_token'] = this.authToken;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
@@ -26,45 +23,57 @@ class UserVerifyOtpModel {
 }
 
 class Data {
- dynamic id;
- dynamic latitude;
- dynamic longitude;
- dynamic location;
- dynamic name;
- dynamic fname;
- dynamic lname;
- dynamic email;
- dynamic phone;
- dynamic countryCode;
- dynamic profileImage;
+  User? user;
+
+  Data({this.user});
+
+  Data.fromJson(Map<String, dynamic> json) {
+    user = json['user'] != null ? new User.fromJson(json['user']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.user != null) {
+      data['user'] = this.user!.toJson();
+    }
+    return data;
+  }
+}
+
+class User {
+  int? id;
+  String? fname;
+  String? lname;
+  String? email;
+  String? phone;
+  String? zipTag;
+  String? dob;
+  String? countryCode;
+  String? profileImage;
   bool? isProfileComplete;
   bool? status;
 
-  Data(
+  User(
       {this.id,
-        this.latitude,
-        this.longitude,
-        this.location,
-        this.name,
         this.fname,
         this.lname,
         this.email,
         this.phone,
+        this.zipTag,
+        this.dob,
         this.countryCode,
         this.profileImage,
         this.isProfileComplete,
         this.status});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    latitude = json['latitude'];
-    longitude = json['longitude'];
-    location = json['location'];
-    name = json['name'];
     fname = json['fname'];
     lname = json['lname'];
     email = json['email'];
     phone = json['phone'];
+    zipTag = json['zip_tag'];
+    dob = json['dob'];
     countryCode = json['country_code'];
     profileImage = json['profile_image'];
     isProfileComplete = json['is_profile_complete'];
@@ -74,14 +83,12 @@ class Data {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['latitude'] = this.latitude;
-    data['longitude'] = this.longitude;
-    data['location'] = this.location;
-    data['name'] = this.name;
     data['fname'] = this.fname;
     data['lname'] = this.lname;
     data['email'] = this.email;
     data['phone'] = this.phone;
+    data['zip_tag'] = this.zipTag;
+    data['dob'] = this.dob;
     data['country_code'] = this.countryCode;
     data['profile_image'] = this.profileImage;
     data['is_profile_complete'] = this.isProfileComplete;
