@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_boder_button.dart';
@@ -100,10 +101,11 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
           password:passwordController.text.trim(),
           phone_email:emailNoController.text.trim(),
           type: "email"
-      ).then((value) {
+      ).then((value) async {
         login.value = value;
         if (value.status == true) {
-
+          SharedPreferences pref = await SharedPreferences.getInstance();
+          pref.setString('cookie', value.authToken.toString());
           Get.toNamed(MyRouters.bottomNavbar);
           statusOflogin.value = RxStatus.success();
           showToast(value.message.toString());
