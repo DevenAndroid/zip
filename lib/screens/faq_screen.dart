@@ -135,6 +135,7 @@ class _FAQScreenState extends State<FAQScreen> {
                         childrenPadding:
                         const EdgeInsets.all(1),
                         title: Text(
+
               faq.value.data![index].question.toString(),
                           style:
                           GoogleFonts.poppins(
@@ -154,7 +155,7 @@ class _FAQScreenState extends State<FAQScreen> {
 
 
               data:
-                              faq.value.data![index].answer.toString(),
+                             "Answer"+ faq.value.data![index].answer.toString(),
 
                             ),
                             dense: true,
