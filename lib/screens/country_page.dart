@@ -196,7 +196,7 @@ borderRadius: BorderRadius.circular(10),
                         InkWell(
                             onTap: (){
       if (formcountrypage.currentState!.validate()) {
-        Get.toNamed(MyRouters.otpScreen);
+        Get.toNamed(MyRouters.verifyAfricaScreen);
       }
                             },
                             child: CustomOutlineButton(title: "Next",)),

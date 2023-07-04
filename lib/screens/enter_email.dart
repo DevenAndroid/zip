@@ -1,5 +1,6 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -51,7 +52,12 @@ class _EmailScreenState extends State<EmailScreen> {
           type: "email"
       ).then((value) {
         numbercontroller.isNumber =false;
+        numbercontroller.isNumberBvn =false;
         numbercontroller.email=emailNoController.text.trim();
+        numbercontroller.emailBvn=BVNController.text.trim();
+
+
+
         emailregister.value = value;
         if (value.status == true) {
           Get.toNamed(MyRouters.otpEmailScreen,arguments: [emailNoController.text]);
@@ -95,6 +101,7 @@ class _EmailScreenState extends State<EmailScreen> {
     Size size = MediaQuery
         .of(context)
         .size;
+    double doubleVar;
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
@@ -181,10 +188,30 @@ class _EmailScreenState extends State<EmailScreen> {
                         controller: emailNoController,obSecure: false, hintText: "pkp@gmail.com",labelText: "Email",),
                       SizedBox(height: 15,),
                       CommonTextfield(
+                        keyboardType:
+                        const TextInputType.numberWithOptions(
+                            decimal: true),
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(11),
+                          FilteringTextInputFormatter.allow(
+                              RegExp('[0-9]+')),
+                        ],
+                        onChanged: (value) =>
+                        doubleVar = double.parse(value),
                         validator: MultiValidator([
-                        RequiredValidator(
-                            errorText:
-                            'Please enter your BVN number '),]),controller: BVNController,obSecure: false, labelText: "BVN Number", hintText: 'BVN Number',),
+                          RequiredValidator(
+                              errorText:
+                              'Please enter your bvn number '),
+                          MinLengthValidator(11,
+                              errorText:
+                              'Please enter minumum  11 bvn number'),
+                          MaxLengthValidator(11,
+                              errorText:
+                              'Please enter 11 digit bvn number'),
+                          PatternValidator(
+                              r'(^(?:[+0]9)?[0-9]{10,12}$)',
+                              errorText: '')
+                        ]),controller: BVNController,obSecure: false, labelText: "BVN Number", hintText: 'BVN Number',),
                       SizedBox(height: 15,),
                       CommonTextfield(
                         suffixIcon: GestureDetector(

@@ -1,3 +1,8 @@
+
+import 'dart:convert';
+import 'dart:io';
+
+
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
@@ -6,7 +11,19 @@ import 'package:pinput/pinput.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_colour.dart';
+
+
+import '../controller/number_controller.dart';
 import '../controller/update_user.dart';
+import '../models/model_setting.dart';
+import '../models/model_verify_africa.dart';
+import '../models/verify_africa.dart';
+import '../repository/setting_repo.dart';
+import '../repository/verify_africa_b.dart';
+import '../resourses/api_constant.dart';
+
+import '../controller/update_user.dart';
+
 
 class OtpScreen extends StatefulWidget {
   const OtpScreen({Key? key}) : super(key: key);
@@ -16,8 +33,20 @@ class OtpScreen extends StatefulWidget {
 }
 
 class _OtpScreenState extends State<OtpScreen> {
+
+
   final formKeypin = GlobalKey<FormState>();
   final registorController = Get.put(registerController());
+
+
+
+
+
+
+  final numbercontroller = Get.put(numberController());
+
+
+
   @override
   Widget build(BuildContext context) {
     final defaultPinTheme = PinTheme(
@@ -48,6 +77,7 @@ class _OtpScreenState extends State<OtpScreen> {
         ),
         body: SingleChildScrollView(
             child: Form(
+
           key: formKeypin,
           child: Padding(
               padding: const EdgeInsets.all(12.0),
@@ -116,5 +146,6 @@ class _OtpScreenState extends State<OtpScreen> {
                     )
                   ])),
         )));
+
   }
 }

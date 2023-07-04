@@ -3,6 +3,13 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
+
+import '../models/model_faq.dart';
+import '../repository/faq_repo.dart';
+import '../resourses/api_constant.dart';
+import '../widgets/circular_progressindicator.dart';
+import '../widgets/common_error_widget.dart';
+import 'package:flutter_html/flutter_html.dart';
 class FAQScreen extends StatefulWidget {
   const FAQScreen({Key? key}) : super(key: key);
 
@@ -11,6 +18,34 @@ class FAQScreen extends StatefulWidget {
 }
 
 class _FAQScreenState extends State<FAQScreen> {
+
+  Rx<ModelFaq> faq = ModelFaq().obs;
+  Rx<RxStatus> statusOffaq = RxStatus
+      .empty()
+      .obs;
+
+  Future getFaq() async {
+    await faqRepo().then((value) {
+      faq.value = value;
+      if (value.status == true) {
+        statusOffaq.value = RxStatus.success();
+        showToast(value.message.toString());
+      } else {
+        statusOffaq.value = RxStatus.error();
+        showToast(value.message.toString());
+      }
+    }
+
+    );
+  }
+
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getFaq();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -59,81 +94,89 @@ class _FAQScreenState extends State<FAQScreen> {
     height: 20,
     ),
 
-      ListView.builder(
-          shrinkWrap: true,
-          physics:
-          const NeverScrollableScrollPhysics(),
-          itemCount: 10,
-          itemBuilder: (context, index) {
-            return Column(
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.all(4),
-                  decoration: BoxDecoration(
-                      color:
-                       Colors.white,
-                      border: Border.all(color: AppTheme.primaryColor,width: 1),
-                      borderRadius:
-                      BorderRadius.circular(
-                          15),
-                      boxShadow: const [
-                        BoxShadow(
-                            color: Colors.black26,
-                            blurRadius: 1,
-                            offset: Offset(1, 1))
-                      ]),
-                  child: Theme(
-                    data: Theme.of(context)
-                        .copyWith(
-                        dividerColor: Colors
-                            .transparent),
-                    child: ExpansionTile(
-                      backgroundColor:
-                      const Color(0xFFFCFBFA),
-                      iconColor:
-                      const Color(0xFF07B6CA),
-                      collapsedIconColor:
-                      const Color(0xFF07B6CA),
-                      childrenPadding:
-                      const EdgeInsets.all(1),
-                      title: Text(
-                        "Where can I download the ZIP mobile application",
-                        style:
-                        GoogleFonts.poppins(
-                          color: const Color(
-                              0xFF1D1D1D),
-                          fontWeight:
-                          FontWeight.w400,
-                          fontSize: 12,
-                        ),
-                      ),
-                      children: <Widget>[
-                        ListTile(
-                          iconColor: const Color(
-                              0xFF07B6CA),
-                          isThreeLine: true,
-                          subtitle: Text(
-                            'Enum dispenser qua claque corrupt. Aut non quisquamlaboriosam ut minus. '
-                                'Quid sit face et cum fugal desertion Podio. Consecrate deletion est venial. Voluptuousness et expedite illumos.',
-                            style: GoogleFonts
-                                .poppins(
-                              color: const Color(
-                                  0xFFBBBBBB),
-                              fontWeight:
-                              FontWeight.w400,
-                              fontSize: 11,
-                            ),
+    Obx(() {
+    return statusOffaq.value.isSuccess
+    ?  ListView.builder(
+          
+            shrinkWrap: true,
+            physics:
+            const NeverScrollableScrollPhysics(),
+            itemCount: faq.value.data!.length,
+            itemBuilder: (context, index) {
+              return Column(
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                        color:
+                         Colors.white,
+                        border: Border.all(color: AppTheme.primaryColor,width: 1),
+                        borderRadius:
+                        BorderRadius.circular(
+                            15),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black26,
+                              blurRadius: 1,
+                              offset: Offset(1, 1))
+                        ]),
+                    child: Theme(
+                      data: Theme.of(context)
+                          .copyWith(
+                          dividerColor: Colors
+                              .transparent),
+                      child: ExpansionTile(
+                        backgroundColor:
+                        const Color(0xFFFCFBFA),
+                        iconColor:
+                        const Color(0xFF07B6CA),
+                        collapsedIconColor:
+                        const Color(0xFF07B6CA),
+                        childrenPadding:
+                        const EdgeInsets.all(1),
+                        title: Text(
+              faq.value.data![index].question.toString(),
+                          style:
+                          GoogleFonts.poppins(
+                            color: const Color(
+                                0xFF1D1D1D),
+                            fontWeight:
+                            FontWeight.w400,
+                            fontSize: 12,
                           ),
-                          dense: true,
                         ),
-                      ],
+                        children: <Widget>[
+                          ListTile(
+                            iconColor: const Color(
+                                0xFF07B6CA),
+                            isThreeLine: true,
+                            subtitle: Html(
+
+
+              data:
+                              faq.value.data![index].answer.toString(),
+
+                            ),
+                            dense: true,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-             SizedBox(height: 20,),
-              ],
-            );
-          }),
+               SizedBox(height: 20,),
+                ],
+              );
+            })  : statusOffaq.value.isError
+        ? CommonErrorWidget(
+      errorText:"network error",
+
+      onTap: () {
+        getFaq();
+      },
+    )
+        : const CommonProgressIndicator();
+    }),
+
 
     ]
     ))));
