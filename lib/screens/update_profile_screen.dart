@@ -275,12 +275,17 @@ class _UpdateProfileState extends State<UpdateProfile> {
                 padding: const EdgeInsets.only(right: 20),
                 child: Align(
                   alignment: Alignment.topRight,
-                  child: Text(
-                    "Change Password",
-                    style: GoogleFonts.poppins(
-                        color: const Color(0xFF1D1D1D),
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500),
+                  child: InkWell(
+                    onTap: (){
+                      Get.toNamed(MyRouters.updatePassword);
+                    },
+                    child: Text(
+                      "Change Password",
+                      style: GoogleFonts.poppins(
+                          color: const Color(0xFF1D1D1D),
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500),
+                    ),
                   ),
                 ),
               ),

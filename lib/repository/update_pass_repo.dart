@@ -1,33 +1,32 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-import '../models/login_model.dart';
 import '../models/modal_registor.dart';
-import '../models/update_setting_modal.dart';
+import '../models/model_update_password.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
 
 
-Future<UpdateSettingModal> updateSettingRepo({hide_balance,context,enable_security_lock,transaction_pin,enable_fingerprints}) async {
-
-
+Future<ModelUpdatePassword> updatePassRepo({old_password,confirm_password,context,new_password,}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
 
-  map['hide_balance'] = hide_balance;
-  map['enable_security_lock'] =  enable_security_lock;
-  map['transaction_pin'] = transaction_pin;
-  map['enable_fingerprints'] = enable_fingerprints;
+  map['old_password'] = old_password;
+
+  map['new_password'] = new_password;
+
+
+  map['confirm_password'] =  confirm_password;
+
 
 
 
   print(map);
   // try {
-  http.Response response = await http.post(Uri.parse(ApiUrls.updateSetting),
+  http.Response response = await http.post(Uri.parse(ApiUrls.updatePassword),
       headers: await getAuthHeader(),
       body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
@@ -37,12 +36,12 @@ Future<UpdateSettingModal> updateSettingRepo({hide_balance,context,enable_securi
   if (response.statusCode == 200) {
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
-    return UpdateSettingModal.fromJson(jsonDecode(response.body));
+    return ModelUpdatePassword.fromJson(jsonDecode(response.body));
 
   } else {
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
-    return UpdateSettingModal(message: jsonDecode(response.body)["message"], );
+    return ModelUpdatePassword(message: jsonDecode(response.body)["message"],status: false );
   }
   // }  catch (e) {
   //   Helpers.hideLoader(loader);
