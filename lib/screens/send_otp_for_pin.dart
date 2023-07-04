@@ -4,6 +4,7 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/resourses/api_constant.dart';
+import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 
@@ -113,6 +114,7 @@ class _SendOtpForPinState extends State<SendOtpForPin> {
                         InkWell(
                             onTap: () {
                               sendotpforpin();
+                              Get.toNamed(MyRouters.verifyOtpForPinScreen);
                             },
                             child: const CustomOutlineButton(
                               title: "Update",

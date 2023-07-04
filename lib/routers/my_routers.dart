@@ -31,6 +31,7 @@ import 'package:zip/screens/sucess.dart';
 import 'package:zip/screens/transaction1_page.dart';
 import 'package:zip/screens/transaction_history.dart';
 import 'package:zip/screens/update_profile_screen.dart';
+import 'package:zip/screens/verify_otp_for_pin.dart';
 import 'package:zip/screens/your_balance_screen.dart';
 import 'package:zip/screens/zipTag)_screen.dart';
 
@@ -124,6 +125,7 @@ class MyRouters{
   static var profileUpdateScreen = "/profileUpdateScreen";
   static var changeZipPinScreen = "/changeZipPinScreen";
   static var sendOtpForPinScreen = "/sendOtpForPinScreen";
+  static var verifyOtpForPinScreen = "/verifyOtpForPinScreen";
 
 
 
@@ -188,7 +190,9 @@ class MyRouters{
     GetPage(name: "/loginScreen", page: ()=>  const LoginScreen()),
     GetPage(name: "/emailLoginScreen", page: ()=>  const EmailLoginScreen()),
     GetPage(name: "/profileUpdateScreen", page: ()=>  const UpdateProfile()),
+    GetPage(name: "/changeZipPinScreen", page: ()=>  const ChangeZipPin()),
     GetPage(name: "/sendOtpForPinScreen", page: ()=>  const SendOtpForPin()),
+    GetPage(name: "/verifyOtpForPinScreen", page: ()=>  const VerifyOtpForPin()),
 
 
   ];

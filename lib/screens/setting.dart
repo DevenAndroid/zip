@@ -398,7 +398,7 @@ class _SettingState extends State<Setting> {
                               fontWeight: FontWeight.w400),
                         ),
                         Text(
-                          "CChange your ZIP PIN and set new one",
+                          "Change your ZIP PIN and set new one",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
                               fontSize: 9,
