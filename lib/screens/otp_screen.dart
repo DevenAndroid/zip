@@ -1,16 +1,17 @@
+
 import 'dart:convert';
 import 'dart:io';
 
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:pinput/pinput.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_colour.dart';
+
 
 import '../controller/number_controller.dart';
 import '../controller/update_user.dart';
@@ -21,6 +22,9 @@ import '../repository/setting_repo.dart';
 import '../repository/verify_africa_b.dart';
 import '../resourses/api_constant.dart';
 
+import '../controller/update_user.dart';
+
+
 class OtpScreen extends StatefulWidget {
   const OtpScreen({Key? key}) : super(key: key);
 
@@ -29,6 +33,7 @@ class OtpScreen extends StatefulWidget {
 }
 
 class _OtpScreenState extends State<OtpScreen> {
+
 
   final formKeypin = GlobalKey<FormState>();
   final registorController = Get.put(registerController());
@@ -39,6 +44,7 @@ class _OtpScreenState extends State<OtpScreen> {
 
 
   final numbercontroller = Get.put(numberController());
+
 
 
   @override
@@ -71,73 +77,75 @@ class _OtpScreenState extends State<OtpScreen> {
         ),
         body: SingleChildScrollView(
             child: Form(
-              key: formKeypin,
-              child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10.0, right: 10),
-                          child: Text(
-                            "Create your unique 4-digits pin!",
-                            style: GoogleFonts.poppins(
-                                color: const Color(0xFF1D1D1D),
-                                fontSize: 22,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
 
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10.0, right: 10),
-                          child: Text(
-                            "Please remember this pin. It’ll be used to keep your account secure ",
-                            style: GoogleFonts.poppins(
-                                color: const Color(0xFF1D1D1D),
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400),
-                          ),
+          key: formKeypin,
+          child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0, right: 10),
+                      child: Text(
+                        "Create your unique 4-digits pin!",
+                        style: GoogleFonts.poppins(
+                            color: const Color(0xFF1D1D1D),
+                            fontSize: 22,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0, right: 10),
+                      child: Text(
+                        "Please remember this pin. It’ll be used to keep your account secure ",
+                        style: GoogleFonts.poppins(
+                            color: const Color(0xFF1D1D1D),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 25.0, right: 25),
+                      child: Center(
+                        child: Pinput(
+                          validator: MultiValidator([
+                            RequiredValidator(errorText: 'Enter 4 Digit Pin')
+                          ]),
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          controller: registorController.otpcontroller,
+                          keyboardType: TextInputType.number,
+                          length: 4,
+                          defaultPinTheme: defaultPinTheme,
                         ),
-                        SizedBox(
-                          height: 40,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 25.0, right: 25),
-                          child: Center(
-                            child: Pinput(
-                              validator: MultiValidator([
-                                RequiredValidator(errorText: 'Ente r 4 Digit Pin')
-                              ]),
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              controller: registorController.otpcontroller,
-                              keyboardType: TextInputType.number,
-                              length: 4,
-                              defaultPinTheme: defaultPinTheme,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: size.height * .6,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            registorController.  updateUser(context);
+                      ),
+                    ),
+                    SizedBox(
+                      height: size.height * .6,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        if (formKeypin.currentState!.validate()) {
+                          registorController.updateUser();
+                        }
+                      },
+                      child: CustomOutlineBoder(
+                        title: "Skip",
+                        backgroundColor: Colors.white,
+                        textColor: AppTheme.buttonColor,
+                        onPressed: () {
+                          Get.toNamed(MyRouters.otpScreen);
+                        },
+                      ),
+                    )
+                  ])),
+        )));
 
-                          },
-                          child: CustomOutlineBoder(
-                            title: "Next",
-                            backgroundColor: Colors.white,
-                            textColor: AppTheme.buttonColor,
-                            onPressed: () {
-                              Get.toNamed(MyRouters.otpScreen);
-                            },
-                          ),
-                        )
-                      ])),
-            )));
   }
 }

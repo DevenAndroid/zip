@@ -7,6 +7,7 @@ import 'package:zip/screens/bottom_nav_screens/dashboard_screen.dart';
 import 'package:zip/screens/bottom_nav_screens/send_cash2.dart';
 
 import 'package:zip/screens/bottomnav_bar.dart';
+import 'package:zip/screens/change_zip_pin.dart';
 import 'package:zip/screens/confirm_bank.dart';
 import 'package:zip/screens/country_page.dart';
 
@@ -25,9 +26,11 @@ import 'package:zip/screens/regestration_extra_details.dart';
 import 'package:zip/screens/regestration_selectable.dart';
 import 'package:zip/screens/resgestration_name.dart';
 import 'package:zip/screens/select_payment.dart';
+import 'package:zip/screens/send_otp_for_pin.dart';
 import 'package:zip/screens/sucess.dart';
 import 'package:zip/screens/transaction1_page.dart';
 import 'package:zip/screens/transaction_history.dart';
+import 'package:zip/screens/update_profile_screen.dart';
 import 'package:zip/screens/your_balance_screen.dart';
 import 'package:zip/screens/zipTag)_screen.dart';
 
@@ -57,7 +60,11 @@ import '../screens/addfundsinbank.dart';
 import '../screens/email_login.dart';
 import '../screens/onboardingScreen.dart';
 import '../screens/profile_screen.dart';
+
 import '../screens/verify_africa_ui.dart';
+
+
+
 import '../splash1.dart';
 
 class MyRouters{
@@ -118,12 +125,18 @@ class MyRouters{
   static var sharePaymentLink = "/sharePaymentLink";
   static var loginScreen = "/loginScreen";
   static var emailLoginScreen = "/emailLoginScreen";
+
   static var verifyAfricaScreen = "/verifyAfricaScreen";
+
+  static var profileUpdateScreen = "/profileUpdateScreen";
+  static var changeZipPinScreen = "/changeZipPinScreen";
+  static var sendOtpForPinScreen = "/sendOtpForPinScreen";
+
 
 
 
   static var route = [
-    GetPage(name: '/', page: () =>   const Splash()),
+    GetPage(name: '/', page: () =>    Splash()),
 
 
 
@@ -183,6 +196,8 @@ class MyRouters{
     GetPage(name: "/transferLimit", page: ()=>  const Transferlimit()),
     GetPage(name: "/loginScreen", page: ()=>  const LoginScreen()),
     GetPage(name: "/emailLoginScreen", page: ()=>  const EmailLoginScreen()),
+    GetPage(name: "/profileUpdateScreen", page: ()=>  const UpdateProfile()),
+    GetPage(name: "/sendOtpForPinScreen", page: ()=>  const SendOtpForPin()),
 
 
   ];

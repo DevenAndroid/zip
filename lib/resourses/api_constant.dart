@@ -22,8 +22,14 @@ class ApiUrls {
   static const String userVerifyOtp = "${apiBaseUrl}verify-otp";
   static const String updateDetails = "${apiBaseUrl}update-details";
   static const String loginUser = "${apiBaseUrl}login";
+  static const String changeZipPin = "${apiBaseUrl}change-zip-pin";
+  static const String myProfile = "${apiBaseUrl}my-profile";
+  static const String updateProfile = "${apiBaseUrl}update-profile";
+  static const String updateSetting = "${apiBaseUrl}update-settings";
+  static const String userSetting = "${apiBaseUrl}user-settings";
   static const String userAddress = "${apiBaseUrl}add-user-address";
   static const String zipTag = "${apiBaseUrl}check-zip-tag";
+  static const String sendOtpForPin = "${apiBaseUrl}send-otp-for-pin";
   static const String benificeryList  = "https://api.flutterwave.com/v3/beneficiaries";
 }
 

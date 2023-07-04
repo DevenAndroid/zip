@@ -103,6 +103,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
       ).then((value) {
         login.value = value;
         if (value.status == true) {
+
           Get.toNamed(MyRouters.bottomNavbar);
           statusOflogin.value = RxStatus.success();
           showToast(value.message.toString());
