@@ -272,6 +272,7 @@ class _SettingState extends State<Setting> {
                     onChanged: (value) {
                       setState(() {
                         modal.value.data!.enableSecurityLock = value;
+                        updateSetting();
                       });
                     },
                   ),
@@ -318,6 +319,7 @@ class _SettingState extends State<Setting> {
                     onChanged: (value) {
                       setState(() {
                         modal.value.data!.transactionPin = value;
+                        updateSetting();
                       });
                     },
                   ),
@@ -364,6 +366,7 @@ class _SettingState extends State<Setting> {
                     onChanged: (value) {
                       setState(() {
                         modal.value.data!.enableFingerprints = value;
+                        updateSetting();
                       });
                     },
                   ),
@@ -464,7 +467,7 @@ class _SettingState extends State<Setting> {
                 padding: const EdgeInsets.only(left: 29),
                 child: InkWell(
                   onTap: () {
-                    Get.to(const Transferlimit());
+                Get.toNamed(MyRouters.loginScreen);
                   },
                   child: Text(
                     "Sign Out",

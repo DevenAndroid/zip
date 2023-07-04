@@ -14,6 +14,7 @@ Future<SendOtpForPinModal> sendOtpForPinRepo({ context, type}) async {
   http.Response response = await http.post(Uri.parse(ApiUrls.sendOtpForPin),
       headers: await getAuthHeader(), body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
+  print(map);
 
   if (response.statusCode == 200) {
     Helpers.hideLoader(loader);

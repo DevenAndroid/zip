@@ -6,6 +6,7 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_notifier.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/login_model.dart';
 import '../repository/login_repo.dart';
@@ -44,9 +45,11 @@ class _LoginScreenState extends State<LoginScreen> {
           password:nopasswordController.text.trim(),
           phone_email:"+234"+mobileNoController.text.trim(),
           type: "phone"
-      ).then((value) {
+      ).then((value) async {
         login.value = value;
         if (value.status == true) {
+          SharedPreferences pref = await SharedPreferences.getInstance();
+          pref.setString('cookie', value.authToken.toString());
           Get.toNamed(MyRouters.bottomNavbar);
           statusOflogin.value = RxStatus.success();
           showToast(value.message.toString());

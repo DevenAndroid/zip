@@ -32,7 +32,7 @@ class _ChangeZipPinState extends State<ChangeZipPin> {
 
   final formKeyTag = GlobalKey<FormState>();
 
-  Email() {
+  changeZipPin() {
     if (formKeyTag.currentState!.validate()) {
 
       changeZipPinRepo(
@@ -88,7 +88,7 @@ class _ChangeZipPinState extends State<ChangeZipPin> {
                     Padding(
                       padding: const EdgeInsets.only(left: 10.0, right: 10),
                       child: Text(
-                        "Update your @Zip Tag, your unique name for getting paid by anyone ",
+                        "Update your Zip Pin, your unique Pin for getting paid by anyone ",
                         style: GoogleFonts.poppins(
                             color: const Color(0xFF1D1D1D),
                             fontSize: 22,
@@ -103,17 +103,7 @@ class _ChangeZipPinState extends State<ChangeZipPin> {
                           RequiredValidator(
                               errorText: 'Please enter your old pin '),
                         ]),
-                        suffixIcon: Padding(
-                          padding: const EdgeInsets.only(top: 15.0),
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(10),
-                                  bottomRight: Radius.circular(10)),
-                            ),
 
-                          ),
-                        ),
                         controller: oldZipController,
                         obSecure: false,
                         hintText: "Enter your old pin"),
@@ -126,25 +116,17 @@ class _ChangeZipPinState extends State<ChangeZipPin> {
                           RequiredValidator(
                               errorText: 'Please enter your new pin '),
                         ]),
-                        suffixIcon: Padding(
-                          padding: const EdgeInsets.only(top: 15.0),
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(10),
-                                  bottomRight: Radius.circular(10)),
-                            ),
 
-                          ),
-                        ),
                         controller: newZipController,
                         obSecure: false,
+
                         hintText: "Enter your new pin"),
                     SizedBox(
                       height: size.height * .40,
                     ),
                     InkWell(
                         onTap: () {
+                          changeZipPin();
                         },
                         child: const CustomOutlineButton(
                           title: "Update",

@@ -34,6 +34,7 @@ class _SendOtpForPinState extends State<SendOtpForPin> {
           type: gender.toString()
       ).then((value) {
         if (value.status == true) {
+          Get.toNamed(MyRouters.verifyOtpForPinScreen);
            showToast(value.message.toString());
 
         } else {
@@ -105,6 +106,7 @@ class _SendOtpForPinState extends State<SendOtpForPin> {
                           onChanged: (value){
                             setState(() {
                               gender = value;
+                              print(gender);
                             });
                           },
                         ),
@@ -114,7 +116,7 @@ class _SendOtpForPinState extends State<SendOtpForPin> {
                         InkWell(
                             onTap: () {
                               sendotpforpin();
-                              Get.toNamed(MyRouters.verifyOtpForPinScreen);
+
                             },
                             child: const CustomOutlineButton(
                               title: "Update",

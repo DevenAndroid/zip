@@ -38,8 +38,8 @@ Future getAuthHeader() async {
   SharedPreferences pref = await SharedPreferences.getInstance();
   // pref.getString("cookie")!.toString().replaceAll('\"', '');
   var gg ={
-    HttpHeaders.contentTypeHeader: 'application/json',
-    HttpHeaders.acceptHeader: 'application/json',
+     HttpHeaders.contentTypeHeader: 'application/json',
+     HttpHeaders.acceptHeader: 'application/json',
 
     // HttpHeaders.authorizationHeader:"FLWSECK_TEST-SANDBOXDEMOKEY-X"
     if(pref.getString("cookie") != null)
