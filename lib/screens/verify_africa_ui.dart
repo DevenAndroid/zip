@@ -18,6 +18,7 @@ class VerifyAfricaScreen extends StatefulWidget {
 class _VerifyAfricaScreenState extends State<VerifyAfricaScreen> {
   final formKeyVerify = GlobalKey<FormState>();
   final registorController = Get.put(registerController());
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

@@ -62,6 +62,7 @@ import '../screens/email_login.dart';
 import '../screens/onboardingScreen.dart';
 import '../screens/profile_screen.dart';
 
+import '../screens/update_password.dart';
 import '../screens/verify_africa_ui.dart';
 
 
@@ -133,6 +134,7 @@ class MyRouters{
   static var changeZipPinScreen = "/changeZipPinScreen";
   static var sendOtpForPinScreen = "/sendOtpForPinScreen";
   static var verifyOtpForPinScreen = "/verifyOtpForPinScreen";
+  static var updatePassword = "/updatePassword";
 
 
 
@@ -155,6 +157,7 @@ class MyRouters{
     GetPage(name: '/dashBoard', page: () =>  const DashBoard()),
 
     GetPage(name: '/mobileNumber', page: () =>  const MobileNumberScreen()),
+    GetPage(name: '/updatePassword', page: () =>  const UpdatePassword()),
 
 
     GetPage(name: '/selectableScreen', page: () =>  const SelectableScreen()),

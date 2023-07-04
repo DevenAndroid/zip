@@ -15,6 +15,7 @@ class ApiUrls {
   static const String verifyOtp = "${apiBaseUrl}otps/";
   static const String chooseBank = "${apiBaseUrl}banks/";
   static const String registerUser = "${apiBaseUrl}register";
+  static const String updatePassword = "${apiBaseUrl}update-password";
   static const String SettingApi = "${apiBaseUrl}settings";
   static const String faq = "${apiBaseUrl}faq";
   static const String verificationAfrica = "${apiBaseUrl}verification-africa";

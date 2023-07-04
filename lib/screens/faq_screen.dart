@@ -136,7 +136,7 @@ class _FAQScreenState extends State<FAQScreen> {
                         const EdgeInsets.all(1),
                         title: Text(
 
-              faq.value.data![index].question.toString(),
+                          "${index + 1}. " +  faq.value.data![index].question.toString(),
                           style:
                           GoogleFonts.poppins(
                             color: const Color(

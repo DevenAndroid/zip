@@ -58,7 +58,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           onTap: () {
             Get.back();
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_rounded,
             color: AppTheme.primaryColor,
           ),
@@ -119,7 +119,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Container(
                         padding:
                         const EdgeInsets.all(5),
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             color: Colors.white,
                             shape: BoxShape.circle),
                         child: Container(
@@ -128,7 +128,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               5),
                           decoration:
                           BoxDecoration(
-                              color: Color(
+                              color: const Color(
                                   0xffF0D75F),
                               borderRadius: BorderRadius.circular(5)),
                           child: Icon(
@@ -153,7 +153,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         fontSize: 20,
                         fontWeight: FontWeight.w400),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Text(
@@ -172,14 +172,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     fontSize: 16,
                     fontWeight: FontWeight.w300),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
-              Divider(
+              const Divider(
                 thickness: 1,
                 color: Color(0x1A000000),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 21,
               ),
               Row(
@@ -208,19 +208,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                 ],
               ),
-              SizedBox(height: 23,),
-              Divider(
+              const SizedBox(height: 23,),
+              const Divider(
                 thickness: 5,
                 color: Color(0x1A000000),
               ),
-              SizedBox(height: 12,),
+              const SizedBox(height: 12,),
               InkWell(
                 onTap: () {
                   Get.toNamed(MyRouters.addAPayer);
                 },
                 child: Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     Column(
@@ -242,28 +242,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ],
                     ),
-                    Spacer(),
+                    const Spacer(),
 
-                    Icon(Icons.arrow_forward_ios, size: 15,),
-                    SizedBox(
+                    const Icon(Icons.arrow_forward_ios, size: 15,),
+                    const SizedBox(
                       width: 20,
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 12,),
-              Divider(
+              const SizedBox(height: 12,),
+              const Divider(
                 thickness: 1,
                 color: Color(0x1A000000),
               ),
-              SizedBox(height: 12,),
+              const SizedBox(height: 12,),
               InkWell(
                 onTap: () {
                   Get.toNamed(MyRouters.yourBalanceScreen);
                 },
                 child: Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     Column(
@@ -285,24 +285,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ],
                     ),
-                    Spacer(),
+                    const Spacer(),
 
-                    Icon(Icons.arrow_forward_ios, size: 15,),
-                    SizedBox(
+                    const Icon(Icons.arrow_forward_ios, size: 15,),
+                    const SizedBox(
                       width: 20,
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 12,),
-              Divider(
+              const SizedBox(height: 12,),
+              const Divider(
                 thickness: 1,
                 color: Color(0x1A000000),
               ),
-              SizedBox(height: 12,),
+              const SizedBox(height: 12,),
               Row(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   Column(
@@ -324,27 +324,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ],
                   ),
-                  Spacer(),
+                  const Spacer(),
 
-                  Icon(Icons.arrow_forward_ios, size: 15,),
-                  SizedBox(
+                  const Icon(Icons.arrow_forward_ios, size: 15,),
+                  const SizedBox(
                     width: 20,
                   ),
                 ],
               ),
-              SizedBox(height: 12,),
-              Divider(
+              const SizedBox(height: 12,),
+              const Divider(
                 thickness: 5,
                 color: Color(0x1A000000),
               ),
-              SizedBox(height: 12,),
+              const SizedBox(height: 12,),
               InkWell(
                 onTap: () {
                   Get.toNamed(MyRouters.buyServices);
                 },
                 child: Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     Column(
@@ -366,7 +366,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ],
                     ),
-                    Spacer(),
+                    const Spacer(),
 
                     Text(
                       "2% OFF",
@@ -376,26 +376,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           fontWeight: FontWeight.w500),
                     ),
 
-                    Icon(Icons.arrow_forward_ios, size: 15,),
-                    SizedBox(
+                    const Icon(Icons.arrow_forward_ios, size: 15,),
+                    const SizedBox(
                       width: 20,
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 12,),
-              Divider(
+              const SizedBox(height: 12,),
+              const Divider(
                 thickness: 1,
                 color: Color(0x1A000000),
               ),
-              SizedBox(height: 12,),
+              const SizedBox(height: 12,),
               InkWell(
                 onTap: () {
                   Get.toNamed(MyRouters.payBillsServices);
                 },
                 child: Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     Column(
@@ -417,24 +417,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ],
                     ),
-                    Spacer(),
+                    const Spacer(),
 
-                    Icon(Icons.arrow_forward_ios, size: 15,),
-                    SizedBox(
+                    const Icon(Icons.arrow_forward_ios, size: 15,),
+                    const SizedBox(
                       width: 20,
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 12,),
-              Divider(
+              const SizedBox(height: 12,),
+              const Divider(
                 thickness: 1,
                 color: Color(0x1A000000),
               ),
-              SizedBox(height: 12,),
+              const SizedBox(height: 12,),
               Row(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   Column(
@@ -456,23 +456,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ],
                   ),
-                  Spacer(),
+                  const Spacer(),
 
-                  Icon(Icons.arrow_forward_ios, size: 15,),
-                  SizedBox(
+                  const Icon(Icons.arrow_forward_ios, size: 15,),
+                  const SizedBox(
                     width: 20,
                   ),
                 ],
               ),
-              SizedBox(height: 12,),
-              Divider(
+              const SizedBox(height: 12,),
+              const Divider(
                 thickness: 5,
                 color: Color(0x1A000000),
               ),
-              SizedBox(height: 12,),
+              const SizedBox(height: 12,),
               Row(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   Column(
@@ -494,23 +494,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ],
                   ),
-                  Spacer(),
+                  const Spacer(),
 
-                  Icon(Icons.arrow_forward_ios, size: 15,),
-                  SizedBox(
+                  const Icon(Icons.arrow_forward_ios, size: 15,),
+                  const SizedBox(
                     width: 20,
                   ),
                 ],
               ),
-              SizedBox(height: 12,),
-              Divider(
+              const SizedBox(height: 12,),
+              const Divider(
                 thickness: 1,
                 color: Color(0x1A000000),
               ),
-              SizedBox(height: 12,),
+              const SizedBox(height: 12,),
               Row(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   Column(
@@ -532,27 +532,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ],
                   ),
-                  Spacer(),
+                  const Spacer(),
 
-                  Icon(Icons.arrow_forward_ios, size: 15,),
-                  SizedBox(
+                  const Icon(Icons.arrow_forward_ios, size: 15,),
+                  const SizedBox(
                     width: 20,
                   ),
                 ],
               ),
-              SizedBox(height: 12,),
-              Divider(
+              const SizedBox(height: 12,),
+              const Divider(
                 thickness: 1,
                 color: Color(0x1A000000),
               ),
-              SizedBox(height: 12,),
+              const SizedBox(height: 12,),
               InkWell(
                 onTap: () {
                   Get.toNamed(MyRouters.transferLimit);
                 },
                 child: Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     Column(
@@ -574,28 +574,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ],
                     ),
-                    Spacer(),
+                    const Spacer(),
 
-                    Icon(Icons.arrow_forward_ios, size: 15,),
-                    SizedBox(
+                    const Icon(Icons.arrow_forward_ios, size: 15,),
+                    const SizedBox(
                       width: 20,
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 12,),
-              Divider(
+              const SizedBox(height: 12,),
+              const Divider(
                 thickness: 1,
                 color: Color(0x1A000000),
               ),
-              SizedBox(height: 12,),
+              const SizedBox(height: 12,),
               InkWell(
                 onTap: () {
                   Get.toNamed(MyRouters.setting);
                 },
                 child: Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     Column(
@@ -617,19 +617,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ],
                     ),
-                    Spacer(),
+                    const Spacer(),
 
-                    Icon(Icons.arrow_forward_ios, size: 15,),
-                    SizedBox(
+                    const Icon(Icons.arrow_forward_ios, size: 15,),
+                    const SizedBox(
                       width: 30,
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 70,)
+              const SizedBox(height: 70,)
             ],
           ),
-        ): Center(child: CircularProgressIndicator(),);
+        ): const Center(child: CircularProgressIndicator(),);
       }),
     );
   }

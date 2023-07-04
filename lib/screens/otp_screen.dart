@@ -132,7 +132,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     InkWell(
                       onTap: () {
                         if (formKeypin.currentState!.validate()) {
-                          registorController.updateUser();
+                          registorController.updateUser(context);
                         }
                       },
                       child: CustomOutlineBoder(
