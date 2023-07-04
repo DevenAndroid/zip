@@ -27,6 +27,7 @@ class ApiUrls {
   static const String userAddress = "${apiBaseUrl}add-user-address";
   static const String zipTag = "${apiBaseUrl}check-zip-tag";
   static const String sendOtpForPin = "${apiBaseUrl}send-otp-for-pin";
+  static const String verifyOtpForPin = "${apiBaseUrl}verify-otp-for-pin";
   static const String benificeryList  = "https://api.flutterwave.com/v3/beneficiaries";
 }
 

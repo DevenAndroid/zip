@@ -21,7 +21,7 @@ Future<VerifyOtpForPinModal> verifyOtpForPinRepo({otp,context}) async {
 
   print(map);
   // try {
-  http.Response response = await http.post(Uri.parse(ApiUrls.loginUser),
+  http.Response response = await http.post(Uri.parse(ApiUrls.verifyOtpForPin),
       headers: await getAuthHeader(),
       body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
