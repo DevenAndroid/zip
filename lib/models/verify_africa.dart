@@ -1,63 +1,19 @@
-class ModelVerifyAfrica {
-  bool? status;
-  String? message;
-  Data? data;
+  class ModelVerifyAfrica {
+  dynamic responseCode;
+  dynamic description;
+  dynamic verificationType;
+  dynamic verificationStatus;
+  dynamic transactionStatus;
+  dynamic transactionReference;
+  dynamic transactionDate;
+  dynamic searchParameter;
+  dynamic callBackUrl;
+  dynamic livenessScore;
+  dynamic paymentRef;
+  Response? response;
+  FaceMatch? faceMatch;
 
-  ModelVerifyAfrica({this.status, this.message, this.data});
-
-  ModelVerifyAfrica.fromJson(Map<String, dynamic> json) {
-    status = json['status'];
-    message = json['message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['message'] = this.message;
-    if (this.data != null) {
-      data['data'] = this.data!.toJson();
-    }
-    return data;
-  }
-}
-
-class Data {
-  VerifitionData? verifitionData;
-
-  Data({this.verifitionData});
-
-  Data.fromJson(Map<String, dynamic> json) {
-    verifitionData = json['verifitionData'] != null
-        ? new VerifitionData.fromJson(json['verifitionData'])
-        : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.verifitionData != null) {
-      data['verifitionData'] = this.verifitionData!.toJson();
-    }
-    return data;
-  }
-}
-
-class VerifitionData {
-  String? responseCode;
-  String? description;
-  String? verificationType;
-  String? verificationStatus;
-  String? transactionStatus;
-  String? transactionReference;
-  String? transactionDate;
-  String? searchParameter;
-  Null? callBackUrl;
-  int? livenessScore;
-  Null? paymentRef;
-  Null? response;
-  Null? faceMatch;
-
-  VerifitionData(
+  ModelVerifyAfrica(
       {this.responseCode,
         this.description,
         this.verificationType,
@@ -72,7 +28,7 @@ class VerifitionData {
         this.response,
         this.faceMatch});
 
-  VerifitionData.fromJson(Map<String, dynamic> json) {
+  ModelVerifyAfrica.fromJson(Map<String, dynamic> json) {
     responseCode = json['responseCode'];
     description = json['description'];
     verificationType = json['verificationType'];
@@ -84,8 +40,12 @@ class VerifitionData {
     callBackUrl = json['callBackUrl'];
     livenessScore = json['livenessScore'];
     paymentRef = json['paymentRef'];
-    response = json['response'];
-    faceMatch = json['faceMatch'];
+    response = json['response'] != null
+        ? new Response.fromJson(json['response'])
+        : null;
+    faceMatch = json['faceMatch'] != null
+        ? new FaceMatch.fromJson(json['faceMatch'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -101,8 +61,74 @@ class VerifitionData {
     data['callBackUrl'] = this.callBackUrl;
     data['livenessScore'] = this.livenessScore;
     data['paymentRef'] = this.paymentRef;
-    data['response'] = this.response;
-    data['faceMatch'] = this.faceMatch;
+    if (this.response != null) {
+      data['response'] = this.response!.toJson();
+    }
+    if (this.faceMatch != null) {
+      data['faceMatch'] = this.faceMatch!.toJson();
+    }
+    return data;
+  }
+}
+
+class Response {
+  dynamic validity;
+  dynamic bvn;
+  dynamic status;
+  dynamic basicDetailBase64;
+  dynamic description;
+  dynamic imageBase64;
+
+  Response(
+      {this.validity,
+        this.bvn,
+        this.status,
+        this.basicDetailBase64,
+        this.description,
+        this.imageBase64});
+
+  Response.fromJson(Map<String, dynamic> json) {
+    validity = json['validity'];
+    bvn = json['bvn'];
+    status = json['status'];
+    basicDetailBase64 = json['basicDetailBase64'];
+    description = json['description'];
+    imageBase64 = json['imageBase64'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['validity'] = this.validity;
+    data['bvn'] = this.bvn;
+    data['status'] = this.status;
+    data['basicDetailBase64'] = this.basicDetailBase64;
+    data['description'] = this.description;
+    data['imageBase64'] = this.imageBase64;
+    return data;
+  }
+}
+
+class FaceMatch {
+  dynamic score;
+  dynamic verdict;
+  dynamic message;
+  dynamic selfie;
+
+  FaceMatch({this.score, this.verdict, this.message, this.selfie});
+
+  FaceMatch.fromJson(Map<String, dynamic> json) {
+    score = json['score'];
+    verdict = json['verdict'];
+    message = json['message'];
+    selfie = json['selfie'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['score'] = this.score;
+    data['verdict'] = this.verdict;
+    data['message'] = this.message;
+    data['selfie'] = this.selfie;
     return data;
   }
 }

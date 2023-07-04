@@ -48,10 +48,10 @@ Future<ModelVerifyAfrica> verifyAfricaRepo({
     }
   } on SocketException catch (e) {
     Helpers.hideLoader(loader);
-    return ModelVerifyAfrica(message: "No Internet Access", );
+    return ModelVerifyAfrica();
   } catch (e) {
     Helpers.hideLoader(loader);
-    return ModelVerifyAfrica(message: e.toString(),);
+    return ModelVerifyAfrica();
   }
 }
 

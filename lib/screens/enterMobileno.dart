@@ -55,7 +55,9 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
       ).then((value) {
 
         numbercontroller.isNumber =false;
+        numbercontroller.isNumberBvn =false;
         numbercontroller.email="+234"+mobileNoController.text.trim();
+        numbercontroller.emailBvn=BVNController1.text.trim();
         register.value = value;
         if (value.status == true) {
           Get.toNamed(MyRouters.mobileOtpScreen,arguments: ["+234"+mobileNoController.text]);
@@ -249,10 +251,30 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                       ),
                       SizedBox(height: 15,),
                       CommonTextfield(
+                        keyboardType:
+                        const TextInputType.numberWithOptions(
+                            decimal: true),
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(11),
+                          FilteringTextInputFormatter.allow(
+                              RegExp('[0-9]+')),
+                        ],
+                        onChanged: (value) =>
+                        doubleVar = double.parse(value),
                         validator: MultiValidator([
                           RequiredValidator(
                               errorText:
-                              'Please enter your BVN number '),]),controller: BVNController1,obSecure: false, labelText: "BVN Number", hintText: 'BVN Number',),
+                              'Please enter your contact bvn number '),
+                          MinLengthValidator(11,
+                              errorText:
+                              'Please enter minumum  11 digit bnv number'),
+                          MaxLengthValidator(11,
+                              errorText:
+                              'Please enter 11 digit bvn number'),
+                          PatternValidator(
+                              r'(^(?:[+0]9)?[0-9]{10,12}$)',
+                              errorText: '')
+                        ]),controller: BVNController1,obSecure: false, labelText: "BVN Number", hintText: 'BVN Number',),
                       SizedBox(height: 15,),
                       CommonTextfield(
                         suffixIcon: GestureDetector(
