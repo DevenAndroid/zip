@@ -57,6 +57,7 @@ import '../screens/addfundsinbank.dart';
 import '../screens/email_login.dart';
 import '../screens/onboardingScreen.dart';
 import '../screens/profile_screen.dart';
+import '../screens/verify_africa_ui.dart';
 import '../splash1.dart';
 
 class MyRouters{
@@ -117,6 +118,7 @@ class MyRouters{
   static var sharePaymentLink = "/sharePaymentLink";
   static var loginScreen = "/loginScreen";
   static var emailLoginScreen = "/emailLoginScreen";
+  static var verifyAfricaScreen = "/verifyAfricaScreen";
 
 
 
@@ -129,6 +131,7 @@ class MyRouters{
     GetPage(name: '/requestAPaymentContiune', page: () =>   const RequestAPaymentContiune()),
     GetPage(name: '/sendCash1', page: () =>  const SendCash1()),
     GetPage(name: '/sharePaymentLink', page: () =>  const SharePaymentLink()),
+    GetPage(name: '/verifyAfricaScreen', page: () =>  const VerifyAfricaScreen()),
     GetPage(name: '/sendCash2', page: () =>  const SendCash2()),
     GetPage(name: '/chooseBank', page: () =>  const ChooseBank()),
     GetPage(name: '/bottomNavbar', page: () =>  const BottomNavbar()),

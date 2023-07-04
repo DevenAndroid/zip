@@ -29,86 +29,17 @@ class OtpScreen extends StatefulWidget {
 }
 
 class _OtpScreenState extends State<OtpScreen> {
-  Rx<ModelVerifyAfrica> modelVerifyAfrica = ModelVerifyAfrica().obs;
+
   final formKeypin = GlobalKey<FormState>();
   final registorController = Get.put(registerController());
-  File image = File("");
 
-  Rx<ModelSetting> setting = ModelSetting().obs;
-  Rx<RxStatus> statusOfSetting = RxStatus.empty().obs;
 
-  Future getSetting() async {
-    await settingRepo().then((value) {
-      setting.value = value;
-      if (value.status == true) {
-        statusOfSetting.value = RxStatus.success();
-      } else {
-        statusOfSetting.value = RxStatus.error();
-      }
-    }
-      // showToast(value.message.toString());
-    );
-  }
-  Rx<RxStatus> statusOfSucess= RxStatus.empty().obs;
-  Future verify() async {
-    await verifyRepo(
-      selfie: base64Image,
-      // phone_email:  numbercontroller.isNumber ? numbercontroller.number:numbercontroller.email,
-      lastName: registorController.lastNameController.text.trim(),
-      firstName: registorController.firstNameController.text.trim(),
-      searchParameter: numbercontroller.isNumberBvn
-          ? numbercontroller.numberBvn
-          : numbercontroller.emailBvn,
-      dob: registorController.dateOfBirthController.text.trim(),
-      apiKey: setting.value.data!.authKey.toString(),
-      userid: setting.value.data!.userID.toString(),
-    ).then((value) {
-      statusOfSucess.value = RxStatus.success();
-      showToast(value.response!.status);
-      showToast(value.verificationStatus);
-      modelVerifyAfrica.value = value;
-      showToast(value.verificationStatus);
-    }
-      // showToast(value.message.toString());
-    );
-  }
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getSetting();
-  }
 
-  String base64Image = "";
+
 
   final numbercontroller = Get.put(numberController());
-  Future pickImage() async {
-    try {
-      final image = await ImagePicker().pickImage(
-        source: ImageSource.gallery,
-      );
 
-      if (image == null) return;
-      if (image.path.toString().contains(".png")) {
-        showToast("dsfdsf");
-        return;
-      }
-
-      print(base64Image);
-      final imageTemporary = File(image.path);
-      setState(() {
-        List<int> imageBytes = imageTemporary.readAsBytesSync();
-        print(imageBytes);
-        base64Image = base64Encode(imageBytes);
-        // "data:image/jpg;base64,"
-        base64Image = "data:image/${image.path.split(".").last};base64,$base64Image";
-        this.image = imageTemporary;
-      });
-    } on PlatformException catch (e) {
-      print('Field to pick img : $e');
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -160,29 +91,7 @@ class _OtpScreenState extends State<OtpScreen> {
                         SizedBox(
                           height: 10,
                         ),
-                        Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(color: AppTheme.primaryColor)),
-                          child: Center(
-                            child: InkWell(
-                                onTap: () => pickImage(),
-                                // child: image.path != ""
-                                //     ?
-                                //
-                                child: ClipOval(
-                                  child: Image.file(
-                                    image,
-                                    width: 120,
-                                    height: 120,
-                                    fit: BoxFit.cover,
-                                    errorBuilder: (_, __, ___) =>
-                                        Icon(Icons.person),
-                                  ),
-                                )),
-                          ),
-                        ),
+
                         Padding(
                           padding: const EdgeInsets.only(left: 10.0, right: 10),
                           child: Text(
@@ -216,7 +125,8 @@ class _OtpScreenState extends State<OtpScreen> {
                         ),
                         InkWell(
                           onTap: () {
-                            verify();
+                            registorController.  updateUser(context);
+
                           },
                           child: CustomOutlineBoder(
                             title: "Next",
