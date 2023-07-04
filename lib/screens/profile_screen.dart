@@ -1,10 +1,15 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
+import 'package:zip/screens/update_profile_screen.dart';
 import 'package:zip/widgets/common_colour.dart';
 
+import '../controller/profile_controller.dart';
+import '../models/myprofile_model.dart';
+import '../repository/myprofile_repo.dart';
 
 
 class ProfileScreen extends StatefulWidget {
@@ -15,9 +20,29 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+
+  final profileController = Get.put(ProfileController());
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData();
+  }
+
+  getData() {
+    myProfileRepo().then((value) {
+      profileController.modal.value = value;
+      if (value.status == true) {
+        print(value.message.toString());
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery
+        .of(context)
+        .size;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -30,7 +55,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               fontWeight: FontWeight.w500),
         ),
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Get.back();
           },
           child: Icon(
@@ -56,459 +81,226 @@ class _ProfileScreenState extends State<ProfileScreen> {
           )
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Stack(
-              children: [
-                Container(
-                  padding:
-                  const EdgeInsets.all(
-                      2),
-                  decoration:
-                  const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.white,
+      body: Obx(() {
+        return profileController.modal.value.status==true?
+        SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Stack(
+                children: [
+                  Container(
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                          Radius.circular(100)),
+                      color: AppTheme.primaryColor,
+                    ),
+                    child: ClipOval(
+                      child: CachedNetworkImage(
+                        width: 120,
+                        height: 120,
+                        fit: BoxFit.cover,
+                        imageUrl: profileController.modal.value.data!.user!.profileImage.toString(),
+                        placeholder: (context, url) =>
+                        const SizedBox(),
+                        errorWidget: (context, url, error) =>
+                        const SizedBox(),
+                      ),
+                    ),
                   ),
-                  margin: EdgeInsets.only(
-                      right:
-                      size.width * .01,
-                      left: size.width *
-                          .015),
-                  child: CircleAvatar(
-                    radius:
-                    size.height * .07,
-                    backgroundImage: NetworkImage('https://www.pngitem.com/pimgs/m/128-1284293_marina-circle-girl-picture-in-circle-png-transparent.png'),
-                  ),
-                ),
-                Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: InkWell(
-                    onTap: () {
-                    },
-                    child: Container(
-                      padding:
-                      const EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          shape: BoxShape.circle),
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: InkWell(
+                      onTap: () {
+                        Get.toNamed(MyRouters.profileUpdateScreen);
+                      },
                       child: Container(
                         padding:
-                        const EdgeInsets.all(
-                            5),
-                        decoration:
-                         BoxDecoration(
-                            color: Color(
-                                0xffF0D75F),
-                           borderRadius: BorderRadius.circular(5)),
-                        child: Icon(
-                          Icons.edit,
-                          color: Colors.black,
-                          size:
-                          size.height * .015,
+                        const EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            shape: BoxShape.circle),
+                        child: Container(
+                          padding:
+                          const EdgeInsets.all(
+                              5),
+                          decoration:
+                          BoxDecoration(
+                              color: Color(
+                                  0xffF0D75F),
+                              borderRadius: BorderRadius.circular(5)),
+                          child: Icon(
+                            Icons.edit,
+                            color: Colors.black,
+                            size:
+                            size.height * .015,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                )
-              ],
-            ),
-            Text(
-              "Daniel Daniel",
-              style: GoogleFonts.poppins(
-                  color: const Color(0xFF1D1D1D),
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400),
-            ),
-            Text(
-              "@danieldan",
-              style: GoogleFonts.poppins(
-                  color: const Color(0xFF1D1D1D),
-                  fontSize: 16,
-                  fontWeight: FontWeight.w300),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            Divider(
-              thickness: 1,
-              color: Color(0x1A000000),
-            ),
-            SizedBox(
-              height: 21,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 30),
-                  child: Text(
-                    "Current Balance",
+                  )
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    profileController.modal.value.data!.user!.fname.toString(),
                     style: GoogleFonts.poppins(
                         color: const Color(0xFF1D1D1D),
-                        fontSize: 13,
+                        fontSize: 20,
                         fontWeight: FontWeight.w400),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 30),
-                  child: Text(
-                    "\$276.00",
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    profileController.modal.value.data!.user!.lname.toString(),
                     style: GoogleFonts.poppins(
                         color: const Color(0xFF1D1D1D),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600),
-                  ),
-                ),
-
-              ],
-            ),
-            SizedBox(height: 23,),
-            Divider(
-              thickness: 5,
-              color: Color(0x1A000000),
-            ),
-            SizedBox(height: 12,),
-            InkWell(
-              onTap: (){
-                Get.toNamed(MyRouters.addAPayer);
-              },
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Add Cash",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      Text(
-                        "Transfer cash from your bank into ZIP",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 9,
-                            fontWeight: FontWeight.w300),
-                      ),
-                    ],
-                  ),
-                  Spacer(),
-
-                 Icon(Icons.arrow_forward_ios,size: 15,),
-                  SizedBox(
-                    width: 20,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400),
                   ),
                 ],
               ),
-            ),
-            SizedBox(height: 12,),
-            Divider(
-              thickness: 1,
-              color: Color(0x1A000000),
-            ),
-            SizedBox(height: 12,),
-            InkWell(
-              onTap: (){
-                Get.toNamed(MyRouters.yourBalanceScreen);
-              },
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Cash Out",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      Text(
-                        "Transfer cash from ZIP into your",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 9,
-                            fontWeight: FontWeight.w300),
-                      ),
-                    ],
-                  ),
-                  Spacer(),
-
-                 Icon(Icons.arrow_forward_ios,size: 15,),
-                  SizedBox(
-                    width: 20,
-                  ),
-                ],
+              Text(
+                profileController.modal.value.data!.user!.zipTag.toString(),
+                style: GoogleFonts.poppins(
+                    color: const Color(0xFF1D1D1D),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w300),
               ),
-            ),
-            SizedBox(height: 12,),
-            Divider(
-              thickness: 1,
-              color: Color(0x1A000000),
-            ),
-            SizedBox(height: 12,),
-            Row(
-              children: [
-                SizedBox(
-                  width: 20,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Check Rates",
+              SizedBox(
+                height: 16,
+              ),
+              Divider(
+                thickness: 1,
+                color: Color(0x1A000000),
+              ),
+              SizedBox(
+                height: 21,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 30),
+                    child: Text(
+                      "Current Balance",
                       style: GoogleFonts.poppins(
                           color: const Color(0xFF1D1D1D),
                           fontSize: 13,
                           fontWeight: FontWeight.w400),
                     ),
-                    Text(
-                      "See current foreign exchange rates",
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 30),
+                    child: Text(
+                      "\$276.00",
                       style: GoogleFonts.poppins(
                           color: const Color(0xFF1D1D1D),
-                          fontSize: 9,
-                          fontWeight: FontWeight.w300),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600),
                     ),
-                  ],
-                ),
-                Spacer(),
-
-               Icon(Icons.arrow_forward_ios,size: 15,),
-                SizedBox(
-                  width: 20,
-                ),
-              ],
-            ),
-            SizedBox(height: 12,),
-            Divider(
-              thickness: 5,
-              color: Color(0x1A000000),
-            ),
-            SizedBox(height: 12,),
-            InkWell(
-              onTap: (){
-                Get.toNamed(MyRouters.buyServices);
-              },
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Buy Airtime",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      Text(
-                        "Buy discounted airtime with your ZIP balance",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 9,
-                            fontWeight: FontWeight.w300),
-                      ),
-                    ],
-                  ),
-                  Spacer(),
-
-                  Text(
-                    "2% OFF",
-                    style: GoogleFonts.poppins(
-                        color: const Color(0xFF0FA657),
-                        fontSize: 13,
-                        fontWeight: FontWeight.w500),
                   ),
 
-                 Icon(Icons.arrow_forward_ios,size: 15,),
-                  SizedBox(
-                    width: 20,
-                  ),
                 ],
               ),
-            ),
-            SizedBox(height: 12,),
-            Divider(
-              thickness: 1,
-              color: Color(0x1A000000),
-            ),
-            SizedBox(height: 12,),
-            InkWell(
-              onTap: (){
-                Get.toNamed(MyRouters.payBillsServices);
-              },
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Pay Bills",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      Text(
-                        "Pay your bills with your ZIP balance",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 9,
-                            fontWeight: FontWeight.w300),
-                      ),
-                    ],
-                  ),
-                  Spacer(),
-
-                 Icon(Icons.arrow_forward_ios,size: 15,),
-                  SizedBox(
-                    width: 20,
-                  ),
-                ],
+              SizedBox(height: 23,),
+              Divider(
+                thickness: 5,
+                color: Color(0x1A000000),
               ),
-            ),
-            SizedBox(height: 12,),
-            Divider(
-              thickness: 1,
-              color: Color(0x1A000000),
-            ),
-            SizedBox(height: 12,),
-            Row(
-              children: [
-                SizedBox(
-                  width: 20,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              SizedBox(height: 12,),
+              InkWell(
+                onTap: () {
+                  Get.toNamed(MyRouters.addAPayer);
+                },
+                child: Row(
                   children: [
-                    Text(
-                      "Connected Merchants",
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF1D1D1D),
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400),
+                    SizedBox(
+                      width: 20,
                     ),
-                    Text(
-                      "See current foreign exchange rates",
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF1D1D1D),
-                          fontSize: 9,
-                          fontWeight: FontWeight.w300),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Add Cash",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        Text(
+                          "Transfer cash from your bank into ZIP",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 9,
+                              fontWeight: FontWeight.w300),
+                        ),
+                      ],
+                    ),
+                    Spacer(),
+
+                    Icon(Icons.arrow_forward_ios, size: 15,),
+                    SizedBox(
+                      width: 20,
                     ),
                   ],
                 ),
-                Spacer(),
-
-               Icon(Icons.arrow_forward_ios,size: 15,),
-                SizedBox(
-                  width: 20,
-                ),
-              ],
-            ),
-            SizedBox(height: 12,),
-            Divider(
-              thickness: 5,
-              color: Color(0x1A000000),
-            ),
-            SizedBox(height: 12,),
-            Row(
-              children: [
-                SizedBox(
-                  width: 20,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              ),
+              SizedBox(height: 12,),
+              Divider(
+                thickness: 1,
+                color: Color(0x1A000000),
+              ),
+              SizedBox(height: 12,),
+              InkWell(
+                onTap: () {
+                  Get.toNamed(MyRouters.yourBalanceScreen);
+                },
+                child: Row(
                   children: [
-                    Text(
-                      "Personal",
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF1D1D1D),
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400),
+                    SizedBox(
+                      width: 20,
                     ),
-                    Text(
-                      "Sign into your account using multiple  phone numbers \n and emails",
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF1D1D1D),
-                          fontSize: 9,
-                          fontWeight: FontWeight.w300),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Cash Out",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        Text(
+                          "Transfer cash from ZIP into your",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 9,
+                              fontWeight: FontWeight.w300),
+                        ),
+                      ],
+                    ),
+                    Spacer(),
+
+                    Icon(Icons.arrow_forward_ios, size: 15,),
+                    SizedBox(
+                      width: 20,
                     ),
                   ],
                 ),
-                Spacer(),
-
-               Icon(Icons.arrow_forward_ios,size: 15,),
-                SizedBox(
-                  width: 20,
-                ),
-              ],
-            ),
-            SizedBox(height: 12,),
-            Divider(
-              thickness: 1,
-              color: Color(0x1A000000),
-            ),
-            SizedBox(height: 12,),
-            Row(
-              children: [
-                SizedBox(
-                  width: 20,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Payment Methods",
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF1D1D1D),
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400),
-                    ),
-                    Text(
-                      "Add multiple card and bank accounts",
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF1D1D1D),
-                          fontSize: 9,
-                          fontWeight: FontWeight.w300),
-                    ),
-                  ],
-                ),
-                Spacer(),
-
-               Icon(Icons.arrow_forward_ios,size: 15,),
-                SizedBox(
-                  width: 20,
-                ),
-              ],
-            ),
-            SizedBox(height: 12,),
-            Divider(
-              thickness: 1,
-              color: Color(0x1A000000),
-            ),
-            SizedBox(height: 12,),
-            InkWell(
-              onTap: (){
-                Get.toNamed(MyRouters.transferLimit);
-              },
-              child: Row(
+              ),
+              SizedBox(height: 12,),
+              Divider(
+                thickness: 1,
+                color: Color(0x1A000000),
+              ),
+              SizedBox(height: 12,),
+              Row(
                 children: [
                   SizedBox(
                     width: 20,
@@ -517,14 +309,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Transfer Limits",
+                        "Check Rates",
                         style: GoogleFonts.poppins(
                             color: const Color(0xFF1D1D1D),
                             fontSize: 13,
                             fontWeight: FontWeight.w400),
                       ),
                       Text(
-                        "Check Money transfer limits",
+                        "See current foreign exchange rates",
                         style: GoogleFonts.poppins(
                             color: const Color(0xFF1D1D1D),
                             fontSize: 9,
@@ -534,24 +326,113 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   Spacer(),
 
-                 Icon(Icons.arrow_forward_ios,size: 15,),
+                  Icon(Icons.arrow_forward_ios, size: 15,),
                   SizedBox(
                     width: 20,
                   ),
                 ],
               ),
-            ),
-            SizedBox(height: 12,),
-            Divider(
-              thickness: 1,
-              color: Color(0x1A000000),
-            ),
-            SizedBox(height: 12,),
-            InkWell(
-              onTap: (){
-                Get.toNamed(MyRouters.setting);
-              },
-              child: Row(
+              SizedBox(height: 12,),
+              Divider(
+                thickness: 5,
+                color: Color(0x1A000000),
+              ),
+              SizedBox(height: 12,),
+              InkWell(
+                onTap: () {
+                  Get.toNamed(MyRouters.buyServices);
+                },
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Buy Airtime",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        Text(
+                          "Buy discounted airtime with your ZIP balance",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 9,
+                              fontWeight: FontWeight.w300),
+                        ),
+                      ],
+                    ),
+                    Spacer(),
+
+                    Text(
+                      "2% OFF",
+                      style: GoogleFonts.poppins(
+                          color: const Color(0xFF0FA657),
+                          fontSize: 13,
+                          fontWeight: FontWeight.w500),
+                    ),
+
+                    Icon(Icons.arrow_forward_ios, size: 15,),
+                    SizedBox(
+                      width: 20,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 12,),
+              Divider(
+                thickness: 1,
+                color: Color(0x1A000000),
+              ),
+              SizedBox(height: 12,),
+              InkWell(
+                onTap: () {
+                  Get.toNamed(MyRouters.payBillsServices);
+                },
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Pay Bills",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        Text(
+                          "Pay your bills with your ZIP balance",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 9,
+                              fontWeight: FontWeight.w300),
+                        ),
+                      ],
+                    ),
+                    Spacer(),
+
+                    Icon(Icons.arrow_forward_ios, size: 15,),
+                    SizedBox(
+                      width: 20,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 12,),
+              Divider(
+                thickness: 1,
+                color: Color(0x1A000000),
+              ),
+              SizedBox(height: 12,),
+              Row(
                 children: [
                   SizedBox(
                     width: 20,
@@ -560,14 +441,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Settings",
+                        "Connected Merchants",
                         style: GoogleFonts.poppins(
                             color: const Color(0xFF1D1D1D),
                             fontSize: 13,
                             fontWeight: FontWeight.w400),
                       ),
                       Text(
-                        "Control your notification and security settings",
+                        "See current foreign exchange rates",
                         style: GoogleFonts.poppins(
                             color: const Color(0xFF1D1D1D),
                             fontSize: 9,
@@ -577,17 +458,179 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   Spacer(),
 
-                 Icon(Icons.arrow_forward_ios,size: 15,),
+                  Icon(Icons.arrow_forward_ios, size: 15,),
                   SizedBox(
-                    width: 30,
+                    width: 20,
                   ),
                 ],
               ),
-            ),
-         SizedBox(height: 70,)
-          ],
-        ),
-      ),
+              SizedBox(height: 12,),
+              Divider(
+                thickness: 5,
+                color: Color(0x1A000000),
+              ),
+              SizedBox(height: 12,),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Personal",
+                        style: GoogleFonts.poppins(
+                            color: const Color(0xFF1D1D1D),
+                            fontSize: 13,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      Text(
+                        "Sign into your account using multiple  phone numbers \n and emails",
+                        style: GoogleFonts.poppins(
+                            color: const Color(0xFF1D1D1D),
+                            fontSize: 9,
+                            fontWeight: FontWeight.w300),
+                      ),
+                    ],
+                  ),
+                  Spacer(),
+
+                  Icon(Icons.arrow_forward_ios, size: 15,),
+                  SizedBox(
+                    width: 20,
+                  ),
+                ],
+              ),
+              SizedBox(height: 12,),
+              Divider(
+                thickness: 1,
+                color: Color(0x1A000000),
+              ),
+              SizedBox(height: 12,),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Payment Methods",
+                        style: GoogleFonts.poppins(
+                            color: const Color(0xFF1D1D1D),
+                            fontSize: 13,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      Text(
+                        "Add multiple card and bank accounts",
+                        style: GoogleFonts.poppins(
+                            color: const Color(0xFF1D1D1D),
+                            fontSize: 9,
+                            fontWeight: FontWeight.w300),
+                      ),
+                    ],
+                  ),
+                  Spacer(),
+
+                  Icon(Icons.arrow_forward_ios, size: 15,),
+                  SizedBox(
+                    width: 20,
+                  ),
+                ],
+              ),
+              SizedBox(height: 12,),
+              Divider(
+                thickness: 1,
+                color: Color(0x1A000000),
+              ),
+              SizedBox(height: 12,),
+              InkWell(
+                onTap: () {
+                  Get.toNamed(MyRouters.transferLimit);
+                },
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Transfer Limits",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        Text(
+                          "Check Money transfer limits",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 9,
+                              fontWeight: FontWeight.w300),
+                        ),
+                      ],
+                    ),
+                    Spacer(),
+
+                    Icon(Icons.arrow_forward_ios, size: 15,),
+                    SizedBox(
+                      width: 20,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 12,),
+              Divider(
+                thickness: 1,
+                color: Color(0x1A000000),
+              ),
+              SizedBox(height: 12,),
+              InkWell(
+                onTap: () {
+                  Get.toNamed(MyRouters.setting);
+                },
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Settings",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        Text(
+                          "Control your notification and security settings",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 9,
+                              fontWeight: FontWeight.w300),
+                        ),
+                      ],
+                    ),
+                    Spacer(),
+
+                    Icon(Icons.arrow_forward_ios, size: 15,),
+                    SizedBox(
+                      width: 30,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 70,)
+            ],
+          ),
+        ): Center(child: CircularProgressIndicator(),);
+      }),
     );
   }
 }
