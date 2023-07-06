@@ -54,10 +54,13 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
           type: "phone"
       ).then((value) {
 
-        numbercontroller.isNumber =false;
-        numbercontroller.isNumberBvn =false;
-        numbercontroller.email="+234"+mobileNoController.text.trim();
-        numbercontroller.emailBvn=BVNController1.text.trim();
+        numbercontroller.isNumber =true;
+        numbercontroller.isNumberBvn =true;
+        numbercontroller.number="+234${mobileNoController.text.trim()}";
+        numbercontroller.numberBvn=BVNController1.text.trim();
+
+        numbercontroller.email="";
+        numbercontroller.emailBvn="";
         register.value = value;
         if (value.status == true) {
           Get.toNamed(MyRouters.mobileOtpScreen,arguments: ["+234"+mobileNoController.text]);

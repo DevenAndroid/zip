@@ -7,6 +7,9 @@ import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 
+import '../../controller/profile_controller.dart';
+import '../../repository/myprofile_repo.dart';
+
     class DashBoard extends StatefulWidget {
   const DashBoard({Key? key}) : super(key: key);
 
@@ -15,11 +18,30 @@ import 'package:zip/widgets/common_colour.dart';
 }
 
 class _DashBoardState extends State<DashBoard> {
+  final profileController = Get.put(ProfileController());
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData();
+  }
+
+  getData() {
+    myProfileRepo().then((value) {
+      profileController.modal.value = value;
+      if (value.status == true) {
+        print(value.message.toString());
+      }
+    });
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return  Scaffold(
-      body: SingleChildScrollView(
+      body:
+      Obx(() {
+      return profileController.modal.value.status==true?
+      SingleChildScrollView(
         child: Padding(
           padding:  const EdgeInsets.symmetric(
               horizontal: 15, vertical: 40),
@@ -27,8 +49,8 @@ class _DashBoardState extends State<DashBoard> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Hi,👋🏻Daniel',
+               Text(
+                'Hi,👋🏻'+'${profileController.modal.value.data!.user!.fname.toString()} ' + ' ${profileController.modal.value.data!.user!.lname.toString()}',
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
               ),
 
@@ -496,7 +518,8 @@ Row(
             ],
           ),
         ),
-      ),
+      ):Center(child: CircularProgressIndicator(),);
+      }),
     );
   }
 }

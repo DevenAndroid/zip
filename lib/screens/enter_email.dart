@@ -55,6 +55,8 @@ class _EmailScreenState extends State<EmailScreen> {
         numbercontroller.isNumberBvn =false;
         numbercontroller.email=emailNoController.text.trim();
         numbercontroller.emailBvn=BVNController.text.trim();
+        numbercontroller.number="";
+        numbercontroller.numberBvn="";
 
 
 

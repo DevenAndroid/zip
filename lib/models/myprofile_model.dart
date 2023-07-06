@@ -41,17 +41,18 @@ class Data {
 }
 
 class User {
-  int? id;
-  String? fname;
-  String? lname;
-  String? email;
-  String? phone;
-  String? zipTag;
-  String? dob;
-  String? countryCode;
-  String? profileImage;
+ dynamic id;
+ dynamic fname;
+ dynamic lname;
+ dynamic email;
+ dynamic phone;
+ dynamic zipTag;
+ dynamic dob;
+ dynamic countryCode;
+ dynamic profileImage;
   bool? isProfileComplete;
   bool? status;
+  bool? enableSecurityLock;
 
   User(
       {this.id,
@@ -64,7 +65,8 @@ class User {
         this.countryCode,
         this.profileImage,
         this.isProfileComplete,
-        this.status});
+        this.status,
+        this.enableSecurityLock});
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -78,6 +80,7 @@ class User {
     profileImage = json['profile_image'];
     isProfileComplete = json['is_profile_complete'];
     status = json['status'];
+    enableSecurityLock = json['enable_security_lock'];
   }
 
   Map<String, dynamic> toJson() {
@@ -93,6 +96,7 @@ class User {
     data['profile_image'] = this.profileImage;
     data['is_profile_complete'] = this.isProfileComplete;
     data['status'] = this.status;
+    data['enable_security_lock'] = this.enableSecurityLock;
     return data;
   }
 }

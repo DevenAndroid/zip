@@ -11,6 +11,7 @@ import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
+import '../controller/number_controller.dart';
 import '../models/model_userverify_otp.dart';
 import '../models/model_verify_otp.dart';
 import '../models/registor_model.dart';
@@ -33,7 +34,7 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
   Rx<UserVerifyOtpModel> userVerifyOtp = UserVerifyOtpModel().obs;
   TextEditingController mobileOtpController = TextEditingController();
   Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
-
+  final numbercontroller = Get.put(numberController());
 
    var initStateBlank = Get.arguments[0];
   final formKey1 = GlobalKey<FormState>();
@@ -223,6 +224,8 @@ Padding(
                         InkWell(
                             onTap: (){
                               verifyOtpRepo();
+                              print(numbercontroller.isNumber ? numbercontroller.number:numbercontroller.email,);
+
                               // VerifyOtp();
                               //  Get.toNamed(MyRouters.profileScreen);
                             },

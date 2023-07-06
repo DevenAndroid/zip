@@ -19,9 +19,27 @@ class _SplashState extends State<Splash> {
     // TODO: implement initState
     super.initState();
     Timer(const Duration(seconds: 5), () async {
+
+
+
+
+
+
       SharedPreferences pref = await SharedPreferences.getInstance();
-      // if(pref.getInt("role") == 0){
+      if (pref.getString('cookie') != null) {
+        if (pref.getBool('Enabel') == true) {
+          Get.offAllNamed(MyRouters.securityOtpScreen);
+        }
+        else{
+          Get.offAllNamed(MyRouters.bottomNavbar);
+        }
+        Get.offAllNamed(MyRouters.bottomNavbar);
+      }
+      else{
         Get.offAllNamed(MyRouters.onBoardingScreen);
+      }
+    }
+
       // }
       // else if(pref.getInt("role") == 1 ){
       //   Get.offAllNamed(MyRouters.);
@@ -29,7 +47,7 @@ class _SplashState extends State<Splash> {
       //   Get.offAllNamed(MyRouters.);
       // }
 
-    }
+
     );
   }
 

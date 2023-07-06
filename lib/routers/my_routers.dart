@@ -58,10 +58,14 @@ import 'package:zip/screens/wallet_screen.dart';
 import 'package:zip/screens/yourrecipient.dart';
 
 import '../screens/addfundsinbank.dart';
+import '../screens/contact_us_screen.dart';
 import '../screens/email_login.dart';
+import '../screens/notification_screeb.dart';
 import '../screens/onboardingScreen.dart';
 import '../screens/profile_screen.dart';
 
+import '../screens/security_otp.dart';
+import '../screens/supportscreen.dart';
 import '../screens/update_password.dart';
 import '../screens/verify_africa_ui.dart';
 
@@ -135,6 +139,10 @@ class MyRouters{
   static var sendOtpForPinScreen = "/sendOtpForPinScreen";
   static var verifyOtpForPinScreen = "/verifyOtpForPinScreen";
   static var updatePassword = "/updatePassword";
+  static var notificationScreen = "/notificationScreen";
+  static var securityOtpScreen = "/securityOtpScreen";
+  static var supportScreen = "/supportScreen";
+  static var contuctUsScreen = "/contuctUsScreen";
 
 
 
@@ -145,6 +153,7 @@ class MyRouters{
 
 
     GetPage(name: '/onBoardingScreen', page: () =>   const OnBoardingScreen()),
+    GetPage(name: '/notificationScreen', page: () =>   const NotificationScreen()),
     GetPage(name: '/requestAPaymentContiune', page: () =>   const RequestAPaymentContiune()),
     GetPage(name: '/sendCash1', page: () =>  const SendCash1()),
     GetPage(name: '/sharePaymentLink', page: () =>  const SharePaymentLink()),
@@ -154,9 +163,12 @@ class MyRouters{
     GetPage(name: '/bottomNavbar', page: () =>  const BottomNavbar()),
     GetPage(name: '/walletScreen', page: () =>   WalletScreen()),
     GetPage(name: '/profileScreen', page: () =>  const ProfileScreen()),
+    GetPage(name: '/contuctUsScreen', page: () =>  const ContuctUsScreen()),
+    GetPage(name: '/supportScreen', page: () =>  const SupportScreen()),
     GetPage(name: '/dashBoard', page: () =>  const DashBoard()),
 
     GetPage(name: '/mobileNumber', page: () =>  const MobileNumberScreen()),
+    GetPage(name: '/updatePassword', page: () =>  const UpdatePassword()),
     GetPage(name: '/updatePassword', page: () =>  const UpdatePassword()),
 
 
@@ -198,13 +210,14 @@ class MyRouters{
     GetPage(name: "/addRecipientsStart", page: ()=>  const AddRecipientStart()),
     GetPage(name: "/sendCashYourBalance", page: ()=>  const SendCashYourBalance()),
     GetPage(name: "/yourRecipient", page: ()=>  const YourRecipient()),
-    GetPage(name: "/transferLimit", page: ()=>  const Transferlimit()),
+    GetPage(name: "/transferLimit", page: ()=>  const TransferLimit()),
     GetPage(name: "/loginScreen", page: ()=>  const LoginScreen()),
     GetPage(name: "/emailLoginScreen", page: ()=>  const EmailLoginScreen()),
     GetPage(name: "/profileUpdateScreen", page: ()=>  const UpdateProfile()),
     GetPage(name: "/changeZipPinScreen", page: ()=>  const ChangeZipPin()),
     GetPage(name: "/sendOtpForPinScreen", page: ()=>  const SendOtpForPin()),
     GetPage(name: "/verifyOtpForPinScreen", page: ()=>  const VerifyOtpForPin()),
+    GetPage(name: "/securityOtpScreen", page: ()=>  const SecurityOtpScreen()),
 
 
   ];

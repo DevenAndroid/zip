@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/repository/setting_repo.dart';
 import 'package:zip/repository/updatesetting_repo.dart';
@@ -22,24 +23,29 @@ class Setting extends StatefulWidget {
 }
 
 class _SettingState extends State<Setting> {
+
+  Rx<SettingModal> modalGetSetting = SettingModal().obs;
   bool isSwitched = false;
-  Rx<SettingModal> modal = SettingModal().obs;
+  getData() {
+    settingRepo().then((value) {
+      modalGetSetting.value = value;
+      if (value.status == true) {
+        print(value.message.toString());
+      }
+    });
+  }
+
+
   Rx<UpdateSettingModal> login = UpdateSettingModal().obs;
   Rx<RxStatus> statusOflogin = RxStatus.empty().obs;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getData();
 
-  }
   updateSetting() {
     updateSettingRepo(
           context: context,
-          hide_balance: modal.value.data!.hideBalance! ? "1":"0",
-          enable_fingerprints: modal.value.data!.enableFingerprints! ? "1":"0",
-      enable_security_lock: modal.value.data!.enableSecurityLock! ? "1":"0",
-      transaction_pin: modal.value.data!.transactionPin! ? "1":"0",
+          hide_balance: modalGetSetting.value.data!.hideBalance! ? "1":"0",
+          enable_fingerprints: modalGetSetting.value.data!.enableFingerprints! ? "1":"0",
+      enable_security_lock: modalGetSetting.value.data!.enableSecurityLock! ? "1":"0",
+      transaction_pin: modalGetSetting.value.data!.transactionPin! ? "1":"0",
 
       ).then((value) {
         login.value = value;
@@ -56,30 +62,87 @@ class _SettingState extends State<Setting> {
 
       );
     }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData();
 
-
-
-  getData() {
-    settingRepo().then((value) {
-      modal.value = value;
-      if (value.status == true) {
-        print(value.message.toString());
-      }
-    });
   }
 
+
+
+
+  // final LocalAuthentication _localAuthentication = LocalAuthentication();
+  //
+  // Future<bool> canAuthenticate() async => await _localAuthentication.canCheckBiometrics || await _localAuthentication.isDeviceSupported();
+  //
+  // Future<void> authenticate() async {
+  //
+  //   if( await _localAuthentication.canCheckBiometrics && await _localAuthentication.isDeviceSupported()){
+  //     bool authenticated = false;
+  //
+  //     try {
+  //       authenticated = await _localAuthentication.authenticate(
+  //           localizedReason: 'Please authenticate to access the app.',
+  //           options: const AuthenticationOptions(
+  //               biometricOnly: true,
+  //               useErrorDialogs: true,
+  //               stickyAuth: true,
+  //               sensitiveTransaction: true
+  //           )
+  //       );
+  //     } catch (e) {
+  //       // Handle any exceptions that occur during the authentication process.
+  //       print(e);
+  //     }
+  //
+  //     if (authenticated) {
+  //       SharedPreferences pref = await SharedPreferences.getInstance();
+  //       logINRepo(
+  //           email: pref.getString("email"),
+  //           password: pref.getString("password"),
+  //           context: context)
+  //           .then((value) async {
+  //         if (value.status == true) {
+  //           SharedPreferences pref = await SharedPreferences.getInstance();
+  //           pref.setString("userData", jsonEncode(value));
+  //           showToast("Login successful");
+  //           Get.offAllNamed(MyRouter.bottomBar);
+  //         } else {
+  //           showToast(value.errors!.message.toString());
+  //           print(value.toString());
+  //         }
+  //       });
+  //     }
+  //   } else{
+  //     showToast("Please enable your biometric");
+  //   }
+  // }
+SetValues(value) async {
+  SharedPreferences pref = await SharedPreferences.getInstance();
+  if(value==true){
+    pref.setBool('Enabel', true);
+
+  }
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: Text(
-          "Setting",
-          style: GoogleFonts.poppins(
-              color: const Color(0xFF1D1D1D),
-              fontSize: 20,
-              fontWeight: FontWeight.w500),
+        title: InkWell(
+          onTap: (){
+            print( modalGetSetting.value.data!.enableFingerprints);
+          },
+          child: Text(
+            "Setting",
+            style: GoogleFonts.poppins(
+                color: const Color(0xFF1D1D1D),
+                fontSize: 20,
+                fontWeight: FontWeight.w500),
+          ),
         ),
         centerTitle: true,
         leading: InkWell(
@@ -94,7 +157,7 @@ class _SettingState extends State<Setting> {
 
       ),
       body: Obx(() {
-        return modal.value.status==true?
+        return modalGetSetting.value.status==true?
         SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,33 +174,38 @@ class _SettingState extends State<Setting> {
               ),
               const SizedBox(height: 35,),
 
-              Row(
-                children: [
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  InkWell(
-                    onTap: ()  async {
-                      print("object");
-
-                        //   SharedPreferences pref = await SharedPreferences.getInstance();
-                        // print(pref.getString("cookie")!.toString().replaceAll('\"', ''));
-                     },
-                    child: Text(
-                      "Notification Setting ",
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF1D1D1D),
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400),
+              InkWell(
+                onTap: (){
+                  Get.toNamed(MyRouters.notificationScreen);
+                },
+                child: Row(
+                  children: [
+                    const SizedBox(
+                      width: 20,
                     ),
-                  ),
-                  const Spacer(),
+                    InkWell(
+                      onTap: ()  async {
+                        print("object");
 
-                  const Icon(Icons.arrow_forward_ios, size: 15,),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                ],
+                          //   SharedPreferences pref = await SharedPreferences.getInstance();
+                          // print(pref.getString("cookie")!.toString().replaceAll('\"', ''));
+                       },
+                      child: Text(
+                        "Notification Setting ",
+                        style: GoogleFonts.poppins(
+                            color: const Color(0xFF1D1D1D),
+                            fontSize: 13,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                    const Spacer(),
+
+                    const Icon(Icons.arrow_forward_ios, size: 15,),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 12,),
               const Divider(
@@ -220,11 +288,11 @@ class _SettingState extends State<Setting> {
                   const Spacer(),
 
                   CupertinoSwitch(
-                    value: modal.value.data!.hideBalance!,
+                    value: modalGetSetting.value.data!.hideBalance!,
                     activeColor: const Color(0xffF0D75F),
                     onChanged: (value) {
                       setState(() {
-                        modal.value.data!.hideBalance = value;
+                        modalGetSetting.value.data!.hideBalance = value;
                        updateSetting();
                       });
                     },
@@ -267,13 +335,17 @@ class _SettingState extends State<Setting> {
                   const Spacer(),
 
                   CupertinoSwitch(
-                    value: modal.value.data!.enableSecurityLock!,
+                    value: modalGetSetting.value.data!.enableSecurityLock!,
                     activeColor: const Color(0xffF0D75F),
-                    onChanged: (value) {
-                      setState(() {
-                        modal.value.data!.enableSecurityLock = value;
+                    onChanged: (value)  {
+
+                      setState(()  {
+                        modalGetSetting.value.data!.enableSecurityLock = value;
                         updateSetting();
+                        SetValues(value);
+
                       });
+
                     },
                   ),
                   const SizedBox(
@@ -314,11 +386,11 @@ class _SettingState extends State<Setting> {
                   const Spacer(),
 
                   CupertinoSwitch(
-                    value: modal.value.data!.transactionPin!,
+                    value: modalGetSetting.value.data!.transactionPin!,
                     activeColor: const Color(0xffF0D75F),
                     onChanged: (value) {
                       setState(() {
-                        modal.value.data!.transactionPin = value;
+                        modalGetSetting.value.data!.transactionPin = value;
                         updateSetting();
                       });
                     },
@@ -361,11 +433,11 @@ class _SettingState extends State<Setting> {
                   const Spacer(),
 
                   CupertinoSwitch(
-                    value: modal.value.data!.enableFingerprints!,
+                    value: modalGetSetting.value.data!.enableFingerprints!,
                     activeColor: const Color(0xffF0D75F),
                     onChanged: (value) {
                       setState(() {
-                        modal.value.data!.enableFingerprints = value;
+                        modalGetSetting.value.data!.enableFingerprints = value;
                         updateSetting();
                       });
                     },
@@ -456,6 +528,49 @@ class _SettingState extends State<Setting> {
                     width: 20,
                   ),
                 ],
+              ),
+              const SizedBox(height: 12,),
+              const Divider(
+                thickness: 5,
+                color: Color(0x1A000000),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 29, top: 11),
+                child: Text(
+                  "Support",
+                  style: GoogleFonts.poppins(
+                      color: const Color(0xFF1D1D1D),
+                      fontSize: 17,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
+              const SizedBox(height: 12,),
+              InkWell(
+                onTap: (){
+                  Get.toNamed(MyRouters.supportScreen);
+                },
+                child: Row(
+                  children: [
+                    const SizedBox(
+                      width: 30,
+                    ),
+                    Text(
+                      "Support",
+                      style: GoogleFonts.poppins(
+                          color: const Color(0xFF1D1D1D),
+                          fontSize: 13,
+                          fontWeight: FontWeight.w400),
+                    ),
+
+                    const Spacer(),
+
+                    const Icon(Icons.arrow_forward_ios, size: 15,),
+
+                    const SizedBox(
+                      width: 20,
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 12,),
               const Divider(

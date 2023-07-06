@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
+
+import '../controller/number_controller.dart';
 class SelectableScreen extends StatefulWidget {
   const SelectableScreen({Key? key}) : super(key: key);
 
@@ -12,6 +14,7 @@ class SelectableScreen extends StatefulWidget {
 }
 
 class _SelectableScreenState extends State<SelectableScreen> {
+  final numbercontroller = Get.put(numberController());
   @override
   int currentDrawer = 0;
 
@@ -195,6 +198,7 @@ class _SelectableScreenState extends State<SelectableScreen> {
       SizedBox(height: size.height*.2,),
       GestureDetector(
           onTap: (){
+            print(numbercontroller.isNumber ? numbercontroller.number:numbercontroller.email,);
           Get.toNamed(MyRouters.userScreen);
           },
           child: CustomOutlineButton(title: "Next",)),

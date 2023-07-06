@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,6 +8,7 @@ import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
+import '../controller/number_controller.dart';
 import '../controller/update_user.dart';
 
 class UserScreen extends StatefulWidget {
@@ -18,10 +20,24 @@ class UserScreen extends StatefulWidget {
 
 class _UserScreenState extends State<UserScreen> {
   final formKeyName = GlobalKey<FormState>();
+  final numbercontroller = Get.put(numberController());
+
+
   final registorController = Get.put(registerController());
+
+  @override
+  void initState() {
+    super.initState();
+    registorController.molileController.text=numbercontroller.number;
+    registorController.emailController.text=numbercontroller.email;
+    print(numbercontroller.number);
+    print(numbercontroller.email);
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    double doubleVar;
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
@@ -66,7 +82,7 @@ class _UserScreenState extends State<UserScreen> {
                         ]),
                         controller: registorController.firstNameController,
                         obSecure: false,
-                        hintText: "Daniel"),
+                        hintText:  "first name"),
                     const SizedBox(
                       height: 10,
                     ),
@@ -78,6 +94,50 @@ class _UserScreenState extends State<UserScreen> {
                         controller: registorController.lastNameController,
                         obSecure: false,
                         hintText: "Last Name"),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    CommonTextfield(
+                        keyboardType:
+                        const TextInputType.numberWithOptions(
+                            decimal: true),
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(12),
+                          FilteringTextInputFormatter.allow(
+                              RegExp('[0-9]+')),
+                        ],
+                        onChanged: (value) =>
+                        doubleVar = double.parse(value),
+                        validator: MultiValidator([
+                          RequiredValidator(
+                              errorText:
+                              'Please enter your contact number '),
+                          MinLengthValidator(10,
+                              errorText:
+                              'Please enter minumum  10 digit number'),
+                          MaxLengthValidator(12,
+                              errorText:
+                              'Please enter 12 digit number'),
+                          PatternValidator(
+                              r'(^(?:[+0]9)?[0-9]{10,12}$)',
+                              errorText: '')
+                        ]),
+                        readOnly: numbercontroller.isNumber,
+                        controller:     registorController.molileController,
+                        obSecure: false,
+                        hintText: "mobile number"),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    CommonTextfield(
+                      readOnly: !numbercontroller.isNumber,
+                        validator: MultiValidator([
+                          RequiredValidator(
+                              errorText: 'Please enter your email'),
+                        ]),
+                        controller:     registorController.emailController,
+                        obSecure: false,
+                        hintText:"email"),
                     SizedBox(
                       height: size.height * .5,
                     ),
