@@ -39,7 +39,7 @@ class _SecurityOtpScreenState extends State<SecurityOtpScreen> {
 
 
   final formKeypin = GlobalKey<FormState>();
-  final registorController = Get.put(registerController());
+
   TextEditingController otpcontroller = TextEditingController();
 
 Rx<ModelSecurityPin> modelVerifySecurity = ModelSecurityPin().obs;
@@ -82,15 +82,15 @@ getCheckValue() async {
     print( pref.getBool('Enabel', ));
 }
 
-  final numbercontroller = Get.put(numberController());
+
 
 @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    getCheckValue(
-
-    );
+    // getCheckValue(
+    //
+    // );
 
   }
 

@@ -73,56 +73,75 @@ class _SettingState extends State<Setting> {
 
 
 
-  // final LocalAuthentication _localAuthentication = LocalAuthentication();
-  //
-  // Future<bool> canAuthenticate() async => await _localAuthentication.canCheckBiometrics || await _localAuthentication.isDeviceSupported();
-  //
-  // Future<void> authenticate() async {
-  //
-  //   if( await _localAuthentication.canCheckBiometrics && await _localAuthentication.isDeviceSupported()){
-  //     bool authenticated = false;
-  //
-  //     try {
-  //       authenticated = await _localAuthentication.authenticate(
-  //           localizedReason: 'Please authenticate to access the app.',
-  //           options: const AuthenticationOptions(
-  //               biometricOnly: true,
-  //               useErrorDialogs: true,
-  //               stickyAuth: true,
-  //               sensitiveTransaction: true
-  //           )
-  //       );
-  //     } catch (e) {
-  //       // Handle any exceptions that occur during the authentication process.
-  //       print(e);
-  //     }
-  //
-  //     if (authenticated) {
-  //       SharedPreferences pref = await SharedPreferences.getInstance();
-  //       logINRepo(
-  //           email: pref.getString("email"),
-  //           password: pref.getString("password"),
-  //           context: context)
-  //           .then((value) async {
-  //         if (value.status == true) {
-  //           SharedPreferences pref = await SharedPreferences.getInstance();
-  //           pref.setString("userData", jsonEncode(value));
-  //           showToast("Login successful");
-  //           Get.offAllNamed(MyRouter.bottomBar);
-  //         } else {
-  //           showToast(value.errors!.message.toString());
-  //           print(value.toString());
-  //         }
-  //       });
-  //     }
-  //   } else{
-  //     showToast("Please enable your biometric");
-  //   }
-  // }
+  final LocalAuthentication _localAuthentication = LocalAuthentication();
+
+  Future<bool> canAuthenticate() async => await _localAuthentication.canCheckBiometrics || await _localAuthentication.isDeviceSupported();
+
+  Future<void> authenticate() async {
+
+    if( await _localAuthentication.canCheckBiometrics && await _localAuthentication.isDeviceSupported()){
+      bool authenticated = false;
+
+      try {
+        authenticated = await _localAuthentication.authenticate(
+            localizedReason: 'Please authenticate to access the app.',
+            options: const AuthenticationOptions(
+                biometricOnly: true,
+                useErrorDialogs: true,
+                stickyAuth: true,
+                sensitiveTransaction: true
+            )
+        );
+      } catch (e) {
+        // Handle any exceptions that occur during the authentication process.
+        print(e);
+      }
+
+      if (authenticated) {
+        SharedPreferences pref = await SharedPreferences.getInstance();
+        // logINRepo(
+        //     email: pref.getString("email"),
+        //     password: pref.getString("password"),
+        //     context: context)
+        //     .then((value) async {
+        //   if (value.status == true) {
+        //     SharedPreferences pref = await SharedPreferences.getInstance();
+        //     pref.setString("userData", jsonEncode(value));
+        //     showToast("Login successful");
+        //     Get.offAllNamed(MyRouter.bottomBar);
+        //   } else {
+        //     showToast(value.errors!.message.toString());
+        //     print(value.toString());
+        //   }
+        // });
+      }
+    } else{
+      showToast("Please enable your biometric");
+    }
+  }
 SetValues(value) async {
   SharedPreferences pref = await SharedPreferences.getInstance();
   if(value==true){
     pref.setBool('Enabel', true);
+
+  }
+  else{
+
+      pref.setBool('Enabel', false);
+
+
+  }
+}
+fingerPrint(value) async {
+  SharedPreferences pref = await SharedPreferences.getInstance();
+  if(value==true){
+    pref.setBool('finger', true);
+
+  }
+  else{
+
+      pref.setBool('finger', false);
+
 
   }
 }
@@ -316,12 +335,18 @@ SetValues(value) async {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "Enable Security Lock",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400),
+                      InkWell(
+                        onTap: () async {
+                          SharedPreferences pref = await SharedPreferences.getInstance();
+                          print(pref.getBool("Enabel"));
+                        },
+                        child: Text(
+                          "Enable Security Lock",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                       Text(
                         "Will require your PIN when you close the app",
@@ -340,6 +365,7 @@ SetValues(value) async {
                     onChanged: (value)  {
 
                       setState(()  {
+
                         modalGetSetting.value.data!.enableSecurityLock = value;
                         updateSetting();
                         SetValues(value);
@@ -421,12 +447,17 @@ SetValues(value) async {
                             fontSize: 13,
                             fontWeight: FontWeight.w400),
                       ),
-                      Text(
-                        "Control which devices have access to your account",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 9,
-                            fontWeight: FontWeight.w300),
+                      InkWell(
+                        onTap: (){
+                          authenticate();
+                        },
+                        child: Text(
+                          "Control which devices have access to your account",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 9,
+                              fontWeight: FontWeight.w300),
+                        ),
                       ),
                     ],
                   ),
@@ -439,6 +470,7 @@ SetValues(value) async {
                       setState(() {
                         modalGetSetting.value.data!.enableFingerprints = value;
                         updateSetting();
+                        fingerPrint(value);
                       });
                     },
                   ),

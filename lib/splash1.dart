@@ -33,7 +33,7 @@ class _SplashState extends State<Splash> {
         else{
           Get.offAllNamed(MyRouters.bottomNavbar);
         }
-        Get.offAllNamed(MyRouters.bottomNavbar);
+        // Get.offAllNamed(MyRouters.bottomNavbar);
       }
       else{
         Get.offAllNamed(MyRouters.onBoardingScreen);

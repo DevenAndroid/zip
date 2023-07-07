@@ -60,6 +60,7 @@ import 'package:zip/screens/yourrecipient.dart';
 import '../screens/addfundsinbank.dart';
 import '../screens/contact_us_screen.dart';
 import '../screens/email_login.dart';
+
 import '../screens/notification_screeb.dart';
 import '../screens/onboardingScreen.dart';
 import '../screens/profile_screen.dart';
@@ -148,7 +149,7 @@ class MyRouters{
 
 
   static var route = [
-    GetPage(name: '/', page: () =>    Splash()),
+    GetPage(name: '/', page: () =>  Splash()),
 
 
 

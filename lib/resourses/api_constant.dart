@@ -27,6 +27,7 @@ class ApiUrls {
   static const String changeZipPin = "${apiBaseUrl}change-zip-pin";
   static const String transfreLimitGet = "${apiBaseUrl}transfer-limit";
   static const String supportCategories = "${apiBaseUrl}support-categories";
+  static const String logout = "${apiBaseUrl}logout";
   static const String transfreLimitPost = "${apiBaseUrl}transfer-limit";
   static const String verifyPinSecurity = "${apiBaseUrl}verify-pin-security";
   static const String submitQuery = "${apiBaseUrl}submit-query";
