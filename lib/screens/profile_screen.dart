@@ -88,6 +88,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              SizedBox(height: 20,),
               Stack(
                 children: [
                   Container(
@@ -143,6 +144,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   )
                 ],
               ),
+           SizedBox(height: 10,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

@@ -175,7 +175,7 @@ getCheckValue() async {
                           ),
                         ),
                         SizedBox(
-                          height: size.height * .4,
+                          height: size.height * .5,
                         ),
                         InkWell(
                           onTap: () {

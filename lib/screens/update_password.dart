@@ -158,7 +158,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
               errorText: "Password must be at least with 1 special character & 1 numerical"),
         ]),
         obSecure: obscureText4,
-        controller: newPassController, labelText: "Password", hintText: 'Password',),
+        controller: newPassController, labelText: "New Password", hintText: 'New Password',),
       SizedBox(height: 15,),
       CommonTextfield(
         suffixIcon: GestureDetector(

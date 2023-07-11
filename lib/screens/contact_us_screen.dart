@@ -80,6 +80,7 @@ support_category: id.value.toString()
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
@@ -101,161 +102,163 @@ support_category: id.value.toString()
             ),
           ),
         ),
-        body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        body: SingleChildScrollView(
+          child: Padding(
+          padding: const EdgeInsets.all(8.0),
     child: Column(
     children: [
     SizedBox(height: 15,),
       Center(
-        child: SizedBox(
-          height: 45,
-          width: 310,
-          child: PopupMenuButton<int>(
-            constraints:  BoxConstraints(maxHeight: 600,
-              minWidth: MediaQuery.of(context).size.width,
+          child: SizedBox(
+            height: 55,
+            width: 350,
+            child: PopupMenuButton<int>(
+              constraints:  BoxConstraints(maxHeight: 600,
+                minWidth: MediaQuery.of(context).size.width,
 
-              maxWidth: MediaQuery.of(context).size.width,),
+                maxWidth: MediaQuery.of(context).size.width,),
 
-            position: PopupMenuPosition.under,
-            offset: Offset.fromDirection(50, 100),
-            onSelected: (value) {
-              setState(() {
-                dropDownValue2.value =
-                    getSupportSystem.value.data![value].id.toString();
-              });
-            },
-            // icon: Icon(Icons.keyboard_arrow_down),
-            itemBuilder: (context) => List.generate(
-              getSupportSystem.value.data!.length,
-                  (index) => PopupMenuItem(
-                  child: Column(
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          dropDownValue2.value = getSupportSystem.value.data![index].title
-                              .toString();
-                          id.value = getSupportSystem.value.data![index].id
-                              .toString();
-                          statusOfGet.value =
-                              RxStatus.empty();
-                          refreshInt.value =
-                              DateTime.now().millisecondsSinceEpoch;
-                          setState(() {});
-                          Get.back();
+              position: PopupMenuPosition.under,
+              offset: Offset.fromDirection(50, 100),
+              onSelected: (value) {
+                setState(() {
+                  dropDownValue2.value =
+                      getSupportSystem.value.data![value].id.toString();
+                });
+              },
+              // icon: Icon(Icons.keyboard_arrow_down),
+              itemBuilder: (context) => List.generate(
+                getSupportSystem.value.data!.length,
+                    (index) => PopupMenuItem(
+                    child: Column(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            dropDownValue2.value = getSupportSystem.value.data![index].title
+                                .toString();
+                            id.value = getSupportSystem.value.data![index].id
+                                .toString();
+                            statusOfGet.value =
+                                RxStatus.empty();
+                            refreshInt.value =
+                                DateTime.now().millisecondsSinceEpoch;
+                            setState(() {});
+                            Get.back();
 
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: Expanded(
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(getSupportSystem
-                                        .value.data![index].title
-                                        .toString()),
-                                  ],
-                                ),
-                              ],
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Expanded(
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(getSupportSystem
+                                          .value.data![index].title
+                                          .toString()),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  )),
-            ),
-
-            child: Container(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 10, vertical: 10),
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius:
-                  const BorderRadius.all(Radius.circular(8)),
-                  border:
-                  Border.all(color: AppTheme.secondaryColor)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Obx(() {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment:
-                      CrossAxisAlignment.center,
-                      children: [
-                        Center(
-                          child: Text(
-                            dropDownValue2.value
-                                .toString()
-                                .isEmpty
-                                ? "Select Role"
-                                : dropDownValue2.value.toString(),
-                            style: const TextStyle(
-                                fontSize: 15,
-                                color: AppTheme.primaryColor,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ),
                       ],
-                    );
-                  }),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  const Spacer(),
-                  const Icon(
-                    Icons.keyboard_arrow_down_rounded,
-                    color: AppTheme.primaryColor,
-                  )
-                ],
+                    )),
+              ),
+
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 10, vertical: 10),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius:
+                    const BorderRadius.all(Radius.circular(12)),
+                    border:
+                    Border.all(color: AppTheme.primaryColor)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Obx(() {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment:
+                        CrossAxisAlignment.center,
+                        children: [
+                          Center(
+                            child: Text(
+                              dropDownValue2.value
+                                  .toString()
+                                  .isEmpty
+                                  ? "Select Role"
+                                  : dropDownValue2.value.toString(),
+                              style: const TextStyle(
+                                  fontSize: 15,
+                                  color: AppTheme.primaryColor,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                        ],
+                      );
+                    }),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    const Spacer(),
+                    const Icon(
+                      Icons.keyboard_arrow_down_rounded,
+                      color: AppTheme.primaryColor,
+                    )
+                  ],
+                ),
               ),
             ),
           ),
-        ),
       ),
-      SizedBox(height: 20),
+      SizedBox(height: 22),
       CommonTextfield(
-        // keyboardType:
-        // const TextInputType.numberWithOptions(
-        //     decimal: true),
-        // inputFormatters: [
-        //   LengthLimitingTextInputFormatter(8),
-        //   FilteringTextInputFormatter.allow(
-        //       RegExp('[0-9]+')),
-        // ],
-        // onChanged: (value) =>
-        // doubleVar = double.parse(value),
-        // validator: MultiValidator([
-        //   RequiredValidator(
-        //       errorText:
-        //       'Please enter your  number '),
-        //   MinLengthValidator(1,
-        //       errorText:
-        //       'Please enter minumum  8 digit number'),
-        //   MaxLengthValidator(8,
-        //       errorText:
-        //       'Please enter 8 digit number'),
-        //   PatternValidator(
-        //       r'(^(?:[+0]9)?[0-9]{10,12}$)',
-        //       errorText: '')
-        // ]),
+          // keyboardType:
+          // const TextInputType.numberWithOptions(
+          //     decimal: true),
+          // inputFormatters: [
+          //   LengthLimitingTextInputFormatter(8),
+          //   FilteringTextInputFormatter.allow(
+          //       RegExp('[0-9]+')),
+          // ],
+          // onChanged: (value) =>
+          // doubleVar = double.parse(value),
+          // validator: MultiValidator([
+          //   RequiredValidator(
+          //       errorText:
+          //       'Please enter your  number '),
+          //   MinLengthValidator(1,
+          //       errorText:
+          //       'Please enter minumum  8 digit number'),
+          //   MaxLengthValidator(8,
+          //       errorText:
+          //       'Please enter 8 digit number'),
+          //   PatternValidator(
+          //       r'(^(?:[+0]9)?[0-9]{10,12}$)',
+          //       errorText: '')
+          // ]),
       controller: dricptionController,
-        obSecure: false,
-        isMulti: true,
+          obSecure: false,
+          isMulti: true,
 hintText: "",
-        labelText: "",
+          labelText: "",
       ),
 
-      SizedBox(height:MediaQuery.of(context).size.height*.14,),
+      SizedBox(height:MediaQuery.of(context).size.height*.5,),
 
       InkWell(
-          onTap: (){
-            updateSupport();
-            // Get.toNamed(MyRouters.mobileOtpScreen);
-          },
-          child: CustomOutlineButton(title: "Update",)),
+            onTap: (){
+              updateSupport();
+              // Get.toNamed(MyRouters.mobileOtpScreen);
+            },
+            child: CustomOutlineButton(title: "Update",)),
       SizedBox(height: 15,),
     ]
-    )));
+    )),
+        ));
   }
 }

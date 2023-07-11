@@ -9,8 +9,10 @@ import 'package:zip/repository/updatesetting_repo.dart';
 import 'package:zip/screens/transfer_limit.dart';
 import 'package:zip/widgets/common_colour.dart';
 
+import '../models/model_signout.dart';
 import '../models/setting_modal.dart';
 import '../models/update_setting_modal.dart';
+import '../repository/signout_repo.dart';
 import '../resourses/api_constant.dart';
 import '../routers/my_routers.dart';
 
@@ -34,7 +36,25 @@ class _SettingState extends State<Setting> {
       }
     });
   }
-
+  Rx<RxStatus> statusOfsignout = RxStatus.empty().obs;
+  Rx<ModelSignout> signout = ModelSignout().obs;
+  signOut() {
+    signoutRepo(context).then((value) async {
+      signout.value = value;
+      if (value.status == true) {
+        statusOfsignout.value = RxStatus.success();
+        SharedPreferences pref = await SharedPreferences.getInstance();
+        Get.offAllNamed(MyRouters.loginScreen);
+        pref.clear();
+        showToast(value.message.toString());
+      } else {
+        statusOfsignout.value = RxStatus.error();
+        showToast(value.message.toString());
+      }
+    }
+      // showToast(value.message.toString());
+    );
+  }
 
   Rx<UpdateSettingModal> login = UpdateSettingModal().obs;
   Rx<RxStatus> statusOflogin = RxStatus.empty().obs;
@@ -614,7 +634,7 @@ fingerPrint(value) async {
                 padding: const EdgeInsets.only(left: 29),
                 child: InkWell(
                   onTap: () {
-                Get.toNamed(MyRouters.loginScreen);
+                    signOut();
                   },
                   child: Text(
                     "Sign Out",
