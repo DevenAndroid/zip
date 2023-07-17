@@ -8,16 +8,10 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../models/model_choose_bank.dart';
-import '../models/model_create_vritual_account.dart';
-import '../models/model_setting.dart';
+import '../models/create_virtual_account_model.dart';
 import '../models/model_update_user.dart';
-import '../models/model_verif_account.dart';
 import '../models/verify_africa.dart';
-import '../repository/choose_bank_repo.dart';
-import '../repository/setting_repo.dart';
 import '../repository/user_update_repo.dart';
-import '../repository/verify_account_reop.dart';
 import '../repository/verify_africa_b.dart';
 import '../repository/vritual_account_repo.dart';
 import '../resourses/api_constant.dart';
@@ -37,6 +31,7 @@ class registerController extends GetxController {
   Rx<RxStatus> statusOfUpdate = RxStatus.empty().obs;
   Rx<ModelUpdateUser> userUpdate = ModelUpdateUser().obs;
   RxString genderType = "".obs;
+  String selectedValuem = "";
 ///api
 
 
@@ -155,24 +150,26 @@ showToast(value.message.toString());
 
   TextEditingController emailController = TextEditingController();
   TextEditingController molileController = TextEditingController();
-  Rx<ModelCreateVritualAccount> vritualAccount = ModelCreateVritualAccount().obs;
+  // Rx<ModelCreateVritualAccount> vritualAccount = ModelCreateVritualAccount().obs;
+  Rx<CreateVirtualAccountModel> virtualAccount = CreateVirtualAccountModel().obs;
   Rx<RxStatus> statusOfAccount= RxStatus.empty().obs;
   Future accountVritual(context) async {
     await accountRepo(
         bvn:numbercontroller.isNumberBvn ? numbercontroller.numberBvn:numbercontroller.emailBvn,
 email:emailController.text.trim() ,
 phonenumber:molileController.text.trim() ,
-        firstname:  firstNameController.text.trim(),
-        lastname:  lastNameController.text.trim(),
-        narration: firstNameController.text.trim()+ lastNameController.text.trim(),
+        firstName:  firstNameController.text.trim(),
+        lastName:  lastNameController.text.trim(),
+        channel:  selectedValuem,
+        accountType: "individual",
         context: context
     ).then((value) {
-      vritualAccount.value = value;
+      virtualAccount.value = value;
       statusOfAccount.value = RxStatus.success();
-      accountVritualVerify(context);
-
+      // accountVritualVerify(context);
+      Get.toNamed(MyRouters.otpScreen,);
       showToast(value.message.toString());
-print(vritualAccount.value = value);
+print(virtualAccount.value = value);
 
       // Get.toNamed(MyRouters.otpScreen,);
 
@@ -185,27 +182,27 @@ print(vritualAccount.value = value);
 
 
 
-  Rx<ModelVerifyVritualAccount> verifyVritualAccount = ModelVerifyVritualAccount().obs;
-  Rx<RxStatus> statusOfAccountVerify= RxStatus.empty().obs;
-  Future accountVritualVerify(context) async {
-    await verifyAccountRepo(
-     account_number: vritualAccount.value.data!.accountNumber.toString(),
-        bank_name:  vritualAccount.value.data!.bankName.toString(),
-        flw_ref: vritualAccount.value.data!.flwRef.toString(),
-        frequency: vritualAccount.value.data!.frequency.toString(),
-        order_ref: vritualAccount.value.data!.orderRef.toString(),
-        phone_email:numbercontroller.isNumber ? numbercontroller.number:numbercontroller.email,
-        context: context
-    ).then((value) {
-      verifyVritualAccount.value = value;
-      statusOfAccountVerify.value = RxStatus.success();
-      Get.toNamed(MyRouters.otpScreen,);
-      showToast(value.message.toString());
-
-
-
-    }
-      // showToast(value.message.toString());
-    );
-  }
+  // Rx<ModelVerifyVritualAccount> verifyVritualAccount = ModelVerifyVritualAccount().obs;
+  // Rx<RxStatus> statusOfAccountVerify= RxStatus.empty().obs;
+  // Future accountVritualVerify(context) async {
+  //   await verifyAccountRepo(
+  //    account_number: vritualAccount.value.data!.accountNumber.toString(),
+  //       bank_name:  vritualAccount.value.data!.bankName.toString(),
+  //       flw_ref: vritualAccount.value.data!.flwRef.toString(),
+  //       frequency: vritualAccount.value.data!.frequency.toString(),
+  //       order_ref: vritualAccount.value.data!.orderRef.toString(),
+  //       phone_email:numbercontroller.isNumber ? numbercontroller.number:numbercontroller.email,
+  //       context: context
+  //   ).then((value) {
+  //     verifyVritualAccount.value = value;
+  //     statusOfAccountVerify.value = RxStatus.success();
+  //     Get.toNamed(MyRouters.otpScreen,);
+  //     showToast(value.message.toString());
+  //
+  //
+  //
+  //   }
+  //     // showToast(value.message.toString());
+  //   );
+  // }
 }

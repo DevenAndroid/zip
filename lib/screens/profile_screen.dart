@@ -216,262 +216,91 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 color: Color(0x1A000000),
               ),
               const SizedBox(height: 12,),
-              InkWell(
-                onTap: () {
-                  Get.toNamed(MyRouters.addAPayer);
-                },
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Add Cash",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 13,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        Text(
-                          "Transfer cash from your bank into ZIP",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 9,
-                              fontWeight: FontWeight.w300),
-                        ),
-                      ],
-                    ),
-                    const Spacer(),
-
-                    const Icon(Icons.arrow_forward_ios, size: 15,),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 12,),
-              const Divider(
-                thickness: 1,
-                color: Color(0x1A000000),
-              ),
-              const SizedBox(height: 12,),
-              InkWell(
-                onTap: () {
-                  Get.toNamed(MyRouters.yourBalanceScreen);
-                },
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Cash Out",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 13,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        Text(
-                          "Transfer cash from ZIP into your",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 9,
-                              fontWeight: FontWeight.w300),
-                        ),
-                      ],
-                    ),
-                    const Spacer(),
-
-                    const Icon(Icons.arrow_forward_ios, size: 15,),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 12,),
-              const Divider(
-                thickness: 1,
-                color: Color(0x1A000000),
-              ),
-              const SizedBox(height: 12,),
-              Row(
-                children: [
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Check Rates",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      Text(
-                        "See current foreign exchange rates",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 9,
-                            fontWeight: FontWeight.w300),
-                      ),
-                    ],
-                  ),
-                  const Spacer(),
-
-                  const Icon(Icons.arrow_forward_ios, size: 15,),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 12,),
-              const Divider(
-                thickness: 5,
-                color: Color(0x1A000000),
-              ),
-              const SizedBox(height: 12,),
-              InkWell(
-                onTap: () {
-                  Get.toNamed(MyRouters.buyServices);
-                },
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Buy Airtime",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 13,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        Text(
-                          "Buy discounted airtime with your ZIP balance",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 9,
-                              fontWeight: FontWeight.w300),
-                        ),
-                      ],
-                    ),
-                    const Spacer(),
-
-                    Text(
-                      "2% OFF",
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF0FA657),
-                          fontSize: 13,
-                          fontWeight: FontWeight.w500),
-                    ),
-
-                    const Icon(Icons.arrow_forward_ios, size: 15,),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 12,),
-              const Divider(
-                thickness: 1,
-                color: Color(0x1A000000),
-              ),
-              const SizedBox(height: 12,),
-              InkWell(
-                onTap: () {
-                  Get.toNamed(MyRouters.payBillsServices);
-                },
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Pay Bills",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 13,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        Text(
-                          "Pay your bills with your ZIP balance",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 9,
-                              fontWeight: FontWeight.w300),
-                        ),
-                      ],
-                    ),
-                    const Spacer(),
-
-                    const Icon(Icons.arrow_forward_ios, size: 15,),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 12,),
-              const Divider(
-                thickness: 1,
-                color: Color(0x1A000000),
-              ),
-              const SizedBox(height: 12,),
-              Row(
-                children: [
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Connected Merchants",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      Text(
-                        "See current foreign exchange rates",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 9,
-                            fontWeight: FontWeight.w300),
-                      ),
-                    ],
-                  ),
-                  const Spacer(),
-
-                  const Icon(Icons.arrow_forward_ios, size: 15,),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 12,),
-              const Divider(
-                thickness: 5,
-                color: Color(0x1A000000),
-              ),
-              const SizedBox(height: 12,),
+              // InkWell(
+              //   onTap: () {
+              //     Get.toNamed(MyRouters.addAPayer);
+              //   },
+              //   child: Row(
+              //     children: [
+              //       const SizedBox(
+              //         width: 20,
+              //       ),
+              //       Column(
+              //         crossAxisAlignment: CrossAxisAlignment.start,
+              //         children: [
+              //           Text(
+              //             "Add Cash",
+              //             style: GoogleFonts.poppins(
+              //                 color: const Color(0xFF1D1D1D),
+              //                 fontSize: 13,
+              //                 fontWeight: FontWeight.w400),
+              //           ),
+              //           Text(
+              //             "Transfer cash from your bank into ZIP",
+              //             style: GoogleFonts.poppins(
+              //                 color: const Color(0xFF1D1D1D),
+              //                 fontSize: 9,
+              //                 fontWeight: FontWeight.w300),
+              //           ),
+              //         ],
+              //       ),
+              //       const Spacer(),
+              //
+              //       const Icon(Icons.arrow_forward_ios, size: 15,),
+              //       const SizedBox(
+              //         width: 20,
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              // const SizedBox(height: 12,),
+              // const Divider(
+              //   thickness: 1,
+              //   color: Color(0x1A000000),
+              // ),
+              // const SizedBox(height: 12,),
+              // InkWell(
+              //   onTap: () {
+              //     Get.toNamed(MyRouters.yourBalanceScreen);
+              //   },
+              //   child: Row(
+              //     children: [
+              //       const SizedBox(
+              //         width: 20,
+              //       ),
+              //       Column(
+              //         crossAxisAlignment: CrossAxisAlignment.start,
+              //         children: [
+              //           Text(
+              //             "Cash Out",
+              //             style: GoogleFonts.poppins(
+              //                 color: const Color(0xFF1D1D1D),
+              //                 fontSize: 13,
+              //                 fontWeight: FontWeight.w400),
+              //           ),
+              //           Text(
+              //             "Transfer cash from ZIP into your",
+              //             style: GoogleFonts.poppins(
+              //                 color: const Color(0xFF1D1D1D),
+              //                 fontSize: 9,
+              //                 fontWeight: FontWeight.w300),
+              //           ),
+              //         ],
+              //       ),
+              //       const Spacer(),
+              //
+              //       const Icon(Icons.arrow_forward_ios, size: 15,),
+              //       const SizedBox(
+              //         width: 20,
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              // const SizedBox(height: 12,),
+              // const Divider(
+              //   thickness: 1,
+              //   color: Color(0x1A000000),
+              // ),
               Row(
                 children: [
                   const SizedBox(
@@ -510,6 +339,146 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 color: Color(0x1A000000),
               ),
               const SizedBox(height: 12,),
+
+              InkWell(
+                onTap: (){
+                  Get.toNamed(MyRouters.currencyConvert);
+
+
+                },
+                child: Row(
+                  children: [
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Check Rates",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        Text(
+                          "See current foreign exchange rates",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 9,
+                              fontWeight: FontWeight.w300),
+                        ),
+                      ],
+                    ),
+                    const Spacer(),
+
+                    const Icon(Icons.arrow_forward_ios, size: 15,),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 12,),
+              const Divider(
+                thickness: 5,
+                color: Color(0x1A000000),
+              ),
+              const SizedBox(height: 12,),
+              // InkWell(
+              //   onTap: () {
+              //     Get.toNamed(MyRouters.buyServices);
+              //   },
+              //   child: Row(
+              //     children: [
+              //       const SizedBox(
+              //         width: 20,
+              //       ),
+              //       Column(
+              //         crossAxisAlignment: CrossAxisAlignment.start,
+              //         children: [
+              //           Text(
+              //             "Buy Airtime",
+              //             style: GoogleFonts.poppins(
+              //                 color: const Color(0xFF1D1D1D),
+              //                 fontSize: 13,
+              //                 fontWeight: FontWeight.w400),
+              //           ),
+              //           Text(
+              //             "Buy discounted airtime with your ZIP balance",
+              //             style: GoogleFonts.poppins(
+              //                 color: const Color(0xFF1D1D1D),
+              //                 fontSize: 9,
+              //                 fontWeight: FontWeight.w300),
+              //           ),
+              //         ],
+              //       ),
+              //       const Spacer(),
+              //
+              //       Text(
+              //         "2% OFF",
+              //         style: GoogleFonts.poppins(
+              //             color: const Color(0xFF0FA657),
+              //             fontSize: 13,
+              //             fontWeight: FontWeight.w500),
+              //       ),
+              //
+              //       const Icon(Icons.arrow_forward_ios, size: 15,),
+              //       const SizedBox(
+              //         width: 20,
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              // const SizedBox(height: 12,),
+              // const Divider(
+              //   thickness: 1,
+              //   color: Color(0x1A000000),
+              // ),
+              // const SizedBox(height: 12,),
+              // InkWell(
+              //   onTap: () {
+              //     Get.toNamed(MyRouters.payBillsServices);
+              //   },
+              //   child: Row(
+              //     children: [
+              //       const SizedBox(
+              //         width: 20,
+              //       ),
+              //       Column(
+              //         crossAxisAlignment: CrossAxisAlignment.start,
+              //         children: [
+              //           Text(
+              //             "Pay Bills",
+              //             style: GoogleFonts.poppins(
+              //                 color: const Color(0xFF1D1D1D),
+              //                 fontSize: 13,
+              //                 fontWeight: FontWeight.w400),
+              //           ),
+              //           Text(
+              //             "Pay your bills with your ZIP balance",
+              //             style: GoogleFonts.poppins(
+              //                 color: const Color(0xFF1D1D1D),
+              //                 fontSize: 9,
+              //                 fontWeight: FontWeight.w300),
+              //           ),
+              //         ],
+              //       ),
+              //       const Spacer(),
+              //
+              //       const Icon(Icons.arrow_forward_ios, size: 15,),
+              //       const SizedBox(
+              //         width: 20,
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              // const SizedBox(height: 12,),
+              // const Divider(
+              //   thickness: 1,
+              //   color: Color(0x1A000000),
+              // ),
+              // const SizedBox(height: 12,),
               Row(
                 children: [
                   const SizedBox(
@@ -519,14 +488,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Payment Methods",
+                        "Connected Merchants",
                         style: GoogleFonts.poppins(
                             color: const Color(0xFF1D1D1D),
                             fontSize: 13,
                             fontWeight: FontWeight.w400),
                       ),
                       Text(
-                        "Add multiple card and bank accounts",
+                        "See current foreign exchange rates",
                         style: GoogleFonts.poppins(
                             color: const Color(0xFF1D1D1D),
                             fontSize: 9,
@@ -543,14 +512,97 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ],
               ),
               const SizedBox(height: 12,),
+
               const Divider(
                 thickness: 1,
                 color: Color(0x1A000000),
               ),
               const SizedBox(height: 12,),
               InkWell(
+                onTap: (){
+                  Get.toNamed(MyRouters.yourRecipient);
+                },
+                child: Row(
+                  children: [
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Recipients ",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        Text(
+                          "Sign into your account using multiple  phone numbers \n and emails",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 9,
+                              fontWeight: FontWeight.w300),
+                        ),
+                      ],
+                    ),
+                    const Spacer(),
+
+                    const Icon(Icons.arrow_forward_ios, size: 15,),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 12,),
+              const Divider(
+                thickness: 5,
+                color: Color(0x1A000000),
+              ),
+              const SizedBox(height: 12,),
+
+              // Row(
+              //   children: [
+              //     const SizedBox(
+              //       width: 20,
+              //     ),
+              //     Column(
+              //       crossAxisAlignment: CrossAxisAlignment.start,
+              //       children: [
+              //         Text(
+              //           "Payment Methods",
+              //           style: GoogleFonts.poppins(
+              //               color: const Color(0xFF1D1D1D),
+              //               fontSize: 13,
+              //               fontWeight: FontWeight.w400),
+              //         ),
+              //         Text(
+              //           "Add multiple card and bank accounts",
+              //           style: GoogleFonts.poppins(
+              //               color: const Color(0xFF1D1D1D),
+              //               fontSize: 9,
+              //               fontWeight: FontWeight.w300),
+              //         ),
+              //       ],
+              //     ),
+              //     const Spacer(),
+              //
+              //     const Icon(Icons.arrow_forward_ios, size: 15,),
+              //     const SizedBox(
+              //       width: 20,
+              //     ),
+              //   ],
+              // ),
+              // const SizedBox(height: 12,),
+              // const Divider(
+              //   thickness: 1,
+              //   color: Color(0x1A000000),
+              // ),
+              const SizedBox(height: 12,),
+              InkWell(
                 onTap: () {
-                  Get.toNamed(MyRouters.transferLimit);
+                  Get.toNamed(MyRouters.limitScreen);
                 },
                 child: Row(
                   children: [

@@ -136,7 +136,7 @@ class _OtpScreenState extends State<OtpScreen> {
                         }
                       },
                       child: CustomOutlineBoder(
-                        title: "Skip",
+                        title: "Next",
                         backgroundColor: Colors.white,
                         textColor: AppTheme.buttonColor,
                         onPressed: () {

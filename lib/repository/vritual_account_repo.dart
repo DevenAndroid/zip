@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 
+import '../models/create_virtual_account_model.dart';
 import '../models/model_create_vritual_account.dart';
 import '../models/model_verify_otp.dart';
 import '../models/registor_model.dart';
@@ -14,26 +15,30 @@ import '../resourses/helper.dart';
 
 
 
-Future<ModelCreateVritualAccount> accountRepo({email,bvn,phonenumber,context,firstname,lastname,narration}) async {
+Future<CreateVirtualAccountModel> accountRepo({email,bvn,phonenumber,context,firstName,accountType,lastName,channel}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
+  var map2 = <String, dynamic>{};
 
-  map['email'] = email;
-  map['is_permanent'] = "true";
-  map['bvn'] = bvn;
-  map['phonenumber'] = phonenumber;
-  map['firstname'] = firstname;
-  map['firstname'] = firstname;
-  map['lastname'] = lastname;
-  map['narration'] = narration;
-
+  map2['email'] = email;
+  map['currency'] = "NGN";
+  map2['bvn'] = bvn;
+  map2['firstName'] = firstName;
+  map['accountType'] = accountType;
+  map['channel'] = channel;
+  map2['lastName'] = lastName;
+  map["KYCInformation"]= map2;
 
 
   print(map);
   // try {
-  http.Response response = await http.post(Uri.parse(ApiUrls.vritualAccount),
-      headers: await getAuthHeaderApi(),
+  http.Response response = await http.post(Uri.parse(ApiUrls.vritualAccountCreate),
+      headers: { HttpHeaders.contentTypeHeader: 'application/json',
+        HttpHeaders.acceptHeader: 'application/json',
+        "api-key": "m98zn3Y70MXGu1VaZNhYOZO7CbULj6uU"
+
+      },
       body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
   // http.Response response = await http.post(Uri.parse(ApiUrls.loginUser),
@@ -42,12 +47,12 @@ Future<ModelCreateVritualAccount> accountRepo({email,bvn,phonenumber,context,fir
   if (response.statusCode == 200) {
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
-    return ModelCreateVritualAccount.fromJson(jsonDecode(response.body));
+    return CreateVirtualAccountModel.fromJson(jsonDecode(response.body));
 
   } else {
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
-    return ModelCreateVritualAccount(message: jsonDecode(response.body)["message"], );
+    return CreateVirtualAccountModel(message: jsonDecode(response.body)["message"], );
   }
   // }  catch (e) {
   //   Helpers.hideLoader(loader);

@@ -61,7 +61,7 @@ class _CommonTextfieldState extends State<CommonTextfield> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10.0,right: 10),
+      padding: const EdgeInsets.only(left: 7.0,right: 7),
       child: TextFormField(
 
           style: const TextStyle(

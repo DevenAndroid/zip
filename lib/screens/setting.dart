@@ -9,9 +9,11 @@ import 'package:zip/repository/updatesetting_repo.dart';
 import 'package:zip/screens/transfer_limit.dart';
 import 'package:zip/widgets/common_colour.dart';
 
+import '../models/delete_model.dart';
 import '../models/model_signout.dart';
 import '../models/setting_modal.dart';
 import '../models/update_setting_modal.dart';
+import '../repository/delete_user_repo.dart';
 import '../repository/signout_repo.dart';
 import '../resourses/api_constant.dart';
 import '../routers/my_routers.dart';
@@ -44,11 +46,32 @@ class _SettingState extends State<Setting> {
       if (value.status == true) {
         statusOfsignout.value = RxStatus.success();
         SharedPreferences pref = await SharedPreferences.getInstance();
-        Get.offAllNamed(MyRouters.loginScreen);
+        Get.offAllNamed(MyRouters.onBoardingScreen);
         pref.clear();
         showToast(value.message.toString());
       } else {
         statusOfsignout.value = RxStatus.error();
+        showToast(value.message.toString());
+      }
+    }
+      // showToast(value.message.toString());
+    );
+  }
+
+
+  Rx<RxStatus> statusOfdelete = RxStatus.empty().obs;
+  Rx<ModelDelete> delete = ModelDelete().obs;
+  deleteAccount() {
+    deleteRepo(context).then((value) async {
+      delete.value = value;
+      if (value.status == true) {
+        statusOfdelete.value = RxStatus.success();
+        SharedPreferences pref = await SharedPreferences.getInstance();
+        Get.offAllNamed(MyRouters.onBoardingScreen);
+        pref.clear();
+        showToast(value.message.toString());
+      } else {
+        statusOfdelete.value = RxStatus.error();
         showToast(value.message.toString());
       }
     }
@@ -640,6 +663,22 @@ fingerPrint(value) async {
                     "Sign Out",
                     style: GoogleFonts.poppins(
                         color: const Color(0xFFF0D75F),
+                        fontSize: 17,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12,),
+              Padding(
+                padding: const EdgeInsets.only(left: 29),
+                child: InkWell(
+                  onTap: () {
+                    deleteAccount();
+                  },
+                  child: Text(
+                    "Delete Account",
+                    style: GoogleFonts.poppins(
+                        color:  Colors.red,
                         fontSize: 17,
                         fontWeight: FontWeight.w500),
                   ),

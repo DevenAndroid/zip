@@ -57,10 +57,15 @@ import 'package:zip/screens/transfer_limit.dart';
 import 'package:zip/screens/wallet_screen.dart';
 import 'package:zip/screens/yourrecipient.dart';
 
+import '../main.dart';
+import '../screens/Cardlimit.dart';
 import '../screens/addfundsinbank.dart';
 import '../screens/contact_us_screen.dart';
+import '../screens/create_account.dart';
+import '../screens/currenty.dart';
 import '../screens/email_login.dart';
 
+import '../screens/limit_screen.dart';
 import '../screens/notification_screeb.dart';
 import '../screens/onboardingScreen.dart';
 import '../screens/profile_screen.dart';
@@ -144,6 +149,10 @@ class MyRouters{
   static var securityOtpScreen = "/securityOtpScreen";
   static var supportScreen = "/supportScreen";
   static var contuctUsScreen = "/contuctUsScreen";
+  static var currencyConvert = "/currencyConvert";
+  static var limitScreen = "/limitScreen";
+  static var cardLimitScreen = "/cardLimitScreen";
+  static var virtualAccount = "/virtualAccount";
 
 
 
@@ -154,6 +163,10 @@ class MyRouters{
 
 
     GetPage(name: '/onBoardingScreen', page: () =>   const OnBoardingScreen()),
+    GetPage(name: '/currencyConvert', page: () =>   const CurrencyConvert()),
+    GetPage(name: '/virtualAccount', page: () =>   const VirtualAccount()),
+    GetPage(name: '/limitScreen', page: () =>   const LimitScreen()),
+    GetPage(name: '/cardLimitScreen', page: () =>   const CardLimitScreen()),
     GetPage(name: '/notificationScreen', page: () =>   const NotificationScreen()),
     GetPage(name: '/requestAPaymentContiune', page: () =>   const RequestAPaymentContiune()),
     GetPage(name: '/sendCash1', page: () =>  const SendCash1()),

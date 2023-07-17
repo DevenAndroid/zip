@@ -28,6 +28,7 @@ class ApiUrls {
   static const String transfreLimitGet = "${apiBaseUrl}transfer-limit";
   static const String supportCategories = "${apiBaseUrl}support-categories";
   static const String logout = "${apiBaseUrl}logout";
+  static const String deleteAccount = "${apiBaseUrl}delete-account";
   static const String transfreLimitPost = "${apiBaseUrl}transfer-limit";
   static const String verifyPinSecurity = "${apiBaseUrl}verify-pin-security";
   static const String submitQuery = "${apiBaseUrl}submit-query";
@@ -42,6 +43,7 @@ class ApiUrls {
   static const String verifyOtpForPin = "${apiBaseUrl}verify-otp-for-pin";
   static const String benificeryList  = "https://api.flutterwave.com/v3/beneficiaries";
   static const String vritualAccount  = "https://api.flutterwave.com/v3/virtual-account-numbers";
+  static const String vritualAccountCreate  = "https://sandboxapi.fincra.com/profile/virtual-accounts/requests/";
 }
 
 Future getAuthHeader() async {
@@ -64,7 +66,8 @@ Future getAuthHeaderApi() async {
   var gg ={
     HttpHeaders.contentTypeHeader: 'application/json',
     HttpHeaders.acceptHeader: 'application/json',
-     HttpHeaders.authorizationHeader:"FLWSECK_TEST-2e4497e1d44affec2b5bb40148e43193-X"
+    // FLWSECK_TEST-2e4497e1d44affec2b5bb40148e43193-X
+     HttpHeaders.authorizationHeader:"FLWSECK_TEST-SANDBOXDEMOKEY-X"
     // if(pref.getString("cookie") != null)
     //   HttpHeaders.authorizationHeader: 'Bearer ${pref.getString("cookie")!.toString().replaceAll('\"', '')}',
   };
