@@ -255,7 +255,7 @@ hintText: "",
               updateSupport();
               // Get.toNamed(MyRouters.mobileOtpScreen);
             },
-            child: CustomOutlineButton(title: "Update",)),
+            child: CustomOutlineButton(title: "Send ",)),
       SizedBox(height: 15,),
     ]
     )),

@@ -1,42 +1,44 @@
-
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-
-
-import '../models/create_virtual_account_model.dart';
-import '../models/model_create_vritual_account.dart';
-import '../models/model_verify_otp.dart';
-import '../models/registor_model.dart';
+import '../models/modal_registor.dart';
+import '../models/model_checkout.dart';
+import '../models/model_security_pin.dart';
+import '../models/model_update_password.dart';
+import '../models/set_transfre_limit_model.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
 
 
-Future<CreateVirtualAccountModel> accountRepo({email,bvn,phonenumber,context,firstName,accountType,lastName,channel}) async {
+Future<ModelCheckout> checkoutRepo({context,currency,amount,name,email}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
   var map2 = <String, dynamic>{};
 
+
+  map['currency'] = currency;
+  map['amount'] = amount;
+  map2['name'] = name;
   map2['email'] = email;
-  map['currency'] = "NGN";
-  map2['bvn'] = bvn;
-  map2['firstName'] = firstName;
-  map['accountType'] = accountType;
-  map['channel'] = channel;
-  map2['lastName'] = lastName;
-  map["KYCInformation"]= map2;
+  map['customer'] = map2;
+
+
+
+
 
 
   print(map);
   // try {
-  http.Response response = await http.post(Uri.parse(ApiUrls.vritualAccountCreate),
+  http.Response response = await http.post(Uri.parse(ApiUrls.checkoutPayment),
       headers: { HttpHeaders.contentTypeHeader: 'application/json',
         HttpHeaders.acceptHeader: 'application/json',
-        "api-key": "m98zn3Y70MXGu1VaZNhYOZO7CbULj6uU"
+        "api-key": "m98zn3Y70MXGu1VaZNhYOZO7CbULj6uU",
+        "x-pub-key": "pk_test_NjQ1MjliZDJiZmRmMjhlN2MxOGFhOWRhOjoxMjc5NDc",
+        "x-business-id": "64529bd2bfdf28e7c18aa9da",
 
       },
       body: jsonEncode(map));
@@ -44,15 +46,15 @@ Future<CreateVirtualAccountModel> accountRepo({email,bvn,phonenumber,context,fir
   // http.Response response = await http.post(Uri.parse(ApiUrls.loginUser),
   //     headers: await getAuthHeader(),body: jsonEncode(map) );
 
-  if (response.statusCode == 200) {
+  if (response.statusCode == 200 || response.statusCode==201) {
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
-    return CreateVirtualAccountModel.fromJson(jsonDecode(response.body));
+    return ModelCheckout.fromJson(jsonDecode(response.body));
 
   } else {
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
-    return CreateVirtualAccountModel(message: jsonDecode(response.body)["message"],success: false );
+    return ModelCheckout(message: jsonDecode(response.body)["message"],status: false );
   }
   // }  catch (e) {
   //   Helpers.hideLoader(loader);

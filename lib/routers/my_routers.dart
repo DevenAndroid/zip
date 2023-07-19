@@ -63,14 +63,21 @@ import '../screens/addfundsinbank.dart';
 import '../screens/contact_us_screen.dart';
 import '../screens/create_account.dart';
 import '../screens/currenty.dart';
+import '../screens/eligible_screen.dart';
 import '../screens/email_login.dart';
 
 import '../screens/limit_screen.dart';
+import '../screens/loan_list.dart';
+import '../screens/loan_screen.dart';
 import '../screens/notification_screeb.dart';
 import '../screens/onboardingScreen.dart';
+import '../screens/paymentlink.dart';
 import '../screens/profile_screen.dart';
 
+import '../screens/question_screen.dart';
+import '../screens/regular_bank_transfer.dart';
 import '../screens/security_otp.dart';
+import '../screens/sendMoney.dart';
 import '../screens/supportscreen.dart';
 import '../screens/update_password.dart';
 import '../screens/verify_africa_ui.dart';
@@ -153,6 +160,13 @@ class MyRouters{
   static var limitScreen = "/limitScreen";
   static var cardLimitScreen = "/cardLimitScreen";
   static var virtualAccount = "/virtualAccount";
+  static var sendCashReciptant = "/sendCashReciptant";
+  static var regularTransfer = "/regularTransfer";
+  static var loanScreen = "/loanScreen";
+  static var loanList = "/loanList";
+  static var questionsScreen = "/questionsScreen";
+  static var eligibleScreen = "/eligibleScreen";
+  static var verifyPaymentLink = "/verifyPaymentLink";
 
 
 
@@ -163,9 +177,15 @@ class MyRouters{
 
 
     GetPage(name: '/onBoardingScreen', page: () =>   const OnBoardingScreen()),
+    GetPage(name: '/verifyPaymentLink', page: () =>   const VerifyPaymentLink()),
+    GetPage(name: '/sendCashReciptant', page: () =>   const SendCashReciptant()),
+    GetPage(name: '/regularTransfer', page: () =>   const RegularTransfer()),
+    GetPage(name: '/eligibleScreen', page: () =>   const EligibleScreen()),
     GetPage(name: '/currencyConvert', page: () =>   const CurrencyConvert()),
+    GetPage(name: '/questionsScreen', page: () =>   const QuestionsScreen()),
     GetPage(name: '/virtualAccount', page: () =>   const VirtualAccount()),
     GetPage(name: '/limitScreen', page: () =>   const LimitScreen()),
+    GetPage(name: '/loanList', page: () =>   const LoanList()),
     GetPage(name: '/cardLimitScreen', page: () =>   const CardLimitScreen()),
     GetPage(name: '/notificationScreen', page: () =>   const NotificationScreen()),
     GetPage(name: '/requestAPaymentContiune', page: () =>   const RequestAPaymentContiune()),
@@ -189,6 +209,7 @@ class MyRouters{
     GetPage(name: '/selectableScreen', page: () =>  const SelectableScreen()),
     GetPage(name: '/userScreen', page: () =>   const UserScreen()),
     GetPage(name: '/birthdayScreen', page: () =>   const BirthdayScreen()),
+    GetPage(name: '/loanScreen', page: () =>   const LoanScreen()),
     GetPage(name: '/tagScreen', page: () =>   const TagScreen()),
     GetPage(name: '/addressScreen', page: () =>   const AddressScreen()),
     GetPage(name: '/extraDetailsScreen', page: () =>   const ExtraDetailsScreen()),

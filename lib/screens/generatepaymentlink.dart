@@ -1,13 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
+import 'package:zip/widgets/common_textfield.dart';
 
 
+import '../controller/update_user.dart';
+import '../widgets/circular_progressindicator.dart';
 import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
+import '../widgets/common_error_widget.dart';
 
 class GeneratePaymentLink extends StatefulWidget {
   const GeneratePaymentLink({Key? key}) : super(key: key);
@@ -18,12 +25,24 @@ class GeneratePaymentLink extends StatefulWidget {
 
 class _GeneratePaymentLinkState extends State<GeneratePaymentLink> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+      register.fetchVritualAccount();});
+  }
+  final register = Get.put(registerController());
+  String link = " ";
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
+        leading: InkWell(
+            onTap: (){Get.back();},
+            child: Icon(Icons.arrow_back,color: Colors.black,)),
         title: Text(
           "Request a payment",
           style: GoogleFonts.poppins(
@@ -32,20 +51,11 @@ class _GeneratePaymentLinkState extends State<GeneratePaymentLink> {
               fontWeight: FontWeight.w500),
         ),
         centerTitle: true,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: Text(
-              "Cancel",
-              style: GoogleFonts.poppins(
-                  color: const Color(0xFFF0D75F),
-                  fontSize: 11,
-                  fontWeight: FontWeight.w400),
-            ),
-          )
-        ],
+
       ),
-      body: SingleChildScrollView(
+      body:  Obx(() {
+      return  register.statusOfFetchAccount.value.isSuccess
+          ?SingleChildScrollView(
         physics: AlwaysScrollableScrollPhysics(),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -70,7 +80,7 @@ class _GeneratePaymentLinkState extends State<GeneratePaymentLink> {
             Padding(
               padding: const EdgeInsets.only(left: 35),
               child: Text(
-                "100.00 USD",
+                register.amountController.text.trim(),
                 style: GoogleFonts.poppins(
                     color: const Color(0xFF1D1D1D),
                     fontSize: 30,
@@ -93,7 +103,7 @@ class _GeneratePaymentLinkState extends State<GeneratePaymentLink> {
                         fontWeight: FontWeight.w500),
                   ),
                   Text(
-                    "Daniel",
+                    register.fetchAccount.value.data!.kYCInformation!.firstName.toString(),
                     style: GoogleFonts.poppins(
                         color: const Color(0x851D1D1D),
                         fontSize: 11,
@@ -118,7 +128,7 @@ class _GeneratePaymentLinkState extends State<GeneratePaymentLink> {
                         fontWeight: FontWeight.w500),
                   ),
                   Text(
-                    "Daniel@gmail.com",
+                    register.fetchAccount.value.data!.kYCInformation!.email.toString(),
                     style: GoogleFonts.poppins(
                         color: const Color(0x851D1D1D),
                         fontSize: 11,
@@ -130,28 +140,28 @@ class _GeneratePaymentLinkState extends State<GeneratePaymentLink> {
             SizedBox(
               height: 16,
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 35,right: 32),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Payment due date",
-                    style: GoogleFonts.poppins(
-                        color: const Color(0xFF1D1D1D),
-                        fontSize: 13,
-                        fontWeight: FontWeight.w500),
-                  ),
-                  Text(
-                    "30 Mar 2023",
-                    style: GoogleFonts.poppins(
-                        color: const Color(0xFFF0D75F),
-                        fontSize: 11,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ],
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(left: 35,right: 32),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //       Text(
+            //         "Payment due date",
+            //         style: GoogleFonts.poppins(
+            //             color: const Color(0xFF1D1D1D),
+            //             fontSize: 13,
+            //             fontWeight: FontWeight.w500),
+            //       ),
+            //       Text(
+            //         "30 Mar 2023",
+            //         style: GoogleFonts.poppins(
+            //             color: const Color(0xFFF0D75F),
+            //             fontSize: 11,
+            //             fontWeight: FontWeight.w500),
+            //       ),
+            //     ],
+            //   ),
+            // ),
             SizedBox(
               height: 25,
             ),
@@ -206,31 +216,75 @@ class _GeneratePaymentLinkState extends State<GeneratePaymentLink> {
                     fontWeight: FontWeight.w300),
               ),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Obx(() => Text(register.link1.value.toString(),style: TextStyle(color: Colors.black),),),
+                InkWell(
+                    onTap: (){
+                      Clipboard.setData(
+                          ClipboardData(text: register.link1.value.toString()))
+                          .then((value) =>
+                          Fluttertoast.showToast(
+                              msg: "Copied",
+                              gravity: ToastGravity.CENTER));
+                        },
+
+                    child: Icon(Icons.copy))
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Obx(() => Text(register.code.value.toString(),style: GoogleFonts.poppins(
+                    color: const Color(0x871D1D1D),
+                    fontSize: 12,
+                    fontWeight: FontWeight.w300),)),
+                InkWell(
+                    onTap: (){
+                      Clipboard.setData(
+                          ClipboardData(text: register.code.value.toString()))
+                          .then((value) =>
+                          Fluttertoast.showToast(
+                              msg: "Copied",
+                              gravity: ToastGravity.CENTER));
+                        },
+
+                    child: Icon(Icons.copy))
+              ],
+            ),
+            //
+            // CommonTextfield(obSecure: false, hintText: link == null ? '': register.checkout.value.data!.link.toString()),
+            // CommonTextfield(obSecure: false, hintText: link == null ? '': register.checkout.value.data!.link.toString()),
             InkWell(
               onTap: () {
-
+register.cashCheckout(context);
               },
               child: CustomOutlineBoder(
                 title: "Generate Payment Link",
                 backgroundColor: Colors.white,
                 textColor: AppTheme.buttonColor,
-                onPressed: () {},
+                onPressed: () {
+
+                },
               ),
             ),
             SizedBox(
               height: 20 ,
             ),
-            InkWell(
-              onTap: () {
-Get.toNamed(MyRouters.requestAPaymentContiune);
-              },
-              child: CustomOutlineButton(
-                title: "Request Payment",
-              ),
-            ),
+
           ],
         ),
-      ),
+      ):  register.statusOfFetchAccount.value.isError
+          ? CommonErrorWidget(
+        errorText:
+        register.fetchAccount.value.message.toString(),
+        onTap: () {
+
+        },
+      )
+          : const CommonProgressIndicator();
+      }),
     );
   }
 }

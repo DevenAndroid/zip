@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+  import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
@@ -86,7 +86,7 @@ SizedBox(height: 8,),
       SizedBox(height: size.height*.55,),
       InkWell(
           onTap: (){
-            Get.toNamed(MyRouters.selectMethod);
+            Get.toNamed(MyRouters.confirmBankScreen);
           },
           child: CustomOutlineButton(title: "Send",)),
 

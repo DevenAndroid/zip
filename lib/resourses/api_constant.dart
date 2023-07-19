@@ -20,6 +20,7 @@ class ApiUrls {
   static const String faq = "${apiBaseUrl}faq";
   static const String verificationAfrica = "${apiBaseUrl}verification-africa";
   static const String verifyAfrica = "https://api.verified.africa/sfx-verify/v3/id-service/";
+  static const String fetchAccount = "https://sandboxapi.fincra.com/profile/virtual-accounts/";
   static const String userVerifyOtp = "${apiBaseUrl}verify-otp";
   static const String updateDetails = "${apiBaseUrl}update-details";
   static const String verifyAccount = "${apiBaseUrl}virtual-account";
@@ -44,6 +45,7 @@ class ApiUrls {
   static const String benificeryList  = "https://api.flutterwave.com/v3/beneficiaries";
   static const String vritualAccount  = "https://api.flutterwave.com/v3/virtual-account-numbers";
   static const String vritualAccountCreate  = "https://sandboxapi.fincra.com/profile/virtual-accounts/requests/";
+  static const String checkoutPayment  = "https://sandboxapi.fincra.com/checkout/payments";
 }
 
 Future getAuthHeader() async {

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/screens/requestapaymentconfirm.dart';
 
+import '../controller/update_user.dart';
 import '../widgets/common_button.dart';
 
 class RequestAPayment extends StatefulWidget {
@@ -14,6 +15,7 @@ class RequestAPayment extends StatefulWidget {
 }
 
 class _RequestAPaymentState extends State<RequestAPayment> {
+  final register = Get.put(registerController());
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

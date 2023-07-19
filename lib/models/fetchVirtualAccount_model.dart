@@ -1,11 +1,11 @@
-class CreateVirtualAccountModel {
+class FetchVirtualAccountModel {
   bool? success;
   String? message;
   Data? data;
 
-  CreateVirtualAccountModel({this.success, this.message, this.data});
+  FetchVirtualAccountModel({this.success, this.message, this.data});
 
-  CreateVirtualAccountModel.fromJson(Map<String, dynamic> json) {
+  FetchVirtualAccountModel.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     message = json['message'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;

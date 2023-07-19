@@ -25,7 +25,7 @@ class _AddRecipientsState extends State<AddRecipients> {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          "Add Recipients",
+          "Send Money ",
           style: GoogleFonts.poppins(
               color: const Color(0xFF1D1D1D),
               fontSize: 20,

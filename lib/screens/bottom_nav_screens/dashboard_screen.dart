@@ -115,74 +115,84 @@ class _DashBoardState extends State<DashBoard> {
                   ),
                   Column(
                     children: [
-                      Container(
+                      InkWell(
+                        onTap: (){
+                          Get.toNamed(MyRouters.addRecipientsStart);
+                        },
+                        child: Container(
 
-                        width: size.width*.39,
-                        decoration: BoxDecoration(
+                          width: size.width*.39,
+                          decoration: BoxDecoration(
 
 
-                               color: const Color(0xFF1D1D1D),
+                                 color: const Color(0xFF1D1D1D),
 
 
-                          borderRadius: BorderRadius.circular(15),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Icon(Icons.arrow_downward,color: Colors.white,),
+                              const SizedBox(height: 50,),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    "Add Cash",
+                                    style: GoogleFonts.poppins(
+                                        color:  Colors.white,
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w500),),
+                                ],
+                              ),
+
+                            ],
+                          ),
                         ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
 
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Icon(Icons.arrow_downward,color: Colors.white,),
-                            const SizedBox(height: 50,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(
-                                  "Add Cash",
-                                  style: GoogleFonts.poppins(
-                                      color:  Colors.white,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w500),),
-                              ],
-                            ),
-
-                          ],
                         ),
-                      ),
-
                       ),
                       const SizedBox(height: 8,),
-                      Container(
+                      InkWell(
+                        onTap: (){
+                          Get.toNamed(MyRouters.yourBalanceScreen);
+                        },
+                        child: Container(
 
-                        width: size.width*.39,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF1D1D1D),
+                          width: size.width*.39,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF1D1D1D),
 
-                          borderRadius: BorderRadius.circular(15),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+
+
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                            SvgPicture.asset("assets/images/arrow.svg"),
+                              const SizedBox(height: 50,),
+                              Text("Cash Out",
+                                style: GoogleFonts.poppins(
+                                    color:  Colors.white,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w500),),
+
+
+
+                            ],
+                          ),
                         ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
 
-
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                          SvgPicture.asset("assets/images/arrow.svg"),
-                            const SizedBox(height: 50,),
-                            Text("Cash Out",
-                              style: GoogleFonts.poppins(
-                                  color:  Colors.white,
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w500),),
-
-
-
-                          ],
                         ),
-                      ),
-
                       ),
                     ],
                   ),
@@ -205,27 +215,31 @@ const SizedBox(height: 10,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
+              InkWell(
+                onTap: (){
+                  Get.toNamed(MyRouters.loanScreen);
+                },
+                child: Container(
 padding: const EdgeInsets.all(8),
 
-                decoration: BoxDecoration(
-                    color: const Color(0xFFFAFAFA),
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: const [
-                      BoxShadow(
-                        color:   Colors.black26,
-                        offset: Offset(
-                          0.5,
-                          0.5,
-                        ), //Offset
-                        blurRadius:    0.5,
-                        spreadRadius: 0.0,
-                      ), //BoxShadow
-                    ]),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                  decoration: BoxDecoration(
+                      color: const Color(0xFFFAFAFA),
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: const [
+                        BoxShadow(
+                          color:   Colors.black26,
+                          offset: Offset(
+                            0.5,
+                            0.5,
+                          ), //Offset
+                          blurRadius:    0.5,
+                          spreadRadius: 0.0,
+                        ), //BoxShadow
+                      ]),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
 Row(
   mainAxisAlignment: MainAxisAlignment.end,
   crossAxisAlignment: CrossAxisAlignment.end,
@@ -235,38 +249,43 @@ Row(
 
   ],
 ),
-                  SvgPicture.asset("assets/images/i1.svg",width: 50,),
-                  const SizedBox(height: 8,),
-                  Text(
-                    'Bank\nTransfer',
-                    style: GoogleFonts.poppins(
-                      textStyle: const TextStyle(fontSize: 16,fontWeight: FontWeight.w400,color: Color(0xFF2E2E2E)),
+                    SvgPicture.asset("assets/images/banktransfer.svg",width: 50,),
+                    const SizedBox(height: 8,),
+                    Text(
+                      'Loans\n',
+                      style: GoogleFonts.poppins(
+                        textStyle: const TextStyle(fontSize: 16,fontWeight: FontWeight.w400,color: Color(0xFF2E2E2E)),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
+                ),
               ),
-              ),
-              Container(
+              InkWell(
+                onTap: (){
+                  Get.toNamed(MyRouters.supportScreen);
+                },
+                child: Container(
 padding: const EdgeInsets.all(8),
 
-                decoration: BoxDecoration(
-                    color: const Color(0xFFFAFAFA),
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: const [
-                      BoxShadow(
-                        color:   Colors.black26,
-                        offset: Offset(
-                          0.5,
-                          0.5,
-                        ), //Offset
-                        blurRadius:    0.5,
-                        spreadRadius: 0.0,
-                      ), //BoxShadow
-                    ]),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                  decoration: BoxDecoration(
+                      color: const Color(0xFFFAFAFA),
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: const [
+                        BoxShadow(
+                          color:   Colors.black26,
+                          offset: Offset(
+                            0.5,
+                            0.5,
+                          ), //Offset
+                          blurRadius:    0.5,
+                          spreadRadius: 0.0,
+                        ), //BoxShadow
+                      ]),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
 Row(
   mainAxisAlignment: MainAxisAlignment.end,
   crossAxisAlignment: CrossAxisAlignment.end,
@@ -276,16 +295,17 @@ Row(
 
   ],
 ),
-                  SvgPicture.asset("assets/images/i2.svg",width: 50,),
-                  const SizedBox(height: 8,),
-                  Text(
-                    'Add\nCash',
-                    style: GoogleFonts.poppins(
-                      textStyle: const TextStyle(fontSize: 16,fontWeight: FontWeight.w400,color: Color(0xFF2E2E2E)),
+                    SvgPicture.asset("assets/images/coustmersupport.svg",width: 50,),
+                    const SizedBox(height: 8,),
+                    Text(
+                      'Customer\nSupport',
+                      style: GoogleFonts.poppins(
+                        textStyle: const TextStyle(fontSize: 16,fontWeight: FontWeight.w400,color: Color(0xFF2E2E2E)),
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
+                ),
               ),
               Container(
 padding: const EdgeInsets.all(8),
@@ -503,7 +523,8 @@ Row(
                   Expanded(
                       child: InkWell(
                         onTap: (){
-                        Get.toNamed(MyRouters.sendCash1);
+                        Get.toNamed(MyRouters.sendCashReciptant);
+                        // Get.toNamed(MyRouters.sendCash1);
                         },
                         child: CustomOutlineBoder(
                           title: "Send",

@@ -82,7 +82,7 @@ Get.toNamed(MyRouters.sendCashYourBalance);
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Beneficiaries',
+                                  'Recipients',
                                   style: GoogleFonts.poppins(
                                     textStyle: const TextStyle(fontSize: 14,fontWeight: FontWeight.w500,color: Color(0xFF1D1D1D)),
                                   ),
@@ -136,7 +136,7 @@ Padding(
     crossAxisAlignment: CrossAxisAlignment.start,
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
-      Text('Save as Beneficiary',
+      Text('Save as Recipients',
         style: GoogleFonts.poppins(
           textStyle: const TextStyle(fontSize: 16,fontWeight: FontWeight.w400,color: Color(0xFF1D1D1D)),
         ),),
@@ -161,7 +161,16 @@ Padding(
       ),
     ],
   ),
-)
+),
+SizedBox(height: size.height*.4,),
+
+                      InkWell(
+                          onTap: (){
+
+                           Get.toNamed(MyRouters.yourRecipient);
+                          },
+                          child: CustomOutlineButton(title: "Continue ",)),
+                      SizedBox(height: 15,),
                     ]
                 )))
     );

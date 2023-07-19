@@ -303,6 +303,7 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
           ],
         ),
       ),
+    SizedBox(height: size.height*.3,),
     InkWell(
         onTap: (){
           Get.toNamed(MyRouters.bottomNavbar);

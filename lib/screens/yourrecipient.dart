@@ -86,7 +86,7 @@ class _YourRecipientState extends State<YourRecipient> {
                   child: InkWell(
                       onTap: () {},
                       child: const CustomOutlineButton(
-                        title: "Add +",
+                        title: "Search ",
                       )),
                 ),
                 const SizedBox(
@@ -94,7 +94,11 @@ class _YourRecipientState extends State<YourRecipient> {
                 ),
                 Expanded(
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+
+
+
+                      },
                       child: CustomOutlineBoder(
                         title: "Favorites +",
                         backgroundColor: Colors.white,

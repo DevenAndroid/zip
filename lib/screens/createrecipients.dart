@@ -26,7 +26,7 @@ class _CreateRecipientsState extends State<CreateRecipients> {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          "Add Recipients",
+          "Send Money ",
           style: GoogleFonts.poppins(
               color: const Color(0xFF1D1D1D),
               fontSize: 20,
@@ -103,8 +103,8 @@ class _CreateRecipientsState extends State<CreateRecipients> {
               padding: const EdgeInsets.only(left: 6, right: 6),
               child: CommonTextfield(
                 obSecure: false,
-                hintText: "PPAYCOM(OPAY)",
-                labelText: "Select Bank",
+                hintText: "name ",
+                labelText: "Zip Username ",
               ),
             ),
             const SizedBox(

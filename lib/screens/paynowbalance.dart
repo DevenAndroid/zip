@@ -127,6 +127,17 @@ class _PayNowBalanceState extends State<PayNowBalance> {
                 labelText: "Note",
               ),
             ),
+            const SizedBox(
+              height: 27,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 6,right: 6),
+              child: CommonTextfield(
+                obSecure: false,
+                hintText: "bank ",
+                labelText: "Currency",
+              ),
+            ),
             SizedBox(
               height: size.height * .3,
             ),

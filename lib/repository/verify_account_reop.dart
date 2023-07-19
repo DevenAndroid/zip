@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
@@ -14,23 +13,24 @@ import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
 
-
-Future<ModelVerifyVritualAccount> verifyAccountRepo({phone_email,flw_ref,order_ref,account_number,frequency,bank_name,context,}) async {
+Future<ModelVerifyVritualAccount> verifyAccountRepo(
+    {phone_email, accountType, currency, business, business_id, accountInformation, context, accountNumber, KYCInformation}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
 
   map['phone_email'] = phone_email;
-  map['flw_ref'] = flw_ref;
-  map['order_ref'] = order_ref;
-  map['account_number'] = account_number;
-  map['frequency'] = frequency;
-  map['bank_name'] = bank_name;
-
+  map['KYCInformation'] = KYCInformation;
+  map['accountType'] = accountType;
+  map['currency'] = currency;
+  map['business'] = business;
+  map['accountNumber'] = accountNumber;
+  map['business_id'] = business_id;
+  map['accountInformation'] = accountInformation;
 
 
   print(map);
-  // try {
+   try {
   http.Response response = await http.post(Uri.parse(ApiUrls.verifyAccount),
       headers: await getAuthHeader(),
       body: jsonEncode(map));
@@ -42,13 +42,15 @@ Future<ModelVerifyVritualAccount> verifyAccountRepo({phone_email,flw_ref,order_r
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
     return ModelVerifyVritualAccount.fromJson(jsonDecode(response.body));
-
-  } else {
+  }
+  else {
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
-    return ModelVerifyVritualAccount(message: jsonDecode(response.body)["message"], );
+    return ModelVerifyVritualAccount(message: jsonDecode(response.body)["message"],status: false);
   }
-  // }  catch (e) {
-  //   Helpers.hideLoader(loader);
-  //   return ModelCommonResponse(message: e.toString(), success: false);
+
+}catch (e) {
+     throw Exception(e);
+return ModelVerifyVritualAccount(message: e.toString(), status: false, data: null);
+}
 }

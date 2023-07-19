@@ -53,6 +53,9 @@ dependencies:
   local_auth: ^2.1.6
   flutter_math_fork: ^0.7.1
   currency_converter: ^0.0.4
+  open_filex: ^4.3.2
+  path_provider: ^2.0.15
+
 
 dev_dependencies:
   flutter_test:
