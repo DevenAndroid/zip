@@ -21,6 +21,10 @@ class ApiUrls {
   static const String verificationAfrica = "${apiBaseUrl}verification-africa";
   static const String verifyAfrica = "https://api.verified.africa/sfx-verify/v3/id-service/";
   static const String fetchAccount = "https://sandboxapi.fincra.com/profile/virtual-accounts/";
+  static const String beneficiariesCreate  = "https://sandboxapi.fincra.com/profile/beneficiaries/business/";
+  static const String payout  = "https://sandboxapi.fincra.com/disbursements/payouts";
+  static const String conversion  = "https://sandboxapi.fincra.com/quotes/generate";
+  static const String getBeneficiaries  = "https://sandboxapi.fincra.com/profile/beneficiaries/business/";
   static const String userVerifyOtp = "${apiBaseUrl}verify-otp";
   static const String updateDetails = "${apiBaseUrl}update-details";
   static const String verifyAccount = "${apiBaseUrl}virtual-account";

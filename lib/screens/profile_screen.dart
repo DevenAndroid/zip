@@ -301,37 +301,42 @@ class _ProfileScreenState extends State<ProfileScreen> {
               //   thickness: 1,
               //   color: Color(0x1A000000),
               // ),
-              Row(
-                children: [
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Personal",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      Text(
-                        "Sign into your account using multiple  phone numbers \n and emails",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 9,
-                            fontWeight: FontWeight.w300),
-                      ),
-                    ],
-                  ),
-                  const Spacer(),
+              InkWell(
+                onTap: (){
+                  Get.toNamed(MyRouters.profileUpdateScreen);
+                },
+                child: Row(
+                  children: [
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Personal",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        Text(
+                          "Sign into your account using multiple  phone numbers \n and emails",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 9,
+                              fontWeight: FontWeight.w300),
+                        ),
+                      ],
+                    ),
+                    const Spacer(),
 
-                  const Icon(Icons.arrow_forward_ios, size: 15,),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                ],
+                    const Icon(Icons.arrow_forward_ios, size: 15,),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 12,),
               const Divider(

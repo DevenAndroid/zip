@@ -65,53 +65,63 @@ class _DashBoardState extends State<DashBoard> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
+                  InkWell(
+                    onTap: (){
+                      Get.toNamed(MyRouters.accountsInBank);
+                    },
+                    child: Container(
 
-                    width: size.width*.47,
-                    decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                          colors: [
+                      width: size.width*.47,
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                            colors: [
 
-                            Color(0xFFF0D75F),
-                            Color(0xFFB2802A),
-                          ],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter
+                              Color(0xFFF0D75F),
+                              Color(0xFFB2802A),
+                            ],
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter
+                        ),
+                        borderRadius: BorderRadius.circular(15),
                       ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Column(
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
 
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(height: 5,),
-                        Text("Current Balance",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF2E2E2E),
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500),),
-                        const SizedBox(height: 5,),
-                        Text("\$276.00",
-                          style: GoogleFonts.poppins(
-                              color:  Colors.white,
-                              fontSize: 35,
-                              fontWeight: FontWeight.w500),),
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 5,),
+                          Text("Current Balance",
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF2E2E2E),
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500),),
+                          const SizedBox(height: 5,),
+                          Text("\$276.00",
+                            style: GoogleFonts.poppins(
+                                color:  Colors.white,
+                                fontSize: 35,
+                                fontWeight: FontWeight.w500),),
              const SizedBox(height: 110,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SvgPicture.asset('assets/images/swap.svg',),
-                        const Icon(Icons.arrow_forward_rounded,size: 25,)
-                      ],
-                    )
+                      InkWell(
+                        onTap: (){
+                          Get.toNamed(MyRouters.accountsInBank);
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SvgPicture.asset('assets/images/swap.svg',),
+                            const Icon(Icons.arrow_forward_rounded,size: 25,)
+                          ],
+                        ),
+                      )
 
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
 
+                    ),
                   ),
                   Column(
                     children: [

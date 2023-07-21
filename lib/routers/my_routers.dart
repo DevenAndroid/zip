@@ -62,6 +62,7 @@ import '../screens/Cardlimit.dart';
 import '../screens/addfundsinbank.dart';
 import '../screens/contact_us_screen.dart';
 import '../screens/create_account.dart';
+import '../screens/create_benificery_screen.dart';
 import '../screens/currenty.dart';
 import '../screens/eligible_screen.dart';
 import '../screens/email_login.dart';
@@ -167,6 +168,7 @@ class MyRouters{
   static var questionsScreen = "/questionsScreen";
   static var eligibleScreen = "/eligibleScreen";
   static var verifyPaymentLink = "/verifyPaymentLink";
+  static var createBenificeryScreen = "/createBenificeryScreen";
 
 
 
@@ -178,6 +180,7 @@ class MyRouters{
 
     GetPage(name: '/onBoardingScreen', page: () =>   const OnBoardingScreen()),
     GetPage(name: '/verifyPaymentLink', page: () =>   const VerifyPaymentLink()),
+    GetPage(name: '/createBenificeryScreen', page: () =>   const CreateBenificeryScreen()),
     GetPage(name: '/sendCashReciptant', page: () =>   const SendCashReciptant()),
     GetPage(name: '/regularTransfer', page: () =>   const RegularTransfer()),
     GetPage(name: '/eligibleScreen', page: () =>   const EligibleScreen()),

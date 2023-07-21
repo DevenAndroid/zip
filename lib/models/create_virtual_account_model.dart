@@ -49,7 +49,7 @@ class Data {
   Null? channelKycUpdateStatus;
   Null? channelKycUpdateResponse;
   String? sId;
-  Business? business;
+  String? business;
   String? currency;
   String? accountType;
   String? entityType;
@@ -122,10 +122,9 @@ class Data {
     riskScreening = json['riskScreening'];
     channelKycUpdateStatus = json['channelKycUpdateStatus'];
     channelKycUpdateResponse = json['channelKycUpdateResponse'];
+    business = json['business'];
     sId = json['_id'];
-    business = json['business'] != null
-        ? new Business.fromJson(json['business'])
-        : null;
+
     currency = json['currency'];
     accountType = json['accountType'];
     entityType = json['entityType'];
@@ -165,10 +164,11 @@ class Data {
     data['riskScreening'] = this.riskScreening;
     data['channelKycUpdateStatus'] = this.channelKycUpdateStatus;
     data['channelKycUpdateResponse'] = this.channelKycUpdateResponse;
+    data['business'] = this.business;
     data['_id'] = this.sId;
-    if (this.business != null) {
-      data['business'] = this.business!.toJson();
-    }
+    // if (this.business != null) {
+    //   data['business'] = this.business!.toJson();
+    // }
     data['currency'] = this.currency;
     data['accountType'] = this.accountType;
     data['entityType'] = this.entityType;

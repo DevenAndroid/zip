@@ -46,12 +46,12 @@ Future<CreateVirtualAccountModel> accountRepo({email,bvn,phonenumber,context,fir
 
   if (response.statusCode == 200) {
     Helpers.hideLoader(loader);
-    print(jsonDecode(response.body));
+
     return CreateVirtualAccountModel.fromJson(jsonDecode(response.body));
 
   } else {
     Helpers.hideLoader(loader);
-    print(jsonDecode(response.body));
+    // print(jsonDecode(response.body));
     return CreateVirtualAccountModel(message: jsonDecode(response.body)["message"],success: false );
   }
   // }  catch (e) {

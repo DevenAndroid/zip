@@ -163,7 +163,7 @@ class _AddRecipientStartState extends State<AddRecipientStart> {
 
 SizedBox(height: 20,),
             Padding(
-              padding: const EdgeInsets.all(14.0),
+              padding: const EdgeInsets.only(left: 24.0),
               child: InkWell(
                 onTap: (){
                   Get.toNamed(MyRouters.verifyPaymentLink);

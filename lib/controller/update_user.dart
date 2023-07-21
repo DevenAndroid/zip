@@ -228,8 +228,8 @@ phonenumber:molileController.text.trim() ,
   }
   Rx<ModelCheckout> checkout = ModelCheckout().obs;
   Rx<RxStatus> statusOfCheckout= RxStatus.empty().obs;
-  RxString link1 = " ".obs;
-  RxString code = " ".obs;
+  RxString link1 = "".obs;
+  RxString code = "".obs;
   Future cashCheckout(context) async {
     await checkoutRepo(
         currency:fetchAccount.value.data!.currency.toString() ,

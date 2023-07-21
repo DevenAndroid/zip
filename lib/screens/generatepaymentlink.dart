@@ -216,46 +216,80 @@ class _GeneratePaymentLinkState extends State<GeneratePaymentLink> {
                     fontWeight: FontWeight.w300),
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Obx(() => Text(register.link1.value.toString(),style: TextStyle(color: Colors.black),),),
-                InkWell(
-                    onTap: (){
-                      Clipboard.setData(
-                          ClipboardData(text: register.link1.value.toString()))
-                          .then((value) =>
-                          Fluttertoast.showToast(
-                              msg: "Copied",
-                              gravity: ToastGravity.CENTER));
-                        },
-
-                    child: Icon(Icons.copy))
-              ],
+            SizedBox(height: 15,),
+            Padding(
+              padding: const EdgeInsets.only(left: 30.0),
+              child: Text("Link",style: GoogleFonts.poppins(
+                  color:  Colors.black,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500),),
             ),
+            SizedBox(height: 10,),
+            Padding(
+              padding: const EdgeInsets.only(left: 30,right: 30),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Obx(() => Expanded(
+                    child: Text(register.link1.value.toString(),style: GoogleFonts.poppins(
+                        color:  Colors.black,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500),),
+                  )),
+                  InkWell(
+                      onTap: (){
+                        Clipboard.setData(
+                            ClipboardData(text: register.link1.value.toString()))
+                            .then((value) =>
+                            Fluttertoast.showToast(
+                                msg: "Copied",
+                                gravity: ToastGravity.CENTER));
+                          },
+
+                      child: Icon(Icons.copy))
+                ],
+              ),
+            ),
+            SizedBox(height: 15,),
+            Padding(
+              padding: const EdgeInsets.only(left: 30.0),
+              child: Text("Code",style: GoogleFonts.poppins(
+                  color:  Colors.black,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500),),
+            ),
+            SizedBox(height: 10,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Obx(() => Text(register.code.value.toString(),style: GoogleFonts.poppins(
-                    color: const Color(0x871D1D1D),
-                    fontSize: 12,
-                    fontWeight: FontWeight.w300),)),
-                InkWell(
-                    onTap: (){
-                      Clipboard.setData(
-                          ClipboardData(text: register.code.value.toString()))
-                          .then((value) =>
-                          Fluttertoast.showToast(
-                              msg: "Copied",
-                              gravity: ToastGravity.CENTER));
-                        },
+                Obx(() => Padding(
+                  padding: const EdgeInsets.only(left: 30,right: 40),
+                  child: Text(register.code.value.toString(),style: GoogleFonts.poppins(
+                      color:  Colors.black,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500),),
+                )),
+                Padding(
+                  padding: const EdgeInsets.only(right: 28.0),
+                  child: InkWell(
+                      onTap: (){
+                        Clipboard.setData(
+                            ClipboardData(text: register.code.value.toString()))
+                            .then((value) =>
+                            Fluttertoast.showToast(
+                                msg: "Copied",
+                                gravity: ToastGravity.CENTER));
+                          },
 
-                    child: Icon(Icons.copy))
+                      child: Icon(Icons.copy)),
+                )
               ],
             ),
             //
             // CommonTextfield(obSecure: false, hintText: link == null ? '': register.checkout.value.data!.link.toString()),
             // CommonTextfield(obSecure: false, hintText: link == null ? '': register.checkout.value.data!.link.toString()),
+
+            SizedBox(height: 30,),
             InkWell(
               onTap: () {
 register.cashCheckout(context);

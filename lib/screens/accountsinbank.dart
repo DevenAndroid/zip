@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,7 +18,10 @@ class AccountsInBank extends StatefulWidget {
 
 class _AccountsInBankState extends State<AccountsInBank> {
 
-  String _selectedGender = 'male';
+  String _selectedCurrency = 'NGN';
+  String _selectedEur = 'EUR';
+  String _selectedCurrencyUsd = 'USD';
+  String _selectedCurrencyGbp = 'GBP';
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +55,8 @@ class _AccountsInBankState extends State<AccountsInBank> {
                 SizedBox(height: 20,),
                 InkWell(
                   onTap: (){
-                    _selectedGender ;
+                    _selectedCurrency ;
+                    Get.toNamed(MyRouters.exchangeMoney,arguments: [_selectedCurrency]);
                   },
                   child: Container(
                       height: 62,
@@ -59,6 +65,7 @@ class _AccountsInBankState extends State<AccountsInBank> {
                           border: Border.all(color: const Color(0xff1D1D1D))),
                       child: Column(
                         children: [
+                          SizedBox(height: 10,),
                           ListTile(
                               visualDensity:
                                   const VisualDensity(horizontal: 0, vertical: -4),
@@ -73,20 +80,20 @@ class _AccountsInBankState extends State<AccountsInBank> {
                                     fontSize: 16,
                                     fontWeight: FontWeight.w500),
                               ),
-                              subtitle: Text(
-                                "N1098.00",
-                                style: GoogleFonts.poppins(
-                                    color: const Color(0x571D1D1D),
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400),
-                              ),
+                              // subtitle: Text(
+                              //   "N1098.00",
+                              //   style: GoogleFonts.poppins(
+                              //       color: const Color(0x571D1D1D),
+                              //       fontSize: 14,
+                              //       fontWeight: FontWeight.w400),
+                              // ),
                               trailing :Radio<String>(
-                    value: 'male',
-                    groupValue: _selectedGender,
+                    value: 'NGN',
+                    groupValue: _selectedCurrency,
                                 activeColor: AppTheme.secondaryColor,
                     onChanged: (value) {
                       setState(() {
-                        _selectedGender = value!;
+                        _selectedCurrency = value!;
                       });
                     },
                   ),
@@ -97,7 +104,8 @@ class _AccountsInBankState extends State<AccountsInBank> {
                 const SizedBox(height: 14,),
                 GestureDetector(
                   onTap: (){
-                    _selectedGender;
+                    _selectedEur;
+                    Get.toNamed(MyRouters.exchangeMoney,arguments: [_selectedEur]);
                   },
                   child: Container(
                       height: 62,
@@ -106,6 +114,7 @@ class _AccountsInBankState extends State<AccountsInBank> {
                           border: Border.all(color: const Color(0xff1D1D1D))),
                       child: Column(
                         children: [
+                          SizedBox(height: 10,),
                           ListTile(
                               visualDensity:
                               const VisualDensity(horizontal: 0, vertical: -4),
@@ -120,21 +129,21 @@ class _AccountsInBankState extends State<AccountsInBank> {
                                     fontSize: 16,
                                     fontWeight: FontWeight.w500),
                               ),
-                              subtitle: Text(
-                                "E0.00",
-                                style: GoogleFonts.poppins(
-                                    color: const Color(0x571D1D1D),
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400),
-                              ),
+                              // subtitle: Text(
+                              //   "E0.00",
+                              //   style: GoogleFonts.poppins(
+                              //       color: const Color(0x571D1D1D),
+                              //       fontSize: 14,
+                              //       fontWeight: FontWeight.w400),
+                              // ),
                               trailing:Radio<String>(
-                                value: 'other',
+                                value: 'EUR',
                                 activeColor: AppTheme.secondaryColor,
-                                groupValue: _selectedGender,
+                                groupValue: _selectedCurrency,
 
                                 onChanged: (value) {
                                   setState(() {
-                                    _selectedGender = value!;
+                                    _selectedEur = value!;
                                   });
                                 },
                               ),),
@@ -142,93 +151,110 @@ class _AccountsInBankState extends State<AccountsInBank> {
                       )),
                 ),
                 const SizedBox(height: 14,),
-                Container(
-                    height: 62,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        border: Border.all(color: const Color(0xff1D1D1D))),
-                    child: Column(
-                      children: [
-                        ListTile(
-                            visualDensity:
-                            const VisualDensity(horizontal: 0, vertical: -4),
-                            leading: Image.asset(
-                              'assets/images/pound.png',
-                              height: 35,
-                            ),
-                            title: Text(
-                              "British pounds",
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                            subtitle: Text(
-                              "E0.00",
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0x571D1D1D),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                            trailing: Radio<String>(
-                              value: 'Binary',
-                              activeColor: AppTheme.secondaryColor,
-                              groupValue: _selectedGender,
-                              onChanged: (value) {
-                                setState(() {
-                                  _selectedGender = value!;
-                                });
-                              },
-                            ),),
-                      ],
-                    )),
+                InkWell(
+                  onTap: (){
+                    _selectedCurrency;
+                    log(_selectedCurrencyGbp);
+                    Get.toNamed(MyRouters.exchangeMoney,arguments: [_selectedCurrencyGbp]);
+                  },
+                  child: Container(
+                      height: 62,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(color: const Color(0xff1D1D1D))),
+                      child: Column(
+                        children: [
+                          SizedBox(height: 10,),
+                          ListTile(
+
+                              visualDensity:
+                              const VisualDensity(horizontal: 0, vertical: -4),
+                              leading: Image.asset(
+                                'assets/images/pound.png',
+                                height: 35,
+                              ),
+                              title: Text(
+                                "British pounds",
+                                style: GoogleFonts.poppins(
+                                    color: const Color(0xFF1D1D1D),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              // subtitle: Text(
+                              //   "E0.00",
+                              //   style: GoogleFonts.poppins(
+                              //       color: const Color(0x571D1D1D),
+                              //       fontSize: 14,
+                              //       fontWeight: FontWeight.w400),
+                              // ),
+                              trailing: Radio<String>(
+                                value: 'GBP',
+                                activeColor: AppTheme.secondaryColor,
+                                groupValue: _selectedCurrency,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _selectedCurrencyGbp = value!;
+                                  });
+                                },
+                              ),),
+                        ],
+                      )),
+                ),
                 const SizedBox(height: 14,),
-                Container(
-                    height: 62,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        border: Border.all(color: const Color(0xff1D1D1D))),
-                    child: Column(
-                      children: [
-                        ListTile(
-                            visualDensity:
-                            const VisualDensity(horizontal: 0, vertical: -4),
-                            leading: Image.asset(
-                              'assets/images/doller.png',
-                              height: 35,
-                            ),
-                            title: Text(
-                              "US Dollers",
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                            subtitle: Text(
-                              "\$6.00",
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0x571D1D1D),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                            trailing:Radio<String>(
-                              activeColor: AppTheme.secondaryColor,
-                              value: 'nonBi',
-                              groupValue: _selectedGender,
-                              onChanged: (value) {
-                                setState(() {
-                                  _selectedGender = value!;
-                                });
-                              },
-                            ),),
-                      ],
-                    )),
+                InkWell(
+                  onTap: (){
+                    _selectedCurrencyUsd;
+                    Get.toNamed(MyRouters.exchangeMoney,arguments: [_selectedCurrencyUsd]);
+                  },
+                  child: Container(
+                      height: 62,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(color: const Color(0xff1D1D1D))),
+                      child: Column(
+
+                        children: [
+                          SizedBox(height: 10,),
+                          ListTile(
+                              visualDensity:
+                              const VisualDensity(horizontal: 0, vertical: -4),
+                              leading: Image.asset(
+                                'assets/images/doller.png',
+                                height: 35,
+                              ),
+                              title: Text(
+                                "US Dollers",
+                                style: GoogleFonts.poppins(
+                                    color: const Color(0xFF1D1D1D),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              // subtitle: Text(
+                              //   "\$6.00",
+                              //   style: GoogleFonts.poppins(
+                              //       color: const Color(0x571D1D1D),
+                              //       fontSize: 14,
+                              //       fontWeight: FontWeight.w400),
+                              // ),
+                              trailing:Radio<String>(
+                                activeColor: AppTheme.secondaryColor,
+                                value: 'USD',
+                                groupValue: _selectedCurrency,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _selectedCurrencyUsd = value!;
+                                  });
+                                },
+                              ),),
+                        ],
+                      )),
+                ),
                 SizedBox(
                   height: size.height * .4,
                 ),
                 InkWell(
                   onTap: () {
-                    Get.toNamed(MyRouters.addFundsInBank);
+                    // Get.toNamed(MyRouters.addFundsInBank);
                   },
                   child: const CustomOutlineButton(
                     title: "Create new account",

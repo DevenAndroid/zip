@@ -95,7 +95,7 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
     var usdConvert = await CurrencyConverter.convert(
       from: Currency.usd,
       to: Currency.eur,
-      amount: 1,
+      amount: 2,
     );
     setState(() {
       usdToEur = usdConvert.toString();
