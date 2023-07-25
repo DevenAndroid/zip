@@ -188,7 +188,7 @@ child: Row(
             "pay your salary into your Manzo account\n and say goodbye to individual transfers.",
             style: GoogleFonts.poppins(
                 color: const Color(0xFF343434),
-                fontSize: 14,
+                fontSize: 12,
                 fontWeight: FontWeight.w500),
 
           ),

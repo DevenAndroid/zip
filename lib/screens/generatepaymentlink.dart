@@ -290,19 +290,15 @@ class _GeneratePaymentLinkState extends State<GeneratePaymentLink> {
             // CommonTextfield(obSecure: false, hintText: link == null ? '': register.checkout.value.data!.link.toString()),
 
             SizedBox(height: 30,),
-            InkWell(
-              onTap: () {
-register.cashCheckout(context);
-              },
-              child: CustomOutlineBoder(
-                title: "Generate Payment Link",
-                backgroundColor: Colors.white,
-                textColor: AppTheme.buttonColor,
-                onPressed: () {
 
+            InkWell(
+                onTap: (){
+                  register.cashCheckout(context);
+                  // emailLogin();
+                  //
                 },
-              ),
-            ),
+                child: CustomOutlineButton(title: "Generate Payment Link",)),
+
             SizedBox(
               height: 20 ,
             ),

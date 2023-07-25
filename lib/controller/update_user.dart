@@ -53,6 +53,7 @@ class registerController extends GetxController {
     try {
       final image = await ImagePicker().pickImage(
         source: ImageSource.camera,
+        imageQuality: 50
       );
 
       if (image == null) return;
@@ -98,6 +99,11 @@ class registerController extends GetxController {
   Rx<ModelVerifyAfrica> modelVerifyAfrica = ModelVerifyAfrica().obs;
   Rx<RxStatus> statusOfSucess= RxStatus.empty().obs;
   Future verify(context) async {
+
+    print(firstNameController.text.trim(),);
+    print(dateOfBirthController.text.trim(),);
+    print(lastNameController.text.trim(),);
+    log(base64Image);
     await verifyRepo(
         selfie: base64Image,
         phone_email:  numbercontroller.isNumber ? numbercontroller.number:numbercontroller.email,
@@ -105,7 +111,6 @@ class registerController extends GetxController {
         dob: dateOfBirthController.text.trim(),
         fname:  firstNameController.text.trim(),
         lname:  lastNameController.text.trim(),
-
         context: context
     ).then((value) {
       statusOfSucess.value = RxStatus.success();
@@ -173,27 +178,27 @@ email:emailController.text.trim() ,
 phonenumber:molileController.text.trim() ,
         firstName:  firstNameController.text.trim(),
         lastName:  lastNameController.text.trim(),
-        channel:  selectedValuem,
+        channel:  "providus",
         accountType: "individual",
         context: context
     ).then((value) async {
 
       virtualAccount.value = value;
       if (value.success == true) {
-        print(virtualAccount.value = value);
+        if (kDebugMode) {
+          print(virtualAccount.value = value);
+        }
         statusOfAccount.value = RxStatus.success();
-
+        accountVritualVerify(context);
         // fetchVritualAccount(context);
         Get.toNamed(MyRouters.otpScreen,);
         showToast(value.message.toString());
         print(virtualAccount.value = value);
+        SharedPreferences pref = await SharedPreferences.getInstance();
 
+        pref.setString('business_id', virtualAccount.value.data!.sId.toString());
         // Get.toNamed(MyRouters.otpScreen,);
-        SharedPreferences pref =
-            await SharedPreferences
-            .getInstance();
-        pref.setString(
-            'id', virtualAccount.value.data!.sId.toString());
+
       }
       else {
         statusOfAccount.value = RxStatus.error();
@@ -206,11 +211,10 @@ phonenumber:molileController.text.trim() ,
 
   Future fetchVritualAccount() async {
     SharedPreferences pref =
-    await SharedPreferences
-        .getInstance();
-    var id = pref.getString("id");
+    await SharedPreferences.getInstance();var id = pref.getString("business_id");
+    log("aaaaaaaa---$id");
     await fetchAccountRepo(
-        id: id.toString()
+        id:id.toString()
 
     ).then((value) {
       print(id);
@@ -280,14 +284,15 @@ accountNumber: virtualAccount.value.data!.accountNumber.toString(),
        business: virtualAccount.value.data!.business.toString(),
        currency: virtualAccount.value.data!.currency.toString(),
        KYCInformation: virtualAccount.value.data!.kYCInformation!.toJson(),
-       business_id: virtualAccount.value.data!.sId.toString(),
+         business_id:  virtualAccount.value.data!.sId.toString(),
        // numbercontroller.isNumber ? numbercontroller.number:numbercontroller.email,
        context: context
-   ).then((value) {
+   ).then((value) async {
      verifyVritualAccount.value = value;
      if (value.status == true) {
+
        statusOfAccountVerify.value = RxStatus.success();
-       fetchVritualAccount();
+
        Get.toNamed(MyRouters.otpScreen,);
        showToast(value.message.toString());
      }

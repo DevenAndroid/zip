@@ -73,6 +73,7 @@ import '../screens/loan_screen.dart';
 import '../screens/notification_screeb.dart';
 import '../screens/onboardingScreen.dart';
 import '../screens/paymentlink.dart';
+import '../screens/personal_address.dart';
 import '../screens/profile_screen.dart';
 
 import '../screens/question_screen.dart';
@@ -169,6 +170,7 @@ class MyRouters{
   static var eligibleScreen = "/eligibleScreen";
   static var verifyPaymentLink = "/verifyPaymentLink";
   static var createBenificeryScreen = "/createBenificeryScreen";
+  static var personalAddress = "/personalAddress";
 
 
 
@@ -210,6 +212,7 @@ class MyRouters{
 
 
     GetPage(name: '/selectableScreen', page: () =>  const SelectableScreen()),
+    GetPage(name: '/personalAddress', page: () =>  const PersonalAddress()),
     GetPage(name: '/userScreen', page: () =>   const UserScreen()),
     GetPage(name: '/birthdayScreen', page: () =>   const BirthdayScreen()),
     GetPage(name: '/loanScreen', page: () =>   const LoanScreen()),

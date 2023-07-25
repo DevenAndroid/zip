@@ -92,17 +92,27 @@ class _DashBoardState extends State<DashBoard> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const SizedBox(height: 5,),
-                          Text("Current Balance",
-                            style: GoogleFonts.poppins(
-                                color: const Color(0xFF2E2E2E),
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500),),
+                          InkWell(
+                            onTap: (){
+                              Get.toNamed(MyRouters.accountsInBank);
+                            },
+                            child: Text("Current Balance",
+                              style: GoogleFonts.poppins(
+                                  color: const Color(0xFF2E2E2E),
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500),),
+                          ),
                           const SizedBox(height: 5,),
-                          Text("\$276.00",
-                            style: GoogleFonts.poppins(
-                                color:  Colors.white,
-                                fontSize: 35,
-                                fontWeight: FontWeight.w500),),
+                          InkWell(
+                            onTap: (){
+                              Get.toNamed(MyRouters.accountsInBank);
+                            },
+                            child: Text("\$276.00",
+                              style: GoogleFonts.poppins(
+                                  color:  Colors.white,
+                                  fontSize: 35,
+                                  fontWeight: FontWeight.w500),),
+                          ),
              const SizedBox(height: 110,),
                       InkWell(
                         onTap: (){

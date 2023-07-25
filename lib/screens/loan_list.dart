@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/widgets/common_colour.dart';
 
+import '../controller/loan_controller.dart';
 import '../routers/my_routers.dart';
 import '../widgets/common_button.dart';
 class LoanList extends StatefulWidget {
@@ -14,7 +15,7 @@ class LoanList extends StatefulWidget {
 }
 
 class _LoanListState extends State<LoanList> {
-  int selectedValue = 0;
+  final loanController = Get.put(LoanController());
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -72,11 +73,11 @@ class _LoanListState extends State<LoanList> {
                 Spacer(),
               Radio(
               value:1,
-              groupValue: selectedValue,
+              groupValue: loanController.selectedValue,
               activeColor: AppTheme.secondaryColor,
               onChanged: ( value) {
                 setState(() {
-                  selectedValue = value!;
+                  loanController.selectedValue = value!;
                 },
 
 
@@ -118,11 +119,11 @@ class _LoanListState extends State<LoanList> {
                               Spacer(),
                               Radio(
                                 value:2,
-                                groupValue: selectedValue,
+                                groupValue: loanController.selectedValue,
                                 activeColor: AppTheme.secondaryColor,
                                 onChanged: ( value) {
                                   setState(() {
-                                    selectedValue = value!;
+                                    loanController.selectedValue = value!;
                                   },
 
 
@@ -164,11 +165,11 @@ class _LoanListState extends State<LoanList> {
                               Spacer(),
                               Radio(
                                 value:3,
-                                groupValue: selectedValue,
+                                groupValue: loanController.selectedValue,
                                 activeColor: AppTheme.secondaryColor,
                                 onChanged: ( value) {
                                   setState(() {
-                                    selectedValue = value!;
+                                    loanController.selectedValue = value!;
                                   },
 
 
@@ -210,11 +211,11 @@ class _LoanListState extends State<LoanList> {
                               Spacer(),
                               Radio(
                                 value:4,
-                                groupValue: selectedValue,
+                                groupValue: loanController.selectedValue,
                                 activeColor: AppTheme.secondaryColor,
                                 onChanged: ( value) {
                                   setState(() {
-                                    selectedValue = value!;
+                                    loanController.selectedValue = value!;
                                   },
 
 
@@ -256,11 +257,11 @@ class _LoanListState extends State<LoanList> {
                               Spacer(),
                               Radio(
                                 value:5,
-                                groupValue: selectedValue,
+                                groupValue: loanController.selectedValue,
                                 activeColor: AppTheme.secondaryColor,
                                 onChanged: ( value) {
                                   setState(() {
-                                    selectedValue = value!;
+                                    loanController.selectedValue = value!;
                                   },
 
 
@@ -303,11 +304,11 @@ class _LoanListState extends State<LoanList> {
                               Spacer(),
                               Radio(
                                 value:6,
-                                groupValue: selectedValue,
+                                groupValue: loanController.selectedValue,
                                 activeColor: AppTheme.secondaryColor,
                                 onChanged: ( value) {
                                   setState(() {
-                                    selectedValue = value!;
+                                    loanController.selectedValue = value!;
                                   },
 
 
@@ -350,11 +351,11 @@ class _LoanListState extends State<LoanList> {
                               Spacer(),
                               Radio(
                                 value:7,
-                                groupValue: selectedValue,
+                                groupValue: loanController.selectedValue,
                                 activeColor: AppTheme.secondaryColor,
                                 onChanged: ( value) {
                                   setState(() {
-                                    selectedValue = value!;
+                                    loanController.selectedValue = value!;
                                   },
 
 
@@ -398,11 +399,11 @@ class _LoanListState extends State<LoanList> {
                               Spacer(),
                               Radio(
                                 value:8,
-                                groupValue: selectedValue,
+                                groupValue: loanController.selectedValue,
                                 activeColor: AppTheme.secondaryColor,
                                 onChanged: ( value) {
                                   setState(() {
-                                    selectedValue = value!;
+                                    loanController.selectedValue = value!;
                                   },
 
 

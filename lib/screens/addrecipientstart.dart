@@ -64,7 +64,7 @@ class _AddRecipientStartState extends State<AddRecipientStart> {
               children: [
                 InkWell(
                   onTap: (){
-                    Get.toNamed(MyRouters.exchangeMoney);
+                    Get.toNamed(MyRouters.accountsInBank);
                   },
                   child: Container(
 
@@ -163,7 +163,7 @@ class _AddRecipientStartState extends State<AddRecipientStart> {
 
 SizedBox(height: 20,),
             Padding(
-              padding: const EdgeInsets.only(left: 24.0),
+              padding: const EdgeInsets.only(left: 28.0),
               child: InkWell(
                 onTap: (){
                   Get.toNamed(MyRouters.verifyPaymentLink);

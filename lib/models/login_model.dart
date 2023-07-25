@@ -26,17 +26,19 @@ class LoginModel {
 }
 
 class Data {
-dynamic id;
-dynamic fname;
-dynamic lname;
-dynamic email;
-dynamic phone;
-dynamic zipTag;
-dynamic dob;
-dynamic countryCode;
-dynamic profileImage;
+  dynamic id;
+  dynamic fname;
+  dynamic lname;
+  dynamic email;
+  dynamic phone;
+  dynamic zipTag;
+  dynamic dob;
+  dynamic businessId;
+  dynamic countryCode;
+  dynamic profileImage;
   bool? isProfileComplete;
   bool? status;
+  bool? enableSecurityLock;
 
   Data(
       {this.id,
@@ -46,10 +48,12 @@ dynamic profileImage;
         this.phone,
         this.zipTag,
         this.dob,
+        this.businessId,
         this.countryCode,
         this.profileImage,
         this.isProfileComplete,
-        this.status});
+        this.status,
+        this.enableSecurityLock});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -59,10 +63,12 @@ dynamic profileImage;
     phone = json['phone'];
     zipTag = json['zip_tag'];
     dob = json['dob'];
+    businessId = json['business_id'];
     countryCode = json['country_code'];
     profileImage = json['profile_image'];
     isProfileComplete = json['is_profile_complete'];
     status = json['status'];
+    enableSecurityLock = json['enable_security_lock'];
   }
 
   Map<String, dynamic> toJson() {
@@ -74,10 +80,12 @@ dynamic profileImage;
     data['phone'] = this.phone;
     data['zip_tag'] = this.zipTag;
     data['dob'] = this.dob;
+    data['business_id'] = this.businessId;
     data['country_code'] = this.countryCode;
     data['profile_image'] = this.profileImage;
     data['is_profile_complete'] = this.isProfileComplete;
     data['status'] = this.status;
+    data['enable_security_lock'] = this.enableSecurityLock;
     return data;
   }
 }

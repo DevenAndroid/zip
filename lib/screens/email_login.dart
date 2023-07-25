@@ -105,6 +105,8 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
         login.value = value;
         if (value.status == true) {
           SharedPreferences pref = await SharedPreferences.getInstance();
+
+          pref.setString('business_id', login.value.data!.businessId.toString());
           pref.setString('cookie', value.authToken.toString());
           Get.toNamed(MyRouters.bottomNavbar);
           statusOflogin.value = RxStatus.success();

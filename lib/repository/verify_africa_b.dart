@@ -20,11 +20,16 @@ Future<ModelVerifyAfrica> verifyRepo({phone_email,context,selfie,fname,lname,dob
   map['lname'] = lname;
   map['dob'] = dob;
   map['bvn'] = bvn;
+  print(map['phone_email']);
+  print(map['fname']);
+  print(map['lname']);
+  print(map['dob']);
+  print(map['bvn']);
 
 
 
 
-  print(map);
+
   // try {
   http.Response response = await http.post(Uri.parse(ApiUrls.verificationAfrica),
       headers: await getAuthHeader(),
@@ -40,7 +45,7 @@ Future<ModelVerifyAfrica> verifyRepo({phone_email,context,selfie,fname,lname,dob
 
   } else {
     Helpers.hideLoader(loader);
-    print(jsonDecode(response.body));
+
     return ModelVerifyAfrica(message: jsonDecode(response.body)["message"], );
   }
   // }  catch (e) {

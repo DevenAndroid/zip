@@ -98,7 +98,7 @@ class _VerifyPaymentLinkState extends State<VerifyPaymentLink> {
 
 
 
-          }, child: Text("Generate Link")),
+          }, child: Text("Pay By Card")),
     ]
     )))
     );

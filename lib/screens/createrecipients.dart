@@ -74,7 +74,7 @@ class _CreateRecipientsState extends State<CreateRecipients> {
                         Get.toNamed(MyRouters.addRecipients);
                       },
                       child: CustomOutlineBoder(
-                        title: "Use @Zip Tag",
+                        title: "Search Zip User",
                         backgroundColor: Colors.white,
                         textColor: AppTheme.buttonColor,
                         onPressed: () {},
@@ -134,7 +134,7 @@ class _CreateRecipientsState extends State<CreateRecipients> {
             ),
             InkWell(
               onTap: () {
-        Get.toNamed(MyRouters.sendCash);
+        // Get.toNamed(MyRouters.sendCash);
               },
               child: const CustomOutlineButton(
                 title: "Continue",

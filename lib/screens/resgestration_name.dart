@@ -33,21 +33,15 @@ class _UserScreenState extends State<UserScreen> {
     print(numbercontroller.number);
     print(numbercontroller.email);
   }
-  var Merital = [
-    '',
-    'wema',
-    'providus',
 
-
-  ];
 
 
 
   List<DropdownMenuItem<String>> get dropdownItemsm {
     List<DropdownMenuItem<String>> menuItemsm = [
-      const DropdownMenuItem(value: "", child: Text("")),
       const DropdownMenuItem(value: "wema", child: Text("wema")),
       const DropdownMenuItem(value: "providus", child: Text("providus")),
+      const DropdownMenuItem(value: "", child: Text("")),
 
     ];
     return menuItemsm;
@@ -157,86 +151,9 @@ class _UserScreenState extends State<UserScreen> {
                         obSecure: false,
                         hintText:"email"),
 
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: DropdownButtonHideUnderline(
-                        child:
-                        DropdownButtonFormField(
 
-                          validator: MultiValidator([
-                            RequiredValidator(
-                                errorText: 'Please select your channel'),
-
-                          ]),
-                          style: const TextStyle(
-                              color: AppTheme
-                                  .primaryColor),
-                          decoration: InputDecoration(
-                            contentPadding:
-                            const EdgeInsets.all(10),
-                            border:
-                            OutlineInputBorder(
-                              borderRadius:
-                              BorderRadius
-                                  .circular(
-                                10,
-                              ),
-                              borderSide: const BorderSide(
-                                  color: AppTheme
-                                      .primaryColor,width: 1.5),
-                            ),
-                            enabledBorder:
-                            OutlineInputBorder(
-                              borderRadius:
-                              BorderRadius
-                                  .circular(
-                                10,
-                              ),
-                              borderSide: const BorderSide(
-                                  color: AppTheme
-                                      .primaryColor,width: 1.5),
-                            ),
-                            disabledBorder:
-                            OutlineInputBorder(
-                              borderRadius:
-                              BorderRadius
-                                  .circular(
-                                10,
-                              ),
-                              borderSide: const BorderSide(
-                                  color: AppTheme
-                                      .primaryColor,width: 1.5),
-                            ),
-                            focusedBorder:
-                            OutlineInputBorder(
-                              borderRadius:
-                              BorderRadius
-                                  .circular(
-                                10,
-                              ),
-                              borderSide: const BorderSide(
-                                  color: AppTheme
-                                      .primaryColor,width: 1.5),
-                            ),
-                          ),
-                          hint: const Text(""),
-                          icon: const Icon(Icons
-
-                              .keyboard_arrow_down),
-                          isExpanded: true,
-                          value: registorController.selectedValuem,
-                          items: dropdownItemsm,
-                          onChanged: (Object? value) {
-                            setState(() {
-                              registorController. selectedValuem = value.toString();
-                              print( registorController. selectedValuem = value.toString());
-                            });
-                          },
-                        ),
-                      ),
-                    ),
                     SizedBox(
-                      height: size.height * .5,
+                      height: size.height * .2,
                     ),
                     GestureDetector(
                         onTap: () {

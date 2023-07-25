@@ -76,7 +76,7 @@ class _AddRecipientsState extends State<AddRecipients> {
                   child: InkWell(
                       onTap: () {},
                       child: const CustomOutlineButton(
-                        title: "Use @Zip Tag",
+                        title: "Search zip user",
                       )),
                 ),
               ],
@@ -110,7 +110,9 @@ class _AddRecipientsState extends State<AddRecipients> {
               height: size.height * .5,
             ),
             InkWell(
-              onTap: () {Get.toNamed(MyRouters.sendCash);},
+              onTap: () {
+                // Get.toNamed(MyRouters.sendCash);
+                },
               child: const CustomOutlineButton(
                 title: "Continue",
               ),

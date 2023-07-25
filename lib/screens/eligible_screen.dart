@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../routers/my_routers.dart';
 import '../widgets/common_button.dart';
 class EligibleScreen extends StatefulWidget {
@@ -29,10 +28,7 @@ class _EligibleScreenState extends State<EligibleScreen> {
     onTap: (){
     Get.back();
     },
-    child
-
-
-        : Icon(Icons.clear,size: 25,)),
+    child:Icon(Icons.clear,size: 25,)),
     SizedBox(height: 80,),
 SvgPicture.asset('assets/images/cross.svg'),
       SizedBox(height: 30,),

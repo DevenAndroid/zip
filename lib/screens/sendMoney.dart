@@ -54,7 +54,8 @@ class _SendCashReciptantState extends State<SendCashReciptant> {
             children: [
               InkWell(
                 onTap: (){
-                  Get.toNamed(MyRouters.yourRecipient);
+                  // Get.toNamed(MyRouters.yourRecipient);
+                  Get.toNamed(MyRouters.createRecipients);
                 },
                 child: Container(
 
@@ -95,7 +96,7 @@ class _SendCashReciptantState extends State<SendCashReciptant> {
               ),
               InkWell(
                 onTap: (){
-                  Get.toNamed(MyRouters.addRecipients);
+                  Get.toNamed(MyRouters.yourRecipient);
                 },
                 child: Container(
 

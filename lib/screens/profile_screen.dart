@@ -303,7 +303,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               // ),
               InkWell(
                 onTap: (){
-                  Get.toNamed(MyRouters.profileUpdateScreen);
+                  Get.toNamed(MyRouters.personalAddress);
                 },
                 child: Row(
                   children: [
@@ -321,7 +321,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               fontWeight: FontWeight.w400),
                         ),
                         Text(
-                          "Sign into your account using multiple  phone numbers \n and emails",
+                          "Sign into your account using multiple  phone numbers \n and email",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
                               fontSize: 9,

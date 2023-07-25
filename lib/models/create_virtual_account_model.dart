@@ -23,39 +23,39 @@ class CreateVirtualAccountModel {
 }
 
 class Data {
-  String? status;
-  bool? isActive;
-  String? accountNumber;
-  Null? merchantReference;
+  dynamic status;
+  dynamic isActive;
+  dynamic accountNumber;
+  dynamic merchantReference;
   KYCInformation? kYCInformation;
   AccountInformation? accountInformation;
-  Null? verifiedKYCData;
-  Null? note;
-  int? accountOpeningFee;
-  int? pendingAdditionalInfoCount;
+  dynamic verifiedKYCData;
+  dynamic note;
+  dynamic accountOpeningFee;
+  dynamic pendingAdditionalInfoCount;
   bool? isPermanent;
-  Null? expiresAt;
+ dynamic expiresAt;
   bool? isCheckoutVa;
   bool? isBankTransferVa;
   bool? isSuspended;
-  Null? reason;
-  Null? monthlyVolume;
-  Null? entityName;
-  Null? paymentFlowDescription;
-  String? virtualAccountType;
-  Null? riskRating;
-  Null? checklist;
-  Null? riskScreening;
-  Null? channelKycUpdateStatus;
-  Null? channelKycUpdateResponse;
-  String? sId;
-  String? business;
-  String? currency;
-  String? accountType;
-  String? entityType;
-  String? currencyType;
-  String? createdAt;
-  String? updatedAt;
+ dynamic reason;
+ dynamic monthlyVolume;
+ dynamic entityName;
+ dynamic paymentFlowDescription;
+ dynamic virtualAccountType;
+ dynamic riskRating;
+ dynamic checklist;
+ dynamic riskScreening;
+ dynamic channelKycUpdateStatus;
+ dynamic channelKycUpdateResponse;
+ dynamic sId;
+ dynamic business;
+ dynamic currency;
+ dynamic accountType;
+ dynamic entityType;
+ dynamic currencyType;
+ dynamic createdAt;
+ dynamic updatedAt;
 
   Data(
       {this.status,

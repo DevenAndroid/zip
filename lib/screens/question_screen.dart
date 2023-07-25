@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 
+import '../controller/loan_controller.dart';
 import '../routers/my_routers.dart';
 import '../widgets/common_button.dart';
 
@@ -16,7 +17,9 @@ class QuestionsScreen extends StatefulWidget {
 }
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
-  String dropdownvalue = 'Government Employed';
+
+  final loanController = Get.put(LoanController());
+
 
   List<DropdownMenuItem<String>> get dropdownItemsm1 {
     List<DropdownMenuItem<String>> menuItemsm = [
@@ -35,7 +38,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     ];
     return menuItemsm;
   }
-  String selectedValuem = "Home owner";
+
   List<DropdownMenuItem<String>> get dropdownItemsm2 {
     List<DropdownMenuItem<String>> menuItemsm = [
       const DropdownMenuItem(value: "0 lakh to 1 lakh", child: Text("0 lakh to 1 lakh")),
@@ -46,7 +49,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     ];
     return menuItemsm;
   }
-  String selectedValuem1 = "0 lakh to 1 lakh";
+
   List<DropdownMenuItem<String>> get dropdownItemsm3 {
     List<DropdownMenuItem<String>> menuItemsm = [
       const DropdownMenuItem(value: "1 month to 6 month", child: Text("1 month to 6 month")),
@@ -57,7 +60,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     ];
     return menuItemsm;
   }
-  String selectedValuem2 = "1 month to 6 month";
+
   List<DropdownMenuItem<String>> get dropdownItemsm4 {
     List<DropdownMenuItem<String>> menuItemsm = [
       const DropdownMenuItem(value: "0 lakh to 1 lakh", child: Text("0 lakh to 1 lakh")),
@@ -68,7 +71,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     ];
     return menuItemsm;
   }
-  String selectedValuem3 = "0 lakh to 1 lakh";
+
   List<DropdownMenuItem<String>> get dropdownItemsm5 {
     List<DropdownMenuItem<String>> menuItemsm = [
       const DropdownMenuItem(value: "Yes", child: Text("Yes")),
@@ -76,7 +79,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     ];
     return menuItemsm;
   }
-  String selectedValuem4 = "Yes";
+
 
 
 
@@ -178,11 +181,11 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                           hint: const Text("Home Owner"),
                           icon: const Icon(Icons.keyboard_arrow_down),
                           isExpanded: true,
-                          value: selectedValuem,
+                          value: loanController.selectedValuem,
                           items: dropdownItemsm,
                           onChanged: (String? value) {
                             setState(() {
-                              selectedValuem = value!;
+                              loanController.selectedValuem = value!;
                             });
                           },
                         ),
@@ -235,11 +238,11 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                           hint: const Text(""),
                           icon: const Icon(Icons.keyboard_arrow_down),
                           isExpanded: true,
-                          value: dropdownvalue,
+                          value:  loanController.dropdownvalue,
                           items: dropdownItemsm1,
                           onChanged: (String? value) {
                             setState(() {
-                              dropdownvalue = value!;
+                              loanController.dropdownvalue = value!;
                             });
                           },
                         ),
@@ -292,11 +295,11 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                           hint: const Text(""),
                           icon: const Icon(Icons.keyboard_arrow_down),
                           isExpanded: true,
-                          value: selectedValuem1,
+                          value:  loanController.selectedValuem1,
                           items: dropdownItemsm2,
                           onChanged: (String? value) {
                             setState(() {
-                              selectedValuem1 = value!;
+                              loanController.selectedValuem1 = value!;
                             });
                           },
                         ),
@@ -349,11 +352,11 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                           hint: const Text(""),
                           icon: const Icon(Icons.keyboard_arrow_down),
                           isExpanded: true,
-                          value: selectedValuem2,
+                          value:  loanController.selectedValuem2,
                           items: dropdownItemsm3,
                           onChanged: (String? value) {
                             setState(() {
-                              selectedValuem2 = value!;
+                              loanController.selectedValuem2 = value!;
                             });
                           },
                         ),
@@ -406,11 +409,11 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                           hint: const Text(""),
                           icon: const Icon(Icons.keyboard_arrow_down),
                           isExpanded: true,
-                          value: selectedValuem3,
+                          value:  loanController.selectedValuem3,
                           items: dropdownItemsm4,
                           onChanged: (String? value) {
                             setState(() {
-                              selectedValuem3 = value!;
+                              loanController.selectedValuem3 = value!;
                             });
                           },
                         ),
@@ -463,11 +466,11 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                           hint: const Text(""),
                           icon: const Icon(Icons.keyboard_arrow_down),
                           isExpanded: true,
-                          value: selectedValuem4,
+                          value:  loanController.selectedValuem4,
                           items: dropdownItemsm5,
                           onChanged: (String? value) {
                             setState(() {
-                              selectedValuem4 = value!;
+                              loanController.selectedValuem4 = value!;
                             });
                           },
                         ),
@@ -672,7 +675,8 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                       const SizedBox(height: 15,),
                        InkWell(
                            onTap: (){
-                             Get.toNamed(MyRouters.eligibleScreen);
+                             loanController.loan(context);
+
                              // emailLogin();
                              //
                            },
