@@ -50,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
         if (value.status == true) {
           SharedPreferences pref = await SharedPreferences.getInstance();
           pref.setString('cookie', value.authToken.toString());
-          Get.toNamed(MyRouters.bottomNavbar);
+          Get.offAllNamed(MyRouters.bottomNavbar);
           statusOflogin.value = RxStatus.success();
           showToast(value.message.toString());
         } else {

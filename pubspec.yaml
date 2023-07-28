@@ -55,6 +55,7 @@ dependencies:
   currency_converter: ^0.0.4
   open_filex: ^4.3.2
   path_provider: ^2.0.15
+  url_launcher: ^6.0.3
 
 
 dev_dependencies:

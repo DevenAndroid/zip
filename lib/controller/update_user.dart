@@ -13,6 +13,7 @@ import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../models/create_virtual_account_model.dart';
 import '../models/fetchVirtualAccount_model.dart';
@@ -141,7 +142,7 @@ showToast(value.message.toString());
       userUpdate.value = value;
       if (value.status == true) {
 
-         Get.toNamed(MyRouters.bottomNavbar,);
+         Get.offAllNamed(MyRouters.bottomNavbar,);
         statusOfUpdate.value = RxStatus.success();
         showToast(value.message.toString());
       } else {
@@ -230,6 +231,22 @@ phonenumber:molileController.text.trim() ,
       // showToast(value.message.toString());
     });
   }
+  _makingPhoneCall(call) async {
+    var url = Uri.parse(call);
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+  Future<void> openMap(double latitude, double longitude) async {
+    String googleUrl = 'https://www.google.com/maps/search/?api=1&query=$latitude,$longitude';
+    if (await canLaunch(googleUrl)) {
+      await launch(googleUrl);
+    } else {
+      throw 'Could not open the map.';
+    }
+  }
   Rx<ModelCheckout> checkout = ModelCheckout().obs;
   Rx<RxStatus> statusOfCheckout= RxStatus.empty().obs;
   RxString link1 = "".obs;
@@ -246,22 +263,38 @@ phonenumber:molileController.text.trim() ,
       checkout.value = value;
        log(checkout.value.toString());
       if (value.status == true) {
-        log("link1------${link1.value}");
+        _makingPhoneCall(value.data!.link);
+         // var url= value.data!.link;
+          // if (await canLaunchUrl(Uri.parse(url))) {
+          //   await launchUrl(url, );
+          // } else {
+          //   throw 'Could not launch $url';
+          // }
+          //
+        // _makingPhoneCall(value.data!.link.toString());
+      // var url = Uri.parse( value.data!.link.toString());
+      // if (await canLaunchUrl(url)) {
+      // await launchUrl(url);
+      // } else {
+      // throw 'Could not launch $url';
+      // }
 
-        var httpClient = HttpClient();
-        var request1 = await httpClient.getUrl(Uri.parse(value.data!.link));
-        var response = await request1.close();
-        var bytes = await consolidateHttpClientResponseBytes(response);
-        String dir = (await getApplicationDocumentsDirectory()).path;
-      File file = File('$dir/${value.data!.link.split("/").last.replaceAll("%", " ")}');
-      await file.writeAsBytes(bytes);
-      // Share.shareFiles([file.path], text: 'Great picture');
-      Share.share(value.data!.link);
+
+      //
+      //   var httpClient = HttpClient();
+      //   var request1 = await httpClient.getUrl(Uri.parse(value.data!.link));
+      //   var response = await request1.close();
+      //   var bytes = await consolidateHttpClientResponseBytes(response);
+      //   String dir = (await getApplicationDocumentsDirectory()).path;
+      // File file = File('$dir/${value.data!.link.split("/").last.replaceAll("%", " ")}');
+      // await file.writeAsBytes(bytes);
+      // // Share.shareFiles([file.path], text: 'Great picture');
+      // Share.share(value.data!.link);
         showToast(value.message.toString());
         statusOfCheckout.value = RxStatus.success();
         link1.value=value.data!.link;
         code.value=value.data!.payCode;
-        Get.toNamed(MyRouters.paymentLink);
+        // Get.toNamed(MyRouters.paymentLink);
 
         showToast(value.message.toString());
       }

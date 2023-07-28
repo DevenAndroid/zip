@@ -106,8 +106,33 @@ class _AddRecipientsState extends State<AddRecipients> {
                 labelText: "ZIP Tag",
               ),
             ),
+            const SizedBox(
+              height: 15,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 6, right: 6),
+              child: CommonTextfield(
+                obSecure: false,
+                hintText: "Email",
+                labelText: "Enter Email",
+              ),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 6, right: 6),
+              child: CommonTextfield(
+                obSecure: false,
+                hintText: "Phone",
+                labelText: "Enter Phone no ",
+              ),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
             SizedBox(
-              height: size.height * .5,
+              height: size.height * .33,
             ),
             InkWell(
               onTap: () {

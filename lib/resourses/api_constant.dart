@@ -24,8 +24,10 @@ class ApiUrls {
   static const String fetchAccount = "https://sandboxapi.fincra.com/profile/virtual-accounts/";
   static const String beneficiariesCreate  = "https://sandboxapi.fincra.com/profile/beneficiaries/business/";
   static const String payout  = "https://sandboxapi.fincra.com/disbursements/payouts";
+  static const String plan  = "http://52.210.49.22:8001/api/v1/bundles";
   static const String conversion  = "https://sandboxapi.fincra.com/quotes/generate";
   static const String getBeneficiaries  = "https://sandboxapi.fincra.com/profile/beneficiaries/business/";
+  static const String getTelcos  = "http://52.210.49.22:8001/api/v1/telcos";
   static const String userVerifyOtp = "${apiBaseUrl}verify-otp";
   static const String updateDetails = "${apiBaseUrl}update-details";
   static const String verifyAccount = "${apiBaseUrl}virtual-account";

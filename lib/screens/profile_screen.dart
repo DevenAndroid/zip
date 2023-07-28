@@ -303,12 +303,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
               // ),
               InkWell(
                 onTap: (){
-                  Get.toNamed(MyRouters.personalAddress);
+                  Get.toNamed(MyRouters.personalScreen);
                 },
                 child: Row(
                   children: [
                     const SizedBox(
-                      width: 20,
+                      width: 21,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

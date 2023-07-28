@@ -60,10 +60,12 @@ import 'package:zip/screens/yourrecipient.dart';
 import '../main.dart';
 import '../screens/Cardlimit.dart';
 import '../screens/addfundsinbank.dart';
+import '../screens/bank_details.dart';
 import '../screens/contact_us_screen.dart';
 import '../screens/create_account.dart';
 import '../screens/create_benificery_screen.dart';
 import '../screens/currenty.dart';
+import '../screens/data_plan_scree.dart';
 import '../screens/eligible_screen.dart';
 import '../screens/email_login.dart';
 
@@ -74,6 +76,7 @@ import '../screens/notification_screeb.dart';
 import '../screens/onboardingScreen.dart';
 import '../screens/paymentlink.dart';
 import '../screens/personal_address.dart';
+import '../screens/personal_screen.dart';
 import '../screens/profile_screen.dart';
 
 import '../screens/question_screen.dart';
@@ -81,6 +84,7 @@ import '../screens/regular_bank_transfer.dart';
 import '../screens/security_otp.dart';
 import '../screens/sendMoney.dart';
 import '../screens/supportscreen.dart';
+import '../screens/teslos_screen.dart';
 import '../screens/update_password.dart';
 import '../screens/verify_africa_ui.dart';
 
@@ -171,6 +175,10 @@ class MyRouters{
   static var verifyPaymentLink = "/verifyPaymentLink";
   static var createBenificeryScreen = "/createBenificeryScreen";
   static var personalAddress = "/personalAddress";
+  static var telcosScreen = "/telcosScreen";
+  static var dataPlanScreen = "/dataPlanScreen";
+  static var personalScreen = "/personalScreen";
+  static var bankDetailsScreen = "/bankDetailsScreen";
 
 
 
@@ -181,6 +189,8 @@ class MyRouters{
 
 
     GetPage(name: '/onBoardingScreen', page: () =>   const OnBoardingScreen()),
+    GetPage(name: '/bankDetailsScreen', page: () =>   const BankDetailsScreen()),
+    GetPage(name: '/personalScreen', page: () =>   const PersonalScreen()),
     GetPage(name: '/verifyPaymentLink', page: () =>   const VerifyPaymentLink()),
     GetPage(name: '/createBenificeryScreen', page: () =>   const CreateBenificeryScreen()),
     GetPage(name: '/sendCashReciptant', page: () =>   const SendCashReciptant()),
@@ -205,6 +215,7 @@ class MyRouters{
     GetPage(name: '/contuctUsScreen', page: () =>  const ContuctUsScreen()),
     GetPage(name: '/supportScreen', page: () =>  const SupportScreen()),
     GetPage(name: '/dashBoard', page: () =>  const DashBoard()),
+    GetPage(name: '/dataPlanScreen', page: () =>  const DataPlanScreen()),
 
     GetPage(name: '/mobileNumber', page: () =>  const MobileNumberScreen()),
     GetPage(name: '/updatePassword', page: () =>  const UpdatePassword()),
@@ -233,6 +244,7 @@ class MyRouters{
     GetPage(name: '/otpEmailScreen', page: () =>   const EmailOtpScreen()),
     GetPage(name: '/mobileOtpScreen', page: () =>   const MobileOtpScreen()),
     GetPage(name: "/walletScreen", page: ()=>  WalletScreen()),
+    GetPage(name: "/telcosScreen", page: ()=>  TelcosScreen()),
     GetPage(name: "/addCard", page: ()=>  AddCard()),
     GetPage(name: "/myCard", page: ()=>  MyCard()),
     GetPage(name: "/buyServices", page: ()=>  BuyServices()),

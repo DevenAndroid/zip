@@ -327,27 +327,31 @@ Row(
                 ),
                 ),
               ),
-              Container(
+              InkWell(
+                onTap: (){
+                  Get.toNamed(MyRouters.telcosScreen);
+                },
+                child: Container(
 padding: const EdgeInsets.all(8),
 
-                decoration: BoxDecoration(
-                    color: const Color(0xFFFAFAFA),
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: const [
-                      BoxShadow(
-                        color:   Colors.black26,
-                        offset: Offset(
-                          0.5,
-                          0.5,
-                        ), //Offset
-                        blurRadius:    0.5,
-                        spreadRadius: 0.0,
-                      ), //BoxShadow
-                    ]),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                  decoration: BoxDecoration(
+                      color: const Color(0xFFFAFAFA),
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: const [
+                        BoxShadow(
+                          color:   Colors.black26,
+                          offset: Offset(
+                            0.5,
+                            0.5,
+                          ), //Offset
+                          blurRadius:    0.5,
+                          spreadRadius: 0.0,
+                        ), //BoxShadow
+                      ]),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
 Row(
   mainAxisAlignment: MainAxisAlignment.end,
   crossAxisAlignment: CrossAxisAlignment.end,
@@ -357,16 +361,17 @@ Row(
 
   ],
 ),
-                  SvgPicture.asset("assets/images/i3.svg",width: 50,height: 50,),
-                  const SizedBox(height: 8,),
-                  Text(
-                    'Buy\nAnytime',
-                    style: GoogleFonts.poppins(
-                      textStyle: const TextStyle(fontSize: 16,fontWeight: FontWeight.w400,color: Color(0xFF2E2E2E)),
+                    SvgPicture.asset("assets/images/i3.svg",width: 50,height: 50,),
+                    const SizedBox(height: 8,),
+                    Text(
+                      'Buy\nAnytime',
+                      style: GoogleFonts.poppins(
+                        textStyle: const TextStyle(fontSize: 16,fontWeight: FontWeight.w400,color: Color(0xFF2E2E2E)),
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
+                ),
               ),
             ],
           ),

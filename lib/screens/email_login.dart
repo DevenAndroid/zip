@@ -108,7 +108,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
 
           pref.setString('business_id', login.value.data!.businessId.toString());
           pref.setString('cookie', value.authToken.toString());
-          Get.toNamed(MyRouters.bottomNavbar);
+          Get.offAllNamed(MyRouters.bottomNavbar);
           statusOflogin.value = RxStatus.success();
           showToast(value.message.toString());
         } else {

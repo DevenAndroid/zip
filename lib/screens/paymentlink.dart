@@ -3,10 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
 import '../controller/update_user.dart';
 import '../routers/my_routers.dart';
+import '../widgets/common_button.dart';
 import '../widgets/common_colour.dart';
 class VerifyPaymentLink extends StatefulWidget {
   const VerifyPaymentLink({Key? key}) : super(key: key);
@@ -88,17 +90,20 @@ class _VerifyPaymentLinkState extends State<VerifyPaymentLink> {
           controller: register.amountController,
           obSecure: false, hintText: "enter amount "),
 
-      ElevatedButton(
-          style:  ElevatedButton.styleFrom(
-              primary: AppTheme.secondaryColor // Background color
-          ),
-          onPressed: (){
-            Get.toNamed(MyRouters.paymentLink);
-            // register.cashCheckout(context);
 
 
 
-          }, child: Text("Pay By Card")),
+      SizedBox(height:MediaQuery.of(context).size.height*.6,),
+
+      InkWell(
+          onTap: (){
+
+            register.cashCheckout(context);
+            // Get.toNamed(MyRouters.paymentLink);
+            // emailLogin();
+            //
+          },
+          child: CustomOutlineButton(title: "Pay By Card",)),
     ]
     )))
     );
