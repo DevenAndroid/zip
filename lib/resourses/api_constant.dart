@@ -25,9 +25,13 @@ class ApiUrls {
   static const String beneficiariesCreate  = "https://sandboxapi.fincra.com/profile/beneficiaries/business/";
   static const String payout  = "https://sandboxapi.fincra.com/disbursements/payouts";
   static const String plan  = "http://52.210.49.22:8001/api/v1/bundles";
+  static const String provider  = "http://52.210.49.22:8001/api/v1/cable/providers";
+  static const String purchase  = "http://52.210.49.22:8001/api/v1/vend_airtime";
   static const String conversion  = "https://sandboxapi.fincra.com/quotes/generate";
   static const String getBeneficiaries  = "https://sandboxapi.fincra.com/profile/beneficiaries/business/";
   static const String getTelcos  = "http://52.210.49.22:8001/api/v1/telcos";
+  static const String biller  = "http://52.210.49.22:8001/api/v1/electricity/billers";
+  static const String cabelProviders  = "http://52.210.49.22:8001/api/v1/cable/providers";
   static const String userVerifyOtp = "${apiBaseUrl}verify-otp";
   static const String updateDetails = "${apiBaseUrl}update-details";
   static const String verifyAccount = "${apiBaseUrl}virtual-account";
@@ -47,6 +51,7 @@ class ApiUrls {
   static const String notificationSettings = "${apiBaseUrl}notification-settings";
   static const String userSetting = "${apiBaseUrl}user-settings";
   static const String userAddress = "${apiBaseUrl}add-user-address";
+  static const String search = "${apiBaseUrl}search?keyword=";
   static const String zipTag = "${apiBaseUrl}check-zip-tag";
   static const String sendOtpForPin = "${apiBaseUrl}send-otp-for-pin";
   static const String verifyOtpForPin = "${apiBaseUrl}verify-otp-for-pin";

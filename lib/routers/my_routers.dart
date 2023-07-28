@@ -61,6 +61,7 @@ import '../main.dart';
 import '../screens/Cardlimit.dart';
 import '../screens/addfundsinbank.dart';
 import '../screens/bank_details.dart';
+import '../screens/cabel_tv_screen.dart';
 import '../screens/contact_us_screen.dart';
 import '../screens/create_account.dart';
 import '../screens/create_benificery_screen.dart';
@@ -70,6 +71,7 @@ import '../screens/eligible_screen.dart';
 import '../screens/email_login.dart';
 
 import '../screens/limit_screen.dart';
+import '../screens/list_biller_screen.dart';
 import '../screens/loan_list.dart';
 import '../screens/loan_screen.dart';
 import '../screens/notification_screeb.dart';
@@ -79,6 +81,8 @@ import '../screens/personal_address.dart';
 import '../screens/personal_screen.dart';
 import '../screens/profile_screen.dart';
 
+import '../screens/providerScreen.dart';
+import '../screens/purchase_screen.dart';
 import '../screens/question_screen.dart';
 import '../screens/regular_bank_transfer.dart';
 import '../screens/security_otp.dart';
@@ -179,6 +183,10 @@ class MyRouters{
   static var dataPlanScreen = "/dataPlanScreen";
   static var personalScreen = "/personalScreen";
   static var bankDetailsScreen = "/bankDetailsScreen";
+  static var cabelTvScreen = "/cabelTvScreen";
+  static var providerScreen = "/providerScreen";
+  static var billerScreen = "/billerScreen";
+  static var purchaseScreen = "/purchaseScreen";
 
 
 
@@ -189,7 +197,11 @@ class MyRouters{
 
 
     GetPage(name: '/onBoardingScreen', page: () =>   const OnBoardingScreen()),
+    GetPage(name: '/purchaseScreen', page: () =>   const PurchaseScreen()),
     GetPage(name: '/bankDetailsScreen', page: () =>   const BankDetailsScreen()),
+    GetPage(name: '/cabelTvScreen', page: () =>   const CabelTvScreen()),
+    GetPage(name: '/providerScreen', page: () =>   const ProviderScreen()),
+    GetPage(name: '/billerScreen', page: () =>   const BillerScreen()),
     GetPage(name: '/personalScreen', page: () =>   const PersonalScreen()),
     GetPage(name: '/verifyPaymentLink', page: () =>   const VerifyPaymentLink()),
     GetPage(name: '/createBenificeryScreen', page: () =>   const CreateBenificeryScreen()),

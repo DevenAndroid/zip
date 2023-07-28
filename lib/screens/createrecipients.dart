@@ -103,8 +103,8 @@ class _CreateRecipientsState extends State<CreateRecipients> {
               padding: const EdgeInsets.only(left: 6, right: 6),
               child: CommonTextfield(
                 obSecure: false,
-                hintText: "name ",
-                labelText: "Zip Username ",
+                hintText: "Zip Tag ",
+                labelText: "Zip Tag ",
               ),
             ),
             const SizedBox(
@@ -114,8 +114,8 @@ class _CreateRecipientsState extends State<CreateRecipients> {
               padding: const EdgeInsets.only(left: 6, right: 6),
               child: CommonTextfield(
                 obSecure: false,
-                hintText: "+234 xxxxxxxxxx",
-                labelText: "Account Number",
+                hintText: "Piyush",
+                labelText: "Name",
               ),
             ),
             const SizedBox(
@@ -125,8 +125,8 @@ class _CreateRecipientsState extends State<CreateRecipients> {
               padding: const EdgeInsets.only(left: 6, right: 6),
               child: CommonTextfield(
                 obSecure: false,
-                hintText: "Account Name",
-                labelText: "Joanne Daniel",
+                hintText: "695659606u69u06u",
+                labelText: "Phone",
               ),
             ),
             SizedBox(

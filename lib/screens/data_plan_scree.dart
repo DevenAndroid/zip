@@ -158,7 +158,7 @@ telco: initStateBlank
                                             children: [
                                               InkWell(
                                                   onTap: (){
-                                                    // Get.toNamed(MyRouters.planScreen);
+                                                   Get.toNamed(MyRouters.purchaseScreen,arguments: [initStateBlank,dataPlan.value.data![index].price.toString(),]);
                                                   },
                                                   child: Container(
                                                       padding: EdgeInsets.symmetric(vertical: 8,horizontal: 10),

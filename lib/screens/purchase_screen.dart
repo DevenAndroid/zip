@@ -1,43 +1,58 @@
 import 'dart:developer';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
 
-import '../models/model_search.dart';
-import '../repository/serach_repo.dart';
+import '../controller/update_user.dart';
+import '../models/buy_plan_model.dart';
+import '../repository/repo_buy_plan.dart';
 import '../resourses/api_constant.dart';
 import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_textfield.dart';
 
-class AddRecipients extends StatefulWidget {
-  const AddRecipients({Key? key}) : super(key: key);
+class PurchaseScreen extends StatefulWidget {
+  const PurchaseScreen({Key? key}) : super(key: key);
 
   @override
-  State<AddRecipients> createState() => _AddRecipientsState();
+  State<PurchaseScreen> createState() => _PurchaseScreenState();
 }
 
-class _AddRecipientsState extends State<AddRecipients> {
-
+class _PurchaseScreenState extends State<PurchaseScreen> {
+  final registorController = Get.put(registerController());
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+      registorController.fetchVritualAccount();});
+  }
   Rx<RxStatus> statusOfProviders= RxStatus.empty().obs;
   TextEditingController phoneController = TextEditingController();
-  Rx<ModelSearchTag> purchaseData = ModelSearchTag().obs;
-
+  Rx<ModelBuy> purchaseData = ModelBuy().obs;
+  var initStateBlank = Get.arguments[0];
+  var initStateBlank1 = Get.arguments[1];
   getProviderList() {
-
-    searchRepo(
-     keyword:
+    print(initStateBlank);
+    print(initStateBlank1);
+    BuyPlanRepo(
+        telco: initStateBlank,
+      amount: initStateBlank1,
+      phone_no:phoneController.text.trim(),
+      reference:  registorController.fetchAccount.value.data!.accountNumber.toString()+"_"+DateTime.now().millisecondsSinceEpoch.toString(),
     ).then((value) {
       log("response.body.....    ${value}");
       purchaseData.value = value;
       if (value.success == true) {
         statusOfProviders.value = RxStatus.success();
         showToast(value.message.toString());
-
+        print(  registorController.fetchAccount.value.data!.accountNumber.toString()+DateTime.now().millisecondsSinceEpoch.toString(),);
       } else {
         statusOfProviders.value = RxStatus.error();
         showToast(value.message.toString());
@@ -46,15 +61,18 @@ class _AddRecipientsState extends State<AddRecipients> {
       // showToast(value.message.toString());
     );
   }
+
   @override
   Widget build(BuildContext context) {
+
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          "Send Money ",
+          "Purchase",
           style: GoogleFonts.poppins(
               color: const Color(0xFF1D1D1D),
               fontSize: 20,
@@ -63,19 +81,14 @@ class _AddRecipientsState extends State<AddRecipients> {
         centerTitle: true,
         leading: InkWell(
           onTap: (){
-           Get.back();
+            Get.back();
           },
           child: const Icon(
             Icons.arrow_back_rounded,
             color: AppTheme.primaryColor,
           ),
         ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 20),
-            child: Icon(Icons.search,color: Colors.black,),
-          )
-        ],
+
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -84,39 +97,10 @@ class _AddRecipientsState extends State<AddRecipients> {
             const SizedBox(
               height: 20,
             ),
-            Row(
-              children: [
-                Expanded(
-                    child: InkWell(
-                  onTap: () {
-                    Get.toNamed(MyRouters.createRecipients);
-                  },
-                  child: CustomOutlineBoder(
-                    title: "Add Manually",
-                    backgroundColor: Colors.white,
-                    textColor: AppTheme.buttonColor,
-                    onPressed: () {},
-                  ),
-                )),
-                const SizedBox(
-                  height: 15,
-                ),
-                Expanded(
-                  child: InkWell(
-                      onTap: () {},
-                      child: const CustomOutlineButton(
-                        title: "Search zip user",
-                      )),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 25,
-            ),
             Padding(
-              padding: const EdgeInsets.only(left: 30),
+              padding: const EdgeInsets.only(left: 23),
               child: Text(
-                "Zip Account Details",
+                "Phone number ",
                 style: GoogleFonts.poppins(
                     color: const Color(0xFF2E2E2E),
                     fontSize: 20,
@@ -130,43 +114,20 @@ class _AddRecipientsState extends State<AddRecipients> {
             Padding(
               padding: const EdgeInsets.only(left: 6, right: 6),
               child: CommonTextfield(
+                controller: phoneController,
                 obSecure: false,
-                hintText: "@",
-                labelText: "ZIP Tag",
+                hintText: "123456789",
+                labelText: "Mobile Number",
               ),
             ),
-            const SizedBox(
-              height: 15,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 6, right: 6),
-              child: CommonTextfield(
-                obSecure: false,
-                hintText: "Email",
-                labelText: "Enter Email",
-              ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 6, right: 6),
-              child: CommonTextfield(
-                obSecure: false,
-                hintText: "Phone",
-                labelText: "Enter Phone no ",
-              ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
+
             SizedBox(
-              height: size.height * .33,
+              height: size.height * .6,
             ),
             InkWell(
               onTap: () {
-                // Get.toNamed(MyRouters.sendCash);
-                },
+                getProviderList();
+              },
               child: const CustomOutlineButton(
                 title: "Continue",
               ),
