@@ -25,6 +25,7 @@ Future<ModelBuy> BuyPlanRepo({  amount,phone_no,telco,reference}) async {
       },
       body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
+  log("Sign IN DATA${response.statusCode}");
   print(map);
 
   if (response.statusCode == 200) {

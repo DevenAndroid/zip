@@ -127,7 +127,7 @@ SizedBox(height: 5,),
 
                           bottomController. pageIndex.value == 1
                               ?
-                          Text("Cards",style: TextStyle(color: AppTheme.secondaryColor,fontSize: 15,fontWeight: FontWeight.w400),):  Text("Cards",style: TextStyle(color: AppTheme.primaryColor,fontSize: 15,fontWeight: FontWeight.w400),)
+                          Text("Transactions",style: TextStyle(color: AppTheme.secondaryColor,fontSize: 15,fontWeight: FontWeight.w400),):  Text("Transactions",style: TextStyle(color: AppTheme.primaryColor,fontSize: 15,fontWeight: FontWeight.w400),)
 
                         ],
                       ),

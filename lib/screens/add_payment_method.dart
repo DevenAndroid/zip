@@ -17,14 +17,14 @@ import '../../models/model_account_resolve.dart';
 import '../../repository/bank_resolve_repo.dart';
 import '../../resourses/api_constant.dart';
 
-class SendCash2 extends StatefulWidget {
-  const SendCash2({Key? key}) : super(key: key);
+class AddPaymentMethod extends StatefulWidget {
+  const AddPaymentMethod({Key? key}) : super(key: key);
 
   @override
-  State<SendCash2> createState() => _SendCash2State();
+  State<AddPaymentMethod> createState() => _AddPaymentMethodState();
 }
 
-class _SendCash2State extends State<SendCash2> {
+class _AddPaymentMethodState extends State<AddPaymentMethod> {
   bool isSwitched = false;
 
 
@@ -33,9 +33,9 @@ class _SendCash2State extends State<SendCash2> {
 
   Future resolveData() async {
     await resolveRepo(
-            accountNumber: payOutcontroller.accountNo.text.trim(),
-            bankCode:  controller.idController.text.trim(),
-            context: context)
+        accountNumber: payOutcontroller.accountNo.text.trim(),
+        bankCode:  controller.idController1.text.trim(),
+        context: context)
         .then((value) {
       resolve.value = value;
       if (value.success == true) {
@@ -47,8 +47,8 @@ class _SendCash2State extends State<SendCash2> {
         showToast(value.message.toString());
       }
     }
-            // showToast(value.message.toString());
-            );
+      // showToast(value.message.toString());
+    );
   }
 
   // final TextEditingController bankController = TextEditingController();
@@ -91,12 +91,14 @@ class _SendCash2State extends State<SendCash2> {
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.only(bottom: 20.0),
           child: InkWell(
-              onTap: () {
-                payOutcontroller.CreateBenificery();
-              },
-              child: const CustomOutlineButton(
-                title: "Continue",
-              )),
+            onTap: (){
+              payOutcontroller.save(context);
+            },
+            child: CustomOutlineButton(
+              title: "Continue",
+
+            ),
+          ),
         ),
         body: SingleChildScrollView(
             child: Padding(
@@ -117,7 +119,7 @@ class _SendCash2State extends State<SendCash2> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Recipients',
+                                  'Add account',
                                   style: GoogleFonts.poppins(
                                     textStyle: const TextStyle(
                                         fontSize: 14,
@@ -144,10 +146,10 @@ class _SendCash2State extends State<SendCash2> {
                       ),
                       CommonTextfield(
                         onTap: () {
-                          Get.toNamed(MyRouters.chooseBank);
+                          Get.toNamed(MyRouters.chooseBank1);
                         },
                         suffixIcon: Icon(Icons.keyboard_arrow_down),
-                        controller: controller.bankController,
+                        controller: controller.bankController1,
                         readOnly: true,
                         obSecure: false,
                         hintText: "",
@@ -211,7 +213,7 @@ class _SendCash2State extends State<SendCash2> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Save as Recipients',
+                              'Save as Account',
                               style: GoogleFonts.poppins(
                                 textStyle: const TextStyle(
                                     fontSize: 16,

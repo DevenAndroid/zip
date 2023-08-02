@@ -59,9 +59,11 @@ import 'package:zip/screens/yourrecipient.dart';
 
 import '../main.dart';
 import '../screens/Cardlimit.dart';
+import '../screens/add_payment_method.dart';
 import '../screens/addfundsinbank.dart';
 import '../screens/bank_details.dart';
 import '../screens/cabel_tv_screen.dart';
+import '../screens/choose_bank_2.dart';
 import '../screens/contact_us_screen.dart';
 import '../screens/create_account.dart';
 import '../screens/create_benificery_screen.dart';
@@ -85,10 +87,13 @@ import '../screens/providerScreen.dart';
 import '../screens/purchase_screen.dart';
 import '../screens/question_screen.dart';
 import '../screens/regular_bank_transfer.dart';
+import '../screens/request_a_payment2.dart';
 import '../screens/security_otp.dart';
 import '../screens/sendMoney.dart';
+import '../screens/sucess2.dart';
 import '../screens/supportscreen.dart';
 import '../screens/teslos_screen.dart';
+import '../screens/transastion_screen.dart';
 import '../screens/update_password.dart';
 import '../screens/verify_africa_ui.dart';
 
@@ -187,6 +192,11 @@ class MyRouters{
   static var providerScreen = "/providerScreen";
   static var billerScreen = "/billerScreen";
   static var purchaseScreen = "/purchaseScreen";
+  static var transastionScreen = "/transastionScreen";
+  static var addPaymentMethod = "/addPaymentMethod";
+  static var chooseBank1 = "/chooseBank1";
+  static var success2Screen = "/success2Screen";
+  static var requestAPaymentContiune2 = "/requestAPaymentContiune2";
 
 
 
@@ -197,8 +207,13 @@ class MyRouters{
 
 
     GetPage(name: '/onBoardingScreen', page: () =>   const OnBoardingScreen()),
+    GetPage(name: '/requestAPaymentContiune2', page: () =>   const RequestAPaymentContiune2()),
+    GetPage(name: '/success2Screen', page: () =>   const Success2Screen()),
+    GetPage(name: '/addPaymentMethod', page: () =>   const AddPaymentMethod()),
+    GetPage(name: '/transastionScreen', page: () =>   const TransastionScreen()),
     GetPage(name: '/purchaseScreen', page: () =>   const PurchaseScreen()),
     GetPage(name: '/bankDetailsScreen', page: () =>   const BankDetailsScreen()),
+    GetPage(name: '/chooseBank1', page: () =>   const ChooseBank1()),
     GetPage(name: '/cabelTvScreen', page: () =>   const CabelTvScreen()),
     GetPage(name: '/providerScreen', page: () =>   const ProviderScreen()),
     GetPage(name: '/billerScreen', page: () =>   const BillerScreen()),

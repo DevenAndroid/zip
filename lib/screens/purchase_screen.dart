@@ -11,7 +11,9 @@ import 'package:zip/widgets/common_colour.dart';
 
 import '../controller/update_user.dart';
 import '../models/buy_plan_model.dart';
+import '../models/save_transastion_model.dart';
 import '../repository/repo_buy_plan.dart';
+import '../repository/save_buy_plan_repo.dart';
 import '../resourses/api_constant.dart';
 import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
@@ -35,9 +37,36 @@ class _PurchaseScreenState extends State<PurchaseScreen> {
   }
   Rx<RxStatus> statusOfProviders= RxStatus.empty().obs;
   TextEditingController phoneController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
   Rx<ModelBuy> purchaseData = ModelBuy().obs;
   var initStateBlank = Get.arguments[0];
   var initStateBlank1 = Get.arguments[1];
+  var initStateBlank2 = Get.arguments[2];
+  Rx<RxStatus> statusOfSave= RxStatus.empty().obs;
+  Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
+
+  saveList() {
+    saveTransastionRepo(
+
+        amount:initStateBlank1,
+      about: initStateBlank2.toString(),
+      // complete_response: purchaseData.value.data!.toJson(),
+        context: context,
+      description:descriptionController.text.trim(),
+      type: "dr"
+    ).then((value) {
+      log("response.body.....    ${value}");
+      save.value = value;
+      if (value.status == true) {
+        statusOfSave.value = RxStatus.success();
+
+      } else {
+        statusOfSave.value = RxStatus.error();
+      }
+    }
+      // showToast(value.message.toString());
+    );
+  }
   getProviderList() {
     print(initStateBlank);
     print(initStateBlank1);
@@ -50,6 +79,7 @@ class _PurchaseScreenState extends State<PurchaseScreen> {
       log("response.body.....    ${value}");
       purchaseData.value = value;
       if (value.success == true) {
+        saveList();
         statusOfProviders.value = RxStatus.success();
         showToast(value.message.toString());
         print(  registorController.fetchAccount.value.data!.accountNumber.toString()+DateTime.now().millisecondsSinceEpoch.toString(),);
@@ -98,18 +128,18 @@ class _PurchaseScreenState extends State<PurchaseScreen> {
               height: 20,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 23),
+              padding: const EdgeInsets.only(left: 20),
               child: Text(
                 "Phone number ",
                 style: GoogleFonts.poppins(
                     color: const Color(0xFF2E2E2E),
-                    fontSize: 20,
-                    fontWeight: FontWeight.w400),
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500),
               ),
             ),
 
             const SizedBox(
-              height: 27,
+              height: 10,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 6, right: 6),
@@ -117,12 +147,36 @@ class _PurchaseScreenState extends State<PurchaseScreen> {
                 controller: phoneController,
                 obSecure: false,
                 hintText: "123456789",
-                labelText: "Mobile Number",
+                labelText: "Phone Number",
+              ),
+            ),
+            SizedBox(height: 20,),
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: Text(
+                "Description",
+                style: GoogleFonts.poppins(
+                    color: const Color(0xFF2E2E2E),
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500),
+              ),
+            ),
+
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 6, right: 6),
+              child: CommonTextfield(
+                controller: descriptionController,
+                obSecure: false,
+                hintText: "Recharge",
+                labelText: "Description",
               ),
             ),
 
             SizedBox(
-              height: size.height * .6,
+              height: size.height * .5,
             ),
             InkWell(
               onTap: () {

@@ -7,8 +7,10 @@ import 'package:zip/routers/my_routers.dart';
 
 import '../models/model_data_paln.dart';
 import '../models/model_fetch_telcos.dart';
+import '../models/save_transastion_model.dart';
 import '../repository/data_plan_repo.dart';
 import '../repository/fetch_telcos_repo.dart';
+import '../repository/save_buy_plan_repo.dart';
 import '../widgets/circular_progressindicator.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_colour.dart';
@@ -33,6 +35,7 @@ telco: initStateBlank
       dataPlan.value = value;
       if (value.success == true) {
         statusOfPlan.value = RxStatus.success();
+
       } else {
         statusOfPlan.value = RxStatus.error();
       }
@@ -40,6 +43,8 @@ telco: initStateBlank
       // showToast(value.message.toString());
     );
   }
+
+
 @override
   void initState() {
     // TODO: implement initState
@@ -158,7 +163,7 @@ telco: initStateBlank
                                             children: [
                                               InkWell(
                                                   onTap: (){
-                                                   Get.toNamed(MyRouters.purchaseScreen,arguments: [initStateBlank,dataPlan.value.data![index].price.toString(),]);
+                                                   Get.toNamed(MyRouters.purchaseScreen,arguments: [initStateBlank,dataPlan.value.data![index].price.toString(),dataPlan.value.data![index].name.toString(),]);
                                                   },
                                                   child: Container(
                                                       padding: EdgeInsets.symmetric(vertical: 8,horizontal: 10),

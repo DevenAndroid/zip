@@ -4,6 +4,11 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
+
+import '../models/model_fetch_save_bank.dart';
+import '../repository/repo_fetch_save_details.dart';
+import '../resourses/api_constant.dart';
+import '../widgets/common_error_widget.dart';
 class SelectMethod extends StatefulWidget {
   const SelectMethod({Key? key}) : super(key: key);
 
@@ -12,6 +17,29 @@ class SelectMethod extends StatefulWidget {
 }
 
 class _SelectMethodState extends State<SelectMethod> {
+
+
+  Rx<RxStatus> statusOfGetDetails = RxStatus.empty().obs;
+  Rx<ModelFetchSaveBankDetails> getSaveBank= ModelFetchSaveBankDetails().obs;
+  getDetails() {
+    getSaveBankRepo().then((value) {
+      getSaveBank.value = value;
+      if (value.status!) {
+
+        statusOfGetDetails.value = RxStatus.success();
+        showToast(value.message.toString());
+      } else {
+        statusOfGetDetails.value = RxStatus.error();
+        showToast(value.message.toString());
+      }
+    });
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getDetails();
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -49,7 +77,7 @@ class _SelectMethodState extends State<SelectMethod> {
       SizedBox(height: 15,),
       GestureDetector(
         onTap: (){
-          Get.toNamed(MyRouters.confirmBankScreen);
+          Get.toNamed(MyRouters.addPaymentMethod);
         },
         child: Row(
           children: [
@@ -75,49 +103,71 @@ class _SelectMethodState extends State<SelectMethod> {
         ),
       ),
       SizedBox(height: 15,),
-      GestureDetector(
-        onTap: (){
-        Get.toNamed(MyRouters.confirmBankScreen);
-        },
-        child: Row(
-          children: [
-            Container(
-              padding: EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10)
-              ),
-           child:SvgPicture.asset('assets/images/bank.svg')
-            ),
-            SizedBox(width: 15,),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
 
-                  "Adedoyin, Daniel",
-                  style: GoogleFonts.poppins(
-                      color: const Color(0xFF1D1D1D),
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500),
-                ),
-                Text(
+    Obx(() {
+      return statusOfGetDetails.value.isSuccess
+          ? ListView.builder(
+          itemCount: getSaveBank.value.data!.length,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemBuilder: (context, index) {
+            return
+              Column(
+                children: [
+                  if(getSaveBank.value.data!.isNotEmpty)
 
-                  "Kuda Bank 1234",
-                  style: GoogleFonts.poppins(
-                      color:  Colors.grey,
-                      fontSize: 10,
-                      fontWeight: FontWeight.w300),
-                ),
-              ],
-            ),
-         Spacer(),
-         Icon(Icons.keyboard_arrow_right_rounded)
-          ],
-        ),
-      ),
-]
-    ))));
+                  GestureDetector(
+                    onTap: () {
+                      Get.toNamed(MyRouters.requestAPaymentContiune2);
+                    },
+                    child: Row(
+                      children: [
+                        Container(
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10)
+                            ),
+                            child: SvgPicture.asset('assets/images/bank.svg')
+                        ),
+                        SizedBox(width: 15,),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+
+                              getSaveBank.value.data![index].firstName.toString(),
+                              style: GoogleFonts.poppins(
+                                  color: const Color(0xFF1D1D1D),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            Text(
+
+                              getSaveBank.value.data![index].destinationAddress.toString(),
+                              style: GoogleFonts.poppins(
+                                  color: Colors.grey,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w300),
+                            ),
+                          ],
+                        ),
+                        Spacer(),
+                        Icon(Icons.keyboard_arrow_right_rounded)
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 10,),
+                ],
+              );
+          }) : statusOfGetDetails.value.isError
+          ? CommonErrorWidget(
+        errorText: "",
+        onTap: () {},
+      )
+          : const Center(
+          child: CircularProgressIndicator());
+    })]))));
   }
 }
 

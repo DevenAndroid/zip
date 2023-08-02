@@ -7,14 +7,14 @@ import 'package:zip/routers/my_routers.dart';
 import '../controller/profile_controller.dart';
 import '../widgets/common_button.dart';
 
-class RequestAPaymentContiune extends StatefulWidget {
-  const RequestAPaymentContiune({Key? key}) : super(key: key);
+class RequestAPaymentContiune2 extends StatefulWidget {
+  const RequestAPaymentContiune2({Key? key}) : super(key: key);
 
   @override
-  State<RequestAPaymentContiune> createState() => _RequestAPaymentContiuneState();
+  State<RequestAPaymentContiune2> createState() => _RequestAPaymentContiune2State();
 }
 
-class _RequestAPaymentContiuneState extends State<RequestAPaymentContiune> {
+class _RequestAPaymentContiune2State extends State<RequestAPaymentContiune2> {
   final profileController = Get.put(ProfileController());
   @override
   Widget build(BuildContext context) {
@@ -63,7 +63,7 @@ class _RequestAPaymentContiuneState extends State<RequestAPaymentContiune> {
           ),
           InkWell(
             onTap: () {
-Get.toNamed(MyRouters.successScreen);
+              Get.toNamed(MyRouters.success2Screen);
             },
             child: CustomOutlineButton(
               title: "Continue",

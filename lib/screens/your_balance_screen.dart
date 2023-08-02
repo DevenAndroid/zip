@@ -5,6 +5,9 @@ import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
+
+import '../controller/profile_controller.dart';
+import '../controller/update_user.dart';
 class YourBalanceScreen extends StatefulWidget {
   const YourBalanceScreen({Key? key}) : super(key: key);
 
@@ -13,6 +16,8 @@ class YourBalanceScreen extends StatefulWidget {
 }
 
 class _YourBalanceScreenState extends State<YourBalanceScreen> {
+  final profileController = Get.put(ProfileController());
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -58,35 +63,66 @@ class _YourBalanceScreenState extends State<YourBalanceScreen> {
         ),
       ),
       SizedBox(height: 20,),
-      Padding(
-        padding: const EdgeInsets.only(left: 10.0,right: 10),
-        child: Text(
+      Center(
+        child: Stack(
+          children: [
+            Center(
+              child: Container(
+                padding: const EdgeInsets.all(2),
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                ),
+                margin: EdgeInsets.only(
+                    right: size.width * .01, left: size.width * .015),
+                child: CircleAvatar(
+                  radius: size.height * .07,
+                  backgroundImage: const NetworkImage(
+                      'https://www.pngitem.com/pimgs/m/128-1284293_marina-circle-girl-picture-in-circle-png-transparent.png'),
+                ),
+              ),
+            ),
 
-          "Cash out to your preferred payment method",
-          style: GoogleFonts.poppins(
-              color: const Color(0xFF1D1D1D),
-              fontSize: 14,
-              fontWeight: FontWeight.w500),
+          ],
         ),
       ),
-      SizedBox(height: 18,),
-CommonTextfield(obSecure: false, hintText: "",labelText: "Enter amount",),
-SizedBox(height: 8,),
-      Padding(
-        padding: const EdgeInsets.only(left: 10.0,right: 10),
+      Center(
         child: Text(
-          "This transection is free",
+          "${profileController.modal.value.data!.user!.fname.toString()} "+" ${profileController.modal.value.data!.user!.lname.toString()}",
           style: GoogleFonts.poppins(
               color: const Color(0xFF1D1D1D),
-              fontSize: 13,
+              fontSize: 20,
+              fontWeight: FontWeight.w400),
+        ),
+      ),
+      Center(
+        child: Text(
+          profileController.modal.value.data!.user!.zipTag.toString(),
+          style: GoogleFonts.poppins(
+              color: const Color(0xFF1D1D1D),
+              fontSize: 16,
               fontWeight: FontWeight.w300),
         ),
       ),
+      const SizedBox(
+        height: 29,
+      ),
+      SizedBox(height: 18,),
+CommonTextfield(
+  controller:profileController.amountController ,
+  obSecure: false, hintText: "",labelText: "Enter amount",),
+SizedBox(height: 14,),
+      CommonTextfield(
+        controller:profileController.noteController ,
+        obSecure: false, hintText: "",labelText: "Note",),
 
-      SizedBox(height: size.height*.55,),
+      SizedBox(height: 10,),
+
+
+      SizedBox(height: size.height*.3,),
       InkWell(
           onTap: (){
-            Get.toNamed(MyRouters.confirmBankScreen);
+            Get.toNamed(MyRouters.requestAPaymentContiune,);
           },
           child: CustomOutlineButton(title: "Send",)),
 

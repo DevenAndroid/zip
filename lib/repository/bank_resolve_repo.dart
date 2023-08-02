@@ -3,30 +3,27 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
+import '../models/create_benificiary.dart';
 import '../models/modal_registor.dart';
-import '../models/model_checkout.dart';
-import '../models/model_security_pin.dart';
+import '../models/model_account_resolve.dart';
+import '../models/model_conversion.dart';
+import '../models/model_create_payout.dart';
 import '../models/model_update_password.dart';
-import '../models/set_transfre_limit_model.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
 
 
-Future<ModelCheckout> checkoutRepo({context,currency,amount,name,email}) async {
+Future<ModelAccountResolve> resolveRepo({accountNumber,bankCode,context,}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
-  var map2 = <String, dynamic>{};
 
 
-  map['currency'] = currency;
-  // map['redirectUrl'] = "";
-  map['amount'] = amount;
-  map2['name'] = name;
-  map2['email'] = email;
-  map['customer'] = map2;
 
+  map['accountNumber'] =  accountNumber;
+  map['bankCode'] =  bankCode;
+  map['type'] =  "nuban";
 
 
 
@@ -34,12 +31,10 @@ Future<ModelCheckout> checkoutRepo({context,currency,amount,name,email}) async {
 
   print(map);
   // try {
-  http.Response response = await http.post(Uri.parse(ApiUrls.checkoutPayment),
+  http.Response response = await http.post(Uri.parse(ApiUrls.resolve),
       headers: { HttpHeaders.contentTypeHeader: 'application/json',
         HttpHeaders.acceptHeader: 'application/json',
-        "api-key": "m98zn3Y70MXGu1VaZNhYOZO7CbULj6uU",
-        "x-pub-key": "pk_test_NjQ1MjliZDJiZmRmMjhlN2MxOGFhOWRhOjoxMjc5NDc",
-        "x-business-id": "64529bd2bfdf28e7c18aa9da",
+        "api-key": "m98zn3Y70MXGu1VaZNhYOZO7CbULj6uU"
 
       },
       body: jsonEncode(map));
@@ -47,15 +42,15 @@ Future<ModelCheckout> checkoutRepo({context,currency,amount,name,email}) async {
   // http.Response response = await http.post(Uri.parse(ApiUrls.loginUser),
   //     headers: await getAuthHeader(),body: jsonEncode(map) );
 
-  if (response.statusCode == 200 || response.statusCode==201) {
+  if (response.statusCode == 200) {
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
-    return ModelCheckout.fromJson(jsonDecode(response.body));
+    return ModelAccountResolve.fromJson(jsonDecode(response.body));
 
   } else {
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
-    return ModelCheckout(message: jsonDecode(response.body)["message"],status: false );
+    return ModelAccountResolve(message: jsonDecode(response.body)["message"],success: false );
   }
   // }  catch (e) {
   //   Helpers.hideLoader(loader);

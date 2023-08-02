@@ -1,19 +1,14 @@
 class ModelSearchTag {
   bool? status;
   String? message;
-  List<Data>? data;
+  Data? data;
 
   ModelSearchTag({this.status, this.message, this.data});
 
   ModelSearchTag.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
-    if (json['data'] != null) {
-      data = <Data>[];
-      json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
-      });
-    }
+    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -21,44 +16,44 @@ class ModelSearchTag {
     data['status'] = this.status;
     data['message'] = this.message;
     if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
+      data['data'] = this.data!.toJson();
     }
     return data;
   }
 }
 
 class Data {
- dynamic id;
- dynamic name;
- dynamic fname;
- dynamic lname;
- dynamic phone;
- dynamic countryCode;
- dynamic email;
- dynamic dob;
- dynamic nationality;
- dynamic pin;
- dynamic birthPlace;
- dynamic gender;
- dynamic otp;
- dynamic otpCreatedAt;
- dynamic otpVerified;
- dynamic profileImage;
- dynamic emailVerifiedAt;
- dynamic walletBalance;
- dynamic status;
- dynamic isProfileComplete;
- dynamic bvn;
- dynamic primaryPurpose;
- dynamic zipTag;
- dynamic verificationImage;
- dynamic isAfricaVerifed;
- dynamic pinResetOtp;
- dynamic tranferLimit;
- dynamic defaultAddress;
- dynamic createdAt;
- dynamic updatedAt;
- dynamic deletedAt;
+  dynamic id;
+  dynamic name;
+  dynamic fname;
+  dynamic lname;
+  dynamic phone;
+  dynamic countryCode;
+  dynamic email;
+  dynamic dob;
+  dynamic nationality;
+  dynamic pin;
+  dynamic birthPlace;
+  dynamic gender;
+  dynamic otp;
+  dynamic otpCreatedAt;
+  dynamic otpVerified;
+  dynamic profileImage;
+  dynamic emailVerifiedAt;
+  dynamic walletBalance;
+  dynamic status;
+  dynamic isProfileComplete;
+  dynamic bvn;
+  dynamic primaryPurpose;
+  dynamic zipTag;
+  dynamic verificationImage;
+  dynamic isAfricaVerifed;
+  dynamic pinResetOtp;
+  dynamic tranferLimit;
+  dynamic defaultAddress;
+  dynamic createdAt;
+  dynamic updatedAt;
+  dynamic deletedAt;
 
   Data(
       {this.id,

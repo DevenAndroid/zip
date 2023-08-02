@@ -181,7 +181,7 @@ class _DashBoardState extends State<DashBoard> {
                       const SizedBox(height: 8,),
                       InkWell(
                         onTap: (){
-                          Get.toNamed(MyRouters.yourBalanceScreen);
+                          Get.toNamed(MyRouters.sendCashYourBalance);
                         },
                         child: Container(
 

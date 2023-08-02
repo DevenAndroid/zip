@@ -34,6 +34,14 @@ import 'number_controller.dart';
 
 
 class registerController extends GetxController {
+
+
+  final bankController = TextEditingController();
+  final bankController1 = TextEditingController();
+  final idController = TextEditingController();
+  final idController1 = TextEditingController();
+
+
   TextEditingController dateOfBirthController = TextEditingController();
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();

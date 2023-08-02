@@ -23,23 +23,35 @@ class AddRecipients extends StatefulWidget {
 
 class _AddRecipientsState extends State<AddRecipients> {
 
-  Rx<RxStatus> statusOfProviders= RxStatus.empty().obs;
+  Rx<RxStatus> statusOfSearch= RxStatus.empty().obs;
   TextEditingController phoneController = TextEditingController();
-  Rx<ModelSearchTag> purchaseData = ModelSearchTag().obs;
+  Rx<ModelSearchTag> searchData = ModelSearchTag().obs;
+  TextEditingController ziptagController = TextEditingController();
+  TextEditingController email1Controller = TextEditingController();
 
-  getProviderList() {
+
+  getSearchList() {
 
     searchRepo(
-     keyword:
+      email: email1Controller.text.trim(),
+     phone:phoneController.text.trim() ,
+     zip_tag: ziptagController.text.trim()+"@zip",
+     context: context,
+
     ).then((value) {
       log("response.body.....    ${value}");
-      purchaseData.value = value;
-      if (value.success == true) {
-        statusOfProviders.value = RxStatus.success();
+      searchData.value = value;
+      if (value.status == true) {
+        statusOfSearch.value = RxStatus.success();
         showToast(value.message.toString());
+         email1Controller.text = (value.data!.email ?? "").toString();
+        phoneController.text = (value.data!.phone ?? "").toString();
+        ziptagController.text = (value.data!.zipTag ?? "").toString();
 
+
+        print(value.data!.email.toString());
       } else {
-        statusOfProviders.value = RxStatus.error();
+        statusOfSearch.value = RxStatus.error();
         showToast(value.message.toString());
       }
     }
@@ -114,13 +126,13 @@ class _AddRecipientsState extends State<AddRecipients> {
               height: 25,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 30),
+              padding: const EdgeInsets.only(left: 20,right: 20),
               child: Text(
-                "Zip Account Details",
+                "Search user by email or phone",
                 style: GoogleFonts.poppins(
                     color: const Color(0xFF2E2E2E),
-                    fontSize: 20,
-                    fontWeight: FontWeight.w400),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500),
               ),
             ),
 
@@ -130,6 +142,7 @@ class _AddRecipientsState extends State<AddRecipients> {
             Padding(
               padding: const EdgeInsets.only(left: 6, right: 6),
               child: CommonTextfield(
+                controller: ziptagController,
                 obSecure: false,
                 hintText: "@",
                 labelText: "ZIP Tag",
@@ -141,6 +154,7 @@ class _AddRecipientsState extends State<AddRecipients> {
             Padding(
               padding: const EdgeInsets.only(left: 6, right: 6),
               child: CommonTextfield(
+                controller: email1Controller,
                 obSecure: false,
                 hintText: "Email",
                 labelText: "Enter Email",
@@ -152,6 +166,7 @@ class _AddRecipientsState extends State<AddRecipients> {
             Padding(
               padding: const EdgeInsets.only(left: 6, right: 6),
               child: CommonTextfield(
+                controller: phoneController,
                 obSecure: false,
                 hintText: "Phone",
                 labelText: "Enter Phone no ",
@@ -161,10 +176,19 @@ class _AddRecipientsState extends State<AddRecipients> {
               height: 15,
             ),
             SizedBox(
-              height: size.height * .33,
+              height: size.height * .27,
             ),
             InkWell(
+                onTap: (){
+                  email1Controller.text="";
+                  phoneController.text="";
+                  ziptagController.text="";
+                },
+                child: CustomOutlineBoder(title: "Clear")),
+            SizedBox(height: 25,),
+            InkWell(
               onTap: () {
+                getSearchList();
                 // Get.toNamed(MyRouters.sendCash);
                 },
               child: const CustomOutlineButton(

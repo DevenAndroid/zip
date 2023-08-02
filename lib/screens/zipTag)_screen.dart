@@ -29,7 +29,7 @@ class _TagScreenState extends State<TagScreen> {
   checkZipTag() {
     if (formKeyTag.currentState!.validate()) {
       zipTagRepo(
-         zip_tag: registorController.zipController.text.trim(),
+         zip_tag: registorController.zipController.text.trim()+"@zip",
 
 
       ).then((value) async {

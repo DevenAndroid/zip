@@ -10,24 +10,25 @@ import '../resourses/api_constant.dart';
 
 
 
-Future<ChooseBankList> chooseBankRepo(id) async {
+Future<ChooseBankList> chooseBankRepo({required String currency,required String country,}) async {
   try {
     http.Response response = await http.get(
-      Uri.parse("${ApiUrls.chooseBank}$id"),
-      headers: await getAuthHeader(),
+      Uri.parse(ApiUrls.chooseBank+"currency=$currency&country=$country"),
+        headers: { HttpHeaders.contentTypeHeader: 'application/json',
+    HttpHeaders.acceptHeader: 'application/json',
+    "api-key": "m98zn3Y70MXGu1VaZNhYOZO7CbULj6uU",}
     );
-
+    print(jsonDecode(response.body));
     if (response.statusCode == 200) {
-      print(jsonDecode(response.body));
+
       return ChooseBankList.fromJson(jsonDecode(response.body));
     } else {
       print(jsonDecode(response.body));
       return ChooseBankList(
-          message: jsonDecode(response.body)["message"],
-
           data: null);
     }
   } catch (e) {
-    return ChooseBankList(message: e.toString(), data: null);
+    throw Exception(e);
+    // return ChooseBankList(message: e.toString(), data: null);
   }
 }

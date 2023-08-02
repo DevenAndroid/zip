@@ -12,14 +12,14 @@ import '../../repository/choose_bank_repo.dart';
 import '../../resourses/api_constant.dart';
 import '../../widgets/common_error_widget.dart';
 
-class ChooseBank extends StatefulWidget {
-  const ChooseBank({Key? key}) : super(key: key);
+class ChooseBank1 extends StatefulWidget {
+  const ChooseBank1({Key? key}) : super(key: key);
 
   @override
-  State<ChooseBank> createState() => _ChooseBankState();
+  State<ChooseBank1> createState() => _ChooseBank1State();
 }
 
-class _ChooseBankState extends State<ChooseBank> {
+class _ChooseBank1State extends State<ChooseBank1> {
   Rx<RxStatus> statusOfChooseBank = RxStatus.empty().obs;
 
   Rx<ChooseBankList> chooseBank = ChooseBankList().obs;
@@ -107,62 +107,62 @@ class _ChooseBankState extends State<ChooseBank> {
                       Obx(() {
                         List<Data> data=[];
                         if(statusOfChooseBank.value.isSuccess && chooseBank.value.data!= null){
-    String search = search1Controller.text.trim().toLowerCase();
-    if(search.isNotEmpty) {
-      data =
-          chooseBank.value.data!
-              .where((element) =>
-          element.name.toString().toLowerCase().contains(
-              search)
-          ).toList();
-    } else {
-      data = chooseBank.value.data!;
-    }
+                          String search = search1Controller.text.trim().toLowerCase();
+                          if(search.isNotEmpty) {
+                            data =
+                                chooseBank.value.data!
+                                    .where((element) =>
+                                    element.name.toString().toLowerCase().contains(
+                                        search)
+                                ).toList();
+                          } else {
+                            data = chooseBank.value.data!;
+                          }
                         }
                         return statusOfChooseBank.value.isSuccess
                             ? ListView.builder(
-                                itemCount: chooseBank.value.data!.length,
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemBuilder: (context, index) {
-                                  return Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        InkWell(
-                                          onTap: () {
-                                            controller.bankController.text = chooseBank.value.data![index].name.toString();
-                                            controller.idController.text = chooseBank.value.data![index].code.toString();
-                                            Get.toNamed(MyRouters.sendCash2,
-                                                arguments: [chooseBank.value.data![index].name.toString(),chooseBank.value.data![index].code.toString()]);
-                                          },
-                                          child: Text(
-                                            chooseBank.value.data![index].name
-                                                .toString(),
-                                            style: GoogleFonts.poppins(
-                                                color: const Color(0xFF1D1D1D),
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 2,
-                                        ),
-                                      ],
+                            itemCount: chooseBank.value.data!.length,
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.start,
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.start,
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        controller.bankController1.text = chooseBank.value.data![index].name.toString();
+                                        controller.idController1.text = chooseBank.value.data![index].code.toString();
+                                        Get.toNamed(MyRouters.addPaymentMethod,
+                                            arguments: [chooseBank.value.data![index].name.toString(),chooseBank.value.data![index].code.toString()]);
+                                      },
+                                      child: Text(
+                                        chooseBank.value.data![index].name
+                                            .toString(),
+                                        style: GoogleFonts.poppins(
+                                            color: const Color(0xFF1D1D1D),
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w500),
+                                      ),
                                     ),
-                                  );
-                                })
+                                    const SizedBox(
+                                      height: 2,
+                                    ),
+                                  ],
+                                ),
+                              );
+                            })
                             : statusOfChooseBank.value.isError
-                                ? CommonErrorWidget(
-                                    errorText: "",
-                                    onTap: () {},
-                                  )
-                                : const Center(
-                                    child: CircularProgressIndicator());
+                            ? CommonErrorWidget(
+                          errorText: "",
+                          onTap: () {},
+                        )
+                            : const Center(
+                            child: CircularProgressIndicator());
                       })
                     ]))));
   }

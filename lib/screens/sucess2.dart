@@ -6,14 +6,14 @@ import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_button.dart';
 
 import '../controller/profile_controller.dart';
-class SuccessScreen extends StatefulWidget {
-  const SuccessScreen({Key? key}) : super(key: key);
+class Success2Screen extends StatefulWidget {
+  const Success2Screen({Key? key}) : super(key: key);
 
   @override
-  State<SuccessScreen> createState() => _SuccessScreenState();
+  State<Success2Screen> createState() => _Success2ScreenState();
 }
 
-class _SuccessScreenState extends State<SuccessScreen> {
+class _Success2ScreenState extends State<Success2Screen> {
   final profileController = Get.put(ProfileController());
   @override
   Widget build(BuildContext context) {
@@ -58,7 +58,7 @@ class _SuccessScreenState extends State<SuccessScreen> {
                       SizedBox(height: size.height*.5,),
                       InkWell(
                           onTap: (){
-                            profileController.saveList(context);
+                            profileController.saveList1(context);
 
                           },
                           child: CustomOutlineButton(title: "Done",)),

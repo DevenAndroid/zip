@@ -11,7 +11,7 @@ import '../resourses/helper.dart';
 
 
 
-Future<ModelSearchTag> searchRepo({required String keyword,context}) async {
+Future<ModelSearchTag> searchRepo({required String zip_tag,required String email,required String phone,context}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
 
@@ -22,7 +22,7 @@ Future<ModelSearchTag> searchRepo({required String keyword,context}) async {
 
 
   // try {
-  http.Response response = await http.post(Uri.parse(ApiUrls.search+keyword),
+  http.Response response = await http.get(Uri.parse(ApiUrls.search+"zip_tag=$zip_tag&email=$email&phone=$phone"),
       headers: await getAuthHeader(),
       );
   log("Sign IN DATA${response.body}");
@@ -31,12 +31,12 @@ Future<ModelSearchTag> searchRepo({required String keyword,context}) async {
 
   if (response.statusCode == 200) {
     Helpers.hideLoader(loader);
-    print(jsonDecode(response.body));
+
     return ModelSearchTag.fromJson(jsonDecode(response.body));
 
   } else {
     Helpers.hideLoader(loader);
-    print(jsonDecode(response.body));
+
     return ModelSearchTag(message: jsonDecode(response.body)["message"], );
   }
   // }  catch (e) {

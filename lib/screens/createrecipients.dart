@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,6 +8,10 @@ import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
 
+import '../controller/profile_controller.dart';
+import '../models/model_search.dart';
+import '../repository/serach_repo.dart';
+import '../resourses/api_constant.dart';
 import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_textfield.dart';
@@ -18,6 +24,42 @@ class CreateRecipients extends StatefulWidget {
 }
 
 class _CreateRecipientsState extends State<CreateRecipients> {
+
+  Rx<RxStatus> statusOfSearch= RxStatus.empty().obs;
+  TextEditingController phone1Controller = TextEditingController();
+  Rx<ModelSearchTag> searchData = ModelSearchTag().obs;
+  TextEditingController ziptag1Controller = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  final profileController = Get.put(ProfileController());
+
+  getSearchList() {
+
+    searchRepo(
+      email: nameController.text.trim(),
+      phone:phone1Controller.text.trim() ,
+      zip_tag: ziptag1Controller.text.trim()+"@zip",
+      context: context,
+
+    ).then((value) {
+      log("response.body.....    ${value}");
+      searchData.value = value;
+      if (value.status == true) {
+        statusOfSearch.value = RxStatus.success();
+        showToast(value.message.toString());
+        nameController.text = "${value.data!.fname.toString()} "+"${value.data!.lname.toString()}";
+        phone1Controller.text =( value.data!.phone??"").toString();
+        ziptag1Controller.text = (value.data!.zipTag??"").toString();
+        profileController.userId=searchData.value.data!.id.toString();
+Get.toNamed(MyRouters.yourBalanceScreen);
+        print(value.data!.email.toString());
+      } else {
+        statusOfSearch.value = RxStatus.error();
+        showToast(value.message.toString());
+      }
+    }
+      // showToast(value.message.toString());
+    );
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -42,12 +84,7 @@ class _CreateRecipientsState extends State<CreateRecipients> {
             color: AppTheme.primaryColor,
           ),
         ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 20),
-            child: Icon(Icons.search,color: Colors.black,),
-          )
-        ],
+
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -86,9 +123,9 @@ class _CreateRecipientsState extends State<CreateRecipients> {
               height: 25,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 30),
+              padding: const EdgeInsets.only(left: 25,right: 25),
               child: Text(
-                "Zip Account Details",
+                "Search Zip Tag",
                 style: GoogleFonts.poppins(
                     color: const Color(0xFF2E2E2E),
                     fontSize: 20,
@@ -102,6 +139,7 @@ class _CreateRecipientsState extends State<CreateRecipients> {
             Padding(
               padding: const EdgeInsets.only(left: 6, right: 6),
               child: CommonTextfield(
+                controller: ziptag1Controller,
                 obSecure: false,
                 hintText: "Zip Tag ",
                 labelText: "Zip Tag ",
@@ -113,6 +151,8 @@ class _CreateRecipientsState extends State<CreateRecipients> {
             Padding(
               padding: const EdgeInsets.only(left: 6, right: 6),
               child: CommonTextfield(
+                readOnly: true,
+                controller: nameController,
                 obSecure: false,
                 hintText: "Piyush",
                 labelText: "Name",
@@ -124,16 +164,28 @@ class _CreateRecipientsState extends State<CreateRecipients> {
             Padding(
               padding: const EdgeInsets.only(left: 6, right: 6),
               child: CommonTextfield(
+                readOnly: true,
+                controller: phone1Controller,
                 obSecure: false,
                 hintText: "695659606u69u06u",
                 labelText: "Phone",
               ),
             ),
             SizedBox(
-              height: size.height * .3,
+              height: size.height * .27,
             ),
             InkWell(
+                onTap: (){
+
+                  nameController.text="";
+                  phone1Controller.text="";
+                  ziptag1Controller.text="";
+                },
+                child: CustomOutlineBoder(title: "Clear")),
+            SizedBox(height: 25,),
+            InkWell(
               onTap: () {
+                getSearchList();
         // Get.toNamed(MyRouters.sendCash);
               },
               child: const CustomOutlineButton(

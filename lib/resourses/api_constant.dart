@@ -14,7 +14,7 @@ class ApiUrls {
   static const String otps = "${apiBaseUrl}otps";
   static const String applyLoan = "${apiBaseUrl}apply-loan";
   static const String verifyOtp = "${apiBaseUrl}otps/";
-  static const String chooseBank = "${apiBaseUrl}banks/";
+  static const String chooseBank = "https://sandboxapi.fincra.com/core/banks?";
   static const String registerUser = "${apiBaseUrl}register";
   static const String updatePassword = "${apiBaseUrl}update-password";
   static const String SettingApi = "${apiBaseUrl}settings";
@@ -28,6 +28,7 @@ class ApiUrls {
   static const String provider  = "http://52.210.49.22:8001/api/v1/cable/providers";
   static const String purchase  = "http://52.210.49.22:8001/api/v1/vend_airtime";
   static const String conversion  = "https://sandboxapi.fincra.com/quotes/generate";
+  static const String resolve  = "https://sandboxapi.fincra.com/core/accounts/resolve";
   static const String getBeneficiaries  = "https://sandboxapi.fincra.com/profile/beneficiaries/business/";
   static const String getTelcos  = "http://52.210.49.22:8001/api/v1/telcos";
   static const String biller  = "http://52.210.49.22:8001/api/v1/electricity/billers";
@@ -35,10 +36,13 @@ class ApiUrls {
   static const String userVerifyOtp = "${apiBaseUrl}verify-otp";
   static const String updateDetails = "${apiBaseUrl}update-details";
   static const String verifyAccount = "${apiBaseUrl}virtual-account";
+  static const String saveTransaction = "${apiBaseUrl}save-transaction";
   static const String loginUser = "${apiBaseUrl}login";
   static const String changeZipPin = "${apiBaseUrl}change-zip-pin";
+  static const String saveBankDetails = "${apiBaseUrl}save-bank-details";
   static const String transfreLimitGet = "${apiBaseUrl}transfer-limit";
   static const String supportCategories = "${apiBaseUrl}support-categories";
+  static const String userBankList = "${apiBaseUrl}user-bank-list";
   static const String myAddress = "${apiBaseUrl}my-address";
   static const String logout = "${apiBaseUrl}logout";
   static const String deleteAccount = "${apiBaseUrl}delete-account";
@@ -51,7 +55,7 @@ class ApiUrls {
   static const String notificationSettings = "${apiBaseUrl}notification-settings";
   static const String userSetting = "${apiBaseUrl}user-settings";
   static const String userAddress = "${apiBaseUrl}add-user-address";
-  static const String search = "${apiBaseUrl}search?keyword=";
+  static const String search = "${apiBaseUrl}search?";
   static const String zipTag = "${apiBaseUrl}check-zip-tag";
   static const String sendOtpForPin = "${apiBaseUrl}send-otp-for-pin";
   static const String verifyOtpForPin = "${apiBaseUrl}verify-otp-for-pin";
