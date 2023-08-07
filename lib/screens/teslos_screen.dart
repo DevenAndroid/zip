@@ -63,7 +63,7 @@ class _TelcosScreenState extends State<TelcosScreen> {
             ),
           ),
           title: Text(
-            "Data Plan",
+            "Buy Airtime",
             style: GoogleFonts.poppins(
                 color: const Color(0xFF1D1D1D),
                 fontSize: 20,

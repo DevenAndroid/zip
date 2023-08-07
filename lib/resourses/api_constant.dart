@@ -25,8 +25,11 @@ class ApiUrls {
   static const String beneficiariesCreate  = "https://sandboxapi.fincra.com/profile/beneficiaries/business/";
   static const String payout  = "https://sandboxapi.fincra.com/disbursements/payouts";
   static const String plan  = "http://52.210.49.22:8001/api/v1/bundles";
+  static const String verifyMeter  = "http://52.210.49.22:8001/api/v1/electricity/verify";
   static const String provider  = "http://52.210.49.22:8001/api/v1/cable/providers";
   static const String purchase  = "http://52.210.49.22:8001/api/v1/vend_airtime";
+  static const String purchaseData  = "http://52.210.49.22:8001/api/v1/vend_data";
+  static const String purchaseEnergy  = "http://52.210.49.22:8001/api/v1/electricity/subscribe";
   static const String conversion  = "https://sandboxapi.fincra.com/quotes/generate";
   static const String resolve  = "https://sandboxapi.fincra.com/core/accounts/resolve";
   static const String getBeneficiaries  = "https://sandboxapi.fincra.com/profile/beneficiaries/business/";

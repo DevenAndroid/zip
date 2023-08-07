@@ -32,7 +32,10 @@ class PayoutController extends GetxController {
   Rx<CreateBenificiryModel> CreateBenificiry1 = CreateBenificiryModel().obs;
   Rx<RxStatus> statusOfBenificiry= RxStatus.empty().obs;
   TextEditingController accountName = TextEditingController();
+  TextEditingController mobileNo = TextEditingController();
+  TextEditingController Amount = TextEditingController();
   TextEditingController accountNo = TextEditingController();
+  TextEditingController meterNo = TextEditingController();
   Future CreateBenificery() async {
     await createBenificiryRepo(
         name:controller.bankController.text.trim() ,

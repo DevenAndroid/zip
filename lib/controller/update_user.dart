@@ -38,6 +38,10 @@ class registerController extends GetxController {
 
   final bankController = TextEditingController();
   final bankController1 = TextEditingController();
+  final mobileNO = TextEditingController();
+  final amount = TextEditingController();
+  final meterNo = TextEditingController();
+  final provider = TextEditingController();
   final idController = TextEditingController();
   final idController1 = TextEditingController();
 

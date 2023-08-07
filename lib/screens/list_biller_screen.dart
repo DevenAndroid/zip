@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 
+import '../controller/update_user.dart';
 import '../models/mode_biller.dart';
 import '../models/model_fetch_telcos.dart';
 import '../repository/fetch_telcos_repo.dart';
@@ -24,7 +25,7 @@ class _BillerScreenState extends State<BillerScreen> {
 
   Rx<RxStatus> statusOfBiller= RxStatus.empty().obs;
   Rx<ModelBiller> biller = ModelBiller().obs;
-
+  final controller = Get.put(registerController());
   getBillerList() {
     getBillerRepo(
 
@@ -95,29 +96,37 @@ class _BillerScreenState extends State<BillerScreen> {
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Expanded(
-                                          child: Text(biller.value.data![index].name.toString(),
-                                            style: GoogleFonts.poppins(
-                                                color: const Color(0xFF1D1D1D),
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w500),),
+                                          child: InkWell(
+                                            onTap: () {
+                                              controller.provider.text = biller.value.data![index].provider.toString();
+                                              // controller.idController1.text = chooseBank.value.data![index].code.toString();
+                                              Get.toNamed(MyRouters.meterVerifyScreen,
+                                                  arguments: [biller.value.data![index].provider.toString(),]);
+                                            },
+                                            child: Text(biller.value.data![index].name.toString(),
+                                              style: GoogleFonts.poppins(
+                                                  color: const Color(0xFF1D1D1D),
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w500),),
+                                          ),
                                         ),
 
-                                        InkWell(
-                                            onTap: (){
-                                              // Get.toNamed(MyRouters.dataPlanScreen,arguments: [biller.value.data![index].name.toString(),]);
-                                            },
-                                            child: Container(
-                                                padding: EdgeInsets.symmetric(vertical: 8,horizontal: 10),
-                                                decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(7),
-                                                  color: AppTheme.secondaryColor,
-                                                ),
-
-                                                child: Text("See Plan",
-                                                  style: GoogleFonts.poppins(
-                                                      color:  Colors.white,
-                                                      fontSize: 12,
-                                                      fontWeight: FontWeight.w500),))),
+                                        // InkWell(
+                                        //     onTap: (){
+                                        //       // Get.toNamed(MyRouters.dataPlanScreen,arguments: [biller.value.data![index].name.toString(),]);
+                                        //     },
+                                        //     child: Container(
+                                        //         padding: EdgeInsets.symmetric(vertical: 8,horizontal: 10),
+                                        //         decoration: BoxDecoration(
+                                        //           borderRadius: BorderRadius.circular(7),
+                                        //           color: AppTheme.secondaryColor,
+                                        //         ),
+                                        //
+                                        //         child: Text("See Plan",
+                                        //           style: GoogleFonts.poppins(
+                                        //               color:  Colors.white,
+                                        //               fontSize: 12,
+                                        //               fontWeight: FontWeight.w500),))),
                                       ],
                                     )
 

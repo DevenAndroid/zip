@@ -62,6 +62,7 @@ import '../screens/Cardlimit.dart';
 import '../screens/add_payment_method.dart';
 import '../screens/addfundsinbank.dart';
 import '../screens/bank_details.dart';
+import '../screens/buy_data_screen.dart';
 import '../screens/cabel_tv_screen.dart';
 import '../screens/choose_bank_2.dart';
 import '../screens/contact_us_screen.dart';
@@ -72,10 +73,12 @@ import '../screens/data_plan_scree.dart';
 import '../screens/eligible_screen.dart';
 import '../screens/email_login.dart';
 
+import '../screens/internet_screen.dart';
 import '../screens/limit_screen.dart';
 import '../screens/list_biller_screen.dart';
 import '../screens/loan_list.dart';
 import '../screens/loan_screen.dart';
+import '../screens/meter_screen.dart';
 import '../screens/notification_screeb.dart';
 import '../screens/onboardingScreen.dart';
 import '../screens/paymentlink.dart';
@@ -84,6 +87,7 @@ import '../screens/personal_screen.dart';
 import '../screens/profile_screen.dart';
 
 import '../screens/providerScreen.dart';
+import '../screens/purchaseData_screen.dart';
 import '../screens/purchase_screen.dart';
 import '../screens/question_screen.dart';
 import '../screens/regular_bank_transfer.dart';
@@ -197,6 +201,10 @@ class MyRouters{
   static var chooseBank1 = "/chooseBank1";
   static var success2Screen = "/success2Screen";
   static var requestAPaymentContiune2 = "/requestAPaymentContiune2";
+  static var meterVerifyScreen = "/meterVerifyScreen";
+  static var buyDataScreen = "/buyDataScreen";
+  static var interNetPlanScreen = "/interNetPlanScreen";
+  static var purchaseDataScreen = "/purchaseDataScreen";
 
 
 
@@ -207,6 +215,9 @@ class MyRouters{
 
 
     GetPage(name: '/onBoardingScreen', page: () =>   const OnBoardingScreen()),
+    GetPage(name: '/purchaseDataScreen', page: () =>   const PurchaseDataScreen()),
+    GetPage(name: '/buyDataScreen', page: () =>   const BuyDataScreen()),
+    GetPage(name: '/meterVerifyScreen', page: () =>   const MeterVerifyScreen()),
     GetPage(name: '/requestAPaymentContiune2', page: () =>   const RequestAPaymentContiune2()),
     GetPage(name: '/success2Screen', page: () =>   const Success2Screen()),
     GetPage(name: '/addPaymentMethod', page: () =>   const AddPaymentMethod()),
@@ -234,6 +245,7 @@ class MyRouters{
     GetPage(name: '/sendCash1', page: () =>  const SendCash1()),
     GetPage(name: '/sharePaymentLink', page: () =>  const SharePaymentLink()),
     GetPage(name: '/verifyAfricaScreen', page: () =>  const VerifyAfricaScreen()),
+    GetPage(name: '/interNetPlanScreen', page: () =>  const InterNetPlanScreen()),
     GetPage(name: '/sendCash2', page: () =>  const SendCash2()),
     GetPage(name: '/chooseBank', page: () =>  const ChooseBank()),
     GetPage(name: '/bottomNavbar', page: () =>  const BottomNavbar()),
