@@ -91,7 +91,11 @@ import '../screens/purchaseData_screen.dart';
 import '../screens/purchase_screen.dart';
 import '../screens/question_screen.dart';
 import '../screens/regular_bank_transfer.dart';
+import '../screens/reqest_payment_3.dart';
 import '../screens/request_a_payment2.dart';
+import '../screens/request_money_1.dart';
+import '../screens/request_money_2.dart';
+import '../screens/request_payment_4.dart';
 import '../screens/security_otp.dart';
 import '../screens/sendMoney.dart';
 import '../screens/sucess2.dart';
@@ -205,6 +209,10 @@ class MyRouters{
   static var buyDataScreen = "/buyDataScreen";
   static var interNetPlanScreen = "/interNetPlanScreen";
   static var purchaseDataScreen = "/purchaseDataScreen";
+  static var requestMoney1 = "/requestMoney1";
+  static var requestMoney2 = "/requestMoney2";
+  static var requestPayment3 = "/requestPayment3";
+  static var requestPayment4 = "/requestPayment4";
 
 
 
@@ -215,6 +223,10 @@ class MyRouters{
 
 
     GetPage(name: '/onBoardingScreen', page: () =>   const OnBoardingScreen()),
+    GetPage(name: '/requestPayment4', page: () =>    RequestPayment4()),
+    GetPage(name: '/requestPayment3', page: () =>    RequestPayment3()),
+    GetPage(name: '/requestMoney2', page: () =>   const RequestMoney2()),
+    GetPage(name: '/requestMoney1', page: () =>   const RequestMoney1()),
     GetPage(name: '/purchaseDataScreen', page: () =>   const PurchaseDataScreen()),
     GetPage(name: '/buyDataScreen', page: () =>   const BuyDataScreen()),
     GetPage(name: '/meterVerifyScreen', page: () =>   const MeterVerifyScreen()),

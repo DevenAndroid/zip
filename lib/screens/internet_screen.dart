@@ -205,7 +205,7 @@ class _InterNetPlanScreenState extends State<InterNetPlanScreen> {
                                   ),
                                   SizedBox(height: 15,),
                                 ],
-                              );
+                                );
                             }):  statusOfPlan.value.isError
                             ? CommonErrorWidget(
                           errorText:
