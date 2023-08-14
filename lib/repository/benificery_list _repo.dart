@@ -14,7 +14,7 @@ Future<GetBenificiryModel> getListRepo(   {required String businessID}) async {
 
   // // try {
   //   http.Response response = await http.get(
-  //     Uri.parse(ApiUrls.getBeneficiaries+businessID),
+  //    Uri.parse(ApiUrls.getBeneficiaries+businessID),
   //     headers: { HttpHeaders.contentTypeHeader: 'application/json',
   //       HttpHeaders.acceptHeader: 'application/json',
   //       "api-key": "m98zn3Y70MXGu1VaZNhYOZO7CbULj6uU"
@@ -40,10 +40,10 @@ Future<GetBenificiryModel> getListRepo(   {required String businessID}) async {
     'api-key': 'm98zn3Y70MXGu1VaZNhYOZO7CbULj6uU',
     'Content-Type': 'application/json'
   };
-  var request = http.Request('GET', Uri.parse('https://sandboxapi.fincra.com/profile/beneficiaries/business/64529bd2bfdf28e7c18aa9da'));
+  var request = http.Request('GET', Uri.parse('https://sandboxapi.fincra.com/profile/beneficiaries/business/'+businessID));
   request.body = json.encode({
     "page": "1",
-    "perPage": "100000000000000000"
+    "perPage": "10000"
   });
   request.headers.addAll(headers);
 

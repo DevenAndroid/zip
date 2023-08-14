@@ -12,7 +12,7 @@ import '../resourses/helper.dart';
 
 
 
-Future<ModelPayout> payoutRepo({firstName,accountHolderName,accountNumber,context,type,business,paymentDestination,sourceCurrency,email,lastName,destinationCurrency,amount,description}) async {
+Future<ModelPayout> payoutRepo({firstName,accountHolderName,accountNumber,context,type,business,paymentDestination,sourceCurrency,destinationCurrency,amount,description}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
@@ -26,12 +26,12 @@ Future<ModelPayout> payoutRepo({firstName,accountHolderName,accountNumber,contex
   map['business'] = business;
   map['beneficiary'] = map1;
   map1['type'] =  type;
-  map1['email'] =  email;
+  // map1['email'] =  email;
 
   map['paymentDestination'] =  paymentDestination;
   map['sourceCurrency'] =  sourceCurrency;
   map['destinationCurrency'] =  destinationCurrency;
-  map1['lastName'] =  lastName;
+  // map1['lastName'] =  lastName;
   map['amount'] =  amount;
 
 

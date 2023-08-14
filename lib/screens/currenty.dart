@@ -91,7 +91,6 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
     });
   }
   void convertUsd3() async {
-    Currency myCurrency = await CurrencyConverter.getMyCurrency();
     var usdConvert = await CurrencyConverter.convert(
       from: Currency.usd,
       to: Currency.eur,
@@ -131,12 +130,12 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-SizedBox(height: 20,),
+const SizedBox(height: 20,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    padding: EdgeInsets.all(13),
+                    padding: const EdgeInsets.all(13),
     decoration: BoxDecoration(
     border: Border.all(color: AppTheme.primaryColor,width: 1),
     borderRadius: BorderRadius.circular(15),
@@ -150,7 +149,7 @@ SizedBox(height: 20,),
     SvgPicture.asset("assets/images/arrow1.svg"),
 
     Container(
-      padding: EdgeInsets.all(13),
+      padding: const EdgeInsets.all(13),
     decoration: BoxDecoration(
     border: Border.all(color: AppTheme.primaryColor,width: 1),
     borderRadius: BorderRadius.circular(15),
@@ -162,7 +161,7 @@ SizedBox(height: 20,),
     fontWeight: FontWeight.w400),),
     ),
                   Container(
-                    padding: EdgeInsets.all(13),
+                    padding: const EdgeInsets.all(13),
                     decoration: BoxDecoration(
                       border: Border.all(color: AppTheme.primaryColor,width: 1),
                       borderRadius: BorderRadius.circular(15),
@@ -176,12 +175,12 @@ SizedBox(height: 20,),
 
                 ],
               ),
-              SizedBox(height: 15,),
+              const SizedBox(height: 15,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    padding: EdgeInsets.all(13),
+                    padding: const EdgeInsets.all(13),
                     decoration: BoxDecoration(
                       border: Border.all(color: AppTheme.primaryColor,width: 1),
                       borderRadius: BorderRadius.circular(15),
@@ -195,7 +194,7 @@ SizedBox(height: 20,),
                   SvgPicture.asset("assets/images/arrow1.svg"),
 
                   Container(
-                    padding: EdgeInsets.all(13),
+                    padding: const EdgeInsets.all(13),
                     decoration: BoxDecoration(
                       border: Border.all(color: AppTheme.primaryColor,width: 1),
                       borderRadius: BorderRadius.circular(15),
@@ -207,7 +206,7 @@ SizedBox(height: 20,),
                           fontWeight: FontWeight.w400),),
                   ),
                   Container(
-                    padding: EdgeInsets.all(13),
+                    padding: const EdgeInsets.all(13),
                     decoration: BoxDecoration(
                       border: Border.all(color: AppTheme.primaryColor,width: 1),
                       borderRadius: BorderRadius.circular(15),
@@ -221,12 +220,12 @@ SizedBox(height: 20,),
 
                 ],
               ),
-              SizedBox(height: 15,),
+              const SizedBox(height: 15,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    padding: EdgeInsets.all(13),
+                    padding: const EdgeInsets.all(13),
                     decoration: BoxDecoration(
                       border: Border.all(color: AppTheme.primaryColor,width: 1),
                       borderRadius: BorderRadius.circular(15),
@@ -240,7 +239,7 @@ SizedBox(height: 20,),
                   SvgPicture.asset("assets/images/arrow1.svg"),
 
                   Container(
-                    padding: EdgeInsets.all(13),
+                    padding: const EdgeInsets.all(13),
                     decoration: BoxDecoration(
                       border: Border.all(color: AppTheme.primaryColor,width: 1),
                       borderRadius: BorderRadius.circular(15),
@@ -252,7 +251,7 @@ SizedBox(height: 20,),
                           fontWeight: FontWeight.w400),),
                   ),
                   Container(
-                    padding: EdgeInsets.all(13),
+                    padding: const EdgeInsets.all(13),
                     decoration: BoxDecoration(
                       border: Border.all(color: AppTheme.primaryColor,width: 1),
                       borderRadius: BorderRadius.circular(15),
@@ -266,12 +265,12 @@ SizedBox(height: 20,),
 
                 ],
               ),
-              SizedBox(height: 15,),
+              const SizedBox(height: 15,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    padding: EdgeInsets.all(13),
+                    padding: const EdgeInsets.all(13),
                     decoration: BoxDecoration(
                       border: Border.all(color: AppTheme.primaryColor,width: 1),
                       borderRadius: BorderRadius.circular(15),
@@ -285,7 +284,7 @@ SizedBox(height: 20,),
                   SvgPicture.asset("assets/images/arrow1.svg"),
 
                   Container(
-                    padding: EdgeInsets.all(13),
+                    padding: const EdgeInsets.all(13),
                     decoration: BoxDecoration(
                       border: Border.all(color: AppTheme.primaryColor,width: 1),
                       borderRadius: BorderRadius.circular(15),
@@ -297,7 +296,7 @@ SizedBox(height: 20,),
                           fontWeight: FontWeight.w400),),
                   ),
                   Container(
-                    padding: EdgeInsets.all(13),
+                    padding: const EdgeInsets.all(13),
                     decoration: BoxDecoration(
                       border: Border.all(color: AppTheme.primaryColor,width: 1),
                       borderRadius: BorderRadius.circular(15),
@@ -311,12 +310,12 @@ SizedBox(height: 20,),
 
                 ],
               ),
-              SizedBox(height: 15,),
+              const SizedBox(height: 15,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    padding: EdgeInsets.all(13),
+                    padding: const EdgeInsets.all(13),
                     decoration: BoxDecoration(
                       border: Border.all(color: AppTheme.primaryColor,width: 1),
                       borderRadius: BorderRadius.circular(15),
@@ -330,7 +329,7 @@ SizedBox(height: 20,),
                   SvgPicture.asset("assets/images/arrow1.svg"),
 
                   Container(
-                    padding: EdgeInsets.all(13),
+                    padding: const EdgeInsets.all(13),
                     decoration: BoxDecoration(
                       border: Border.all(color: AppTheme.primaryColor,width: 1),
                       borderRadius: BorderRadius.circular(15),
@@ -342,7 +341,7 @@ SizedBox(height: 20,),
                           fontWeight: FontWeight.w400),),
                   ),
                   Container(
-                    padding: EdgeInsets.all(13),
+                    padding: const EdgeInsets.all(13),
                     decoration: BoxDecoration(
                       border: Border.all(color: AppTheme.primaryColor,width: 1),
                       borderRadius: BorderRadius.circular(15),
@@ -356,12 +355,12 @@ SizedBox(height: 20,),
 
                 ],
               ),
-              SizedBox(height: 15,),
+              const SizedBox(height: 15,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    padding: EdgeInsets.all(13),
+                    padding: const EdgeInsets.all(13),
                     decoration: BoxDecoration(
                       border: Border.all(color: AppTheme.primaryColor,width: 1),
                       borderRadius: BorderRadius.circular(15),
@@ -375,7 +374,7 @@ SizedBox(height: 20,),
                   SvgPicture.asset("assets/images/arrow1.svg"),
 
                   Container(
-                    padding: EdgeInsets.all(13),
+                    padding: const EdgeInsets.all(13),
                     decoration: BoxDecoration(
                       border: Border.all(color: AppTheme.primaryColor,width: 1),
                       borderRadius: BorderRadius.circular(15),
@@ -387,7 +386,7 @@ SizedBox(height: 20,),
                           fontWeight: FontWeight.w400),),
                   ),
                   Container(
-                    padding: EdgeInsets.all(13),
+                    padding: const EdgeInsets.all(13),
                     decoration: BoxDecoration(
                       border: Border.all(color: AppTheme.primaryColor,width: 1),
                       borderRadius: BorderRadius.circular(15),
@@ -401,7 +400,7 @@ SizedBox(height: 20,),
 
                 ],
               ),
-              SizedBox(height: 15,),
+              const SizedBox(height: 15,),
 
 
 
