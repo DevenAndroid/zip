@@ -11,10 +11,10 @@ import 'package:zip/widgets/common_colour.dart';
 
 import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
+import '../models/buy_cabel_model.dart';
 import '../models/buy_plan_model.dart';
-import '../models/model_buy_interNet.dart';
 import '../models/save_transastion_model.dart';
-import '../repository/buy_dataplan_repo.dart';
+import '../repository/buy_cabel_repo.dart';
 import '../repository/repo_buy_plan.dart';
 import '../repository/save_buy_plan_repo.dart';
 import '../resourses/api_constant.dart';
@@ -22,14 +22,14 @@ import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_textfield.dart';
 
-class PurchaseDataScreen extends StatefulWidget {
-  const PurchaseDataScreen({Key? key}) : super(key: key);
+class PurchaseCabelScreen extends StatefulWidget {
+  const PurchaseCabelScreen({Key? key}) : super(key: key);
 
   @override
-  State<PurchaseDataScreen> createState() => _PurchaseDataScreenState();
+  State<PurchaseCabelScreen> createState() => _PurchaseCabelScreenState();
 }
 
-class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
+class _PurchaseCabelScreenState extends State<PurchaseCabelScreen> {
   final registorController = Get.put(registerController());
   final profileController = Get.put(ProfileController());
   @override
@@ -42,7 +42,7 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
   Rx<RxStatus> statusOfProviders= RxStatus.empty().obs;
   TextEditingController phoneController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
-  Rx<ModelBuyInternet> purchaseInternet = ModelBuyInternet().obs;
+  Rx<BuyCabelTvModel> buyCabelTv = BuyCabelTvModel().obs;
   var initStateBlank = Get.arguments[0];
   var initStateBlank1 = Get.arguments[1];
   var initStateBlank2 = Get.arguments[2];
@@ -53,8 +53,8 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
   saveList() {
     saveTransastionRepo(
         user_id: profileController.modal.value.data!.user!.id.toString(),
-        amount:initStateBlank1,
-        about: "Buy Internet",
+        amount:initStateBlank,
+        about: "Buy Cabel Tv",
         // complete_response: purchaseData.value.data!.toJson(),
         context: context,
         description:descriptionController.text.trim(),
@@ -73,18 +73,21 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
       // showToast(value.message.toString());
     );
   }
-  getInterNet() {
+  getProviderList() {
     print(initStateBlank);
     print(initStateBlank1);
-    print(initStateBlank3);
-    BuyDataPlanRepo(
-      telco: initStateBlank,
-      amount: initStateBlank1,
-      phone_no:phoneController.text.trim(),
-      data_code:  initStateBlank3,
+    BuyCabelRepo(
+     amount: initStateBlank,
+     month_paid_for:  initStateBlank1,
+     product_code:  initStateBlank2,
+      provider: initStateBlank3,
+      smartcard_number: phoneController.text.trim(),
+
+
+      reference: descriptionController.text.trim(),
     ).then((value) {
       log("response.body.....    ${value}");
-      purchaseInternet.value = value;
+      buyCabelTv.value = value;
       if (value.success == true) {
         saveList();
         statusOfProviders.value = RxStatus.success();
@@ -137,7 +140,7 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: Text(
-                "Phone number ",
+                "Smart Card number ",
                 style: GoogleFonts.poppins(
                     color: const Color(0xFF2E2E2E),
                     fontSize: 15,
@@ -154,14 +157,14 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
                 controller: phoneController,
                 obSecure: false,
                 hintText: "123456789",
-                labelText: "Phone Number",
+                labelText: "Smart Card Number",
               ),
             ),
             SizedBox(height: 20,),
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: Text(
-                "Description",
+                "Reference",
                 style: GoogleFonts.poppins(
                     color: const Color(0xFF2E2E2E),
                     fontSize: 15,
@@ -178,7 +181,7 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
                 controller: descriptionController,
                 obSecure: false,
                 hintText: "Recharge",
-                labelText: "Description",
+                labelText: "Reference",
               ),
             ),
 
@@ -187,7 +190,7 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
             ),
             InkWell(
               onTap: () {
-                getInterNet();
+                getProviderList();
               },
               child: const CustomOutlineButton(
                 title: "Continue",

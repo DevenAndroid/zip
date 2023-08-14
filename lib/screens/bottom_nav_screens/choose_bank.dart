@@ -105,26 +105,23 @@ class _ChooseBankState extends State<ChooseBank> {
                         height: 20,
                       ),
                       Obx(() {
-                        List<Data> data=[];
+                        List<Data> searchData=[];
                         if(statusOfChooseBank.value.isSuccess && chooseBank.value.data!= null){
     String search = search1Controller.text.trim().toLowerCase();
     if(search.isNotEmpty) {
-      data =
-          chooseBank.value.data!
-              .where((element) =>
-          element.name.toString().toLowerCase().contains(
-              search)
+      searchData = chooseBank.value.data!.where((element) => element.name.toString().toLowerCase().contains(search)
           ).toList();
     } else {
-      data = chooseBank.value.data!;
+      searchData = chooseBank.value.data!;
     }
                         }
                         return statusOfChooseBank.value.isSuccess
                             ? ListView.builder(
-                                itemCount: chooseBank.value.data!.length,
+                                itemCount: searchData.length,
                                 shrinkWrap: true,
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemBuilder: (context, index) {
+                                  final item = searchData[index];
                                   return Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Column(
@@ -135,13 +132,13 @@ class _ChooseBankState extends State<ChooseBank> {
                                       children: [
                                         InkWell(
                                           onTap: () {
-                                            controller.bankController.text = chooseBank.value.data![index].name.toString();
-                                            controller.idController.text = chooseBank.value.data![index].code.toString();
+                                            controller.bankController.text = item.name.toString();
+                                            controller.idController.text = item.code.toString();
                                             Get.toNamed(MyRouters.sendCash2,
-                                                arguments: [chooseBank.value.data![index].name.toString(),chooseBank.value.data![index].code.toString()]);
+                                                arguments: [item.name.toString(),item.code.toString()]);
                                           },
                                           child: Text(
-                                            chooseBank.value.data![index].name
+                                            item.name
                                                 .toString(),
                                             style: GoogleFonts.poppins(
                                                 color: const Color(0xFF1D1D1D),

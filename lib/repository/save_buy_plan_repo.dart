@@ -15,7 +15,7 @@ import '../resourses/helper.dart';
 
 
 Future<ModelSaveTransastion> saveTransastionRepo(
-    {type, about, amount, description, user_id,context}) async {
+    {type, about, amount, description, user_id,context,send_type}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
@@ -25,6 +25,7 @@ Future<ModelSaveTransastion> saveTransastionRepo(
   map['about'] = about;
   map['amount'] = amount;
   map['description'] = description;
+  map['send_type'] = send_type;
 
 
 

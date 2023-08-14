@@ -52,13 +52,29 @@ class _VerifyPaymentLinkState extends State<VerifyPaymentLink> {
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-    const SizedBox(height: 10,),
-    Text(
-    "Enter Amount ",
-    style: GoogleFonts.poppins(
-    color:  Colors.black,
-    fontSize: 14,
-    fontWeight: FontWeight.w500),
+
+
+    Text('Please fund your account using a credit or debit card. ',
+      style: GoogleFonts.poppins(
+          color:  Colors.black,
+          fontSize: 18,
+          fontWeight: FontWeight.w600),),
+    SizedBox(height: 10,),
+    Text(' Click below and you will be taken to our payment processors website to complete your transaction and when you are done please return to the app.',
+      style: GoogleFonts.poppins(
+          color:  Colors.black,
+          fontSize: 15,
+          fontWeight: FontWeight.w500),),
+    SizedBox(height: 15,),
+    Padding(
+      padding: const EdgeInsets.only(left: 8.0),
+      child: Text(
+      "Enter Amount ",
+      style: GoogleFonts.poppins(
+      color:  Colors.black,
+      fontSize: 14,
+      fontWeight: FontWeight.w500),
+      ),
     ),
     const SizedBox(height: 10,),
       
@@ -93,7 +109,7 @@ class _VerifyPaymentLinkState extends State<VerifyPaymentLink> {
 
 
 
-      SizedBox(height:MediaQuery.of(context).size.height*.6,),
+      SizedBox(height:MediaQuery.of(context).size.height*.45,),
 
       InkWell(
           onTap: (){

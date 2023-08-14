@@ -149,6 +149,7 @@ class _ProviderScreenState extends State<ProviderScreen> {
 
                   ],
                 ),
+                SizedBox(height: 8,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -166,6 +167,7 @@ class _ProviderScreenState extends State<ProviderScreen> {
 
                   ],
                 ),
+                SizedBox(height: 8,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -183,14 +185,32 @@ class _ProviderScreenState extends State<ProviderScreen> {
 
                   ],
                 ),
+                SizedBox(height: 8,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Code",
+                      style: GoogleFonts.poppins(
+                          color: const Color(0xFF1D1D1D),
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500),),
+                    Text(cabelProvider.value.data![index].code.toString(),
+                      style: GoogleFonts.poppins(
+                          color: const Color(0xFF1D1D1D),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500),),
 
+
+                  ],
+                ),
                 SizedBox(height: 15,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     InkWell(
                         onTap: (){
-                          // Get.toNamed(MyRouters.planScreen);
+
+                           Get.toNamed(MyRouters.purchaseCabelScreen,arguments: [cabelProvider.value.data![index].availablePricingOptions![index1].price.toString(),cabelProvider.value.data![index].availablePricingOptions![index1].monthsPaidFor.toString(),cabelProvider.value.data![index].code.toString(),initStateBlank.toString(),]);
                         },
                         child: Container(
                             padding: EdgeInsets.symmetric(vertical: 8,horizontal: 10),

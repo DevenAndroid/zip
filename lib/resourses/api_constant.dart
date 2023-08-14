@@ -29,6 +29,9 @@ class ApiUrls {
   static const String provider  = "http://52.210.49.22:8001/api/v1/cable/providers";
   static const String purchase  = "http://52.210.49.22:8001/api/v1/vend_airtime";
   static const String purchaseData  = "http://52.210.49.22:8001/api/v1/vend_data";
+  static const String buyCabeltv  = "http://52.210.49.22:8001/api/v1/cable/subscribe";
+  static const String createCard  = "https://issuecards.api.bridgecard.co/v1/issuing/sandbox/cards/create_card";
+  static const String createCardHolder  = "https://issuecards.api.bridgecard.co/v1/issuing/sandbox/cardholder/register_cardholder_synchronously";
   static const String purchaseEnergy  = "http://52.210.49.22:8001/api/v1/electricity/subscribe";
   static const String conversion  = "https://sandboxapi.fincra.com/quotes/generate";
   static const String resolve  = "https://sandboxapi.fincra.com/core/accounts/resolve";

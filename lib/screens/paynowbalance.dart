@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -5,10 +7,13 @@ import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
 
+import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
 import '../models/model_create_payout.dart';
 import '../models/model_get_binificery.dart';
+import '../models/save_transastion_model.dart';
 import '../repository/payout_repo.dart';
+import '../repository/save_buy_plan_repo.dart';
 import '../resourses/api_constant.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_textfield.dart';
@@ -50,7 +55,8 @@ destinationCurrency:"NGN",
       payout.value = value;
       if (value.success == true) {
         statusOfpayout.value = RxStatus.success();
-
+        saveList();
+        Get.toNamed(MyRouters.successRechargeScreen);
         // Get.back();
         showToast(value.message                                 .toString());
       }
@@ -73,7 +79,33 @@ destinationCurrency:"NGN",
 
     }
   }
+  Rx<RxStatus> statusOfSave= RxStatus.empty().obs;
+  Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
+  final profileController = Get.put(ProfileController());
+  saveList() {
+    saveTransastionRepo(
+        user_id: profileController.modal.value.data!.user!.id.toString(),
+        amount:amountController.text.trim() ,
+        about: "Send Cash",
+        send_type: "otherusers ",
+        // complete_response: purchaseData.value.data!.toJson(),
+        context: context,
+        description:descriptionController.text.trim(),
+        type: "dr"
+    ).then((value) {
+      log("response.body.....    ${value}");
+      save.value = value;
+      if (value.status == true) {
+        statusOfSave.value = RxStatus.success();
+        Get.toNamed(MyRouters.successRechargeScreen);
 
+      } else {
+        statusOfSave.value = RxStatus.error();
+      }
+    }
+      // showToast(value.message.toString());
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -144,15 +176,7 @@ destinationCurrency:"NGN",
                     fontWeight: FontWeight.w400),
               ),
             ),
-            Center(
-              child: Text(
-                data.sId.toString() ,
-                style: GoogleFonts.poppins(
-                    color: const Color(0xFF1D1D1D),
-                    fontSize: 16,
-                    fontWeight: FontWeight.w300),
-              ),
-            ),
+
             const SizedBox(
               height: 29,
             ),
@@ -193,9 +217,10 @@ destinationCurrency:"NGN",
             Padding(
               padding: const EdgeInsets.only(left: 6,right: 6),
               child: CommonTextfield(
+                readOnly: true,
                 controller: accountNoController,
                 obSecure: false,
-                hintText: "1234567",
+                hintText: data.destinationAddress,
 
               ),
             ),
@@ -221,7 +246,7 @@ destinationCurrency:"NGN",
               child: CommonTextfield(
                 controller: descriptionController,
                 obSecure: false,
-                hintText: "What is it for?",
+                hintText: "write a note",
 
               ),
             ),
@@ -231,7 +256,7 @@ destinationCurrency:"NGN",
             Padding(
               padding: const EdgeInsets.only(left: 15,right: 6),
               child: Text(
-                "Destination Currency ",
+                "Bank Name ",
                 style: GoogleFonts.poppins(
                     color: const Color(0xFF1D1D1D),
                     fontSize: 15,
@@ -242,39 +267,16 @@ destinationCurrency:"NGN",
             Padding(
               padding: const EdgeInsets.only(left: 6,right: 6),
               child: CommonTextfield(
-                controller: destinationCurrencyController,
-                readOnly: true,
+               readOnly: true,
                 obSecure: false,
-                hintText: "NGN ",
+                hintText: data.firstName,
 
               ),
             ),
-            const SizedBox(
-              height: 12,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 15,right: 6),
-              child: Text(
-                "Source Currency ",
-                style: GoogleFonts.poppins(
-                    color: const Color(0xFF1D1D1D),
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500),
-              ),
-            ),
-            SizedBox(height: 6,),
-            Padding(
-              padding: const EdgeInsets.only(left: 6,right: 6),
-              child: CommonTextfield(
-                controller: sourceCurrencyController,
-                readOnly: true,
-                obSecure: false,
-                hintText: "NGN",
 
-              ),
-            ),
+
             SizedBox(
-              height: size.height * .2,
+              height: size.height * .12,
             ),
             InkWell(
               onTap: () {

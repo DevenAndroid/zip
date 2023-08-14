@@ -62,6 +62,7 @@ import '../screens/Cardlimit.dart';
 import '../screens/add_payment_method.dart';
 import '../screens/addfundsinbank.dart';
 import '../screens/bank_details.dart';
+import '../screens/buy_cabel_tv_screen.dart';
 import '../screens/buy_data_screen.dart';
 import '../screens/cabel_tv_screen.dart';
 import '../screens/choose_bank_2.dart';
@@ -99,6 +100,7 @@ import '../screens/request_payment_4.dart';
 import '../screens/security_otp.dart';
 import '../screens/sendMoney.dart';
 import '../screens/sucess2.dart';
+import '../screens/sucess_rechsarge.dart';
 import '../screens/supportscreen.dart';
 import '../screens/teslos_screen.dart';
 import '../screens/transastion_screen.dart';
@@ -213,6 +215,8 @@ class MyRouters{
   static var requestMoney2 = "/requestMoney2";
   static var requestPayment3 = "/requestPayment3";
   static var requestPayment4 = "/requestPayment4";
+  static var successRechargeScreen = "/successRechargeScreen";
+  static var purchaseCabelScreen = "/purchaseCabelScreen";
 
 
 
@@ -223,6 +227,8 @@ class MyRouters{
 
 
     GetPage(name: '/onBoardingScreen', page: () =>   const OnBoardingScreen()),
+    GetPage(name: '/successRechargeScreen', page: () =>   const SuccessRechargeScreen()),
+    GetPage(name: '/purchaseCabelScreen', page: () =>   const PurchaseCabelScreen()),
     GetPage(name: '/requestPayment4', page: () =>    RequestPayment4()),
     GetPage(name: '/requestPayment3', page: () =>    RequestPayment3()),
     GetPage(name: '/requestMoney2', page: () =>   const RequestMoney2()),

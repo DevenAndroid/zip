@@ -40,7 +40,7 @@ class PayoutController extends GetxController {
     await createBenificiryRepo(
         name:controller.bankController.text.trim() ,
         destinationAddress: accountNo.text.trim(),
-        firstName:accountName.text.trim() ,
+        firstName:controller.bankController.text.trim() ,
         accountHolderName: accountName.text.trim(),
 
 
@@ -51,9 +51,9 @@ class PayoutController extends GetxController {
       if (value.success == true) {
         statusOfBenificiry.value = RxStatus.success();
 
-        Get.back();
-        Get.back();
-        Get.back();
+
+Get.toNamed(MyRouters.yourRecipient);
+
         showToast(value.message.toString());
         getDataList();
 
@@ -137,7 +137,8 @@ class PayoutController extends GetxController {
 
   getDataList() {
     getListRepo(
-        businessID: "64529bd2bfdf28e7c18aa9da"
+        businessID: "64529bd2bfdf28e7c18aa9da",
+
     ).then((value) {
 
       log("response.body.....    ${value}");

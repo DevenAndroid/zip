@@ -50,7 +50,7 @@ class _CreateRecipientsState extends State<CreateRecipients> {
         phone1Controller.text =( value.data!.phone??"").toString();
         ziptag1Controller.text = (value.data!.zipTag??"").toString();
         profileController.userId=searchData.value.data!.id.toString();
-Get.toNamed(MyRouters.yourBalanceScreen);
+
         print(value.data!.email.toString());
       } else {
         statusOfSearch.value = RxStatus.error();
@@ -139,6 +139,13 @@ Get.toNamed(MyRouters.yourBalanceScreen);
             Padding(
               padding: const EdgeInsets.only(left: 6, right: 6),
               child: CommonTextfield(
+                suffixIcon: InkWell(
+                    onTap: (){
+                      getSearchList();
+                    },
+                    child: Icon(Icons.arrow_forward)),
+
+
                 controller: ziptag1Controller,
                 obSecure: false,
                 hintText: "Zip Tag ",
@@ -185,8 +192,8 @@ Get.toNamed(MyRouters.yourBalanceScreen);
             SizedBox(height: 25,),
             InkWell(
               onTap: () {
-                getSearchList();
-        // Get.toNamed(MyRouters.sendCash);
+
+                Get.toNamed(MyRouters.yourBalanceScreen);
               },
               child: const CustomOutlineButton(
                 title: "Continue",

@@ -8,6 +8,7 @@ import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
+import '../controller/update_user.dart';
 import '../models/model_update_address.dart';
 import '../repository/update_address_repo.dart';
 import '../resourses/api_constant.dart';
@@ -20,44 +21,7 @@ class ExtraDetailsScreen extends StatefulWidget {
 
 class _ExtraDetailsScreenState extends State<ExtraDetailsScreen> {
 
-  TextEditingController streetController = TextEditingController();
-  TextEditingController houseNoController = TextEditingController();
-  TextEditingController additionalController = TextEditingController();
-  TextEditingController postalCodeController = TextEditingController();
-  TextEditingController countryController = TextEditingController();
-  TextEditingController stateController = TextEditingController();
-  TextEditingController cityController = TextEditingController();
-  Rx<RxStatus> statusOfaddress = RxStatus.empty().obs;
-  Rx<ModelUpdateAddress> userAdderss = ModelUpdateAddress().obs;
-  final formKeyAddressField = GlobalKey<FormState>();
-
-  updateUserAddress() {
-    updateAddressRepo(
-      street_name: streetController.text.trim(),
-      context: context,
-      additional:additionalController.text.trim(),
-      city: cityController.text.trim(),
-      country: countryController.text.trim(),
-      house_number: houseNoController.text.trim(),
-      postal_code: postalCodeController.text.trim(),
-      state: stateController.text.trim(),
-
-
-
-    ).then((value) {
-      userAdderss.value = value;
-      if (value.status == true) {
-        Get.toNamed(MyRouters.countryScreen);
-        statusOfaddress.value = RxStatus.success();
-        showToast(value.message.toString());
-      } else {
-        statusOfaddress.value = RxStatus.error();
-        showToast(value.message.toString());
-      }
-    }
-
-    );
-  }
+  final controller = Get.put(registerController());
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery
@@ -102,7 +66,7 @@ class _ExtraDetailsScreenState extends State<ExtraDetailsScreen> {
         ),
         body: SingleChildScrollView(
             child: Form(
-              key:  formKeyAddressField,
+              key:  controller.formKeyAddressField,
               child: Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Column(
@@ -122,21 +86,21 @@ class _ExtraDetailsScreenState extends State<ExtraDetailsScreen> {
                         ),
                         const SizedBox(height: 40,),
                         CommonTextfield(
-                          controller: streetController,
+                          controller: controller.streetController,
                           obSecure: false, labelText: "Street Name", hintText: '',  validator: MultiValidator([
                           RequiredValidator(
                               errorText: 'Please enter Street Name  '),
                         ]),),
                         const SizedBox(height: 15,),
                         CommonTextfield(
-                          controller: houseNoController,
+                          controller: controller.houseNoController,
                           obSecure: false, labelText: "House Number", hintText: '', validator: MultiValidator([
                           RequiredValidator(
                               errorText: 'Please enter House Number '),
                         ]),),
                         const SizedBox(height: 15,),
                         CommonTextfield(
-                          controller: additionalController,
+                          controller: controller.additionalController,
                           obSecure: false, labelText: "Additional", hintText: '', validator: MultiValidator([
                           RequiredValidator(
                               errorText: 'Please enter Additional '),
@@ -165,32 +129,32 @@ class _ExtraDetailsScreenState extends State<ExtraDetailsScreen> {
                                 'Please enter 6 digit postal code'),
 
                           ]),
-                          controller: postalCodeController,
+                          controller: controller.postalCodeController,
                           obSecure: false, labelText: "Postal Code", hintText: ' ',),
                         const SizedBox(height: 15,),
                         CommonTextfield(
-                          controller: stateController,
+                          controller: controller.stateController,
                           obSecure: false, labelText: "Region/state", hintText: '',  validator: MultiValidator([
                           RequiredValidator(
                               errorText: 'Please enter Region/state '),
                         ]),),
                         const SizedBox(height: 15,),
                         CommonTextfield(
-                          controller: cityController,
+                          controller: controller.cityController,
                           obSecure: false, labelText: "City", hintText: '',validator: MultiValidator([
                           RequiredValidator(errorText: 'Please enter City '),
                         ]),),
                         const SizedBox(height: 15,),
                         CommonTextfield(
-                          controller: countryController,
+                          controller: controller.countryController,
                           obSecure: false, labelText: "Country", hintText: '',  validator: MultiValidator([
                           RequiredValidator(errorText: 'Please enter Country '),
                         ]),),
                         SizedBox(height: size.height*.1,),
                         InkWell(
                             onTap: (){
-      if (formKeyAddressField.currentState!.validate()) {
-        updateUserAddress();
+      if (controller.formKeyAddressField.currentState!.validate()) {
+        controller.updateUserAddress(context);
       }
 
                             },

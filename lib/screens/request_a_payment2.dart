@@ -45,14 +45,14 @@ class _RequestAPaymentContiune2State extends State<RequestAPaymentContiune2> {
           SizedBox(height: 25,),
 
           Text(
-            "You requested \$ "+profileController.amountController.text.trim(),
+            "You requested \$ ${profileController.amountController.text.trim()}",
             style: GoogleFonts.poppins(
                 color: const Color(0xFF1D1D1D),
                 fontSize: 18,
                 fontWeight: FontWeight.w500),
           ),
           Text(
-            "From"+  "  ${profileController.modal.value.data!.user!.fname.toString()} "+" ${profileController.modal.value.data!.user!.lname.toString()}",
+            "From  ${profileController.modal.value.data!.user!.fname.toString()}  ${profileController.modal.value.data!.user!.lname.toString()}",
             style: GoogleFonts.poppins(
                 color: const Color(0xFF1D1D1D),
                 fontSize: 16,
@@ -65,7 +65,7 @@ class _RequestAPaymentContiune2State extends State<RequestAPaymentContiune2> {
             onTap: () {
               Get.toNamed(MyRouters.success2Screen);
             },
-            child: CustomOutlineButton(
+            child: const CustomOutlineButton(
               title: "Continue",
             ),
           ),

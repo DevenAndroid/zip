@@ -8,6 +8,7 @@ import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
+import '../controller/update_user.dart';
 import '../models/get_address_model.dart';
 import '../models/model_update_address.dart';
 import '../repository/get_address_repo.dart';
@@ -35,6 +36,7 @@ class _PersonalAddressState extends State<PersonalAddress> {
   Rx<ModelUpdateAddress> userAdderss = ModelUpdateAddress().obs;
   final formKeyAddressField = GlobalKey<FormState>();
 
+  final registorController = Get.put(registerController());
   updateUserAddress() {
     updateAddressRepo(
       street_name: streetController.text.trim(),
@@ -45,6 +47,7 @@ class _PersonalAddressState extends State<PersonalAddress> {
       house_number: houseNoController.text.trim(),
       postal_code: postalCodeController.text.trim(),
       state: stateController.text.trim(),
+      phone: registorController.molileController.toString()
 
 
 

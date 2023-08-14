@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,9 +18,12 @@ import '../../controller/update_user.dart';
 import '../../models/model_account_resolve.dart';
 import '../../repository/bank_resolve_repo.dart';
 import '../../resourses/api_constant.dart';
+import '../controller/profile_controller.dart';
 import '../models/buy_energy_model.dart';
 import '../models/model_veryfy_meter.dart';
+import '../models/save_transastion_model.dart';
 import '../repository/buy_energy_repo.dart';
+import '../repository/save_buy_plan_repo.dart';
 import '../repository/verify_meter_repo.dart';
 
 class MeterVerifyScreen extends StatefulWidget {
@@ -30,7 +35,33 @@ class MeterVerifyScreen extends StatefulWidget {
 
 class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
   bool isSwitched = false;
+  final registorController = Get.put(registerController());
+  final profileController = Get.put(ProfileController());
+  Rx<RxStatus> statusOfSave= RxStatus.empty().obs;
+  Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
 
+  saveList() {
+    saveTransastionRepo(
+        user_id: profileController.modal.value.data!.user!.id.toString(),
+        amount:controller.amount.text.trim(),
+        about: "Buy Electricity",
+        // complete_response: purchaseData.value.data!.toJson(),
+        context: context,
+        description:controller.provider.text.trim(),
+        type: "dr"
+    ).then((value) {
+      log("response.body.....    ${value}");
+      save.value = value;
+      if (value.status == true) {
+        statusOfSave.value = RxStatus.success();
+
+      } else {
+        statusOfSave.value = RxStatus.error();
+      }
+    }
+      // showToast(value.message.toString());
+    );
+  }
 
   Rx<ModelVerifyMeterNumber> verifyMeter = ModelVerifyMeterNumber().obs;
   Rx<RxStatus> statusOfResolve = RxStatus.empty().obs;
@@ -71,7 +102,8 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
       if (value.success == true) {
         // payOutcontroller.accountName.text = (value.data!.accountName??"").toString();
         statusOfBuyEnergy.value = RxStatus.success();
-
+        saveList();
+        Get.toNamed(MyRouters.bottomNavbar);
         showToast(value.message.toString());
       } else {
         showToast(value.message.toString());

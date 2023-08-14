@@ -6,6 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/widgets/common_colour.dart';
 
 
+import '../controller/profile_controller.dart';
+import '../controller/update_user.dart';
 import '../routers/my_routers.dart';
 import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
@@ -18,6 +20,14 @@ class WalletScreen extends StatefulWidget {
 }
 
 class _WalletScreenState extends State<WalletScreen> {
+  final controller = Get.put(registerController());
+  final controller1 = Get.put(ProfileController());
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controller1. getData();
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -358,19 +368,16 @@ const SizedBox(width: 5,),
                   height: size.height * .25,
                 ),
                 InkWell(
-                    onTap: () {
-                      Get.toNamed(MyRouters.otpEmailScreen);
-                    },
-                    child: InkWell(
-                      onTap: (){
-                        Get.to(AddCard());
-                      },
-                      child: const CustomOutlineButton(
-                        title: "Add Cards",
-                      ),
-                    )),
+                  onTap: (){
+                    controller1. holder();
+                  },
+                  child: CustomOutlineButton(
+                    title: "Add Card",
+
+                  ),
+                ),
                 const SizedBox(
-                  height: 50,
+                  height: 100,
                 ),
               ]),
         )));

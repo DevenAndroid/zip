@@ -92,6 +92,7 @@ class _SendCash2State extends State<SendCash2> {
           padding: const EdgeInsets.only(bottom: 20.0),
           child: InkWell(
               onTap: () {
+                print( controller.bankController,);
                 payOutcontroller.CreateBenificery();
               },
               child: const CustomOutlineButton(
@@ -105,38 +106,43 @@ class _SendCash2State extends State<SendCash2> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            SvgPicture.asset('assets/images/mark.svg'),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Recipients',
-                                  style: GoogleFonts.poppins(
-                                    textStyle: const TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                        color: Color(0xFF1D1D1D)),
+                      InkWell(
+                        onTap: (){
+                          Get.toNamed(MyRouters.yourRecipient);
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: [
+                              SvgPicture.asset('assets/images/mark.svg'),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Benificiries',
+                                    style: GoogleFonts.poppins(
+                                      textStyle: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
+                                          color: Color(0xFF1D1D1D)),
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  'Send to already saved channels',
-                                  style: GoogleFonts.poppins(
-                                    textStyle: const TextStyle(
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.grey),
+                                  Text(
+                                    'Send to already saved channels',
+                                    style: GoogleFonts.poppins(
+                                      textStyle: const TextStyle(
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.grey),
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -211,7 +217,7 @@ class _SendCash2State extends State<SendCash2> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Save as Recipients',
+                              'Save as Benificiries',
                               style: GoogleFonts.poppins(
                                 textStyle: const TextStyle(
                                     fontSize: 16,

@@ -10,7 +10,7 @@ import '../resourses/helper.dart';
 
 
 
-Future<ModelUpdateAddress> updateAddressRepo({street_name,context,house_number,additional,postal_code,state,city,country}) async {
+Future<ModelUpdateAddress> updateAddressRepo({street_name,context,house_number,additional,postal_code,phone,state,city,country}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
@@ -22,6 +22,7 @@ Future<ModelUpdateAddress> updateAddressRepo({street_name,context,house_number,a
   map['state'] = state;
   map['city'] = city;
   map['country'] = country;
+  map['phone'] = phone;
   map['is_first_time'] = "1";
 
 

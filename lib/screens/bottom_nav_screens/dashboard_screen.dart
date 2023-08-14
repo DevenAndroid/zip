@@ -416,7 +416,7 @@ Row(
                     SvgPicture.asset("assets/images/i4.svg",width: 50,),
                     const SizedBox(height: 8,),
                     Text(
-                      'Buyn\nElectricity',
+                      'Buy\nElectricity',
                       style: GoogleFonts.poppins(
                         textStyle: const TextStyle(fontSize: 16,fontWeight: FontWeight.w400,color: Color(0xFF2E2E2E)),
                       ),

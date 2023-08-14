@@ -9,6 +9,7 @@ import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
 
+import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
 import '../models/buy_plan_model.dart';
 import '../models/save_transastion_model.dart';
@@ -28,6 +29,7 @@ class PurchaseScreen extends StatefulWidget {
 
 class _PurchaseScreenState extends State<PurchaseScreen> {
   final registorController = Get.put(registerController());
+  final profileController = Get.put(ProfileController());
   @override
   void initState() {
     // TODO: implement initState
@@ -47,9 +49,9 @@ class _PurchaseScreenState extends State<PurchaseScreen> {
 
   saveList() {
     saveTransastionRepo(
-
+user_id: profileController.modal.value.data!.user!.id.toString(),
         amount:initStateBlank1,
-      about: initStateBlank2.toString(),
+      about: "Buy Airtime",
       // complete_response: purchaseData.value.data!.toJson(),
         context: context,
       description:descriptionController.text.trim(),
@@ -59,6 +61,7 @@ class _PurchaseScreenState extends State<PurchaseScreen> {
       save.value = value;
       if (value.status == true) {
         statusOfSave.value = RxStatus.success();
+        Get.toNamed(MyRouters.successRechargeScreen);
 
       } else {
         statusOfSave.value = RxStatus.error();

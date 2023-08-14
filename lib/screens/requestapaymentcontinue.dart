@@ -24,7 +24,7 @@ class _RequestAPaymentContiuneState extends State<RequestAPaymentContiune> {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          "Request a payment",
+          "Send Money",
           style: GoogleFonts.poppins(
               color: const Color(0xFF1D1D1D),
               fontSize: 20,
@@ -45,7 +45,7 @@ class _RequestAPaymentContiuneState extends State<RequestAPaymentContiune> {
           SizedBox(height: 25,),
 
           Text(
-            "You requested \$ "+profileController.amountController.text.trim(),
+            "Send Money \$ "+profileController.amountController.text.trim(),
             style: GoogleFonts.poppins(
                 color: const Color(0xFF1D1D1D),
                 fontSize: 18,

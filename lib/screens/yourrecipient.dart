@@ -142,10 +142,7 @@ Get.toNamed(MyRouters.sendCash2);
                   String search = searchController.text.trim().toLowerCase();
                   if(search.isNotEmpty) {
                     results =
-                        payoutController.addRecipitentsList.value.data!.results!
-                            .where((element) =>
-                        element.firstName.toString().toLowerCase().contains(
-                            search) ||
+                        payoutController.addRecipitentsList.value.data!.results!.where((element) => element.firstName.toString().toLowerCase().contains(search) ||
                             element.lastName.toString().toLowerCase().contains(
                                 search) ||
                             element.email.toString().toLowerCase().contains(
@@ -199,7 +196,7 @@ Get.toNamed(MyRouters.sendCash2);
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          item.firstName!.toString(),
+                                          item.accountHolderName!.toString(),
                                           style: GoogleFonts.poppins(
                                               color: const Color(0xff1D1D1D),
                                               fontSize: 16,
