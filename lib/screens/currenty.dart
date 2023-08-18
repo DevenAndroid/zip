@@ -33,7 +33,6 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
     convertUsd2();
     convertUsd3();
   }
-
 // call function to convert
   void convertUsd() async {
     Currency myCurrency = await CurrencyConverter.getMyCurrency();
@@ -172,7 +171,6 @@ const SizedBox(height: 20,),
                           fontSize: 17,
                           fontWeight: FontWeight.w500),),
                   ),
-
                 ],
               ),
               const SizedBox(height: 15,),
@@ -192,7 +190,6 @@ const SizedBox(height: 20,),
                           fontWeight: FontWeight.w400),),
                   ),
                   SvgPicture.asset("assets/images/arrow1.svg"),
-
                   Container(
                     padding: const EdgeInsets.all(13),
                     decoration: BoxDecoration(
@@ -217,7 +214,6 @@ const SizedBox(height: 20,),
                           fontSize: 17,
                           fontWeight: FontWeight.w500),),
                   ),
-
                 ],
               ),
               const SizedBox(height: 15,),
@@ -237,7 +233,6 @@ const SizedBox(height: 20,),
                           fontWeight: FontWeight.w400),),
                   ),
                   SvgPicture.asset("assets/images/arrow1.svg"),
-
                   Container(
                     padding: const EdgeInsets.all(13),
                     decoration: BoxDecoration(
@@ -262,7 +257,6 @@ const SizedBox(height: 20,),
                           fontSize: 17,
                           fontWeight: FontWeight.w500),),
                   ),
-
                 ],
               ),
               const SizedBox(height: 15,),
@@ -282,7 +276,6 @@ const SizedBox(height: 20,),
                           fontWeight: FontWeight.w400),),
                   ),
                   SvgPicture.asset("assets/images/arrow1.svg"),
-
                   Container(
                     padding: const EdgeInsets.all(13),
                     decoration: BoxDecoration(
@@ -307,7 +300,6 @@ const SizedBox(height: 20,),
                           fontSize: 17,
                           fontWeight: FontWeight.w500),),
                   ),
-
                 ],
               ),
               const SizedBox(height: 15,),
@@ -327,7 +319,6 @@ const SizedBox(height: 20,),
                           fontWeight: FontWeight.w400),),
                   ),
                   SvgPicture.asset("assets/images/arrow1.svg"),
-
                   Container(
                     padding: const EdgeInsets.all(13),
                     decoration: BoxDecoration(
@@ -352,7 +343,6 @@ const SizedBox(height: 20,),
                           fontSize: 17,
                           fontWeight: FontWeight.w500),),
                   ),
-
                 ],
               ),
               const SizedBox(height: 15,),
@@ -372,7 +362,6 @@ const SizedBox(height: 20,),
                           fontWeight: FontWeight.w400),),
                   ),
                   SvgPicture.asset("assets/images/arrow1.svg"),
-
                   Container(
                     padding: const EdgeInsets.all(13),
                     decoration: BoxDecoration(
@@ -397,16 +386,9 @@ const SizedBox(height: 20,),
                           fontSize: 17,
                           fontWeight: FontWeight.w500),),
                   ),
-
                 ],
               ),
               const SizedBox(height: 15,),
-
-
-
-
-
-
             ],
           ),
         ),

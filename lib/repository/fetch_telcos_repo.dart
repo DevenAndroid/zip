@@ -19,7 +19,8 @@ Future<ModelFetchTelcos> getTelcosRepo() async {
     Uri.parse(ApiUrls.getTelcos),
     headers: { HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.acceptHeader: 'application/json',
-      "secret-key": "Fincra_SECRETDMVA1HLKTFYE4"
+      "secret-key": "Fincra_SECRETDMVA1HLKTFYE4",
+      "api-key":"m98zn3Y70MXGu1VaZNhYOZO7CbULj6uU"
 
     },
   );
@@ -34,6 +35,7 @@ Future<ModelFetchTelcos> getTelcosRepo() async {
 
         data: null,success: false);
   }
+
   // } catch (e) {
   //   return GetBenificiryModel(message: e.toString(),  data: null,success: false);
   // }

@@ -568,29 +568,57 @@ Row(
                 ],
               ),
 const SizedBox(height: 20,),
-Row(
-  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  children: [
-    Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Check Rates',
-            style: GoogleFonts.poppins(
-              textStyle: const TextStyle(fontSize: 14,fontWeight: FontWeight.w500,color: Color(0xFF1D1D1D)),
-            ),
-          ),
-          Text(
-            'See current foreign exchange rates',
-            style: GoogleFonts.poppins(
-              textStyle: const TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: Color(0xFF1D1D1D)),
-            ),
-          ),
-        ],
-    ),
+InkWell(
+  onTap: (){
+    Get.toNamed(MyRouters.exchangeMoney2);
+  },
+  child:   Row(
 
-    const Icon(Icons.arrow_forward_ios,size: 20,)
-  ],
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+    children: [
+
+      Column(
+
+          crossAxisAlignment: CrossAxisAlignment.start,
+
+          children: [
+
+            Text(
+
+              'Check Rates',
+
+              style: GoogleFonts.poppins(
+
+                textStyle: const TextStyle(fontSize: 14,fontWeight: FontWeight.w500,color: Color(0xFF1D1D1D)),
+
+              ),
+
+            ),
+
+            Text(
+
+              'See current foreign exchange rates',
+
+              style: GoogleFonts.poppins(
+
+                textStyle: const TextStyle(fontSize: 13,fontWeight: FontWeight.w400,color: Color(0xFF1D1D1D)),
+
+              ),
+
+            ),
+
+          ],
+
+      ),
+
+
+
+      const Icon(Icons.arrow_forward_ios,size: 20,)
+
+    ],
+
+  ),
 ),
               const SizedBox(height: 30,),
               Row(

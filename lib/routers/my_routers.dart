@@ -74,6 +74,7 @@ import '../screens/data_plan_scree.dart';
 import '../screens/eligible_screen.dart';
 import '../screens/email_login.dart';
 
+import '../screens/exchenge2.dart';
 import '../screens/internet_screen.dart';
 import '../screens/limit_screen.dart';
 import '../screens/list_biller_screen.dart';
@@ -217,6 +218,7 @@ class MyRouters{
   static var requestPayment4 = "/requestPayment4";
   static var successRechargeScreen = "/successRechargeScreen";
   static var purchaseCabelScreen = "/purchaseCabelScreen";
+  static var exchangeMoney2 = "/exchangeMoney2";
 
 
 
@@ -228,6 +230,7 @@ class MyRouters{
 
     GetPage(name: '/onBoardingScreen', page: () =>   const OnBoardingScreen()),
     GetPage(name: '/successRechargeScreen', page: () =>   const SuccessRechargeScreen()),
+    GetPage(name: '/exchangeMoney2', page: () =>   const ExchangeMoney2()),
     GetPage(name: '/purchaseCabelScreen', page: () =>   const PurchaseCabelScreen()),
     GetPage(name: '/requestPayment4', page: () =>    RequestPayment4()),
     GetPage(name: '/requestPayment3', page: () =>    RequestPayment3()),
