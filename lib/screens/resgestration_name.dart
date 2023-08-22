@@ -124,9 +124,9 @@ class _UserScreenState extends State<UserScreen> {
                           RequiredValidator(
                               errorText:
                               'Please enter your contact number '),
-                          MinLengthValidator(10,
+                          MinLengthValidator(11,
                               errorText:
-                              'Please enter minumum  10 digit number'),
+                              'Please enter minumum  11 digit number'),
                           MaxLengthValidator(12,
                               errorText:
                               'Please enter 12 digit number'),

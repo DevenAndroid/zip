@@ -8,6 +8,8 @@ import 'package:zip/widgets/common_colour.dart';
 
 import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
+import '../models/model_freeze_card.dart';
+import '../repository/freeze_card_repo.dart';
 import '../routers/my_routers.dart';
 import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
@@ -22,12 +24,17 @@ class WalletScreen extends StatefulWidget {
 class _WalletScreenState extends State<WalletScreen> {
   final controller = Get.put(registerController());
   final controller1 = Get.put(ProfileController());
+
+
 @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    controller1. getData();
+    controller1. getCardDetails();
+    // controller1. getData();
+    // controller1. getCardDetails();
   }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -79,7 +86,7 @@ class _WalletScreenState extends State<WalletScreen> {
                     Expanded(
                         child: InkWell(
                           onTap: () {
-                            // Get.toNamed(MyRouters.mobileNumber);
+                             Get.toNamed(MyRouters.accountsInBank);
                           },
                           child: CustomOutlineBoder(
                             title: "Account",
@@ -121,118 +128,129 @@ class _WalletScreenState extends State<WalletScreen> {
                             ),
                             Row(
                               children: [
-                                const CircleAvatar(
+                                CircleAvatar(
                                   maxRadius: 4,
                                   backgroundColor: Colors.white,
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   width: 3,
                                 ),
-                                const CircleAvatar(
+                                CircleAvatar(
                                   maxRadius: 4,
                                   backgroundColor: Colors.white,
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   width: 3,
                                 ),
-                                const CircleAvatar(
+                                CircleAvatar(
                                   maxRadius: 4,
                                   backgroundColor: Colors.white,
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   width: 3,
                                 ),
-                                const CircleAvatar(
+                                CircleAvatar(
                                   maxRadius: 4,
                                   backgroundColor: Colors.white,
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   width: 8,
                                 ),
-                                const CircleAvatar(
+                                CircleAvatar(
                                   maxRadius: 4,
                                   backgroundColor: Colors.white,
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   width: 3,
                                 ),
-                                const CircleAvatar(
+                                CircleAvatar(
                                   maxRadius: 4,
                                   backgroundColor: Colors.white,
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   width: 3,
                                 ),
-                                const CircleAvatar(
+                                CircleAvatar(
                                   maxRadius: 4,
                                   backgroundColor: Colors.white,
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   width: 3,
                                 ),
-                                const CircleAvatar(
+                                CircleAvatar(
                                   maxRadius: 4,
                                   backgroundColor: Colors.white,
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   width: 8,
                                 ),
-                                const CircleAvatar(
+                                CircleAvatar(
                                   maxRadius: 4,
                                   backgroundColor: Colors.white,
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   width: 3,
                                 ),
-                                const CircleAvatar(
+                                CircleAvatar(
                                   maxRadius: 4,
                                   backgroundColor: Colors.white,
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   width: 3,
                                 ),
-                                const CircleAvatar(
+                                CircleAvatar(
                                   maxRadius: 4,
                                   backgroundColor: Colors.white,
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   width: 3,
                                 ),
-                                const CircleAvatar(
+                                CircleAvatar(
                                   maxRadius: 4,
                                   backgroundColor: Colors.white,
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   width: 8,
                                 ),
-                                const CircleAvatar(
-                                  maxRadius: 4,
-                                  backgroundColor: Colors.white,
-                                ),
-                                const SizedBox(
-                                  width: 3,
-                                ),
-                                const CircleAvatar(
-                                  maxRadius: 4,
-                                  backgroundColor: Colors.white,
-                                ),
-                                const SizedBox(
-                                  width: 3,
-                                ),
-                                const CircleAvatar(
-                                  maxRadius: 4,
-                                  backgroundColor: Colors.white,
-                                ),
-                                const SizedBox(
-                                  width: 3,
-                                ),
-                                const CircleAvatar(
-                                  maxRadius: 4,
-                                  backgroundColor: Colors.white,
-                                ),
-                                const SizedBox(
-                                  width: 8,
-                                ),
+
+                                if(controller1.cardDetails.value.data==null)
+                                  ...[
+                                    CircleAvatar(
+                                      maxRadius: 4,
+                                      backgroundColor: Colors.white,
+                                    ),
+                                    SizedBox(
+                                      width: 3,
+                                    ),
+                                    CircleAvatar(
+                                      maxRadius: 4,
+                                      backgroundColor: Colors.white,
+                                    ),
+                                    SizedBox(
+                                      width: 3,
+                                    ),
+                                    CircleAvatar(
+                                      maxRadius: 4,
+                                      backgroundColor: Colors.white,
+                                    ),
+                                    SizedBox(
+                                      width: 3,
+                                    ),
+                                    CircleAvatar(
+                                      maxRadius: 4,
+                                      backgroundColor: Colors.white,
+                                    ),
+                                    SizedBox(
+                                      width: 8,
+                                    ),
+                                  ]
+                                else
+                                  Text(controller1.cardDetails.value.data!.last4.toString(),
+                                    style: GoogleFonts.poppins(
+                                        color: Colors.white,
+                                        fontSize: 14,
+                                        letterSpacing: 2,
+                                        fontWeight: FontWeight.w600),)
                               ],
                             ),
                             Row(
@@ -244,16 +262,27 @@ class _WalletScreenState extends State<WalletScreen> {
                                       'Card Holder Name',
                                       style: GoogleFonts.poppins(
                                           color: Colors.white,
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w300),
-                                    ),
-                                    Text(
-                                      '--',
-                                      style: GoogleFonts.poppins(
-                                          color: Colors.white,
                                           fontSize: 12,
-                                          fontWeight: FontWeight.w300),
-                                    )
+                                          fontWeight: FontWeight.w400),
+                                    ),
+
+                                    if(controller1.cardDetails.value.data==null)
+                                      Text(
+                                        '--',
+                                        style: GoogleFonts.poppins(
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600),
+                                      )
+                                    else
+
+                                      Text(
+                                        controller1.cardDetails.value.data!.cardName.toString(),
+                                        style: GoogleFonts.poppins(
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600),
+                                      )
                                   ],
                                 ),
                                 const SizedBox(
@@ -266,16 +295,26 @@ class _WalletScreenState extends State<WalletScreen> {
                                       'Expiry date',
                                       style: GoogleFonts.poppins(
                                           color: Colors.white,
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w300),
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w400),
                                     ),
-                                    Text(
-                                      '--/--',
-                                      style: GoogleFonts.poppins(
-                                          color: Colors.white,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w300),
-                                    )
+                                    if(controller1.cardDetails.value.data==null)
+                                      Text(
+                                        '--/--',
+                                        style: GoogleFonts.poppins(
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600),
+                                      )
+                                    else
+
+                                      Text(
+                                        controller1.cardDetails.value.data!.expiryMonth.toString()+"/"+  controller1.cardDetails.value.data!.expiryYear.toString(),
+                                        style: GoogleFonts.poppins(
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600),
+                                      )
                                   ],
                                 ),
                                 const SizedBox(
@@ -369,7 +408,8 @@ const SizedBox(width: 5,),
                 ),
                 InkWell(
                   onTap: (){
-                    controller1. holder();
+                    Get.toNamed(MyRouters.myCard);
+                    // controller1. holder();
                   },
                   child: CustomOutlineButton(
                     title: "Add Card",
@@ -382,4 +422,5 @@ const SizedBox(width: 5,),
               ]),
         )));
   }
+
 }

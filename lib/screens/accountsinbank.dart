@@ -101,156 +101,156 @@ class _AccountsInBankState extends State<AccountsInBank> {
                         ],
                       )),
                 ),
-                const SizedBox(height: 14,),
-                GestureDetector(
-                  onTap: (){
-                    _selectedEur;
-                    Get.toNamed(MyRouters.exchangeMoney,arguments: [_selectedEur]);
-                  },
-                  child: Container(
-                      height: 62,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          border: Border.all(color: const Color(0xff1D1D1D))),
-                      child: Column(
-                        children: [
-                          SizedBox(height: 10,),
-                          ListTile(
-                              visualDensity:
-                              const VisualDensity(horizontal: 0, vertical: -4),
-                              leading: Image.asset(
-                                'assets/images/euro.png',
-                                height: 35,
-                              ),
-                              title: Text(
-                                "Euro",
-                                style: GoogleFonts.poppins(
-                                    color: const Color(0xFF1D1D1D),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              // subtitle: Text(
-                              //   "E0.00",
-                              //   style: GoogleFonts.poppins(
-                              //       color: const Color(0x571D1D1D),
-                              //       fontSize: 14,
-                              //       fontWeight: FontWeight.w400),
-                              // ),
-                              trailing:Radio<String>(
-                                value: 'EUR',
-                                activeColor: AppTheme.secondaryColor,
-                                groupValue: _selectedCurrency,
-
-                                onChanged: (value) {
-                                  setState(() {
-                                    _selectedEur = value!;
-                                  });
-                                },
-                              ),),
-                        ],
-                      )),
-                ),
-                const SizedBox(height: 14,),
-                InkWell(
-                  onTap: (){
-                    _selectedCurrency;
-                    log(_selectedCurrencyGbp);
-                    Get.toNamed(MyRouters.exchangeMoney,arguments: [_selectedCurrencyGbp]);
-                  },
-                  child: Container(
-                      height: 62,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          border: Border.all(color: const Color(0xff1D1D1D))),
-                      child: Column(
-                        children: [
-                          SizedBox(height: 10,),
-                          ListTile(
-
-                              visualDensity:
-                              const VisualDensity(horizontal: 0, vertical: -4),
-                              leading: Image.asset(
-                                'assets/images/pound.png',
-                                height: 35,
-                              ),
-                              title: Text(
-                                "British pounds",
-                                style: GoogleFonts.poppins(
-                                    color: const Color(0xFF1D1D1D),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              // subtitle: Text(
-                              //   "E0.00",
-                              //   style: GoogleFonts.poppins(
-                              //       color: const Color(0x571D1D1D),
-                              //       fontSize: 14,
-                              //       fontWeight: FontWeight.w400),
-                              // ),
-                              trailing: Radio<String>(
-                                value: 'GBP',
-                                activeColor: AppTheme.secondaryColor,
-                                groupValue: _selectedCurrency,
-                                onChanged: (value) {
-                                  setState(() {
-                                    _selectedCurrencyGbp = value!;
-                                  });
-                                },
-                              ),),
-                        ],
-                      )),
-                ),
-                const SizedBox(height: 14,),
-                InkWell(
-                  onTap: (){
-                    _selectedCurrencyUsd;
-                    Get.toNamed(MyRouters.exchangeMoney,arguments: [_selectedCurrencyUsd]);
-                  },
-                  child: Container(
-                      height: 62,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          border: Border.all(color: const Color(0xff1D1D1D))),
-                      child: Column(
-
-                        children: [
-                          SizedBox(height: 10,),
-                          ListTile(
-                              visualDensity:
-                              const VisualDensity(horizontal: 0, vertical: -4),
-                              leading: Image.asset(
-                                'assets/images/doller.png',
-                                height: 35,
-                              ),
-                              title: Text(
-                                "US Dollers",
-                                style: GoogleFonts.poppins(
-                                    color: const Color(0xFF1D1D1D),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              // subtitle: Text(
-                              //   "\$6.00",
-                              //   style: GoogleFonts.poppins(
-                              //       color: const Color(0x571D1D1D),
-                              //       fontSize: 14,
-                              //       fontWeight: FontWeight.w400),
-                              // ),
-                              trailing:Radio<String>(
-                                activeColor: AppTheme.secondaryColor,
-                                value: 'USD',
-                                groupValue: _selectedCurrency,
-                                onChanged: (value) {
-                                  setState(() {
-                                    _selectedCurrencyUsd = value!;
-                                  });
-                                },
-                              ),),
-                        ],
-                      )),
-                ),
+                // const SizedBox(height: 14,),
+                // GestureDetector(
+                //   onTap: (){
+                //     _selectedEur;
+                //     Get.toNamed(MyRouters.exchangeMoney,arguments: [_selectedEur]);
+                //   },
+                //   child: Container(
+                //       height: 62,
+                //       decoration: BoxDecoration(
+                //           borderRadius: BorderRadius.circular(15),
+                //           border: Border.all(color: const Color(0xff1D1D1D))),
+                //       child: Column(
+                //         children: [
+                //           SizedBox(height: 10,),
+                //           ListTile(
+                //               visualDensity:
+                //               const VisualDensity(horizontal: 0, vertical: -4),
+                //               leading: Image.asset(
+                //                 'assets/images/euro.png',
+                //                 height: 35,
+                //               ),
+                //               title: Text(
+                //                 "Euro",
+                //                 style: GoogleFonts.poppins(
+                //                     color: const Color(0xFF1D1D1D),
+                //                     fontSize: 16,
+                //                     fontWeight: FontWeight.w500),
+                //               ),
+                //               // subtitle: Text(
+                //               //   "E0.00",
+                //               //   style: GoogleFonts.poppins(
+                //               //       color: const Color(0x571D1D1D),
+                //               //       fontSize: 14,
+                //               //       fontWeight: FontWeight.w400),
+                //               // ),
+                //               trailing:Radio<String>(
+                //                 value: 'EUR',
+                //                 activeColor: AppTheme.secondaryColor,
+                //                 groupValue: _selectedCurrency,
+                //
+                //                 onChanged: (value) {
+                //                   setState(() {
+                //                     _selectedEur = value!;
+                //                   });
+                //                 },
+                //               ),),
+                //         ],
+                //       )),
+                // ),
+                // const SizedBox(height: 14,),
+                // InkWell(
+                //   onTap: (){
+                //     _selectedCurrency;
+                //     log(_selectedCurrencyGbp);
+                //     Get.toNamed(MyRouters.exchangeMoney,arguments: [_selectedCurrencyGbp]);
+                //   },
+                //   child: Container(
+                //       height: 62,
+                //       decoration: BoxDecoration(
+                //           borderRadius: BorderRadius.circular(15),
+                //           border: Border.all(color: const Color(0xff1D1D1D))),
+                //       child: Column(
+                //         children: [
+                //           SizedBox(height: 10,),
+                //           ListTile(
+                //
+                //               visualDensity:
+                //               const VisualDensity(horizontal: 0, vertical: -4),
+                //               leading: Image.asset(
+                //                 'assets/images/pound.png',
+                //                 height: 35,
+                //               ),
+                //               title: Text(
+                //                 "British pounds",
+                //                 style: GoogleFonts.poppins(
+                //                     color: const Color(0xFF1D1D1D),
+                //                     fontSize: 16,
+                //                     fontWeight: FontWeight.w500),
+                //               ),
+                //               // subtitle: Text(
+                //               //   "E0.00",
+                //               //   style: GoogleFonts.poppins(
+                //               //       color: const Color(0x571D1D1D),
+                //               //       fontSize: 14,
+                //               //       fontWeight: FontWeight.w400),
+                //               // ),
+                //               trailing: Radio<String>(
+                //                 value: 'GBP',
+                //                 activeColor: AppTheme.secondaryColor,
+                //                 groupValue: _selectedCurrency,
+                //                 onChanged: (value) {
+                //                   setState(() {
+                //                     _selectedCurrencyGbp = value!;
+                //                   });
+                //                 },
+                //               ),),
+                //         ],
+                //       )),
+                // ),
+                // const SizedBox(height: 14,),
+                // InkWell(
+                //   onTap: (){
+                //     _selectedCurrencyUsd;
+                //     Get.toNamed(MyRouters.exchangeMoney,arguments: [_selectedCurrencyUsd]);
+                //   },
+                //   child: Container(
+                //       height: 62,
+                //       decoration: BoxDecoration(
+                //           borderRadius: BorderRadius.circular(15),
+                //           border: Border.all(color: const Color(0xff1D1D1D))),
+                //       child: Column(
+                //
+                //         children: [
+                //           SizedBox(height: 10,),
+                //           ListTile(
+                //               visualDensity:
+                //               const VisualDensity(horizontal: 0, vertical: -4),
+                //               leading: Image.asset(
+                //                 'assets/images/doller.png',
+                //                 height: 35,
+                //               ),
+                //               title: Text(
+                //                 "US Dollers",
+                //                 style: GoogleFonts.poppins(
+                //                     color: const Color(0xFF1D1D1D),
+                //                     fontSize: 16,
+                //                     fontWeight: FontWeight.w500),
+                //               ),
+                //               // subtitle: Text(
+                //               //   "\$6.00",
+                //               //   style: GoogleFonts.poppins(
+                //               //       color: const Color(0x571D1D1D),
+                //               //       fontSize: 14,
+                //               //       fontWeight: FontWeight.w400),
+                //               // ),
+                //               trailing:Radio<String>(
+                //                 activeColor: AppTheme.secondaryColor,
+                //                 value: 'USD',
+                //                 groupValue: _selectedCurrency,
+                //                 onChanged: (value) {
+                //                   setState(() {
+                //                     _selectedCurrencyUsd = value!;
+                //                   });
+                //                 },
+                //               ),),
+                //         ],
+                //       )),
+                // ),
                 SizedBox(
-                  height: size.height * .4,
+                  height: size.height * .65,
                 ),
                 InkWell(
                   onTap: () {

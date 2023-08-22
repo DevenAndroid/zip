@@ -11,7 +11,7 @@ import '../resourses/helper.dart';
 
 
 
-Future<CreateBenificiryModel> createBenificiryRepo({firstName,name,accountHolderName,destinationAddress,required String businessID}) async {
+Future<CreateBenificiryModel> createBenificiryRepo({firstName,name,accountHolderName,destinationAddress,uniqueIdentifier,required String businessID}) async {
 
   var map = <String, dynamic>{};
   var map2 = <String, dynamic>{};
@@ -30,6 +30,7 @@ Future<CreateBenificiryModel> createBenificiryRepo({firstName,name,accountHolder
   map['currency'] =  "GBP";
   map['paymentDestination'] =  "bank_account";
   map['destinationAddress'] =  destinationAddress;
+  map['uniqueIdentifier'] =  uniqueIdentifier;
 
 
 

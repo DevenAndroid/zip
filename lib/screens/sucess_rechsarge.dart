@@ -58,7 +58,7 @@ class _SuccessRechargeScreenState extends State<SuccessRechargeScreen> {
                       SizedBox(height: size.height*.5,),
                       InkWell(
                           onTap: (){
-                           Get.toNamed(MyRouters.bottomNavbar);
+                           Get.offAllNamed(MyRouters.bottomNavbar);
 
                           },
                           child: CustomOutlineButton(title: "Go To Home ",)),

@@ -65,6 +65,7 @@ import '../screens/bank_details.dart';
 import '../screens/buy_cabel_tv_screen.dart';
 import '../screens/buy_data_screen.dart';
 import '../screens/cabel_tv_screen.dart';
+import '../screens/card_details_screen.dart';
 import '../screens/choose_bank_2.dart';
 import '../screens/contact_us_screen.dart';
 import '../screens/create_account.dart';
@@ -75,6 +76,8 @@ import '../screens/eligible_screen.dart';
 import '../screens/email_login.dart';
 
 import '../screens/exchenge2.dart';
+import '../screens/favourate_balance.dart';
+import '../screens/favourate_screen.dart';
 import '../screens/internet_screen.dart';
 import '../screens/limit_screen.dart';
 import '../screens/list_biller_screen.dart';
@@ -219,6 +222,9 @@ class MyRouters{
   static var successRechargeScreen = "/successRechargeScreen";
   static var purchaseCabelScreen = "/purchaseCabelScreen";
   static var exchangeMoney2 = "/exchangeMoney2";
+  static var cardDetails = "/cardDetails";
+  static var favouriteScreen = "/favouriteScreen";
+  static var favourateBalance = "/favourateBalance";
 
 
 
@@ -230,8 +236,11 @@ class MyRouters{
 
     GetPage(name: '/onBoardingScreen', page: () =>   const OnBoardingScreen()),
     GetPage(name: '/successRechargeScreen', page: () =>   const SuccessRechargeScreen()),
+    GetPage(name: '/favouriteScreen', page: () =>   const FavouriteScreen()),
+    GetPage(name: '/cardDetails', page: () =>   const CardDetails()),
     GetPage(name: '/exchangeMoney2', page: () =>   const ExchangeMoney2()),
     GetPage(name: '/purchaseCabelScreen', page: () =>   const PurchaseCabelScreen()),
+    GetPage(name: '/favourateBalance', page: () =>   const FavourateBalance()),
     GetPage(name: '/requestPayment4', page: () =>    RequestPayment4()),
     GetPage(name: '/requestPayment3', page: () =>    RequestPayment3()),
     GetPage(name: '/requestMoney2', page: () =>   const RequestMoney2()),

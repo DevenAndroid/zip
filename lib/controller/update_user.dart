@@ -47,7 +47,7 @@ class registerController extends GetxController {
 
   TextEditingController streetController = TextEditingController();
   TextEditingController houseNoController = TextEditingController();
-  TextEditingController additionalController = TextEditingController();
+  // TextEditingController additionalController = TextEditingController();
   TextEditingController postalCodeController = TextEditingController();
   TextEditingController countryController = TextEditingController();
   TextEditingController stateController = TextEditingController();
@@ -60,7 +60,7 @@ class registerController extends GetxController {
     updateAddressRepo(
       street_name: streetController.text.trim(),
       context: context,
-      additional: additionalController.text.trim(),
+      // additional: additionalController.text.trim(),
       city: cityController.text.trim(),
       country: countryController.text.trim(),
       house_number: houseNoController.text.trim(),
@@ -173,7 +173,7 @@ class registerController extends GetxController {
     await cardHolderRepo(
       selfie_image: base64Image,
       email_address: emailController.text.trim(),
-      address: additionalController.text.trim(),
+      address: cityController.text.trim(),
       house_no: houseNoController.text.trim(),
       city: cityController.text.trim(),
       phone: molileController.text.trim(),

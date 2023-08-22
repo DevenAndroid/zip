@@ -99,13 +99,7 @@ class _ExtraDetailsScreenState extends State<ExtraDetailsScreen> {
                               errorText: 'Please enter House Number '),
                         ]),),
                         const SizedBox(height: 15,),
-                        CommonTextfield(
-                          controller: controller.additionalController,
-                          obSecure: false, labelText: "Additional", hintText: '', validator: MultiValidator([
-                          RequiredValidator(
-                              errorText: 'Please enter Additional '),
-                        ]),),
-                        const SizedBox(height: 15,),
+
                         CommonTextfield(
                           keyboardType:
                           const TextInputType.numberWithOptions(

@@ -41,13 +41,13 @@ class _PersonalAddressState extends State<PersonalAddress> {
     updateAddressRepo(
       street_name: streetController.text.trim(),
       context: context,
-      additional:additionalController.text.trim(),
+      // additional:additionalController.text.trim(),
       city: cityController.text.trim(),
       country: countryController.text.trim(),
       house_number: houseNoController.text.trim(),
       postal_code: postalCodeController.text.trim(),
       state: stateController.text.trim(),
-      phone: registorController.molileController.toString()
+      // phone: registorController.molileController.toString()
 
 
 

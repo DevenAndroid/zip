@@ -47,7 +47,7 @@ Future<ModelCreateCardHolder> cardHolderRepo({ first_name , last_name,address,ci
   log("Sign IN DATA${response.statusCode}");
   print(map);
 
-  if (response.statusCode == 200) {
+  if (response.statusCode == 200 || response.statusCode==201) {
 
     return ModelCreateCardHolder.fromJson(jsonDecode(response.body),);
   } else {

@@ -248,11 +248,36 @@ class _UpdateProfileState extends State<UpdateProfile> {
               Padding(
                 padding: const EdgeInsets.only(left: 6, right: 6),
                 child: CommonTextfield(
-                  readOnly: true,
+                  keyboardType:
+                  const TextInputType.numberWithOptions(
+                      decimal: true),
+                  inputFormatters: [
+                    LengthLimitingTextInputFormatter(12),
+                    FilteringTextInputFormatter.allow(
+                        RegExp('[0-9]+')),
+                  ],
+                  onChanged: (value) =>
+                  doubleVar = double.parse(value),
+                  validator: MultiValidator([
+                    RequiredValidator(
+                        errorText:
+                        'Please enter your contact number '),
+                    MinLengthValidator(11,
+                        errorText:
+                        'Please enter minumum  11 digit number'),
+                    MaxLengthValidator(12,
+                        errorText:
+                        'Please enter 12 digit number'),
+                    PatternValidator(
+                        r'(^(?:[+0]9)?[0-9]{10,12}$)',
+                        errorText: '')
+                  ]),
+                  readOnly: false,
                   controller: profileController.mobileController,
                   obSecure: false,
                   hintText: "7665096245",
-                  labelText: "Mobile Number",
+                  labelText: "Mobile no ",
+                  // labelText: "Mobile Number",
                 ),
               ),
               const SizedBox(
@@ -261,7 +286,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
               Padding(
                 padding: const EdgeInsets.only(left: 6, right: 6),
                 child: CommonTextfield(
-                  readOnly: true,
+                  readOnly: false,
                   controller: profileController.zipController,
                   obSecure: false,
                   hintText: "Manish@zip",
@@ -303,6 +328,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
                         profileController.lNameController.text.trim();
 
                     map['dob'] = profileController.dobController.text.trim();
+                    map['phone'] = profileController.mobileController.text.trim();
+                    map['email'] = profileController.emailController.text.trim();
 
                     UpdateProfileRepo(
                       fieldName1: 'profile_image',

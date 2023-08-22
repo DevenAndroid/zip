@@ -32,6 +32,8 @@ class ApiUrls {
   static const String buyCabeltv  = "http://52.210.49.22:8001/api/v1/cable/subscribe";
   static const String createCard  = "https://issuecards.api.bridgecard.co/v1/issuing/sandbox/cards/create_card";
   static const String createCardHolder  = "https://issuecards.api.bridgecard.co/v1/issuing/sandbox/cardholder/register_cardholder_synchronously";
+  static const String getCardDetails  = "https://issuecards-api-bridgecard-co.relay.evervault.com/v1/issuing/sandbox/cards/get_card_details?card_id=";
+  static const String freezeCard  = "https://issuecards.api.bridgecard.co/v1/issuing/sandbox/cards/freeze_card?card_id=";
   static const String purchaseEnergy  = "http://52.210.49.22:8001/api/v1/electricity/subscribe";
   static const String conversion  = "https://sandboxapi.fincra.com/quotes/generate";
   static const String resolve  = "https://sandboxapi.fincra.com/core/accounts/resolve";
@@ -46,7 +48,11 @@ class ApiUrls {
   static const String loginUser = "${apiBaseUrl}login";
   static const String changeZipPin = "${apiBaseUrl}change-zip-pin";
   static const String saveBankDetails = "${apiBaseUrl}save-bank-details";
+  static const String saveBenificary = "${apiBaseUrl}save-beneficiary";
   static const String transfreLimitGet = "${apiBaseUrl}transfer-limit";
+  static const String getBenificaryList = "${apiBaseUrl}get-beneficiary";
+  static const String favouriteBeneficiary = "${apiBaseUrl}favourite-beneficiary";
+  static const String currentBalance = "${apiBaseUrl}current-balance";
   static const String supportCategories = "${apiBaseUrl}support-categories";
   static const String userBankList = "${apiBaseUrl}user-bank-list";
   static const String myAddress = "${apiBaseUrl}my-address";
@@ -62,6 +68,7 @@ class ApiUrls {
   static const String userSetting = "${apiBaseUrl}user-settings";
   static const String userAddress = "${apiBaseUrl}add-user-address";
   static const String search = "${apiBaseUrl}search?";
+  static const String zipSearch = "${apiBaseUrl}zip-search?";
   static const String zipTag = "${apiBaseUrl}check-zip-tag";
   static const String sendOtpForPin = "${apiBaseUrl}send-otp-for-pin";
   static const String verifyOtpForPin = "${apiBaseUrl}verify-otp-for-pin";

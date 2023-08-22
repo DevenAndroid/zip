@@ -10,6 +10,7 @@ import 'package:zip/widgets/common_textfield.dart';
 
 import '../controller/payout_controller.dart';
 import '../models/model_beneficary_list.dart';
+import '../models/model_favorite_benificery.dart';
 import '../models/model_get_binificery.dart';
 import '../models/modelbenificerylist.dart';
 import '../repository/benificery_list _repo.dart';
@@ -18,22 +19,22 @@ import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_error_widget.dart';
 
-class YourRecipient extends StatefulWidget {
-  const YourRecipient({Key? key}) : super(key: key);
+class FavouriteScreen extends StatefulWidget {
+  const FavouriteScreen({Key? key}) : super(key: key);
 
   @override
-  State<YourRecipient> createState() => _YourRecipientState();
+  State<FavouriteScreen> createState() => _FavouriteScreenState();
 }
 
-class _YourRecipientState extends State<YourRecipient> {
+class _FavouriteScreenState extends State<FavouriteScreen> {
   final payoutController = Get.put(PayoutController());
   final TextEditingController searchController = TextEditingController();
 
-@override
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    payoutController. getDataList1();
+    payoutController. getDataList2();
   }
   @override
   Widget build(BuildContext context) {
@@ -42,7 +43,7 @@ class _YourRecipientState extends State<YourRecipient> {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          "Beneficiaries",
+          "fdtfdtdtBeneficiaries",
           style: GoogleFonts.poppins(
               color: const Color(0xFF1D1D1D),
               fontSize: 20,
@@ -51,23 +52,23 @@ class _YourRecipientState extends State<YourRecipient> {
         centerTitle: true,
         leading: InkWell(
           onTap: () {
-            Get.back();
+            // Get.back();
+            Get.toNamed(MyRouters.sendCashReciptant);
           },
           child: const Icon(
             Icons.arrow_back_rounded,
             color: AppTheme.primaryColor,
           ),
         ),
-
       ),
       body:  RefreshIndicator(
-      color: Colors.white,
-      backgroundColor: AppTheme.primaryColor,
-      onRefresh: () async {
-        payoutController.getDataList1();
+        color: Colors.white,
+        backgroundColor: AppTheme.primaryColor,
+        onRefresh: () async {
+          payoutController.getDataList2();
 
 
-      },
+        },
         child: SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
           child: Column(
@@ -81,10 +82,10 @@ class _YourRecipientState extends State<YourRecipient> {
                   Expanded(
                     child: InkWell(
                         onTap: () {
-                Get.toNamed(MyRouters.sendCash2);
+                          Get.toNamed(MyRouters.sendCash2);
 
                         },
-                        child: const CustomOutlineButton(
+                        child: const CustomOutlineBoder(
                           title: "ADD +",
                         )),
                   ),
@@ -96,13 +97,13 @@ class _YourRecipientState extends State<YourRecipient> {
                         onTap: () {
 
 
-                          Get.toNamed(MyRouters.favouriteScreen);
+
                         },
-                        child: CustomOutlineBoder(
+                        child: CustomOutlineButton(
                           title: "Favorites +",
                           backgroundColor: Colors.white,
                           textColor: AppTheme.buttonColor,
-                          onPressed: () {},
+
                         ),
                       )),
                 ],
@@ -126,11 +127,11 @@ class _YourRecipientState extends State<YourRecipient> {
                   hintText: "Search",
                   controller: searchController,
                   suffixIcon: InkWell(
-                    onTap: (){
-                      setState(() {});
-                    },
+                      onTap: (){
+                        setState(() {});
+                      },
 
-                    child: Icon(Icons.search)),
+                      child: Icon(Icons.search)),
                   onChanged: (gt){
                     setState(() {});
                   },
@@ -139,12 +140,12 @@ class _YourRecipientState extends State<YourRecipient> {
               SizedBox(height: 20,),
               Obx(() {
 
-                List<BenificaryData> data = [];
-                if(payoutController.statusOfListBenificery.value.isSuccess && payoutController.listBenificery.value.data!= null){
+                List<favouriteData> data = [];
+                if(payoutController.statusOfListFavouriteBenificery.value.isSuccess && payoutController.listFavouriteBenificery.value.data!= null){
                   String search = searchController.text.trim().toLowerCase();
                   if(search.isNotEmpty) {
                     data =
-                        payoutController.listBenificery.value.data!.where((element) => element.firstName.toString().toLowerCase().contains(search) ||
+                        payoutController.listFavouriteBenificery.value.data!.where((element) => element.firstName.toString().toLowerCase().contains(search) ||
 
                             element.accountHolderName.toString().toLowerCase().contains(
                                 search) ||
@@ -155,10 +156,10 @@ class _YourRecipientState extends State<YourRecipient> {
                                 search)
                         ).toList();
                   } else {
-                    data = payoutController.listBenificery.value.data!;
+                    data = payoutController.listFavouriteBenificery.value.data!;
                   }
                 }
-                return  payoutController.statusOfListBenificery.value.isSuccess ?
+                return  payoutController.statusOfListFavouriteBenificery.value.isSuccess ?
                 ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: data.length,
@@ -169,7 +170,7 @@ class _YourRecipientState extends State<YourRecipient> {
                         children: [
                           InkWell(
                             onTap: () {
-                            Get.toNamed(MyRouters.payNowBalance,arguments: item);
+                              Get.toNamed(MyRouters.favourateBalance,arguments: item);
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(
@@ -186,7 +187,7 @@ class _YourRecipientState extends State<YourRecipient> {
                                     const SizedBox(
                                       width: 17,
                                     ),
-                                     CircleAvatar(
+                                    CircleAvatar(
                                       backgroundColor: const Color(0xffF0D75F),
                                       maxRadius: 30,
                                       child: Text(item.firstName!.toString().trim().substring(0,1)),
@@ -226,12 +227,12 @@ class _YourRecipientState extends State<YourRecipient> {
                           ),
                         ],
                       );
-                    }):  payoutController.statusOfListBenificery.value.isError
+                    }):  payoutController.statusOfListFavouriteBenificery.value.isError
                     ? CommonErrorWidget(
                   errorText:
-                  payoutController.listBenificery.value.message.toString(),
+                  payoutController.listFavouriteBenificery.value.message.toString(),
                   onTap: () {
-                    payoutController.getDataList1();
+                    payoutController.getDataList2();
                   },
                 )
                     : const CommonProgressIndicator();

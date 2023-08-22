@@ -57,9 +57,10 @@ class User {
   dynamic businessId;
   dynamic countryCode;
   dynamic profileImage;
-  dynamic isProfileComplete;
-  dynamic status;
-  dynamic enableSecurityLock;
+  bool? isProfileComplete;
+  bool? status;
+  dynamic uniqueId;
+  bool? enableSecurityLock;
   Address? address;
 
   User(
@@ -81,6 +82,7 @@ class User {
         this.profileImage,
         this.isProfileComplete,
         this.status,
+        this.uniqueId,
         this.enableSecurityLock,
         this.address});
 
@@ -103,6 +105,7 @@ class User {
     profileImage = json['profile_image'];
     isProfileComplete = json['is_profile_complete'];
     status = json['status'];
+    uniqueId = json['unique_id'];
     enableSecurityLock = json['enable_security_lock'];
     address =
     json['address'] != null ? new Address.fromJson(json['address']) : null;
@@ -128,6 +131,7 @@ class User {
     data['profile_image'] = this.profileImage;
     data['is_profile_complete'] = this.isProfileComplete;
     data['status'] = this.status;
+    data['unique_id'] = this.uniqueId;
     data['enable_security_lock'] = this.enableSecurityLock;
     if (this.address != null) {
       data['address'] = this.address!.toJson();
@@ -137,18 +141,18 @@ class User {
 }
 
 class Address {
-  dynamic id;
-  dynamic userId;
-  dynamic streetName;
-  dynamic houseNumber;
-  dynamic additional;
-  dynamic postalCode;
-  dynamic state;
-  dynamic city;
-  dynamic country;
-  dynamic createdAt;
-  dynamic updatedAt;
-  dynamic deletedAt;
+  int? id;
+  int? userId;
+  String? streetName;
+  String? houseNumber;
+  String? additional;
+  int? postalCode;
+  String? state;
+  String? city;
+  String? country;
+  String? createdAt;
+  String? updatedAt;
+  Null? deletedAt;
 
   Address(
       {this.id,

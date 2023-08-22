@@ -72,7 +72,9 @@ class _SendCash2State extends State<SendCash2> {
           backgroundColor: Colors.white,
           leading: InkWell(
             onTap: () {
-              Get.back();
+              // Get.back();
+              Get.toNamed(MyRouters.sendCashReciptant);
+
             },
             child: const Icon(
               Icons.arrow_back_rounded, color: Colors.black,

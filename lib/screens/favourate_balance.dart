@@ -11,6 +11,7 @@ import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
 import '../models/model_beneficary_list.dart';
 import '../models/model_create_payout.dart';
+import '../models/model_favorite_benificery.dart';
 import '../models/model_get_binificery.dart';
 import '../models/save_transastion_model.dart';
 import '../repository/payout_repo.dart';
@@ -19,14 +20,14 @@ import '../resourses/api_constant.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_textfield.dart';
 
-class PayNowBalance extends StatefulWidget {
-  const PayNowBalance({Key? key}) : super(key: key);
+  class FavourateBalance extends StatefulWidget {
+  const FavourateBalance({Key? key}) : super(key: key);
 
   @override
-  State<PayNowBalance> createState() => _PayNowBalanceState();
+  State<FavourateBalance> createState() => _FavourateBalanceState();
 }
 
-class _PayNowBalanceState extends State<PayNowBalance> {
+class _FavourateBalanceState extends State<FavourateBalance> {
   final RegistorController = Get.put(registerController());
   TextEditingController amountController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
@@ -37,11 +38,11 @@ class _PayNowBalanceState extends State<PayNowBalance> {
   Rx<ModelPayout> payout = ModelPayout().obs;
   Future CreatePayout() async {
     await payoutRepo(
-amount:amountController.text.trim() ,
-context: context,
+        amount:amountController.text.trim() ,
+        context: context,
         accountHolderName:data.accountHolderName.toString() ,
         accountNumber:data.destinationAddress.toString(),
-destinationCurrency:"NGN",
+        destinationCurrency:"NGN",
 // destinationCurrencyController.text.trim() ,
         sourceCurrency: "NGN",
         // sourceCurrencyController.text.trim(),
@@ -59,7 +60,7 @@ destinationCurrency:"NGN",
         saveList();
         Get.toNamed(MyRouters.successRechargeScreen);
         // Get.back();
-        showToast(value.message                                 .toString());
+        showToast(value.message.toString());
       }
       else{
         statusOfpayout.value = RxStatus.success();
@@ -70,7 +71,7 @@ destinationCurrency:"NGN",
   }
 
 
-  BenificaryData data = BenificaryData();
+  favouriteData data = favouriteData();
 
   @override
   void initState() {
@@ -269,7 +270,7 @@ destinationCurrency:"NGN",
             Padding(
               padding: const EdgeInsets.only(left: 6,right: 6),
               child: CommonTextfield(
-               readOnly: true,
+                readOnly: true,
                 obSecure: false,
                 hintText: data.firstName,
 
@@ -292,7 +293,7 @@ destinationCurrency:"NGN",
                 ),
               ),
             ),
-        SizedBox(height: 30,)
+            SizedBox(height: 30,)
 
           ],
         ),

@@ -10,7 +10,9 @@ import 'package:zip/widgets/common_colour.dart';
 
 import '../controller/profile_controller.dart';
 import '../models/model_search.dart';
+import '../models/model_search_zip.dart';
 import '../repository/serach_repo.dart';
+import '../repository/zip_search_repo.dart';
 import '../resourses/api_constant.dart';
 import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
@@ -27,29 +29,28 @@ class _CreateRecipientsState extends State<CreateRecipients> {
 
   Rx<RxStatus> statusOfSearch= RxStatus.empty().obs;
   TextEditingController phone1Controller = TextEditingController();
-  Rx<ModelSearchTag> searchData = ModelSearchTag().obs;
+  Rx<ModelSearchZip> searchZip = ModelSearchZip().obs;
   TextEditingController ziptag1Controller = TextEditingController();
   TextEditingController nameController = TextEditingController();
   final profileController = Get.put(ProfileController());
 
   getSearchList() {
 
-    searchRepo(
-      email: nameController.text.trim(),
-      phone:phone1Controller.text.trim() ,
+    zipSearchRepo(
+
       zip_tag: ziptag1Controller.text.trim()+"@zip",
       context: context,
 
     ).then((value) {
       log("response.body.....    ${value}");
-      searchData.value = value;
+      searchZip.value = value;
       if (value.status == true) {
         statusOfSearch.value = RxStatus.success();
         showToast(value.message.toString());
         nameController.text = "${value.data!.fname.toString()} "+"${value.data!.lname.toString()}";
         phone1Controller.text =( value.data!.phone??"").toString();
         ziptag1Controller.text = (value.data!.zipTag??"").toString();
-        profileController.userId=searchData.value.data!.id.toString();
+        profileController.userId=searchZip.value.data!.id.toString();
 
         print(value.data!.email.toString());
       } else {
