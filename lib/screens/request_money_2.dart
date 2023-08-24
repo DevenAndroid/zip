@@ -10,7 +10,9 @@ import 'package:zip/widgets/common_colour.dart';
 
 import '../controller/profile_controller.dart';
 import '../models/model_search.dart';
+import '../models/model_search_zip.dart';
 import '../repository/serach_repo.dart';
+import '../repository/zip_search_repo.dart';
 import '../resourses/api_constant.dart';
 import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
@@ -27,30 +29,29 @@ class _RequestMoney2State extends State<RequestMoney2> {
 
   Rx<RxStatus> statusOfSearch= RxStatus.empty().obs;
   TextEditingController phone1Controller = TextEditingController();
-  Rx<ModelSearchTag> searchData = ModelSearchTag().obs;
+  Rx<ModelSearchZip> searchZip = ModelSearchZip().obs;
   TextEditingController ziptag1Controller = TextEditingController();
   TextEditingController nameController = TextEditingController();
   final profileController = Get.put(ProfileController());
 
   getSearchList() {
 
-    searchRepo(
-      email: nameController.text.trim(),
-      phone:phone1Controller.text.trim() ,
+    zipSearchRepo(
+
       zip_tag: ziptag1Controller.text.trim()+"@zip",
       context: context,
 
     ).then((value) {
       log("response.body.....    ${value}");
-      searchData.value = value;
+      searchZip.value = value;
       if (value.status == true) {
         statusOfSearch.value = RxStatus.success();
         showToast(value.message.toString());
         nameController.text = "${value.data!.fname.toString()} "+"${value.data!.lname.toString()}";
         phone1Controller.text =( value.data!.phone??"").toString();
         ziptag1Controller.text = (value.data!.zipTag??"").toString();
-        profileController.userId=searchData.value.data!.id.toString();
-        Get.toNamed(MyRouters.yourBalanceScreen);
+        profileController.userId=searchZip.value.data!.id.toString();
+
         print(value.data!.email.toString());
       } else {
         statusOfSearch.value = RxStatus.error();
@@ -68,7 +69,7 @@ class _RequestMoney2State extends State<RequestMoney2> {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          "Request Money",
+          "Request Money ",
           style: GoogleFonts.poppins(
               color: const Color(0xFF1D1D1D),
               fontSize: 20,
@@ -139,6 +140,13 @@ class _RequestMoney2State extends State<RequestMoney2> {
             Padding(
               padding: const EdgeInsets.only(left: 6, right: 6),
               child: CommonTextfield(
+                suffixIcon: InkWell(
+                    onTap: (){
+                      getSearchList();
+                    },
+                    child: Icon(Icons.arrow_forward)),
+
+
                 controller: ziptag1Controller,
                 obSecure: false,
                 hintText: "Zip Tag ",
@@ -185,8 +193,8 @@ class _RequestMoney2State extends State<RequestMoney2> {
             SizedBox(height: 25,),
             InkWell(
               onTap: () {
-                getSearchList();
-                // Get.toNamed(MyRouters.sendCash);
+
+                Get.toNamed(MyRouters.yourBalanceScreen);
               },
               child: const CustomOutlineButton(
                 title: "Continue",

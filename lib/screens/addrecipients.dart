@@ -146,6 +146,11 @@ class _AddRecipientsState extends State<AddRecipients> {
                 obSecure: false,
                 hintText: "@",
                 labelText: "ZIP Tag",
+                suffixIcon: InkWell(
+                    onTap: (){
+                      getSearchList();
+                    },
+                    child: Icon(Icons.arrow_forward)),
               ),
             ),
             const SizedBox(
@@ -158,6 +163,11 @@ class _AddRecipientsState extends State<AddRecipients> {
                 obSecure: false,
                 hintText: "Email",
                 labelText: "Enter Email",
+                suffixIcon: InkWell(
+                    onTap: (){
+                      getSearchList();
+                    },
+                    child: Icon(Icons.arrow_forward)),
               ),
             ),
             const SizedBox(
@@ -170,6 +180,11 @@ class _AddRecipientsState extends State<AddRecipients> {
                 obSecure: false,
                 hintText: "Phone",
                 labelText: "Enter Phone no ",
+                suffixIcon: InkWell(
+                    onTap: (){
+                      getSearchList();
+                    },
+                    child: Icon(Icons.arrow_forward)),
               ),
             ),
             const SizedBox(
@@ -188,9 +203,9 @@ class _AddRecipientsState extends State<AddRecipients> {
             SizedBox(height: 25,),
             InkWell(
               onTap: () {
-                getSearchList();
-                // Get.toNamed(MyRouters.sendCash);
-                },
+
+                Get.toNamed(MyRouters.yourBalanceScreen);
+              },
               child: const CustomOutlineButton(
                 title: "Continue",
               ),

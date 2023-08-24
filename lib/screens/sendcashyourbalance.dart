@@ -42,7 +42,9 @@ class _SendCashYourBalanceState extends State<SendCashYourBalance> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
+      body:Obx(() { return profileController.currentBalanceModel.value.status ==true?
+
+      SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(left: 15.0,right: 15),
           child: Column(
@@ -50,7 +52,7 @@ class _SendCashYourBalanceState extends State<SendCashYourBalance> {
             children: [
               Center(
                 child: Text(
-                  "\$276.00",
+                  "\$"+profileController. currentBalanceModel.value.data.toString(),
                   style: GoogleFonts.poppins(
                       color: const Color(0xFF1D1D1D),
                       fontSize: 20,
@@ -102,7 +104,8 @@ SizedBox(height: 20,),
             ],
           ),
         ),
-      ),
+      ): const Center(child: CircularProgressIndicator(),);
+      }),
     );
   }
 }

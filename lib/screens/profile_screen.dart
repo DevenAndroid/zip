@@ -82,7 +82,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ],
       ),
       body: Obx(() {
-        return profileController.modal.value.status==true?
+        return profileController.modal.value.status==true&& profileController.currentBalanceModel.value.status ==true?
         SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -200,7 +200,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Padding(
                     padding: const EdgeInsets.only(right: 30),
                     child: Text(
-                      "\$276.00",
+                      "\$"+profileController. currentBalanceModel.value.data.toString(),
                       style: GoogleFonts.poppins(
                           color: const Color(0xFF1D1D1D),
                           fontSize: 16,

@@ -9,16 +9,20 @@ import '../models/current_balance_repo.dart';
 import '../models/model_create_card.dart';
 import '../models/model_create_card_holder.dart';
 import '../models/model_freeze_card.dart';
+import '../models/model_get_card.dart';
 import '../models/model_get_card_details.dart';
 import '../models/myprofile_model.dart';
+import '../models/save_card_model.dart';
 import '../models/save_transastion_model.dart';
 import '../repository/card_details_repo.dart';
 import '../repository/create_card_holder_repo.dart';
 import '../repository/create_card_repo.dart';
 import '../repository/freeze_card_repo.dart';
+import '../repository/get_card_repo.dart';
 import '../repository/get_current_balance.dart';
 import '../repository/myprofile_repo.dart';
 import '../repository/save_buy_plan_repo.dart';
+import '../repository/save_card_repo.dart';
 import '../resourses/api_constant.dart';
 import '../routers/my_routers.dart';
 import 'number_controller.dart';
@@ -135,7 +139,8 @@ class ProfileController extends GetxController {
         log("CardId${cardId.value}");
         statusOfCreate.value = RxStatus.success();
         cardId.value = value.data!.cardId.toString();
-        // getCardDetails();
+
+         getCardDetails();
         showToast(value.message.toString());
       } else {
         showToast(value.message.toString());
@@ -169,7 +174,7 @@ class ProfileController extends GetxController {
       log("response.body.....    ${value}");
       save.value = value;
       if (value.status == true) {
-        Get.toNamed(MyRouters.bottomNavbar);
+        Get.offAllNamed(MyRouters.bottomNavbar);
         statusOfSave.value = RxStatus.success();
       } else {
         statusOfSave.value = RxStatus.error();
@@ -262,9 +267,12 @@ class ProfileController extends GetxController {
         .then((value) {
       if (value.status == "success") {
         statusOfCardDetails.value = RxStatus.success();
+        // saveCardDetails();
         // Get.toNamed(MyRouters.cardDetails);
         // holder();
         cardDetails.value = value;
+
+         saveCardDetails();
       } else {
         statusOfCardDetails.value = RxStatus.error();
       }
@@ -272,6 +280,61 @@ class ProfileController extends GetxController {
       print(value.message.toString());
     });
   }
+
+  Rx<ModelGetCard> card = ModelGetCard().obs;
+  Rx<RxStatus> statusOfCard = RxStatus.empty().obs;
+
+  Future getCard() async {
+    await getCardRepo()
+        .then((value) {
+      if (value.status == true) {
+        statusOfCard.value = RxStatus.success();
+        // saveCardDetails();
+        // Get.toNamed(MyRouters.cardDetails);
+        // holder();
+        card.value = value;
+
+        // saveCardDetails();
+      } else {
+        statusOfCard.value = RxStatus.error();
+      }
+
+      print(value.message.toString());
+    });
+  }
+  Rx<ModelSaveCard> saveDetails = ModelSaveCard().obs;
+  Rx<RxStatus> statusOfSaveDetails = RxStatus.empty().obs;
+
+saveCardDetails() {
+  saveCardRepo(card_id:cardDetails.value.data!.cardId.toString(),
+
+     card_currency:  cardDetails.value.data!.cardCurrency.toString(),
+    brand:  cardDetails.value.data!.brand.toString(),
+    card_name:  cardDetails.value.data!.cardName.toString(),
+    card_number: cardDetails.value.data!.cardNumber.toString(),
+    cvv: cardDetails.value.data!.cvv.toString(),
+    expiry_month:   cardDetails.value.data!.expiryMonth.toString(),
+    expiry_year:   cardDetails.value.data!.expiryYear.toString(),
+    last_4:    cardDetails.value.data!.last4.toString(),
+
+    // cardId.value
+    // createCard.value.data!.cardId.toString()
+  )
+      .then((value) {
+    if (value.status == true) {
+      statusOfSaveDetails.value = RxStatus.success();
+      // Get.toNamed(MyRouters.cardDetails);
+      // holder();
+      saveDetails.value = value;
+    } else {
+      statusOfSaveDetails.value = RxStatus.error();
+    }
+
+    print(value.message.toString());
+  });
+}
+
+
 
   Rx<ModelFreezeCard> cardFreeze = ModelFreezeCard().obs;
   Rx<RxStatus> statusOfCardfreeze = RxStatus.empty().obs;

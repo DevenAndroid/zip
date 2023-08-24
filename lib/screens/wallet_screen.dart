@@ -30,7 +30,11 @@ class _WalletScreenState extends State<WalletScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    controller1. getCardDetails();
+    controller1. getCard().then((value) {
+      setState(() {
+
+      });
+    });
     // controller1. getData();
     // controller1. getCardDetails();
   }
@@ -61,366 +65,380 @@ class _WalletScreenState extends State<WalletScreen> {
           ),
         ),
         backgroundColor: const Color(0xFFFFFFFF),
-        body: SingleChildScrollView(
-            child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: InkWell(
-                          onTap: () {},
-                          child: const CustomOutlineButton(
-                            title: "Cards",
-                          )),
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    Expanded(
+        body:
+
+
+        RefreshIndicator(
+          color: Colors.white,
+          backgroundColor: AppTheme.primaryColor,
+          onRefresh: () async {
+            controller1. getCard();
+
+
+          },
+          child: SingleChildScrollView(
+              child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
                         child: InkWell(
-                          onTap: () {
-                             Get.toNamed(MyRouters.accountsInBank);
-                          },
-                          child: CustomOutlineBoder(
-                            title: "Account",
-                            backgroundColor: Colors.white,
-                            textColor: AppTheme.buttonColor,
-                            onPressed: () {
-                              Get.toNamed(MyRouters.mobileNumber);
+                            onTap: () {},
+                            child: const CustomOutlineButton(
+                              title: "Cards",
+                            )),
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Expanded(
+                          child: InkWell(
+                            onTap: () {
+                               Get.toNamed(MyRouters.accountsInBank);
                             },
-                          ),
-                        )),
-                  ],
-                ),
-                const SizedBox(
-                  height: 33,
-                ),
-                CarouselSlider(
-                  items: [
-                    Card(
-                      elevation: 4.0,
-                      color: Colors.black,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14),
-                      ),
-                      child: Container(
-                        height: 180,
-                        padding: const EdgeInsets.only(
-                            left: 16.0, right: 0, bottom: 22.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.only(left: 18, top: 17),
-                              child: Image.asset(
-                                "assets/images/walletlogo.png",
-                                height: 45,
-                                width: 44,
+                            child: CustomOutlineBoder(
+                              title: "Account",
+                              backgroundColor: Colors.white,
+                              textColor: AppTheme.buttonColor,
+                              onPressed: () {
+                                Get.toNamed(MyRouters.mobileNumber);
+                              },
+                            ),
+                          )),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 33,
+                  ),
+                  CarouselSlider(
+
+                    items: [
+                      Card(
+
+                        elevation: 4.0,
+                        color: Colors.black,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                        child: Container(
+                          height: 180,
+                          padding: const EdgeInsets.only(
+                              left: 18.0, right: 15, bottom: 22.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(left: 18, top: 17),
+                                child: Image.asset(
+                                  "assets/images/walletlogo.png",
+                                  height: 45,
+                                  width: 44,
+                                ),
                               ),
-                            ),
-                            Row(
-                              children: [
-                                CircleAvatar(
-                                  maxRadius: 4,
-                                  backgroundColor: Colors.white,
-                                ),
-                                SizedBox(
-                                  width: 3,
-                                ),
-                                CircleAvatar(
-                                  maxRadius: 4,
-                                  backgroundColor: Colors.white,
-                                ),
-                                SizedBox(
-                                  width: 3,
-                                ),
-                                CircleAvatar(
-                                  maxRadius: 4,
-                                  backgroundColor: Colors.white,
-                                ),
-                                SizedBox(
-                                  width: 3,
-                                ),
-                                CircleAvatar(
-                                  maxRadius: 4,
-                                  backgroundColor: Colors.white,
-                                ),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                CircleAvatar(
-                                  maxRadius: 4,
-                                  backgroundColor: Colors.white,
-                                ),
-                                SizedBox(
-                                  width: 3,
-                                ),
-                                CircleAvatar(
-                                  maxRadius: 4,
-                                  backgroundColor: Colors.white,
-                                ),
-                                SizedBox(
-                                  width: 3,
-                                ),
-                                CircleAvatar(
-                                  maxRadius: 4,
-                                  backgroundColor: Colors.white,
-                                ),
-                                SizedBox(
-                                  width: 3,
-                                ),
-                                CircleAvatar(
-                                  maxRadius: 4,
-                                  backgroundColor: Colors.white,
-                                ),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                CircleAvatar(
-                                  maxRadius: 4,
-                                  backgroundColor: Colors.white,
-                                ),
-                                SizedBox(
-                                  width: 3,
-                                ),
-                                CircleAvatar(
-                                  maxRadius: 4,
-                                  backgroundColor: Colors.white,
-                                ),
-                                SizedBox(
-                                  width: 3,
-                                ),
-                                CircleAvatar(
-                                  maxRadius: 4,
-                                  backgroundColor: Colors.white,
-                                ),
-                                SizedBox(
-                                  width: 3,
-                                ),
-                                CircleAvatar(
-                                  maxRadius: 4,
-                                  backgroundColor: Colors.white,
-                                ),
-                                SizedBox(
-                                  width: 8,
-                                ),
+                              Row(
+                                children: [
+                                  CircleAvatar(
+                                    maxRadius: 4,
+                                    backgroundColor: Colors.white,
+                                  ),
+                                  SizedBox(
+                                    width: 3,
+                                  ),
+                                  CircleAvatar(
+                                    maxRadius: 4,
+                                    backgroundColor: Colors.white,
+                                  ),
+                                  SizedBox(
+                                    width: 3,
+                                  ),
+                                  CircleAvatar(
+                                    maxRadius: 4,
+                                    backgroundColor: Colors.white,
+                                  ),
+                                  SizedBox(
+                                    width: 3,
+                                  ),
+                                  CircleAvatar(
+                                    maxRadius: 4,
+                                    backgroundColor: Colors.white,
+                                  ),
+                                  SizedBox(
+                                    width: 8,
+                                  ),
+                                  CircleAvatar(
+                                    maxRadius: 4,
+                                    backgroundColor: Colors.white,
+                                  ),
+                                  SizedBox(
+                                    width: 3,
+                                  ),
+                                  CircleAvatar(
+                                    maxRadius: 4,
+                                    backgroundColor: Colors.white,
+                                  ),
+                                  SizedBox(
+                                    width: 3,
+                                  ),
+                                  CircleAvatar(
+                                    maxRadius: 4,
+                                    backgroundColor: Colors.white,
+                                  ),
+                                  SizedBox(
+                                    width: 3,
+                                  ),
+                                  CircleAvatar(
+                                    maxRadius: 4,
+                                    backgroundColor: Colors.white,
+                                  ),
+                                  SizedBox(
+                                    width: 8,
+                                  ),
+                                  CircleAvatar(
+                                    maxRadius: 4,
+                                    backgroundColor: Colors.white,
+                                  ),
+                                  SizedBox(
+                                    width: 3,
+                                  ),
+                                  CircleAvatar(
+                                    maxRadius: 4,
+                                    backgroundColor: Colors.white,
+                                  ),
+                                  SizedBox(
+                                    width: 3,
+                                  ),
+                                  CircleAvatar(
+                                    maxRadius: 4,
+                                    backgroundColor: Colors.white,
+                                  ),
+                                  SizedBox(
+                                    width: 3,
+                                  ),
+                                  CircleAvatar(
+                                    maxRadius: 4,
+                                    backgroundColor: Colors.white,
+                                  ),
+                                  SizedBox(
+                                    width: 8,
+                                  ),
 
-                                if(controller1.cardDetails.value.data==null)
-                                  ...[
-                                    CircleAvatar(
-                                      maxRadius: 4,
-                                      backgroundColor: Colors.white,
-                                    ),
-                                    SizedBox(
-                                      width: 3,
-                                    ),
-                                    CircleAvatar(
-                                      maxRadius: 4,
-                                      backgroundColor: Colors.white,
-                                    ),
-                                    SizedBox(
-                                      width: 3,
-                                    ),
-                                    CircleAvatar(
-                                      maxRadius: 4,
-                                      backgroundColor: Colors.white,
-                                    ),
-                                    SizedBox(
-                                      width: 3,
-                                    ),
-                                    CircleAvatar(
-                                      maxRadius: 4,
-                                      backgroundColor: Colors.white,
-                                    ),
-                                    SizedBox(
-                                      width: 8,
-                                    ),
-                                  ]
-                                else
-                                  Text(controller1.cardDetails.value.data!.last4.toString(),
-                                    style: GoogleFonts.poppins(
-                                        color: Colors.white,
-                                        fontSize: 14,
-                                        letterSpacing: 2,
-                                        fontWeight: FontWeight.w600),)
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(
-                                      'Card Holder Name',
-                                      style: GoogleFonts.poppins(
-                                          color: Colors.white,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-
-                                    if(controller1.cardDetails.value.data==null)
-                                      Text(
-                                        '--',
-                                        style: GoogleFonts.poppins(
-                                            color: Colors.white,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600),
-                                      )
-                                    else
-
-                                      Text(
-                                        controller1.cardDetails.value.data!.cardName.toString(),
-                                        style: GoogleFonts.poppins(
-                                            color: Colors.white,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600),
-                                      )
-                                  ],
-                                ),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(
-                                      'Expiry date',
-                                      style: GoogleFonts.poppins(
-                                          color: Colors.white,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                    if(controller1.cardDetails.value.data==null)
-                                      Text(
-                                        '--/--',
-                                        style: GoogleFonts.poppins(
-                                            color: Colors.white,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600),
-                                      )
-                                    else
-
-                                      Text(
-                                        controller1.cardDetails.value.data!.expiryMonth.toString()+"/"+  controller1.cardDetails.value.data!.expiryYear.toString(),
-                                        style: GoogleFonts.poppins(
-                                            color: Colors.white,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600),
-                                      )
-                                  ],
-                                ),
-                                const SizedBox(
-                                  width: 15,
-                                ),
-                                Stack(
-                                  children: [
-                                    Image.asset(
-                                      "assets/images/round2.png",
-                                      height: 35,
-                                      width: 35,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 20.0),
-                                      child: Image.asset(
-                                        "assets/images/round1.png",
-                                        height: 35,
-                                        width: 34,
+                                  if(controller1.card.value.data==null)
+                                    ...[
+                                      CircleAvatar(
+                                        maxRadius: 4,
+                                        backgroundColor: Colors.white,
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
+                                      SizedBox(
+                                        width: 3,
+                                      ),
+                                      CircleAvatar(
+                                        maxRadius: 4,
+                                        backgroundColor: Colors.white,
+                                      ),
+                                      SizedBox(
+                                        width: 3,
+                                      ),
+                                      CircleAvatar(
+                                        maxRadius: 4,
+                                        backgroundColor: Colors.white,
+                                      ),
+                                      SizedBox(
+                                        width: 3,
+                                      ),
+                                      CircleAvatar(
+                                        maxRadius: 4,
+                                        backgroundColor: Colors.white,
+                                      ),
+                                      SizedBox(
+                                        width: 8,
+                                      ),
+                                    ]
+                                  else
+                                    Text(controller1.card.value.data!.last4.toString(),
+                                      style: GoogleFonts.poppins(
+                                          color: Colors.white,
+                                          fontSize: 14,
+                                          letterSpacing: 2,
+                                          fontWeight: FontWeight.w600),)
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'Card Holder Name',
+                                        style: GoogleFonts.poppins(
+                                            color: Colors.white,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+
+                                      if(controller1.card.value.data==null)
+                                        Text(
+                                          '--',
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.white,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600),
+                                        )
+                                      else
+
+                                        Text(
+                                          controller1.card.value.data!.cardName.toString(),
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.white,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600),
+                                        )
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'Expiry date',
+                                        style: GoogleFonts.poppins(
+                                            color: Colors.white,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                      if(controller1.card.value.data==null)
+                                        Text(
+                                          '--/--',
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.white,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600),
+                                        )
+                                      else
+
+                                        Text(
+                                          controller1.card.value.data!.expiryMonth.toString()+"/"+  controller1.card.value.data!.expiryYear.toString(),
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.white,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600),
+                                        )
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    width: 15,
+                                  ),
+                                  Stack(
+                                    children: [
+                                      Image.asset(
+                                        "assets/images/round2.png",
+                                        height: 35,
+                                        width: 35,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 20.0),
+                                        child: Image.asset(
+                                          "assets/images/round1.png",
+                                          height: 35,
+                                          width: 34,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
+                    ],
+
+                    //Slider Container properties
+                    options: CarouselOptions(
+                      height: 180.0,
+                      enlargeCenterPage: true,
+                      autoPlay: false,
+                      aspectRatio: 16 / 9,
+                      autoPlayCurve: Curves.fastOutSlowIn,
+                      enableInfiniteScroll: true,
+                      autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                      viewportFraction: 0.85,
                     ),
-                  ],
-
-                  //Slider Container properties
-                  options: CarouselOptions(
-                    height: 180.0,
-                    enlargeCenterPage: true,
-                    autoPlay: true,
-                    aspectRatio: 16 / 9,
-                    autoPlayCurve: Curves.fastOutSlowIn,
-                    enableInfiniteScroll: true,
-                    autoPlayAnimationDuration: const Duration(milliseconds: 800),
-                    viewportFraction: 0.8,
                   ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0,right: 10),
-                  child: Container(
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0,right: 10),
+                    child: Container(
 
-                    padding: const EdgeInsets.all(8),
-                    height: 65,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        border: Border.all(color: const Color(0xff1D1D1D))),
-                    child: Row(
+                      padding: const EdgeInsets.all(8),
+                      height: 65,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(color: const Color(0xff1D1D1D))),
+                      child: Row(
 
-                      children: [
+                        children: [
 const SizedBox(width: 5,),
-                        Image.asset(
-                          "assets/images/Group.png",
-                          height: 45,
-                          width: 44,
-                        ),
-                        const SizedBox(width: 10,),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Get your Virtual Card',
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xff1D1D1D),
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                            Text(
-                              'Rem nemo rerum sint dolor quae repellat.',
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xff1D1D1D),
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w300),
-                            )
-                          ],
-                        )
-                      ],
+                          Image.asset(
+                            "assets/images/Group.png",
+                            height: 45,
+                            width: 44,
+                          ),
+                          const SizedBox(width: 10,),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Get your Virtual Card',
+                                style: GoogleFonts.poppins(
+                                    color: const Color(0xff1D1D1D),
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                              Text(
+                                'Rem nemo rerum sint dolor quae repellat.',
+                                style: GoogleFonts.poppins(
+                                    color: const Color(0xff1D1D1D),
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w300),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: size.height * .25,
-                ),
-                InkWell(
-                  onTap: (){
-                    Get.toNamed(MyRouters.myCard);
-                    // controller1. holder();
-                  },
-                  child: CustomOutlineButton(
-                    title: "Add Card",
-
+                  SizedBox(
+                    height: size.height * .25,
                   ),
-                ),
-                const SizedBox(
-                  height: 100,
-                ),
-              ]),
-        )));
+                  InkWell(
+                    onTap: (){
+                      Get.toNamed(MyRouters.myCard);
+                      // controller1. holder();
+                    },
+                    child: CustomOutlineButton(
+                      title: "Add Card",
+
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 100,
+                  ),
+                ]),
+          )),
+        ));
   }
 
 }

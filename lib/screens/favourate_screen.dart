@@ -43,7 +43,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          "fdtfdtdtBeneficiaries",
+          "Favourite Beneficiaries",
           style: GoogleFonts.poppins(
               color: const Color(0xFF1D1D1D),
               fontSize: 20,

@@ -66,7 +66,7 @@ class _RequestPayment4State extends State<RequestPayment4> {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          "Request Money",
+          "Request Money ",
           style: GoogleFonts.poppins(
               color: const Color(0xFF1D1D1D),
               fontSize: 20,
@@ -141,6 +141,11 @@ class _RequestPayment4State extends State<RequestPayment4> {
                 obSecure: false,
                 hintText: "@",
                 labelText: "ZIP Tag",
+                suffixIcon: InkWell(
+                    onTap: (){
+                      getSearchList();
+                    },
+                    child: Icon(Icons.arrow_forward)),
               ),
             ),
             const SizedBox(
@@ -153,6 +158,11 @@ class _RequestPayment4State extends State<RequestPayment4> {
                 obSecure: false,
                 hintText: "Email",
                 labelText: "Enter Email",
+                suffixIcon: InkWell(
+                    onTap: (){
+                      getSearchList();
+                    },
+                    child: Icon(Icons.arrow_forward)),
               ),
             ),
             const SizedBox(
@@ -165,6 +175,11 @@ class _RequestPayment4State extends State<RequestPayment4> {
                 obSecure: false,
                 hintText: "Phone",
                 labelText: "Enter Phone no ",
+                suffixIcon: InkWell(
+                    onTap: (){
+                      getSearchList();
+                    },
+                    child: Icon(Icons.arrow_forward)),
               ),
             ),
             const SizedBox(
@@ -183,8 +198,8 @@ class _RequestPayment4State extends State<RequestPayment4> {
             SizedBox(height: 25,),
             InkWell(
               onTap: () {
-                getSearchList();
-                // Get.toNamed(MyRouters.sendCash);
+
+                Get.toNamed(MyRouters.yourBalanceScreen);
               },
               child: const CustomOutlineButton(
                 title: "Continue",

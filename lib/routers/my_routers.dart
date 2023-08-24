@@ -78,6 +78,7 @@ import '../screens/email_login.dart';
 import '../screens/exchenge2.dart';
 import '../screens/favourate_balance.dart';
 import '../screens/favourate_screen.dart';
+import '../screens/freshchat.dart';
 import '../screens/internet_screen.dart';
 import '../screens/limit_screen.dart';
 import '../screens/list_biller_screen.dart';
@@ -225,16 +226,18 @@ class MyRouters{
   static var cardDetails = "/cardDetails";
   static var favouriteScreen = "/favouriteScreen";
   static var favourateBalance = "/favourateBalance";
+  static var freshchat = "/freshchat";
 
 
 
 
   static var route = [
-    GetPage(name: '/', page: () =>  Splash()),
+    GetPage(name: '/', page: () => Splash()),
 
 
 
     GetPage(name: '/onBoardingScreen', page: () =>   const OnBoardingScreen()),
+    GetPage(name: '/freshchat', page: () =>    Chat()),
     GetPage(name: '/successRechargeScreen', page: () =>   const SuccessRechargeScreen()),
     GetPage(name: '/favouriteScreen', page: () =>   const FavouriteScreen()),
     GetPage(name: '/cardDetails', page: () =>   const CardDetails()),

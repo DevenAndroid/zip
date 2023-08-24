@@ -234,7 +234,7 @@ class _MobileNumberScreenState extends State<MobileNumberScreen> {
                                     ]),
                                     controller: mobileNoController,
                                     decoration: const InputDecoration(
-                                      hintText: "XXXXXXXXX",
+                                      hintText: "XXXXXXXXXX",
                                       border: InputBorder.none,
                                       focusedBorder: InputBorder.none,
                                       enabledBorder: InputBorder.none,

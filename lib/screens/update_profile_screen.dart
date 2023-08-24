@@ -262,7 +262,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                     RequiredValidator(
                         errorText:
                         'Please enter your contact number '),
-                    MinLengthValidator(11,
+                    MinLengthValidator(10,
                         errorText:
                         'Please enter minumum  11 digit number'),
                     MaxLengthValidator(12,

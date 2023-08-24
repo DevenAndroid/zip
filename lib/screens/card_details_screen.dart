@@ -20,7 +20,7 @@ class _CardDetailsState extends State<CardDetails> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    controller1. getCardDetails();
+    controller1. getCard();
 
   }
   @override
@@ -53,7 +53,7 @@ class _CardDetailsState extends State<CardDetails> {
     child: Padding(
     padding: const EdgeInsets.all(12.0),
     child:Obx(() {
-      return   controller1.statusOfCardDetails.value.isSuccess ?
+      return   controller1.statusOfCard.value.isSuccess ?
       Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,7 +66,7 @@ class _CardDetailsState extends State<CardDetails> {
                       color: const Color(0xFF1D1D1D),
                       fontSize: 18,
                       fontWeight: FontWeight.w500),),
-                Text(controller1.cardDetails.value.data!.cardName.toString(),
+                Text(controller1.card.value.data!.cardName.toString(),
                   style: GoogleFonts.poppins(
                       color: const Color(0xFF1D1D1D),
                       fontSize: 17,
@@ -82,7 +82,7 @@ class _CardDetailsState extends State<CardDetails> {
                       color: const Color(0xFF1D1D1D),
                       fontSize: 18,
                       fontWeight: FontWeight.w500),),
-                Text(controller1.cardDetails.value.data!.cardNumber.toString(),
+                Text(controller1.card.value.data!.cardNumber.toString(),
                   style: GoogleFonts.poppins(
                       color: const Color(0xFF1D1D1D),
                       fontSize: 17,
@@ -98,7 +98,7 @@ class _CardDetailsState extends State<CardDetails> {
                       color: const Color(0xFF1D1D1D),
                       fontSize: 18,
                       fontWeight: FontWeight.w500),),
-                Text(controller1.cardDetails.value.data!.expiryMonth.toString(),
+                Text(controller1.card.value.data!.expiryMonth.toString(),
                   style: GoogleFonts.poppins(
                       color: const Color(0xFF1D1D1D),
                       fontSize: 17,
@@ -114,7 +114,7 @@ class _CardDetailsState extends State<CardDetails> {
                       color: const Color(0xFF1D1D1D),
                       fontSize: 18,
                       fontWeight: FontWeight.w500),),
-                Text(controller1.cardDetails.value.data!.expiryYear.toString(),
+                Text(controller1.card.value.data!.expiryYear.toString(),
                   style: GoogleFonts.poppins(
                       color: const Color(0xFF1D1D1D),
                       fontSize: 17,
@@ -130,7 +130,7 @@ class _CardDetailsState extends State<CardDetails> {
                       color: const Color(0xFF1D1D1D),
                       fontSize: 18,
                       fontWeight: FontWeight.w500),),
-                Text(controller1.cardDetails.value.data!.cardCurrency.toString(),
+                Text(controller1.card.value.data!.cardCurrency.toString(),
                   style: GoogleFonts.poppins(
                       color: const Color(0xFF1D1D1D),
                       fontSize: 17,
@@ -146,7 +146,7 @@ class _CardDetailsState extends State<CardDetails> {
                       color: const Color(0xFF1D1D1D),
                       fontSize: 18,
                       fontWeight: FontWeight.w500),),
-                Text(controller1.cardDetails.value.data!.brand.toString(),
+                Text(controller1.card.value.data!.brand.toString(),
                   style: GoogleFonts.poppins(
                       color: const Color(0xFF1D1D1D),
                       fontSize: 17,
@@ -154,33 +154,19 @@ class _CardDetailsState extends State<CardDetails> {
               ],
             ),
             const SizedBox(height: 15,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Card Type',
-                  style: GoogleFonts.poppins(
-                      color: const Color(0xFF1D1D1D),
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500),),
-                Text(controller1.cardDetails.value.data!.cardType.toString(),
-                  style: GoogleFonts.poppins(
-                      color: const Color(0xFF1D1D1D),
-                      fontSize: 17,
-                      fontWeight: FontWeight.w500),),
-              ],
-            ),
+
             const SizedBox(height: 15,),
 
 
           ]
 
       )
-          :  controller1.statusOfCardDetails.value.isError
+          :  controller1.statusOfCard.value.isError
           ? CommonErrorWidget(
         errorText:
-        controller1.cardDetails.value.message.toString(),
+        controller1.card.value.message.toString(),
         onTap: () {
-          controller1. getCardDetails();
+          controller1. getCard();
         },
       )
           : const Center(child: CommonProgressIndicator());

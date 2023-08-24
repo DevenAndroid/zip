@@ -15,7 +15,7 @@ Future<ModelDataPlan> dataPlanRepo({  telco}) async {
   http.Response response = await http.post(Uri.parse(ApiUrls.plan),
     headers: { HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.acceptHeader: 'application/json',
-      "secret-key": "Fincra_SECRETDMVA1HLKTFYE4"
+      "secret-key": "Fincra_SECRETUFJPW1QKHYXS5"
 
     },
    body: jsonEncode(map));

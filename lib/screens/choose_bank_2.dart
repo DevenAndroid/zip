@@ -132,9 +132,9 @@ class _ChooseBank1State extends State<ChooseBank1> {
                                   children: [
                                     InkWell(
                                       onTap: () {
-                                        controller.bankController.text = item.name.toString();
-                                        controller.idController.text = item.code.toString();
-                                        Get.toNamed(MyRouters.sendCash2,
+                                        controller.bankController1.text = item.name.toString();
+                                        controller.idController1.text = item.code.toString();
+                                        Get.toNamed(MyRouters.addPaymentMethod,
                                             arguments: [item.name.toString(),item.code.toString()]);
                                       },
                                       child: Text(

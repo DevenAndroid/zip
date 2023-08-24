@@ -30,7 +30,7 @@ class _MyCardState extends State<MyCard> {
     // TODO: implement initState
     super.initState();
     controller1.getData();
-    controller1.getCardDetails();
+    controller1.getCard();
   }
 
 
@@ -58,516 +58,528 @@ class _MyCardState extends State<MyCard> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        physics: const AlwaysScrollableScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(height: 15,),
-            Text(
-              "Your Balance",
-              style: GoogleFonts.poppins(
-                  color: const Color(0xFF1D1D1D),
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400),
-            ),
-            Text(
-              "\$276.00",
-              style: GoogleFonts.poppins(
-                  color: const Color(0xFF1D1D1D),
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400),
-            ),
+      body: RefreshIndicator(
+        color: Colors.white,
+        backgroundColor: AppTheme.primaryColor,
+        onRefresh: () async {
+          controller1. getCard();
 
-            const SizedBox(
-              height: 22,
-            ),
-            CarouselSlider(
-              items: [
-                Card(
-                  elevation: 4.0,
-                  color: Colors.black,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14),
-                  ),
-                  child: Container(
-                    height: 180,
-                    padding: const EdgeInsets.only(
-                        left: 16.0, right: 0, bottom: 22.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(left: 18, top: 17),
-                          child: Image.asset(
-                            "assets/images/walletlogo.png",
-                            height: 45,
-                            width: 44,
+
+        },
+        child: Obx(() {
+    return controller1.currentBalanceModel.value.status ==true?
+        SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(height: 15,),
+              Text(
+                "Your Balance",
+                style: GoogleFonts.poppins(
+                    color: const Color(0xFF1D1D1D),
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400),
+              ),
+              Text(
+                "\$"+controller1. currentBalanceModel.value.data.toString(),
+                style: GoogleFonts.poppins(
+                    color: const Color(0xFF1D1D1D),
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400),
+              ),
+
+              const SizedBox(
+                height: 22,
+              ),
+              CarouselSlider(
+                items: [
+                  Card(
+                    elevation: 4.0,
+                    color: Colors.black,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    child: Container(
+                      height: 180,
+                      padding: const EdgeInsets.only(
+                          left: 16.0, right: 0, bottom: 22.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(left: 18, top: 17),
+                            child: Image.asset(
+                              "assets/images/walletlogo.png",
+                              height: 45,
+                              width: 44,
+                            ),
                           ),
-                        ),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              maxRadius: 4,
-                              backgroundColor: Colors.white,
-                            ),
-                            SizedBox(
-                              width: 3,
-                            ),
-                            CircleAvatar(
-                              maxRadius: 4,
-                              backgroundColor: Colors.white,
-                            ),
-                            SizedBox(
-                              width: 3,
-                            ),
-                            CircleAvatar(
-                              maxRadius: 4,
-                              backgroundColor: Colors.white,
-                            ),
-                            SizedBox(
-                              width: 3,
-                            ),
-                            CircleAvatar(
-                              maxRadius: 4,
-                              backgroundColor: Colors.white,
-                            ),
-                            SizedBox(
-                              width: 8,
-                            ),
-                            CircleAvatar(
-                              maxRadius: 4,
-                              backgroundColor: Colors.white,
-                            ),
-                            SizedBox(
-                              width: 3,
-                            ),
-                            CircleAvatar(
-                              maxRadius: 4,
-                              backgroundColor: Colors.white,
-                            ),
-                            SizedBox(
-                              width: 3,
-                            ),
-                            CircleAvatar(
-                              maxRadius: 4,
-                              backgroundColor: Colors.white,
-                            ),
-                            SizedBox(
-                              width: 3,
-                            ),
-                            CircleAvatar(
-                              maxRadius: 4,
-                              backgroundColor: Colors.white,
-                            ),
-                            SizedBox(
-                              width: 8,
-                            ),
-                            CircleAvatar(
-                              maxRadius: 4,
-                              backgroundColor: Colors.white,
-                            ),
-                            SizedBox(
-                              width: 3,
-                            ),
-                            CircleAvatar(
-                              maxRadius: 4,
-                              backgroundColor: Colors.white,
-                            ),
-                            SizedBox(
-                              width: 3,
-                            ),
-                            CircleAvatar(
-                              maxRadius: 4,
-                              backgroundColor: Colors.white,
-                            ),
-                            SizedBox(
-                              width: 3,
-                            ),
-                            CircleAvatar(
-                              maxRadius: 4,
-                              backgroundColor: Colors.white,
-                            ),
-                            SizedBox(
-                              width: 8,
-                            ),
+                          Row(
+                            children: [
+                              CircleAvatar(
+                                maxRadius: 4,
+                                backgroundColor: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 3,
+                              ),
+                              CircleAvatar(
+                                maxRadius: 4,
+                                backgroundColor: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 3,
+                              ),
+                              CircleAvatar(
+                                maxRadius: 4,
+                                backgroundColor: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 3,
+                              ),
+                              CircleAvatar(
+                                maxRadius: 4,
+                                backgroundColor: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              CircleAvatar(
+                                maxRadius: 4,
+                                backgroundColor: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 3,
+                              ),
+                              CircleAvatar(
+                                maxRadius: 4,
+                                backgroundColor: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 3,
+                              ),
+                              CircleAvatar(
+                                maxRadius: 4,
+                                backgroundColor: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 3,
+                              ),
+                              CircleAvatar(
+                                maxRadius: 4,
+                                backgroundColor: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              CircleAvatar(
+                                maxRadius: 4,
+                                backgroundColor: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 3,
+                              ),
+                              CircleAvatar(
+                                maxRadius: 4,
+                                backgroundColor: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 3,
+                              ),
+                              CircleAvatar(
+                                maxRadius: 4,
+                                backgroundColor: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 3,
+                              ),
+                              CircleAvatar(
+                                maxRadius: 4,
+                                backgroundColor: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
 
-                            if(controller1.cardDetails.value.data==null)
-                              ...[
-                            CircleAvatar(
-                              maxRadius: 4,
-                              backgroundColor: Colors.white,
-                            ),
-                            SizedBox(
-                              width: 3,
-                            ),
-                            CircleAvatar(
-                              maxRadius: 4,
-                              backgroundColor: Colors.white,
-                            ),
-                            SizedBox(
-                              width: 3,
-                            ),
-                            CircleAvatar(
-                              maxRadius: 4,
-                              backgroundColor: Colors.white,
-                            ),
-                            SizedBox(
-                              width: 3,
-                            ),
-                            CircleAvatar(
-                              maxRadius: 4,
-                              backgroundColor: Colors.white,
-                            ),
-                            SizedBox(
-                              width: 8,
-                            ),
-                              ]
-                            else
-                              Text(controller1.cardDetails.value.data!.last4.toString(),
-                                style: GoogleFonts.poppins(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                    letterSpacing: 2,
-                                    fontWeight: FontWeight.w600),)
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  'Card Holder Name',
-                                  style: GoogleFonts.poppins(
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w400),
-                                ),
-
-                                if(controller1.cardDetails.value.data==null)
-                                Text(
-                                  '--',
+                              if(controller1.card.value.data==null)
+                                ...[
+                              CircleAvatar(
+                                maxRadius: 4,
+                                backgroundColor: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 3,
+                              ),
+                              CircleAvatar(
+                                maxRadius: 4,
+                                backgroundColor: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 3,
+                              ),
+                              CircleAvatar(
+                                maxRadius: 4,
+                                backgroundColor: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 3,
+                              ),
+                              CircleAvatar(
+                                maxRadius: 4,
+                                backgroundColor: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                                ]
+                              else
+                                Text(controller1.card.value.data!.last4.toString(),
                                   style: GoogleFonts.poppins(
                                       color: Colors.white,
                                       fontSize: 14,
-                                      fontWeight: FontWeight.w600),
-                                )
-                                else
-
+                                      letterSpacing: 2,
+                                      fontWeight: FontWeight.w600),)
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
                                   Text(
-                                    controller1.cardDetails.value.data!.cardName.toString(),
+                                    'Card Holder Name',
+                                    style: GoogleFonts.poppins(
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+
+                                  if(controller1.card.value.data==null)
+                                  Text(
+                                    '--',
                                     style: GoogleFonts.poppins(
                                         color: Colors.white,
                                         fontSize: 14,
                                         fontWeight: FontWeight.w600),
                                   )
-                              ],
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  'Expiry date',
-                                  style: GoogleFonts.poppins(
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                                if(controller1.cardDetails.value.data==null)
-                                Text(
-                                  '--/--',
-                                  style: GoogleFonts.poppins(
-                                      color: Colors.white,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600),
-                                )
-        else
+                                  else
 
-        Text(
-        controller1.cardDetails.value.data!.expiryMonth.toString()+"/"+  controller1.cardDetails.value.data!.expiryYear.toString(),
+                                    Text(
+                                      controller1.card.value.data!.cardName.toString(),
+                                      style: GoogleFonts.poppins(
+                                          color: Colors.white,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600),
+                                    )
+                                ],
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    'Expiry date',
+                                    style: GoogleFonts.poppins(
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                  if(controller1.card.value.data==null)
+                                  Text(
+                                    '--/--',
+                                    style: GoogleFonts.poppins(
+                                        color: Colors.white,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600),
+                                  )
+          else
+
+          Text(
+          controller1.card.value.data!.expiryMonth.toString()+"/"+  controller1.card.value.data!.expiryYear.toString(),
     style: GoogleFonts.poppins(
     color: Colors.white,
     fontSize: 14,
     fontWeight: FontWeight.w600),
     )
-                              ],
-                            ),
-                            const SizedBox(
-                              width: 15,
-                            ),
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/round2.png",
-                                  height: 35,
-                                  width: 35,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 20.0),
-                                  child: Image.asset(
-                                    "assets/images/round1.png",
+                                ],
+                              ),
+                              const SizedBox(
+                                width: 15,
+                              ),
+                              Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/round2.png",
                                     height: 35,
-                                    width: 34,
+                                    width: 35,
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-
-              //Slider Container properties
-              options: CarouselOptions(
-                height: 180.0,
-                enlargeCenterPage: true,
-                autoPlay: true,
-                aspectRatio: 16 / 9,
-                autoPlayCurve: Curves.fastOutSlowIn,
-                enableInfiniteScroll: true,
-                autoPlayAnimationDuration: const Duration(milliseconds: 800),
-                viewportFraction: 0.8,
-              ),
-            ),
-            const SizedBox(
-              height: 34,
-            ),
-            Text(
-              "This card will expire in 7 months",
-              style: GoogleFonts.poppins(
-                  color: const Color(0xFF1D1D1D),
-                  fontSize: 13,
-                  fontWeight: FontWeight.w400),
-            ),
-            const SizedBox(
-              height: 11,
-            ),
-            InkWell(
-              onTap: () {
-                controller1. holder();
-
-              },
-              child: const SizedBox(
-                width: 200,
-                child: CustomOutlineButton(
-                  title: "Order a new card",
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 17,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  height: 98,
-                  width: 98,
-                  decoration: BoxDecoration(
-                      color: const Color(0xFFFAFAFA),
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: const [
-                        BoxShadow(
-                          color:   Colors.black26,
-                          offset: Offset(
-                            0.5,
-                            0.5,
-                          ), //Offset
-                          blurRadius:    0.5,
-                          spreadRadius: 0.0,
-                        ), //BoxShadow
-                      ]),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Icon(Icons.add,size: 40,),
-                      Text(
-                        "Add Money",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF2E2E2E),
-                            fontSize: 10,
-                            fontWeight: FontWeight.w400),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 20.0),
+                                    child: Image.asset(
+                                      "assets/images/round1.png",
+                                      height: 35,
+                                      width: 34,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
+                  ),
+                ],
+
+                //Slider Container properties
+                options: CarouselOptions(
+                  height: 180.0,
+                  enlargeCenterPage: true,
+                  autoPlay: false,
+                  aspectRatio: 16 / 9,
+                  autoPlayCurve: Curves.fastOutSlowIn,
+                  enableInfiniteScroll: true,
+                  autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                  viewportFraction: 0.8,
+                ),
+              ),
+              const SizedBox(
+                height: 34,
+              ),
+              Text(
+                "This card will expire in 7 months",
+                style: GoogleFonts.poppins(
+                    color: const Color(0xFF1D1D1D),
+                    fontSize: 13,
+                    fontWeight: FontWeight.w400),
+              ),
+              const SizedBox(
+                height: 11,
+              ),
+              InkWell(
+                onTap: () {
+                  controller1. holder();
+
+                },
+                child: const SizedBox(
+                  width: 200,
+                  child: CustomOutlineButton(
+                    title: "Order a new card",
                   ),
                 ),
-                InkWell(
-                  onTap: (){
-                    // controller1.getCardDetails();
+              ),
+              const SizedBox(
+                height: 17,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    height: 98,
+                    width: 98,
+                    decoration: BoxDecoration(
+                        color: const Color(0xFFFAFAFA),
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: const [
+                          BoxShadow(
+                            color:   Colors.black26,
+                            offset: Offset(
+                              0.5,
+                              0.5,
+                            ), //Offset
+                            blurRadius:    0.5,
+                            spreadRadius: 0.0,
+                          ), //BoxShadow
+                        ]),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Icon(Icons.add,size: 40,),
+                        Text(
+                          "Add Money",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF2E2E2E),
+                              fontSize: 10,
+                              fontWeight: FontWeight.w400),
+                        ),
+                      ],
+                    ),
+                  ),
+                  InkWell(
+                    onTap: (){
+                      // controller1.getCardDetails();
  Get.toNamed(MyRouters.cardDetails);
-                  },
-                  child: Container(
-                    height: 98,
-                    width: 98,
-                    decoration: BoxDecoration(
-                        color: const Color(0xFFFAFAFA),
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: const [
-                          BoxShadow(
-                            color:   Colors.black26,
-                            offset: Offset(
-                              0.5,
-                              0.5,
-                            ), //Offset
-                            blurRadius:    0.5,
-                            spreadRadius: 0.0,
-                          ), //BoxShadow
-                        ]),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Icon(Icons.credit_card,size: 40,),
-                        Text(
-                          "Card Details",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF2E2E2E),
-                              fontSize: 10,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ],
+                    },
+                    child: Container(
+                      height: 98,
+                      width: 98,
+                      decoration: BoxDecoration(
+                          color: const Color(0xFFFAFAFA),
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: const [
+                            BoxShadow(
+                              color:   Colors.black26,
+                              offset: Offset(
+                                0.5,
+                                0.5,
+                              ), //Offset
+                              blurRadius:    0.5,
+                              spreadRadius: 0.0,
+                            ), //BoxShadow
+                          ]),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Icon(Icons.credit_card,size: 40,),
+                          Text(
+                            "Card Details",
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF2E2E2E),
+                                fontSize: 10,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                InkWell(
-                  onTap: (){
-                    showDialogueDelete();
-                  },
-                  child: Container(
-                    height: 98,
-                    width: 98,
-                    decoration: BoxDecoration(
-                        color: const Color(0xFFFAFAFA),
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: const [
-                          BoxShadow(
-                            color:   Colors.black26,
-                            offset: Offset(
-                              0.5,
-                              0.5,
-                            ), //Offset
-                            blurRadius:    0.5,
-                            spreadRadius: 0.0,
-                          ), //BoxShadow
-                        ]),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Icon(Icons.ac_unit,size: 40,),
-                        Text(
-                          "Freeze card",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF2E2E2E),
-                              fontSize: 10,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ],
+                  InkWell(
+                    onTap: (){
+                      showDialogueDelete();
+                    },
+                    child: Container(
+                      height: 98,
+                      width: 98,
+                      decoration: BoxDecoration(
+                          color: const Color(0xFFFAFAFA),
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: const [
+                            BoxShadow(
+                              color:   Colors.black26,
+                              offset: Offset(
+                                0.5,
+                                0.5,
+                              ), //Offset
+                              blurRadius:    0.5,
+                              spreadRadius: 0.0,
+                            ), //BoxShadow
+                          ]),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Icon(Icons.ac_unit,size: 40,),
+                          Text(
+                            "Freeze card",
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF2E2E2E),
+                                fontSize: 10,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                )
-              ],
-            ),
-            const SizedBox(
-              height: 48,
-            ),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 48,
+              ),
 
     Padding(
     padding: const EdgeInsets.only(left: 18.0,right: 18),
     child: InkWell(
-      onTap: (){
-        Get.toNamed(MyRouters.buyServices);
-      },
-      child: Container(
-      width: MediaQuery.of(context).size.width,
-      height: 49,
-      decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(10),
-      border: Border.all(color: AppTheme.buttonColor,width: 1.3)
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text("Add to ",
-            style: GoogleFonts.poppins(
-                color: AppTheme.buttonColor,
-                fontSize: 16,
-                fontWeight:
-                FontWeight
-                    .w700),),
-          SvgPicture.asset('assets/images/google.svg'),
-          Text(" Pay",
-            style: GoogleFonts.poppins(
-                color: AppTheme.buttonColor,
-                fontSize: 16,
-                fontWeight:
-                FontWeight
-                    .w700),),
-        ],
-      ),
-      ),
-    )),
-
-            const SizedBox(
-              height: 15,
-            ),
-            const Divider(
-              thickness: 1,
-              color: Color(0x1A000000),
-            ),
-            const SizedBox(
-              height: 17,
-            ),
-            Align(
-              alignment: Alignment.topLeft,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 23),
-                child: Text(
-                  "Manage Card",
-                  style: GoogleFonts.poppins(
-                      color: const Color(0xFF2E2E2E),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400),
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 17,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 23,right: 23),
-              child: Container(
-                height: 56,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(color: const Color(0xff1D1D1D))),
-                child: ListTile(
-                  leading: const Icon(Icons.settings_suggest_outlined),
-                  title:    Text(
-                    "Manage payment methods",
-                    style: GoogleFonts.poppins(
-                        color: const Color(0xFF1D1D1D),
-                        fontSize: 13,
-                        fontWeight: FontWeight.w400),
-                  ),
-                  trailing: const Icon(Icons.arrow_forward_ios),
-                )
-              ),
-            ),
-            const SizedBox(
-              height: 17,
-            ),
+        onTap: (){
+          Get.toNamed(MyRouters.buyServices);
+        },
+        child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 49,
+        decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: AppTheme.buttonColor,width: 1.3)
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Add to ",
+              style: GoogleFonts.poppins(
+                  color: AppTheme.buttonColor,
+                  fontSize: 16,
+                  fontWeight:
+                  FontWeight
+                      .w700),),
+            SvgPicture.asset('assets/images/google.svg'),
+            Text(" Pay",
+              style: GoogleFonts.poppins(
+                  color: AppTheme.buttonColor,
+                  fontSize: 16,
+                  fontWeight:
+                  FontWeight
+                      .w700),),
           ],
         ),
+        ),
+    )),
+
+              const SizedBox(
+                height: 15,
+              ),
+              const Divider(
+                thickness: 1,
+                color: Color(0x1A000000),
+              ),
+              const SizedBox(
+                height: 17,
+              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 23),
+                  child: Text(
+                    "Manage Card",
+                    style: GoogleFonts.poppins(
+                        color: const Color(0xFF2E2E2E),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 17,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 23,right: 23),
+                child: Container(
+                  height: 56,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(color: const Color(0xff1D1D1D))),
+                  child: ListTile(
+                    leading: const Icon(Icons.settings_suggest_outlined),
+                    title:    Text(
+                      "Manage payment methods",
+                      style: GoogleFonts.poppins(
+                          color: const Color(0xFF1D1D1D),
+                          fontSize: 13,
+                          fontWeight: FontWeight.w400),
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                  )
+                ),
+              ),
+              const SizedBox(
+                height: 17,
+              ),
+            ],
+          ),
+        ): const Center(child: CircularProgressIndicator(),);
+        }),
       ),
     );
   }

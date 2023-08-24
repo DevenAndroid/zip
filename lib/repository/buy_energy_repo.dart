@@ -22,7 +22,7 @@ Future<ModelBuyEnergy> BuyEnergyPlanRepo({  amount,phone_no,provider,meter_numbe
   http.Response response = await http.post(Uri.parse(ApiUrls.purchaseEnergy),
       headers: { HttpHeaders.contentTypeHeader: 'application/json',
         HttpHeaders.acceptHeader: 'application/json',
-        "secret-key": "Fincra_SECRETDMVA1HLKTFYE4"
+        "secret-key": "Fincra_SECRETUFJPW1QKHYXS5"
 
       },
       body: jsonEncode(map));

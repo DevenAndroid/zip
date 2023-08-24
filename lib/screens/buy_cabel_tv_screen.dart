@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
@@ -106,6 +108,7 @@ class _PurchaseCabelScreenState extends State<PurchaseCabelScreen> {
   Widget build(BuildContext context) {
 
     Size size = MediaQuery.of(context).size;
+    double doubleVar;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -154,6 +157,30 @@ class _PurchaseCabelScreenState extends State<PurchaseCabelScreen> {
             Padding(
               padding: const EdgeInsets.only(left: 6, right: 6),
               child: CommonTextfield(
+                keyboardType:
+                const TextInputType.numberWithOptions(
+                    decimal: true),
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(11),
+                  FilteringTextInputFormatter.allow(
+                      RegExp('[0-9]+')),
+                ],
+                onChanged: (value) =>
+                doubleVar = double.parse(value),
+                validator: MultiValidator([
+                  RequiredValidator(
+                      errorText:
+                      'Please enter your card number '),
+                  MinLengthValidator(11,
+                      errorText:
+                      'Please enter minumum  10 card number'),
+                  MaxLengthValidator(12,
+                      errorText:
+                      'Please enter 12 card number'),
+                  PatternValidator(
+                      r'(^(?:[+0]9)?[0-9]{10,12}$)',
+                      errorText: '')
+                ]),
                 controller: phoneController,
                 obSecure: false,
                 hintText: "123456789",

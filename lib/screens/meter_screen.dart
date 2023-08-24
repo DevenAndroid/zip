@@ -94,7 +94,7 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
       meter_number: controller.meterNo.text.toString(),
       provider: controller.provider.text.trim(),
       amount: controller.amount.text.trim(),
-      phone_no: controller.meterNo.text.trim(),
+      phone_no: controller.mobileNO.text.trim(),
       context: context,
       )
         .then((value) {
@@ -103,7 +103,7 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
         // payOutcontroller.accountName.text = (value.data!.accountName??"").toString();
         statusOfBuyEnergy.value = RxStatus.success();
         saveList();
-        Get.toNamed(MyRouters.bottomNavbar);
+        Get.toNamed(MyRouters.successRechargeScreen);
         showToast(value.message.toString());
       } else {
         showToast(value.message.toString());
@@ -226,7 +226,7 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
                         const TextInputType.numberWithOptions(
                             decimal: true),
                         inputFormatters: [
-                          LengthLimitingTextInputFormatter(15),
+                          LengthLimitingTextInputFormatter(11),
                           FilteringTextInputFormatter.allow(
                               RegExp('[0-9]+')),
                         ],
@@ -236,9 +236,9 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
                           RequiredValidator(
                               errorText:
                               'Please enter your meter number '),
-                          MinLengthValidator(12,
+                          MinLengthValidator(11,
                               errorText:
-                              'Please enter minumum  10 meter number'),
+                              'Please enter minumum  11 meter number'),
                           MaxLengthValidator(15,
                               errorText:
                               'Please enter 10 meter number'),
@@ -261,7 +261,7 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
                         const TextInputType.numberWithOptions(
                             decimal: true),
                         inputFormatters: [
-                          LengthLimitingTextInputFormatter(10),
+                          LengthLimitingTextInputFormatter(11),
                           FilteringTextInputFormatter.allow(
                               RegExp('[0-9]+')),
                         ],
@@ -271,9 +271,9 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
                           RequiredValidator(
                               errorText:
                               'Please enter your mobile number '),
-                          MinLengthValidator(10,
+                          MinLengthValidator(11,
                               errorText:
-                              'Please enter minumum  10 mobile number'),
+                              'Please enter minumum  11 mobile number'),
                           MaxLengthValidator(12,
                               errorText:
                               'Please enter 10 mobile number'),

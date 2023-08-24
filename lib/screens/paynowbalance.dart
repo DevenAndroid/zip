@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
@@ -35,38 +37,42 @@ class _PayNowBalanceState extends State<PayNowBalance> {
   TextEditingController accountNoController = TextEditingController();
   Rx<RxStatus> statusOfpayout = RxStatus.empty().obs;
   Rx<ModelPayout> payout = ModelPayout().obs;
+  final formKey4 = GlobalKey<FormState>();
   Future CreatePayout() async {
-    await payoutRepo(
-amount:amountController.text.trim() ,
-context: context,
-        accountHolderName:data.accountHolderName.toString() ,
-        accountNumber:data.destinationAddress.toString(),
-destinationCurrency:"NGN",
+    if (formKey4.currentState!.validate()) {
+
+      payoutRepo(
+          amount:amountController.text.trim() ,
+          context: context,
+          accountHolderName:data.accountHolderName.toString() ,
+          accountNumber:data.destinationAddress.toString(),
+          destinationCurrency:"NGN",
 // destinationCurrencyController.text.trim() ,
-        sourceCurrency: "NGN",
-        // sourceCurrencyController.text.trim(),
-        description: descriptionController.text.trim(),
-        // email:data.email.toString(),
-        firstName:data.firstName.toString() ,
-        // lastName:data.lastName.toString() ,
-        paymentDestination:"bank_account" ,
-        type:"individual" ,
-        business:  '64529bd2bfdf28e7c18aa9da'
-    ).then((value) {
-      payout.value = value;
-      if (value.success == true) {
-        statusOfpayout.value = RxStatus.success();
-        saveList();
-        Get.toNamed(MyRouters.successRechargeScreen);
-        // Get.back();
-        showToast(value.message                                 .toString());
-      }
-      else{
-        statusOfpayout.value = RxStatus.success();
-        showToast(value.message.toString());
-      }
-      // showToast(value.message.toString());
-    });
+          sourceCurrency: "NGN",
+          // sourceCurrencyController.text.trim(),
+          description: descriptionController.text.trim(),
+          // email:data.email.toString(),
+          firstName:data.firstName.toString() ,
+          // lastName:data.lastName.toString() ,
+          paymentDestination:"bank_account" ,
+          type:"individual" ,
+          business:  '64529bd2bfdf28e7c18aa9da'
+      ).then((value) {
+        payout.value = value;
+        if (value.success == true) {
+          statusOfpayout.value = RxStatus.success();
+          saveList();
+          Get.toNamed(MyRouters.successRechargeScreen);
+          // Get.back();
+          showToast(value.message.toString());
+        }
+        else{
+          statusOfpayout.value = RxStatus.success();
+          showToast(value.message.toString());
+        }
+        // showToast(value.message.toString());
+      });
+    }
   }
 
 
@@ -112,6 +118,7 @@ destinationCurrency:"NGN",
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    double doubleVar;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -133,168 +140,189 @@ destinationCurrency:"NGN",
         ),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Center(
-              child: Text(
-                "\$276.00",
-                style: GoogleFonts.poppins(
-                    color: const Color(0xFF1D1D1D),
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500),
-              ),
-            ),
-            Center(
-              child: Stack(
-                children: [
-                  Center(
-                    child: Container(
-                      padding: const EdgeInsets.all(2),
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.white,
-                      ),
-                      margin: EdgeInsets.only(
-                          right: size.width * .01, left: size.width * .015),
-                      child: CircleAvatar(
-                        radius: size.height * .07,
-                        backgroundImage: const NetworkImage(
-                            'https://www.pngitem.com/pimgs/m/128-1284293_marina-circle-girl-picture-in-circle-png-transparent.png'),
-                      ),
-                    ),
-                  ),
-
-                ],
-              ),
-            ),
-            Center(
-              child: Text(
-                data.accountHolderName.toString() ,
-                style: GoogleFonts.poppins(
-                    color: const Color(0xFF1D1D1D),
-                    fontSize: 20,
-                    fontWeight: FontWeight.w400),
-              ),
-            ),
-
-            const SizedBox(
-              height: 29,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 15,right: 6),
-              child: Text(
-                "Amount ",
-                style: GoogleFonts.poppins(
-                    color: const Color(0xFF1D1D1D),
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500),
-              ),
-            ),
-            SizedBox(height: 6,),
-            Padding(
-              padding: const EdgeInsets.only(left: 6,right: 6),
-              child: CommonTextfield(
-                controller: amountController,
-                obSecure: false,
-                hintText: "200",
-
-              ),
-            ),
-            const SizedBox(
-              height: 12,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 15,right: 6),
-              child: Text(
-                "Account Number ",
-                style: GoogleFonts.poppins(
-                    color: const Color(0xFF1D1D1D),
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500),
-              ),
-            ),
-            SizedBox(height: 6,),
-            Padding(
-              padding: const EdgeInsets.only(left: 6,right: 6),
-              child: CommonTextfield(
-                readOnly: true,
-                controller: accountNoController,
-                obSecure: false,
-                hintText: data.destinationAddress,
-
-              ),
-            ),
-
-
-
-            const SizedBox(
-              height: 12,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 15,right: 6),
-              child: Text(
-                "Description ",
-                style: GoogleFonts.poppins(
-                    color: const Color(0xFF1D1D1D),
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500),
-              ),
-            ),
-            SizedBox(height: 6,),
-            Padding(
-              padding: const EdgeInsets.only(left: 6,right: 6),
-              child: CommonTextfield(
-                controller: descriptionController,
-                obSecure: false,
-                hintText: "write a note",
-
-              ),
-            ),
-            const SizedBox(
-              height: 12,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 15,right: 6),
-              child: Text(
-                "Bank Name ",
-                style: GoogleFonts.poppins(
-                    color: const Color(0xFF1D1D1D),
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500),
-              ),
-            ),
-            SizedBox(height: 6,),
-            Padding(
-              padding: const EdgeInsets.only(left: 6,right: 6),
-              child: CommonTextfield(
-               readOnly: true,
-                obSecure: false,
-                hintText: data.firstName,
-
-              ),
-            ),
-
-
-            SizedBox(
-              height: size.height * .12,
-            ),
-            InkWell(
-              onTap: () {
-                // Get.toNamed(MyRouters.accountsInBank);
-                CreatePayout();
-              },
-              child: const Padding(
-                padding: EdgeInsets.only(left: 10,right: 8),
-                child: CustomOutlineButton(
-                  title: "Send",
+        child: Form(
+          key: formKey4,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Center(
+                child: Text(
+                  "\$276.00",
+                  style: GoogleFonts.poppins(
+                      color: const Color(0xFF1D1D1D),
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500),
                 ),
               ),
-            ),
-        SizedBox(height: 30,)
+              Center(
+                child: Stack(
+                  children: [
+                    Center(
+                      child: Container(
+                        padding: const EdgeInsets.all(2),
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
+                        ),
+                        margin: EdgeInsets.only(
+                            right: size.width * .01, left: size.width * .015),
+                        child: CircleAvatar(
+                          radius: size.height * .07,
+                          backgroundImage: const NetworkImage(
+                              'https://www.pngitem.com/pimgs/m/128-1284293_marina-circle-girl-picture-in-circle-png-transparent.png'),
+                        ),
+                      ),
+                    ),
 
-          ],
+                  ],
+                ),
+              ),
+              Center(
+                child: Text(
+                  data.accountHolderName.toString() ,
+                  style: GoogleFonts.poppins(
+                      color: const Color(0xFF1D1D1D),
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400),
+                ),
+              ),
+
+              const SizedBox(
+                height: 29,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 15,right: 6),
+                child: Text(
+                  "Amount ",
+                  style: GoogleFonts.poppins(
+                      color: const Color(0xFF1D1D1D),
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
+              SizedBox(height: 6,),
+              CommonTextfield(
+                keyboardType:
+                const TextInputType.numberWithOptions(
+                    decimal: true),
+                inputFormatters: [
+                  // LengthLimitingTextInputFormatter(8),
+                  FilteringTextInputFormatter.allow(
+                      RegExp('[0-9]+')),
+                ],
+                onChanged: (value) =>
+                doubleVar = double.parse(value),
+                validator: MultiValidator([
+                  RequiredValidator(
+                      errorText:
+                      'Please enter your amount '),
+
+
+                ]),
+                controller: amountController,
+                obSecure: false,
+                hintText: "Enter  Amount",
+
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 15,right: 6),
+                child: Text(
+                  "Account Number ",
+                  style: GoogleFonts.poppins(
+                      color: const Color(0xFF1D1D1D),
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
+              SizedBox(height: 6,),
+              Padding(
+                padding: const EdgeInsets.only(left: 6,right: 6),
+                child: CommonTextfield(
+                  readOnly: true,
+                  controller: accountNoController,
+                  obSecure: false,
+                  hintText: data.destinationAddress,
+
+                ),
+              ),
+
+
+
+              const SizedBox(
+                height: 12,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 15,right: 6),
+                child: Text(
+                  "Description ",
+                  style: GoogleFonts.poppins(
+                      color: const Color(0xFF1D1D1D),
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
+              SizedBox(height: 6,),
+              Padding(
+                padding: const EdgeInsets.only(left: 6,right: 6),
+                child: CommonTextfield(
+                  validator: MultiValidator([
+                    RequiredValidator(
+                        errorText: 'Please enter your description '),
+                  ]),
+                  controller: descriptionController,
+                  obSecure: false,
+                  hintText: "write a note",
+
+                ),
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 15,right: 6),
+                child: Text(
+                  "Bank Name ",
+                  style: GoogleFonts.poppins(
+                      color: const Color(0xFF1D1D1D),
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
+              SizedBox(height: 6,),
+              Padding(
+                padding: const EdgeInsets.only(left: 6,right: 6),
+                child: CommonTextfield(
+                 readOnly: true,
+                  obSecure: false,
+                  hintText: data.firstName,
+
+                ),
+              ),
+
+
+              SizedBox(
+                height: size.height * .12,
+              ),
+              InkWell(
+                onTap: () {
+                  // Get.toNamed(MyRouters.accountsInBank);
+                  CreatePayout();
+                },
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 10,right: 8),
+                  child: CustomOutlineButton(
+                    title: "Send",
+                  ),
+                ),
+              ),
+          SizedBox(height: 30,)
+
+            ],
+          ),
         ),
       ),
     );

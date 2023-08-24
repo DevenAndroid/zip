@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:freshchat_sdk/freshchat_sdk.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -89,6 +90,9 @@ class _SupportScreenState extends State<SupportScreen> {
          SizedBox(height: 5,),
 InkWell(
   onTap: (){
+    setState(() {
+      Freshchat.showConversations();
+    });
     // Get.toNamed(MyRouters.contuctUsScreen);
   },
   child:   Row(

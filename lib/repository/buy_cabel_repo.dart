@@ -24,7 +24,7 @@ Future<BuyCabelTvModel> BuyCabelRepo({  amount,smartcard_number,product_code,mon
   http.Response response = await http.post(Uri.parse(ApiUrls.buyCabeltv),
       headers: { HttpHeaders.contentTypeHeader: 'application/json',
         HttpHeaders.acceptHeader: 'application/json',
-        "secret-key": "Fincra_SECRETDMVA1HLKTFYE4",
+        "secret-key": "Fincra_SECRETUFJPW1QKHYXS5",
         "api-key": "m98zn3Y70MXGu1VaZNhYOZO7CbULj6uU",
 
       },
