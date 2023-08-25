@@ -139,7 +139,12 @@ class _PayNowBalanceState extends State<PayNowBalance> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
+      body:  Obx(() {
+      return profileController.currentBalanceModel.value.status ==true
+          ?
+
+
+      SingleChildScrollView(
         child: Form(
           key: formKey4,
           child: Column(
@@ -147,12 +152,17 @@ class _PayNowBalanceState extends State<PayNowBalance> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Center(
-                child: Text(
-                  "\$276.00",
-                  style: GoogleFonts.poppins(
-                      color: const Color(0xFF1D1D1D),
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500),
+                child:  Row(
+                  children: [
+                    Image.network("https://cdn-icons-png.flaticon.com/512/32/32974.png",color: Colors.black,width: 15,height: 15,),
+
+                    Text(
+                     profileController. currentBalanceModel.value.data.toString(),
+                      style: GoogleFonts.poppins(
+                          color: const Color(0xFF1D1D1D),
+                          fontSize: 20,
+                          fontWeight: FontWeight.w400),
+                    ),],
                 ),
               ),
               Center(
@@ -213,13 +223,18 @@ class _PayNowBalanceState extends State<PayNowBalance> {
                 ],
                 onChanged: (value) =>
                 doubleVar = double.parse(value),
-                validator: MultiValidator([
-                  RequiredValidator(
-                      errorText:
-                      'Please enter your amount '),
-
-
-                ]),
+                validator: (value) {
+                  if (value!.trim().isEmpty) {
+                    return "Please enter amount";
+                  }
+                  if (double.tryParse(value.trim()) == null) {
+                    return "Enter valid amount";
+                  }
+                  if (double.parse(value.trim()) >
+                      (double.tryParse(profileController.currentBalanceModel.value.data.toString()) ?? 0)) {
+                    return "Please enter amount less than balance ";
+                  }
+                },
                 controller: amountController,
                 obSecure: false,
                 hintText: "Enter  Amount",
@@ -324,7 +339,10 @@ class _PayNowBalanceState extends State<PayNowBalance> {
             ],
           ),
         ),
-      ),
+      ): Center(
+        child: CircularProgressIndicator(),
+      );
+      }),
     );
   }
 }

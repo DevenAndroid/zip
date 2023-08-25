@@ -39,6 +39,7 @@ class _PurchaseScreenState extends State<PurchaseScreen> {
   }
   Rx<RxStatus> statusOfProviders= RxStatus.empty().obs;
   TextEditingController phoneController = TextEditingController();
+
   TextEditingController descriptionController = TextEditingController();
   Rx<ModelBuy> purchaseData = ModelBuy().obs;
   var initStateBlank = Get.arguments[0];

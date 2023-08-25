@@ -12,6 +12,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import '../models/create_virtual_account_model.dart';
 import '../models/fetchVirtualAccount_model.dart';
@@ -327,6 +328,7 @@ class registerController extends GetxController {
     });
   }
 
+
   _makingPhoneCall(call) async {
     var url = Uri.parse(call);
     if (await canLaunchUrl(url)) {
@@ -364,7 +366,66 @@ class registerController extends GetxController {
       checkout.value = value;
       log(checkout.value.toString());
       if (value.status == true) {
-        _makingPhoneCall(value.data!.link);
+        final Uri url = Uri.parse(value.data!.link);
+        if (!await launchUrl(url,mode: LaunchMode.externalApplication)) {
+          throw Exception(value.data!.link);
+        }
+
+        // _makingPhoneCall(value.data!.link);
+        // var url= value.data!.link;
+        // if (await canLaunchUrl(Uri.parse(url))) {
+        //   await launchUrl(url, );
+        // } else {
+        //   throw 'Could not launch $url';
+        // }
+        //
+        // _makingPhoneCall(value.data!.link.toString());
+        // var url = Uri.parse( value.data!.link.toString());
+        // if (await canLaunchUrl(url)) {
+        // await launchUrl(url);
+        // } else {
+        // throw 'Could not launch $url';
+        // }
+
+        //
+        //   var httpClient = HttpClient();
+        //   var request1 = await httpClient.getUrl(Uri.parse(value.data!.link));
+        //   var response = await request1.close();
+        //   var bytes = await consolidateHttpClientResponseBytes(response);
+        //   String dir = (await getApplicationDocumentsDirectory()).path;
+        // File file = File('$dir/${value.data!.link.split("/").last.replaceAll("%", " ")}');
+        // await file.writeAsBytes(bytes);
+        // // Share.shareFiles([file.path], text: 'Great picture');
+        // Share.share(value.data!.link);
+        showToast(value.message.toString());
+        statusOfCheckout.value = RxStatus.success();
+        link1.value = value.data!.link;
+        code.value = value.data!.payCode;
+        // Get.toNamed(MyRouters.paymentLink);
+
+        showToast(value.message.toString());
+      } else {
+        showToast(value.message.toString());
+        log("link1------${link1.value}");
+      }
+      // showToast(value.message.toString());
+    });
+  }
+  Future cashCheckout1(context) async {
+    await checkoutRepo(
+            currency: fetchAccount.value.data!.currency.toString(),
+            email: fetchAccount.value.data!.kYCInformation!.email.toString(),
+            amount: amountController.text.trim(),
+            name: "${fetchAccount.value.data!.kYCInformation!.firstName.toString()} " +
+                " ${fetchAccount.value.data!.kYCInformation!.lastName.toString()}",
+            // numbercontroller.isNumber ? numbercontroller.number:numbercontroller.email,
+            context: context)
+        .then((value) async {
+      checkout.value = value;
+      log(checkout.value.toString());
+      if (value.status == true) {
+
+        Share.share(value.data!.link);
         // var url= value.data!.link;
         // if (await canLaunchUrl(Uri.parse(url))) {
         //   await launchUrl(url, );

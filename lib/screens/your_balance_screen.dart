@@ -17,7 +17,7 @@ class YourBalanceScreen extends StatefulWidget {
 
 class _YourBalanceScreenState extends State<YourBalanceScreen> {
   final profileController = Get.put(ProfileController());
-
+  final formKey6 = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -45,89 +45,119 @@ class _YourBalanceScreenState extends State<YourBalanceScreen> {
 
     centerTitle: true,
     ),
-    body: SingleChildScrollView(
+    body:  Obx(() {
+      return profileController.currentBalanceModel.value.status ==true
+          ?
+
+      SingleChildScrollView(
     child: Padding(
     padding: const EdgeInsets.all(12.0),
-    child: Column(
-    mainAxisAlignment: MainAxisAlignment.start,
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
+    child: Form(
+      key: formKey6,
+      child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
 
-      Center(
-        child: Text(
-          "\$276.00",
-          style: GoogleFonts.poppins(
-              color: const Color(0xFF1D1D1D),
-              fontSize: 20,
-              fontWeight: FontWeight.w500),
-        ),
-      ),
-      SizedBox(height: 20,),
-      Center(
-        child: Stack(
-          children: [
-            Center(
-              child: Container(
-                padding: const EdgeInsets.all(2),
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                ),
-                margin: EdgeInsets.only(
-                    right: size.width * .01, left: size.width * .015),
-                child: CircleAvatar(
-                  radius: size.height * .07,
-                  backgroundImage: const NetworkImage(
-                      'https://www.pngitem.com/pimgs/m/128-1284293_marina-circle-girl-picture-in-circle-png-transparent.png'),
-                ),
-              ),
-            ),
+        Center(
+          child:  Row(
+        children: [
+        Image.network("https://cdn-icons-png.flaticon.com/512/32/32974.png",color: Colors.black,width: 15,height: 15,),
 
-          ],
-        ),
-      ),
-      Center(
-        child: Text(
-          "${profileController.modal.value.data!.user!.fname.toString()} "+" ${profileController.modal.value.data!.user!.lname.toString()}",
+        Text(
+         profileController. currentBalanceModel.value.data.toString(),
           style: GoogleFonts.poppins(
               color: const Color(0xFF1D1D1D),
               fontSize: 20,
               fontWeight: FontWeight.w400),
+        ),],
+      ),
         ),
-      ),
-      Center(
-        child: Text(
-          profileController.modal.value.data!.user!.zipTag.toString(),
-          style: GoogleFonts.poppins(
-              color: const Color(0xFF1D1D1D),
-              fontSize: 16,
-              fontWeight: FontWeight.w300),
+        SizedBox(height: 20,),
+        Center(
+          child: Stack(
+            children: [
+              Center(
+                child: Container(
+                  padding: const EdgeInsets.all(2),
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.white,
+                  ),
+                  margin: EdgeInsets.only(
+                      right: size.width * .01, left: size.width * .015),
+                  child: CircleAvatar(
+                    radius: size.height * .07,
+                    backgroundImage: const NetworkImage(
+                        'https://www.pngitem.com/pimgs/m/128-1284293_marina-circle-girl-picture-in-circle-png-transparent.png'),
+                  ),
+                ),
+              ),
+
+            ],
+          ),
         ),
-      ),
-      const SizedBox(
-        height: 29,
-      ),
-      SizedBox(height: 18,),
+        Center(
+          child: Text(
+            "${profileController.modal.value.data!.user!.fname.toString()} "+" ${profileController.modal.value.data!.user!.lname.toString()}",
+            style: GoogleFonts.poppins(
+                color: const Color(0xFF1D1D1D),
+                fontSize: 20,
+                fontWeight: FontWeight.w400),
+          ),
+        ),
+        Center(
+          child: Text(
+            profileController.modal.value.data!.user!.zipTag.toString(),
+            style: GoogleFonts.poppins(
+                color: const Color(0xFF1D1D1D),
+                fontSize: 16,
+                fontWeight: FontWeight.w300),
+          ),
+        ),
+        const SizedBox(
+          height: 29,
+        ),
+        SizedBox(height: 18,),
 CommonTextfield(
   controller:profileController.amountController ,
-  obSecure: false, hintText: "",labelText: "Enter amount",),
+  obSecure: false, hintText: "",labelText: "Enter amount",
+  validator: (value) {
+      if (value!.trim().isEmpty) {
+        return "Please enter amount";
+      }
+      if (double.tryParse(value.trim()) == null) {
+        return "Enter valid amount";
+      }
+      if (double.parse(value.trim()) >
+          (double.tryParse(profileController.currentBalanceModel.value.data.toString()) ?? 0)) {
+        return "Please enter amount less than balance ";
+      }
+  },
+),
 SizedBox(height: 14,),
-      CommonTextfield(
-        controller:profileController.noteController ,
-        obSecure: false, hintText: "",labelText: "Note",),
+        CommonTextfield(
+          controller:profileController.noteController ,
+          obSecure: false, hintText: "",labelText: "Note",),
 
-      SizedBox(height: 10,),
-
-
-      SizedBox(height: size.height*.3,),
-      InkWell(
-          onTap: (){
-            Get.toNamed(MyRouters.requestAPaymentContiune,);
-          },
-          child: CustomOutlineButton(title: "Send",)),
+        SizedBox(height: 10,),
 
 
-   ]))));
+        SizedBox(height: size.height*.3,),
+        InkWell(
+            onTap: (){
+              if (formKey6.currentState!.validate()) {
+                Get.toNamed(MyRouters.requestAPaymentContiune,);
+              }
+            },
+            child: CustomOutlineButton(title: "Send",)),
+
+
+   ]),
+    )))   : Center(
+        child: CircularProgressIndicator(),
+      );
+    }),);
   }
 }
 

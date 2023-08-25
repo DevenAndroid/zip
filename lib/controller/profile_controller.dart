@@ -32,6 +32,7 @@ class ProfileController extends GetxController {
   final registorController = Get.put(registerController());
   String userId = "";
   TextEditingController fNameController = TextEditingController();
+  TextEditingController airtimeController = TextEditingController();
   TextEditingController lNameController = TextEditingController();
   TextEditingController zipController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -169,7 +170,7 @@ class ProfileController extends GetxController {
             // complete_response: purchaseData.value.data!.toJson(),
             context: context,
             description: noteController.text.trim(),
-            type: "cr")
+            type: "dr")
         .then((value) {
       log("response.body.....    ${value}");
       save.value = value;

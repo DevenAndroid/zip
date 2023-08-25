@@ -199,12 +199,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 30),
-                    child: Text(
-                      "\$"+profileController. currentBalanceModel.value.data.toString(),
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF1D1D1D),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600),
+                    child:  Row(
+                      children: [
+                        Image.network("https://cdn-icons-png.flaticon.com/512/32/32974.png",color: Colors.black,width: 15,height: 15,),
+
+                        Text(
+                        profileController. currentBalanceModel.value.data.toString(),
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 20,
+                              fontWeight: FontWeight.w400),
+                        ),],
                     ),
                   ),
 

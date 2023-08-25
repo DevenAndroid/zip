@@ -52,6 +52,9 @@ class ApiUrls {
   static const String saveBenificary = "${apiBaseUrl}save-beneficiary";
   static const String transfreLimitGet = "${apiBaseUrl}transfer-limit";
   static const String getBenificaryList = "${apiBaseUrl}get-beneficiary";
+  static const String transactionList = "${apiBaseUrl}transaction-list";
+  static const String transactionReceive = "${apiBaseUrl}transaction-receive";
+  static const String transactionSend = "${apiBaseUrl}transaction-send";
   static const String favouriteBeneficiary = "${apiBaseUrl}favourite-beneficiary";
   static const String currentBalance = "${apiBaseUrl}current-balance";
   static const String supportCategories = "${apiBaseUrl}support-categories";

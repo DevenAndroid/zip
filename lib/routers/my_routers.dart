@@ -64,6 +64,7 @@ import '../screens/addfundsinbank.dart';
 import '../screens/bank_details.dart';
 import '../screens/buy_cabel_tv_screen.dart';
 import '../screens/buy_data_screen.dart';
+import '../screens/buyairtime1.dart';
 import '../screens/cabel_tv_screen.dart';
 import '../screens/card_details_screen.dart';
 import '../screens/choose_bank_2.dart';
@@ -87,6 +88,7 @@ import '../screens/loan_screen.dart';
 import '../screens/meter_screen.dart';
 import '../screens/notification_screeb.dart';
 import '../screens/onboardingScreen.dart';
+import '../screens/payment link2.dart';
 import '../screens/paymentlink.dart';
 import '../screens/personal_address.dart';
 import '../screens/personal_screen.dart';
@@ -96,6 +98,7 @@ import '../screens/providerScreen.dart';
 import '../screens/purchaseData_screen.dart';
 import '../screens/purchase_screen.dart';
 import '../screens/question_screen.dart';
+import '../screens/recive_transistion.dart';
 import '../screens/regular_bank_transfer.dart';
 import '../screens/reqest_payment_3.dart';
 import '../screens/request_a_payment2.dart';
@@ -104,6 +107,7 @@ import '../screens/request_money_2.dart';
 import '../screens/request_payment_4.dart';
 import '../screens/security_otp.dart';
 import '../screens/sendMoney.dart';
+import '../screens/sent_transistion.dart';
 import '../screens/sucess2.dart';
 import '../screens/sucess_rechsarge.dart';
 import '../screens/supportscreen.dart';
@@ -227,6 +231,10 @@ class MyRouters{
   static var favouriteScreen = "/favouriteScreen";
   static var favourateBalance = "/favourateBalance";
   static var freshchat = "/freshchat";
+  static var verifyPaymentLink2 = "/verifyPaymentLink2";
+  static var buyAirtimecreen = "/buyAirtimecreen";
+  static var sentTransactionsHistory = "/sentTransactionsHistory";
+  static var reciveTransactionsHistory = "/reciveTransactionsHistory";
 
 
 
@@ -237,8 +245,12 @@ class MyRouters{
 
 
     GetPage(name: '/onBoardingScreen', page: () =>   const OnBoardingScreen()),
+    GetPage(name: '/sentTransactionsHistory', page: () =>   const SentTransactionsHistory()),
+    GetPage(name: '/reciveTransactionsHistory', page: () =>   const ReciveTransactionsHistory()),
     GetPage(name: '/freshchat', page: () =>    Chat()),
     GetPage(name: '/successRechargeScreen', page: () =>   const SuccessRechargeScreen()),
+    GetPage(name: '/buyAirtimecreen', page: () =>   const BuyAirtimecreen()),
+    GetPage(name: '/verifyPaymentLink2', page: () =>   const VerifyPaymentLink2()),
     GetPage(name: '/favouriteScreen', page: () =>   const FavouriteScreen()),
     GetPage(name: '/cardDetails', page: () =>   const CardDetails()),
     GetPage(name: '/exchangeMoney2', page: () =>   const ExchangeMoney2()),

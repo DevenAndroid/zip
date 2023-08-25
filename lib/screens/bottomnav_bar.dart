@@ -29,7 +29,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
 
   final pages = [
     const DashBoard(),
-    const TransactionsFirst(),
+    const TransactionsHistory(),
      WalletScreen(),
       const ProfileScreen(),
 

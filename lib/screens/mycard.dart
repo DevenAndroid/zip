@@ -81,13 +81,19 @@ class _MyCardState extends State<MyCard> {
                     fontSize: 20,
                     fontWeight: FontWeight.w400),
               ),
-              Text(
-                "\$"+controller1. currentBalanceModel.value.data.toString(),
-                style: GoogleFonts.poppins(
-                    color: const Color(0xFF1D1D1D),
-                    fontSize: 20,
-                    fontWeight: FontWeight.w400),
+              Row(
+                children: [
+                  Image.network("https://cdn-icons-png.flaticon.com/512/32/32974.png",color: Colors.black,width: 15,height: 15,),
+
+                  Text(
+                  "\$"+controller1. currentBalanceModel.value.data.toString(),
+                  style: GoogleFonts.poppins(
+                      color: const Color(0xFF1D1D1D),
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400),
+                ),],
               ),
+
 
               const SizedBox(
                 height: 22,

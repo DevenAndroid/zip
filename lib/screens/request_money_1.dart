@@ -153,7 +153,7 @@ class _RequestMoney1State extends State<RequestMoney1> {
               padding: const EdgeInsets.only(left: 28.0),
               child: InkWell(
                 onTap: (){
-                  Get.toNamed(MyRouters.verifyPaymentLink);
+                  Get.toNamed(MyRouters.verifyPaymentLink2);
                 },
                 child: Container(
 

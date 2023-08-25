@@ -117,12 +117,17 @@ class _DashBoardState extends State<DashBoard> {
                                       onTap: () {
                                         Get.toNamed(MyRouters.accountsInBank);
                                       },
-                                      child: Text(
-                                        "\$"+profileController. currentBalanceModel.value.data.toString(),
-                                        style: GoogleFonts.poppins(
-                                            color: Colors.white,
-                                            fontSize: 30,
-                                            fontWeight: FontWeight.w500),
+                                      child: Row(
+                                        children: [
+                                          Image.network("https://cdn-icons-png.flaticon.com/512/32/32974.png",color: Colors.white,width: 20,height: 20,),
+                                          Text(
+                                            profileController. currentBalanceModel.value.data.toString(),
+                                            style: GoogleFonts.poppins(
+                                                color: Colors.white,
+                                                fontSize: 30,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                     const SizedBox(

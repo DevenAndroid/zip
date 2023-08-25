@@ -17,6 +17,7 @@ class SendCashYourBalance extends StatefulWidget {
 
 class _SendCashYourBalanceState extends State<SendCashYourBalance> {
   final profileController = Get.put(ProfileController());
+  final formKey2 = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -33,7 +34,7 @@ class _SendCashYourBalanceState extends State<SendCashYourBalance> {
         ),
         centerTitle: true,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Get.back();
           },
           child: const Icon(
@@ -42,69 +43,94 @@ class _SendCashYourBalanceState extends State<SendCashYourBalance> {
           ),
         ),
       ),
-      body:Obx(() { return profileController.currentBalanceModel.value.status ==true?
-
-      SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 15.0,right: 15),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Text(
-                  "\$"+profileController. currentBalanceModel.value.data.toString(),
-                  style: GoogleFonts.poppins(
-                      color: const Color(0xFF1D1D1D),
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500),
-                ),
-              ),
-SizedBox(height: 20,),
-              Text(
-                "Cash Out to our prefferedpayment method ",
-                style: GoogleFonts.poppins(
-                    color: const Color(0xFF1D1D1D),
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500),
-              ),
-
-              const SizedBox(
-                height: 17,
-              ),
-              CommonTextfield(
-                controller: profileController.amountController,
-                obSecure: false,
-                hintText: "200",
-                labelText: "Amount",
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Text(
-                "This transaction is free",
-                style: GoogleFonts.poppins(
-                    color: const Color(0xFF1D1D1D),
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400),
-              ),
-              SizedBox(
-                height: size.height * .5,
-              ),
-              InkWell(
-                onTap: () {
-                  Get.toNamed(MyRouters.selectMethod );
-                },
-                child: const Padding(
-                  padding: EdgeInsets.only(left: 10, right: 8),
-                  child: CustomOutlineButton(
-                    title: "Send",
+      body: Obx(() {
+        print(double.tryParse(profileController.currentBalanceModel.value.data
+            .toString()));
+        return profileController.currentBalanceModel.value.status == true
+            ? SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 15.0, right: 15),
+                  child: Form(
+                    key: formKey2,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Center(
+                          child: Text(
+                            "\$" +
+                                profileController.currentBalanceModel.value.data
+                                    .toString(),
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF1D1D1D),
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Cash Out to our prefferedpayment method ",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500),
+                        ),
+                        const SizedBox(
+                          height: 17,
+                        ),
+                        CommonTextfield(
+                          controller: profileController.amountController,
+                          obSecure: false,
+                          hintText: "200",
+                          validator: (value) {
+                            if (value!.trim().isEmpty) {
+                              return "Please enter amount";
+                            }
+                            if (double.tryParse(value.trim()) == null) {
+                              return "Enter valid amount";
+                            }
+                            if (double.parse(value.trim()) >
+                                (double.tryParse(profileController.currentBalanceModel.value.data.toString()) ?? 0)) {
+                              return "Please enter amount less than balance ";
+                            }
+                          },
+                          labelText: "Amount",
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "This transaction is free",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        SizedBox(
+                          height: size.height * .5,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            if (formKey2.currentState!.validate()) {
+                              Get.toNamed(MyRouters.selectMethod);
+                            }
+                          },
+                          child: const Padding(
+                            padding: EdgeInsets.only(left: 10, right: 8),
+                            child: CustomOutlineButton(
+                              title: "Send",
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ),
-      ): const Center(child: CircularProgressIndicator(),);
+              )
+            : const Center(
+                child: CircularProgressIndicator(),
+              );
       }),
     );
   }

@@ -1,16 +1,28 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/routers/my_routers.dart';
 
+import '../controller/profile_controller.dart';
+import '../controller/update_user.dart';
+import '../models/buy_plan_model.dart';
 import '../models/model_fetch_telcos.dart';
+import '../models/save_transastion_model.dart';
 import '../repository/fetch_telcos_repo.dart';
+import '../repository/repo_buy_plan.dart';
+import '../repository/save_buy_plan_repo.dart';
+import '../resourses/api_constant.dart';
 import '../widgets/circular_progressindicator.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_colour.dart';
 import '../widgets/common_error_widget.dart';
+import '../widgets/common_textfield.dart';
 class TelcosScreen extends StatefulWidget {
   const TelcosScreen({Key? key}) : super(key: key);
 
@@ -20,34 +32,80 @@ class TelcosScreen extends StatefulWidget {
 
 class _TelcosScreenState extends State<TelcosScreen> {
 
-  Rx<RxStatus> statusOftelcos= RxStatus.empty().obs;
-  Rx<ModelFetchTelcos> telcos = ModelFetchTelcos().obs;
+  final profileController = Get.put(ProfileController());
+  final registorController = Get.put(registerController());
 
-  getTelcoList() {
-    getTelcosRepo(
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+      registorController.fetchVritualAccount();});
+  }
+  Rx<RxStatus> statusOfProviders= RxStatus.empty().obs;
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController amountController = TextEditingController();
 
+  TextEditingController descriptionController = TextEditingController();
+  Rx<ModelBuy> purchaseData = ModelBuy().obs;
+
+  Rx<RxStatus> statusOfSave= RxStatus.empty().obs;
+  Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
+
+  saveList() async {
+    SharedPreferences pref =  await SharedPreferences.getInstance();
+    var uniqueIdentifier = pref.getString("uniqueIdentifier");
+    saveTransastionRepo(
+        user_id: profileController.modal.value.data!.user!.id.toString(),
+        amount:amountController.text.trim(),
+        about: "Buy Airtime",
+        // complete_response: purchaseData.value.data!.toJson(),
+        context: context,
+        description: registorController.fetchAccount.value.data!.accountNumber.toString()+DateTime.now().millisecondsSinceEpoch.toString(),
+        type: "dr"
     ).then((value) {
       log("response.body.....    ${value}");
-      telcos.value = value;
-      if (value.success == true) {
-        statusOftelcos.value = RxStatus.success();
+      save.value = value;
+      if (value.status == true) {
+        statusOfSave.value = RxStatus.success();
+        Get.toNamed(MyRouters.successRechargeScreen);
+
       } else {
-        statusOftelcos.value = RxStatus.error();
+        statusOfSave.value = RxStatus.error();
       }
     }
       // showToast(value.message.toString());
     );
   }
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getTelcoList();
+  getProviderList() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    var uniqueIdentifier = pref.getString("uniqueIdentifier");
+    BuyPlanRepo(
+      telco: profileController.airtimeController.text.trim(),
+      amount: amountController.text.trim(),
+      phone_no:phoneController.text.trim(),
+      reference: registorController.fetchAccount.value.data!.accountNumber.toString()+DateTime.now().millisecondsSinceEpoch.toString(),
+    ).then((value) {
+      log("response.body.....    ${value}");
+      purchaseData.value = value;
+      if (value.success == true) {
+        saveList();
+        statusOfProviders.value = RxStatus.success();
+        showToast(value.message.toString());
+        print(  registorController.fetchAccount.value.data!.accountNumber.toString()+DateTime.now().millisecondsSinceEpoch.toString(),);
+      } else {
+        statusOfProviders.value = RxStatus.error();
+        showToast(value.message.toString());
+      }
+    }
+      // showToast(value.message.toString());
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    double doubleVar;
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
@@ -55,7 +113,7 @@ class _TelcosScreenState extends State<TelcosScreen> {
           elevation: 0,
           leading: InkWell(
             onTap: () {
-              Get.back();
+              Get.toNamed(MyRouters.bottomNavbar);
             },
             child: const Icon(
               Icons.arrow_back_rounded,
@@ -78,60 +136,113 @@ class _TelcosScreenState extends State<TelcosScreen> {
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Obx(() {
-        return  statusOftelcos.value.isSuccess ?
-        ListView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount:telcos.value.data!.length,
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(telcos.value.data![index].name.toString(),
-                  style: GoogleFonts.poppins(
-                  color: const Color(0xFF1D1D1D),
-              fontSize: 16,
-              fontWeight: FontWeight.w500),),
+      CommonTextfield(
+        onTap: () {
+          Get.toNamed(MyRouters.buyAirtimecreen);
+        },
+        suffixIcon: Icon(Icons.keyboard_arrow_down),
+        controller: profileController.airtimeController,
+        readOnly: true,
+        obSecure: false,
+        hintText: "",
+        labelText: "Select Provider",
+      ),
+      const SizedBox(
+        height: 20,
+      ),
+      Padding(
+        padding: const EdgeInsets.only(left: 10),
+        child: Text(
+          "Phone number ",
+          style: GoogleFonts.poppins(
+              color: const Color(0xFF2E2E2E),
+              fontSize: 15,
+              fontWeight: FontWeight.w500),
+        ),
+      ),
 
-                      InkWell(
-                          onTap: (){
-                           Get.toNamed(MyRouters.dataPlanScreen,arguments: [telcos.value.data![index].name.toString(),]);
-                          },
-                          child: Container(
-                            padding: EdgeInsets.symmetric(vertical: 8,horizontal: 10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(7),
-                              color: AppTheme.secondaryColor,
-                            ),
+      const SizedBox(
+        height: 10,
+      ),
+      CommonTextfield(
+        keyboardType:
+        const TextInputType.numberWithOptions(
+            decimal: true),
+        inputFormatters: [
+          LengthLimitingTextInputFormatter(11),
+          FilteringTextInputFormatter.allow(
+              RegExp('[0-9]+')),
+        ],
+        onChanged: (value) =>
+        doubleVar = double.parse(value),
+        validator: MultiValidator([
+          RequiredValidator(
+              errorText:
+              'Please enter your meter number '),
+          MinLengthValidator(10,
+              errorText:
+              'Please enter minumum  10  number'),
+          MaxLengthValidator(12,
+              errorText:
+              'Please enter 12  number'),
+          PatternValidator(
+              r'(^(?:[+0]9)?[0-9]{10,12}$)',
+              errorText: '')
+        ]),
+        controller: phoneController,
+        obSecure: false,
+        hintText: "123456789",
+        labelText: "Phone Number",
+      ),
+      SizedBox(height: 20,),
 
-                              child: Text("See Plan",
-                                style: GoogleFonts.poppins(
-                                    color:  Colors.white,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500),))),
-                    ],
-                  )
+      Padding(
+        padding: const EdgeInsets.only(left: 20),
+        child: Text(
+          "Amount ",
+          style: GoogleFonts.poppins(
+              color: const Color(0xFF2E2E2E),
+              fontSize: 15,
+              fontWeight: FontWeight.w500),
+        ),
+      ),
 
+      const SizedBox(
+        height: 10,
+      ),
+      CommonTextfield(
+        keyboardType:
+        const TextInputType.numberWithOptions(
+            decimal: true),
+        inputFormatters: [
 
+          FilteringTextInputFormatter.allow(
+              RegExp('[0-9]+')),
+        ],
+        onChanged: (value) =>
+        doubleVar = double.parse(value),
+        validator: MultiValidator([
+          RequiredValidator(
+              errorText:
+              'Please enter your amount'),
 
-                  ],
-                ),
-              );
-            }):  statusOftelcos.value.isError
-            ? CommonErrorWidget(
-          errorText:
-         telcos.value.message.toString(),
-          onTap: () {
-            getTelcoList();
-          },
-        )
-            : const CommonProgressIndicator();
-      })
+        ]),
+        controller: amountController,
+        obSecure: false,
+        hintText: "0",
+        labelText: "Amount",
+      ),
+      SizedBox(
+        height: size.height * .26,
+      ),
+      InkWell(
+        onTap: () {
+          getProviderList();
+        },
+        child: const CustomOutlineButton(
+          title: "Continue",
+        ),
+      ),
 
     ]
     ))));
