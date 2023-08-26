@@ -234,115 +234,136 @@ class _ReciveTransactionsHistoryState extends State<ReciveTransactionsHistory> {
                             physics: const BouncingScrollPhysics(),
                             itemCount: reciveTransistion.value.data!.length,
                             itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: GestureDetector(
-                                  onTap: () {
+                              return GestureDetector(
+                                onTap: () {
 
-                                  },
-                                  child: Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
-                                    children: [
-                                      Text(reciveTransistion
-                                          .value.data![index].createdAt
-                                          .toString()),
-                                      SizedBox(
-                                        height: 10,
+                                },
+                                child: Column(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.start,
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          border: Border.all(color: Colors.grey)
                                       ),
-                                      Row(
+                                      child: Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.start,
+                                        MainAxisAlignment
+                                            .spaceBetween,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Icon(
-                                            reciveTransistion
-                                                .value
-                                                .data![index]
-                                                .transactionType ==
-                                                "Debit"
-                                                ? Icons
-                                                .arrow_downward_sharp
-                                                : Icons
-                                                .arrow_upward_sharp,
-                                            color: Color(0xFFB2802A),
-                                            size: 30,
+                                          Container(
+                                            padding: EdgeInsets.all(8),
+                                            decoration: BoxDecoration(color: AppTheme.secondaryColor,shape: BoxShape.circle),
+
+
+                                            child: Icon(
+                                              reciveTransistion
+                                                  .value
+                                                  .data![index]
+                                                  .transactionType ==
+                                                  "Credit"
+                                                  ? Icons
+                                                  .arrow_downward_sharp
+                                                  : Icons
+                                                  .arrow_upward_sharp,
+                                              color: Colors.white,
+                                              size: 25,
+                                            ),
                                           ),
-                                          const SizedBox(
-                                            width: 10,
+
+                                          Column(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                "NGN " +
+                                                    reciveTransistion
+                                                        .value
+                                                        .data![index]
+                                                        .amount
+                                                        .toString(),
+                                                style:
+                                                GoogleFonts.poppins(
+                                                    color: AppTheme
+                                                        .primaryColor,
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                    FontWeight
+                                                        .w600),
+                                              ),
+                                              Text(
+                                                reciveTransistion
+                                                    .value
+                                                    .data![index]
+                                                    .transactionAbout
+                                                    .toString(),
+                                                style:
+                                                GoogleFonts.poppins(
+                                                    color:
+                                                    Colors.grey,
+                                                    fontSize: 13,
+                                                    fontWeight:
+                                                    FontWeight
+                                                        .w500),
+                                              ),
+                                            ],
                                           ),
                                           Column(
                                             mainAxisAlignment:
                                             MainAxisAlignment.start,
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                            CrossAxisAlignment.center,
                                             children: [
-                                              Row(
-
-                                                children: [
-                                                  Text(
-                                                    "NGN " +
-                                                        reciveTransistion
-                                                            .value
-                                                            .data![index]
-                                                            .amount
-                                                            .toString(),
-                                                    style:
-                                                    GoogleFonts.poppins(
-                                                        color: AppTheme
-                                                            .primaryColor,
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w500),
-                                                  ),
-                                                  SizedBox(width: 20,),
-                                                  Text(
-                                                    reciveTransistion
-                                                        .value
-                                                        .data![index]
-                                                        .transactionType
-                                                        .toString(),
-                                                    style:
-                                                    GoogleFonts.poppins(
-                                                        color: AppTheme
-                                                            .primaryColor,
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w400),
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(
-                                                height: 3,
+                                              Text(
+                                                reciveTransistion
+                                                    .value
+                                                    .data![index]
+                                                    .transactionType
+                                                    .toString(),
+                                                style:
+                                                GoogleFonts.poppins(
+                                                    color: AppTheme
+                                                        .primaryColor,
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                    FontWeight
+                                                        .w600),
                                               ),
                                               Text(
-
-                                                    reciveTransistion
-                                                        .value
-                                                        .data![index]
-                                                        .transactionAbout
-                                                        .toString(),
+                                                reciveTransistion
+                                                    .value
+                                                    .data![index]
+                                                    .createdAt
+                                                    .toString(),
                                                 style:
                                                 GoogleFonts.poppins(
                                                     color:
                                                     Colors.grey,
-                                                    fontSize: 12,
+                                                    fontSize: 13,
                                                     fontWeight:
                                                     FontWeight
-                                                        .w300),
+                                                        .w500),
                                               ),
                                             ],
                                           ),
                                         ],
                                       ),
-                                      SizedBox(
-                                        height: 10,
-                                      )
-                                    ],
-                                  ),
+                                    ),
+
+                                    SizedBox(
+                                      height: 10,
+                                    )
+                                  ],
                                 ),
                               );
                             })

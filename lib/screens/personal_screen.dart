@@ -45,27 +45,18 @@ class _PersonalScreenState extends State<PersonalScreen> {
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      
+      SizedBox(height: 20,),
       InkWell(
         onTap: (){
           Get.toNamed(MyRouters.profileUpdateScreen);
         },
         child: Container(
-          padding: EdgeInsets.all(10),
+          padding: EdgeInsets.all(15),
           decoration: BoxDecoration(
               color: Colors.white,
+              border: Border.all(color: Colors.grey),
               borderRadius: BorderRadius.circular(10),
-              boxShadow: const [
-                BoxShadow(
-                  color:   Colors.black26,
-                  offset: Offset(
-                    0.5,
-                    0.5,
-                  ), //Offset
-                  blurRadius:    0.5,
-                  spreadRadius: 0.0,
-                ), //BoxShadow
-              ]
+
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -89,21 +80,11 @@ class _PersonalScreenState extends State<PersonalScreen> {
           Get.toNamed(MyRouters.personalAddress);
         },
         child: Container(
-          padding: EdgeInsets.all(10),
+          padding: EdgeInsets.all(15),
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
-              boxShadow: const [
-                BoxShadow(
-                  color:   Colors.black26,
-                  offset: Offset(
-                    0.5,
-                    0.5,
-                  ), //Offset
-                  blurRadius:    0.5,
-                  spreadRadius: 0.0,
-                ), //BoxShadow
-              ]
+            border: Border.all(color: Colors.grey),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -127,21 +108,11 @@ class _PersonalScreenState extends State<PersonalScreen> {
           Get.toNamed(MyRouters.bankDetailsScreen);
         },
         child: Container(
-          padding: EdgeInsets.all(10),
+          padding: EdgeInsets.all(15),
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
-              boxShadow: const [
-                BoxShadow(
-                  color:   Colors.black26,
-                  offset: Offset(
-                    0.5,
-                    0.5,
-                  ), //Offset
-                  blurRadius:    0.5,
-                  spreadRadius: 0.0,
-                ), //BoxShadow
-              ]
+            border: Border.all(color: Colors.grey),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

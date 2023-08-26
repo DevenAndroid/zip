@@ -61,6 +61,7 @@ class _YourBalanceScreenState extends State<YourBalanceScreen> {
 
         Center(
           child:  Row(
+            mainAxisAlignment: MainAxisAlignment.center,
         children: [
         Image.network("https://cdn-icons-png.flaticon.com/512/32/32974.png",color: Colors.black,width: 15,height: 15,),
 
@@ -73,7 +74,7 @@ class _YourBalanceScreenState extends State<YourBalanceScreen> {
         ),],
       ),
         ),
-        SizedBox(height: 20,),
+        const SizedBox(height: 20,),
         Center(
           child: Stack(
             children: [
@@ -118,7 +119,7 @@ class _YourBalanceScreenState extends State<YourBalanceScreen> {
         const SizedBox(
           height: 29,
         ),
-        SizedBox(height: 18,),
+        const SizedBox(height: 18,),
 CommonTextfield(
   controller:profileController.amountController ,
   obSecure: false, hintText: "",labelText: "Enter amount",
@@ -135,12 +136,12 @@ CommonTextfield(
       }
   },
 ),
-SizedBox(height: 14,),
+  const SizedBox(height: 14,),
         CommonTextfield(
           controller:profileController.noteController ,
           obSecure: false, hintText: "",labelText: "Note",),
 
-        SizedBox(height: 10,),
+        const SizedBox(height: 10,),
 
 
         SizedBox(height: size.height*.3,),
@@ -150,11 +151,11 @@ SizedBox(height: 14,),
                 Get.toNamed(MyRouters.requestAPaymentContiune,);
               }
             },
-            child: CustomOutlineButton(title: "Send",)),
+            child: const CustomOutlineButton(title: "Send",)),
 
 
    ]),
-    )))   : Center(
+    )))   : const Center(
         child: CircularProgressIndicator(),
       );
     }),);

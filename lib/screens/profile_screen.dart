@@ -56,7 +56,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         leading: InkWell(
           onTap: () {
-            Get.back();
+            Get.toNamed(MyRouters.bottomNavbar);
           },
           child: const Icon(
             Icons.arrow_back_rounded,
@@ -188,13 +188,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 30),
+                    padding: const EdgeInsets.only(left: 20),
                     child: Text(
                       "Current Balance",
                       style: GoogleFonts.poppins(
                           color: const Color(0xFF1D1D1D),
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400),
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600),
                     ),
                   ),
                   Padding(
@@ -322,15 +322,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           "Personal",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
-                              fontSize: 13,
-                              fontWeight: FontWeight.w400),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600),
                         ),
                         Text(
                           "Sign into your account using multiple  phone numbers \n and email",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
-                              fontSize: 9,
-                              fontWeight: FontWeight.w300),
+                              fontSize: 11,
+                              fontWeight: FontWeight.w400),
                         ),
                       ],
                     ),
@@ -368,15 +368,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           "Check Rates",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
-                              fontSize: 13,
-                              fontWeight: FontWeight.w400),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600),
                         ),
                         Text(
                           "See current foreign exchange rates",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
-                              fontSize: 9,
-                              fontWeight: FontWeight.w300),
+                              fontSize: 11,
+                              fontWeight: FontWeight.w400),
                         ),
                       ],
                     ),
@@ -501,15 +501,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         "Connected Merchants",
                         style: GoogleFonts.poppins(
                             color: const Color(0xFF1D1D1D),
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600),
                       ),
                       Text(
                         "See current foreign exchange rates",
                         style: GoogleFonts.poppins(
                             color: const Color(0xFF1D1D1D),
-                            fontSize: 9,
-                            fontWeight: FontWeight.w300),
+                            fontSize: 11,
+                            fontWeight: FontWeight.w400),
                       ),
                     ],
                   ),
@@ -544,15 +544,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           "Recipients ",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
-                              fontSize: 13,
-                              fontWeight: FontWeight.w400),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600),
                         ),
                         Text(
                           "Sign into your account using multiple  phone numbers \n and emails",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
-                              fontSize: 9,
-                              fontWeight: FontWeight.w300),
+                              fontSize: 11,
+                              fontWeight: FontWeight.w400),
                         ),
                       ],
                     ),
@@ -626,15 +626,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           "Transfer Limits",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
-                              fontSize: 13,
-                              fontWeight: FontWeight.w400),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600),
                         ),
                         Text(
                           "Check Money transfer limits",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
-                              fontSize: 9,
-                              fontWeight: FontWeight.w300),
+                              fontSize: 11,
+                              fontWeight: FontWeight.w400),
                         ),
                       ],
                     ),
@@ -669,15 +669,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           "Settings",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
-                              fontSize: 13,
-                              fontWeight: FontWeight.w400),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600),
                         ),
                         Text(
                           "Control your notification and security settings",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
-                              fontSize: 9,
-                              fontWeight: FontWeight.w300),
+                              fontSize: 11,
+                              fontWeight: FontWeight.w400),
                         ),
                       ],
                     ),

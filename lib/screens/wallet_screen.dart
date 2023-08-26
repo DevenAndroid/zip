@@ -56,7 +56,7 @@ class _WalletScreenState extends State<WalletScreen> {
           centerTitle: true,
           leading: InkWell(
             onTap: (){
-              Get.back();
+              Get.toNamed(MyRouters.bottomNavbar);
             },
             child: const Icon(
               Icons.arrow_back_rounded,
