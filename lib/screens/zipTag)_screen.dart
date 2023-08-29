@@ -35,7 +35,7 @@ class _TagScreenState extends State<TagScreen> {
       ).then((value) async {
         zipTag.value = value;
         if (value.status == true) {
-          Get.toNamed(MyRouters.addressScreen);
+          Get.toNamed(MyRouters.extraDetailsScreen);
           statusOfZipTag.value = RxStatus.success();
 
           showToast(value.message.toString());

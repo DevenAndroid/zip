@@ -90,16 +90,20 @@ class _SettingState extends State<Setting> {
       enable_security_lock: modalGetSetting.value.data!.enableSecurityLock! ? "1":"0",
       transaction_pin: modalGetSetting.value.data!.transactionPin! ? "1":"0",
 
-      ).then((value) {
+      ).then((value) async {
         login.value = value;
         if (value.status == true) {
           statusOflogin.value = RxStatus.success();
           showToast(value.message.toString());
+          SharedPreferences pref = await SharedPreferences.getInstance();
+            pref.setBool('TransistionPin', value.data!.transactionPin!);
+            pref.setBool('HideBalance', value.data!.hideBalance!);
         } else {
           statusOflogin.value = RxStatus.error();
           showToast(value.message.toString());
-
-
+          SharedPreferences pref = await SharedPreferences.getInstance();
+          pref.setBool('TransistionPin', value.data!.transactionPin!);
+          pref.setBool('HideBalance', value.data!.hideBalance!);
         }
       }
 
@@ -171,6 +175,19 @@ SetValues(value) async {
   else{
 
       pref.setBool('Enabel', false);
+
+
+  }
+}
+transistionPin(value) async {
+  SharedPreferences pref = await SharedPreferences.getInstance();
+  if(value==true){
+    pref.setBool('TransistionPin', true);
+
+  }
+  else{
+
+      pref.setBool('TransistionPin', false);
 
 
   }
@@ -436,12 +453,18 @@ fingerPrint(value) async {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "Transaction PIN",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400),
+                      InkWell(
+                        onTap: () async {
+                          SharedPreferences pref = await SharedPreferences.getInstance();
+                          print(pref.getBool("TransistionPin"));
+                        },
+                        child: Text(
+                          "Transaction PIN",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                       Text(
                         "Will rewuire your PIN before each transection",
@@ -461,6 +484,7 @@ fingerPrint(value) async {
                       setState(() {
                         modalGetSetting.value.data!.transactionPin = value;
                         updateSetting();
+                        // transistionPin(value);
                       });
                     },
                   ),

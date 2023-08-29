@@ -204,7 +204,7 @@ class _AddRecipientsState extends State<AddRecipients> {
             InkWell(
               onTap: () {
 
-                Get.toNamed(MyRouters.yourBalanceScreen);
+                Get.toNamed(MyRouters.sendYourBalanceScreen);
               },
               child: const CustomOutlineButton(
                 title: "Continue",

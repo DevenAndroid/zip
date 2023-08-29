@@ -82,6 +82,8 @@ class _MyCardState extends State<MyCard> {
                     fontWeight: FontWeight.w400),
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Image.network("https://cdn-icons-png.flaticon.com/512/32/32974.png",color: Colors.black,width: 15,height: 15,),
 
@@ -501,7 +503,7 @@ class _MyCardState extends State<MyCard> {
     padding: const EdgeInsets.only(left: 18.0,right: 18),
     child: InkWell(
         onTap: (){
-          Get.toNamed(MyRouters.buyServices);
+          // Get.toNamed(MyRouters.buyServices);
         },
         child: Container(
         width: MediaQuery.of(context).size.width,
@@ -536,49 +538,7 @@ class _MyCardState extends State<MyCard> {
               const SizedBox(
                 height: 15,
               ),
-              const Divider(
-                thickness: 1,
-                color: Color(0x1A000000),
-              ),
-              const SizedBox(
-                height: 17,
-              ),
-              Align(
-                alignment: Alignment.topLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 23),
-                  child: Text(
-                    "Manage Card",
-                    style: GoogleFonts.poppins(
-                        color: const Color(0xFF2E2E2E),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 17,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 23,right: 23),
-                child: Container(
-                  height: 56,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: const Color(0xff1D1D1D))),
-                  child: ListTile(
-                    leading: const Icon(Icons.settings_suggest_outlined),
-                    title:    Text(
-                      "Manage payment methods",
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF1D1D1D),
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400),
-                    ),
-                    trailing: const Icon(Icons.arrow_forward_ios),
-                  )
-                ),
-              ),
+
               const SizedBox(
                 height: 17,
               ),

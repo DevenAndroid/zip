@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
@@ -19,13 +20,14 @@ class DashBoard extends StatefulWidget {
 
 class _DashBoardState extends State<DashBoard> {
   final profileController = Get.put(ProfileController());
-
+  bool isValue = false;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     getData();
     profileController.getCurrentBalance();
+    getData1();
   }
 
   getData() {
@@ -37,12 +39,22 @@ class _DashBoardState extends State<DashBoard> {
     });
   }
 
+  getData1() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    if (pref.getBool('HideBalance') == true) {
+      isValue = true;
+    } else {
+      isValue = false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Obx(() {
-        return profileController.modal.value.status == true&& profileController.currentBalanceModel.value.status ==true
+        return profileController.modal.value.status == true &&
+                profileController.currentBalanceModel.value.status == true
             ? SingleChildScrollView(
                 child: Padding(
                   padding:
@@ -55,7 +67,7 @@ class _DashBoardState extends State<DashBoard> {
                         'Hi,👋🏻' +
                             '${profileController.modal.value.data!.user!.fname.toString()} ' +
                             ' ${profileController.modal.value.data!.user!.lname.toString()}',
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 20, fontWeight: FontWeight.w600),
                       ),
                       Text(
@@ -117,18 +129,25 @@ class _DashBoardState extends State<DashBoard> {
                                       onTap: () {
                                         Get.toNamed(MyRouters.accountsInBank);
                                       },
-                                      child: Row(
+                                      child:isValue != true ? Row(
                                         children: [
-                                          Image.network("https://cdn-icons-png.flaticon.com/512/32/32974.png",color: Colors.white,width: 20,height: 20,),
+                                          Image.network(
+                                            "https://cdn-icons-png.flaticon.com/512/32/32974.png",
+                                            color: Colors.white,
+                                            width: 20,
+                                            height: 20,
+                                          ),
                                           Text(
-                                            profileController. currentBalanceModel.value.data.toString(),
+                                            profileController
+                                                .currentBalanceModel.value.data
+                                                .toString(),
                                             style: GoogleFonts.poppins(
                                                 color: Colors.white,
                                                 fontSize: 30,
                                                 fontWeight: FontWeight.w500),
                                           ),
                                         ],
-                                      ),
+                                      ):const SizedBox(height: 40,),
                                     ),
                                     const SizedBox(
                                       height: 35,
@@ -294,10 +313,10 @@ class _DashBoardState extends State<DashBoard> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
+                                  const Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: const [
+                                    children: [
                                       SizedBox(
                                         width: 60,
                                       ),
@@ -351,10 +370,10 @@ class _DashBoardState extends State<DashBoard> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
+                                  const Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: const [
+                                    children: [
                                       SizedBox(
                                         width: 60,
                                       ),
@@ -408,10 +427,10 @@ class _DashBoardState extends State<DashBoard> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
+                                  const Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: const [
+                                    children: [
                                       SizedBox(
                                         width: 60,
                                       ),
@@ -474,10 +493,10 @@ class _DashBoardState extends State<DashBoard> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
+                                  const Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: const [
+                                    children: [
                                       SizedBox(
                                         width: 60,
                                       ),
@@ -531,10 +550,10 @@ class _DashBoardState extends State<DashBoard> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
+                                  const Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: const [
+                                    children: [
                                       SizedBox(
                                         width: 60,
                                       ),
@@ -588,10 +607,10 @@ class _DashBoardState extends State<DashBoard> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
+                                  const Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: const [
+                                    children: [
                                       SizedBox(
                                         width: 60,
                                       ),
@@ -704,7 +723,7 @@ class _DashBoardState extends State<DashBoard> {
                   ),
                 ),
               )
-            : Center(
+            : const Center(
                 child: CircularProgressIndicator(),
               );
       }),

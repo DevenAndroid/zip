@@ -62,6 +62,7 @@ import '../screens/Cardlimit.dart';
 import '../screens/add_payment_method.dart';
 import '../screens/addfundsinbank.dart';
 import '../screens/bank_details.dart';
+import '../screens/beneficery_pin.dart';
 import '../screens/buy_cabel_tv_screen.dart';
 import '../screens/buy_data_screen.dart';
 import '../screens/buyairtime1.dart';
@@ -96,6 +97,7 @@ import '../screens/profile_screen.dart';
 
 import '../screens/providerScreen.dart';
 import '../screens/purchaseData_screen.dart';
+import '../screens/purchase_pin.dart';
 import '../screens/purchase_screen.dart';
 import '../screens/question_screen.dart';
 import '../screens/recive_transistion.dart';
@@ -106,9 +108,15 @@ import '../screens/request_money_1.dart';
 import '../screens/request_money_2.dart';
 import '../screens/request_payment_4.dart';
 import '../screens/security_otp.dart';
+import '../screens/security_otp1.dart';
 import '../screens/sendMoney.dart';
+import '../screens/send_money_pin.dart';
+import '../screens/send_sucess.dart';
+import '../screens/send_your_balance_screen.dart';
+import '../screens/sendamount.dart';
 import '../screens/sent_transistion.dart';
 import '../screens/sucess2.dart';
+import '../screens/sucess_recharge_pin.dart';
 import '../screens/sucess_rechsarge.dart';
 import '../screens/supportscreen.dart';
 import '../screens/teslos_screen.dart';
@@ -235,6 +243,14 @@ class MyRouters{
   static var buyAirtimecreen = "/buyAirtimecreen";
   static var sentTransactionsHistory = "/sentTransactionsHistory";
   static var reciveTransactionsHistory = "/reciveTransactionsHistory";
+  static var securityOtpScreen1 = "/securityOtpScreen1";
+  static var sucessRechargePin = "/sucessRechargePin";
+  static var purchaseRechargePin = "/purchaseRechargePin";
+  static var sendMoneyPin = "/sendMoneyPin";
+  static var beneficeryPin = "/beneficeryPin";
+  static var sendSuccessScreen = "/sendSuccessScreen";
+  static var requestPaymentContiune = "/requestPaymentContiune";
+  static var sendYourBalanceScreen = "/sendYourBalanceScreen";
 
 
 
@@ -245,6 +261,13 @@ class MyRouters{
 
 
     GetPage(name: '/onBoardingScreen', page: () =>   const OnBoardingScreen()),
+    GetPage(name: '/requestPaymentContiune', page: () =>   const RequestPaymentContiune()),
+    GetPage(name: '/sendYourBalanceScreen', page: () =>   const SendYourBalanceScreen()),
+    GetPage(name: '/securityOtpScreen1', page: () =>   const SecurityOtpScreen1()),
+    GetPage(name: '/beneficeryPin', page: () =>   const BeneficeryPin()),
+    GetPage(name: '/sucessRechargePin', page: () =>   const SucessRechargePin()),
+    GetPage(name: '/sendMoneyPin', page: () =>   const SendMoneyPin()),
+    GetPage(name: '/purchaseRechargePin', page: () =>   const PurchaseRechargePin()),
     GetPage(name: '/sentTransactionsHistory', page: () =>   const SentTransactionsHistory()),
     GetPage(name: '/reciveTransactionsHistory', page: () =>   const ReciveTransactionsHistory()),
     GetPage(name: '/freshchat', page: () =>    Chat()),
@@ -306,6 +329,7 @@ class MyRouters{
     GetPage(name: '/updatePassword', page: () =>  const UpdatePassword()),
 
 
+
     GetPage(name: '/selectableScreen', page: () =>  const SelectableScreen()),
     GetPage(name: '/personalAddress', page: () =>  const PersonalAddress()),
     GetPage(name: '/userScreen', page: () =>   const UserScreen()),
@@ -313,6 +337,7 @@ class MyRouters{
     GetPage(name: '/loanScreen', page: () =>   const LoanScreen()),
     GetPage(name: '/tagScreen', page: () =>   const TagScreen()),
     GetPage(name: '/addressScreen', page: () =>   const AddressScreen()),
+    GetPage(name: '/sendSuccessScreen', page: () =>   const SendSuccessScreen()),
     GetPage(name: '/extraDetailsScreen', page: () =>   const ExtraDetailsScreen()),
     GetPage(name: '/countryScreen', page: () =>   const CountryScreen()),
     GetPage(name: '/otpScreen', page: () =>   const OtpScreen()),

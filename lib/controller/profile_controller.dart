@@ -29,7 +29,7 @@ import 'number_controller.dart';
 
 class ProfileController extends GetxController {
   final numbercontroller = Get.put(numberController());
-  final registorController = Get.put(registerController());
+  // final registorController = Get.put(registerController());
   String userId = "";
   TextEditingController fNameController = TextEditingController();
   TextEditingController airtimeController = TextEditingController();
@@ -162,15 +162,15 @@ class ProfileController extends GetxController {
   Rx<RxStatus> statusOfSave = RxStatus.empty().obs;
   Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
 
-  saveList1(context) {
+  saveList1(context) async {
     saveTransastionRepo(
-            amount: amountController.text.trim(),
-            about: noteController.text.trim(),
-            user_id: modal.value.data!.user!.id.toString(),
-            // complete_response: purchaseData.value.data!.toJson(),
-            context: context,
-            description: noteController.text.trim(),
-            type: "dr")
+        amount: amountController.text.trim(),
+        about: noteController.text.trim(),
+        user_id: modal.value.data!.user!.id.toString(),
+        // complete_response: purchaseData.value.data!.toJson(),
+        context: context,
+        description: noteController.text.trim(),
+        type: "dr")
         .then((value) {
       log("response.body.....    ${value}");
       save.value = value;
@@ -181,9 +181,31 @@ class ProfileController extends GetxController {
         statusOfSave.value = RxStatus.error();
       }
     }
-            // showToast(value.message.toString());
-            );
+      // showToast(value.message.toString());
+    );
   }
+  // saveList3(context) async {
+  //   saveTransastionRepo(
+  //       amount: amountController.text.trim(),
+  //       about: noteController.text.trim(),
+  //       user_id: modal.value.data!.user!.id.toString(),
+  //       // complete_response: purchaseData.value.data!.toJson(),
+  //       context: context,
+  //       description: noteController.text.trim(),
+  //       type: "dr")
+  //       .then((value) {
+  //     log("response.body.....    ${value}");
+  //     save.value = value;
+  //     if (value.status == true) {
+  //       Get.offAllNamed(MyRouters.bottomNavbar);
+  //       statusOfSave.value = RxStatus.success();
+  //     } else {
+  //       statusOfSave.value = RxStatus.error();
+  //     }
+  //   }
+  //     // showToast(value.message.toString());
+  //   );
+  // }
 
   saveList(context) {
     saveTransastionRepo(
@@ -199,31 +221,7 @@ class ProfileController extends GetxController {
       log("response.body.....    ${value}");
       save.value = value;
       if (value.status == true) {
-        saveList2(context);
-        statusOfSave.value = RxStatus.success();
-      } else {
-        statusOfSave.value = RxStatus.error();
-      }
-    }
-            // showToast(value.message.toString());
-            );
-  }
-
-  saveList2(context) {
-    saveTransastionRepo(
-            user_id: userId,
-            amount: amountController.text.trim(),
-            about: noteController.text.trim(),
-            send_type: "ziptozip",
-            // complete_response: purchaseData.value.data!.toJson(),
-            context: context,
-            description: noteController.text.trim(),
-            type: "dr")
-        .then((value) {
-      log("response.body.....    ${value}");
-      save.value = value;
-      if (value.status == true) {
-        print(userId);
+        // saveList2(context);
         Get.toNamed(MyRouters.bottomNavbar);
         statusOfSave.value = RxStatus.success();
       } else {
@@ -233,6 +231,31 @@ class ProfileController extends GetxController {
             // showToast(value.message.toString());
             );
   }
+
+   saveList2(context) {
+     saveTransastionRepo(
+             user_id: userId,
+             amount: amountController.text.trim(),
+             about: noteController.text.trim(),
+             send_type: "ziptozip",
+             // complete_response: purchaseData.value.data!.toJson(),
+             context: context,
+             description: noteController.text.trim(),
+             type: "dr")
+         .then((value) {
+       log("response.body.....    ${value}");
+       save.value = value;
+       if (value.status == true) {
+         print(userId);
+         Get.toNamed(MyRouters.bottomNavbar);
+         statusOfSave.value = RxStatus.success();
+       } else {
+         statusOfSave.value = RxStatus.error();
+       }
+     }
+             // showToast(value.message.toString());
+             );
+   }
 
 
   Rx<CurrentBalanceModel> currentBalanceModel = CurrentBalanceModel().obs;

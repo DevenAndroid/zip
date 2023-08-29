@@ -13,6 +13,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:zip/controller/profile_controller.dart';
 
 import '../models/create_virtual_account_model.dart';
 import '../models/fetchVirtualAccount_model.dart';
@@ -22,11 +23,13 @@ import '../models/model_create_card_holder.dart';
 import '../models/model_update_address.dart';
 import '../models/model_update_user.dart';
 import '../models/model_verif_account.dart';
+import '../models/save_transastion_model.dart';
 import '../models/verify_africa.dart';
 import '../repository/create_card_holder_repo.dart';
 import '../repository/create_card_repo.dart';
 import '../repository/fetch_account_repo.dart';
 import '../repository/model_checkout_repo.dart';
+import '../repository/save_buy_plan_repo.dart';
 import '../repository/update_address_repo.dart';
 import '../repository/user_update_repo.dart';
 import '../repository/verify_account_reop.dart';
@@ -45,6 +48,20 @@ class registerController extends GetxController {
   final provider = TextEditingController();
   final idController = TextEditingController();
   final idController1 = TextEditingController();
+
+
+  TextEditingController amount1Controller = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+  TextEditingController sourceCurrencyController = TextEditingController();
+  TextEditingController destinationCurrencyController = TextEditingController();
+  TextEditingController accountNoController = TextEditingController();
+
+
+
+
+  TextEditingController phoneController1 = TextEditingController();
+  TextEditingController amountController1 = TextEditingController();
+
 
   TextEditingController streetController = TextEditingController();
   TextEditingController houseNoController = TextEditingController();
@@ -352,7 +369,32 @@ class registerController extends GetxController {
   Rx<RxStatus> statusOfCheckout = RxStatus.empty().obs;
   RxString link1 = "".obs;
   RxString code = "".obs;
-
+  Rx<RxStatus> statusOfSave= RxStatus.empty().obs;
+  Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
+  final profileController = Get.put(ProfileController());
+  Future saveList(context)async {
+    print( profileController.modal.value.data!.user!.id.toString(),);
+    await saveTransastionRepo(
+        user_id: profileController.modal.value.data!.user!.id.toString(),
+        amount:amountController.text.trim(),
+        about: "Payment Link",
+        // complete_response: purchaseData.value.data!.toJson(),
+        context: context,
+        description:"Add money",
+        type: "cr"
+    ).then((value) {
+      log("response.body.....    ${value}");
+      save.value = value;
+      if (value.status == true) {
+        statusOfSave.value = RxStatus.success();
+        cashCheckout(context);
+      } else {
+        statusOfSave.value = RxStatus.error();
+      }
+    }
+      // showToast(value.message.toString());
+    );
+  }
   Future cashCheckout(context) async {
     await checkoutRepo(
             currency: fetchAccount.value.data!.currency.toString(),

@@ -140,7 +140,7 @@ class _OtpScreenState extends State<OtpScreen> {
                         backgroundColor: Colors.white,
                         textColor: AppTheme.buttonColor,
                         onPressed: () {
-                          Get.toNamed(MyRouters.otpScreen);
+                          // Get.toNamed(MyRouters.otpScreen);
                         },
                       ),
                     )

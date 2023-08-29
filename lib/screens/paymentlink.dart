@@ -114,7 +114,7 @@ class _VerifyPaymentLinkState extends State<VerifyPaymentLink> {
       InkWell(
           onTap: (){
 
-            register.cashCheckout(context);
+            register.saveList(context);
             // Get.toNamed(MyRouters.paymentLink);
             // emailLogin();
             //

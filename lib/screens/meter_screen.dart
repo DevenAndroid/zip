@@ -7,6 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
@@ -39,7 +40,8 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
   final profileController = Get.put(ProfileController());
   Rx<RxStatus> statusOfSave= RxStatus.empty().obs;
   Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
-
+  final controller = Get.put(registerController());
+  final payOutcontroller = Get.put(PayoutController());
   saveList() {
     saveTransastionRepo(
         user_id: profileController.modal.value.data!.user!.id.toString(),
@@ -69,25 +71,32 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
   Rx<RxStatus> statusOfBuyEnergy = RxStatus.empty().obs;
 
 
-  Future verifyMeterData() async {
-    await verifyMeterRepo(
-      meter_number: controller.meterNo.text.toString(),
-      provider: controller.provider.text.trim()
-      )
-        .then((value) {
-      verifyMeter.value = value;
-      if (value.success == true) {
-        buyEnergy();
-        // payOutcontroller.accountName.text = (value.data!.accountName??"").toString();
-        statusOfResolve.value = RxStatus.success();
+   verifyMeterData()  async {
+     SharedPreferences pref = await SharedPreferences.getInstance();
+     var uniqueIdentifier = pref.getString("uniqueIdentifier");
+     if (pref.getBool('TransistionPin') == true) {
+       Get.toNamed(MyRouters.purchaseRechargePin);
+     }
+     else {
+       verifyMeterRepo(
+           meter_number: controller.meterNo.text.toString(),
+           provider: controller.provider.text.trim()
+       )
+           .then((value) {
+         verifyMeter.value = value;
+         if (value.success == true) {
+           buyEnergy();
+           // payOutcontroller.accountName.text = (value.data!.accountName??"").toString();
+           statusOfResolve.value = RxStatus.success();
 
-        showToast(value.message.toString());
-      } else {
-        showToast(value.message.toString());
-      }
-    }
-      // showToast(value.message.toString());
-    );
+           showToast(value.message.toString());
+         } else {
+           showToast(value.message.toString());
+         }
+       }
+         // showToast(value.message.toString());
+       );
+     }
   }
   Future buyEnergy() async {
     await BuyEnergyPlanRepo(
@@ -114,8 +123,7 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
   }
 
   // final TextEditingController bankController = TextEditingController();
-  final controller = Get.put(registerController());
-  final payOutcontroller = Get.put(PayoutController());
+
 
   @override
   void initState() {

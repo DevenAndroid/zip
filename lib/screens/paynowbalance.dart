@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
@@ -30,19 +31,20 @@ class PayNowBalance extends StatefulWidget {
 
 class _PayNowBalanceState extends State<PayNowBalance> {
   final RegistorController = Get.put(registerController());
-  TextEditingController amountController = TextEditingController();
-  TextEditingController descriptionController = TextEditingController();
-  TextEditingController sourceCurrencyController = TextEditingController();
-  TextEditingController destinationCurrencyController = TextEditingController();
-  TextEditingController accountNoController = TextEditingController();
+
   Rx<RxStatus> statusOfpayout = RxStatus.empty().obs;
   Rx<ModelPayout> payout = ModelPayout().obs;
   final formKey4 = GlobalKey<FormState>();
   Future CreatePayout() async {
     if (formKey4.currentState!.validate()) {
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      if (pref.getBool('TransistionPin') == true) {
+        Get.toNamed(MyRouters.beneficeryPin);
+      }
+    else{
 
       payoutRepo(
-          amount:amountController.text.trim() ,
+          amount:RegistorController.amount1Controller.text.trim() ,
           context: context,
           accountHolderName:data.accountHolderName.toString() ,
           accountNumber:data.destinationAddress.toString(),
@@ -50,7 +52,7 @@ class _PayNowBalanceState extends State<PayNowBalance> {
 // destinationCurrencyController.text.trim() ,
           sourceCurrency: "NGN",
           // sourceCurrencyController.text.trim(),
-          description: descriptionController.text.trim(),
+          description: RegistorController.descriptionController.text.trim(),
           // email:data.email.toString(),
           firstName:data.firstName.toString() ,
           // lastName:data.lastName.toString() ,
@@ -72,7 +74,7 @@ class _PayNowBalanceState extends State<PayNowBalance> {
         }
         // showToast(value.message.toString());
       });
-    }
+    }}
   }
 
 
@@ -92,13 +94,13 @@ class _PayNowBalanceState extends State<PayNowBalance> {
   saveList() {
     saveTransastionRepo(
         user_id: profileController.modal.value.data!.user!.id.toString(),
-        amount:amountController.text.trim() ,
+        amount:RegistorController.amount1Controller.text.trim() ,
         about: "Send Cash",
         send_type: "otherusers ",
         beneficiary_id: data.id.toString(),
         // complete_response: purchaseData.value.data!.toJson(),
         context: context,
-        description:descriptionController.text.trim(),
+        description:RegistorController.descriptionController.text.trim(),
         type: "dr"
     ).then((value) {
       log("response.body.....    ${value}");
@@ -153,6 +155,8 @@ class _PayNowBalanceState extends State<PayNowBalance> {
             children: [
               Center(
                 child:  Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Image.network("https://cdn-icons-png.flaticon.com/512/32/32974.png",color: Colors.black,width: 15,height: 15,),
 
@@ -235,7 +239,7 @@ class _PayNowBalanceState extends State<PayNowBalance> {
                     return "Please enter amount less than balance ";
                   }
                 },
-                controller: amountController,
+                controller: RegistorController.amount1Controller,
                 obSecure: false,
                 hintText: "Enter  Amount",
 
@@ -258,7 +262,7 @@ class _PayNowBalanceState extends State<PayNowBalance> {
                 padding: const EdgeInsets.only(left: 6,right: 6),
                 child: CommonTextfield(
                   readOnly: true,
-                  controller: accountNoController,
+                  controller: RegistorController.accountNoController,
                   obSecure: false,
                   hintText: data.destinationAddress,
 
@@ -288,7 +292,7 @@ class _PayNowBalanceState extends State<PayNowBalance> {
                     RequiredValidator(
                         errorText: 'Please enter your description '),
                   ]),
-                  controller: descriptionController,
+                  controller: RegistorController.descriptionController,
                   obSecure: false,
                   hintText: "write a note",
 

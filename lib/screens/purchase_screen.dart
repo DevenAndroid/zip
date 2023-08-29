@@ -77,7 +77,7 @@ user_id: profileController.modal.value.data!.user!.id.toString(),
     BuyPlanRepo(
         telco: initStateBlank,
       amount: initStateBlank1,
-      phone_no:phoneController.text.trim(),
+      phone_no:registorController.phoneController1.text.trim(),
       reference:  registorController.fetchAccount.value.data!.accountNumber.toString()+"_"+DateTime.now().millisecondsSinceEpoch.toString(),
     ).then((value) {
       log("response.body.....    ${value}");

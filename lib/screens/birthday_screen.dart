@@ -11,6 +11,7 @@ import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
+import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
 
 class BirthdayScreen extends StatefulWidget {
@@ -25,7 +26,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
       mask: '####-##-##', filter: {"#": RegExp(r'[0-9]')});
   final registorController = Get.put(registerController());
   final formKeyBirthday = GlobalKey<FormState>();
-
+  final profileController = Get.put(ProfileController());
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -54,7 +55,10 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
             ),
           ),
         ),
-        body: SingleChildScrollView(
+        body: Obx(() {
+      return profileController.modal.value.status == true?
+
+      SingleChildScrollView(
             child: Form(
           key: formKeyBirthday,
           child: Padding(
@@ -68,7 +72,8 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                       child: Row(
                         children: [
                           Text(
-                            "Welcome to Zip Daniel ",
+                            "Welcome to"+'${profileController.modal.value.data!.user!.fname.toString()} ' +
+                                ' ${profileController.modal.value.data!.user!.lname.toString()}',
                             style: GoogleFonts.poppins(
                                 color: const Color(0xFF1D1D1D),
                                 fontSize: 22,
@@ -191,6 +196,9 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                       ),
                     )
                   ])),
-        )));
+        )) : const Center(
+        child: CircularProgressIndicator(),
+      );
+        }),);
   }
 }

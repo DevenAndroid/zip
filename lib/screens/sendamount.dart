@@ -8,15 +8,17 @@ import 'package:zip/routers/my_routers.dart';
 import '../controller/profile_controller.dart';
 import '../widgets/common_button.dart';
 
-class RequestAPaymentContiune2 extends StatefulWidget {
-  const RequestAPaymentContiune2({Key? key}) : super(key: key);
+class RequestPaymentContiune extends StatefulWidget {
+  const RequestPaymentContiune({Key? key}) : super(key: key);
 
   @override
-  State<RequestAPaymentContiune2> createState() => _RequestAPaymentContiune2State();
+  State<RequestPaymentContiune> createState() => _RequestPaymentContiuneState();
 }
 
-class _RequestAPaymentContiune2State extends State<RequestAPaymentContiune2> {
+class _RequestPaymentContiuneState extends State<RequestPaymentContiune> {
   final profileController = Get.put(ProfileController());
+
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -25,7 +27,7 @@ class _RequestAPaymentContiune2State extends State<RequestAPaymentContiune2> {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          "Request a payment",
+          "Send Money",
           style: GoogleFonts.poppins(
               color: const Color(0xFF1D1D1D),
               fontSize: 20,
@@ -46,14 +48,14 @@ class _RequestAPaymentContiune2State extends State<RequestAPaymentContiune2> {
           SizedBox(height: 25,),
 
           Text(
-            "You requested \$ ${profileController.amountController.text.trim()}",
+            "Send Money \$ "+profileController.amountController.text.trim(),
             style: GoogleFonts.poppins(
                 color: const Color(0xFF1D1D1D),
                 fontSize: 18,
                 fontWeight: FontWeight.w500),
           ),
           Text(
-            "From  ${profileController.modal.value.data!.user!.fname.toString()}  ${profileController.modal.value.data!.user!.lname.toString()}",
+            "From"+  "  ${profileController.modal.value.data!.user!.fname.toString()} "+" ${profileController.modal.value.data!.user!.lname.toString()}",
             style: GoogleFonts.poppins(
                 color: const Color(0xFF1D1D1D),
                 fontSize: 16,
@@ -64,13 +66,17 @@ class _RequestAPaymentContiune2State extends State<RequestAPaymentContiune2> {
           ),
           InkWell(
             onTap: () async {
-
               SharedPreferences pref = await SharedPreferences.getInstance();
               if (pref.getBool('TransistionPin') == true) {
-                Get.toNamed(MyRouters.securityOtpScreen1);
+                Get.toNamed(MyRouters.sendMoneyPin);
+              }
+              else{
+                Get.toNamed(MyRouters.sendSuccessScreen);
               }
             },
-            child: const CustomOutlineButton(
+
+
+            child: CustomOutlineButton(
               title: "Continue",
             ),
           ),

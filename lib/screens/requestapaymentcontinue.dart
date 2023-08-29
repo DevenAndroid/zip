@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/routers/my_routers.dart';
 
 import '../controller/profile_controller.dart';
@@ -16,6 +17,8 @@ class RequestAPaymentContiune extends StatefulWidget {
 
 class _RequestAPaymentContiuneState extends State<RequestAPaymentContiune> {
   final profileController = Get.put(ProfileController());
+
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -62,9 +65,17 @@ class _RequestAPaymentContiuneState extends State<RequestAPaymentContiune> {
             height: size.height * .5,
           ),
           InkWell(
-            onTap: () {
-Get.toNamed(MyRouters.successScreen);
-            },
+            onTap: () async {
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      if (pref.getBool('TransistionPin') == true) {
+        Get.toNamed(MyRouters.sendMoneyPin);
+      }
+      else{
+        Get.toNamed(MyRouters.successScreen);
+      }
+    },
+
+
             child: CustomOutlineButton(
               title: "Continue",
             ),
