@@ -48,15 +48,15 @@ class _MyCardState extends State<MyCard> {
               fontWeight: FontWeight.w500),
         ),
         centerTitle: true,
-        leading: InkWell(
-          onTap: (){
-            Get.back();
-          },
-          child: const Icon(
-            Icons.arrow_back_rounded,
-            color: AppTheme.primaryColor,
-          ),
-        ),
+        // leading: InkWell(
+        //   onTap: (){
+        //     Get.back();
+        //   },
+        //   child: const Icon(
+        //     Icons.arrow_back_rounded,
+        //     color: AppTheme.primaryColor,
+        //   ),
+        // ),
       ),
       body: RefreshIndicator(
         color: Colors.white,

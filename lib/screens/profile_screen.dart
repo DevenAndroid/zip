@@ -82,8 +82,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ],
       ),
       body: Obx(() {
-        return profileController.modal.value.status==true&& profileController.currentBalanceModel.value.status ==true?
-        SingleChildScrollView(
+        if (profileController.modal.value.status==true&& profileController.currentBalanceModel.value.status ==true) {
+          return SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -489,37 +489,42 @@ class _ProfileScreenState extends State<ProfileScreen> {
               //   color: Color(0x1A000000),
               // ),
               // const SizedBox(height: 12,),
-              Row(
-                children: [
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Connected Merchants",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      Text(
-                        "See current foreign exchange rates",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 11,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ],
-                  ),
-                  const Spacer(),
+              InkWell(
+                onTap: (){
+                  Get.toNamed(MyRouters.buyAirtimeList);
+                },
+                child: Row(
+                  children: [
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Connected Merchants",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        Text(
+                          "See current foreign exchange rates",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 11,
+                              fontWeight: FontWeight.w400),
+                        ),
+                      ],
+                    ),
+                    const Spacer(),
 
-                  const Icon(Icons.arrow_forward_ios, size: 15,),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                ],
+                    const Icon(Icons.arrow_forward_ios, size: 15,),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 12,),
 
@@ -693,7 +698,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               const SizedBox(height: 130,)
             ],
           ),
-        ): const Center(child: CircularProgressIndicator(),);
+        );
+        } else {
+          return const Center(child: CircularProgressIndicator(),);
+        }
       }),
     );
   }

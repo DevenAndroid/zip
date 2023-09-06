@@ -72,8 +72,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                       child: Row(
                         children: [
                           Text(
-                            "Welcome to"+'${profileController.modal.value.data!.user!.fname.toString()} ' +
-                                ' ${profileController.modal.value.data!.user!.lname.toString()}',
+                            "Welcome to Zip "+'${registorController.firstNameController.text.toString()} ',
                             style: GoogleFonts.poppins(
                                 color: const Color(0xFF1D1D1D),
                                 fontSize: 22,
@@ -83,7 +82,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                             'assets/images/Hand.svg',
                           ),
                           Text(
-                            " !",
+                            "",
                             style: GoogleFonts.poppins(
                                 color: const Color(0xFF1D1D1D),
                                 fontSize: 22,

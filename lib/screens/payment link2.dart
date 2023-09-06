@@ -21,6 +21,7 @@ class _VerifyPaymentLink2State extends State<VerifyPaymentLink2> {
   final register = Get.put(registerController());
   @override
   Widget build(BuildContext context) {
+    var size= MediaQuery.of(context).size;
     double doubleVar;
     return Scaffold(
         backgroundColor: Colors.white,
@@ -48,24 +49,38 @@ class _VerifyPaymentLink2State extends State<VerifyPaymentLink2> {
         body:  SingleChildScrollView(
             child: Padding(
                 padding: const EdgeInsets.all(18.0),
+
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
 
+                      Center(
+                        child: Stack(
+                          children: [
+                            Center(
+                              child: Container(
+                                padding: const EdgeInsets.all(2),
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.white,
+                                ),
+                                margin: EdgeInsets.only(
+                                    right: size.width * .01, left: size.width * .015),
+                                child: CircleAvatar(
+                                  radius: size.height * .07,
+                                  backgroundImage: const NetworkImage(
+                                      'https://www.pngitem.com/pimgs/m/128-1284293_marina-circle-girl-picture-in-circle-png-transparent.png'),
+                                ),
+                              ),
+                            ),
 
-                      Text('Please fund your account using a credit or debit card. ',
-                        style: GoogleFonts.poppins(
-                            color:  Colors.black,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600),),
-                      SizedBox(height: 10,),
-                      Text(' Click below and you will be taken to our payment processors website to complete your transaction and when you are done please return to the app.',
-                        style: GoogleFonts.poppins(
-                            color:  Colors.black,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500),),
+                          ],
+                        ),
+                      ),
                       SizedBox(height: 15,),
+
+
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: Text(
@@ -105,17 +120,49 @@ class _VerifyPaymentLink2State extends State<VerifyPaymentLink2> {
                           // ]),
                           controller: register.amountController,
                           obSecure: false, hintText: "enter amount "),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Text(
+                          "Description",
+                          style: GoogleFonts.poppins(
+                              color:  Colors.black,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                      const SizedBox(height: 10,),
+
+                      CommonTextfield(
+
+
+
+                          // validator: MultiValidator([
+                          //   RequiredValidator(
+                          //       errorText:
+                          //       'Please enter your amount '),
+                          //   MinLengthValidator(1,
+                          //       errorText:
+                          //       'Please enter amount'),
+                          //   MaxLengthValidator(11,
+                          //       errorText:
+                          //       'Please enter amount'),
+                          //   PatternValidator(
+                          //       r'(^(?:[+0]9)?[0-9]{10,12}$)',
+                          //       errorText: '')
+                          // ]),
+                          // controller: register.amountController,
+                          obSecure: false, hintText: "enter Description "),
 
 
 
 
-                      SizedBox(height:MediaQuery.of(context).size.height*.45,),
+                      SizedBox(height:MediaQuery.of(context).size.height*.3,),
 
                       InkWell(
                           onTap: (){
 
-                            register.cashCheckout1(context);
-                            // Get.toNamed(MyRouters.paymentLink);
+                            // register.cashCheckout1(context);
+                            Get.toNamed(MyRouters.addAPayer);
                             // emailLogin();
                             //
                           },

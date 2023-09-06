@@ -25,14 +25,14 @@ import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_textfield.dart';
 
-class PurchaseCabelScreen extends StatefulWidget {
-  const PurchaseCabelScreen({Key? key}) : super(key: key);
+class CabelScreen extends StatefulWidget {
+  const CabelScreen({Key? key}) : super(key: key);
 
   @override
-  State<PurchaseCabelScreen> createState() => _PurchaseCabelScreenState();
+  State<CabelScreen> createState() => _CabelScreenState();
 }
 
-class _PurchaseCabelScreenState extends State<PurchaseCabelScreen> {
+class _CabelScreenState extends State<CabelScreen> {
   final registorController = Get.put(registerController());
   final profileController = Get.put(ProfileController());
   @override
@@ -49,23 +49,24 @@ class _PurchaseCabelScreenState extends State<PurchaseCabelScreen> {
   var initStateBlank1 = Get.arguments[1];
   var initStateBlank2 = Get.arguments[2];
   var initStateBlank3 = Get.arguments[3];
+  var initStateBlank4 = Get.arguments[4];
+  var initStateBlank5 = Get.arguments[5];
   Rx<RxStatus> statusOfSave= RxStatus.empty().obs;
   Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
 
   saveList() {
     saveTransastionRepo(
-        user_id: profileController.modal.value.data!.user!.id.toString(),
-        amount:initStateBlank,
-        about: "Buy Cabel Tv",
-        // complete_response: purchaseData.value.data!.toJson(),
-        context: context,
-        description:profileController.description2Controller.text.trim(),
-        telcos: initStateBlank3,
-       data_code: initStateBlank2,
-        dataplan:initStateBlank1,
-        type: "dr",
-      phone: profileController.phone2Controller.text.trim(),
-      // send_type: "Buy Cabel Tv"
+      user_id: initStateBlank5,
+      amount:initStateBlank1,
+      about: "Buy Cabel Tv",
+      // complete_response: purchaseData.value.data!.toJson(),
+      context: context,
+      description:profileController.description2Controller.text.trim(),
+      telcos: initStateBlank,
+      data_code: initStateBlank3,
+      dataplan:initStateBlank2,
+      type: "dr",
+      phone: initStateBlank4,
     ).then((value) {
       log("response.body.....    ${value}");
       save.value = value;
@@ -84,12 +85,12 @@ class _PurchaseCabelScreenState extends State<PurchaseCabelScreen> {
     print(initStateBlank);
     print(initStateBlank1);
     BuyCabelRepo(
-     amount: initStateBlank,
-     month_paid_for:  initStateBlank1,
-     product_code:  initStateBlank2,
-      provider: initStateBlank3,
+      amount: initStateBlank1,
+      month_paid_for:  initStateBlank2,
+      product_code:  initStateBlank3,
+      provider: initStateBlank,
       context: context,
-      smartcard_number: profileController.phone2Controller.text.trim(),
+      smartcard_number: initStateBlank4,
 
 
       reference: profileController.description2Controller.text.trim(),
@@ -187,10 +188,10 @@ class _PurchaseCabelScreenState extends State<PurchaseCabelScreen> {
                       r'(^(?:[+0]9)?[0-9]{10,12}$)',
                       errorText: '')
                 ]),
-                controller: profileController.phone2Controller,
+
                 obSecure: false,
-                hintText: "123456789",
-                labelText: "Smart Card Number",
+                hintText: initStateBlank4,
+                // labelText: "",
               ),
             ),
             SizedBox(height: 20,),

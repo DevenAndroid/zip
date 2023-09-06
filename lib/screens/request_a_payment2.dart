@@ -25,7 +25,7 @@ class _RequestAPaymentContiune2State extends State<RequestAPaymentContiune2> {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          "Request a payment",
+          "Cash Out",
           style: GoogleFonts.poppins(
               color: const Color(0xFF1D1D1D),
               fontSize: 20,
@@ -33,48 +33,53 @@ class _RequestAPaymentContiune2State extends State<RequestAPaymentContiune2> {
         ),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          SizedBox(height: 48,),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(30),
-            child: Image.asset(
-              'assets/images/right.png',
-              height: 121,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: 48,),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(30),
+              child: Image.asset(
+                'assets/images/right.png',
+                height: 121,
+              ),
             ),
-          ),
-          SizedBox(height: 25,),
+            SizedBox(height: 25,),
 
-          Text(
-            "You requested \$ ${profileController.amountController.text.trim()}",
-            style: GoogleFonts.poppins(
-                color: const Color(0xFF1D1D1D),
-                fontSize: 18,
-                fontWeight: FontWeight.w500),
-          ),
-          Text(
-            "From  ${profileController.modal.value.data!.user!.fname.toString()}  ${profileController.modal.value.data!.user!.lname.toString()}",
-            style: GoogleFonts.poppins(
-                color: const Color(0xFF1D1D1D),
-                fontSize: 16,
-                fontWeight: FontWeight.w400),
-          ),
-          SizedBox(
-            height: size.height * .5,
-          ),
-          InkWell(
-            onTap: () async {
-
-              SharedPreferences pref = await SharedPreferences.getInstance();
-              if (pref.getBool('TransistionPin') == true) {
-                Get.toNamed(MyRouters.securityOtpScreen1);
-              }
-            },
-            child: const CustomOutlineButton(
-              title: "Continue",
+            Text(
+              "You requested \$ ${profileController.amountController.text.trim()}",
+              style: GoogleFonts.poppins(
+                  color: const Color(0xFF1D1D1D),
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500),
             ),
-          ),
-        ],
+            // Text(
+            //   "From  ${profileController.modal.value.data!.user!.fname.toString()}  ${profileController.modal.value.data!.user!.lname.toString()}",
+            //   style: GoogleFonts.poppins(
+            //       color: const Color(0xFF1D1D1D),
+            //       fontSize: 16,
+            //       fontWeight: FontWeight.w400),
+            // ),
+            SizedBox(
+              height: size.height * .4,
+            ),
+            InkWell(
+              onTap: () async {
+
+                SharedPreferences pref = await SharedPreferences.getInstance();
+                if (pref.getBool('TransistionPin') == true) {
+                  Get.toNamed(MyRouters.securityOtpScreen1);
+                }
+                else{
+                  Get.toNamed(MyRouters.success2Screen);
+                }
+              },
+              child: const CustomOutlineButton(
+                title: "Continue",
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

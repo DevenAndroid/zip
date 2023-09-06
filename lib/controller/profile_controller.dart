@@ -11,6 +11,7 @@ import '../models/model_create_card_holder.dart';
 import '../models/model_freeze_card.dart';
 import '../models/model_get_card.dart';
 import '../models/model_get_card_details.dart';
+import '../models/model_send_money.dart';
 import '../models/myprofile_model.dart';
 import '../models/save_card_model.dart';
 import '../models/save_transastion_model.dart';
@@ -23,6 +24,7 @@ import '../repository/get_current_balance.dart';
 import '../repository/myprofile_repo.dart';
 import '../repository/save_buy_plan_repo.dart';
 import '../repository/save_card_repo.dart';
+import '../repository/send_mail_repo.dart';
 import '../resourses/api_constant.dart';
 import '../routers/my_routers.dart';
 import 'number_controller.dart';
@@ -31,6 +33,15 @@ class ProfileController extends GetxController {
   final numbercontroller = Get.put(numberController());
   // final registorController = Get.put(registerController());
   String userId = "";
+
+  TextEditingController phone2Controller = TextEditingController();
+  TextEditingController description2Controller = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+  TextEditingController phone1Controller = TextEditingController();
+
+  TextEditingController ziptag1Controller = TextEditingController();
+  TextEditingController nameController = TextEditingController();
   TextEditingController fNameController = TextEditingController();
   TextEditingController airtimeController = TextEditingController();
   TextEditingController lNameController = TextEditingController();
@@ -103,7 +114,8 @@ class ProfileController extends GetxController {
       id_type: "NIGERIAN_BVN_VERIFICATION",
       state: "Abia",
       // numbercontroller.isNumber ? numbercontroller.number:numbercontroller.email,
-      bvn: bvnController.text.trim(),
+      bvn:bvnController.text.trim(),
+      // bvnController.text.trim(),
       // bvnController.text.trim(),
 
       first_name: modal.value.data!.user!.fname.toString(),
@@ -115,6 +127,7 @@ class ProfileController extends GetxController {
 
         statusOfCardHolder.value = RxStatus.success();
         log("anjalim");
+        log(cardId.toString());
         create();
         showToast(value.message.toString());
       } else {
@@ -129,7 +142,7 @@ class ProfileController extends GetxController {
   Future create() async {
     await createCardRepo(
             card_brand: "Visa",
-            card_currency: "NGN",
+            card_currency: "USD",
             card_type: "virtual",
             cardholder_id: cardHolder.value.data!.cardholderId.toString())
         .then((value) {
@@ -155,18 +168,73 @@ class ProfileController extends GetxController {
 
   //////PAyment
 
+  Rx<RxStatus> statusOfSave = RxStatus.empty().obs;
+  Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
+
+
+
   final TextEditingController amountController = TextEditingController();
   final TextEditingController amountController1 = TextEditingController();
   final TextEditingController noteController = TextEditingController();
 
-  Rx<RxStatus> statusOfSave = RxStatus.empty().obs;
-  Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
+
+  TextEditingController requestPhoneController = TextEditingController();
+  TextEditingController requestZiptag1Controller = TextEditingController();
+  TextEditingController requestemailController = TextEditingController();
+  TextEditingController requestNameController = TextEditingController();
+  TextEditingController zipUserController = TextEditingController();
+  Rx<RxStatus> statusOfSendMail = RxStatus.empty().obs;
+  Rx<ModelSendMail> sendMail = ModelSendMail().obs;
+
+  send() async {
+    sendMailRepo(
+        amount: amountController.text.trim(),
+zip_user_id: userId.toString(),
+        type: "request")
+        .then((value) {
+      log("response.body.....    ${value}");
+      sendMail.value = value;
+      if (value.status == true) {
+        Get.offAllNamed(MyRouters.bottomNavbar);
+        statusOfSendMail.value = RxStatus.success();
+        showToast(value.message.toString());
+      } else {
+        statusOfSendMail.value = RxStatus.error();
+        showToast(value.message.toString());
+      }
+    }
+      // showToast(value.message.toString());
+    );
+  }
+  send1() async {
+    sendMailRepo(
+        amount: amountController.text.trim(),
+zip_user_id:userId.toString(),
+        type: "send")
+        .then((value) {
+      log("response.body.....    ${value}");
+      sendMail.value = value;
+      if (value.status == true) {
+        Get.offAllNamed(MyRouters.bottomNavbar);
+        statusOfSendMail.value = RxStatus.success();
+        showToast(value.message.toString());
+      } else {
+        statusOfSendMail.value = RxStatus.error();
+        showToast(value.message.toString());
+      }
+    }
+      // showToast(value.message.toString());
+    );
+  }
+
+
+
 
   saveList1(context) async {
     saveTransastionRepo(
         amount: amountController.text.trim(),
         about: noteController.text.trim(),
-        user_id: modal.value.data!.user!.id.toString(),
+        user_id:  modal.value.data!.user!.id.toString(),
         // complete_response: purchaseData.value.data!.toJson(),
         context: context,
         description: noteController.text.trim(),
@@ -175,10 +243,12 @@ class ProfileController extends GetxController {
       log("response.body.....    ${value}");
       save.value = value;
       if (value.status == true) {
-        Get.offAllNamed(MyRouters.bottomNavbar);
+        Get.toNamed(MyRouters.bottomNavbar);
         statusOfSave.value = RxStatus.success();
+        showToast(value.message.toString());
       } else {
         statusOfSave.value = RxStatus.error();
+        showToast(value.message.toString());
       }
     }
       // showToast(value.message.toString());
@@ -222,7 +292,7 @@ class ProfileController extends GetxController {
       save.value = value;
       if (value.status == true) {
         // saveList2(context);
-        Get.toNamed(MyRouters.bottomNavbar);
+       send();
         statusOfSave.value = RxStatus.success();
       } else {
         statusOfSave.value = RxStatus.error();
@@ -234,7 +304,7 @@ class ProfileController extends GetxController {
 
    saveList2(context) {
      saveTransastionRepo(
-             user_id: userId,
+             user_id: modal.value.data!.user!.id.toString(),
              amount: amountController.text.trim(),
              about: noteController.text.trim(),
              send_type: "ziptozip",
@@ -247,7 +317,7 @@ class ProfileController extends GetxController {
        save.value = value;
        if (value.status == true) {
          print(userId);
-         Get.toNamed(MyRouters.bottomNavbar);
+        send1();
          statusOfSave.value = RxStatus.success();
        } else {
          statusOfSave.value = RxStatus.error();
@@ -364,7 +434,7 @@ saveCardDetails() {
   Rx<RxStatus> statusOfCardfreeze = RxStatus.empty().obs;
 
   frozenCard() {
-    freezeCardRepo(card_id: cardId.value.toString()
+    freezeCardRepo(card_id:  card.value.data!.cardId.toString()
             // cardId.value
             // createCard.value.data!.cardId.toString()
             )

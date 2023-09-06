@@ -12,8 +12,9 @@ import '../models/model_data_paln.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
-Future<BuyCabelTvModel> BuyCabelRepo({  amount,smartcard_number,product_code,month_paid_for,provider,reference}) async {
-
+Future<BuyCabelTvModel> BuyCabelRepo({  amount,smartcard_number,product_code,month_paid_for,provider,reference,context}) async {
+  OverlayEntry loader = Helpers.overlayLoader(context);
+  Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
   map['amount'] = amount;
   map['smartcard_number'] = smartcard_number;
@@ -34,11 +35,11 @@ Future<BuyCabelTvModel> BuyCabelRepo({  amount,smartcard_number,product_code,mon
   print(map);
 
   if (response.statusCode == 200) {
-
+    Helpers.hideLoader(loader);
 
     return BuyCabelTvModel.fromJson(jsonDecode(response.body),);
   } else {
-
+    Helpers.hideLoader(loader);
 
     return BuyCabelTvModel(
         message: jsonDecode(response.body)["message"],success: false

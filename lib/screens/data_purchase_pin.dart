@@ -1,9 +1,11 @@
 
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,10 +19,14 @@ import 'package:zip/widgets/common_colour.dart';
 import '../controller/number_controller.dart';
 import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
+import '../models/model_buy_interNet.dart';
 import '../models/model_security_pin.dart';
 import '../models/model_setting.dart';
 import '../models/model_verify_africa.dart';
+import '../models/save_transastion_model.dart';
 import '../models/verify_africa.dart';
+import '../repository/buy_dataplan_repo.dart';
+import '../repository/save_buy_plan_repo.dart';
 import '../repository/security_pin_repo].dart';
 import '../repository/setting_repo.dart';
 import '../repository/verify_africa_b.dart';
@@ -29,17 +35,95 @@ import '../resourses/api_constant.dart';
 import '../controller/update_user.dart';
 
 
-class SendMoneyPin extends StatefulWidget {
-  const SendMoneyPin({Key? key}) : super(key: key);
+class DataPurchasePin extends StatefulWidget {
+  const DataPurchasePin({Key? key}) : super(key: key);
 
   @override
-  State<SendMoneyPin> createState() => _SendMoneyPinState();
+  State<DataPurchasePin> createState() => _DataPurchasePinState();
 }
 
-class _SendMoneyPinState extends State<SendMoneyPin> {
+class _DataPurchasePinState extends State<DataPurchasePin> {
   final profileController = Get.put(ProfileController());
 
   final formKeypin = GlobalKey<FormState>();
+  var initStateBlank = Get.arguments[0];
+  var initStateBlank1 = Get.arguments[1];
+  var initStateBlank2 = Get.arguments[2];
+  var initStateBlank3 = Get.arguments[3];
+
+
+  final registorController = Get.put(registerController());
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+      registorController.fetchVritualAccount();});
+  }
+  Rx<RxStatus> statusOfProviders= RxStatus.empty().obs;
+
+  Rx<ModelBuyInternet> purchaseInternet = ModelBuyInternet().obs;
+
+
+  Rx<RxStatus> statusOfSave= RxStatus.empty().obs;
+  Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
+
+  saveList() {
+    saveTransastionRepo(
+        user_id: profileController.modal.value.data!.user!.id.toString(),
+        amount:initStateBlank1,
+        about: "Buy Internet",
+        // complete_response: purchaseData.value.data!.toJson(),
+        context: context,
+        description:profileController.descriptionController.text.trim(),
+        type: "dr",
+        data_code: initStateBlank3.toString(),
+        telcos: initStateBlank.toString(),
+        phone: profileController.phoneController.text.trim(),
+        dataplan: initStateBlank2.toString()
+    ).then((value) {
+      log("response.body.....    ${value}");
+      save.value = value;
+      if (value.status == true) {
+        statusOfSave.value = RxStatus.success();
+        Get.toNamed(MyRouters.successRechargeScreen);
+
+      } else {
+        statusOfSave.value = RxStatus.error();
+      }
+    }
+      // showToast(value.message.toString());
+    );
+  }
+  getInterNet() {
+    print(initStateBlank);
+    print(initStateBlank1);
+    print(initStateBlank2);
+    print(initStateBlank3);
+
+    BuyDataPlanRepo(
+      telco: initStateBlank,
+      amount: initStateBlank1,
+      phone_no:profileController.phoneController.text.trim(),
+      data_code:  initStateBlank3,
+      context: context
+    ).then((value) {
+      log("response.body.....    ${value}");
+      purchaseInternet.value = value;
+      if (value.success == true) {
+        saveList();
+        statusOfProviders.value = RxStatus.success();
+        showToast(value.message.toString());
+        // print(  registorController.fetchAccount.value.data!.accountNumber.toString()+DateTime.now().millisecondsSinceEpoch.toString(),);
+      } else {
+        statusOfProviders.value = RxStatus.error();
+        showToast(value.message.toString());
+      }
+    }
+      // showToast(value.message.toString());
+    );
+  }
 
   TextEditingController otpcontroller = TextEditingController();
 
@@ -56,7 +140,8 @@ class _SendMoneyPinState extends State<SendMoneyPin> {
       modelVerifySecurity.value = value;
       if (value.status == true) {
 
-        Get.toNamed(MyRouters.sendSuccessScreen);
+
+        getInterNet();
         statusOfSucess.value = RxStatus.success();
         showToast(value.message.toString());
       } else {
@@ -85,15 +170,7 @@ class _SendMoneyPinState extends State<SendMoneyPin> {
 
 
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    // getCheckValue(
-    //
-    // );
 
-  }
 
   @override
   Widget build(BuildContext context) {

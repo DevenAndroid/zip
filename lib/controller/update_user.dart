@@ -97,6 +97,11 @@ class registerController extends GetxController {
     });
   }
 
+  TextEditingController AddmobileController = TextEditingController();
+  TextEditingController AddNameController = TextEditingController();
+  TextEditingController AddEmailController = TextEditingController();
+
+
   TextEditingController dateOfBirthController = TextEditingController();
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();

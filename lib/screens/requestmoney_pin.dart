@@ -29,14 +29,14 @@ import '../resourses/api_constant.dart';
 import '../controller/update_user.dart';
 
 
-class SendMoneyPin extends StatefulWidget {
-  const SendMoneyPin({Key? key}) : super(key: key);
+class RequestMoneyPin extends StatefulWidget {
+  const RequestMoneyPin({Key? key}) : super(key: key);
 
   @override
-  State<SendMoneyPin> createState() => _SendMoneyPinState();
+  State<RequestMoneyPin> createState() => _RequestMoneyPinState();
 }
 
-class _SendMoneyPinState extends State<SendMoneyPin> {
+class _RequestMoneyPinState extends State<RequestMoneyPin> {
   final profileController = Get.put(ProfileController());
 
   final formKeypin = GlobalKey<FormState>();
@@ -56,7 +56,7 @@ class _SendMoneyPinState extends State<SendMoneyPin> {
       modelVerifySecurity.value = value;
       if (value.status == true) {
 
-        Get.toNamed(MyRouters.sendSuccessScreen);
+        Get.toNamed(MyRouters.successScreen);
         statusOfSucess.value = RxStatus.success();
         showToast(value.message.toString());
       } else {

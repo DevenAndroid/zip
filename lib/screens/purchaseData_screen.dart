@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
@@ -42,13 +43,13 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
       registorController.fetchVritualAccount();});
   }
   Rx<RxStatus> statusOfProviders= RxStatus.empty().obs;
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController descriptionController = TextEditingController();
+
   Rx<ModelBuyInternet> purchaseInternet = ModelBuyInternet().obs;
   var initStateBlank = Get.arguments[0];
   var initStateBlank1 = Get.arguments[1];
   var initStateBlank2 = Get.arguments[2];
   var initStateBlank3 = Get.arguments[3];
+
   Rx<RxStatus> statusOfSave= RxStatus.empty().obs;
   Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
 
@@ -59,8 +60,12 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
         about: "Buy Internet",
         // complete_response: purchaseData.value.data!.toJson(),
         context: context,
-        description:descriptionController.text.trim(),
-        type: "dr"
+        description:profileController.descriptionController.text.trim(),
+        type: "dr",
+      data_code: initStateBlank3.toString(),
+      telcos: initStateBlank.toString(),
+      phone: profileController.phoneController.text.trim(),
+      dataplan: initStateBlank2.toString()
     ).then((value) {
       log("response.body.....    ${value}");
       save.value = value;
@@ -78,12 +83,15 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
   getInterNet() {
     print(initStateBlank);
     print(initStateBlank1);
+    print(initStateBlank2);
     print(initStateBlank3);
+
     BuyDataPlanRepo(
       telco: initStateBlank,
       amount: initStateBlank1,
-      phone_no:phoneController.text.trim(),
+      phone_no:profileController.phoneController.text.trim(),
       data_code:  initStateBlank3,
+      context: context
     ).then((value) {
       log("response.body.....    ${value}");
       purchaseInternet.value = value;
@@ -158,7 +166,7 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
                 const TextInputType.numberWithOptions(
                     decimal: true),
                 inputFormatters: [
-                  LengthLimitingTextInputFormatter(12),
+                  LengthLimitingTextInputFormatter(11),
                   FilteringTextInputFormatter.allow(
                       RegExp('[0-9]+')),
                 ],
@@ -171,14 +179,14 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
                   MinLengthValidator(11,
                       errorText:
                       'Please enter minumum  11 digit number'),
-                  MaxLengthValidator(12,
+                  MaxLengthValidator(11,
                       errorText:
-                      'Please enter 12 digit number'),
+                      'Please enter 11 digit number'),
                   PatternValidator(
                       r'(^(?:[+0]9)?[0-9]{10,12}$)',
                       errorText: '')
                 ]),
-                controller: phoneController,
+                controller: profileController.phoneController,
                 obSecure: false,
                 hintText: "123456789",
                 labelText: "Phone Number",
@@ -202,7 +210,7 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
             Padding(
               padding: const EdgeInsets.only(left: 6, right: 6),
               child: CommonTextfield(
-                controller: descriptionController,
+                controller: profileController.descriptionController,
                 obSecure: false,
                 hintText: "Recharge",
                 labelText: "Description",
@@ -213,9 +221,16 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
               height: size.height * .5,
             ),
             InkWell(
-              onTap: () {
-                getInterNet();
+              onTap: () async {
+                SharedPreferences pref = await SharedPreferences.getInstance();
+                if (pref.getBool('TransistionPin') == true) {
+                  Get.toNamed(MyRouters.dataPurchasePin,arguments: [initStateBlank,initStateBlank1,initStateBlank2,initStateBlank3]);
+                }
+                else{
+                  getInterNet();
+                }
               },
+
               child: const CustomOutlineButton(
                 title: "Continue",
               ),

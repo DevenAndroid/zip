@@ -63,9 +63,17 @@ import '../screens/add_payment_method.dart';
 import '../screens/addfundsinbank.dart';
 import '../screens/bank_details.dart';
 import '../screens/beneficery_pin.dart';
+import '../screens/buy_airtime_list.dart';
+import '../screens/buy_airtime_screen.dart';
+import '../screens/buy_cabel_tv_list.dart';
 import '../screens/buy_cabel_tv_screen.dart';
+import '../screens/buy_data.dart';
 import '../screens/buy_data_screen.dart';
+import '../screens/buy_electricity.dart';
+import '../screens/buy_electricity_list.dart';
 import '../screens/buyairtime1.dart';
+import '../screens/cabelTv_pin.dart';
+import '../screens/cabel_tv.dart';
 import '../screens/cabel_tv_screen.dart';
 import '../screens/card_details_screen.dart';
 import '../screens/choose_bank_2.dart';
@@ -73,7 +81,9 @@ import '../screens/contact_us_screen.dart';
 import '../screens/create_account.dart';
 import '../screens/create_benificery_screen.dart';
 import '../screens/currenty.dart';
+import '../screens/data_list_screen.dart';
 import '../screens/data_plan_scree.dart';
+import '../screens/data_purchase_pin.dart';
 import '../screens/eligible_screen.dart';
 import '../screens/email_login.dart';
 
@@ -107,6 +117,8 @@ import '../screens/request_a_payment2.dart';
 import '../screens/request_money_1.dart';
 import '../screens/request_money_2.dart';
 import '../screens/request_payment_4.dart';
+import '../screens/request_payment_link.dart';
+import '../screens/requestmoney_pin.dart';
 import '../screens/security_otp.dart';
 import '../screens/security_otp1.dart';
 import '../screens/sendMoney.dart';
@@ -118,6 +130,7 @@ import '../screens/sent_transistion.dart';
 import '../screens/sucess2.dart';
 import '../screens/sucess_recharge_pin.dart';
 import '../screens/sucess_rechsarge.dart';
+import '../screens/sucess_request_screen.dart';
 import '../screens/supportscreen.dart';
 import '../screens/teslos_screen.dart';
 import '../screens/transastion_screen.dart';
@@ -250,7 +263,20 @@ class MyRouters{
   static var beneficeryPin = "/beneficeryPin";
   static var sendSuccessScreen = "/sendSuccessScreen";
   static var requestPaymentContiune = "/requestPaymentContiune";
+  static var requestMoneyPin = "/requestMoneyPin";
   static var sendYourBalanceScreen = "/sendYourBalanceScreen";
+  static var buyDataList = "/buyDataList";
+  static var buyElectricityList = "/buyElectricityList";
+  static var buyAirtimeList = "/buyAirtimeList";
+  static var buyAirtimeScreen = "/buyAirtimeScreen";
+  static var buyData = "/buyData";
+  static var buyElectricity = "/buyElectricity";
+  static var requestPaymentLink = "/requestPaymentLink";
+  static var cabelTvPin = "/cabelTvPin";
+  static var dataPurchasePin = "/dataPurchasePin";
+  static var successRequestScreen = "/successRequestScreen";
+  static var buyCabelTvList = "/buyCabelTvList";
+  static var cabelScreen = "/cabelScreen";
 
 
 
@@ -261,7 +287,19 @@ class MyRouters{
 
 
     GetPage(name: '/onBoardingScreen', page: () =>   const OnBoardingScreen()),
+    GetPage(name: '/cabelScreen', page: () =>   const CabelScreen()),
+    GetPage(name: '/buyCabelTvList', page: () =>   const BuyCabelTvList()),
+    GetPage(name: '/dataPurchasePin', page: () =>   const DataPurchasePin()),
+    GetPage(name: '/requestMoneyPin', page: () =>   const RequestMoneyPin()),
+    GetPage(name: '/requestPaymentLink', page: () =>   const RequestPaymentLink()),
+    GetPage(name: '/successRequestScreen', page: () =>   const SuccessRequestScreen()),
     GetPage(name: '/requestPaymentContiune', page: () =>   const RequestPaymentContiune()),
+    GetPage(name: '/buyElectricity', page: () =>   const BuyElectricity()),
+    GetPage(name: '/buyDataList', page: () =>   const BuyDataList()),
+    GetPage(name: '/buyElectricityList', page: () =>   const BuyElectricityList()),
+    GetPage(name: '/buyAirtimeList', page: () =>   const BuyAirtimeList()),
+    GetPage(name: '/buyAirtimeScreen', page: () =>   const BuyAirtimeScreen()),
+    GetPage(name: '/buyData', page: () =>   const BuyData()),
     GetPage(name: '/sendYourBalanceScreen', page: () =>   const SendYourBalanceScreen()),
     GetPage(name: '/securityOtpScreen1', page: () =>   const SecurityOtpScreen1()),
     GetPage(name: '/beneficeryPin', page: () =>   const BeneficeryPin()),
@@ -274,6 +312,7 @@ class MyRouters{
     GetPage(name: '/successRechargeScreen', page: () =>   const SuccessRechargeScreen()),
     GetPage(name: '/buyAirtimecreen', page: () =>   const BuyAirtimecreen()),
     GetPage(name: '/verifyPaymentLink2', page: () =>   const VerifyPaymentLink2()),
+    GetPage(name: '/cabelTvPin', page: () =>   const CabelTvPin()),
     GetPage(name: '/favouriteScreen', page: () =>   const FavouriteScreen()),
     GetPage(name: '/cardDetails', page: () =>   const CardDetails()),
     GetPage(name: '/exchangeMoney2', page: () =>   const ExchangeMoney2()),

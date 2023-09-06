@@ -6,14 +6,14 @@ import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_button.dart';
 
 import '../controller/profile_controller.dart';
-class SuccessScreen extends StatefulWidget {
-  const SuccessScreen({Key? key}) : super(key: key);
+class SuccessRequestScreen extends StatefulWidget {
+  const SuccessRequestScreen({Key? key}) : super(key: key);
 
   @override
-  State<SuccessScreen> createState() => _SuccessScreenState();
+  State<SuccessRequestScreen> createState() => _SuccessRequestScreenState();
 }
 
-class _SuccessScreenState extends State<SuccessScreen> {
+class _SuccessRequestScreenState extends State<SuccessRequestScreen> {
   final profileController = Get.put(ProfileController());
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class _SuccessScreenState extends State<SuccessScreen> {
                       Center(
                         child: Text(
 
-                          "Your cash out will be processed soon",
+                          "Your Request  is send  successful",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
                               fontSize: 14,
@@ -58,11 +58,10 @@ class _SuccessScreenState extends State<SuccessScreen> {
                       SizedBox(height: size.height*.5,),
                       InkWell(
                           onTap: (){
-                            profileController.send();
-                            // profileController.saveList(context);
+                            Get.offAllNamed(MyRouters.bottomNavbar);
 
                           },
-                          child: CustomOutlineButton(title: "Done",)),
+                          child: CustomOutlineButton(title: "Go To Home ",)),
                     ]
                 ))));
   }

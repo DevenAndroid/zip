@@ -28,17 +28,16 @@ class CreateRecipients extends StatefulWidget {
 class _CreateRecipientsState extends State<CreateRecipients> {
 
   Rx<RxStatus> statusOfSearch= RxStatus.empty().obs;
-  TextEditingController phone1Controller = TextEditingController();
+
   Rx<ModelSearchZip> searchZip = ModelSearchZip().obs;
-  TextEditingController ziptag1Controller = TextEditingController();
-  TextEditingController nameController = TextEditingController();
+
   final profileController = Get.put(ProfileController());
 
   getSearchList() {
 
     zipSearchRepo(
 
-      zip_tag: ziptag1Controller.text.trim()+"@zip",
+      zip_tag: profileController.ziptag1Controller.text.trim()+"@zip",
       context: context,
 
     ).then((value) {
@@ -47,10 +46,11 @@ class _CreateRecipientsState extends State<CreateRecipients> {
       if (value.status == true) {
         statusOfSearch.value = RxStatus.success();
         showToast(value.message.toString());
-        nameController.text = "${value.data!.fname.toString()} "+"${value.data!.lname.toString()}";
-        phone1Controller.text =( value.data!.phone??"").toString();
-        ziptag1Controller.text = (value.data!.zipTag??"").toString();
-        profileController.userId=searchZip.value.data!.id.toString();
+        profileController. nameController.text = "${value.data!.fname.toString()} "+"${value.data!.lname.toString()}";
+        profileController.phone1Controller.text =( value.data!.phone??"").toString();
+        profileController.ziptag1Controller.text = (value.data!.zipTag??"").toString();
+        profileController.zipUserController.text = (value.data!.id??"").toString();
+        profileController.userId=value.data!.id.toString();
 
         print(value.data!.email.toString());
       } else {
@@ -147,7 +147,7 @@ class _CreateRecipientsState extends State<CreateRecipients> {
                     child: Icon(Icons.arrow_forward)),
 
 
-                controller: ziptag1Controller,
+                controller: profileController.ziptag1Controller,
                 obSecure: false,
                 hintText: "Zip Tag ",
                 labelText: "Zip Tag ",
@@ -160,7 +160,7 @@ class _CreateRecipientsState extends State<CreateRecipients> {
               padding: const EdgeInsets.only(left: 6, right: 6),
               child: CommonTextfield(
                 readOnly: true,
-                controller: nameController,
+                controller: profileController.nameController,
                 obSecure: false,
                 hintText: "Piyush",
                 labelText: "Name",
@@ -173,7 +173,7 @@ class _CreateRecipientsState extends State<CreateRecipients> {
               padding: const EdgeInsets.only(left: 6, right: 6),
               child: CommonTextfield(
                 readOnly: true,
-                controller: phone1Controller,
+                controller: profileController.phone1Controller,
                 obSecure: false,
                 hintText: "695659606u69u06u",
                 labelText: "Phone",
@@ -185,16 +185,16 @@ class _CreateRecipientsState extends State<CreateRecipients> {
             InkWell(
                 onTap: (){
 
-                  nameController.text="";
-                  phone1Controller.text="";
-                  ziptag1Controller.text="";
+                  profileController.nameController.text="";
+                  profileController.phone1Controller.text="";
+                  profileController.ziptag1Controller.text="";
                 },
                 child: CustomOutlineBoder(title: "Clear")),
             SizedBox(height: 25,),
             InkWell(
               onTap: () {
 
-                Get.toNamed(MyRouters.yourBalanceScreen);
+                Get.toNamed(MyRouters.sendYourBalanceScreen);
               },
               child: const CustomOutlineButton(
                 title: "Continue",

@@ -28,17 +28,14 @@ class RequestMoney2 extends StatefulWidget {
 class _RequestMoney2State extends State<RequestMoney2> {
 
   Rx<RxStatus> statusOfSearch= RxStatus.empty().obs;
-  TextEditingController phone1Controller = TextEditingController();
-  Rx<ModelSearchZip> searchZip = ModelSearchZip().obs;
-  TextEditingController ziptag1Controller = TextEditingController();
-  TextEditingController nameController = TextEditingController();
-  final profileController = Get.put(ProfileController());
 
+  final profileController = Get.put(ProfileController());
+  Rx<ModelSearchZip> searchZip = ModelSearchZip().obs;
   getSearchList() {
 
     zipSearchRepo(
 
-      zip_tag: ziptag1Controller.text.trim()+"@zip",
+      zip_tag: profileController.requestZiptag1Controller.text.trim()+"@zip",
       context: context,
 
     ).then((value) {
@@ -47,10 +44,12 @@ class _RequestMoney2State extends State<RequestMoney2> {
       if (value.status == true) {
         statusOfSearch.value = RxStatus.success();
         showToast(value.message.toString());
-        nameController.text = "${value.data!.fname.toString()} "+"${value.data!.lname.toString()}";
-        phone1Controller.text =( value.data!.phone??"").toString();
-        ziptag1Controller.text = (value.data!.zipTag??"").toString();
-        profileController.userId=searchZip.value.data!.id.toString();
+        profileController.requestNameController.text = "${value.data!.fname.toString()} "+"${value.data!.lname.toString()}";
+        profileController.requestPhoneController.text =( value.data!.phone??"").toString();
+        profileController.requestZiptag1Controller.text = (value.data!.zipTag??"").toString();
+        profileController.requestemailController.text = (value.data!.email??"").toString();
+        // profileController.zipUserController.text = (value.data!.id??"").toString()
+        profileController.userId=value.data!.id.toString();
 
         print(value.data!.email.toString());
       } else {
@@ -147,7 +146,7 @@ class _RequestMoney2State extends State<RequestMoney2> {
                     child: Icon(Icons.arrow_forward)),
 
 
-                controller: ziptag1Controller,
+                controller: profileController.requestZiptag1Controller,
                 obSecure: false,
                 hintText: "Zip Tag ",
                 labelText: "Zip Tag ",
@@ -160,7 +159,7 @@ class _RequestMoney2State extends State<RequestMoney2> {
               padding: const EdgeInsets.only(left: 6, right: 6),
               child: CommonTextfield(
                 readOnly: true,
-                controller: nameController,
+                controller: profileController.requestNameController,
                 obSecure: false,
                 hintText: "Piyush",
                 labelText: "Name",
@@ -173,7 +172,7 @@ class _RequestMoney2State extends State<RequestMoney2> {
               padding: const EdgeInsets.only(left: 6, right: 6),
               child: CommonTextfield(
                 readOnly: true,
-                controller: phone1Controller,
+                controller: profileController.requestPhoneController,
                 obSecure: false,
                 hintText: "695659606u69u06u",
                 labelText: "Phone",
@@ -185,9 +184,9 @@ class _RequestMoney2State extends State<RequestMoney2> {
             InkWell(
                 onTap: (){
 
-                  nameController.text="";
-                  phone1Controller.text="";
-                  ziptag1Controller.text="";
+                  profileController.requestNameController.text="";
+                  profileController.requestPhoneController.text="";
+                  profileController.requestZiptag1Controller.text="";
                 },
                 child: CustomOutlineBoder(title: "Clear")),
             SizedBox(height: 25,),

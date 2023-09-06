@@ -11,8 +11,9 @@ import '../models/model_data_paln.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
-Future<ModelBuyInternet> BuyDataPlanRepo({  amount,phone_no,telco,data_code}) async {
-
+Future<ModelBuyInternet> BuyDataPlanRepo({  amount,phone_no,telco,data_code,context}) async {
+  OverlayEntry loader = Helpers.overlayLoader(context);
+  Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
   map['amount'] = amount;
   map['phone_no'] = phone_no;
@@ -32,11 +33,11 @@ Future<ModelBuyInternet> BuyDataPlanRepo({  amount,phone_no,telco,data_code}) as
 
   if (response.statusCode == 200) {
 
-
+    Helpers.hideLoader(loader);
     return ModelBuyInternet.fromJson(jsonDecode(response.body),);
   } else {
 
-
+    Helpers.hideLoader(loader);
     return ModelBuyInternet(
         message: jsonDecode(response.body)["message"],success: false
     );

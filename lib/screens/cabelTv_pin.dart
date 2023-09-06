@@ -1,9 +1,11 @@
 
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,10 +19,14 @@ import 'package:zip/widgets/common_colour.dart';
 import '../controller/number_controller.dart';
 import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
+import '../models/buy_cabel_model.dart';
 import '../models/model_security_pin.dart';
 import '../models/model_setting.dart';
 import '../models/model_verify_africa.dart';
+import '../models/save_transastion_model.dart';
 import '../models/verify_africa.dart';
+import '../repository/buy_cabel_repo.dart';
+import '../repository/save_buy_plan_repo.dart';
 import '../repository/security_pin_repo].dart';
 import '../repository/setting_repo.dart';
 import '../repository/verify_africa_b.dart';
@@ -29,14 +35,14 @@ import '../resourses/api_constant.dart';
 import '../controller/update_user.dart';
 
 
-class SendMoneyPin extends StatefulWidget {
-  const SendMoneyPin({Key? key}) : super(key: key);
+class CabelTvPin extends StatefulWidget {
+  const CabelTvPin({Key? key}) : super(key: key);
 
   @override
-  State<SendMoneyPin> createState() => _SendMoneyPinState();
+  State<CabelTvPin> createState() => _CabelTvPinState();
 }
 
-class _SendMoneyPinState extends State<SendMoneyPin> {
+class _CabelTvPinState extends State<CabelTvPin> {
   final profileController = Get.put(ProfileController());
 
   final formKeypin = GlobalKey<FormState>();
@@ -45,6 +51,80 @@ class _SendMoneyPinState extends State<SendMoneyPin> {
 
   Rx<ModelSecurityPin> modelVerifySecurity = ModelSecurityPin().obs;
   Rx<RxStatus> statusOfSucess= RxStatus.empty().obs;
+  final registorController = Get.put(registerController());
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+      registorController.fetchVritualAccount();});
+  }
+  Rx<RxStatus> statusOfProviders= RxStatus.empty().obs;
+
+  Rx<BuyCabelTvModel> buyCabelTv = BuyCabelTvModel().obs;
+  var initStateBlank = Get.arguments[0];
+  var initStateBlank1 = Get.arguments[1];
+  var initStateBlank2 = Get.arguments[2];
+  var initStateBlank3 = Get.arguments[3];
+  Rx<RxStatus> statusOfSave= RxStatus.empty().obs;
+  Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
+
+  saveList() {
+    saveTransastionRepo(
+        user_id: profileController.modal.value.data!.user!.id.toString(),
+        amount:initStateBlank,
+        about: "Buy Cabel Tv",
+        // complete_response: purchaseData.value.data!.toJson(),
+        context: context,
+        description:profileController.description2Controller.text.trim(),
+        type: "dr"
+    ).then((value) {
+      log("response.body.....    ${value}");
+      save.value = value;
+      if (value.status == true) {
+        statusOfSave.value = RxStatus.success();
+        Get.toNamed(MyRouters.successRechargeScreen);
+        showToast(value.message.toString());
+
+      } else {
+        statusOfSave.value = RxStatus.error();
+        showToast(value.message.toString());
+      }
+    }
+      // showToast(value.message.toString());
+    );
+  }
+  getProviderList() {
+    print(initStateBlank);
+    print(initStateBlank1);
+    BuyCabelRepo(
+      amount: initStateBlank,
+      context: context,
+      month_paid_for:  initStateBlank1,
+      product_code:  initStateBlank2,
+      provider: initStateBlank3,
+      smartcard_number: profileController.phone2Controller.text.trim(),
+
+
+      reference: profileController.description2Controller.text.trim(),
+    ).then((value) {
+      log("response.body.....    ${value}");
+      buyCabelTv.value = value;
+      if (value.success == true) {
+        saveList();
+        statusOfProviders.value = RxStatus.success();
+        showToast(value.message.toString());
+        // print(  registorController.fetchAccount.value.data!.accountNumber.toString()+DateTime.now().millisecondsSinceEpoch.toString(),);
+      } else {
+        statusOfProviders.value = RxStatus.error();
+        showToast(value.message.toString());
+      }
+    }
+      // showToast(value.message.toString());
+    );
+  }
+
 
   verify() {
     securityPinRepo(
@@ -56,7 +136,8 @@ class _SendMoneyPinState extends State<SendMoneyPin> {
       modelVerifySecurity.value = value;
       if (value.status == true) {
 
-        Get.toNamed(MyRouters.sendSuccessScreen);
+
+        getProviderList();
         statusOfSucess.value = RxStatus.success();
         showToast(value.message.toString());
       } else {
@@ -85,15 +166,6 @@ class _SendMoneyPinState extends State<SendMoneyPin> {
 
 
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    // getCheckValue(
-    //
-    // );
-
-  }
 
   @override
   Widget build(BuildContext context) {

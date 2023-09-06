@@ -100,7 +100,7 @@ class _SendYourBalanceScreenState extends State<SendYourBalanceScreen> {
                         ),
                         Center(
                           child: Text(
-                            "${profileController.modal.value.data!.user!.fname.toString()} "+" ${profileController.modal.value.data!.user!.lname.toString()}",
+                            "${profileController. nameController.text.toString()} ",
                             style: GoogleFonts.poppins(
                                 color: const Color(0xFF1D1D1D),
                                 fontSize: 20,
@@ -109,7 +109,7 @@ class _SendYourBalanceScreenState extends State<SendYourBalanceScreen> {
                         ),
                         Center(
                           child: Text(
-                            profileController.modal.value.data!.user!.zipTag.toString(),
+                            profileController. ziptag1Controller.text.toString(),
                             style: GoogleFonts.poppins(
                                 color: const Color(0xFF1D1D1D),
                                 fontSize: 16,

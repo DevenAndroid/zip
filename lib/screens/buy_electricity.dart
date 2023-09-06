@@ -27,14 +27,14 @@ import '../repository/buy_energy_repo.dart';
 import '../repository/save_buy_plan_repo.dart';
 import '../repository/verify_meter_repo.dart';
 
-class MeterVerifyScreen extends StatefulWidget {
-  const MeterVerifyScreen({Key? key}) : super(key: key);
+class BuyElectricity extends StatefulWidget {
+  const BuyElectricity({Key? key}) : super(key: key);
 
   @override
-  State<MeterVerifyScreen> createState() => _MeterVerifyScreenState();
+  State<BuyElectricity> createState() => _BuyElectricityState();
 }
 
-class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
+class _BuyElectricityState extends State<BuyElectricity> {
   bool isSwitched = false;
   final registorController = Get.put(registerController());
   final profileController = Get.put(ProfileController());
@@ -42,17 +42,24 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
   Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
   final controller = Get.put(registerController());
   final payOutcontroller = Get.put(PayoutController());
+  var initStateBlank = Get.arguments[0];
+  var initStateBlank1 = Get.arguments[1];
+  var initStateBlank2 = Get.arguments[2];
+  var initStateBlank3 = Get.arguments[3];
+  var initStateBlank4 = Get.arguments[4];
+
   saveList() {
     saveTransastionRepo(
-        user_id: profileController.modal.value.data!.user!.id.toString(),
-        amount:controller.amount.text.trim(),
+        user_id: initStateBlank,
+        amount:initStateBlank1,
         about: "Buy Electricity",
         // complete_response: purchaseData.value.data!.toJson(),
         context: context,
-        telcos: controller.provider.text.trim(),
-        description:controller.meterNo.text.toString(),
-        phone: controller.mobileNO.text.trim(),
-        type: "dr"
+        description:initStateBlank2,
+        type: "dr",
+      telcos: initStateBlank2,
+      phone: initStateBlank4,
+
     ).then((value) {
       log("response.body.....    ${value}");
       save.value = value;
@@ -73,41 +80,41 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
   Rx<RxStatus> statusOfBuyEnergy = RxStatus.empty().obs;
 
 
-   verifyMeterData()  async {
-     SharedPreferences pref = await SharedPreferences.getInstance();
-     var uniqueIdentifier = pref.getString("uniqueIdentifier");
-     if (pref.getBool('TransistionPin') == true) {
-       Get.toNamed(MyRouters.purchaseRechargePin);
-     }
-     else {
-       verifyMeterRepo(
-           meter_number: controller.meterNo.text.toString(),
-           provider: controller.provider.text.trim()
-       )
-           .then((value) {
-         verifyMeter.value = value;
-         if (value.success == true) {
-           buyEnergy();
-           // payOutcontroller.accountName.text = (value.data!.accountName??"").toString();
-           statusOfResolve.value = RxStatus.success();
+  verifyMeterData()  async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    var uniqueIdentifier = pref.getString("uniqueIdentifier");
+    if (pref.getBool('TransistionPin') == true) {
+      Get.toNamed(MyRouters.purchaseRechargePin);
+    }
+    else {
+      verifyMeterRepo(
+          meter_number:initStateBlank3,
+          provider: initStateBlank2,
+      )
+          .then((value) {
+        verifyMeter.value = value;
+        if (value.success == true) {
+          buyEnergy();
+          // payOutcontroller.accountName.text = (value.data!.accountName??"").toString();
+          statusOfResolve.value = RxStatus.success();
 
-           showToast(value.message.toString());
-         } else {
-           showToast(value.message.toString());
-         }
-       }
-         // showToast(value.message.toString());
-       );
-     }
+          showToast(value.message.toString());
+        } else {
+          showToast(value.message.toString());
+        }
+      }
+        // showToast(value.message.toString());
+      );
+    }
   }
   Future buyEnergy() async {
     await BuyEnergyPlanRepo(
-      meter_number: controller.meterNo.text.toString(),
-      provider: controller.provider.text.trim(),
-      amount: controller.amount.text.trim(),
-      phone_no: controller.mobileNO.text.trim(),
+      meter_number: initStateBlank3,
+      provider: initStateBlank2,
+      amount: initStateBlank1,
+      phone_no: initStateBlank4,
       context: context,
-      )
+    )
         .then((value) {
       Energy.value = value;
       if (value.success == true) {
@@ -218,15 +225,15 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
                         height: 20,
                       ),
                       CommonTextfield(
-                        onTap: () {
-                          Get.toNamed(MyRouters.billerScreen);
-                        },
-                        suffixIcon: Icon(Icons.keyboard_arrow_down),
-                        controller: controller.provider,
+                        // onTap: () {
+                        //   Get.toNamed(MyRouters.billerScreen);
+                        // },
+                        // suffixIcon: Icon(Icons.keyboard_arrow_down),
+
                         readOnly: true,
                         obSecure: false,
-                        hintText: "",
-                        labelText: "Select Provider",
+                        hintText:initStateBlank2,
+                        // labelText: "Select Provider",
                       ),
                       SizedBox(
                         height: 20,
@@ -256,11 +263,11 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
                               r'(^(?:[+0]9)?[0-9]{10,12}$)',
                               errorText: '')
                         ]),
-                        controller: controller.meterNo,
 
+readOnly: true,
                         obSecure: false,
-                        hintText: "",
-                        labelText: "Meter Number",
+                        hintText: initStateBlank3,
+                        // labelText: "Meter Number",
 
                       ),
                       SizedBox(
@@ -292,10 +299,10 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
                               errorText: '')
                         ]),
                         readOnly: false,
-                        controller: controller.mobileNO,
+                        // controller: controller.mobileNO,
                         obSecure: false,
                         hintText: "",
-                        labelText: "Mobile No",
+                        // labelText: "Mobile No",
                       ),
                       SizedBox(
                         height: 20,
@@ -315,7 +322,7 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
                         readOnly: false,
                         controller: controller.amount,
                         obSecure: false,
-                        hintText: "",
+                        hintText: initStateBlank4,
                         labelText: "Amount",
                       ),
                       SizedBox(

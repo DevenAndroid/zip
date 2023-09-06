@@ -44,6 +44,8 @@ class ApiUrls {
   static const String cabelProviders  = "https://billing-staging.bytestacks.io/api/v1/cable/providers";
   static const String userVerifyOtp = "${apiBaseUrl}verify-otp";
   static const String updateDetails = "${apiBaseUrl}update-details";
+  static const String requestmail = "${apiBaseUrl}request-money-mail";
+  static const String sendEmail = "${apiBaseUrl}send-email";
   static const String verifyAccount = "${apiBaseUrl}virtual-account";
   static const String saveTransaction = "${apiBaseUrl}save-transaction";
   static const String loginUser = "${apiBaseUrl}login";
@@ -54,6 +56,10 @@ class ApiUrls {
   static const String getBenificaryList = "${apiBaseUrl}get-beneficiary";
   static const String transactionList = "${apiBaseUrl}transaction-list";
   static const String transactionReceive = "${apiBaseUrl}transaction-receive";
+  static const String buyAirtimeList = "${apiBaseUrl}buy-airtime-list";
+  static const String buyDataList = "${apiBaseUrl}buy-data-list";
+  static const String buycabletvList = "${apiBaseUrl}buy-cabletv-list";
+  static const String buyElectricityList = "${apiBaseUrl}buy-electricity-list";
   static const String transactionSend = "${apiBaseUrl}transaction-send";
   static const String favouriteBeneficiary = "${apiBaseUrl}favourite-beneficiary";
   static const String currentBalance = "${apiBaseUrl}current-balance";

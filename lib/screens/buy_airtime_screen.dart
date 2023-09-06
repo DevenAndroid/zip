@@ -24,14 +24,14 @@ import '../widgets/common_colour.dart';
 import '../widgets/common_error_widget.dart';
 import '../widgets/common_textfield.dart';
 
-class TelcosScreen extends StatefulWidget {
-  const TelcosScreen({Key? key}) : super(key: key);
+class BuyAirtimeScreen extends StatefulWidget {
+  const BuyAirtimeScreen({Key? key}) : super(key: key);
 
   @override
-  State<TelcosScreen> createState() => _TelcosScreenState();
+  State<BuyAirtimeScreen> createState() => _BuyAirtimeScreenState();
 }
 
-class _TelcosScreenState extends State<TelcosScreen> {
+class _BuyAirtimeScreenState extends State<BuyAirtimeScreen> {
   final profileController = Get.put(ProfileController());
   final registorController = Get.put(registerController());
 
@@ -53,23 +53,24 @@ class _TelcosScreenState extends State<TelcosScreen> {
 
   Rx<RxStatus> statusOfSave = RxStatus.empty().obs;
   Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
-
+  var initStateBlank = Get.arguments[0];
+  var initStateBlank1 = Get.arguments[1];
+  var initStateBlank2 = Get.arguments[2];
+  var initStateBlank3 = Get.arguments[3];
   saveList() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var uniqueIdentifier = pref.getString("uniqueIdentifier");
     saveTransastionRepo(
-            user_id: profileController.modal.value.data!.user!.id.toString(),
-            amount: registorController.amountController1.text.trim(),
-            about: "Buy Airtime",
-            // complete_response: purchaseData.value.data!.toJson(),
-            context: context,
-            telcos: profileController.airtimeController.text.trim(),
-            phone: registorController.phoneController1.text.trim(),
-            description: registorController
-                    .fetchAccount.value.data!.accountNumber
-                    .toString() +
-                DateTime.now().millisecondsSinceEpoch.toString(),
-            type: "dr")
+        user_id: initStateBlank,
+        amount: initStateBlank1,
+        about: "Buy Airtime",
+        // complete_response: purchaseData.value.data!.toJson(),
+        context: context,
+        description: initStateBlank2,
+        telcos: initStateBlank2,
+        phone: initStateBlank3,
+
+        type: "dr")
         .then((value) {
       log("response.body.....    ${value}");
       save.value = value;
@@ -80,8 +81,8 @@ class _TelcosScreenState extends State<TelcosScreen> {
         statusOfSave.value = RxStatus.error();
       }
     }
-            // showToast(value.message.toString());
-            );
+      // showToast(value.message.toString());
+    );
   }
 
   getProviderList() async {
@@ -91,32 +92,32 @@ class _TelcosScreenState extends State<TelcosScreen> {
       Get.toNamed(MyRouters.sucessRechargePin);
     }
     else{
-    BuyPlanRepo(
-      telco: profileController.airtimeController.text.trim(),
-      amount: registorController.amountController1.text.trim(),
-      phone_no: registorController.phoneController1.text.trim(),
-      reference:
-          registorController.fetchAccount.value.data!.accountNumber.toString() +
-              DateTime.now().millisecondsSinceEpoch.toString(),
-    ).then((value) {
-      log("response.body.....    ${value}");
-      purchaseData.value = value;
-      if (value.success == true) {
-        saveList();
-        statusOfProviders.value = RxStatus.success();
-        showToast(value.message.toString());
-        print(
-          registorController.fetchAccount.value.data!.accountNumber.toString() +
-              DateTime.now().millisecondsSinceEpoch.toString(),
-        );
-      } else {
-        statusOfProviders.value = RxStatus.error();
-        showToast(value.message.toString());
+      BuyPlanRepo(
+        telco:initStateBlank2,
+        amount: initStateBlank1,
+        phone_no: initStateBlank3,
+        reference:
+        registorController.fetchAccount.value.data!.accountNumber.toString() +
+            DateTime.now().millisecondsSinceEpoch.toString(),
+      ).then((value) {
+        log("response.body.....    ${value}");
+        purchaseData.value = value;
+        if (value.success == true) {
+          saveList();
+          statusOfProviders.value = RxStatus.success();
+          showToast(value.message.toString());
+          print(
+            registorController.fetchAccount.value.data!.accountNumber.toString() +
+                DateTime.now().millisecondsSinceEpoch.toString(),
+          );
+        } else {
+          statusOfProviders.value = RxStatus.error();
+          showToast(value.message.toString());
+        }
       }
-    }
-           // showToast(value.message.toString());
-        );
-  }}
+        // showToast(value.message.toString());
+      );
+    }}
 
   @override
   Widget build(BuildContext context) {
@@ -153,15 +154,15 @@ class _TelcosScreenState extends State<TelcosScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CommonTextfield(
-                        onTap: () {
-                          Get.toNamed(MyRouters.buyAirtimecreen);
-                        },
-                        suffixIcon: Icon(Icons.keyboard_arrow_down),
-                        controller: profileController.airtimeController,
+                        // onTap: () {
+                        //   // Get.toNamed(MyRouters.buyAirtimecreen);
+                        // },
+                        // suffixIcon: Icon(Icons.keyboard_arrow_down),
+
                         readOnly: true,
                         obSecure: false,
-                        hintText: "",
-                        labelText: "Select Provider",
+                        hintText: initStateBlank2,
+
                       ),
                       const SizedBox(
                         height: 20,
@@ -197,10 +198,11 @@ class _TelcosScreenState extends State<TelcosScreen> {
                           PatternValidator(r'(^(?:[+0]9)?[0-9]{10,12}$)',
                               errorText: '')
                         ]),
-                        controller: registorController.phoneController1,
+
                         obSecure: false,
-                        hintText: "123456789",
-                        labelText: "Phone Number",
+                        readOnly: true,
+                        hintText: initStateBlank3,
+
                       ),
                       SizedBox(
                         height: 20,
@@ -229,10 +231,10 @@ class _TelcosScreenState extends State<TelcosScreen> {
                           RequiredValidator(
                               errorText: 'Please enter your amount'),
                         ]),
-                        controller: registorController.amountController1,
+
                         obSecure: false,
-                        hintText: "0",
-                        labelText: "Amount",
+                        hintText: initStateBlank1,
+
                       ),
                       SizedBox(
                         height: size.height * .26,

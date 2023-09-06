@@ -7,6 +7,7 @@ import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
 
+import '../controller/profile_controller.dart';
 import '../models/model_search.dart';
 import '../repository/serach_repo.dart';
 import '../resourses/api_constant.dart';
@@ -28,7 +29,7 @@ class _AddRecipientsState extends State<AddRecipients> {
   Rx<ModelSearchTag> searchData = ModelSearchTag().obs;
   TextEditingController ziptagController = TextEditingController();
   TextEditingController email1Controller = TextEditingController();
-
+  final profileController = Get.put(ProfileController());
 
   getSearchList() {
 
@@ -47,6 +48,7 @@ class _AddRecipientsState extends State<AddRecipients> {
          email1Controller.text = (value.data!.email ?? "").toString();
         phoneController.text = (value.data!.phone ?? "").toString();
         ziptagController.text = (value.data!.zipTag ?? "").toString();
+        profileController.userId=value.data!.id.toString();
 
 
         print(value.data!.email.toString());

@@ -24,6 +24,9 @@ class GeneratePaymentLink extends StatefulWidget {
 }
 
 class _GeneratePaymentLinkState extends State<GeneratePaymentLink> {
+  var initStateBlank = Get.arguments[0];
+  var initStateBlank1 = Get.arguments[1];
+  var initStateBlank2 = Get.arguments[2];
   @override
   void initState() {
     // TODO: implement initState
@@ -80,7 +83,7 @@ class _GeneratePaymentLinkState extends State<GeneratePaymentLink> {
             Padding(
               padding: const EdgeInsets.only(left: 35),
               child: Text(
-                register.amountController.text.trim(),
+                  initStateBlank,
                 style: GoogleFonts.poppins(
                     color: const Color(0xFF1D1D1D),
                     fontSize: 30,
@@ -103,7 +106,7 @@ class _GeneratePaymentLinkState extends State<GeneratePaymentLink> {
                         fontWeight: FontWeight.w500),
                   ),
                   Text(
-                    register.fetchAccount.value.data!.kYCInformation!.firstName.toString(),
+                   initStateBlank1,
                     style: GoogleFonts.poppins(
                         color: const Color(0x851D1D1D),
                         fontSize: 11,
@@ -128,7 +131,7 @@ class _GeneratePaymentLinkState extends State<GeneratePaymentLink> {
                         fontWeight: FontWeight.w500),
                   ),
                   Text(
-                    register.fetchAccount.value.data!.kYCInformation!.email.toString(),
+                    initStateBlank2,
                     style: GoogleFonts.poppins(
                         color: const Color(0x851D1D1D),
                         fontSize: 11,
@@ -216,75 +219,75 @@ class _GeneratePaymentLinkState extends State<GeneratePaymentLink> {
                     fontWeight: FontWeight.w300),
               ),
             ),
-            SizedBox(height: 15,),
-            Padding(
-              padding: const EdgeInsets.only(left: 30.0),
-              child: Text("Link",style: GoogleFonts.poppins(
-                  color:  Colors.black,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500),),
-            ),
-            SizedBox(height: 10,),
-            Padding(
-              padding: const EdgeInsets.only(left: 30,right: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Obx(() => Expanded(
-                    child: Text(register.link1.value.toString(),style: GoogleFonts.poppins(
-                        color:  Colors.black,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500),),
-                  )),
-                  InkWell(
-                      onTap: (){
-                        Clipboard.setData(
-                            ClipboardData(text: register.link1.value.toString()))
-                            .then((value) =>
-                            Fluttertoast.showToast(
-                                msg: "Copied",
-                                gravity: ToastGravity.CENTER));
-                          },
-
-                      child: Icon(Icons.copy))
-                ],
-              ),
-            ),
-            SizedBox(height: 15,),
-            Padding(
-              padding: const EdgeInsets.only(left: 30.0),
-              child: Text("Code",style: GoogleFonts.poppins(
-                  color:  Colors.black,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500),),
-            ),
-            SizedBox(height: 10,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Obx(() => Padding(
-                  padding: const EdgeInsets.only(left: 30,right: 40),
-                  child: Text(register.code.value.toString(),style: GoogleFonts.poppins(
-                      color:  Colors.black,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500),),
-                )),
-                Padding(
-                  padding: const EdgeInsets.only(right: 28.0),
-                  child: InkWell(
-                      onTap: (){
-                        Clipboard.setData(
-                            ClipboardData(text: register.code.value.toString()))
-                            .then((value) =>
-                            Fluttertoast.showToast(
-                                msg: "Copied",
-                                gravity: ToastGravity.CENTER));
-                          },
-
-                      child: Icon(Icons.copy)),
-                )
-              ],
-            ),
+            // SizedBox(height: 15,),
+            // Padding(
+            //   padding: const EdgeInsets.only(left: 30.0),
+            //   child: Text("Link",style: GoogleFonts.poppins(
+            //       color:  Colors.black,
+            //       fontSize: 18,
+            //       fontWeight: FontWeight.w500),),
+            // ),
+            // SizedBox(height: 10,),
+            // Padding(
+            //   padding: const EdgeInsets.only(left: 30,right: 30),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //       Obx(() => Expanded(
+            //         child: Text(register.link1.value.toString(),style: GoogleFonts.poppins(
+            //             color:  Colors.black,
+            //             fontSize: 15,
+            //             fontWeight: FontWeight.w500),),
+            //       )),
+            //       InkWell(
+            //           onTap: (){
+            //             Clipboard.setData(
+            //                 ClipboardData(text: register.link1.value.toString()))
+            //                 .then((value) =>
+            //                 Fluttertoast.showToast(
+            //                     msg: "Copied",
+            //                     gravity: ToastGravity.CENTER));
+            //               },
+            //
+            //           child: Icon(Icons.copy))
+            //     ],
+            //   ),
+            // ),
+            // SizedBox(height: 15,),
+            // Padding(
+            //   padding: const EdgeInsets.only(left: 30.0),
+            //   child: Text("Code",style: GoogleFonts.poppins(
+            //       color:  Colors.black,
+            //       fontSize: 18,
+            //       fontWeight: FontWeight.w500),),
+            // ),
+            // SizedBox(height: 10,),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   children: [
+            //     Obx(() => Padding(
+            //       padding: const EdgeInsets.only(left: 30,right: 40),
+            //       child: Text(register.code.value.toString(),style: GoogleFonts.poppins(
+            //           color:  Colors.black,
+            //           fontSize: 15,
+            //           fontWeight: FontWeight.w500),),
+            //     )),
+            //     Padding(
+            //       padding: const EdgeInsets.only(right: 28.0),
+            //       child: InkWell(
+            //           onTap: (){
+            //             Clipboard.setData(
+            //                 ClipboardData(text: register.code.value.toString()))
+            //                 .then((value) =>
+            //                 Fluttertoast.showToast(
+            //                     msg: "Copied",
+            //                     gravity: ToastGravity.CENTER));
+            //               },
+            //
+            //           child: Icon(Icons.copy)),
+            //     )
+            //   ],
+            // ),
             //
             // CommonTextfield(obSecure: false, hintText: link == null ? '': register.checkout.value.data!.link.toString()),
             // CommonTextfield(obSecure: false, hintText: link == null ? '': register.checkout.value.data!.link.toString()),
@@ -293,11 +296,12 @@ class _GeneratePaymentLinkState extends State<GeneratePaymentLink> {
 
             InkWell(
                 onTap: (){
-                  register.cashCheckout(context);
+                  // register.cashCheckout(context);
                   // emailLogin();
                   //
+                  Get.toNamed(MyRouters.requestAPaymentContiune,arguments: [ initStateBlank1,initStateBlank2]);
                 },
-                child: CustomOutlineButton(title: "Generate Payment Link",)),
+                child: CustomOutlineButton(title: "Request A Payment ",)),
 
             SizedBox(
               height: 20 ,

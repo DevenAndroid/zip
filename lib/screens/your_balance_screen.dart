@@ -100,7 +100,7 @@ class _YourBalanceScreenState extends State<YourBalanceScreen> {
         ),
         Center(
           child: Text(
-            "${profileController.modal.value.data!.user!.fname.toString()} "+" ${profileController.modal.value.data!.user!.lname.toString()}",
+            "${profileController.requestNameController.text.toString()}",
             style: GoogleFonts.poppins(
                 color: const Color(0xFF1D1D1D),
                 fontSize: 20,
@@ -109,7 +109,7 @@ class _YourBalanceScreenState extends State<YourBalanceScreen> {
         ),
         Center(
           child: Text(
-            profileController.modal.value.data!.user!.zipTag.toString(),
+            profileController.requestZiptag1Controller.text.toString(),
             style: GoogleFonts.poppins(
                 color: const Color(0xFF1D1D1D),
                 fontSize: 16,
@@ -148,7 +148,9 @@ CommonTextfield(
         InkWell(
             onTap: (){
               if (formKey6.currentState!.validate()) {
-                Get.toNamed(MyRouters.requestAPaymentContiune,);
+
+                Get.toNamed(MyRouters.paymentLink,arguments: [profileController.amountController.text.toString() ,profileController.requestNameController.text.toString(),profileController.requestemailController.text.toString(),]);
+                // Get.toNamed(MyRouters.requestAPaymentContiune,);
               }
             },
             child: const CustomOutlineButton(title: "Send",)),
