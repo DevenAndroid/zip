@@ -48,12 +48,12 @@ Future<ModelConversion> conversionRepo({transactionType,feeBearer,paymentDestina
 
   if (response.statusCode == 200) {
     Helpers.hideLoader(loader);
-    print(jsonDecode(response.body));
+    // print(jsonDecode(response.body));
     return ModelConversion.fromJson(jsonDecode(response.body));
 
   } else {
     Helpers.hideLoader(loader);
-    print(jsonDecode(response.body));
+    // print(jsonDecode(response.body));
     return ModelConversion(message: jsonDecode(response.body)["message"],success: false );
   }
   // }  catch (e) {

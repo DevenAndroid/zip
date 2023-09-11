@@ -59,6 +59,8 @@ import 'package:zip/screens/yourrecipient.dart';
 
 import '../main.dart';
 import '../screens/Cardlimit.dart';
+import '../screens/add_fund_card_screen.dart';
+import '../screens/add_fund_exchange.dart';
 import '../screens/add_payment_method.dart';
 import '../screens/addfundsinbank.dart';
 import '../screens/bank_details.dart';
@@ -91,6 +93,7 @@ import '../screens/exchenge2.dart';
 import '../screens/favourate_balance.dart';
 import '../screens/favourate_screen.dart';
 import '../screens/freshchat.dart';
+import '../screens/fund_issuing_wallet.dart';
 import '../screens/internet_screen.dart';
 import '../screens/limit_screen.dart';
 import '../screens/list_biller_screen.dart';
@@ -272,11 +275,14 @@ class MyRouters{
   static var buyData = "/buyData";
   static var buyElectricity = "/buyElectricity";
   static var requestPaymentLink = "/requestPaymentLink";
+  static var addFundExchange = "/addFundExchange";
   static var cabelTvPin = "/cabelTvPin";
   static var dataPurchasePin = "/dataPurchasePin";
   static var successRequestScreen = "/successRequestScreen";
   static var buyCabelTvList = "/buyCabelTvList";
   static var cabelScreen = "/cabelScreen";
+  static var addFundScreen = "/addFundScreen";
+  static var fundIssuingWallet = "/fundIssuingWallet";
 
 
 
@@ -287,6 +293,9 @@ class MyRouters{
 
 
     GetPage(name: '/onBoardingScreen', page: () =>   const OnBoardingScreen()),
+    GetPage(name: '/addFundScreen', page: () =>   const AddFundScreen()),
+    GetPage(name: '/fundIssuingWallet', page: () =>   const FundIssuingWallet()),
+    GetPage(name: '/addFundExchange', page: () =>   const AddFundExchange()),
     GetPage(name: '/cabelScreen', page: () =>   const CabelScreen()),
     GetPage(name: '/buyCabelTvList', page: () =>   const BuyCabelTvList()),
     GetPage(name: '/dataPurchasePin', page: () =>   const DataPurchasePin()),

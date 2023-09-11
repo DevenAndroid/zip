@@ -31,6 +31,7 @@ class _MyCardState extends State<MyCard> {
     super.initState();
     controller1.getData();
     controller1.getCard();
+    // controller1.getBalance();
   }
 
 
@@ -63,11 +64,12 @@ class _MyCardState extends State<MyCard> {
         backgroundColor: AppTheme.primaryColor,
         onRefresh: () async {
           controller1. getCard();
+          controller1. getBalance();
 
 
         },
         child: Obx(() {
-    return controller1.currentBalanceModel.value.status ==true?
+    return controller1.currentBalanceModel.value.status ==true&&controller1.cardBalance.value.status =="success"?
         SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
           child: Column(
@@ -88,7 +90,7 @@ class _MyCardState extends State<MyCard> {
                   Image.network("https://cdn-icons-png.flaticon.com/512/32/32974.png",color: Colors.black,width: 15,height: 15,),
 
                   Text(
-                  "\$"+controller1. currentBalanceModel.value.data.toString(),
+                  controller1. cardBalance.value.data!.balance.toString(),
                   style: GoogleFonts.poppins(
                       color: const Color(0xFF1D1D1D),
                       fontSize: 20,
@@ -386,36 +388,42 @@ class _MyCardState extends State<MyCard> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
-                    height: 98,
-                    width: 98,
-                    decoration: BoxDecoration(
-                        color: const Color(0xFFFAFAFA),
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: const [
-                          BoxShadow(
-                            color:   Colors.black26,
-                            offset: Offset(
-                              0.5,
-                              0.5,
-                            ), //Offset
-                            blurRadius:    0.5,
-                            spreadRadius: 0.0,
-                          ), //BoxShadow
-                        ]),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Icon(Icons.add,size: 40,),
-                        Text(
-                          "Add Money",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF2E2E2E),
-                              fontSize: 10,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ],
+                  InkWell(
+                    onTap: (){
+                      // Get.toNamed(MyRouters.addFundScreen);
+                      Get.toNamed(MyRouters.addFundExchange);
+                    },
+                    child: Container(
+                      height: 98,
+                      width: 98,
+                      decoration: BoxDecoration(
+                          color: const Color(0xFFFAFAFA),
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: const [
+                            BoxShadow(
+                              color:   Colors.black26,
+                              offset: Offset(
+                                0.5,
+                                0.5,
+                              ), //Offset
+                              blurRadius:    0.5,
+                              spreadRadius: 0.0,
+                            ), //BoxShadow
+                          ]),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Icon(Icons.add,size: 40,),
+                          Text(
+                            "Add Money",
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF2E2E2E),
+                                fontSize: 10,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   InkWell(

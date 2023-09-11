@@ -24,6 +24,8 @@ class ApiUrls {
   static const String verifyAfrica = "https://api.verified.africa/sfx-verify/v3/id-service/";
   static const String fetchAccount = "https://sandboxapi.fincra.com/profile/virtual-accounts/";
   static const String beneficiariesCreate  = "https://sandboxapi.fincra.com/profile/beneficiaries/business/";
+  static const String addFundCard  = "https://issuecards.api.bridgecard.co/v1/issuing/sandbox/cards/fund_card";
+  static const String addFundIssuesWallet  = "https://issuecards.api.bridgecard.co/v1/issuing/sandbox/cards/fund_issuing_wallet";
   static const String payout  = "https://sandboxapi.fincra.com/disbursements/payouts";
   static const String plan  = "https://billing-staging.bytestacks.io/api/v1/bundles";
   static const String verifyMeter  = "https://billing-staging.bytestacks.io/api/v1/electricity/verify";
@@ -34,6 +36,8 @@ class ApiUrls {
   static const String createCard  = "https://issuecards.api.bridgecard.co/v1/issuing/sandbox/cards/create_card";
   static const String createCardHolder  = "https://issuecards.api.bridgecard.co/v1/issuing/sandbox/cardholder/register_cardholder_synchronously";
   static const String getCardDetails  = "https://issuecards-api-bridgecard-co.relay.evervault.com/v1/issuing/sandbox/cards/get_card_details?card_id=";
+  static const String getCardBalance  = "https://issuecards.api.bridgecard.co/v1/issuing/sandbox/cards/get_card_balance?card_id=";
+  static const String getRate  = "https://issuecards.api.bridgecard.co/v1/issuing/cards/fx-rate";
   static const String freezeCard  = "https://issuecards.api.bridgecard.co/v1/issuing/sandbox/cards/freeze_card?card_id=";
   static const String purchaseEnergy  = "https://billing-staging.bytestacks.io/api/v1/electricity/subscribe";
   static const String conversion  = "https://sandboxapi.fincra.com/quotes/generate";

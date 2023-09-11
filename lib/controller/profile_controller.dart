@@ -6,22 +6,31 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/controller/update_user.dart';
 
 import '../models/current_balance_repo.dart';
+import '../models/fund_issuing_wallet.dart';
+import '../models/get_card_balance_model.dart';
+import '../models/model_conversion.dart';
 import '../models/model_create_card.dart';
 import '../models/model_create_card_holder.dart';
 import '../models/model_freeze_card.dart';
+import '../models/model_fund_card.dart';
 import '../models/model_get_card.dart';
 import '../models/model_get_card_details.dart';
+import '../models/model_rate.dart';
 import '../models/model_send_money.dart';
 import '../models/myprofile_model.dart';
 import '../models/save_card_model.dart';
 import '../models/save_transastion_model.dart';
+import '../repository/add_fund_repo.dart';
 import '../repository/card_details_repo.dart';
 import '../repository/create_card_holder_repo.dart';
 import '../repository/create_card_repo.dart';
 import '../repository/freeze_card_repo.dart';
+import '../repository/fund_issuing_wallet_repo.dart';
+import '../repository/getBalanceRepo.dart';
 import '../repository/get_card_repo.dart';
 import '../repository/get_current_balance.dart';
 import '../repository/myprofile_repo.dart';
+import '../repository/rate_repo.dart';
 import '../repository/save_buy_plan_repo.dart';
 import '../repository/save_card_repo.dart';
 import '../repository/send_mail_repo.dart';
@@ -32,7 +41,121 @@ import 'number_controller.dart';
 class ProfileController extends GetxController {
   final numbercontroller = Get.put(numberController());
   // final registorController = Get.put(registerController());
+
+  String resulttext = "0";
+  Rx<ModelConversion> modelConversion = ModelConversion().obs;
+  Rx<RxStatus> statusOfConversion = RxStatus.empty().obs;
+
+  Rx<ModelRate> modelRate = ModelRate().obs;
+  Rx<RxStatus> statusOfRate= RxStatus.empty().obs;
+  Future  exchangeRate() async {
+    await getRateRepo()
+        .then((value) {
+      modelRate.value = value;
+      if (value.status == "success") {
+        statusOfRate.value = RxStatus.success();
+        showToast(value.message.toString());
+      } else {
+        showToast(value.message.toString());
+      }
+    }
+      // showToast(value.message.toString());
+    );
+  }
+
+  TextEditingController fundAmountController = TextEditingController();
+
+
+  saveListFund(context) async {
+    saveTransastionRepo(
+        amount: fundAmountController.text.trim(),
+        about: "Fund To Account ",
+        user_id:  modal.value.data!.user!.id.toString(),
+        // complete_response: purchaseData.value.data!.toJson(),
+        context: context,
+        description: "Fund To account ",
+        type: "dr")
+        .then((value) {
+      log("response.body.....    ${value}");
+      save.value = value;
+      if (value.status == true) {
+        Get.back();
+        statusOfSave.value = RxStatus.success();
+        showToast(value.message.toString());
+      } else {
+        statusOfSave.value = RxStatus.error();
+        showToast(value.message.toString());
+      }
+    }
+      // showToast(value.message.toString());
+    );
+  }
+
+
+
+
+
+
+
   String userId = "";
+  final formKeyFund = GlobalKey<FormState>();
+  final formKeyFund1 = GlobalKey<FormState>();
+  TextEditingController amount1Controller = TextEditingController();
+  TextEditingController refrenceController = TextEditingController();
+  Rx<ModelFundCard> addFundCard = ModelFundCard().obs;
+  Rx<RxStatus> statusOfFund = RxStatus.empty().obs;
+
+  Future addFund(context) async {
+
+    await addFundRepo(
+      card_id:  card.value.data!.cardId.toString(),
+    currency: "USD",
+      amount: resulttext.toString(),
+      context: context,
+      transaction_reference:  card.value.data!.cardId.toString()+DateTime.now().millisecondsSinceEpoch.toString(),
+    ).then((value) {
+      addFundCard.value = value;
+      if (value.status == "success") {
+        log("CardId${cardId.value}");
+        statusOfFund.value = RxStatus.success();
+
+        saveListFund(context);
+        getCurrentBalance();
+        showToast(value.message.toString());
+      } else {
+        showToast(value.message.toString());
+
+      }
+    // showToast(value.message.toString());
+    });
+  }
+
+  Rx<ModelFundIssuingWallet> fundIssuingWallet = ModelFundIssuingWallet().obs;
+  Rx<RxStatus> statusOfFundIssuingWallet = RxStatus.empty().obs;
+  TextEditingController amountController2 = TextEditingController();
+  Future fundIssuing(context) async {
+    if (formKeyFund1.currentState!.validate()) {
+      await fundIssueRepo(
+
+        amount: amountController2.text.trim(),
+        context: context,
+
+      ).then((value) {
+        fundIssuingWallet.value = value;
+        if (value.status == "success") {
+          log("CardId${cardId.value}");
+          statusOfFundIssuingWallet.value = RxStatus.success();
+          Get.back();
+          getCurrentBalance();
+          showToast(value.message.toString());
+        } else {
+          showToast(value.message.toString());
+
+        }
+        // showToast(value.message.toString());
+      });
+    }}
+
 
   TextEditingController phone2Controller = TextEditingController();
   TextEditingController description2Controller = TextEditingController();
@@ -378,7 +501,7 @@ zip_user_id:userId.toString(),
   Rx<ModelGetCard> card = ModelGetCard().obs;
   Rx<RxStatus> statusOfCard = RxStatus.empty().obs;
 
-  Future getCard() async {
+    Future getCard() async {
     await getCardRepo()
         .then((value) {
       if (value.status == true) {
@@ -387,10 +510,36 @@ zip_user_id:userId.toString(),
         // Get.toNamed(MyRouters.cardDetails);
         // holder();
         card.value = value;
-
+        getBalance();
         // saveCardDetails();
       } else {
         statusOfCard.value = RxStatus.error();
+      }
+
+      print(value.message.toString());
+    });
+  }
+
+  Rx<GetCardBalanceModel> cardBalance = GetCardBalanceModel().obs;
+  Rx<RxStatus> statusOfCardBalance = RxStatus.empty().obs;
+
+  Future getBalance() async {
+    await getCardBalanceRepo(
+      card_id:  card.value.data!.cardId.toString()
+    )
+        .then((value) {
+      if (value.status == "success") {
+        statusOfCardBalance.value = RxStatus.success();
+        // saveCardDetails();
+        // Get.toNamed(MyRouters.cardDetails);
+        // holder();
+        cardBalance.value = value;
+        showToast(value.message.toString());
+
+        // saveCardDetails();
+      } else {
+        statusOfCardBalance.value = RxStatus.error();
+        showToast(value.message.toString());
       }
 
       print(value.message.toString());

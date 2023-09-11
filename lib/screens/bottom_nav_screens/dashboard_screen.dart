@@ -581,7 +581,7 @@ class _DashBoardState extends State<DashBoard> {
                                       ],
                                     ),
                                     SvgPicture.asset(
-                                      "assets/images/i5.svg",
+                                      "assets/images/cabeltv.svg",
                                       width: 30,
                                     ),
                                     const SizedBox(

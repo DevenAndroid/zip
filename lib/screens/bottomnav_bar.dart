@@ -118,10 +118,10 @@ SizedBox(height: 5,),
                         children: [
                           SizedBox(height: 8,),
                         bottomController. pageIndex.value == 1
-                              ? SvgPicture.asset('assets/images/card.svg',
+                              ? SvgPicture.asset('assets/images/transistion.svg',
                             color: AppTheme.secondaryColor,
                           )
-                              :  SvgPicture.asset('assets/images/card.svg',),
+                              :  SvgPicture.asset('assets/images/transistion.svg',color: Colors.black,),
 
                           SizedBox(height: 8,),
 
@@ -149,14 +149,14 @@ SizedBox(height: 5,),
                           children: [
                             SizedBox(height: 8,),
                         bottomController.pageIndex.value == 2
-                                ?  SvgPicture.asset('assets/images/Wallet.svg',
+                                ?  SvgPicture.asset('assets/images/card.svg',
                               color: AppTheme.secondaryColor,
                             )
-                                : SvgPicture.asset('assets/images/Wallet.svg',),
+                                : SvgPicture.asset('assets/images/card.svg',),
                             SizedBox(height: 5,),
                             bottomController. pageIndex.value == 2
                                 ?
-                            Text("Wallets",style: TextStyle(color: AppTheme.secondaryColor,fontSize: 15,fontWeight: FontWeight.w400),):  Text("Wallets",style: TextStyle(color: AppTheme.primaryColor,fontSize: 15,fontWeight: FontWeight.w400),)
+                            Text("Cards",style: TextStyle(color: AppTheme.secondaryColor,fontSize: 15,fontWeight: FontWeight.w400),):  Text("Cards",style: TextStyle(color: AppTheme.primaryColor,fontSize: 15,fontWeight: FontWeight.w400),)
 
                           ],
                         ),
