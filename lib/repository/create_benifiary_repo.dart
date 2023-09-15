@@ -27,7 +27,7 @@ Future<CreateBenificiryModel> createBenificiryRepo({firstName,name,accountHolder
 
 
   map['type'] =  "individual";
-  map['currency'] =  "GBP";
+  map['currency'] =  "NGN";
   map['paymentDestination'] =  "bank_account";
   map['destinationAddress'] =  destinationAddress;
   map['uniqueIdentifier'] =  uniqueIdentifier;

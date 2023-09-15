@@ -34,7 +34,7 @@ SvgPicture.asset('assets/images/cross.svg'),
       SizedBox(height: 30,),
     Center(
       child: Text(
-      "You’re eligible for up \nto\$25,000",
+      "Thanks for your \ninterest in ZIP loans",
       style: GoogleFonts.poppins(
       color: const Color(0xFFBA8C31),
       fontSize: 25,
@@ -46,7 +46,7 @@ SvgPicture.asset('assets/images/cross.svg'),
       SizedBox(height: 12,),
     Center(
       child: Text(
-      "Explore our loans without, affecting your credit score",
+      "Please bear with us while we work on your application in the background. We aim to get back to you with a decision in 48 hours.",
       style: GoogleFonts.poppins(
       color: const Color(0xFF6C6C6C),
       fontSize: 14,
@@ -64,7 +64,7 @@ SvgPicture.asset('assets/images/cross.svg'),
             // emailLogin();
             //
           },
-          child: CustomOutlineButton(title: "Choose your loan",)),
+          child: CustomOutlineButton(title: "Return To Home",)),
       SizedBox(height: 15,),
 
     ]

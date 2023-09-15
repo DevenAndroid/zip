@@ -35,12 +35,17 @@ class _AddFundExchangeState extends State<AddFundExchange> {
   String? usdToNgn;
 
 
+
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     convertUsd();
     profileController.exchangeRate();
+
+
+
   }
   void convertUsd() async {
     Currency myCurrency = await CurrencyConverter.getMyCurrency();
@@ -53,6 +58,7 @@ class _AddFundExchangeState extends State<AddFundExchange> {
       usdToNgn = usdConvert.toString();
     });
   }
+
 
   Future  Conversions() async {
     await conversionRepo(
@@ -235,8 +241,13 @@ class _AddFundExchangeState extends State<AddFundExchange> {
                                 InkWell(
                                   onTap: (){
                                     setState(() {
-                                      double result = double.parse(profileController.fundAmountController.text)/double.parse( profileController.modelRate.value.data!.nGNUSD.toString());
-                                      profileController.resulttext = result.toStringAsPrecision(3);
+                                      double result = double.parse(profileController.fundAmountController.text)/double.parse(profileController.divideText.trim());
+                                      profileController.resulttext = result.toStringAsPrecision(4);
+                                      double resultMultiply = double.parse(profileController.resulttext.trim())*double.parse("100").round();
+                                      profileController.multiplyText = resultMultiply.toInt().toString();
+                                      // profileController.multiplyText = int.parse(resultMultiply.toStringAsFixed(2));
+                                      print( profileController.multiplyText);
+
                                     });
                                   },
                                 child: Icon(Icons.arrow_forward),
@@ -299,7 +310,7 @@ class _AddFundExchangeState extends State<AddFundExchange> {
                                           ),
                                         ),
 
-                                        Text( profileController.modelRate.value.data!.nGNUSD.toString(),
+                                        Text( profileController.divideText.toString(),
                                           style: GoogleFonts.poppins(
                                               color: const Color(0xFF7E7E7E),
                                               fontSize: 15,
@@ -515,85 +526,7 @@ class _AddFundExchangeState extends State<AddFundExchange> {
                             ),
                           ),
 
-                    // Column(
-                    //     children: <Widget>[
-                    //       Row(
-                    //         children: <Widget>[
-                    //           Text("Number 1 : "),
-                    //           new Flexible(
-                    //             child: new TextField(
-                    //               keyboardType: TextInputType.number,
-                    //               controller: num1controller,
-                    //             ),
-                    //           ),
-                    //         ],
-                    //       ),
-                    //       Row(
-                    //         children: <Widget>[
-                    //           Text("Number 2 : "),
-                    //           new Flexible(
-                    //             child: new TextField(
-                    //               keyboardType: TextInputType.number,
-                    //               controller: num2controller,
-                    //             ),
-                    //           ),
-                    //         ],
-                    //       ),
-                    //       Row(
-                    //         mainAxisAlignment: MainAxisAlignment.center,
-                    //         children: <Widget>[
-                    //           ElevatedButton(
-                    //             child: Text("+"),
-                    //             onPressed : () {
-                    //               setState(() {
-                    //                 int result = int.parse(num1controller.text) + int.parse(num2controller.text);
-                    //                 resulttext = result.toString();
-                    //               });
-                    //             },
-                    //           ),
-                    //           ElevatedButton(
-                    //             child: Text("-"),
-                    //             onPressed : () {
-                    //               setState(() {
-                    //                 int result = int.parse(num1controller.text) - int.parse(num2controller.text);
-                    //                 resulttext = result.toString();
-                    //               });
-                    //             },
-                    //           ),
-                    //           ElevatedButton(
-                    //             child: Text("x"),
-                    //             onPressed : () {
-                    //               setState(() {
-                    //                 int result = int.parse(num1controller.text) * int.parse(num2controller.text);
-                    //                 resulttext = result.toString();
-                    //               });
-                    //             },
-                    //           ),
-                    //           ElevatedButton(
-                    //             child: Text("/"),
-                    //             onPressed : () {
-                    //               setState(() {
-                    //                 double result = double.parse(num1controller.text)/double.parse(num2controller.text);
-                    //                 resulttext = result.toStringAsPrecision(3);
-                    //               });
-                    //             },
-                    //           )
-                    //         ],
-                    //       ),
-                    //       Row(
-                    //         mainAxisAlignment: MainAxisAlignment.center,
-                    //         children: <Widget>[
-                    //           Text("Result:",
-                    //             style: TextStyle(
-                    //               fontSize: 30,
-                    //             ),),
-                    //           new Text(resulttext,
-                    //             style: TextStyle(
-                    //               fontSize: 30,
-                    //             ),),
-                    //         ],
-                    //       ),
-                    //     ],),
+
                           SizedBox(
                             height: size.height * .2,
                           ),
@@ -601,20 +534,22 @@ class _AddFundExchangeState extends State<AddFundExchange> {
                               onTap: () {
 
                                profileController. addFund(context);
+                               // profileController.getCard();
+                               //  profileController.fundIssuing(context);
                                 // convertUsd();
                                 // Conversions();
                                 // Get.toNamed(MyRouters.bottomNavbar);
                               },
                               child: const CustomOutlineButton(title: "Add Fund ")),
                           SizedBox(height: 30,),
-                          InkWell(
-                            onTap: () {
-                              Get.toNamed(MyRouters.fundIssuingWallet);
-                            },
-                            child: const            CustomOutlineBoder(
-                              title: "Issuing Fund",
-                            ),
-                          ),
+                          // InkWell(
+                          //   onTap: () {
+                          //     Get.toNamed(MyRouters.fundIssuingWallet);
+                          //   },
+                          //   child: const            CustomOutlineBoder(
+                          //     title: "Issuing Fund",
+                          //   ),
+                          // ),
                         ]),
                   ))): const Center(child: CircularProgressIndicator(),);
         }));

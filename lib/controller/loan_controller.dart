@@ -11,9 +11,9 @@ class LoanController extends GetxController {
 
   String dropdownvalue = 'Government Employed';
   String selectedValuem = "Home owner";
-  String selectedValuem1 = "0 lakh to 1 lakh";
+  String selectedValuem1 = "0 Naira to 1 Naira";
   String selectedValuem2 = "1 month to 6 month";
-  String selectedValuem3 = "0 lakh to 1 lakh";
+  String selectedValuem3 = "0 Naira to 1 Naira";
   String selectedValuem4 = "Yes";
 
   Rx<RxStatus> statusOfLoan = RxStatus.empty().obs;

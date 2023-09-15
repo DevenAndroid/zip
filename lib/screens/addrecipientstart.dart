@@ -148,7 +148,7 @@ class _AddRecipientStartState extends State<AddRecipientStart> {
                           height: 10,
                         ),
                         Text(
-                          "Other Bank",
+                          "Bank Account",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF2E2E2E),
                               fontSize: 14,
@@ -195,14 +195,14 @@ SizedBox(height: 20,),
                         height: 9,
                       ),
                       Image.asset(
-                        'assets/images/link.png',
+                        'assets/images/link2.png',
                         height: 55,
                       ),
                       const SizedBox(
                         height: 10,
                       ),
                       Text(
-                        "Generate Link",
+                        "Pay By Card",
                         style: GoogleFonts.poppins(
                             color: const Color(0xFF2E2E2E),
                             fontSize: 14,

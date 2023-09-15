@@ -87,10 +87,10 @@ class _MyCardState extends State<MyCard> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.network("https://cdn-icons-png.flaticon.com/512/32/32974.png",color: Colors.black,width: 15,height: 15,),
+                  // Image.network("https://cdn-icons-png.flaticon.com/512/32/32974.png",color: Colors.black,width: 15,height: 15,),
 
                   Text(
-                  controller1. cardBalance.value.data!.balance.toString(),
+                  "\$"+controller1. fundText.toString(),
                   style: GoogleFonts.poppins(
                       color: const Color(0xFF1D1D1D),
                       fontSize: 20,

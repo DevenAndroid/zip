@@ -135,7 +135,7 @@ class _RequestMoney1State extends State<RequestMoney1> {
                           height: 10,
                         ),
                         Text(
-                          "Other Bank",
+                          "Bank Account",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF2E2E2E),
                               fontSize: 14,

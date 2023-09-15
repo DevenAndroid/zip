@@ -159,7 +159,7 @@ class _DashBoardState extends State<DashBoard> {
                                             ),
                                           ],
                                         ): Text(
-                                         "Balance Hide",
+                                         "",
                                           style: GoogleFonts.poppins(
                                               color: Colors.white,
                                               fontSize: 24,
@@ -292,7 +292,7 @@ class _DashBoardState extends State<DashBoard> {
                           ),
                         ),
                         Text(
-                          'Quis ut dolorum architecto dolorem ipsum.',
+                          'What would you like to do today?',
                           style: GoogleFonts.poppins(
                             textStyle: const TextStyle(
                                 fontSize: 14,

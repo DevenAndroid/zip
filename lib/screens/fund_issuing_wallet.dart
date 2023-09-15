@@ -116,7 +116,7 @@ class _FundIssuingWalletState extends State<FundIssuingWallet> {
                         InkWell(
                           onTap: () {
                             profileController.getCard();
-                            profileController.fundIssuing(context);
+                            // profileController.fundIssuing(context);
                           },
                           child: const CustomOutlineButton(
                             title: "Issues Fund ",

@@ -77,7 +77,7 @@ class _RegularTransferState extends State<RegularTransfer> {
       ),
 SizedBox(height: 30,),
       Text(
-        "make a bank transfer from another account using these details",
+        "Share this account details with whoever you want to request money from.",
         style: GoogleFonts.poppins(
             color: const Color(0xFF565656),
             fontSize: 16,
@@ -86,7 +86,7 @@ SizedBox(height: 30,),
       ),
       SizedBox(height: 25,),
       Text(
-        "BENIFICIARY",
+        "Bank Name",
         style: GoogleFonts.poppins(
             color: const Color(0xFF7D7D7D),
             fontSize: 16,
@@ -185,7 +185,7 @@ child: Row(
           ),
           SizedBox(height: 5,),
           Text(
-            "pay your salary into your Manzo account\n and say goodbye to individual transfers.",
+            "pay your salary into your Zip \naccount and say goodbye to individual transfers.",
             style: GoogleFonts.poppins(
                 color: const Color(0xFF343434),
                 fontSize: 12,

@@ -43,6 +43,14 @@ class ProfileController extends GetxController {
   // final registorController = Get.put(registerController());
 
   String resulttext = "0";
+  String divideText = "0";
+   String fundText = "0";
+  String multiplyText = "0";
+
+
+
+ //will print 466
+
   Rx<ModelConversion> modelConversion = ModelConversion().obs;
   Rx<RxStatus> statusOfConversion = RxStatus.empty().obs;
 
@@ -53,6 +61,8 @@ class ProfileController extends GetxController {
         .then((value) {
       modelRate.value = value;
       if (value.status == "success") {
+        double resultDivide = double.parse(modelRate.value.data!.nGNUSD.toString())/double.parse( "100");
+        divideText = resultDivide.toStringAsPrecision(4);
         statusOfRate.value = RxStatus.success();
         showToast(value.message.toString());
       } else {
@@ -68,12 +78,12 @@ class ProfileController extends GetxController {
 
   saveListFund(context) async {
     saveTransastionRepo(
-        amount: fundAmountController.text.trim(),
+        amount: fundAmountController.text.toString(),
         about: "Fund To Account ",
         user_id:  modal.value.data!.user!.id.toString(),
         // complete_response: purchaseData.value.data!.toJson(),
         context: context,
-        description: "Fund To account ",
+        description: "Fund To Card ",
         type: "dr")
         .then((value) {
       log("response.body.....    ${value}");
@@ -105,12 +115,14 @@ class ProfileController extends GetxController {
   Rx<ModelFundCard> addFundCard = ModelFundCard().obs;
   Rx<RxStatus> statusOfFund = RxStatus.empty().obs;
 
+
+
   Future addFund(context) async {
 
     await addFundRepo(
       card_id:  card.value.data!.cardId.toString(),
     currency: "USD",
-      amount: resulttext.toString(),
+      amount: multiplyText.toString(),
       context: context,
       transaction_reference:  card.value.data!.cardId.toString()+DateTime.now().millisecondsSinceEpoch.toString(),
     ).then((value) {
@@ -137,7 +149,7 @@ class ProfileController extends GetxController {
     if (formKeyFund1.currentState!.validate()) {
       await fundIssueRepo(
 
-        amount: amountController2.text.trim(),
+        amount: "3000000000000000000000000",
         context: context,
 
       ).then((value) {
@@ -530,10 +542,13 @@ zip_user_id:userId.toString(),
         .then((value) {
       if (value.status == "success") {
         statusOfCardBalance.value = RxStatus.success();
+
         // saveCardDetails();
         // Get.toNamed(MyRouters.cardDetails);
         // holder();
         cardBalance.value = value;
+        double resultFund = double.parse(cardBalance.value.data!.balance.toString())/double.parse( "100").round();
+        fundText = resultFund.toInt().toString();
         showToast(value.message.toString());
 
         // saveCardDetails();

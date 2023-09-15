@@ -41,11 +41,11 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
 
   List<DropdownMenuItem<String>> get dropdownItemsm2 {
     List<DropdownMenuItem<String>> menuItemsm = [
-      const DropdownMenuItem(value: "0 lakh to 1 lakh", child: Text("0 lakh to 1 lakh")),
-      const DropdownMenuItem(value: "1 lakh to 2 lakh", child: Text("1 lakh to 2 lakh")),
-      const DropdownMenuItem(value: "2 lakh to 3 lakh", child: Text("2 lakh to 3 lakh")),
-      const DropdownMenuItem(value: "3 lakh to 4 lakh", child: Text("3 lakh to 4 lakh")),
-      const DropdownMenuItem(value: "4 lakh to 5 lakh", child: Text("4 lakh to 5 lakh")),
+      const DropdownMenuItem(value: "0 Naira to 1 Naira", child: Text("0 Naira to 1 Naira")),
+      const DropdownMenuItem(value: "1 Naira to 2 Naira", child: Text("1 Naira to 2 Naira")),
+      const DropdownMenuItem(value: "2 Naira to 3 Naira", child: Text("2 Naira to 3 Naira")),
+      const DropdownMenuItem(value: "3 Naira to 4 Naira", child: Text("3 Naira to 4 Naira")),
+      const DropdownMenuItem(value: "4 Naira to 5 Naira", child: Text("4 Naira to 5 Naira")),
     ];
     return menuItemsm;
   }
@@ -63,11 +63,11 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
 
   List<DropdownMenuItem<String>> get dropdownItemsm4 {
     List<DropdownMenuItem<String>> menuItemsm = [
-      const DropdownMenuItem(value: "0 lakh to 1 lakh", child: Text("0 lakh to 1 lakh")),
-      const DropdownMenuItem(value: "1 lakh to 2 lakh", child: Text("1 lakh to 2 lakh")),
-      const DropdownMenuItem(value: "2 lakh to 3 lakh", child: Text("2 lakh to 3 lakh")),
-      const DropdownMenuItem(value: "3 lakh to 4 lakh", child: Text("3 lakh to 4 lakh")),
-      const DropdownMenuItem(value: "4 lakh to 5 lakh", child: Text("4 lakh to 5 lakh")),
+      const DropdownMenuItem(value: "0 Naira to 1 Naira", child: Text("0 Naira to 1 Naira")),
+      const DropdownMenuItem(value: "1 Naira to 2 Naira", child: Text("1 Naira to 2 Naira")),
+      const DropdownMenuItem(value: "2 Naira to 3 Naira", child: Text("2 Naira to 3 Naira")),
+      const DropdownMenuItem(value: "3 Naira to 4 Naira", child: Text("3 Naira to 4 Naira")),
+      const DropdownMenuItem(value: "4 Naira to 5 Naira", child: Text("4 Naira to 5 Naira")),
     ];
     return menuItemsm;
   }
@@ -657,7 +657,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                               const SizedBox(width: 15,),
                               Expanded(
                                 child: Text(
-                                  "Scroll down to check all your details. submitting won’t impact your credit score.",
+                                  "Scroll down to check all your details are correct, We will carry out an eligibility check.",
                                   style: GoogleFonts.poppins(
                                       color: const Color(0xFF1D1D1D),
                                       fontSize: 14,
