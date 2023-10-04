@@ -25,8 +25,10 @@ import '../repository/payout_repo.dart';
 import '../repository/save_bank_details_repo.dart';
 import '../repository/save_benificiary_repo.dart';
 import '../resourses/api_constant.dart';
+import '../resourses/details.dart';
 
 class PayoutController extends GetxController {
+  final details = Get.put(DetailsController());
   final controller = Get.put(registerController());
   final controllerProfile = Get.put(ProfileController());
   TextEditingController firstNameController = TextEditingController();
@@ -56,7 +58,7 @@ var uniqueIdentifier= pref.getString("uniqueIdentifier");
         firstName:controller.bankController.text.trim() ,
         accountHolderName: accountName.text.trim(),
       uniqueIdentifier: uniqueIdentifier,
-      businessID: '64529bd2bfdf28e7c18aa9da'
+      businessID: details.businessID
     ).then((value) {
       CreateBenificiry.value = value;
       if (value.success == true) {
@@ -111,7 +113,7 @@ var uniqueIdentifier= pref.getString("uniqueIdentifier");
         destinationAddress: accountNo.text.trim(),
         firstName:accountName.text.trim() ,
         accountHolderName: accountName.text.trim(),
-        businessID: '64529bd2bfdf28e7c18aa9da'
+        businessID:details.businessID
     ).then((value) {
       CreateBenificiry1.value = value;
       if (value.success == true) {

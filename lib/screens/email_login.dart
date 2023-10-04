@@ -29,10 +29,7 @@ class EmailLoginScreen extends StatefulWidget {
 
 class _EmailLoginScreenState extends State<EmailLoginScreen> {
   final formKey2 = GlobalKey<FormState>();
-
-
   Rx<RxStatus> statusOflogin = RxStatus.empty().obs;
-
   Rx<LoginModel> login = LoginModel().obs;
   // Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
   // Rx<RxStatus> statusOfuserVerifyOtp = RxStatus.empty().obs;

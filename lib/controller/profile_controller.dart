@@ -11,10 +11,12 @@ import '../models/get_card_balance_model.dart';
 import '../models/model_conversion.dart';
 import '../models/model_create_card.dart';
 import '../models/model_create_card_holder.dart';
+import '../models/model_create_payout.dart';
 import '../models/model_freeze_card.dart';
 import '../models/model_fund_card.dart';
 import '../models/model_get_card.dart';
 import '../models/model_get_card_details.dart';
+import '../models/model_kay .dart';
 import '../models/model_rate.dart';
 import '../models/model_send_money.dart';
 import '../models/myprofile_model.dart';
@@ -27,19 +29,23 @@ import '../repository/create_card_repo.dart';
 import '../repository/freeze_card_repo.dart';
 import '../repository/fund_issuing_wallet_repo.dart';
 import '../repository/getBalanceRepo.dart';
+import '../repository/get_all_kay_repo.dart';
 import '../repository/get_card_repo.dart';
 import '../repository/get_current_balance.dart';
 import '../repository/myprofile_repo.dart';
+import '../repository/payout_repo.dart';
 import '../repository/rate_repo.dart';
 import '../repository/save_buy_plan_repo.dart';
 import '../repository/save_card_repo.dart';
 import '../repository/send_mail_repo.dart';
 import '../resourses/api_constant.dart';
+import '../resourses/details.dart';
 import '../routers/my_routers.dart';
 import 'number_controller.dart';
 
 class ProfileController extends GetxController {
   final numbercontroller = Get.put(numberController());
+
   // final registorController = Get.put(registerController());
 
   String resulttext = "0";
@@ -81,6 +87,7 @@ class ProfileController extends GetxController {
         amount: fundAmountController.text.toString(),
         about: "Fund To Account ",
         user_id:  modal.value.data!.user!.id.toString(),
+        sender_id: modal.value.data!.user!.id.toString(),
         // complete_response: purchaseData.value.data!.toJson(),
         context: context,
         description: "Fund To Card ",
@@ -259,7 +266,7 @@ class ProfileController extends GetxController {
       if (value.status == "success") {
         cardHolder.value = value;
         // print("sdggfrdh");
-
+        Get.toNamed(MyRouters.myCard);
         statusOfCardHolder.value = RxStatus.success();
         log("anjalim");
         log(cardId.toString());
@@ -370,6 +377,7 @@ zip_user_id:userId.toString(),
         amount: amountController.text.trim(),
         about: noteController.text.trim(),
         user_id:  modal.value.data!.user!.id.toString(),
+        sender_id: modal.value.data!.user!.id.toString(),
         // complete_response: purchaseData.value.data!.toJson(),
         context: context,
         description: noteController.text.trim(),
@@ -416,8 +424,9 @@ zip_user_id:userId.toString(),
     saveTransastionRepo(
             amount: amountController.text.trim(),
             about: noteController.text.trim(),
-            user_id: modal.value.data!.user!.id.toString(),
+            user_id: userId.toString(),
             send_type: "ziptozip",
+        receiver_id: userId.toString(),
             // complete_response: purchaseData.value.data!.toJson(),
             context: context,
             description: noteController.text.trim(),
@@ -436,13 +445,48 @@ zip_user_id:userId.toString(),
             // showToast(value.message.toString());
             );
   }
-
+  Rx<RxStatus> statusOfpayout = RxStatus.empty().obs;
+  Rx<ModelPayout> payout = ModelPayout().obs;
+//    pay(context) {
+//      payoutRepo(
+//          amount:amountController.text.trim(),
+//          context: context,
+//          accountHolderName:data.accountHolderName.toString() ,
+//          accountNumber:data.destinationAddress.toString(),
+//          destinationCurrency:"NGN",
+// // destinationCurrencyController.text.trim() ,
+//          sourceCurrency: "NGN",
+//          // sourceCurrencyController.text.trim(),
+//          description: noteController.text.trim(),
+//          // email:data.email.toString(),
+//          firstName:data.firstName.toString() ,
+//          // lastName:data.lastName.toString() ,
+//          paymentDestination:"bank_account" ,
+//          type:"individual" ,
+//          business:  '64529bd2bfdf28e7c18aa9da'
+//      ).then((value) {
+//        payout.value = value;
+//        if (value.success == true) {
+//          statusOfpayout.value = RxStatus.success();
+//          saveList();
+//          Get.toNamed(MyRouters.successRechargeScreen);
+//          // Get.back();
+//          showToast(value.message.toString());
+//        }
+//        else{
+//          statusOfpayout.value = RxStatus.success();
+//          showToast(value.message.toString());
+//        }
+//        // showToast(value.message.toString());
+//      });
+//    }
    saveList2(context) {
      saveTransastionRepo(
              user_id: modal.value.data!.user!.id.toString(),
              amount: amountController.text.trim(),
              about: noteController.text.trim(),
              send_type: "ziptozip",
+             sender_id: modal.value.data!.user!.id.toString(),
              // complete_response: purchaseData.value.data!.toJson(),
              context: context,
              description: noteController.text.trim(),
@@ -452,7 +496,9 @@ zip_user_id:userId.toString(),
        save.value = value;
        if (value.status == true) {
          print(userId);
-        send1();
+         saveList5(context);
+        // send1();
+
          statusOfSave.value = RxStatus.success();
        } else {
          statusOfSave.value = RxStatus.error();
@@ -462,7 +508,32 @@ zip_user_id:userId.toString(),
              );
    }
 
-
+  saveList5(context) {
+    saveTransastionRepo(
+        amount: amountController.text.trim(),
+        about: noteController.text.trim(),
+        user_id: userId.toString(),
+        send_type: "ziptozip",
+        receiver_id: userId.toString(),
+        // complete_response: purchaseData.value.data!.toJson(),
+        context: context,
+        description: noteController.text.trim(),
+        type: "cr")
+        .then((value) {
+      log("response.body.....    ${value}");
+      save.value = value;
+      if (value.status == true) {
+        // saveList2(context);
+        // send();
+        send1();
+        statusOfSave.value = RxStatus.success();
+      } else {
+        statusOfSave.value = RxStatus.error();
+      }
+    }
+      // showToast(value.message.toString());
+    );
+  }
   Rx<CurrentBalanceModel> currentBalanceModel = CurrentBalanceModel().obs;
   Rx<RxStatus> statusOfCurrentBalance = RxStatus.empty().obs;
 
@@ -542,10 +613,10 @@ zip_user_id:userId.toString(),
         .then((value) {
       if (value.status == "success") {
         statusOfCardBalance.value = RxStatus.success();
-
+print(card.value.data!.cardId.toString());
         // saveCardDetails();
         // Get.toNamed(MyRouters.cardDetails);
-        // holder();
+
         cardBalance.value = value;
         double resultFund = double.parse(cardBalance.value.data!.balance.toString())/double.parse( "100").round();
         fundText = resultFund.toInt().toString();
@@ -619,10 +690,17 @@ saveCardDetails() {
     });
   }
 
+  Rx<ModelKey> appKeyModel = ModelKey().obs;
+  Rx<RxStatus> statusOfKey = RxStatus.empty().obs;
+
+
+
+
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
     getData();
+
   }
 }

@@ -288,146 +288,171 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                         SizedBox(
                           height: 20,
                         ),
+
                         Obx(() {
                           return statusOfAirtimeTransistion.value.isSuccess
-                              ? ListView.builder(
-                              shrinkWrap: true,
-                              physics: const BouncingScrollPhysics(),
-                              itemCount: airtimeTransistion.value.data!.length,
-                              itemBuilder: (context, index) {
-                                return GestureDetector(
-                                  onTap: () {},
-                                  child: Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      InkWell(
-                                        onTap: (){
-                                          Get.toNamed(MyRouters.buyAirtimeScreen,arguments: [  airtimeTransistion.value.data![index].userId.toString(),
-                                            airtimeTransistion.value.data![index].amount.toString(),
-                                            airtimeTransistion.value.data![index].telcos.toString(),
-                                            airtimeTransistion.value.data![index].phone.toString(),
-
-                                          ]
-
-                                          );
-                                        },
-                                        child: Container(
-                                          padding: EdgeInsets.all(10),
-                                          decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(10),
-                                              border: Border.all(color: Colors.grey)
+                              ? Column(
+                                children: [
+                                  airtimeTransistion.value.data!.isEmpty?Center(
+                                    child: Text("No records found.", style:
+                                    GoogleFonts.poppins(
+                                        color: AppTheme
+                                            .primaryColor,
+                                        fontSize: 16,
+                                        fontWeight:
+                                        FontWeight
+                                            .w600),),
+                                  ):
+                                  ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: const BouncingScrollPhysics(),
+                                  itemCount: airtimeTransistion.value.data!.length,
+                                  itemBuilder: (context, index) {
+                                    return GestureDetector(
+                                      onTap: () {},
+                                      child: Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          airtimeTransistion.value.data!.isEmpty?Center(
+                                            child: Text("No records found.", style:
+                                            GoogleFonts.poppins(
+                                                color: AppTheme
+                                                    .primaryColor,
+                                                fontSize: 16,
+                                                fontWeight:
+                                                FontWeight
+                                                    .w600),),
+                                          ):
+                                          SizedBox(
+                                            height: 10,
                                           ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(5.0),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment
-                                                  .spaceBetween,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
+                                          InkWell(
+                                            onTap: (){
+                                              Get.toNamed(MyRouters.buyAirtimeScreen,arguments: [  airtimeTransistion.value.data![index].userId.toString(),
+                                                airtimeTransistion.value.data![index].amount.toString(),
+                                                airtimeTransistion.value.data![index].telcos.toString(),
+                                                airtimeTransistion.value.data![index].phone.toString(),
 
+                                              ]
 
-                                                Column(
+                                              );
+                                            },
+                                            child: Container(
+                                              padding: EdgeInsets.all(10),
+                                              decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(10),
+                                                  border: Border.all(color: Colors.grey)
+                                              ),
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(5.0),
+                                                child: Row(
                                                   mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                                  crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
-                                                    Text(
 
-                                                      airtimeTransistion
-                                                              .value
-                                                              .data![index]
-                                                              .phone
-                                                              .toString(),
-                                                      style:
-                                                      GoogleFonts.poppins(
-                                                          color: AppTheme
-                                                              .primaryColor,
-                                                          fontSize: 16,
-                                                          fontWeight:
-                                                          FontWeight
-                                                              .w600),
-                                                    ),
-                                                    Text(
-                                                      airtimeTransistion
-                                                          .value
-                                                          .data![index]
-                                                          .telcos
-                                                          .toString(),
-                                                      style:
-                                                      GoogleFonts.poppins(
-                                                          color:
-                                                          Colors.grey,
-                                                          fontSize: 13,
-                                                          fontWeight:
-                                                          FontWeight
-                                                              .w500),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Column(
-                                                  mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                                  crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      airtimeTransistion
-                                                          .value
-                                                          .data![index]
-                                                          .createdAt
-                                                          .toString(),
-                                                      style:
-                                                      GoogleFonts.poppins(
-                                                          color: Colors.grey,
-                                                          fontSize: 13,
-                                                          fontWeight:
-                                                          FontWeight
-                                                              .w300),
-                                                    ),
-                                                    Row(
-                                                      mainAxisAlignment: MainAxisAlignment.start,
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
+
+                                                    Column(
+                                                      mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                      crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
                                                       children: [
-                                                        SvgPicture.asset("assets/images/ngn.svg"),
+                                                        Text(
+
+                                                          airtimeTransistion
+                                                                  .value
+                                                                  .data![index]
+                                                                  .phone
+                                                                  .toString(),
+                                                          style:
+                                                          GoogleFonts.poppins(
+                                                              color: AppTheme
+                                                                  .primaryColor,
+                                                              fontSize: 16,
+                                                              fontWeight:
+                                                              FontWeight
+                                                                  .w600),
+                                                        ),
                                                         Text(
                                                           airtimeTransistion
                                                               .value
                                                               .data![index]
-                                                              .amount
+                                                              .telcos
                                                               .toString(),
                                                           style:
                                                           GoogleFonts.poppins(
                                                               color:
                                                               Colors.grey,
-                                                              fontSize: 14,
+                                                              fontSize: 13,
                                                               fontWeight:
                                                               FontWeight
-                                                                  .w400),
+                                                                  .w500),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Column(
+                                                      mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                      crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                      children: [
+                                                        Text(
+                                                          airtimeTransistion
+                                                              .value
+                                                              .data![index]
+                                                              .createdAt
+                                                              .toString(),
+                                                          style:
+                                                          GoogleFonts.poppins(
+                                                              color: Colors.grey,
+                                                              fontSize: 13,
+                                                              fontWeight:
+                                                              FontWeight
+                                                                  .w300),
+                                                        ),
+                                                        Row(
+                                                          mainAxisAlignment: MainAxisAlignment.start,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                          children: [
+                                                            SvgPicture.asset("assets/images/ngn.svg"),
+                                                            Text(
+                                                              airtimeTransistion
+                                                                  .value
+                                                                  .data![index]
+                                                                  .amount
+                                                                  .toString(),
+                                                              style:
+                                                              GoogleFonts.poppins(
+                                                                  color:
+                                                                  Colors.grey,
+                                                                  fontSize: 14,
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .w400),
+                                                            ),
+                                                          ],
                                                         ),
                                                       ],
                                                     ),
                                                   ],
                                                 ),
-                                              ],
+                                              ),
                                             ),
                                           ),
-                                        ),
+                                          SizedBox(
+                                            height: 10,
+                                          )
+                                        ],
                                       ),
-                                      SizedBox(
-                                        height: 10,
-                                      )
-                                    ],
-                                  ),
-                                );
-                              })
+                                    );
+                                  }),
+                                ],
+                              )
                               : statusOfAirtimeTransistion.value.isError
                               ? CommonErrorWidget(
                             errorText: airtimeTransistion.value.message

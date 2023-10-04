@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_boder_button.dart';
@@ -32,6 +33,8 @@ class _DashBoardState extends State<DashBoard> {
 
 
   }
+
+
 
   getData() {
     myProfileRepo().then((value) {
@@ -148,14 +151,17 @@ class _DashBoardState extends State<DashBoard> {
                                               width: 20,
                                               height: 20,
                                             ),
-                                            Text(
-                                              profileController
-                                                  .currentBalanceModel.value.data
-                                                  .toString(),
-                                              style: GoogleFonts.poppins(
-                                                  color: Colors.white,
-                                                  fontSize: 30,
-                                                  fontWeight: FontWeight.w500),
+                                            FittedBox(
+                                              child: Text(
+                                                NumberFormat.currency(
+                                                  symbol: '', // Set the currency symbol to empty since you're formatting as a plain number
+                                                  decimalDigits: 0, // Set the number of decimal digits to 0
+                                                ).format(profileController.currentBalanceModel.value.data),
+                                                style: GoogleFonts.poppins(
+                                                    color: Colors.white,
+                                                    fontSize: 25,
+                                                    fontWeight: FontWeight.w500),
+                                              ),
                                             ),
                                           ],
                                         ): Text(
@@ -588,7 +594,7 @@ class _DashBoardState extends State<DashBoard> {
                                       height: 8,
                                     ),
                                     Text(
-                                      'Buy \nCabelTv',
+                                      'Buy \nCable Tv',
                                       style: GoogleFonts.poppins(
                                         textStyle: const TextStyle(
                                             fontSize: 16,
@@ -645,7 +651,7 @@ class _DashBoardState extends State<DashBoard> {
                                       height: 8,
                                     ),
                                     Text(
-                                      'Buy Internet\n Data',
+                                      'Buy Internet\nData',
                                       style: GoogleFonts.poppins(
                                         textStyle: const TextStyle(
                                             fontSize: 16,
@@ -664,7 +670,7 @@ class _DashBoardState extends State<DashBoard> {
                         ),
                         InkWell(
                           onTap: () {
-                            Get.toNamed(MyRouters.exchangeMoney2);
+                            Get.toNamed(MyRouters.currencyConvert);
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,

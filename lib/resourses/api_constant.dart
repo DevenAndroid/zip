@@ -70,6 +70,7 @@ class ApiUrls {
   static const String supportCategories = "${apiBaseUrl}support-categories";
   static const String userBankList = "${apiBaseUrl}user-bank-list";
   static const String myAddress = "${apiBaseUrl}my-address";
+  static const String appKey = "${apiBaseUrl}key-list";
   static const String getCardInfo = "${apiBaseUrl}get-card-info";
   static const String logout = "${apiBaseUrl}logout";
   static const String deleteAccount = "${apiBaseUrl}delete-account";

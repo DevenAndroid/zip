@@ -257,164 +257,178 @@ class _BuyElectricityListState extends State<BuyElectricityList> {
                       SizedBox(height: 20,),
                       Obx(() {
                         return statusOfelEctricityTransistion.value.isSuccess
-                            ? ListView.builder(
-                            shrinkWrap: true,
-                            physics: const BouncingScrollPhysics(),
-                            itemCount: electricityTransistion.value.data!.length,
-                            itemBuilder: (context, index) {
-                              return GestureDetector(
-                                onTap: () {
+                            ? Column(
+                              children: [
+                                electricityTransistion.value.data!.isEmpty?Center(
+                                  child: Text("No records found.", style:
+                                  GoogleFonts.poppins(
+                                      color: AppTheme
+                                          .primaryColor,
+                                      fontSize: 16,
+                                      fontWeight:
+                                      FontWeight
+                                          .w600),),
+                                ):
+                                ListView.builder(
+                                shrinkWrap: true,
+                                physics: const BouncingScrollPhysics(),
+                                itemCount: electricityTransistion.value.data!.length,
+                                itemBuilder: (context, index) {
+                                  return GestureDetector(
+                                    onTap: () {
 
-                                },
-                                child: Column(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.start,
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                                  children: [
+                                    },
+                                    child: Column(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                      children: [
 
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    InkWell(
-                                      onTap: (){
-                                        Get.toNamed(MyRouters.buyElectricity,arguments: [
-                                          electricityTransistion.value.data![index].userId.toString(),
-                                          electricityTransistion.value.data![index].amount.toString(),
-                                          electricityTransistion.value.data![index].telcos.toString(),
-                                          electricityTransistion.value.data![index].description.toString(),
-                                          electricityTransistion.value.data![index].phone.toString(),
-                                        ]);
-                                      },
-                                      child: Container(
-                                        padding: EdgeInsets.all(10),
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(10),
-                                            border: Border.all(color: Colors.grey)
+                                        SizedBox(
+                                          height: 10,
                                         ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(5.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment
-                                                .spaceBetween,
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-
-
-                                              Column(
+                                        InkWell(
+                                          onTap: (){
+                                            Get.toNamed(MyRouters.buyElectricity,arguments: [
+                                              electricityTransistion.value.data![index].userId.toString(),
+                                              electricityTransistion.value.data![index].amount.toString(),
+                                              electricityTransistion.value.data![index].telcos.toString(),
+                                              electricityTransistion.value.data![index].description.toString(),
+                                              electricityTransistion.value.data![index].phone.toString(),
+                                            ]);
+                                          },
+                                          child: Container(
+                                            padding: EdgeInsets.all(10),
+                                            decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(10),
+                                                border: Border.all(color: Colors.grey)
+                                            ),
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(5.0),
+                                              child: Row(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                                MainAxisAlignment
+                                                    .spaceBetween,
+                                                crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
-                                                  Row(
-                                                    children: [ Image.asset("assets/images/meter.png"),
+
+
+                                                  Column(
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                    children: [
+                                                      Row(
+                                                        children: [ Image.asset("assets/images/meter.png"),
 SizedBox(width: 6,),
-                                                      Text(
+                                                          Text(
 
-                                                        electricityTransistion
-                                                            .value
-                                                            .data![index]
-                                                            .description
-                                                            .toString(),
-                                                        style:
-                                                        GoogleFonts.poppins(
-                                                            color: AppTheme
-                                                                .primaryColor,
-                                                            fontSize: 16,
-                                                            fontWeight:
-                                                            FontWeight
-                                                                .w600),
+                                                            electricityTransistion
+                                                                .value
+                                                                .data![index]
+                                                                .description
+                                                                .toString(),
+                                                            style:
+                                                            GoogleFonts.poppins(
+                                                                color: AppTheme
+                                                                    .primaryColor,
+                                                                fontSize: 16,
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w600),
+                                                          ),
+                                                        ],
                                                       ),
-                                                    ],
-                                                  ),
-                                                  Text(
-                                                    electricityTransistion
-                                                        .value
-                                                        .data![index]
-                                                        .telcos
-                                                        .toString(),
-                                                    style:
-                                                    GoogleFonts.poppins(
-                                                        color:
-                                                        Colors.grey,
-                                                        fontSize: 13,
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w500),
-                                                  ),
-                                                  Text(
-                                                    electricityTransistion
-                                                        .value
-                                                        .data![index]
-                                                        .phone
-                                                        .toString(),
-                                                    style:
-                                                    GoogleFonts.poppins(
-                                                        color:
-                                                        Colors.grey,
-                                                        fontSize: 13,
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w500),
-                                                  ),
-                                                ],
-                                              ),
-                                              Column(
-                                                mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    electricityTransistion
-                                                        .value
-                                                        .data![index]
-                                                        .createdAt
-                                                        .toString(),
-                                                    style:
-                                                    GoogleFonts.poppins(
-                                                        color: Colors.grey,
-                                                        fontSize: 13,
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w300),
-                                                  ),
-                                                  Row(
-                                                    children: [SvgPicture.asset("assets/images/ngn.svg"),
-
                                                       Text(
                                                         electricityTransistion
                                                             .value
                                                             .data![index]
-                                                            .amount
+                                                            .telcos
                                                             .toString(),
                                                         style:
                                                         GoogleFonts.poppins(
                                                             color:
                                                             Colors.grey,
-                                                            fontSize: 14,
+                                                            fontSize: 13,
                                                             fontWeight:
                                                             FontWeight
-                                                                .w400),
+                                                                .w500),
+                                                      ),
+                                                      Text(
+                                                        electricityTransistion
+                                                            .value
+                                                            .data![index]
+                                                            .phone
+                                                            .toString(),
+                                                        style:
+                                                        GoogleFonts.poppins(
+                                                            color:
+                                                            Colors.grey,
+                                                            fontSize: 13,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w500),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Column(
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                    children: [
+                                                      Text(
+                                                        electricityTransistion
+                                                            .value
+                                                            .data![index]
+                                                            .createdAt
+                                                            .toString(),
+                                                        style:
+                                                        GoogleFonts.poppins(
+                                                            color: Colors.grey,
+                                                            fontSize: 13,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w300),
+                                                      ),
+                                                      Row(
+                                                        children: [SvgPicture.asset("assets/images/ngn.svg"),
+
+                                                          Text(
+                                                            electricityTransistion
+                                                                .value
+                                                                .data![index]
+                                                                .amount
+                                                                .toString(),
+                                                            style:
+                                                            GoogleFonts.poppins(
+                                                                color:
+                                                                Colors.grey,
+                                                                fontSize: 14,
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w400),
+                                                          ),
+                                                        ],
                                                       ),
                                                     ],
                                                   ),
                                                 ],
                                               ),
-                                            ],
+                                            ),
                                           ),
                                         ),
-                                      ),
+                                        SizedBox(
+                                          height: 10,
+                                        )
+                                      ],
                                     ),
-                                    SizedBox(
-                                      height: 10,
-                                    )
-                                  ],
-                                ),
-                              );
-                            })
+                                  );
+                                }),
+                              ],
+                            )
                             : statusOfelEctricityTransistion.value.isError
                             ? CommonErrorWidget(
                           errorText: electricityTransistion.value.message

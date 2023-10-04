@@ -259,137 +259,167 @@ class _BuyCabelTvListState extends State<BuyCabelTvList> {
                       SizedBox(height: 20,),
                       Obx(() {
                         return statusOfBuyDataList.value.isSuccess
-                            ? ListView.builder(
-                            shrinkWrap: true,
-                            physics: const BouncingScrollPhysics(),
-                            itemCount: buyCableList.value.data!.length,
-                            itemBuilder: (context, index) {
-                              return GestureDetector(
-                                onTap: () {
+                            ? Column(
+                              children: [
+                                buyCableList.value.data!.isEmpty?Center(
+                                  child: Text("No records found.", style:
+                                  GoogleFonts.poppins(
+                                      color: AppTheme
+                                          .primaryColor,
+                                      fontSize: 16,
+                                      fontWeight:
+                                      FontWeight
+                                          .w600),),
+                                ):
+                                ListView.builder(
+                                shrinkWrap: true,
+                                physics: const BouncingScrollPhysics(),
+                                itemCount: buyCableList.value.data!.length,
+                                itemBuilder: (context, index) {
+                                  return GestureDetector(
+                                    onTap: () {
 
-                                },
-                                child: Column(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.start,
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    InkWell(
-                                      onTap: (){
-                                        Get.toNamed(MyRouters.cabelScreen,arguments: [
-                                          buyCableList.value.data![index].telcos.toString(),
-                                          buyCableList.value.data![index].amount.toString(),
-                                          buyCableList.value.data![index].dataplan.toString(),
-                                          buyCableList.value.data![index].dataCode.toString(),
-                                          buyCableList.value.data![index].phone.toString(),
-                                          buyCableList.value.data![index].userId.toString(),
+                                    },
+                                    child: Column(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                      children: [
 
-
-                                        ]);
-                                      },
-                                      child: Container(
-                                        padding: EdgeInsets.all(10),
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(10),
-                                            border: Border.all(color: Colors.grey)
+                                        SizedBox(
+                                          height: 10,
                                         ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(5.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment
-                                                .spaceBetween,
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
+                                        InkWell(
+                                          onTap: (){
+                                            Get.toNamed(MyRouters.cabelScreen,arguments: [
+                                              buyCableList.value.data![index].telcos.toString(),
+                                              buyCableList.value.data![index].amount.toString(),
+                                              buyCableList.value.data![index].dataplan.toString(),
+                                              buyCableList.value.data![index].dataCode.toString(),
+                                              buyCableList.value.data![index].phone.toString(),
+                                              buyCableList.value.data![index].userId.toString(),
 
 
-                                              Column(
+                                            ]);
+                                          },
+                                          child: Container(
+                                            padding: EdgeInsets.all(10),
+                                            decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(10),
+                                                border: Border.all(color: Colors.grey)
+                                            ),
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(5.0),
+                                              child: Row(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                                MainAxisAlignment
+                                                    .spaceBetween,
+                                                crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
-                                                  Text(
 
-                                                    buyCableList
-                                                        .value
-                                                        .data![index]
-                                                        .phone
-                                                        .toString(),
-                                                    style:
-                                                    GoogleFonts.poppins(
-                                                        color: AppTheme
-                                                            .primaryColor,
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w600),
-                                                  ),
-                                                  Text(
-                                                    buyCableList
-                                                        .value
-                                                        .data![index]
-                                                        .telcos
-                                                        .toString(),
-                                                    style:
-                                                    GoogleFonts.poppins(
-                                                        color:
-                                                        Colors.grey,
-                                                        fontSize: 13,
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w500),
-                                                  ),
-                                                  Text(
-                                                    "Plan:- "+ buyCableList
-                                                        .value
-                                                        .data![index]
-                                                        .dataplan
-                                                        .toString(),
-                                                    style:
-                                                    GoogleFonts.poppins(
-                                                        color:
-                                                        Colors.grey,
-                                                        fontSize: 13,
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w500),
-                                                  ),
-                                                ],
-                                              ),
-                                              Column(
-                                                mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                CrossAxisAlignment.end,
-                                                children: [
-                                                  Text(
-                                                    buyCableList
-                                                        .value
-                                                        .data![index]
-                                                        .createdAt
-                                                        .toString(),
-                                                    style:
-                                                    GoogleFonts.poppins(
-                                                        color: Colors.grey,
-                                                        fontSize: 13,
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w300),
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment: MainAxisAlignment.start,
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
+
+                                                  Column(
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
                                                     children: [
-                                                      SvgPicture.asset("assets/images/ngn.svg"),
+                                                      Text(
+
+                                                        buyCableList
+                                                            .value
+                                                            .data![index]
+                                                            .phone
+                                                            .toString(),
+                                                        style:
+                                                        GoogleFonts.poppins(
+                                                            color: AppTheme
+                                                                .primaryColor,
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w600),
+                                                      ),
                                                       Text(
                                                         buyCableList
                                                             .value
                                                             .data![index]
-                                                            .amount
+                                                            .telcos
+                                                            .toString(),
+                                                        style:
+                                                        GoogleFonts.poppins(
+                                                            color:
+                                                            Colors.grey,
+                                                            fontSize: 13,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w500),
+                                                      ),
+                                                      Text(
+                                                        "Plan:- "+ buyCableList
+                                                            .value
+                                                            .data![index]
+                                                            .dataplan
+                                                            .toString(),
+                                                        style:
+                                                        GoogleFonts.poppins(
+                                                            color:
+                                                            Colors.grey,
+                                                            fontSize: 13,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w500),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Column(
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
+                                                    children: [
+                                                      Text(
+                                                        buyCableList
+                                                            .value
+                                                            .data![index]
+                                                            .createdAt
+                                                            .toString(),
+                                                        style:
+                                                        GoogleFonts.poppins(
+                                                            color: Colors.grey,
+                                                            fontSize: 13,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w300),
+                                                      ),
+                                                      Row(
+                                                        mainAxisAlignment: MainAxisAlignment.start,
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        children: [
+                                                          SvgPicture.asset("assets/images/ngn.svg"),
+                                                          Text(
+                                                            buyCableList
+                                                                .value
+                                                                .data![index]
+                                                                .amount
+                                                                .toString(),
+                                                            style:
+                                                            GoogleFonts.poppins(
+                                                                color:
+                                                                Colors.grey,
+                                                                fontSize: 14,
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w400),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      Text(
+                                                        "Code:- "+buyCableList
+                                                            .value
+                                                            .data![index]
+                                                            .dataCode
                                                             .toString(),
                                                         style:
                                                         GoogleFonts.poppins(
@@ -402,36 +432,21 @@ class _BuyCabelTvListState extends State<BuyCabelTvList> {
                                                       ),
                                                     ],
                                                   ),
-                                                  Text(
-                                                    "Code:- "+buyCableList
-                                                        .value
-                                                        .data![index]
-                                                        .dataCode
-                                                        .toString(),
-                                                    style:
-                                                    GoogleFonts.poppins(
-                                                        color:
-                                                        Colors.grey,
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w400),
-                                                  ),
                                                 ],
                                               ),
-                                            ],
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ),
 
-                                    SizedBox(
-                                      height: 10,
-                                    )
-                                  ],
-                                ),
-                              );
-                            })
+                                        SizedBox(
+                                          height: 10,
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                }),
+                              ],
+                            )
                             : statusOfBuyDataList.value.isError
                             ? CommonErrorWidget(
                           errorText: buyCableList.value.message

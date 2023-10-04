@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
@@ -63,8 +64,10 @@ class _SendCashYourBalanceState extends State<SendCashYourBalance> {
                               Image.network("https://cdn-icons-png.flaticon.com/512/32/32974.png",color: Colors.black,width: 15,height: 15,),
                               Text(
 
-                                    profileController.currentBalanceModel.value.data
-                                        .toString(),
+                                NumberFormat.currency(
+                                  symbol: '', // Set the currency symbol to empty since you're formatting as a plain number
+                                  decimalDigits: 0, // Set the number of decimal digits to 0
+                                ).format(profileController.currentBalanceModel.value.data),
                                 style: GoogleFonts.poppins(
                                     color: const Color(0xFF1D1D1D),
                                     fontSize: 20,

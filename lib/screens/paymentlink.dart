@@ -54,13 +54,13 @@ class _VerifyPaymentLinkState extends State<VerifyPaymentLink> {
     children: [
 
 
-    Text('Please fund your account using a credit or debit card. ',
+    Text('Please fund you account using a credit or debit card',
       style: GoogleFonts.poppins(
           color:  Colors.black,
           fontSize: 18,
           fontWeight: FontWeight.w600),),
     SizedBox(height: 10,),
-    Text(' Click below and you will be taken to our payment processors website to complete your transaction and when you are done please return to the app.',
+    Text('Click below and you will be taken to our payment processors website to complete your transaction and when you are done done please return to the app',
       style: GoogleFonts.poppins(
           color:  Colors.black,
           fontSize: 15,

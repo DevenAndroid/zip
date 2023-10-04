@@ -2,13 +2,15 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import '../models/create_benificiary.dart';
 import '../models/modal_registor.dart';
 import '../models/model_update_password.dart';
 import '../resourses/api_constant.dart';
+import '../resourses/details.dart';
 import '../resourses/helper.dart';
-
+final details = Get.put(DetailsController());
 Future<CreateBenificiryModel> createBRepo(
     {firstName,
     name,
@@ -32,7 +34,7 @@ Future<CreateBenificiryModel> createBRepo(
           headers: {
             HttpHeaders.contentTypeHeader: 'application/json',
             HttpHeaders.acceptHeader: 'application/json',
-            "api-key": "m98zn3Y70MXGu1VaZNhYOZO7CbULj6uU"
+            "api-key":details.apiKey
           },
           body: jsonEncode(map));
   log("Sign IN DATA${response.body}");

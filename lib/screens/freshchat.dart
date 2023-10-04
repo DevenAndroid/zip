@@ -46,7 +46,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  final GlobalKey<ScaffoldState>? _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState>? _scaffoldKey = GlobalKey<ScaffoldState>();
 
   void registerFcmToken() async {
     if (Platform.isAndroid) {
@@ -139,12 +139,12 @@ class _MyHomePageState extends State<MyHomePage> {
     FreshchatUser user = await Freshchat.getUser;
     String? restoreId = user.getRestoreId();
     if (restoreId != null) {
-      Clipboard.setData(new ClipboardData(text: restoreId));
+      Clipboard.setData(ClipboardData(text: restoreId));
       showToast("Restore ID copied: $restoreId");
     }
   }
     void getUserProps(BuildContext context) {
-      final _userInfoKey = new GlobalKey<FormState>();
+      final userInfoKey = GlobalKey<FormState>();
       String? key, value;
       var alert = AlertDialog(
         scrollable: true,
@@ -156,7 +156,7 @@ class _MyHomePageState extends State<MyHomePage> {
           style: TextStyle(fontFamily: 'OpenSans-Regular'),
         ),
         content: Form(
-          key: _userInfoKey,
+          key: userInfoKey,
           child: Column(
             children: [
               TextFormField(
@@ -222,7 +222,7 @@ class _MyHomePageState extends State<MyHomePage> {
           });
     }
     void sendMessageApi(BuildContext context) {
-      final _userInfoKey = new GlobalKey<FormState>();
+      final userInfoKey = GlobalKey<FormState>();
       String? conversationTag, message;
       var alert = AlertDialog(
         scrollable: true,
@@ -234,7 +234,7 @@ class _MyHomePageState extends State<MyHomePage> {
           style: TextStyle(fontFamily: 'OpenSans-Regular'),
         ),
         content: Form(
-          key: _userInfoKey,
+          key: userInfoKey,
           child: Column(
             children: [
               TextFormField(
@@ -302,8 +302,8 @@ class _MyHomePageState extends State<MyHomePage> {
           });
     }
 
-     String APP_ID = "431459d3-abb1-42b0-bc2c-d10e0c015fe2",
-        APP_KEY = "c26327ca-832c-4ab2-8715-67f0760c8f0a",
+     String APP_ID = "582cb772-77e7-4903-a46e-5eb59f6f74f0",
+        APP_KEY = "1da483f8-ed29-4998-b74d-8469a609875f",
         DOMAIN = "msdk.eu.freshchat.com";
     void initState() {
       super.initState();

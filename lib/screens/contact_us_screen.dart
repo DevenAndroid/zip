@@ -111,7 +111,7 @@ support_category: id.value.toString()
       Center(
           child: SizedBox(
             height: 55,
-            width: 350,
+            width: 320,
             child: PopupMenuButton<int>(
               constraints:  BoxConstraints(maxHeight: 600,
                 minWidth: MediaQuery.of(context).size.width,
@@ -147,7 +147,7 @@ support_category: id.value.toString()
 
                           },
                           child: Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
+                            padding: const EdgeInsets.only(left: 12.0,right: 12),
                             child: Expanded(
                               child: Column(
                                 children: [
@@ -169,7 +169,7 @@ support_category: id.value.toString()
 
               child: Container(
                 padding: const EdgeInsets.symmetric(
-                    horizontal: 10, vertical: 10),
+                    horizontal: 15, vertical: 10),
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius:

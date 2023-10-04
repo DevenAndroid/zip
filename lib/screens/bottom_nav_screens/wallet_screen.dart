@@ -408,8 +408,8 @@ class _WalletScreen1State extends State<WalletScreen1> {
                       ),
                       InkWell(
                         onTap: (){
-                          Get.toNamed(MyRouters.myCard);
-                          // controller1. holder();
+                          // Get.toNamed(MyRouters.myCard);
+                          controller1. holder();
                         },
                         child: const CustomOutlineButton(
                           title: "Add Card",

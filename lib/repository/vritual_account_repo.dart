@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 
@@ -11,9 +12,10 @@ import '../models/model_create_vritual_account.dart';
 import '../models/model_verify_otp.dart';
 import '../models/registor_model.dart';
 import '../resourses/api_constant.dart';
+import '../resourses/details.dart';
 import '../resourses/helper.dart';
 
-
+final details = Get.put(DetailsController());
 
 Future<CreateVirtualAccountModel> accountRepo({email,bvn,phonenumber,context,firstName,accountType,lastName,channel}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
@@ -36,7 +38,7 @@ Future<CreateVirtualAccountModel> accountRepo({email,bvn,phonenumber,context,fir
   http.Response response = await http.post(Uri.parse(ApiUrls.vritualAccountCreate),
       headers: { HttpHeaders.contentTypeHeader: 'application/json',
         HttpHeaders.acceptHeader: 'application/json',
-        "api-key": "m98zn3Y70MXGu1VaZNhYOZO7CbULj6uU"
+        "api-key": details.apiKey
 
       },
       body: jsonEncode(map));

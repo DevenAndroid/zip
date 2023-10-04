@@ -17,6 +17,7 @@ class _SendCashReciptantState extends State<SendCashReciptant> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -37,12 +38,7 @@ class _SendCashReciptantState extends State<SendCashReciptant> {
             color: AppTheme.primaryColor,
           ),
         ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 20),
-            child: Icon(Icons.search,color: Colors.black,),
-          )
-        ],
+
       ),
       body: Column(
         children: [

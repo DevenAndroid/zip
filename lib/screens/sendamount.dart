@@ -55,7 +55,7 @@ class _RequestPaymentContiuneState extends State<RequestPaymentContiune> {
                 fontWeight: FontWeight.w500),
           ),
           Text(
-            "From"+  "  ${profileController.modal.value.data!.user!.fname.toString()} "+" ${profileController.modal.value.data!.user!.lname.toString()}",
+            "From"+  "  ${ profileController. nameController.text.toString()} ",
             style: GoogleFonts.poppins(
                 color: const Color(0xFF1D1D1D),
                 fontSize: 16,

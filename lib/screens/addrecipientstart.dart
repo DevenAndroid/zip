@@ -74,8 +74,8 @@ class _AddRecipientStartState extends State<AddRecipientStart> {
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey,
-                            offset: Offset(0.0, 1.0), //(x,y)
-                            blurRadius: 6.0,
+                            offset: Offset(0.0, 0.0), //(x,y)
+                            blurRadius: 0.0,
                           ),
                         ],
                         color: const Color(0xffFAFAFA),
@@ -122,8 +122,8 @@ class _AddRecipientStartState extends State<AddRecipientStart> {
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey,
-                            offset: Offset(0.0, 1.0), //(x,y)
-                            blurRadius: 6.0,
+                            offset: Offset(0.0, 0.0), //(x,y)
+                            blurRadius: 0.0,
                           ),
                         ],
                         color: const Color(0xffFAFAFA),
@@ -176,8 +176,8 @@ SizedBox(height: 20,),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey,
-                          offset: Offset(0.0, 1.0), //(x,y)
-                          blurRadius: 6.0,
+                          offset: Offset(0.0, 0.0), //(x,y)
+                          blurRadius: 0.0,
                         ),
                       ],
                       color: const Color(0xffFAFAFA),

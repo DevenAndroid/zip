@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 
@@ -9,10 +10,11 @@ import '../models/fetchVirtualAccount_model.dart';
 import '../models/model_verify_otp.dart';
 import '../models/registor_model.dart';
 import '../resourses/api_constant.dart';
+import '../resourses/details.dart';
 import '../resourses/helper.dart';
 
 
-
+final details = Get.put(DetailsController());
 Future<FetchVirtualAccountModel> fetchAccountRepo({required String id}) async {
 
 
@@ -25,7 +27,7 @@ Future<FetchVirtualAccountModel> fetchAccountRepo({required String id}) async {
   http.Response response = await http.get(Uri.parse(ApiUrls.fetchAccount+id),
       headers: { HttpHeaders.contentTypeHeader: 'application/json',
         HttpHeaders.acceptHeader: 'application/json',
-        "api-key": "m98zn3Y70MXGu1VaZNhYOZO7CbULj6uU"
+        "api-key":details.apiKey
 
       });
 
