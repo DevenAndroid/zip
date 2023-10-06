@@ -14,8 +14,7 @@ import '../resourses/helper.dart';
 
 Future<GetAddressModel> getAddressRepo() async {
   try {
-    http.Response response = await http.get(
-      Uri.parse(ApiUrls.myAddress),
+    http.Response response = await http.get(Uri.parse(ApiUrls.myAddress),
       headers: await getAuthHeader(),
     );
 
