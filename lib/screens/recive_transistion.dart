@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
+import '../models/model_all_transistion.dart';
 import '../models/model_recieve_transistion.dart';
 import '../repository/get_recived_transistion_repo.dart';
 import '../widgets/circular_progressindicator.dart';
@@ -21,7 +22,7 @@ class ReciveTransactionsHistory extends StatefulWidget {
 class _ReciveTransactionsHistoryState extends State<ReciveTransactionsHistory> {
   int currentDrawer = 0;
   Rx<RxStatus> statusOfRecieveTransistion = RxStatus.empty().obs;
-  Rx<ModelRecieveTransistion> reciveTransistion = ModelRecieveTransistion().obs;
+  Rx<ModelAllTransistion> reciveTransistion = ModelAllTransistion().obs;
 
   getRecieveTransitionList() {
     recieveTransistionListGetRepo().then((value) {

@@ -47,18 +47,18 @@ class _AddAPayerState extends State<AddAPayer> {
               fontWeight: FontWeight.w500),
         ),
         centerTitle: true,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 20,top: 20),
-            child: Text(
-              "Cancel",
-              style: GoogleFonts.poppins(
-                  color: const Color(0xFFF0D75F),
-                  fontSize: 11,
-                  fontWeight: FontWeight.w400),
-            ),
-          )
-        ],
+        // actions: [
+        //   Padding(
+        //     padding: const EdgeInsets.only(right: 20,top: 20),
+        //     child: Text(
+        //       "Cancel",
+        //       style: GoogleFonts.poppins(
+        //           color: const Color(0xFFF0D75F),
+        //           fontSize: 11,
+        //           fontWeight: FontWeight.w400),
+        //     ),
+        //   )
+        // ],
       ),
       body: SingleChildScrollView(
         child: Form(
@@ -122,12 +122,12 @@ class _AddAPayerState extends State<AddAPayer> {
                               ),
                               value: "United Kingdom",
                             ),
-                            const DropdownMenuItem(
-                                child: Text("Canada"), value: "Canada"),
-                            const DropdownMenuItem(
-                              child: Text("Russia"),
-                              value: "Russia",
-                            )
+                          /*  const DropdownMenuItem(
+                                child: Text("Canada"), value: "Canada"),*/
+                            // const DropdownMenuItem(
+                            //   child: Text("Russia"),
+                            //   value: "Russia",
+                            // )
                           ],
                           onChanged: (value) {},
                           icon: const Padding(

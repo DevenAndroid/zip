@@ -35,7 +35,28 @@ class _RequestPaymentContiuneState extends State<RequestPaymentContiune> {
         ),
         centerTitle: true,
       ),
+      bottomNavigationBar:      Padding(
+        padding: const EdgeInsets.only(bottom: 28.0),
+        child: InkWell(
+          onTap: () async {
+            SharedPreferences pref = await SharedPreferences.getInstance();
+            if (pref.getBool('TransistionPin') == true) {
+              Get.toNamed(MyRouters.sendMoneyPin);
+            }
+            else{
+              Get.toNamed(MyRouters.sendSuccessScreen);
+            }
+          },
+
+
+          child: CustomOutlineButton(
+            title: "Continue",
+          ),
+        ),
+      ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(height: 48,),
           ClipRRect(
@@ -61,25 +82,8 @@ class _RequestPaymentContiuneState extends State<RequestPaymentContiune> {
                 fontSize: 16,
                 fontWeight: FontWeight.w400),
           ),
-          SizedBox(
-            height: size.height * .5,
-          ),
-          InkWell(
-            onTap: () async {
-              SharedPreferences pref = await SharedPreferences.getInstance();
-              if (pref.getBool('TransistionPin') == true) {
-                Get.toNamed(MyRouters.sendMoneyPin);
-              }
-              else{
-                Get.toNamed(MyRouters.sendSuccessScreen);
-              }
-            },
 
 
-            child: CustomOutlineButton(
-              title: "Continue",
-            ),
-          ),
         ],
       ),
     );

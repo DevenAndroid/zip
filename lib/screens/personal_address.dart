@@ -150,6 +150,7 @@ title: Text(
                         ]),),
                         const SizedBox(height: 15,),
                         CommonTextfield(
+                          keyboardType: TextInputType.number,
                           controller: houseNoController,
                           obSecure: false, labelText: "House Number", hintText: '', validator: MultiValidator([
                           RequiredValidator(

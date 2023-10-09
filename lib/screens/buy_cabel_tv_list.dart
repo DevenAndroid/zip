@@ -66,7 +66,7 @@ class _BuyCabelTvListState extends State<BuyCabelTvList> {
             ),
           ),
           title: Text(
-            "CabelTv Transactions",
+            "CableTv Transactions",
             style: GoogleFonts.poppins(
                 color: const Color(0xFF1D1D1D),
                 fontSize: 20,
@@ -242,7 +242,7 @@ class _BuyCabelTvListState extends State<BuyCabelTvList> {
                                         color: Colors.white,
                                         borderRadius: BorderRadius.circular(15),
                                       ),
-                                      child: Text("Cabel Tv",
+                                      child: Text("Cable Tv",
                                           style: currentDrawer == 0
                                               ? GoogleFonts.poppins(
                                               color: const Color(0xFFFFFFFF),

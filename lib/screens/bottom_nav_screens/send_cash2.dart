@@ -27,7 +27,7 @@ class SendCash2 extends StatefulWidget {
 class _SendCash2State extends State<SendCash2> {
   bool isSwitched = false;
 
-
+  final formKey4 = GlobalKey<FormState>();
   Rx<ModelAccountResolve> resolve = ModelAccountResolve().obs;
   Rx<RxStatus> statusOfResolve = RxStatus.empty().obs;
 
@@ -72,8 +72,8 @@ class _SendCash2State extends State<SendCash2> {
           backgroundColor: Colors.white,
           leading: InkWell(
             onTap: () {
-              // Get.back();
-              Get.toNamed(MyRouters.sendCashReciptant);
+               Get.back();
+              // Get.toNamed(MyRouters.sendCashReciptant);
 
             },
             child: const Icon(
@@ -95,7 +95,9 @@ class _SendCash2State extends State<SendCash2> {
           child: InkWell(
               onTap: () {
                 print( controller.bankController,);
-                payOutcontroller.CreateBenificery();
+                if (formKey4.currentState!.validate()) {
+                  payOutcontroller.CreateBenificery();
+                }
               },
               child: const CustomOutlineButton(
                 title: "Continue",
@@ -104,154 +106,160 @@ class _SendCash2State extends State<SendCash2> {
         body: SingleChildScrollView(
             child: Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      InkWell(
-                        onTap: (){
-                          Get.toNamed(MyRouters.yourRecipient);
-                        },
-                        child: Padding(
+                child: Form(
+                  key:formKey4 ,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        InkWell(
+                          onTap: (){
+                            Get.toNamed(MyRouters.yourRecipient);
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                SvgPicture.asset('assets/images/mark.svg'),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Benificiries',
+                                      style: GoogleFonts.poppins(
+                                        textStyle: const TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                            color: Color(0xFF1D1D1D)),
+                                      ),
+                                    ),
+                                    Text(
+                                      'Send to already saved channels',
+                                      style: GoogleFonts.poppins(
+                                        textStyle: const TextStyle(
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w400,
+                                            color: Colors.grey),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        CommonTextfield(
+                          onTap: () {
+                            Get.toNamed(MyRouters.chooseBank);
+                          },
+                          suffixIcon: Icon(Icons.keyboard_arrow_down),
+                          controller: controller.bankController,
+                          readOnly: true,
+                          obSecure: false,
+                          hintText: "",
+                          labelText: "Select Bank",
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        CommonTextfield(
+                          keyboardType:
+                          const TextInputType.numberWithOptions(
+                              decimal: true),
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(10),
+                            FilteringTextInputFormatter.allow(
+                                RegExp('[0-9]+')),
+                          ],
+                          onChanged: (value) =>
+                          doubleVar = double.parse(value),
+                          validator: MultiValidator([
+                            RequiredValidator(
+                                errorText:
+                                'Please enter your account number '),
+                            MinLengthValidator(10,
+                                errorText:
+                                'Please enter minumum  10 account number'),
+                            MaxLengthValidator(12,
+                                errorText:
+                                'Please enter 10 account number'),
+                            PatternValidator(
+                                r'(^(?:[+0]9)?[0-9]{10,12}$)',
+                                errorText: '')
+                          ]),
+                          controller: payOutcontroller.accountNo,
+                          suffixIcon: InkWell(
+                              onTap: (){ resolveData();},
+
+                              child: Icon(Icons.arrow_forward)),
+                          obSecure: false,
+                          hintText: "",
+                          labelText: "Account Number",
+
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        CommonTextfield(
+                          validator: RequiredValidator(
+                            errorText: "please enter account name "
+                          ),
+                          readOnly: true,
+                          controller: payOutcontroller.accountName,
+                          obSecure: false,
+                          hintText: "",
+                          labelText: "Account Name",
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              SvgPicture.asset('assets/images/mark.svg'),
-                              SizedBox(
-                                width: 10,
+                              Text(
+                                'Save as Beneficiaries',
+                                style: GoogleFonts.poppins(
+                                  textStyle: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                      color: Color(0xFF1D1D1D)),
+                                ),
                               ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Benificiries',
-                                    style: GoogleFonts.poppins(
-                                      textStyle: const TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500,
-                                          color: Color(0xFF1D1D1D)),
-                                    ),
-                                  ),
-                                  Text(
-                                    'Send to already saved channels',
-                                    style: GoogleFonts.poppins(
-                                      textStyle: const TextStyle(
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w400,
-                                          color: Colors.grey),
-                                    ),
-                                  ),
-                                ],
+                              SizedBox(
+                                width: 50,
+                                height: 20,
+                                child: CupertinoSwitch(
+                                  thumbColor: Colors.black,
+                                  value: isSwitched,
+                                  activeColor: Color(0xffF0D75F),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      isSwitched = value;
+                                      print(isSwitched);
+                                    });
+                                  },
+                                ),
                               ),
                             ],
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      CommonTextfield(
-                        onTap: () {
-                          Get.toNamed(MyRouters.chooseBank);
-                        },
-                        suffixIcon: Icon(Icons.keyboard_arrow_down),
-                        controller: controller.bankController,
-                        readOnly: true,
-                        obSecure: false,
-                        hintText: "",
-                        labelText: "Select Bank",
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      CommonTextfield(
-                        keyboardType:
-                        const TextInputType.numberWithOptions(
-                            decimal: true),
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(10),
-                          FilteringTextInputFormatter.allow(
-                              RegExp('[0-9]+')),
-                        ],
-                        onChanged: (value) =>
-                        doubleVar = double.parse(value),
-                        validator: MultiValidator([
-                          RequiredValidator(
-                              errorText:
-                              'Please enter your account number '),
-                          MinLengthValidator(10,
-                              errorText:
-                              'Please enter minumum  10 account number'),
-                          MaxLengthValidator(12,
-                              errorText:
-                              'Please enter 10 account number'),
-                          PatternValidator(
-                              r'(^(?:[+0]9)?[0-9]{10,12}$)',
-                              errorText: '')
-                        ]),
-                        controller: payOutcontroller.accountNo,
-                        suffixIcon: InkWell(
-                            onTap: (){ resolveData();},
-
-                            child: Icon(Icons.arrow_forward)),
-                        obSecure: false,
-                        hintText: "",
-                        labelText: "Account Number",
-
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      CommonTextfield(
-                        readOnly: true,
-                        controller: payOutcontroller.accountName,
-                        obSecure: false,
-                        hintText: "",
-                        labelText: "Account Name",
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Save as Benificiries',
-                              style: GoogleFonts.poppins(
-                                textStyle: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400,
-                                    color: Color(0xFF1D1D1D)),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 50,
-                              height: 20,
-                              child: CupertinoSwitch(
-                                thumbColor: Colors.black,
-                                value: isSwitched,
-                                activeColor: Color(0xffF0D75F),
-                                onChanged: (value) {
-                                  setState(() {
-                                    isSwitched = value;
-                                    print(isSwitched);
-                                  });
-                                },
-                              ),
-                            ),
-                          ],
+                        SizedBox(
+                          height: size.height * .4,
                         ),
-                      ),
-                      SizedBox(
-                        height: size.height * .4,
-                      ),
 
-                      SizedBox(
-                        height: 15,
-                      ),
-                    ]))));
+                        SizedBox(
+                          height: 15,
+                        ),
+                      ]),
+                ))));
   }
 }

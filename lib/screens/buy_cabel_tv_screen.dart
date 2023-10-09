@@ -56,7 +56,7 @@ class _PurchaseCabelScreenState extends State<PurchaseCabelScreen> {
     saveTransastionRepo(
         user_id: profileController.modal.value.data!.user!.id.toString(),
         amount:initStateBlank,
-        about: "Buy Cabel Tv",
+        about: "Buy Cable Tv",
         // complete_response: purchaseData.value.data!.toJson(),
         context: context,
         description:profileController.description2Controller.text.trim(),

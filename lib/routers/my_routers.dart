@@ -352,7 +352,7 @@ class MyRouters{
     GetPage(name: '/eligibleScreen', page: () =>   const EligibleScreen()),
     GetPage(name: '/currencyConvert', page: () =>   const CurrencyConvert()),
     GetPage(name: '/questionsScreen', page: () =>   const QuestionsScreen()),
-    GetPage(name: '/virtualAccount', page: () =>   const VirtualAccount()),
+    // GetPage(name: '/virtualAccount', page: () =>   const VirtualAccount()),
     GetPage(name: '/limitScreen', page: () =>   const LimitScreen()),
     GetPage(name: '/loanList', page: () =>   const LoanList()),
     GetPage(name: '/cardLimitScreen', page: () =>   const CardLimitScreen()),

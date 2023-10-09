@@ -632,13 +632,21 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                       //         ]
                       //     )),
                       // const SizedBox(height: 15,),
-                      Text(
-                        "Learn about how we use your data",
-                        style: GoogleFonts.poppins(
-                            color:  const Color(0xFFB2802A),
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500),
+
+                      Row(
+                        children:[
+                          Text(
+
+                            "Learn about how we use your data",
+                            style: GoogleFonts.poppins(
+                                color:  const Color(0xFFB2802A),
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          Icon(Icons.exit_to_app)
+                        ]
                       ),
+
                       const SizedBox(height: 15,),
                       Container(
                         padding: const EdgeInsets.all(15),

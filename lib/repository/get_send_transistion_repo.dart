@@ -14,7 +14,7 @@ import '../models/model_send_tranbsistion.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
-Future<ModelSendTransistion> sendTransistionListGetRepo() async {
+Future<ModelAllTransistion> sendTransistionListGetRepo() async {
   try {
     http.Response response = await http.get(
       Uri.parse(ApiUrls.transactionSend),
@@ -23,15 +23,15 @@ Future<ModelSendTransistion> sendTransistionListGetRepo() async {
 
     if (response.statusCode == 200) {
       print(jsonDecode(response.body));
-      return ModelSendTransistion.fromJson(jsonDecode(response.body));
+      return ModelAllTransistion.fromJson(jsonDecode(response.body));
     } else {
       print(jsonDecode(response.body));
-      return ModelSendTransistion(
+      return ModelAllTransistion(
           message: jsonDecode(response.body)["message"],
           status: false,
           data: null);
     }
   } catch (e) {
-    return ModelSendTransistion(message: e.toString(), status: false, data: null);
+    return ModelAllTransistion(message: e.toString(), status: false, data: null);
   }
 }

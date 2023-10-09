@@ -55,32 +55,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
               fontSize: 20,
               fontWeight: FontWeight.w500),
         ),
-        leading: InkWell(
-          onTap: () {
-            Get.toNamed(MyRouters.bottomNavbar);
-          },
-          child: const Icon(
-            Icons.arrow_back_rounded,
-            color: AppTheme.primaryColor,
-          ),
-        ),
+        // leading: InkWell(
+        //   onTap: () {
+        //     Get.toNamed(MyRouters.bottomNavbar);
+        //   },
+        //   child: const Icon(
+        //     Icons.arrow_back_rounded,
+        //     color: AppTheme.primaryColor,
+        //   ),
+        // ),
         centerTitle: true,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: Container(
-              height: 27,
-              width: 27,
-              decoration: BoxDecoration(
-
-                  borderRadius: BorderRadius.circular(5)),
-              child: Padding(
-                padding: const EdgeInsets.all(6.0),
-                child: Image.asset("assets/images/link.png",),
-              ),
-            ),
-          )
-        ],
+        // actions: [
+        //   Padding(
+        //     padding: const EdgeInsets.only(right: 20),
+        //     child: Container(
+        //       height: 27,
+        //       width: 27,
+        //       decoration: BoxDecoration(
+        //
+        //           borderRadius: BorderRadius.circular(5)),
+        //       child: Padding(
+        //         padding: const EdgeInsets.all(6.0),
+        //         child: Image.asset("assets/images/link.png",),
+        //       ),
+        //     ),
+        //   )
+        // ],
       ),
       body: Obx(() {
         if (profileController.modal.value.status==true&& profileController.currentBalanceModel.value.status ==true) {

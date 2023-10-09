@@ -42,7 +42,7 @@ class _MyCardState extends State<MyCard> {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          "Card",
+          "Wallet",
           style: GoogleFonts.poppins(
               color: const Color(0xFF1D1D1D),
               fontSize: 20,
@@ -282,6 +282,7 @@ class _MyCardState extends State<MyCard> {
                                           color: Colors.white,
                                           fontSize: 14,
                                           fontWeight: FontWeight.w600),
+                                      overflow: TextOverflow.ellipsis,
                                     )
                                 ],
                               ),
@@ -548,7 +549,7 @@ class _MyCardState extends State<MyCard> {
               ),
 
               const SizedBox(
-                height: 17,
+                height: 30,
               ),
             ],
           ),
@@ -624,13 +625,13 @@ class _MyCardState extends State<MyCard> {
                           const SizedBox(
                             height: 6,
                           ),
-                          Text(
-                            'Click on yes to freeze your card',
-                            style: GoogleFonts.poppins(
-                                color: const Color(0xFF4F537A),
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500),
-                          ),
+                          // Text(
+                          //   'Click on yes to freeze your card',
+                          //   style: GoogleFonts.poppins(
+                          //       color: const Color(0xFF4F537A),
+                          //       fontSize: 14,
+                          //       fontWeight: FontWeight.w500),
+                          // ),
                           const SizedBox(
                             height: 30,
                           ),

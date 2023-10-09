@@ -240,7 +240,7 @@ class _BuyDataListState extends State<BuyDataList> {
                                         color: Colors.white,
                                         borderRadius: BorderRadius.circular(15),
                                       ),
-                                      child: Text("Cabel Tv",
+                                      child: Text("Cable Tv",
                                           style: currentDrawer == 3
                                               ? GoogleFonts.poppins(
                                               color: const Color(0xFFFFFFFF),

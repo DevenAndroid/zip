@@ -13,7 +13,7 @@ import '../models/model_recieve_transistion.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
-Future<ModelRecieveTransistion> recieveTransistionListGetRepo() async {
+Future<ModelAllTransistion> recieveTransistionListGetRepo() async {
   try {
     http.Response response = await http.get(
       Uri.parse(ApiUrls.transactionReceive),
@@ -22,15 +22,15 @@ Future<ModelRecieveTransistion> recieveTransistionListGetRepo() async {
 
     if (response.statusCode == 200) {
       print(jsonDecode(response.body));
-      return ModelRecieveTransistion.fromJson(jsonDecode(response.body));
+      return ModelAllTransistion.fromJson(jsonDecode(response.body));
     } else {
       print(jsonDecode(response.body));
-      return ModelRecieveTransistion(
+      return ModelAllTransistion(
           message: jsonDecode(response.body)["message"],
           status: false,
           data: null);
     }
   } catch (e) {
-    return ModelRecieveTransistion(message: e.toString(), status: false, data: null);
+    return ModelAllTransistion(message: e.toString(), status: false, data: null);
   }
 }

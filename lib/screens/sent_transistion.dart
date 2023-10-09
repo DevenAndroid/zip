@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
+import '../models/model_all_transistion.dart';
 import '../models/model_send_tranbsistion.dart';
 import '../repository/get_send_transistion_repo.dart';
 import '../widgets/circular_progressindicator.dart';
@@ -21,7 +22,7 @@ class SentTransactionsHistory extends StatefulWidget {
 class _SentTransactionsHistoryState extends State<SentTransactionsHistory> {
   int currentDrawer = 0;
   Rx<RxStatus> statusOfSendTransistion = RxStatus.empty().obs;
-  Rx<ModelSendTransistion> sendTransistion = ModelSendTransistion().obs;
+  Rx<ModelAllTransistion> sendTransistion = ModelAllTransistion().obs;
 
   getSentTransitionList() {
     sendTransistionListGetRepo().then((value) {

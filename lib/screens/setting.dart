@@ -216,7 +216,7 @@ fingerPrint(value) async {
             print( modalGetSetting.value.data!.enableFingerprints);
           },
           child: Text(
-            "Setting",
+            "Settings",
             style: GoogleFonts.poppins(
                 color: const Color(0xFF1D1D1D),
                 fontSize: 20,
@@ -270,7 +270,7 @@ fingerPrint(value) async {
                           // print(pref.getString("cookie")!.toString().replaceAll('\"', ''));
                        },
                       child: Text(
-                        "Notification Setting ",
+                        "Notification Settings ",
                         style: GoogleFonts.poppins(
                             color: const Color(0xFF1D1D1D),
                             fontSize: 13,
@@ -467,7 +467,7 @@ fingerPrint(value) async {
                         ),
                       ),
                       Text(
-                        "Will rewuire your PIN before each transection",
+                        "Will require your PIN before each transaction",
                         style: GoogleFonts.poppins(
                             color: const Color(0xFF1D1D1D),
                             fontSize: 9,

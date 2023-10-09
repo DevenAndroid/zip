@@ -226,7 +226,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   readOnly: true,
                   obSecure: false,
                   hintText: "DOB",
-                  labelText: "15-09-2005",
+                  labelText: "Date of Birth",
                 ),
               ),
               const SizedBox(
