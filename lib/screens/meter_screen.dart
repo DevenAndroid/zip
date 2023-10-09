@@ -71,7 +71,7 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
   Rx<RxStatus> statusOfResolve = RxStatus.empty().obs;
   Rx<ModelBuyEnergy> Energy = ModelBuyEnergy().obs;
   Rx<RxStatus> statusOfBuyEnergy = RxStatus.empty().obs;
-
+  final formKey4 = GlobalKey<FormState>();
 
    verifyMeterData()  async {
      SharedPreferences pref = await SharedPreferences.getInstance();
@@ -80,25 +80,26 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
        Get.toNamed(MyRouters.purchaseRechargePin);
      }
      else {
-       verifyMeterRepo(
-           meter_number: controller.meterNo.text.toString(),
-           provider: controller.provider.text.trim()
-       )
-           .then((value) {
-         verifyMeter.value = value;
-         if (value.success == true) {
-           buyEnergy();
-           // payOutcontroller.accountName.text = (value.data!.accountName??"").toString();
-           statusOfResolve.value = RxStatus.success();
+       if (formKey4.currentState!.validate()) {
+         verifyMeterRepo(
+             meter_number: controller.meterNo.text.toString(),
+             provider: controller.provider.text.trim()
+         )
+             .then((value) {
+           verifyMeter.value = value;
+           if (value.success == true) {
+             buyEnergy();
+             // payOutcontroller.accountName.text = (value.data!.accountName??"").toString();
+             statusOfResolve.value = RxStatus.success();
 
-           showToast(value.message.toString());
-         } else {
-           showToast(value.message.toString());
+             showToast(value.message.toString());
+           } else {
+             showToast(value.message.toString());
+           }
          }
-       }
-         // showToast(value.message.toString());
-       );
-     }
+           // showToast(value.message.toString());
+         );
+       }}
   }
   Future buyEnergy() async {
     await BuyEnergyPlanRepo(
@@ -174,193 +175,197 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
           ),
         ),
         body: SingleChildScrollView(
-            child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            SvgPicture.asset('assets/images/mark.svg'),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Verify Meter',
-                                  style: GoogleFonts.poppins(
-                                    textStyle: const TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                        color: Color(0xFF1D1D1D)),
+            child: Form(
+              key: formKey4,
+              child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: [
+                              SvgPicture.asset('assets/images/mark.svg'),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Verify Meter',
+                                    style: GoogleFonts.poppins(
+                                      textStyle: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
+                                          color: Color(0xFF1D1D1D)),
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  'Send to already saved channels',
-                                  style: GoogleFonts.poppins(
-                                    textStyle: const TextStyle(
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.grey),
+                                  Text(
+                                    'Send to already saved channels',
+                                    style: GoogleFonts.poppins(
+                                      textStyle: const TextStyle(
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.grey),
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      CommonTextfield(
-                        onTap: () {
-                          Get.toNamed(MyRouters.billerScreen);
-                        },
-                        suffixIcon: Icon(Icons.keyboard_arrow_down),
-                        controller: controller.provider,
-                        readOnly: true,
-                        obSecure: false,
-                        hintText: "",
-                        labelText: "Select Provider",
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      CommonTextfield(
-                        keyboardType:
-                        const TextInputType.numberWithOptions(
-                            decimal: true),
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(11),
-                          FilteringTextInputFormatter.allow(
-                              RegExp('[0-9]+')),
-                        ],
-                        onChanged: (value) =>
-                        doubleVar = double.parse(value),
-                        validator: MultiValidator([
+                        SizedBox(
+                          height: 20,
+                        ),
+                        CommonTextfield(
+                          onTap: () {
+                            Get.toNamed(MyRouters.billerScreen);
+                          },
+                          suffixIcon: Icon(Icons.keyboard_arrow_down),
+                          controller: controller.provider,
+                          readOnly: true,
+                          obSecure: false,
+                          hintText: "",
+                          labelText: "Select Provider",
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        CommonTextfield(
+                          keyboardType:
+                          const TextInputType.numberWithOptions(
+                              decimal: true),
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(11),
+                            FilteringTextInputFormatter.allow(
+                                RegExp('[0-9]+')),
+                          ],
+                          onChanged: (value) =>
+                          doubleVar = double.parse(value),
+                          validator: MultiValidator([
                           RequiredValidator(
                               errorText:
                               'Please enter your meter number '),
-                          MinLengthValidator(11,
-                              errorText:
-                              'Please enter minumum  11 meter number'),
-                          MaxLengthValidator(15,
-                              errorText:
-                              'Please enter 10 meter number'),
-                          PatternValidator(
-                              r'(^(?:[+0]9)?[0-9]{10,12}$)',
-                              errorText: '')
-                        ]),
-                        controller: controller.meterNo,
+                            MinLengthValidator(11,
+                                errorText:
+                                'Please enter minumum  11 meter number'),
+                            MaxLengthValidator(15,
+                                errorText:
+                                'Please enter 10 meter number'),
+                            PatternValidator(
+                                r'(^(?:[+0]9)?[0-9]{10,12}$)',
+                                errorText: '')
+                          ]),
+                          controller: controller.meterNo,
 
-                        obSecure: false,
-                        hintText: "",
-                        labelText: "Meter Number",
+                          obSecure: false,
+                          hintText: "",
+                          labelText: "Meter Number",
 
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      CommonTextfield(
-                        keyboardType:
-                        const TextInputType.numberWithOptions(
-                            decimal: true),
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(11),
-                          FilteringTextInputFormatter.allow(
-                              RegExp('[0-9]+')),
-                        ],
-                        onChanged: (value) =>
-                        doubleVar = double.parse(value),
-                        validator: MultiValidator([
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        CommonTextfield(
+                          keyboardType:
+                          const TextInputType.numberWithOptions(
+                              decimal: true),
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(11),
+                            FilteringTextInputFormatter.allow(
+                                RegExp('[0-9]+')),
+                          ],
+                          onChanged: (value) =>
+                          doubleVar = double.parse(value),
+                          validator: MultiValidator([
+                            RequiredValidator(
+                                errorText:
+                                'Please enter your mobile number '),
+                            MinLengthValidator(11,
+                                errorText:
+                                'Please enter minumum  11 mobile number'),
+                            MaxLengthValidator(12,
+                                errorText:
+                                'Please enter 10 mobile number'),
+                            PatternValidator(
+                                r'(^(?:[+0]9)?[0-9]{10,12}$)',
+                                errorText: '')
+                          ]),
+                          readOnly: false,
+                          controller: controller.mobileNO,
+                          obSecure: false,
+                          hintText: "",
+                          labelText: "Mobile No",
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        CommonTextfield(
+                          keyboardType:
+                          const TextInputType.numberWithOptions(
+                              decimal: true),
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(10),
+                            FilteringTextInputFormatter.allow(
+                                RegExp('[0-9]+')),
+                          ],
+                          onChanged: (value) =>
+                          doubleVar = double.parse(value),
+                          validator: MultiValidator([
                           RequiredValidator(
-                              errorText:
-                              'Please enter your mobile number '),
-                          MinLengthValidator(11,
-                              errorText:
-                              'Please enter minumum  11 mobile number'),
-                          MaxLengthValidator(12,
-                              errorText:
-                              'Please enter 10 mobile number'),
-                          PatternValidator(
-                              r'(^(?:[+0]9)?[0-9]{10,12}$)',
-                              errorText: '')
-                        ]),
-                        readOnly: false,
-                        controller: controller.mobileNO,
-                        obSecure: false,
-                        hintText: "",
-                        labelText: "Mobile No",
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      CommonTextfield(
-                        keyboardType:
-                        const TextInputType.numberWithOptions(
-                            decimal: true),
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(10),
-                          FilteringTextInputFormatter.allow(
-                              RegExp('[0-9]+')),
-                        ],
-                        onChanged: (value) =>
-                        doubleVar = double.parse(value),
+                          errorText:
+                          'Please enter amount '),]),
+                          readOnly: false,
+                          controller: controller.amount,
+                          obSecure: false,
+                          hintText: "",
+                          labelText: "Amount",
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.all(8.0),
+                        //   child: Row(
+                        //     crossAxisAlignment: CrossAxisAlignment.start,
+                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //     children: [
+                        //       Text(
+                        //         'Save as Account',
+                        //         style: GoogleFonts.poppins(
+                        //           textStyle: const TextStyle(
+                        //               fontSize: 16,
+                        //               fontWeight: FontWeight.w400,
+                        //               color: Color(0xFF1D1D1D)),
+                        //         ),
+                        //       ),
+                        //       SizedBox(
+                        //         width: 50,
+                        //         height: 20,
+                        //         child: CupertinoSwitch(
+                        //           thumbColor: Colors.black,
+                        //           value: isSwitched,
+                        //           activeColor: Color(0xffF0D75F),
+                        //           onChanged: (value) {
+                        //             setState(() {
+                        //               isSwitched = value;
+                        //               print(isSwitched);
+                        //             });
+                        //           },
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
 
-                        readOnly: false,
-                        controller: controller.amount,
-                        obSecure: false,
-                        hintText: "",
-                        labelText: "Amount",
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      // Padding(
-                      //   padding: const EdgeInsets.all(8.0),
-                      //   child: Row(
-                      //     crossAxisAlignment: CrossAxisAlignment.start,
-                      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      //     children: [
-                      //       Text(
-                      //         'Save as Account',
-                      //         style: GoogleFonts.poppins(
-                      //           textStyle: const TextStyle(
-                      //               fontSize: 16,
-                      //               fontWeight: FontWeight.w400,
-                      //               color: Color(0xFF1D1D1D)),
-                      //         ),
-                      //       ),
-                      //       SizedBox(
-                      //         width: 50,
-                      //         height: 20,
-                      //         child: CupertinoSwitch(
-                      //           thumbColor: Colors.black,
-                      //           value: isSwitched,
-                      //           activeColor: Color(0xffF0D75F),
-                      //           onChanged: (value) {
-                      //             setState(() {
-                      //               isSwitched = value;
-                      //               print(isSwitched);
-                      //             });
-                      //           },
-                      //         ),
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
-                      SizedBox(
-                        height: size.height * .4,
-                      ),
 
-                      SizedBox(
-                        height: 15,
-                      ),
-                    ]))));
+                        SizedBox(
+                          height: 15,
+                        ),
+                      ])),
+            )));
   }
 }

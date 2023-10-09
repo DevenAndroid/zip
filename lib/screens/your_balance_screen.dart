@@ -45,6 +45,18 @@ class _YourBalanceScreenState extends State<YourBalanceScreen> {
 
     centerTitle: true,
     ),
+    bottomNavigationBar:    Padding(
+      padding: const EdgeInsets.only(bottom: 22.0),
+      child: InkWell(
+          onTap: (){
+            if (formKey6.currentState!.validate()) {
+
+              Get.toNamed(MyRouters.paymentLink,arguments: [profileController.amountController.text.toString() ,profileController.requestNameController.text.toString(),profileController.requestemailController.text.toString(),]);
+              // Get.toNamed(MyRouters.requestAPaymentContiune,);
+            }
+          },
+          child: const CustomOutlineButton(title: "Send",)),
+    ),
     body:  Obx(() {
       return profileController.currentBalanceModel.value.status ==true
           ?
@@ -144,16 +156,8 @@ CommonTextfield(
         const SizedBox(height: 10,),
 
 
-        SizedBox(height: size.height*.3,),
-        InkWell(
-            onTap: (){
-              if (formKey6.currentState!.validate()) {
 
-                Get.toNamed(MyRouters.paymentLink,arguments: [profileController.amountController.text.toString() ,profileController.requestNameController.text.toString(),profileController.requestemailController.text.toString(),]);
-                // Get.toNamed(MyRouters.requestAPaymentContiune,);
-              }
-            },
-            child: const CustomOutlineButton(title: "Send",)),
+
 
 
    ]),

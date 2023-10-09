@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 
 import '../controller/update_user.dart';
+import '../resourses/details.dart';
 import '../widgets/circular_progressindicator.dart';
 import '../widgets/common_colour.dart';
 import '../widgets/common_error_widget.dart';
@@ -18,6 +19,7 @@ class RegularTransfer extends StatefulWidget {
 
 class _RegularTransferState extends State<RegularTransfer> {
   final registorController = Get.put(registerController());
+
   @override
   void initState() {
     // TODO: implement initState

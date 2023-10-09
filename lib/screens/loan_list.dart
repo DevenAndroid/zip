@@ -27,7 +27,7 @@ class _LoanListState extends State<LoanList> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 7,),
+              const SizedBox(height: 7,),
               InkWell(
                   onTap: (){
                     Get.back();
@@ -35,8 +35,8 @@ class _LoanListState extends State<LoanList> {
                   child
 
 
-                  : Icon(Icons.clear,size: 25,)),
-              SizedBox(height: 15,),
+                  : const Icon(Icons.clear,size: 25,)),
+              const SizedBox(height: 15,),
 
               Text(
                 "What’s your loan for?",
@@ -47,7 +47,7 @@ class _LoanListState extends State<LoanList> {
 
               ),
 
-              SizedBox(height: 30,),
+              const SizedBox(height: 30,),
           Container(
             padding: EdgeInsets.zero,
 
@@ -62,15 +62,15 @@ class _LoanListState extends State<LoanList> {
             child: ListTile(
               title: Row(
               children: <Widget>[
-                SizedBox(width: 5,),
+                const SizedBox(width: 5,),
                 SvgPicture.asset('assets/images/list1.svg'),
-                SizedBox(width: 20,),
+                const SizedBox(width: 20,),
                  Text('Car',
                   style: GoogleFonts.poppins(
                       color: const Color(0xFF585757),
                       fontSize: 17,
                       fontWeight: FontWeight.w600),),
-                Spacer(),
+                const Spacer(),
               Radio(
               value:1,
               groupValue: loanController.selectedValue,
@@ -93,7 +93,7 @@ class _LoanListState extends State<LoanList> {
     ]),
 
           ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               Container(
                 padding: EdgeInsets.zero,
 
@@ -108,15 +108,15 @@ class _LoanListState extends State<LoanList> {
                         child: ListTile(
                           title: Row(
                             children: <Widget>[
-                              SizedBox(width: 5,),
+                              const SizedBox(width: 5,),
                               SvgPicture.asset('assets/images/list1.svg'),
-                              SizedBox(width: 20,),
+                              const SizedBox(width: 20,),
                               Text('Holiday',
                                 style: GoogleFonts.poppins(
                                     color: const Color(0xFF585757),
                                     fontSize: 17,
                                     fontWeight: FontWeight.w600),),
-                              Spacer(),
+                              const Spacer(),
                               Radio(
                                 value:2,
                                 groupValue: loanController.selectedValue,
@@ -139,7 +139,7 @@ class _LoanListState extends State<LoanList> {
                     ]),
 
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               Container(
                 padding: EdgeInsets.zero,
 
@@ -154,15 +154,15 @@ class _LoanListState extends State<LoanList> {
                         child: ListTile(
                           title: Row(
                             children: <Widget>[
-                              SizedBox(width: 5,),
+                              const SizedBox(width: 5,),
                               SvgPicture.asset('assets/images/list2.svg'),
-                              SizedBox(width: 20,),
+                              const SizedBox(width: 20,),
                               Text('Home improvements',
                                 style: GoogleFonts.poppins(
                                     color: const Color(0xFF585757),
                                     fontSize: 17,
                                     fontWeight: FontWeight.w600),),
-                              Spacer(),
+                              const Spacer(),
                               Radio(
                                 value:3,
                                 groupValue: loanController.selectedValue,
@@ -185,7 +185,7 @@ class _LoanListState extends State<LoanList> {
                     ]),
 
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               Container(
                 padding: EdgeInsets.zero,
 
@@ -200,15 +200,15 @@ class _LoanListState extends State<LoanList> {
                         child: ListTile(
                           title: Row(
                             children: <Widget>[
-                              SizedBox(width: 5,),
+                              const SizedBox(width: 5,),
                               SvgPicture.asset('assets/images/list3.svg'),
-                              SizedBox(width: 20,),
+                              const SizedBox(width: 20,),
                               Text('One-off purchase',
                                 style: GoogleFonts.poppins(
                                     color: const Color(0xFF585757),
                                     fontSize: 17,
                                     fontWeight: FontWeight.w600),),
-                              Spacer(),
+                              const Spacer(),
                               Radio(
                                 value:4,
                                 groupValue: loanController.selectedValue,
@@ -231,7 +231,7 @@ class _LoanListState extends State<LoanList> {
                     ]),
 
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               Container(
                 padding: EdgeInsets.zero,
 
@@ -246,15 +246,15 @@ class _LoanListState extends State<LoanList> {
                         child: ListTile(
                           title: Row(
                             children: <Widget>[
-                              SizedBox(width: 5,),
+                              const SizedBox(width: 5,),
                               SvgPicture.asset('assets/images/list4.svg'),
-                              SizedBox(width: 20,),
+                              const SizedBox(width: 20,),
                               Text('Paying money back',
                                 style: GoogleFonts.poppins(
                                     color: const Color(0xFF585757),
                                     fontSize: 17,
                                     fontWeight: FontWeight.w600),),
-                              Spacer(),
+                              const Spacer(),
                               Radio(
                                 value:5,
                                 groupValue: loanController.selectedValue,
@@ -278,7 +278,7 @@ class _LoanListState extends State<LoanList> {
 
               ),
 
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               Container(
                 padding: EdgeInsets.zero,
 
@@ -293,15 +293,15 @@ class _LoanListState extends State<LoanList> {
                         child: ListTile(
                           title: Row(
                             children: <Widget>[
-                              SizedBox(width: 5,),
+                              const SizedBox(width: 5,),
                               SvgPicture.asset('assets/images/list5.svg'),
-                              SizedBox(width: 20,),
+                              const SizedBox(width: 20,),
                               Text('Wedding',
                                 style: GoogleFonts.poppins(
                                     color: const Color(0xFF585757),
                                     fontSize: 17,
                                     fontWeight: FontWeight.w600),),
-                              Spacer(),
+                              const Spacer(),
                               Radio(
                                 value:6,
                                 groupValue: loanController.selectedValue,
@@ -325,7 +325,7 @@ class _LoanListState extends State<LoanList> {
 
               ),
 
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               Container(
                 padding: EdgeInsets.zero,
 
@@ -340,15 +340,15 @@ class _LoanListState extends State<LoanList> {
                         child: ListTile(
                           title: Row(
                             children: <Widget>[
-                              SizedBox(width: 5,),
+                              const SizedBox(width: 5,),
                               SvgPicture.asset('assets/images/list1.svg'),
-                              SizedBox(width: 20,),
-                              Text('Something eise',
+                              const SizedBox(width: 20,),
+                              Text('Something else',
                                 style: GoogleFonts.poppins(
                                     color: const Color(0xFF585757),
                                     fontSize: 17,
                                     fontWeight: FontWeight.w600),),
-                              Spacer(),
+                              const Spacer(),
                               Radio(
                                 value:7,
                                 groupValue: loanController.selectedValue,
@@ -373,7 +373,7 @@ class _LoanListState extends State<LoanList> {
               ),
 
 
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               Container(
                 padding: EdgeInsets.zero,
 
@@ -388,15 +388,15 @@ class _LoanListState extends State<LoanList> {
                         child: ListTile(
                           title: Row(
                             children: <Widget>[
-                              SizedBox(width: 5,),
+                              const SizedBox(width: 5,),
                               SvgPicture.asset('assets/images/list7.svg'),
-                              SizedBox(width: 20,),
+                              const SizedBox(width: 20,),
                               Text('Just browsing',
                                 style: GoogleFonts.poppins(
                                     color: const Color(0xFF585757),
                                     fontSize: 17,
                                     fontWeight: FontWeight.w600),),
-                              Spacer(),
+                              const Spacer(),
                               Radio(
                                 value:8,
                                 groupValue: loanController.selectedValue,
@@ -424,15 +424,15 @@ class _LoanListState extends State<LoanList> {
 
 
 
-              SizedBox(height: 30,),
+              const SizedBox(height: 30,),
               InkWell(
                   onTap: (){
                     Get.toNamed(MyRouters.questionsScreen);
                     // emailLogin();
                     //
                   },
-                  child: CustomOutlineButton(title: "Next",)),
-              SizedBox(height: 15,),
+                  child: const CustomOutlineButton(title: "Next",)),
+              const SizedBox(height: 15,),
 
 
 

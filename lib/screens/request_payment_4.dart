@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
@@ -30,7 +31,7 @@ class _RequestPayment4State extends State<RequestPayment4> {
   TextEditingController ziptagController = TextEditingController();
   TextEditingController email1Controller = TextEditingController();
   final profileController = Get.put(ProfileController());
-
+  final formKey4 = GlobalKey<FormState>();
   getSearchList() {
 
     searchRepo(
@@ -76,7 +77,7 @@ class _RequestPayment4State extends State<RequestPayment4> {
         centerTitle: true,
         leading: InkWell(
           onTap: (){
-            Get.back();
+            Get.toNamed(MyRouters.bottomNavbar);
           },
           child: const Icon(
             Icons.arrow_back_rounded,
@@ -138,6 +139,10 @@ class _RequestPayment4State extends State<RequestPayment4> {
             Padding(
               padding: const EdgeInsets.only(left: 6, right: 6),
               child: CommonTextfield(
+                validator: MultiValidator([
+                  RequiredValidator(
+                      errorText:
+                      'Please enter Ziptag '),]),
                 controller: ziptagController,
                 obSecure: false,
                 hintText: "@",
@@ -155,6 +160,10 @@ class _RequestPayment4State extends State<RequestPayment4> {
             Padding(
               padding: const EdgeInsets.only(left: 6, right: 6),
               child: CommonTextfield(
+                validator: MultiValidator([
+                  RequiredValidator(
+                      errorText:
+                      'Please enter email '),]),
                 controller: email1Controller,
                 obSecure: false,
                 hintText: "Email",
@@ -172,6 +181,10 @@ class _RequestPayment4State extends State<RequestPayment4> {
             Padding(
               padding: const EdgeInsets.only(left: 6, right: 6),
               child: CommonTextfield(
+                validator: MultiValidator([
+                  RequiredValidator(
+                      errorText:
+                      'Please enter Phone '),]),
                 controller: phoneController,
                 obSecure: false,
                 hintText: "Phone",
@@ -187,7 +200,7 @@ class _RequestPayment4State extends State<RequestPayment4> {
               height: 15,
             ),
             SizedBox(
-              height: size.height * .27,
+              height: size.height * .03,
             ),
             InkWell(
                 onTap: (){
@@ -199,8 +212,8 @@ class _RequestPayment4State extends State<RequestPayment4> {
             SizedBox(height: 25,),
             InkWell(
               onTap: () {
-
-                Get.toNamed(MyRouters.yourBalanceScreen);
+    if (formKey4.currentState!.validate()) {
+                Get.toNamed(MyRouters.yourBalanceScreen);}
               },
               child: const CustomOutlineButton(
                 title: "Continue",

@@ -253,8 +253,9 @@ class _AccountsInBankState extends State<AccountsInBank> {
                   height: size.height * .65,
                 ),
                 InkWell(
-                  onTap: () {
-                    // Get.toNamed(MyRouters.addFundsInBank);
+                  onTap: (){
+                    _selectedCurrency ;
+                    Get.toNamed(MyRouters.exchangeMoney,arguments: [_selectedCurrency]);
                   },
                   child: const CustomOutlineButton(
                     title: "Create new account",

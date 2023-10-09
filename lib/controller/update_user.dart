@@ -36,6 +36,7 @@ import '../repository/verify_account_reop.dart';
 import '../repository/verify_africa_b.dart';
 import '../repository/vritual_account_repo.dart';
 import '../resourses/api_constant.dart';
+import '../resourses/details.dart';
 import '../routers/my_routers.dart';
 import 'number_controller.dart';
 
@@ -334,7 +335,7 @@ class registerController extends GetxController {
 
   Rx<FetchVirtualAccountModel> fetchAccount = FetchVirtualAccountModel().obs;
   Rx<RxStatus> statusOfFetchAccount = RxStatus.empty().obs;
-
+  final details = Get.put(DetailsController());
   Future fetchVritualAccount() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var id = pref.getString("business_id");

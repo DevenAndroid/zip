@@ -18,7 +18,7 @@ import 'package:flutter/material.dart';
     return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        useMaterial3: false,
+        useMaterial3: true,
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,

@@ -54,7 +54,7 @@ class _VerifyPaymentLinkState extends State<VerifyPaymentLink> {
     children: [
 
 
-    Text('Please fund you account using a credit or debit card',
+    Text('Please fund your account using a credit or debit card',
       style: GoogleFonts.poppins(
           color:  Colors.black,
           fontSize: 18,
@@ -109,7 +109,7 @@ class _VerifyPaymentLinkState extends State<VerifyPaymentLink> {
 
 
 
-      SizedBox(height:MediaQuery.of(context).size.height*.45,),
+      SizedBox(height:MediaQuery.of(context).size.height*.03,),
 
       InkWell(
           onTap: (){

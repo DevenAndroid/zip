@@ -44,6 +44,22 @@ class _SendCashYourBalanceState extends State<SendCashYourBalance> {
           ),
         ),
       ),
+      bottomNavigationBar:     Padding(
+        padding: const EdgeInsets.only(bottom: 28.0),
+        child: InkWell(
+          onTap: () {
+            if (formKey2.currentState!.validate()) {
+              Get.toNamed(MyRouters.selectMethod);
+            }
+          },
+          child: const Padding(
+            padding: EdgeInsets.only(left: 10, right: 8),
+            child: CustomOutlineButton(
+              title: "Send",
+            ),
+          ),
+        ),
+      ),
       body: Obx(() {
         print(double.tryParse(profileController.currentBalanceModel.value.data
             .toString()));
@@ -80,7 +96,7 @@ class _SendCashYourBalanceState extends State<SendCashYourBalance> {
                           height: 20,
                         ),
                         Text(
-                          "Cash Out to our prefferedpayment method ",
+                          "Cash Out to our preffered payment method ",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
                               fontSize: 16,
@@ -92,7 +108,8 @@ class _SendCashYourBalanceState extends State<SendCashYourBalance> {
                         CommonTextfield(
                           controller: profileController.amountController,
                           obSecure: false,
-                          hintText: "200",
+                          keyboardType: TextInputType.number,
+                          hintText: "Amount",
                           validator: (value) {
                             if (value!.trim().isEmpty) {
                               return "Please enter amount";
@@ -120,19 +137,7 @@ class _SendCashYourBalanceState extends State<SendCashYourBalance> {
                         SizedBox(
                           height: size.height * .5,
                         ),
-                        InkWell(
-                          onTap: () {
-                            if (formKey2.currentState!.validate()) {
-                              Get.toNamed(MyRouters.selectMethod);
-                            }
-                          },
-                          child: const Padding(
-                            padding: EdgeInsets.only(left: 10, right: 8),
-                            child: CustomOutlineButton(
-                              title: "Send",
-                            ),
-                          ),
-                        ),
+
                       ],
                     ),
                   ),

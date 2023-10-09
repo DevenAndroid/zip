@@ -29,10 +29,10 @@ class _FAQScreenState extends State<FAQScreen> {
       faq.value = value;
       if (value.status == true) {
         statusOffaq.value = RxStatus.success();
-        showToast(value.message.toString());
+        // showToast(value.message.toString());
       } else {
         statusOffaq.value = RxStatus.error();
-        showToast(value.message.toString());
+        // showToast(value.message.toString());
       }
     }
 
@@ -70,17 +70,17 @@ class _FAQScreenState extends State<FAQScreen> {
     fontSize: 20,
     fontWeight: FontWeight.w500),
     ),
-    actions: [
-    Padding(
-    padding: const EdgeInsets.only(right: 8.0),
-    child: InkWell(
-    onTap: (){
-    // Get.toNamed(MyRouters.fAQScreens);
-    },
-    child: Icon(Icons.search,color: Colors.black,),
-    ),
-    )
-    ],
+    // actions: [
+    // Padding(
+    // padding: const EdgeInsets.only(right: 8.0),
+    // child: InkWell(
+    // onTap: (){
+    // // Get.toNamed(MyRouters.fAQScreens);
+    // },
+    // child: Icon(Icons.search,color: Colors.black,),
+    // ),
+    // )
+    // ],
     centerTitle: true,
     ),
     body: SingleChildScrollView(

@@ -32,6 +32,7 @@ support_category: id.value.toString()
     ).then((value) {
       getSupport.value = value;
       if (value.status == true) {
+        Get.back();
         // Get.toNamed(MyRouters.bottomNavbar,);
         statusOfsumbit.value = RxStatus.success();
         showToast(value.message.toString());

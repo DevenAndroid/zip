@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
@@ -31,6 +32,7 @@ class _RequestMoney2State extends State<RequestMoney2> {
 
   final profileController = Get.put(ProfileController());
   Rx<ModelSearchZip> searchZip = ModelSearchZip().obs;
+  final formKey4 = GlobalKey<FormState>();
   getSearchList() {
 
     zipSearchRepo(
@@ -77,7 +79,8 @@ class _RequestMoney2State extends State<RequestMoney2> {
         centerTitle: true,
         leading: InkWell(
           onTap: (){
-            Get.back();
+            Get.toNamed(MyRouters.bottomNavbar);
+
           },
           child: const Icon(
             Icons.arrow_back_rounded,
@@ -87,119 +90,135 @@ class _RequestMoney2State extends State<RequestMoney2> {
 
       ),
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: InkWell(
-                      onTap: () {},
-                      child: const CustomOutlineButton(
-                        title: "Add Manually",
-                      )),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Expanded(
+        child: Form(
+          key: formKey4,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  Expanded(
                     child: InkWell(
-                      onTap: () {
-                        Get.toNamed(MyRouters.requestPayment4);
+                        onTap: () {},
+                        child: const CustomOutlineButton(
+                          title: "Add Manually",
+                        )),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Expanded(
+                      child: InkWell(
+                        onTap: () {
+                          Get.toNamed(MyRouters.requestPayment4);
+                        },
+                        child: CustomOutlineBoder(
+                          title: "Search Zip User",
+                          backgroundColor: Colors.white,
+                          textColor: AppTheme.buttonColor,
+                          onPressed: () {},
+                        ),
+                      )),
+                ],
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 25,right: 25),
+                child: Text(
+                  "Search Zip Tag",
+                  style: GoogleFonts.poppins(
+                      color: const Color(0xFF2E2E2E),
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400),
+                ),
+              ),
+
+              const SizedBox(
+                height: 27,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 6, right: 6),
+                child: CommonTextfield(
+                  validator: MultiValidator([
+                    RequiredValidator(
+                        errorText:
+                        'Please enter ZipTag '),]),
+                  suffixIcon: InkWell(
+                      onTap: (){
+                        getSearchList();
                       },
-                      child: CustomOutlineBoder(
-                        title: "Search Zip User",
-                        backgroundColor: Colors.white,
-                        textColor: AppTheme.buttonColor,
-                        onPressed: () {},
-                      ),
-                    )),
-              ],
-            ),
-            const SizedBox(
-              height: 25,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 25,right: 25),
-              child: Text(
-                "Search Zip Tag",
-                style: GoogleFonts.poppins(
-                    color: const Color(0xFF2E2E2E),
-                    fontSize: 20,
-                    fontWeight: FontWeight.w400),
-              ),
-            ),
-
-            const SizedBox(
-              height: 27,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 6, right: 6),
-              child: CommonTextfield(
-                suffixIcon: InkWell(
-                    onTap: (){
-                      getSearchList();
-                    },
-                    child: Icon(Icons.arrow_forward)),
+                      child: Icon(Icons.arrow_forward)),
 
 
-                controller: profileController.requestZiptag1Controller,
-                obSecure: false,
-                hintText: "Zip Tag ",
-                labelText: "Zip Tag ",
+                  controller: profileController.requestZiptag1Controller,
+                  obSecure: false,
+                  hintText: "Zip Tag ",
+                  labelText: "Zip Tag ",
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 27,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 6, right: 6),
-              child: CommonTextfield(
-                readOnly: true,
-                controller: profileController.requestNameController,
-                obSecure: false,
-                hintText: "Piyush",
-                labelText: "Name",
+              const SizedBox(
+                height: 27,
               ),
-            ),
-            const SizedBox(
-              height: 27,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 6, right: 6),
-              child: CommonTextfield(
-                readOnly: true,
-                controller: profileController.requestPhoneController,
-                obSecure: false,
-                hintText: "695659606u69u06u",
-                labelText: "Phone",
+              Padding(
+                padding: const EdgeInsets.only(left: 6, right: 6),
+                child: CommonTextfield(
+                  validator: MultiValidator([
+                    RequiredValidator(
+                        errorText:
+                        'Please enter Name '),]),
+                  readOnly: true,
+                  controller: profileController.requestNameController,
+                  obSecure: false,
+                  hintText: "Piyush",
+                  labelText: "Name",
+                ),
               ),
-            ),
-            SizedBox(
-              height: size.height * .27,
-            ),
-            InkWell(
-                onTap: (){
+              const SizedBox(
+                height: 27,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 6, right: 6),
+                child: CommonTextfield(
+                  validator: MultiValidator([
+                    RequiredValidator(
+                        errorText:
+                        'Please enter Phone '),]),
+                  readOnly: true,
+                  controller: profileController.requestPhoneController,
+                  obSecure: false,
+                  hintText: "695659606u69u06u",
+                  labelText: "Phone",
+                ),
+              ),
+              SizedBox(
+                height: size.height * .03,
+              ),
+              InkWell(
+                  onTap: (){
 
-                  profileController.requestNameController.text="";
-                  profileController.requestPhoneController.text="";
-                  profileController.requestZiptag1Controller.text="";
+                    profileController.requestNameController.text="";
+                    profileController.requestPhoneController.text="";
+                    profileController.requestZiptag1Controller.text="";
+                  },
+                  child: CustomOutlineBoder(title: "Clear")),
+              SizedBox(height: 25,),
+              InkWell(
+                onTap: () {
+      if (formKey4.currentState!.validate()) {
+        Get.toNamed(MyRouters.yourBalanceScreen);
+      }
                 },
-                child: CustomOutlineBoder(title: "Clear")),
-            SizedBox(height: 25,),
-            InkWell(
-              onTap: () {
-
-                Get.toNamed(MyRouters.yourBalanceScreen);
-              },
-              child: const CustomOutlineButton(
-                title: "Continue",
+                child: const CustomOutlineButton(
+                  title: "Continue",
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

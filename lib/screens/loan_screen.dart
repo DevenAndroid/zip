@@ -27,7 +27,7 @@ class _LoanScreenState extends State<LoanScreen> {
             SingleChildScrollView(
               child: Stack(children:[ Image.asset('assets/images/banner.png'),
                 Positioned(
-                  top: 30,
+                  top: 40,
                   left: 15,
                   child: InkWell(
                     onTap: (){
@@ -72,95 +72,31 @@ SizedBox(height: 20,),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 8.0),
-                  child: Column(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.all(3),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: AppTheme.secondaryColor,
+                      Container(
+                        padding: EdgeInsets.all(3),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppTheme.secondaryColor,
 
-                            ),
-                            child:Icon(Icons.check,color: Colors.white,size: 20,)
-                          ),
-                          SizedBox(width: 15,),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 4.0),
-                            child: Text(
-                              "Apply in a few taps",
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w600),
-
-                            ),
-                          )
-
-
-                        ],
+                        ),
+                        child:Icon(Icons.check,color: Colors.white,size: 20,)
                       ),
+                      SizedBox(width: 15,),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4.0),
+                        child: Text(
+                          "Apply in a few taps",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 17,
+                              fontWeight: FontWeight.w600),
 
-                    ],
-                  ),
-                ),
-
-
-              ),
-            ),
-            SizedBox(height: 20,),
-            Padding(
-              padding: const EdgeInsets.only(left: 13.0,right: 13),
-              child: Container(
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.grey),
-
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-
-                          SvgPicture.asset('assets/images/clock.svg',color: AppTheme.secondaryColor,),
-                          // Container(
-                          //   padding: EdgeInsets.all(3),
-                          //   decoration: BoxDecoration(
-                          //     shape: BoxShape.circle,
-                          //     color: AppTheme.secondaryColor,
-                          //
-                          //   ),
-                          //   child:Icon(Icons.clock,color: Colors.white,)
-                          // ),
-                          SizedBox(width: 15,),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 4.0),
-                            child: Text(
-                              "Monday in minutes. if eligible",
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w600),
-
-                            ),
-                          )
-
-
-                        ],
-                      ),
+                        ),
+                      )
 
 
                     ],
@@ -182,39 +118,34 @@ SizedBox(height: 20,),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 8.0),
-                  child: Column(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                              padding: EdgeInsets.all(3),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: AppTheme.secondaryColor,
 
-                              ),
-                              child:Icon(Icons.calendar_month,color: Colors.white,size: 20,)
-                          ),
-                          SizedBox(width: 15,),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 4.0),
-                            child: Text(
-                              "Flexible payment terms",
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w600),
+                      SvgPicture.asset('assets/images/clock.svg',color: AppTheme.secondaryColor,),
+                      // Container(
+                      //   padding: EdgeInsets.all(3),
+                      //   decoration: BoxDecoration(
+                      //     shape: BoxShape.circle,
+                      //     color: AppTheme.secondaryColor,
+                      //
+                      //   ),
+                      //   child:Icon(Icons.clock,color: Colors.white,)
+                      // ),
+                      SizedBox(width: 15,),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4.0),
+                        child: Text(
+                          "Monday in minutes. if eligible",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 17,
+                              fontWeight: FontWeight.w600),
 
-                            ),
-                          )
+                        ),
+                      )
 
-
-                        ],
-                      ),
 
                     ],
                   ),
@@ -235,43 +166,80 @@ SizedBox(height: 20,),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 8.0),
-                  child: Column(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Container(
+                          padding: EdgeInsets.all(3),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppTheme.secondaryColor,
 
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: AppTheme.secondaryColor,
-
-                            ),
-                            child: Text("\$",
-                              style: GoogleFonts.poppins(
-                                  color:  Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500),),
                           ),
-                          SizedBox(width: 15,),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 6.0),
-                            child: Text(
-                              "Pay extra and early. fee-free",
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w600),
+                          child:Icon(Icons.calendar_month,color: Colors.white,size: 20,)
+                      ),
+                      SizedBox(width: 15,),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4.0),
+                        child: Text(
+                          "Flexible payment terms",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 17,
+                              fontWeight: FontWeight.w600),
 
-                            ),
-                          ),
+                        ),
+                      )
 
 
-                        ],
+                    ],
+                  ),
+                ),
+
+
+              ),
+            ),
+            SizedBox(height: 20,),
+            Padding(
+              padding: const EdgeInsets.only(left: 13.0,right: 13),
+              child: Container(
+                padding: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.grey),
+
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppTheme.secondaryColor,
+
+                        ),
+                        child: Text("\$",
+                          style: GoogleFonts.poppins(
+                              color:  Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500),),
+                      ),
+                      SizedBox(width: 15,),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 6.0),
+                        child: Text(
+                          "Pay extra and early. fee-free",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 17,
+                              fontWeight: FontWeight.w600),
+
+                        ),
                       ),
 
 
@@ -313,7 +281,7 @@ SizedBox(height: 20,),
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "I used my Zip loan to consolidate my other loans and streamline my finances. L,ve reduced my monthly outgoing bills which hav given me a new way of",
+                        "I used my Zip loan to consolidate my other loans and streamline my finances. I,ve reduced my monthly outgoing bills which have given me a new way of",
                         style: GoogleFonts.poppins(
                             color: const Color(0xFF1D1D1D),
                             fontSize: 17,
@@ -338,19 +306,22 @@ SizedBox(height: 20,),
 color: Color(0xFFB2802A).withOpacity(.15)
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
+                  padding: const EdgeInsets.only(left: 1.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SvgPicture.asset("assets/images/lock3.svg"),
-                      Text(
-                        "   We will check for your credit worthiness",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4.0),
+                        child: Text(
+                          "   We will check for your credit worthiness",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600),
 
+                        ),
                       ),
 
                     ],

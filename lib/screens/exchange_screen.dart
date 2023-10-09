@@ -120,7 +120,7 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
               Get.toNamed(MyRouters.yourBalanceScreen);
             },
             child: Text(
-              "Exchange Moeney",
+              "Exchange Money",
               style: GoogleFonts.poppins(
                   color: const Color(0xFF1D1D1D),
                   fontSize: 20,
@@ -128,6 +128,16 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
             ),
           ),
           centerTitle: true,
+        ),
+        bottomNavigationBar:   Padding(
+          padding: const EdgeInsets.only(bottom: 28.0),
+          child: InkWell(
+              onTap: () {
+                convertUsd();
+                Conversions();
+                // Get.toNamed(MyRouters.bottomNavbar);
+              },
+              child: const CustomOutlineButton(title: "Continue")),
         ),
         body: Obx((){
          return SingleChildScrollView(
@@ -194,8 +204,10 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
                               SizedBox(
                                 width: 50,
                                 child: TextFormField(
+                                    keyboardType: TextInputType.number,
                                     controller: amountController,
                                     decoration: const InputDecoration(
+
                                       hintText: "0",
                                       border: InputBorder.none,
                                       focusedBorder: InputBorder.none,
@@ -220,7 +232,7 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const Padding(
-                                padding: EdgeInsets.only(left: 13.0),
+                                padding: EdgeInsets.only(left: 29.0),
                                 child: SizedBox(
                                   width: 10,
                                   height: 40,
@@ -237,52 +249,55 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
                                   ),
                                 ),
                               ),
-                              Row(
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.all(6),
-                                    decoration: const BoxDecoration(
-                                      color: Color(0xFFF0D75F),
-                                      shape: BoxShape.circle,
+                              Padding(
+                                padding: const EdgeInsets.only(left: 15.0),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      padding: const EdgeInsets.all(6),
+                                      decoration: const BoxDecoration(
+                                        color: Color(0xFFF0D75F),
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: const Icon(
+                                        Icons.clear,
+                                        size: 18,
+                                      ),
                                     ),
-                                    child: const Icon(
-                                      Icons.clear,
-                                      size: 18,
+                                    const SizedBox(
+                                      width: 10,
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Row(
-                                    children: [
-                                      InkWell(
-                                        onTap: (){
-                                          print(usdToNgn.toString());
-                                        },
-                                        child: Text(
-                                          "\$1 = ",
+                                    Row(
+                                      children: [
+                                        InkWell(
+                                          onTap: (){
+                                            print(usdToNgn.toString());
+                                          },
+                                          child: Text(
+                                            "\$1 = ",
+                                            style: GoogleFonts.poppins(
+                                                color: const Color(0xFF7E7E7E),
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                        ),
+
+                                        Text( "$usdToNgn",
                                           style: GoogleFonts.poppins(
                                               color: const Color(0xFF7E7E7E),
                                               fontSize: 15,
                                               fontWeight: FontWeight.w500),
                                         ),
-                                      ),
-
-                                      Text( "$usdToNgn",
-                                        style: GoogleFonts.poppins(
-                                            color: const Color(0xFF7E7E7E),
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                               const Padding(
-                                padding: EdgeInsets.only(left: 13.0),
+                                padding: EdgeInsets.only(left: 29.0),
                                 child: SizedBox(
-                                  width: 10,
-                                  height: 35,
+                                  // width: 10,
+                                  height: 45,
                                   child: DottedLine(
                                     direction: Axis.vertical,
                                     alignment: WrapAlignment.center,
@@ -296,91 +311,97 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
                                   ),
                                 ),
                               ),
-                              Row(
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.all(6),
-                                    decoration: const BoxDecoration(
-                                      color: Color(0xFFF0D75F),
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        " - ",
-                                        style: GoogleFonts.poppins(
-                                            color: const Color(0xFF1D1D1D),
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "Fee =\$",
-                                        style: GoogleFonts.poppins(
-                                            color: const Color(0xFF7E7E7E),
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                      Text(
-                                        fee.value,
-                                        style: GoogleFonts.poppins(
-                                            color: const Color(0xFF7E7E7E),
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.only(left: 13.0),
-                                child: SizedBox(
-                                  width: 10,
-                                  height: 35,
-                                  child: DottedLine(
-                                    direction: Axis.vertical,
-                                    alignment: WrapAlignment.center,
-                                    lineThickness: 1.0,
-                                    dashLength: 4.0,
-                                    dashColor: Colors.black,
-                                    dashRadius: 0.0,
-                                    dashGapLength: 4.0,
-                                    dashGapColor: Colors.transparent,
-                                    dashGapRadius: 0.0,
-                                  ),
-                                ),
-                              ),
-                              Row(
-                                children: [
-                                  Container(
+                              Padding(
+                                padding: const EdgeInsets.only(left: 16.0),
+                                child: Row(
+                                  children: [
+                                    Container(
                                       padding: const EdgeInsets.all(8),
                                       decoration: const BoxDecoration(
                                         color: Color(0xFFF0D75F),
                                         shape: BoxShape.circle,
                                       ),
-                                      child: SvgPicture.asset(
-                                        "assets/images/Vector.svg",
-                                        height: 20,
-                                      )),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    "Instant",
-                                    style: GoogleFonts.poppins(
-                                        color: const Color(0xFF7E7E7E),
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ],
+                                      child: Center(
+                                        child: Text(
+                                          "-",
+                                          style: GoogleFonts.poppins(
+                                              color: const Color(0xFF1D1D1D),
+                                              fontSize: 35,
+                                              fontWeight: FontWeight.w300),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "Fee =\$",
+                                          style: GoogleFonts.poppins(
+                                              color: const Color(0xFF7E7E7E),
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                        Text(
+                                          fee.value,
+                                          style: GoogleFonts.poppins(
+                                              color: const Color(0xFF7E7E7E),
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                               const Padding(
-                                padding: EdgeInsets.only(left: 13.0),
+                                padding: EdgeInsets.only(left: 29.0),
+                                child: SizedBox(
+                                  // width: 10,
+                                  height: 45,
+                                  child: DottedLine(
+                                    direction: Axis.vertical,
+                                    alignment: WrapAlignment.center,
+                                    lineThickness: 1.0,
+                                    dashLength: 4.0,
+                                    dashColor: Colors.black,
+                                    dashRadius: 0.0,
+                                    dashGapLength: 4.0,
+                                    dashGapColor: Colors.transparent,
+                                    dashGapRadius: 0.0,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 16.0),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                        padding: const EdgeInsets.all(8),
+                                        decoration: const BoxDecoration(
+                                          color: Color(0xFFF0D75F),
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: SvgPicture.asset(
+                                          "assets/images/Vector.svg",
+                                          height: 20,
+                                        )),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      "Instant",
+                                      style: GoogleFonts.poppins(
+                                          color: const Color(0xFF7E7E7E),
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 29.0),
                                 child: SizedBox(
                                   height: 45,
                                   child: DottedLine(
@@ -522,16 +543,8 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
                             ],
                           ),
                         ),
-                        SizedBox(
-                          height: size.height * .3,
-                        ),
-                        InkWell(
-                            onTap: () {
-                              convertUsd();
-                              Conversions();
-                              // Get.toNamed(MyRouters.bottomNavbar);
-                            },
-                            child: const CustomOutlineButton(title: "Continue"))
+
+
                       ])));
         }));
   }

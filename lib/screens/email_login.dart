@@ -19,6 +19,7 @@ import '../repository/mobile_no_otp_repo.dart';
 import '../repository/userverify_otp_Repo.dart';
 import '../repository/verify_otp_repo.dart';
 import '../resourses/api_constant.dart';
+import '../resourses/details.dart';
 
 class EmailLoginScreen extends StatefulWidget {
   const EmailLoginScreen({Key? key}) : super(key: key);
@@ -89,7 +90,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
   TextEditingController emailNoController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   var obscureText1 = true;
-
+  final details = Get.put(DetailsController());
   Email() {
     if (formKey6.currentState!.validate()) {
 

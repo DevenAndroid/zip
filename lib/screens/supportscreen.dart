@@ -522,7 +522,7 @@ InkWell(
                          fontSize: 16,
                          fontWeight: FontWeight.w500),),
                    Text(
-                     "Find inteligent answer instantly ",
+                     "Find intelligent answer instantly ",
                      style: GoogleFonts.poppins(
                          color:  Colors.grey,
                          fontSize: 12,

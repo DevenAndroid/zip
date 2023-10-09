@@ -7,7 +7,7 @@ import '../resourses/api_constant.dart';
 import '../routers/my_routers.dart';
 
 class LoanController extends GetxController {
-  int selectedValue = 0;
+  int selectedValue = 1;
 
   String dropdownvalue = 'Government Employed';
   String selectedValuem = "Home owner";
