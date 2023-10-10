@@ -49,15 +49,12 @@ class _MyCardState extends State<MyCard> {
               fontWeight: FontWeight.w500),
         ),
         centerTitle: true,
-        // leading: InkWell(
-        //   onTap: (){
-        //     Get.back();
-        //   },
-        //   child: const Icon(
-        //     Icons.arrow_back_rounded,
-        //     color: AppTheme.primaryColor,
-        //   ),
-        // ),
+        leading: InkWell(
+          onTap: (){
+            // Get.back();
+          },
+          child: const SizedBox()
+        ),
       ),
       body: RefreshIndicator(
         color: Colors.white,
@@ -465,6 +462,82 @@ class _MyCardState extends State<MyCard> {
                       ),
                     ),
                   ),
+                  controller1. cardUnFreeze.value.status =="success"?
+                  InkWell(
+                    onTap: (){
+                      showDialogueDelete();
+                    },
+                    child: Container(
+                      height: 98,
+                      width: 98,
+                      decoration: BoxDecoration(
+                          color: const Color(0xFFFAFAFA),
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: const [
+                            BoxShadow(
+                              color:   Colors.black26,
+                              offset: Offset(
+                                0.5,
+                                0.5,
+                              ), //Offset
+                              blurRadius:    0.5,
+                              spreadRadius: 0.0,
+                            ), //BoxShadow
+                          ]),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Icon(Icons.ac_unit,size: 40,),
+                          Text(
+                            "Freeze card",
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF2E2E2E),
+                                fontSize: 10,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ):
+                  controller1. cardFreeze.value.status =="success"?
+                  InkWell(
+                    onTap: (){
+                      showDialogueDelete1();
+                    },
+                    child: Container(
+                      height: 98,
+                      width: 98,
+                      decoration: BoxDecoration(
+                          color: const Color(0xFFFAFAFA),
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: const [
+                            BoxShadow(
+                              color:   Colors.black26,
+                              offset: Offset(
+                                0.5,
+                                0.5,
+                              ), //Offset
+                              blurRadius:    0.5,
+                              spreadRadius: 0.0,
+                            ), //BoxShadow
+                          ]),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Icon(Icons.ac_unit,size: 40,),
+                          Text(
+                            "Unfreez card",
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF2E2E2E),
+                                fontSize: 10,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )    :
                   InkWell(
                     onTap: (){
                       showDialogueDelete();
@@ -679,6 +752,162 @@ class _MyCardState extends State<MyCard> {
                                   onTap: () {
                                     setState(() {
                                       controller1.frozenCard();
+                                    });
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 50, vertical: 10),
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.rectangle,
+                                      color: AppTheme.buttonColor,
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: const Text(
+                                      'Yes',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          );
+        });
+  }
+  showDialogueDelete1() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          Size size = MediaQuery.of(context).size;
+          double doubleVar;
+          return Dialog(
+            shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            insetPadding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+            child: Form(
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              Get.back();
+                            });
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(6),
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: AppTheme.buttonColor,
+                            ),
+                            child: const Icon(
+                              Icons.clear,
+                              size: 10,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 1),
+                              child: Text(
+                                'Are You Sure you want to Unfreeze your card !',
+                                style: GoogleFonts.poppins(
+                                    color: const Color(0xFF4F537A),
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 6,
+                          ),
+                          // Text(
+                          //   'Click on yes to freeze your card',
+                          //   style: GoogleFonts.poppins(
+                          //       color: const Color(0xFF4F537A),
+                          //       fontSize: 14,
+                          //       fontWeight: FontWeight.w500),
+                          // ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  // Get.toNamed(MyRouters.prescription);
+                                },
+                                child: Center(
+                                  child: InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        Get.back();
+                                      });
+                                    },
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 50, vertical: 10),
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.rectangle,
+                                        border: Border.all(
+                                            color: AppTheme.buttonColor),
+                                        color: const Color(0xffffffffff),
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      child: const Text(
+                                        'No',
+                                        style: TextStyle(
+                                            color: AppTheme.buttonColor,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Center(
+                                child: InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      controller1.unFrozenCard();
                                     });
                                   },
                                   child: Container(

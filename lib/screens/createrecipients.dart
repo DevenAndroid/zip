@@ -180,7 +180,7 @@ class _CreateRecipientsState extends State<CreateRecipients> {
               ),
             ),
             SizedBox(
-              height: size.height * .27,
+              height: size.height * .04,
             ),
             InkWell(
                 onTap: (){

@@ -160,12 +160,12 @@ const SizedBox(height: 20,),
     fontWeight: FontWeight.w400),),
     ),
                   Container(
-                    padding: const EdgeInsets.all(13),
+                    padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
                       border: Border.all(color: AppTheme.primaryColor,width: 1),
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    child: Text( "  $usdToNgn ${Currency.usd.name.toUpperCase()}",
+                    child: Text("$usdToNgn ${Currency.usd.name.toUpperCase()}",
                       style: GoogleFonts.poppins(
                           color: const Color(0xFF1D1D1D),
                           fontSize: 17,

@@ -30,13 +30,16 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
   Rx<RxStatus> statusOfConversion = RxStatus.empty().obs;
   TextEditingController amountController = TextEditingController();
   String? usdToNgn;
-
+  String? gbpToNgn;
+  String? eurToNgn;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     convertUsd();
+    // convertGbp();
+    // convertEur();
   }
   void convertUsd() async {
     var myCurrency =  Currency.values.firstWhere((element) => element.name.toString().toLowerCase() ==Get.arguments[0].toString().toLowerCase());
@@ -48,12 +51,24 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
       from: myCurrency,
       to: convert,
       // Currency.values.firstWhere((element) => element.name.toString().toLowerCase() ==Get.arguments[0].toString().toLowerCase()),
-      amount: 3,
+      amount: 1,
     );
     setState(() {
       usdToNgn = usdConvert.toString();
     });
   }
+  // void convertUsd() async {
+  //   Currency myCurrency = await CurrencyConverter.getMyCurrency();
+  //   var usdConvert = await CurrencyConverter.convert(
+  //     from: Currency.ngn,
+  //     to: Currency.usd,
+  //     amount: 1,
+  //   );
+  //   setState(() {
+  //     usdToNgn = usdConvert.toString();
+  //   });
+  // }
+
 
   Future  Conversions() async {
     await conversionRepo(
@@ -87,10 +102,10 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
   RxString fee = "".obs;
   RxString receive = "".obs;
 
-  String dropdownvalue2 = 'NGN';
+  String dropdownvalue2 = 'GBP';
   List<DropdownMenuItem<String>> get dropdownItemsm2 {
     List<DropdownMenuItem<String>> menuItemsm = [
-      const DropdownMenuItem(value: "NGN", child: Text("NGN",)),
+
       const DropdownMenuItem(value: "GBP", child: Text("GBP")),
       const DropdownMenuItem(value: "EUR", child: Text("EUR")),
       const DropdownMenuItem(value: "USD", child: Text("USD")),
@@ -272,6 +287,8 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
                                         InkWell(
                                           onTap: (){
                                             print(usdToNgn.toString());
+                                            print(gbpToNgn.toString());
+                                            print(eurToNgn.toString());
                                           },
                                           child: Text(
                                             "\$1 = ",
@@ -485,6 +502,7 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
                                         onChanged: (String? value) {
                                           setState(() {
                                             dropdownvalue2 = value!;
+                                            convertUsd();
                                           });
                                         },
                                       ),

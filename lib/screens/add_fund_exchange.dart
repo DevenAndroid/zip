@@ -125,7 +125,7 @@ class _AddFundExchangeState extends State<AddFundExchange> {
           ),
           title: InkWell(
             onTap: () {
-              Get.toNamed(MyRouters.yourBalanceScreen);
+              // Get.toNamed(MyRouters.yourBalanceScreen);
             },
             child: Text(
               "Add Fund",
@@ -207,6 +207,7 @@ class _AddFundExchangeState extends State<AddFundExchange> {
                                   width: 100,
                                   height: 50,
                                   child: TextFormField(
+                                    keyboardType: TextInputType.number,
                                     autovalidateMode: AutovalidateMode.onUserInteraction,
                                       validator: (value) {
                                         if (value!.trim().isEmpty) {
@@ -237,7 +238,7 @@ class _AddFundExchangeState extends State<AddFundExchange> {
                                             fontWeight: FontWeight.w600),
                                       )),
                                 ),
-                                SizedBox(width: 20,),
+                                SizedBox(width: 10,),
                                 InkWell(
                                   onTap: (){
                                     setState(() {
@@ -256,7 +257,7 @@ class _AddFundExchangeState extends State<AddFundExchange> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 15.0),
+                            padding: const EdgeInsets.only(left: 35.0),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -400,14 +401,14 @@ class _AddFundExchangeState extends State<AddFundExchange> {
                                 Row(
                                   children: [
                                     Container(
-                                        padding: const EdgeInsets.all(8),
+                                        padding: const EdgeInsets.all(7),
                                         decoration: const BoxDecoration(
                                           color: Color(0xFFF0D75F),
                                           shape: BoxShape.circle,
                                         ),
                                         child: SvgPicture.asset(
                                           "assets/images/Vector.svg",
-                                          height: 20,
+                                          height: 24,
                                         )),
                                     const SizedBox(
                                       width: 10,

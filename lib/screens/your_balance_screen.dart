@@ -1,4 +1,5 @@
-  import 'package:flutter/material.dart';
+  import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
@@ -58,7 +59,7 @@ class _YourBalanceScreenState extends State<YourBalanceScreen> {
           child: const CustomOutlineButton(title: "Send",)),
     ),
     body:  Obx(() {
-      return profileController.currentBalanceModel.value.status ==true
+      return profileController.modal.value.status==true&&profileController.currentBalanceModel.value.status ==true
           ?
 
       SingleChildScrollView(
@@ -92,17 +93,23 @@ class _YourBalanceScreenState extends State<YourBalanceScreen> {
             children: [
               Center(
                 child: Container(
-                  padding: const EdgeInsets.all(2),
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.white,
+                  decoration:  BoxDecoration(
+                    border: Border.all(color: Colors.black,width: 2),
+                    borderRadius: BorderRadius.all(
+                        Radius.circular(100)),
+                    color:Colors.white,
                   ),
-                  margin: EdgeInsets.only(
-                      right: size.width * .01, left: size.width * .015),
-                  child: CircleAvatar(
-                    radius: size.height * .07,
-                    backgroundImage: const NetworkImage(
-                        'https://www.pngitem.com/pimgs/m/128-1284293_marina-circle-girl-picture-in-circle-png-transparent.png'),
+                  child: ClipOval(
+                    child: CachedNetworkImage(
+                      width: 120,
+                      height: 120,
+                      fit: BoxFit.cover,
+                      imageUrl: profileController.modal.value.data!.user!.profileImage.toString(),
+                      placeholder: (context, url) =>
+                      const Icon(Icons.person,size: 30,),
+                      errorWidget: (context, url, error) =>
+                      const  Icon(Icons.person,size: 50,),
+                    ),
                   ),
                 ),
               ),
@@ -134,6 +141,7 @@ class _YourBalanceScreenState extends State<YourBalanceScreen> {
         const SizedBox(height: 18,),
 CommonTextfield(
   controller:profileController.amountController ,
+  keyboardType: TextInputType.number,
   obSecure: false, hintText: "",labelText: "Enter amount",
   validator: (value) {
       if (value!.trim().isEmpty) {

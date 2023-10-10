@@ -55,15 +55,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
               fontSize: 20,
               fontWeight: FontWeight.w500),
         ),
-        // leading: InkWell(
-        //   onTap: () {
-        //     Get.toNamed(MyRouters.bottomNavbar);
-        //   },
-        //   child: const Icon(
-        //     Icons.arrow_back_rounded,
-        //     color: AppTheme.primaryColor,
-        //   ),
-        // ),
+         leading: InkWell(
+           onTap: () {
+             Get.toNamed(MyRouters.bottomNavbar);
+           },
+           child: const SizedBox()
+         ),
         centerTitle: true,
         // actions: [
         //   Padding(
@@ -619,48 +616,48 @@ class _ProfileScreenState extends State<ProfileScreen> {
               //   color: Color(0x1A000000),
               // ),
               const SizedBox(height: 12,),
-              InkWell(
-                onTap: () {
-                  Get.toNamed(MyRouters.limitScreen);
-                },
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Transfer Limits",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600),
-                        ),
-                        Text(
-                          "Check Money transfer limits",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 11,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ],
-                    ),
-                    const Spacer(),
-
-                    const Icon(Icons.arrow_forward_ios, size: 15,),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 12,),
-              const Divider(
-                thickness: 1,
-                color: Color(0x1A000000),
-              ),
+              // InkWell(
+              //   onTap: () {
+              //     Get.toNamed(MyRouters.limitScreen);
+              //   },
+              //   child: Row(
+              //     children: [
+              //       const SizedBox(
+              //         width: 20,
+              //       ),
+              //       Column(
+              //         crossAxisAlignment: CrossAxisAlignment.start,
+              //         children: [
+              //           Text(
+              //             "Transfer Limits",
+              //             style: GoogleFonts.poppins(
+              //                 color: const Color(0xFF1D1D1D),
+              //                 fontSize: 15,
+              //                 fontWeight: FontWeight.w600),
+              //           ),
+              //           Text(
+              //             "Check Money transfer limits",
+              //             style: GoogleFonts.poppins(
+              //                 color: const Color(0xFF1D1D1D),
+              //                 fontSize: 11,
+              //                 fontWeight: FontWeight.w400),
+              //           ),
+              //         ],
+              //       ),
+              //       const Spacer(),
+              //
+              //       const Icon(Icons.arrow_forward_ios, size: 15,),
+              //       const SizedBox(
+              //         width: 20,
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              // const SizedBox(height: 12,),
+              // const Divider(
+              //   thickness: 1,
+              //   color: Color(0x1A000000),
+              // ),
               const SizedBox(height: 12,),
               InkWell(
                 onTap: () {

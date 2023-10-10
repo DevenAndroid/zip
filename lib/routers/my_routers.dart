@@ -106,6 +106,7 @@ import '../screens/payment link2.dart';
 import '../screens/paymentlink.dart';
 import '../screens/personal_address.dart';
 import '../screens/personal_screen.dart';
+import '../screens/privacy_policy.dart';
 import '../screens/profile_screen.dart';
 
 import '../screens/providerScreen.dart';
@@ -283,6 +284,7 @@ class MyRouters{
   static var cabelScreen = "/cabelScreen";
   static var addFundScreen = "/addFundScreen";
   static var fundIssuingWallet = "/fundIssuingWallet";
+  static var privacyPolicyScreen = "/privacyPolicyScreen";
 
 
 
@@ -305,6 +307,7 @@ class MyRouters{
     GetPage(name: '/requestPaymentContiune', page: () =>   const RequestPaymentContiune()),
     GetPage(name: '/buyElectricity', page: () =>   const BuyElectricity()),
     GetPage(name: '/buyDataList', page: () =>   const BuyDataList()),
+    GetPage(name: '/privacyPolicyScreen', page: () =>   const PrivacyPolicyScreen()),
     GetPage(name: '/buyElectricityList', page: () =>   const BuyElectricityList()),
     GetPage(name: '/buyAirtimeList', page: () =>   const BuyAirtimeList()),
     GetPage(name: '/buyAirtimeScreen', page: () =>   const BuyAirtimeScreen()),

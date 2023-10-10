@@ -8,9 +8,15 @@ import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
 import '../models/airtimeTransistionModel.dart';
+import '../models/buy_data_List_model.dart';
+import '../models/buy_electricity_list_model.dart';
+import '../models/cabel_tv_list_model.dart';
 import '../models/model_all_transistion.dart';
 import '../repository/get_airtime_list_repo.dart';
 import '../repository/get_all_transistion_repo.dart';
+import '../repository/get_cabel_tv_repo.dart';
+import '../repository/get_data_list_repo.dart';
+import '../repository/get_electricity_list_repo.dart';
 import '../widgets/circular_progressindicator.dart';
 import '../widgets/common_error_widget.dart';
 
@@ -25,7 +31,15 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
   int currentDrawer = 0;
   Rx<RxStatus> statusOfAirtimeTransistion = RxStatus.empty().obs;
   Rx<BuyAirtimeListModel> airtimeTransistion = BuyAirtimeListModel().obs;
+  Rx<RxStatus> statusOfBuyDataList = RxStatus.empty().obs;
+  Rx<BuyCavelTvList> buyCableList = BuyCavelTvList().obs;
+  Rx<RxStatus> statusOfelEctricityTransistion = RxStatus.empty().obs;
+  Rx<BuyElectricityListModel> electricityTransistion = BuyElectricityListModel().obs;
 
+   Rx<RxStatus> statusOfBuyDataList1 = RxStatus.empty().obs;
+  Rx<BuyDataListModel> buyDataList = BuyDataListModel().obs;
+
+  String? appBarName = "Airtime Transistion";
   getAllTransitionList() {
     buyAirtimeListRepo().then((value) {
       log("response.body.....    ${value}");
@@ -39,6 +53,47 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
       // showToast(value.message.toString());
     );
   }
+  getSentTransitionList() {
+    buyElectricityListRepo().then((value) {
+      log("response.body.....    ${value}");
+      electricityTransistion.value = value;
+      if (value.status == true) {
+        statusOfelEctricityTransistion.value = RxStatus.success();
+      } else {
+        statusOfelEctricityTransistion.value = RxStatus.error();
+      }
+    }
+      // showToast(value.message.toString());
+    );
+  }
+
+  getBuyDataList() {
+    buyDataListRepo().then((value) {
+      log("response.body.....    ${value}");
+      buyDataList.value = value;
+      if (value.status == true) {
+        statusOfBuyDataList1.value = RxStatus.success();
+      } else {
+        statusOfBuyDataList1.value = RxStatus.error();
+      }
+    }
+      // showToast(value.message.toString());
+    );
+  }
+  getBuyCableList() {
+    buyCabelTvListRepo().then((value) {
+      log("response.body.....    ${value}");
+      buyCableList.value = value;
+      if (value.status == true) {
+        statusOfBuyDataList.value = RxStatus.success();
+      } else {
+        statusOfBuyDataList.value = RxStatus.error();
+      }
+    }
+      // showToast(value.message.toString());
+    );
+  }
+
 
   @override
   void initState() {
@@ -65,7 +120,7 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
             ),
           ),
           title: Text(
-            "Airtime Transistion",
+            appBarName.toString(),
             style: GoogleFonts.poppins(
                 color: const Color(0xFF1D1D1D),
                 fontSize: 20,
@@ -97,6 +152,8 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                       onTap: () {
                                         setState(() {
                                           currentDrawer = 0;
+                                          appBarName = "Airtime Transaction";
+                                          getAllTransitionList();
                                         });
                                       },
                                       child: Container(
@@ -146,8 +203,8 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                       onTap: () {
                                         setState(() {
                                           currentDrawer = 1;
-                                          Get.toNamed(MyRouters
-                                              .buyElectricityList);
+                                          appBarName = "Electricity Transaction";
+                                          getSentTransitionList();
                                         });
                                       },
                                       child: Container(
@@ -197,8 +254,8 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                       onTap: () {
                                         setState(() {
                                           currentDrawer = 2;
-                                          Get.toNamed(MyRouters
-                                              .buyDataList);
+                                          appBarName = "Data Transaction";
+                                          getBuyDataList();
                                         });
                                       },
                                       child: Container(
@@ -244,7 +301,9 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                       onTap: () {
                                         setState(() {
                                           currentDrawer = 3;
-                                          Get.toNamed(MyRouters.buyCabelTvList);
+                                          appBarName = "CableTv Transaction";
+                                          getBuyCableList();
+                                          // Get.toNamed(MyRouters.buyCabelTvList);
                                         });
                                       },
                                       child: Container(
@@ -288,7 +347,7 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                         SizedBox(
                           height: 20,
                         ),
-
+                        if(currentDrawer ==0 )
                         Obx(() {
                           return statusOfAirtimeTransistion.value.isSuccess
                               ? Column(
@@ -459,6 +518,593 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                 .toString(),
                             onTap: () {
                               getAllTransitionList();
+                            },
+                          )
+                              : const CommonProgressIndicator();
+                        }),
+                        if(currentDrawer ==1 )
+                          Obx(() {
+                            return statusOfelEctricityTransistion.value.isSuccess
+                                ? Column(
+                              children: [
+                                electricityTransistion.value.data!.isEmpty?Center(
+                                  child: Text("No records found.", style:
+                                  GoogleFonts.poppins(
+                                      color: AppTheme
+                                          .primaryColor,
+                                      fontSize: 16,
+                                      fontWeight:
+                                      FontWeight
+                                          .w600),),
+                                ):
+                                ListView.builder(
+                                    shrinkWrap: true,
+                                    physics: const BouncingScrollPhysics(),
+                                    itemCount: electricityTransistion.value.data!.length,
+                                    itemBuilder: (context, index) {
+                                      return GestureDetector(
+                                        onTap: () {
+
+                                        },
+                                        child: Column(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            InkWell(
+                                              onTap: (){
+                                                Get.toNamed(MyRouters.buyElectricity,arguments: [
+                                                  electricityTransistion.value.data![index].userId.toString(),
+                                                  electricityTransistion.value.data![index].amount.toString(),
+                                                  electricityTransistion.value.data![index].telcos.toString(),
+                                                  electricityTransistion.value.data![index].description.toString(),
+                                                  electricityTransistion.value.data![index].phone.toString(),
+                                                ]);
+                                              },
+                                              child: Container(
+                                                padding: EdgeInsets.all(10),
+                                                decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(10),
+                                                    border: Border.all(color: Colors.grey)
+                                                ),
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(5.0),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
+
+
+                                                      Column(
+                                                        mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                        crossAxisAlignment:
+                                                        CrossAxisAlignment.start,
+                                                        children: [
+                                                          Row(
+                                                            children: [ Image.asset("assets/images/meter.png"),
+                                                              SizedBox(width: 6,),
+                                                              Text(
+
+                                                                electricityTransistion
+                                                                    .value
+                                                                    .data![index]
+                                                                    .description
+                                                                    .toString(),
+                                                                style:
+                                                                GoogleFonts.poppins(
+                                                                    color: AppTheme
+                                                                        .primaryColor,
+                                                                    fontSize: 16,
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .w600),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          Text(
+                                                            electricityTransistion
+                                                                .value
+                                                                .data![index]
+                                                                .telcos
+                                                                .toString(),
+                                                            style:
+                                                            GoogleFonts.poppins(
+                                                                color:
+                                                                Colors.grey,
+                                                                fontSize: 13,
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w500),
+                                                          ),
+                                                          Text(
+                                                            electricityTransistion
+                                                                .value
+                                                                .data![index]
+                                                                .phone
+                                                                .toString(),
+                                                            style:
+                                                            GoogleFonts.poppins(
+                                                                color:
+                                                                Colors.grey,
+                                                                fontSize: 13,
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w500),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      Column(
+                                                        mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                        crossAxisAlignment:
+                                                        CrossAxisAlignment.start,
+                                                        children: [
+                                                          Text(
+                                                            electricityTransistion
+                                                                .value
+                                                                .data![index]
+                                                                .createdAt
+                                                                .toString(),
+                                                            style:
+                                                            GoogleFonts.poppins(
+                                                                color: Colors.grey,
+                                                                fontSize: 13,
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w300),
+                                                          ),
+                                                          Row(
+                                                            children: [SvgPicture.asset("assets/images/ngn.svg"),
+
+                                                              Text(
+                                                                electricityTransistion
+                                                                    .value
+                                                                    .data![index]
+                                                                    .amount
+                                                                    .toString(),
+                                                                style:
+                                                                GoogleFonts.poppins(
+                                                                    color:
+                                                                    Colors.grey,
+                                                                    fontSize: 14,
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .w400),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 10,
+                                            )
+                                          ],
+                                        ),
+                                      );
+                                    }),
+                              ],
+                            )
+                                : statusOfelEctricityTransistion.value.isError
+                                ? CommonErrorWidget(
+                              errorText: electricityTransistion.value.message
+                                  .toString(),
+                              onTap: () {
+                                // getSentTransitionList();
+                              },
+                            )
+                                : const CommonProgressIndicator();
+                          }),
+                          if(currentDrawer ==2 )
+                            Obx(() {
+                              return statusOfBuyDataList1.value.isSuccess
+                                  ? Column(
+                                children: [
+                                  buyDataList.value.data!.isEmpty?Center(
+                                    child: Text("No records found.", style:
+                                    GoogleFonts.poppins(
+                                        color: AppTheme
+                                            .primaryColor,
+                                        fontSize: 16,
+                                        fontWeight:
+                                        FontWeight
+                                            .w600),),
+                                  ):
+                                  ListView.builder(
+                                      shrinkWrap: true,
+                                      physics: const BouncingScrollPhysics(),
+                                      itemCount: buyDataList.value.data!.length,
+                                      itemBuilder: (context, index) {
+                                        return GestureDetector(
+                                          onTap: () {
+
+                                          },
+                                          child: Column(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                            children: [
+
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              InkWell(
+                                                onTap: (){
+                                                  Get.toNamed(MyRouters.buyData,arguments: [
+                                                    buyDataList.value.data![index].telcos.toString(),
+                                                    buyDataList.value.data![index].amount.toString(),
+                                                    buyDataList.value.data![index].dataplan.toString(),
+                                                    buyDataList.value.data![index].dataCode.toString(),
+                                                    buyDataList.value.data![index].phone.toString(),
+                                                    buyDataList.value.data![index].userId.toString(),
+
+
+                                                  ]);
+                                                },
+                                                child: Container(
+                                                  padding: EdgeInsets.all(10),
+                                                  decoration: BoxDecoration(
+                                                      borderRadius: BorderRadius.circular(10),
+                                                      border: Border.all(color: Colors.grey)
+                                                  ),
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.all(5.0),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: [
+
+
+                                                        Column(
+                                                          mainAxisAlignment:
+                                                          MainAxisAlignment.start,
+                                                          crossAxisAlignment:
+                                                          CrossAxisAlignment.start,
+                                                          children: [
+                                                            Text(
+
+                                                              buyDataList
+                                                                  .value
+                                                                  .data![index]
+                                                                  .phone
+                                                                  .toString(),
+                                                              style:
+                                                              GoogleFonts.poppins(
+                                                                  color: AppTheme
+                                                                      .primaryColor,
+                                                                  fontSize: 16,
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .w600),
+                                                            ),
+                                                            Text(
+                                                              buyDataList
+                                                                  .value
+                                                                  .data![index]
+                                                                  .telcos
+                                                                  .toString(),
+                                                              style:
+                                                              GoogleFonts.poppins(
+                                                                  color:
+                                                                  Colors.grey,
+                                                                  fontSize: 13,
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .w500),
+                                                            ),
+                                                            Text(
+                                                              "Plan:- "+ buyDataList
+                                                                  .value
+                                                                  .data![index]
+                                                                  .dataplan
+                                                                  .toString(),
+                                                              style:
+                                                              GoogleFonts.poppins(
+                                                                  color:
+                                                                  Colors.grey,
+                                                                  fontSize: 13,
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .w500),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        Column(
+                                                          mainAxisAlignment:
+                                                          MainAxisAlignment.start,
+                                                          crossAxisAlignment:
+                                                          CrossAxisAlignment.end,
+                                                          children: [
+                                                            Text(
+                                                              buyDataList
+                                                                  .value
+                                                                  .data![index]
+                                                                  .createdAt
+                                                                  .toString(),
+                                                              style:
+                                                              GoogleFonts.poppins(
+                                                                  color: Colors.grey,
+                                                                  fontSize: 13,
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .w300),
+                                                            ),
+                                                            Row(
+                                                              mainAxisAlignment: MainAxisAlignment.start,
+                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                              children: [
+                                                                SvgPicture.asset("assets/images/ngn.svg"),
+                                                                Text(
+                                                                  buyDataList
+                                                                      .value
+                                                                      .data![index]
+                                                                      .amount
+                                                                      .toString(),
+                                                                  style:
+                                                                  GoogleFonts.poppins(
+                                                                      color:
+                                                                      Colors.grey,
+                                                                      fontSize: 14,
+                                                                      fontWeight:
+                                                                      FontWeight
+                                                                          .w400),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                            Text(
+                                                              "Code:- "+buyDataList
+                                                                  .value
+                                                                  .data![index]
+                                                                  .dataCode
+                                                                  .toString(),
+                                                              style:
+                                                              GoogleFonts.poppins(
+                                                                  color:
+                                                                  Colors.grey,
+                                                                  fontSize: 14,
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .w400),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+
+                                              SizedBox(
+                                                height: 10,
+                                              )
+                                            ],
+                                          ),
+                                        );
+                                      }),
+                                ],
+                              )
+                                  : statusOfBuyDataList1.value.isError
+                                  ? CommonErrorWidget(
+                                errorText: buyDataList.value.message
+                                    .toString(),
+                                onTap: () {
+                                  // getBuyDataList();
+                                },
+                              )
+                                  : const CommonProgressIndicator();
+                            }),
+                          if(currentDrawer ==3 )
+                        Obx(() {
+                          return statusOfBuyDataList.value.isSuccess
+                              ? Column(
+                            children: [
+                              buyCableList.value.data!.isEmpty?Center(
+                                child: Text("No records found.", style:
+                                GoogleFonts.poppins(
+                                    color: AppTheme
+                                        .primaryColor,
+                                    fontSize: 16,
+                                    fontWeight:
+                                    FontWeight
+                                        .w600),),
+                              ):
+                              ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: const BouncingScrollPhysics(),
+                                  itemCount: buyCableList.value.data!.length,
+                                  itemBuilder: (context, index) {
+                                    return GestureDetector(
+                                      onTap: () {
+
+                                      },
+                                      child: Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          InkWell(
+                                            onTap: (){
+                                              Get.toNamed(MyRouters.cabelScreen,arguments: [
+                                                buyCableList.value.data![index].telcos.toString(),
+                                                buyCableList.value.data![index].amount.toString(),
+                                                buyCableList.value.data![index].dataplan.toString(),
+                                                buyCableList.value.data![index].dataCode.toString(),
+                                                buyCableList.value.data![index].phone.toString(),
+                                                buyCableList.value.data![index].userId.toString(),
+
+
+                                              ]);
+                                            },
+                                            child: Container(
+                                              padding: EdgeInsets.all(10),
+                                              decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(10),
+                                                  border: Border.all(color: Colors.grey)
+                                              ),
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(5.0),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+
+
+                                                    Column(
+                                                      mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                      crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                      children: [
+                                                        Text(
+
+                                                          buyCableList
+                                                              .value
+                                                              .data![index]
+                                                              .phone
+                                                              .toString(),
+                                                          style:
+                                                          GoogleFonts.poppins(
+                                                              color: AppTheme
+                                                                  .primaryColor,
+                                                              fontSize: 16,
+                                                              fontWeight:
+                                                              FontWeight
+                                                                  .w600),
+                                                        ),
+                                                        Text(
+                                                          buyCableList
+                                                              .value
+                                                              .data![index]
+                                                              .telcos
+                                                              .toString(),
+                                                          style:
+                                                          GoogleFonts.poppins(
+                                                              color:
+                                                              Colors.grey,
+                                                              fontSize: 13,
+                                                              fontWeight:
+                                                              FontWeight
+                                                                  .w500),
+                                                        ),
+                                                        Text(
+                                                          "Plan:- "+ buyCableList
+                                                              .value
+                                                              .data![index]
+                                                              .dataplan
+                                                              .toString(),
+                                                          style:
+                                                          GoogleFonts.poppins(
+                                                              color:
+                                                              Colors.grey,
+                                                              fontSize: 13,
+                                                              fontWeight:
+                                                              FontWeight
+                                                                  .w500),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Column(
+                                                      mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                      crossAxisAlignment:
+                                                      CrossAxisAlignment.end,
+                                                      children: [
+                                                        Text(
+                                                          buyCableList
+                                                              .value
+                                                              .data![index]
+                                                              .createdAt
+                                                              .toString(),
+                                                          style:
+                                                          GoogleFonts.poppins(
+                                                              color: Colors.grey,
+                                                              fontSize: 13,
+                                                              fontWeight:
+                                                              FontWeight
+                                                                  .w300),
+                                                        ),
+                                                        Row(
+                                                          mainAxisAlignment: MainAxisAlignment.start,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                          children: [
+                                                            SvgPicture.asset("assets/images/ngn.svg"),
+                                                            Text(
+                                                              buyCableList
+                                                                  .value
+                                                                  .data![index]
+                                                                  .amount
+                                                                  .toString(),
+                                                              style:
+                                                              GoogleFonts.poppins(
+                                                                  color:
+                                                                  Colors.grey,
+                                                                  fontSize: 14,
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .w400),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        Text(
+                                                          "Code:- "+buyCableList
+                                                              .value
+                                                              .data![index]
+                                                              .dataCode
+                                                              .toString(),
+                                                          style:
+                                                          GoogleFonts.poppins(
+                                                              color:
+                                                              Colors.grey,
+                                                              fontSize: 14,
+                                                              fontWeight:
+                                                              FontWeight
+                                                                  .w400),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+
+                                          SizedBox(
+                                            height: 10,
+                                          )
+                                        ],
+                                      ),
+                                    );
+                                  }),
+                            ],
+                          )
+                              : statusOfBuyDataList.value.isError
+                              ? CommonErrorWidget(
+                            errorText: buyCableList.value.message
+                                .toString(),
+                            onTap: () {
+                              // getBuyCableList();
                             },
                           )
                               : const CommonProgressIndicator();

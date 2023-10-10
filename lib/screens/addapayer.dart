@@ -94,54 +94,64 @@ class _AddAPayerState extends State<AddAPayer> {
                 height: 27,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 12, right: 12),
-                child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(color: Colors.black, width: 1),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Padding(
-                        padding: const EdgeInsets.only(left: 15, right: 30),
-                        child: DropdownButton(
-                          value: "United Kingdom",
-                          items: [
-                            DropdownMenuItem(
-                              child: Row(
-                                children: [
-                                  Image.asset('assets/images/nigeria.png',height: 30,),
-                                  const SizedBox(width: 10,),
-                                  Text(
-                                    "Nigeria",
-                                    style: GoogleFonts.poppins(
-                                        color: const Color(0xFF1D1D1D),
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w300),
-                                  ),
-                                ],
-                              ),
-                              value: "United Kingdom",
-                            ),
-                          /*  const DropdownMenuItem(
-                                child: Text("Canada"), value: "Canada"),*/
-                            // const DropdownMenuItem(
-                            //   child: Text("Russia"),
-                            //   value: "Russia",
-                            // )
-                          ],
-                          onChanged: (value) {},
-                          icon: const Padding(
-                              padding: EdgeInsets.only(left: 20),
-                              child: Icon(Icons.keyboard_arrow_down_outlined)),
-                          iconEnabledColor: Colors.black, //Icon color
-                          style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 20),
-                          dropdownColor: Colors.white,
-                          underline: Container(),
-                          isExpanded: true,
-                        ))),
+                padding: const EdgeInsets.only(left: 6, right: 6),
+                child: CommonTextfield(
+                  prefix:  Padding(
+                    padding: const EdgeInsets.only(top: 8.0,bottom: 9),
+                    child: Image.asset('assets/images/nigeria.png',height: 20,width: 20,),
+                  ),
+                  hintText: "Nigeria", obSecure: false,readOnly: true,
+                ),
               ),
+              // Padding(
+              //   padding: const EdgeInsets.only(left: 12, right: 12),
+              //   child: DecoratedBox(
+              //       decoration: BoxDecoration(
+              //         color: Colors.white,
+              //         border: Border.all(color: Colors.black, width: 1),
+              //         borderRadius: BorderRadius.circular(15),
+              //       ),
+              //       child: Padding(
+              //           padding: const EdgeInsets.only(left: 15, right: 30),
+              //           child: DropdownButton(
+              //             value: "United Kingdom",
+              //             items: [
+              //               DropdownMenuItem(
+              //                 child: Row(
+              //                   children: [
+              //                     Image.asset('assets/images/nigeria.png',height: 30,),
+              //                     const SizedBox(width: 10,),
+              //                     Text(
+              //                       "Nigeria",
+              //                       style: GoogleFonts.poppins(
+              //                           color: const Color(0xFF1D1D1D),
+              //                           fontSize: 15,
+              //                           fontWeight: FontWeight.w300),
+              //                     ),
+              //                   ],
+              //                 ),
+              //                 value: "United Kingdom",
+              //               ),
+              //             /*  const DropdownMenuItem(
+              //                   child: Text("Canada"), value: "Canada"),*/
+              //               // const DropdownMenuItem(
+              //               //   child: Text("Russia"),
+              //               //   value: "Russia",
+              //               // )
+              //             ],
+              //             onChanged: (value) {},
+              //             icon: const Padding(
+              //                 padding: EdgeInsets.only(left: 20),
+              //                 child: Icon(Icons.keyboard_arrow_down_outlined)),
+              //             iconEnabledColor: Colors.black, //Icon color
+              //             style: const TextStyle(
+              //                 color: Colors.black,
+              //                 fontSize: 20),
+              //             dropdownColor: Colors.white,
+              //             underline: Container(),
+              //             isExpanded: true,
+              //           ))),
+              // ),
               const SizedBox(
                 height: 20,
               ),
@@ -219,7 +229,7 @@ class _AddAPayerState extends State<AddAPayer> {
                 ),
               ),
               SizedBox(
-                height: size.height * .3,
+                height: size.height * .1,
               ),
               InkWell(
                 onTap: () {

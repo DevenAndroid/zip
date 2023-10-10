@@ -204,7 +204,7 @@ SizedBox(height: 20,),
             Padding(
               padding: const EdgeInsets.only(left: 13.0,right: 13),
               child: Container(
-                padding: EdgeInsets.all(8),
+                padding: EdgeInsets.all(5),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: Colors.grey),
@@ -231,7 +231,7 @@ SizedBox(height: 20,),
                       ),
                       SizedBox(width: 15,),
                       Padding(
-                        padding: const EdgeInsets.only(top: 6.0),
+                        padding: const EdgeInsets.only(top: 9.0),
                         child: Text(
                           "Pay extra and early. fee-free",
                           style: GoogleFonts.poppins(

@@ -11,6 +11,7 @@ import 'package:zip/widgets/common_colour.dart';
 
 import '../../controller/profile_controller.dart';
 import '../../repository/myprofile_repo.dart';
+
 bool isValue = false;
 
 class DashBoard extends StatefulWidget {
@@ -22,6 +23,7 @@ class DashBoard extends StatefulWidget {
 
 class _DashBoardState extends State<DashBoard> {
   final profileController = Get.put(ProfileController());
+
   @override
   void initState() {
     // TODO: implement initState
@@ -30,11 +32,7 @@ class _DashBoardState extends State<DashBoard> {
     getData();
     profileController.getCurrentBalance();
     // getData1();
-
-
   }
-
-
 
   getData() {
     myProfileRepo().then((value) {
@@ -61,19 +59,17 @@ class _DashBoardState extends State<DashBoard> {
       body: Obx(() {
         return profileController.modal.value.status == true &&
                 profileController.currentBalanceModel.value.status == true
-            ?   RefreshIndicator(
-            color: Colors.white,
-            backgroundColor: AppTheme.primaryColor,
-            onRefresh: () async {
-              profileController.getCurrentBalance();
-
-
-            },
-              child: SafeArea(
-                child: SingleChildScrollView(
+            ? RefreshIndicator(
+                color: Colors.white,
+                backgroundColor: AppTheme.primaryColor,
+                onRefresh: () async {
+                  profileController.getCurrentBalance();
+                },
+                child: SafeArea(
+                  child: SingleChildScrollView(
                     child: Padding(
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 10),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -119,15 +115,18 @@ class _DashBoardState extends State<DashBoard> {
                                   child: Padding(
                                     padding: const EdgeInsets.all(10.0),
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         const SizedBox(
                                           height: 5,
                                         ),
                                         InkWell(
                                           onTap: () {
-                                            Get.toNamed(MyRouters.accountsInBank);
+                                            Get.toNamed(
+                                                MyRouters.accountsInBank);
                                           },
                                           child: Text(
                                             "Current Balance",
@@ -142,43 +141,57 @@ class _DashBoardState extends State<DashBoard> {
                                         ),
                                         InkWell(
                                           onTap: () {
-                                            Get.toNamed(MyRouters.accountsInBank);
+                                            Get.toNamed(
+                                                MyRouters.accountsInBank);
                                           },
-                                          child:isValue != true ? Row(
-                                            children: [
-                                              Image.network(
-                                                "https://cdn-icons-png.flaticon.com/512/32/32974.png",
-                                                color: Colors.white,
-                                                width: 20,
-                                                height: 20,
-                                              ),
-                                              FittedBox(
-                                                child: Text(
-                                                  NumberFormat.currency(
-                                                    symbol: '', // Set the currency symbol to empty since you're formatting as a plain number
-                                                    decimalDigits: 0, // Set the number of decimal digits to 0
-                                                  ).format(profileController.currentBalanceModel.value.data),
+                                          child: isValue != true
+                                              ? Row(
+                                                  children: [
+                                                    Image.network(
+                                                      "https://cdn-icons-png.flaticon.com/512/32/32974.png",
+                                                      color: Colors.white,
+                                                      width: 20,
+                                                      height: 20,
+                                                    ),
+                                                    FittedBox(
+                                                      child: Text(
+                                                        NumberFormat.currency(
+                                                          symbol: '',
+                                                          // Set the currency symbol to empty since you're formatting as a plain number
+                                                          decimalDigits:
+                                                              0, // Set the number of decimal digits to 0
+                                                        ).format(profileController
+                                                            .currentBalanceModel
+                                                            .value
+                                                            .data),
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 25,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )
+                                              : Text(
+                                                  "",
                                                   style: GoogleFonts.poppins(
                                                       color: Colors.white,
-                                                      fontSize: 25,
-                                                      fontWeight: FontWeight.w500),
+                                                      fontSize: 24,
+                                                      fontWeight:
+                                                          FontWeight.w500),
                                                 ),
-                                              ),
-                                            ],
-                                          ): Text(
-                                           "",
-                                            style: GoogleFonts.poppins(
-                                                color: Colors.white,
-                                                fontSize: 24,
-                                                fontWeight: FontWeight.w500),
-                                          ),
                                         ),
                                         const SizedBox(
                                           height: 35,
                                         ),
                                         InkWell(
                                           onTap: () {
-                                            Get.toNamed(MyRouters.accountsInBank);
+                                            Get.toNamed(
+                                                MyRouters.accountsInBank);
                                           },
                                           child: Row(
                                             mainAxisAlignment:
@@ -237,7 +250,8 @@ class _DashBoardState extends State<DashBoard> {
                                                   style: GoogleFonts.poppins(
                                                       color: Colors.white,
                                                       fontSize: 17,
-                                                      fontWeight: FontWeight.w500),
+                                                      fontWeight:
+                                                          FontWeight.w500),
                                                 ),
                                               ],
                                             ),
@@ -251,7 +265,8 @@ class _DashBoardState extends State<DashBoard> {
                                   ),
                                   InkWell(
                                     onTap: () {
-                                      Get.toNamed(MyRouters.sendCashYourBalance);
+                                      Get.toNamed(
+                                          MyRouters.sendCashYourBalance);
                                     },
                                     child: Container(
                                       width: size.width * .39,
@@ -308,7 +323,7 @@ class _DashBoardState extends State<DashBoard> {
                             ),
                           ),
                           const SizedBox(
-                            height: 10,
+                            height: 30,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -335,14 +350,21 @@ class _DashBoardState extends State<DashBoard> {
                                       ]),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      const Row(
-                                        mainAxisAlignment: MainAxisAlignment.end,
-                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
+                                          SvgPicture.asset(
+                                            "assets/images/banktransfer.svg",
+                                            width: 30,
+                                          ),
                                           SizedBox(
-                                            width: 60,
+                                            width: 30,
                                           ),
                                           Icon(
                                             Icons.arrow_forward,
@@ -350,10 +372,10 @@ class _DashBoardState extends State<DashBoard> {
                                           ),
                                         ],
                                       ),
-                                      SvgPicture.asset(
-                                        "assets/images/banktransfer.svg",
-                                        width: 30,
-                                      ),
+                                      // SvgPicture.asset(
+                                      //   "assets/images/banktransfer.svg",
+                                      //   width: 30,
+                                      // ),
                                       const SizedBox(
                                         height: 8,
                                       ),
@@ -392,24 +414,27 @@ class _DashBoardState extends State<DashBoard> {
                                       ]),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      const Row(
-                                        mainAxisAlignment: MainAxisAlignment.end,
-                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
+                                          SvgPicture.asset(
+                                            "assets/images/coustmersupport.svg",
+                                            width: 30,
+                                          ),
                                           SizedBox(
-                                            width: 60,
+                                            width: 30,
                                           ),
                                           Icon(
                                             Icons.arrow_forward,
                                             size: 20,
                                           ),
                                         ],
-                                      ),
-                                      SvgPicture.asset(
-                                        "assets/images/coustmersupport.svg",
-                                        width: 30,
                                       ),
                                       const SizedBox(
                                         height: 8,
@@ -449,25 +474,28 @@ class _DashBoardState extends State<DashBoard> {
                                       ]),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      const Row(
-                                        mainAxisAlignment: MainAxisAlignment.end,
-                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
-                                          SizedBox(
-                                            width: 60,
+                                          SvgPicture.asset(
+                                            "assets/images/i3.svg",
+                                            width: 30,
+                                            height: 30,
                                           ),
-                                          Icon(
+                                          const SizedBox(
+                                            width: 40,
+                                          ),
+                                          const Icon(
                                             Icons.arrow_forward,
                                             size: 20,
                                           ),
                                         ],
-                                      ),
-                                      SvgPicture.asset(
-                                        "assets/images/i3.svg",
-                                        width: 30,
-                                        height: 30,
                                       ),
                                       const SizedBox(
                                         height: 8,
@@ -515,24 +543,27 @@ class _DashBoardState extends State<DashBoard> {
                                       ]),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      const Row(
-                                        mainAxisAlignment: MainAxisAlignment.end,
-                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
+                                          SvgPicture.asset(
+                                            "assets/images/i4.svg",
+                                            width: 30,
+                                          ),
                                           SizedBox(
-                                            width: 60,
+                                            width: 30,
                                           ),
                                           Icon(
                                             Icons.arrow_forward,
                                             size: 20,
                                           ),
                                         ],
-                                      ),
-                                      SvgPicture.asset(
-                                        "assets/images/i4.svg",
-                                        width: 30,
                                       ),
                                       const SizedBox(
                                         height: 8,
@@ -572,24 +603,27 @@ class _DashBoardState extends State<DashBoard> {
                                       ]),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      const Row(
-                                        mainAxisAlignment: MainAxisAlignment.end,
-                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
+                                          SvgPicture.asset(
+                                            "assets/images/cabeltv.svg",
+                                            width: 30,
+                                          ),
                                           SizedBox(
-                                            width: 60,
+                                            width: 30,
                                           ),
                                           Icon(
                                             Icons.arrow_forward,
                                             size: 20,
                                           ),
                                         ],
-                                      ),
-                                      SvgPicture.asset(
-                                        "assets/images/cabeltv.svg",
-                                        width: 30,
                                       ),
                                       const SizedBox(
                                         height: 8,
@@ -629,24 +663,27 @@ class _DashBoardState extends State<DashBoard> {
                                       ]),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      const Row(
-                                        mainAxisAlignment: MainAxisAlignment.end,
-                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
+                                          SvgPicture.asset(
+                                            "assets/images/i5.svg",
+                                            width: 30,
+                                          ),
                                           SizedBox(
-                                            width: 60,
+                                            width: 30,
                                           ),
                                           Icon(
                                             Icons.arrow_forward,
                                             size: 20,
                                           ),
                                         ],
-                                      ),
-                                      SvgPicture.asset(
-                                        "assets/images/i5.svg",
-                                        width: 30,
                                       ),
                                       const SizedBox(
                                         height: 8,
@@ -667,7 +704,7 @@ class _DashBoardState extends State<DashBoard> {
                             ],
                           ),
                           const SizedBox(
-                            height: 20,
+                            height: 40,
                           ),
                           InkWell(
                             onTap: () {
@@ -740,15 +777,12 @@ class _DashBoardState extends State<DashBoard> {
                               )),
                             ],
                           ),
-                          SizedBox(
-                            height: size.height * .1,
-                          )
                         ],
                       ),
                     ),
                   ),
-              ),
-            )
+                ),
+              )
             : const Center(
                 child: CircularProgressIndicator(),
               );

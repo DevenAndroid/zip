@@ -83,7 +83,7 @@ class _TelcosScreenState extends State<TelcosScreen> {
             // showToast(value.message.toString());
             );
   }
-
+  final formKey4 = GlobalKey<FormState>();
   getProviderList() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var uniqueIdentifier = pref.getString("uniqueIdentifier");
@@ -146,105 +146,110 @@ class _TelcosScreenState extends State<TelcosScreen> {
           centerTitle: true,
         ),
         body: SingleChildScrollView(
-            child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CommonTextfield(
-                        onTap: () {
-                          Get.toNamed(MyRouters.buyAirtimecreen);
-                        },
-                        suffixIcon: Icon(Icons.keyboard_arrow_down),
-                        controller: profileController.airtimeController,
-                        readOnly: true,
-                        obSecure: false,
-                        hintText: "",
-                        labelText: "Select Provider",
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Text(
-                          "Phone number ",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF2E2E2E),
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500),
+            child: Form(
+              key: formKey4,
+              child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CommonTextfield(
+                          onTap: () {
+                            Get.toNamed(MyRouters.buyAirtimecreen);
+                          },
+                          suffixIcon: Icon(Icons.keyboard_arrow_down),
+                          controller: profileController.airtimeController,
+                          readOnly: true,
+                          obSecure: false,
+                          hintText: "",
+                          labelText: "Select Provider",
                         ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      CommonTextfield(
-                        keyboardType: const TextInputType.numberWithOptions(
-                            decimal: true),
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(11),
-                          FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
-                        ],
-                        onChanged: (value) => doubleVar = double.parse(value),
-                        validator: MultiValidator([
-                          RequiredValidator(
-                              errorText: 'Please enter your meter number '),
-                          MinLengthValidator(10,
-                              errorText: 'Please enter minumum  10  number'),
-                          MaxLengthValidator(12,
-                              errorText: 'Please enter 12  number'),
-                          PatternValidator(r'(^(?:[+0]9)?[0-9]{10,12}$)',
-                              errorText: '')
-                        ]),
-                        controller: registorController.phoneController1,
-                        obSecure: false,
-                        hintText: "123456789",
-                        labelText: "Phone Number",
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: Text(
-                          "Amount ",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF2E2E2E),
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500),
+                        const SizedBox(
+                          height: 20,
                         ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      CommonTextfield(
-                        keyboardType: const TextInputType.numberWithOptions(
-                            decimal: true),
-                        inputFormatters: [
-                          FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
-                        ],
-                        onChanged: (value) => doubleVar = double.parse(value),
-                        validator: MultiValidator([
-                          RequiredValidator(
-                              errorText: 'Please enter your amount'),
-                        ]),
-                        controller: registorController.amountController1,
-                        obSecure: false,
-                        hintText: "0",
-                        labelText: "Amount",
-                      ),
-                      SizedBox(
-                        height: size.height * .26,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          getProviderList();
-                        },
-                        child: const CustomOutlineButton(
-                          title: "Continue",
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Text(
+                            "Phone number ",
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF2E2E2E),
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500),
+                          ),
                         ),
-                      ),
-                    ]))));
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        CommonTextfield(
+                          keyboardType: const TextInputType.numberWithOptions(
+                              decimal: true),
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(11),
+                            FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                          ],
+                          onChanged: (value) => doubleVar = double.parse(value),
+                          validator: MultiValidator([
+                            RequiredValidator(
+                                errorText: 'Please enter your phone number '),
+                            MinLengthValidator(10,
+                                errorText: 'Please enter minumum  10  number'),
+                            MaxLengthValidator(12,
+                                errorText: 'Please enter 12  number'),
+                            PatternValidator(r'(^(?:[+0]9)?[0-9]{10,12}$)',
+                                errorText: '')
+                          ]),
+                          controller: registorController.phoneController1,
+                          obSecure: false,
+                          hintText: "123456789",
+                          labelText: "Phone Number",
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Text(
+                            "Amount ",
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF2E2E2E),
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        CommonTextfield(
+                          keyboardType: const TextInputType.numberWithOptions(
+                              decimal: true),
+                          inputFormatters: [
+                            FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                          ],
+                          onChanged: (value) => doubleVar = double.parse(value),
+                          validator: MultiValidator([
+                            RequiredValidator(
+                                errorText: 'Please enter your amount'),
+                          ]),
+                          controller: registorController.amountController1,
+                          obSecure: false,
+                          hintText: "0",
+                          labelText: "Amount",
+                        ),
+                        SizedBox(
+                          height: size.height * .26,
+                        ),
+                        InkWell(
+                          onTap: () {
+      if (formKey4.currentState!.validate()) {
+        getProviderList();
+      }
+                          },
+                          child: const CustomOutlineButton(
+                            title: "Continue",
+                          ),
+                        ),
+                      ])),
+            )));
   }
 }

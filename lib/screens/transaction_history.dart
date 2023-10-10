@@ -80,15 +80,12 @@ class _TransactionsHistoryState extends State<TransactionsHistory> {
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
-          // leading: InkWell(
-          //   onTap: () {
-          //     Get.toNamed(MyRouters.bottomNavbar);
-          //   },
-          //   child: const Icon(
-          //     Icons.arrow_back_rounded,
-          //     color: AppTheme.primaryColor,
-          //   ),
-          // ),
+           leading: InkWell(
+             onTap: () {
+               Get.toNamed(MyRouters.bottomNavbar);
+             },
+             child: const SizedBox()
+           ),
           title: Text(
             appBarName.toString(),
             style: GoogleFonts.poppins(
@@ -96,26 +93,26 @@ class _TransactionsHistoryState extends State<TransactionsHistory> {
                 fontSize: 20,
                 fontWeight: FontWeight.w500),
           ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: GestureDetector(
-                onTap: () {
-                  Get.toNamed(MyRouters.fAQScreens);
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border:
-                          Border.all(color: AppTheme.primaryColor, width: 2)),
-                  child: Icon(
-                    Icons.question_mark_rounded,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-            )
-          ],
+          // actions: [
+          //   Padding(
+          //     padding: const EdgeInsets.only(right: 8.0),
+          //     child: GestureDetector(
+          //       onTap: () {
+          //         Get.toNamed(MyRouters.fAQScreens);
+          //       },
+          //       child: Container(
+          //         decoration: BoxDecoration(
+          //             shape: BoxShape.circle,
+          //             border:
+          //                 Border.all(color: AppTheme.primaryColor, width: 2)),
+          //         child: Icon(
+          //           Icons.question_mark_rounded,
+          //           color: Colors.black,
+          //         ),
+          //       ),
+          //     ),
+          //   )
+          // ],
           centerTitle: true,
         ),
         body: Theme(

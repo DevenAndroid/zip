@@ -93,7 +93,7 @@ class _BuyAirtimeScreenState extends State<BuyAirtimeScreen> {
       Get.toNamed(MyRouters.sucessRechargePin);
     }
     else{
-      if (formKey4.currentState!.validate()) {
+
         BuyPlanRepo(
           telco: initStateBlank2,
           amount: initStateBlank1,
@@ -125,7 +125,7 @@ class _BuyAirtimeScreenState extends State<BuyAirtimeScreen> {
         }
           // showToast(value.message.toString());
         );
-      }}}
+      }}
 
   @override
   Widget build(BuildContext context) {
@@ -198,16 +198,20 @@ class _BuyAirtimeScreenState extends State<BuyAirtimeScreen> {
                             FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
                           ],
                           onChanged: (value) => doubleVar = double.parse(value),
-                          validator: MultiValidator([
-                            RequiredValidator(
-                                errorText: 'Please enter your meter number '),
-                            MinLengthValidator(10,
-                                errorText: 'Please enter minumum  10  number'),
-                            MaxLengthValidator(12,
-                                errorText: 'Please enter 12  number'),
-                            PatternValidator(r'(^(?:[+0]9)?[0-9]{10,12}$)',
-                                errorText: '')
-                          ]),
+                          validator: RequiredValidator(
+                            errorText: "please enter your phone no "
+                          ),
+
+                          // validator: MultiValidator([
+                          //   RequiredValidator(
+                          //       errorText: 'Please enter your meter number '),
+                          //   MinLengthValidator(10,
+                          //       errorText: 'Please enter minumum  10  number'),
+                          //   MaxLengthValidator(12,
+                          //       errorText: 'Please enter 12  number'),
+                          //   PatternValidator(r'(^(?:[+0]9)?[0-9]{10,12}$)',
+                          //       errorText: '')
+                          // ]),
 
                           obSecure: false,
                           readOnly: true,
@@ -237,10 +241,10 @@ class _BuyAirtimeScreenState extends State<BuyAirtimeScreen> {
                             FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
                           ],
                           onChanged: (value) => doubleVar = double.parse(value),
-                          validator: MultiValidator([
-                            RequiredValidator(
-                                errorText: 'Please enter your amount'),
-                          ]),
+                       validator: MultiValidator([
+                         RequiredValidator(
+                             errorText: 'Please enter your amount'),
+                       ]),
 
                           obSecure: false,
                           hintText: initStateBlank1,
@@ -249,9 +253,13 @@ class _BuyAirtimeScreenState extends State<BuyAirtimeScreen> {
                         SizedBox(
                           height: size.height * .26,
                         ),
+
                         InkWell(
                           onTap: () {
-                            getProviderList();
+
+    if (formKey4.currentState!.validate()) {
+      getProviderList();
+    }
                           },
                           child: const CustomOutlineButton(
                             title: "Continue",

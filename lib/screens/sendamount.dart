@@ -55,7 +55,7 @@ class _RequestPaymentContiuneState extends State<RequestPaymentContiune> {
         ),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(height: 48,),
@@ -68,15 +68,17 @@ class _RequestPaymentContiuneState extends State<RequestPaymentContiune> {
           ),
           SizedBox(height: 25,),
 
-          Text(
-            "Send Money \$ "+profileController.amountController.text.trim(),
-            style: GoogleFonts.poppins(
-                color: const Color(0xFF1D1D1D),
-                fontSize: 18,
-                fontWeight: FontWeight.w500),
+          Center(
+            child: Text(
+              "Send Money \$ "+profileController.amountController.text.trim(),
+              style: GoogleFonts.poppins(
+                  color: const Color(0xFF1D1D1D),
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500),
+            ),
           ),
           Text(
-            "From"+  "  ${ profileController. nameController.text.toString()} ",
+            "To"+  "  ${ profileController. nameController.text.toString()} ",
             style: GoogleFonts.poppins(
                 color: const Color(0xFF1D1D1D),
                 fontSize: 16,

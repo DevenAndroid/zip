@@ -26,25 +26,25 @@ class _BuyElectricityListState extends State<BuyElectricityList> {
   Rx<RxStatus> statusOfelEctricityTransistion = RxStatus.empty().obs;
   Rx<BuyElectricityListModel> electricityTransistion = BuyElectricityListModel().obs;
 
-  getSentTransitionList() {
-    buyElectricityListRepo().then((value) {
-      log("response.body.....    ${value}");
-      electricityTransistion.value = value;
-      if (value.status == true) {
-        statusOfelEctricityTransistion.value = RxStatus.success();
-      } else {
-        statusOfelEctricityTransistion.value = RxStatus.error();
-      }
-    }
-      // showToast(value.message.toString());
-    );
-  }
+  // getSentTransitionList() {
+  //   buyElectricityListRepo().then((value) {
+  //     log("response.body.....    ${value}");
+  //     electricityTransistion.value = value;
+  //     if (value.status == true) {
+  //       statusOfelEctricityTransistion.value = RxStatus.success();
+  //     } else {
+  //       statusOfelEctricityTransistion.value = RxStatus.error();
+  //     }
+  //   }
+  //     // showToast(value.message.toString());
+  //   );
+  // }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    getSentTransitionList();
+    // getSentTransitionList();
   }
   @override
   Widget build(BuildContext context) {
@@ -434,7 +434,7 @@ SizedBox(width: 6,),
                           errorText: electricityTransistion.value.message
                               .toString(),
                           onTap: () {
-                            getSentTransitionList();
+                            // getSentTransitionList();
                           },
                         )
                             : const CommonProgressIndicator();

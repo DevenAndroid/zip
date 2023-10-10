@@ -162,8 +162,8 @@ class _SendCash2State extends State<SendCash2> {
                           controller: controller.bankController,
                           readOnly: true,
                           obSecure: false,
-                          hintText: "",
-                          labelText: "Select Bank",
+                          hintText: "Select Bank",
+                          // labelText: "Select Bank",
                         ),
                         SizedBox(
                           height: 20,

@@ -635,15 +635,19 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
 
                       Row(
                         children:[
-                          Text(
+                          InkWell(
+                            onTap: (){
+                              Get.toNamed(MyRouters.privacyPolicyScreen); },
+                            child: Text(
 
-                            "Learn about how we use your data",
-                            style: GoogleFonts.poppins(
-                                color:  const Color(0xFFB2802A),
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500),
+                              "Learn about how we use your data",
+                              style: GoogleFonts.poppins(
+                                  color:  const Color(0xFFB2802A),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500),
+                            ),
                           ),
-                          Icon(Icons.exit_to_app)
+                          // Icon(Icons.exit_to_app)
                         ]
                       ),
 
@@ -688,7 +692,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                              // emailLogin();
                              //
                            },
-                           child: const CustomOutlineButton(title: "Sumbit",)),
+                           child: const CustomOutlineButton(title: "Submit",)),
                       const SizedBox(height: 15,),
                     ])
             ))

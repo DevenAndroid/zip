@@ -39,6 +39,8 @@ class ApiUrls {
   static const String getCardBalance  = "https://issuecards.api.bridgecard.co/v1/issuing/sandbox/cards/get_card_balance?card_id=";
   static const String getRate  = "https://issuecards.api.bridgecard.co/v1/issuing/cards/fx-rate";
   static const String freezeCard  = "https://issuecards.api.bridgecard.co/v1/issuing/sandbox/cards/freeze_card?card_id=";
+  static const String UnfreezeCard  = "https://issuecards.api.bridgecard.co/v1/issuing/sandbox/cards/unfreeze_card?card_id=";
+  static const String privicyPolicy  = "${apiBaseUrl}pages?slug=";
   static const String purchaseEnergy  = "https://billing-staging.bytestacks.io/api/v1/electricity/subscribe";
   static const String conversion  = "https://sandboxapi.fincra.com/quotes/generate";
   static const String resolve  = "https://sandboxapi.fincra.com/core/accounts/resolve";

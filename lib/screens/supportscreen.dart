@@ -129,7 +129,7 @@ class _SupportScreenState extends State<SupportScreen> {
     String? restoreId = user.getRestoreId();
     if (restoreId != null) {
       Clipboard.setData(new ClipboardData(text: restoreId));
-      showToast("Restore ID copied: $restoreId");
+      // showToast("Restore ID copied: $restoreId");
     }
   }
   void getUserProps(BuildContext context) {

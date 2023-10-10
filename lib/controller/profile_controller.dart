@@ -19,6 +19,7 @@ import '../models/model_get_card_details.dart';
 import '../models/model_kay .dart';
 import '../models/model_rate.dart';
 import '../models/model_send_money.dart';
+import '../models/model_unfrrze_card.dart';
 import '../models/myprofile_model.dart';
 import '../models/save_card_model.dart';
 import '../models/save_transastion_model.dart';
@@ -38,6 +39,7 @@ import '../repository/rate_repo.dart';
 import '../repository/save_buy_plan_repo.dart';
 import '../repository/save_card_repo.dart';
 import '../repository/send_mail_repo.dart';
+import '../repository/unfreez_card_repo.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../routers/my_routers.dart';
@@ -142,7 +144,7 @@ class ProfileController extends GetxController {
         getCurrentBalance();
         showToast(value.message.toString());
       } else {
-        showToast(value.message.toString());
+        showToast("insufficient funds");
 
       }
     // showToast(value.message.toString());
@@ -683,6 +685,30 @@ saveCardDetails() {
         cardFreeze.value = value;
       } else {
         statusOfCardfreeze.value = RxStatus.error();
+        showToast(value.message.toString());
+      }
+
+      print(value.message.toString());
+    });
+  }
+
+  Rx<ModelUnfreezCard> cardUnFreeze = ModelUnfreezCard().obs;
+  Rx<RxStatus> statusOfCardUnfreeze = RxStatus.empty().obs;
+  unFrozenCard() {
+    UnFreezeCardRepo(card_id:  card.value.data!.cardId.toString()
+      // cardId.value
+      // createCard.value.data!.cardId.toString()
+    )
+        .then((value) {
+      if (value.status == "success") {
+        statusOfCardUnfreeze.value = RxStatus.success();
+        Get.back();
+        showToast(value.message.toString());
+        // Get.toNamed(MyRouters.cardDetails);
+        // holder();
+        cardUnFreeze.value = value;
+      } else {
+        statusOfCardUnfreeze.value = RxStatus.error();
         showToast(value.message.toString());
       }
 

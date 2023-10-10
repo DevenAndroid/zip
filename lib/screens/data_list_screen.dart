@@ -26,25 +26,25 @@ class _BuyDataListState extends State<BuyDataList> {
   Rx<RxStatus> statusOfBuyDataList = RxStatus.empty().obs;
   Rx<BuyDataListModel> buyDataList = BuyDataListModel().obs;
 
-  getBuyDataList() {
-    buyDataListRepo().then((value) {
-      log("response.body.....    ${value}");
-      buyDataList.value = value;
-      if (value.status == true) {
-        statusOfBuyDataList.value = RxStatus.success();
-      } else {
-        statusOfBuyDataList.value = RxStatus.error();
-      }
-    }
-      // showToast(value.message.toString());
-    );
-  }
+  // getBuyDataList() {
+  //   buyDataListRepo().then((value) {
+  //     log("response.body.....    ${value}");
+  //     buyDataList.value = value;
+  //     if (value.status == true) {
+  //       statusOfBuyDataList.value = RxStatus.success();
+  //     } else {
+  //       statusOfBuyDataList.value = RxStatus.error();
+  //     }
+  //   }
+  //     // showToast(value.message.toString());
+  //   );
+  // }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    getBuyDataList();
+    // getBuyDataList();
   }
   @override
   Widget build(BuildContext context) {
@@ -450,7 +450,7 @@ class _BuyDataListState extends State<BuyDataList> {
                           errorText: buyDataList.value.message
                               .toString(),
                           onTap: () {
-                            getBuyDataList();
+                            // getBuyDataList();
                           },
                         )
                             : const CommonProgressIndicator();

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -45,8 +46,18 @@ class _SendYourBalanceScreenState extends State<SendYourBalanceScreen> {
 
         centerTitle: true,
       ),
+      bottomNavigationBar:    Padding(
+        padding: const EdgeInsets.only(bottom: 28.0),
+        child: InkWell(
+            onTap: (){
+              if (formKey6.currentState!.validate()) {
+                Get.toNamed(MyRouters.requestPaymentContiune,);
+              }
+            },
+            child: const CustomOutlineButton(title: "Send",)),
+      ),
       body:  Obx(() {
-        return profileController.currentBalanceModel.value.status ==true
+        return profileController.modal.value.status==true&&profileController.currentBalanceModel.value.status ==true
             ?
 
         SingleChildScrollView(
@@ -80,17 +91,23 @@ class _SendYourBalanceScreenState extends State<SendYourBalanceScreen> {
                             children: [
                               Center(
                                 child: Container(
-                                  padding: const EdgeInsets.all(2),
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Colors.white,
+                                  decoration:  BoxDecoration(
+                                    border: Border.all(color: Colors.black,width: 2),
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(100)),
+                                    color:Colors.white,
                                   ),
-                                  margin: EdgeInsets.only(
-                                      right: size.width * .01, left: size.width * .015),
-                                  child: CircleAvatar(
-                                    radius: size.height * .07,
-                                    backgroundImage: const NetworkImage(
-                                        'https://www.pngitem.com/pimgs/m/128-1284293_marina-circle-girl-picture-in-circle-png-transparent.png'),
+                                  child: ClipOval(
+                                    child: CachedNetworkImage(
+                                      width: 120,
+                                      height: 120,
+                                      fit: BoxFit.cover,
+                                      imageUrl: profileController.modal.value.data!.user!.profileImage.toString(),
+                                      placeholder: (context, url) =>
+                                      const Icon(Icons.person,size: 30,),
+                                      errorWidget: (context, url, error) =>
+                                      const  Icon(Icons.person,size: 50,),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -144,14 +161,8 @@ class _SendYourBalanceScreenState extends State<SendYourBalanceScreen> {
                         const SizedBox(height: 10,),
 
 
-                        SizedBox(height: size.height*.3,),
-                        InkWell(
-                            onTap: (){
-                              if (formKey6.currentState!.validate()) {
-                                Get.toNamed(MyRouters.requestPaymentContiune,);
-                              }
-                            },
-                            child: const CustomOutlineButton(title: "Send",)),
+
+
 
 
                       ]),
