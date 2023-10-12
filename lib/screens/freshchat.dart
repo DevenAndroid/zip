@@ -140,7 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
     String? restoreId = user.getRestoreId();
     if (restoreId != null) {
       Clipboard.setData(ClipboardData(text: restoreId));
-      showToast("Restore ID copied: $restoreId");
+      // showToast("Restore ID copied: $restoreId");
     }
   }
     void getUserProps(BuildContext context) {
@@ -413,7 +413,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           content: Text(
                               "Unread Message Count: $count  Status: $status"),
                         );
-                        showToast(snackBar);
+                        // showToast(snackBar);
                       });
                   break;
                 case 2:

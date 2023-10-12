@@ -787,6 +787,7 @@ class _MyCardState extends State<MyCard> {
           );
         });
   }
+
   showDialogueDelete1() {
     showDialog(
         context: context,

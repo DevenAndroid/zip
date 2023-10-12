@@ -102,13 +102,13 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
   RxString fee = "".obs;
   RxString receive = "".obs;
 
-  String dropdownvalue2 = 'GBP';
+  String dropdownvalue2 = 'USD';
   List<DropdownMenuItem<String>> get dropdownItemsm2 {
     List<DropdownMenuItem<String>> menuItemsm = [
 
-      const DropdownMenuItem(value: "GBP", child: Text("GBP")),
-      const DropdownMenuItem(value: "EUR", child: Text("EUR")),
       const DropdownMenuItem(value: "USD", child: Text("USD")),
+      const DropdownMenuItem(value: "EUR", child: Text("EUR")),
+      const DropdownMenuItem(value: "GBP", child: Text("GBP")),
 
     ];
     return menuItemsm;
@@ -286,11 +286,10 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
                                       children: [
                                         InkWell(
                                           onTap: (){
-                                            print(usdToNgn.toString());
-                                            print(gbpToNgn.toString());
-                                            print(eurToNgn.toString());
+
                                           },
                                           child: Text(
+                                            dropdownvalue2=="EUR"?"€":dropdownvalue2=="GBP"?"£":
                                             "\$1 = ",
                                             style: GoogleFonts.poppins(
                                                 color: const Color(0xFF7E7E7E),
@@ -305,6 +304,7 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
                                               fontSize: 15,
                                               fontWeight: FontWeight.w500),
                                         ),
+
                                       ],
                                     ),
                                   ],
@@ -502,6 +502,7 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
                                         onChanged: (String? value) {
                                           setState(() {
                                             dropdownvalue2 = value!;
+                                            print(dropdownvalue2.toString());
                                             convertUsd();
                                           });
                                         },

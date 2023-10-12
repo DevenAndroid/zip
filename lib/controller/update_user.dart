@@ -53,6 +53,7 @@ class registerController extends GetxController {
 
   TextEditingController amount1Controller = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  TextEditingController descriptionController1 = TextEditingController();
   TextEditingController sourceCurrencyController = TextEditingController();
   TextEditingController destinationCurrencyController = TextEditingController();
   TextEditingController accountNoController = TextEditingController();

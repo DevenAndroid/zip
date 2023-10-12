@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -6,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
+import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
 import '../routers/my_routers.dart';
 import '../widgets/common_button.dart';
@@ -19,6 +21,8 @@ class VerifyPaymentLink2 extends StatefulWidget {
 
 class _VerifyPaymentLink2State extends State<VerifyPaymentLink2> {
   final register = Get.put(registerController());
+  final profileController = Get.put(ProfileController());
+  final formKey4 = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     var size= MediaQuery.of(context).size;
@@ -46,129 +50,130 @@ class _VerifyPaymentLink2State extends State<VerifyPaymentLink2> {
             ),
           ),
         ),
-        body:  SingleChildScrollView(
-            child: Padding(
-                padding: const EdgeInsets.all(18.0),
+        body: Obx(() {
+          return  profileController.modal.value.status==true?
 
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+            SingleChildScrollView(
+              child: Form(
+                key: formKey4,
+                child: Padding(
+                    padding: const EdgeInsets.all(18.0),
 
-                      Center(
-                        child: Stack(
-                          children: [
-                            Center(
-                              child: Container(
-                                padding: const EdgeInsets.all(2),
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.white,
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Center(
+                            child: Stack(
+                              children: [
+                                Center(
+                                  child: Container(
+                                    decoration:  BoxDecoration(
+                                      border: Border.all(color: Colors.black,width: 2),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(100)),
+                                      color:Colors.white,
+                                    ),
+                                    child: ClipOval(
+                                      child: CachedNetworkImage(
+                                        width: 120,
+                                        height: 120,
+                                        fit: BoxFit.cover,
+                                        imageUrl: profileController.modal.value.data!.user!.profileImage.toString(),
+                                        placeholder: (context, url) =>
+                                        const Icon(Icons.person,size: 30,),
+                                        errorWidget: (context, url, error) =>
+                                        const  Icon(Icons.person,size: 50,),
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                                margin: EdgeInsets.only(
-                                    right: size.width * .01, left: size.width * .015),
-                                child: CircleAvatar(
-                                  radius: size.height * .07,
-                                  backgroundImage: const NetworkImage(
-                                      'https://www.pngitem.com/pimgs/m/128-1284293_marina-circle-girl-picture-in-circle-png-transparent.png'),
-                                ),
-                              ),
+
+                              ],
                             ),
-
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 15,),
+                          ),
+                          SizedBox(height: 15,),
 
 
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Text(
-                          "Enter Amount ",
-                          style: GoogleFonts.poppins(
-                              color:  Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                      const SizedBox(height: 10,),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Text(
+                              "Enter Amount ",
+                              style: GoogleFonts.poppins(
+                                  color:  Colors.black,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                          const SizedBox(height: 10,),
 
-                      CommonTextfield(
-                          keyboardType:
-                          const TextInputType.numberWithOptions(
-                              decimal: true),
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(11),
-                            FilteringTextInputFormatter.allow(
-                                RegExp('[0-9]+')),
-                          ],
-                          onChanged: (value) =>
-                          doubleVar = double.parse(value),
-                          // validator: MultiValidator([
-                          //   RequiredValidator(
-                          //       errorText:
-                          //       'Please enter your amount '),
-                          //   MinLengthValidator(1,
-                          //       errorText:
-                          //       'Please enter amount'),
-                          //   MaxLengthValidator(11,
-                          //       errorText:
-                          //       'Please enter amount'),
-                          //   PatternValidator(
-                          //       r'(^(?:[+0]9)?[0-9]{10,12}$)',
-                          //       errorText: '')
-                          // ]),
-                          controller: register.amountController,
-                          obSecure: false, hintText: "enter amount "),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Text(
-                          "Description",
-                          style: GoogleFonts.poppins(
-                              color:  Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                      const SizedBox(height: 10,),
+                          CommonTextfield(
+                              keyboardType:
+                              const TextInputType.numberWithOptions(
+                                  decimal: true),
+                              inputFormatters: [
+                                LengthLimitingTextInputFormatter(11),
+                                FilteringTextInputFormatter.allow(
+                                    RegExp('[0-9]+')),
+                              ],
+                              onChanged: (value) =>
+                              doubleVar = double.parse(value),
+                              validator: MultiValidator([
+                                RequiredValidator(
+                                    errorText:
+                                    'Please enter your amount '),
 
-                      CommonTextfield(
+                              ]),
+                              controller: register.amountController,
+                              obSecure: false, hintText: "enter amount "),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Text(
+                              "Description",
+                              style: GoogleFonts.poppins(
+                                  color:  Colors.black,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                          const SizedBox(height: 10,),
+
+                          CommonTextfield(
 
 
 
-                          // validator: MultiValidator([
-                          //   RequiredValidator(
-                          //       errorText:
-                          //       'Please enter your amount '),
-                          //   MinLengthValidator(1,
-                          //       errorText:
-                          //       'Please enter amount'),
-                          //   MaxLengthValidator(11,
-                          //       errorText:
-                          //       'Please enter amount'),
-                          //   PatternValidator(
-                          //       r'(^(?:[+0]9)?[0-9]{10,12}$)',
-                          //       errorText: '')
-                          // ]),
-                          // controller: register.amountController,
-                          obSecure: false, hintText: "enter Description "),
+                              validator: MultiValidator([
+                                RequiredValidator(
+                                    errorText:
+                                    'Please enter your Description '),
+
+                              ]),
+                              controller: register.descriptionController1,
+                              obSecure: false, hintText: "enter Description "),
 
 
 
 
-                      SizedBox(height:MediaQuery.of(context).size.height*.3,),
+                          SizedBox(height:MediaQuery.of(context).size.height*.3,),
 
-                      InkWell(
-                          onTap: (){
+                          InkWell(
+                              onTap: (){
 
-                            // register.cashCheckout1(context);
-                            Get.toNamed(MyRouters.addAPayer);
-                            // emailLogin();
-                            //
-                          },
-                          child: CustomOutlineButton(title: "Request a Payment ",)),
-                    ]
-                )))
+                                // register.cashCheckout1(context);
+                                if (formKey4.currentState!.validate()) {
+                                  Get.toNamed(MyRouters.addAPayer);
+                                }
+                                // emailLogin();
+                                //
+                              },
+                              child: CustomOutlineButton(title: "Request a Payment ",)),
+                        ]
+                    )),
+              )) : const Center(
+            child: CircularProgressIndicator(),
+          );
+        })
+
     );
   }
 }
