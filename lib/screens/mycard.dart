@@ -12,6 +12,7 @@ import 'package:zip/widgets/common_colour.dart';
 
 
 import '../controller/profile_controller.dart';
+import '../controller/update_user.dart';
 import '../models/model_freeze_card.dart';
 import '../repository/freeze_card_repo.dart';
 import '../widgets/common_boder_button.dart';
@@ -25,6 +26,7 @@ class MyCard extends StatefulWidget {
 class _MyCardState extends State<MyCard> {
 
   final controller1 = Get.put(ProfileController());
+  final controller = Get.put(registerController());
   @override
   void initState() {
     // TODO: implement initState
@@ -370,7 +372,9 @@ class _MyCardState extends State<MyCard> {
               ),
               InkWell(
                 onTap: () {
-                  controller1. holder();
+
+                  controller.contactUpdateCard(context);
+                  // controller1. holder();
 
                 },
                 child: const SizedBox(

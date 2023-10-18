@@ -186,7 +186,10 @@ class _UpdatePasswordState extends State<UpdatePassword> {
             return null;
           }
           return "Confirm password not matching with password";
-        },controller: confirmPassController,obSecure: obscureText3, labelText: "Confirm Password", hintText: 'Confirm Password',),
+        }
+
+
+        ,controller: confirmPassController,obSecure: obscureText3, labelText: "Confirm Password", hintText: 'Confirm Password',),
 SizedBox(height: size.height*.35,),
       InkWell(
         onTap: () {

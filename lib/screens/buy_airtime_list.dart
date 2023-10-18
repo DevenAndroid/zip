@@ -157,7 +157,7 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                         });
                                       },
                                       child: Container(
-                                        width: 100,
+                                        width: 110,
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 18, vertical: 12),
                                         decoration: currentDrawer == 0
@@ -208,9 +208,9 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                         });
                                       },
                                       child: Container(
-                                        width: 100,
+                                        width: 110,
                                         padding: const EdgeInsets.symmetric(
-                                            horizontal: 18, vertical: 12),
+                                            horizontal: 16, vertical: 12),
                                         decoration: currentDrawer == 1
                                             ? BoxDecoration(
                                           gradient: const LinearGradient(
@@ -259,6 +259,7 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                         });
                                       },
                                       child: Container(
+                                        width: 110,
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 18, vertical: 12),
                                         decoration: currentDrawer == 2
@@ -279,19 +280,21 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                           borderRadius:
                                           BorderRadius.circular(15),
                                         ),
-                                        child: Text("Data",
-                                            style: currentDrawer == 2
-                                                ? GoogleFonts.poppins(
-                                                color:
-                                                const Color(0xFFFFFFFF),
-                                                fontSize: 13,
-                                                fontWeight: FontWeight.w500)
-                                                : GoogleFonts.poppins(
-                                                color:
-                                                const Color(0xFF1D1D1D),
-                                                fontSize: 13,
-                                                fontWeight:
-                                                FontWeight.w500)),
+                                        child: Center(
+                                          child: Text("Data",
+                                              style: currentDrawer == 2
+                                                  ? GoogleFonts.poppins(
+                                                  color:
+                                                  const Color(0xFFFFFFFF),
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w500)
+                                                  : GoogleFonts.poppins(
+                                                  color:
+                                                  const Color(0xFF1D1D1D),
+                                                  fontSize: 13,
+                                                  fontWeight:
+                                                  FontWeight.w500)),
+                                        ),
                                       ),
                                     ),
                                     const SizedBox(
@@ -307,6 +310,7 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                         });
                                       },
                                       child: Container(
+                                        width: 110,
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 18, vertical: 12),
                                         decoration: currentDrawer == 3
@@ -327,19 +331,21 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                           borderRadius:
                                           BorderRadius.circular(15),
                                         ),
-                                        child: Text("Cabel Tv",
-                                            style: currentDrawer == 3
-                                                ? GoogleFonts.poppins(
-                                                color:
-                                                const Color(0xFFFFFFFF),
-                                                fontSize: 13,
-                                                fontWeight: FontWeight.w500)
-                                                : GoogleFonts.poppins(
-                                                color:
-                                                const Color(0xFF1D1D1D),
-                                                fontSize: 13,
-                                                fontWeight:
-                                                FontWeight.w500)),
+                                        child: Center(
+                                          child: Text("Cabel Tv",
+                                              style: currentDrawer == 3
+                                                  ? GoogleFonts.poppins(
+                                                  color:
+                                                  const Color(0xFFFFFFFF),
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w500)
+                                                  : GoogleFonts.poppins(
+                                                  color:
+                                                  const Color(0xFF1D1D1D),
+                                                  fontSize: 13,
+                                                  fontWeight:
+                                                  FontWeight.w500)),
+                                        ),
                                       ),
                                     ),
                                   ])),

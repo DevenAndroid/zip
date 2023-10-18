@@ -150,7 +150,7 @@ class _RequestMoney1State extends State<RequestMoney1> {
 
             SizedBox(height: 20,),
             Padding(
-              padding: const EdgeInsets.only(left: 28.0),
+              padding: const EdgeInsets.only(left: 20.0),
               child: InkWell(
                 onTap: (){
                   Get.toNamed(MyRouters.verifyPaymentLink2);

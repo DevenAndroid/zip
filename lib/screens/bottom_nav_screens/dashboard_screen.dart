@@ -489,7 +489,7 @@ class _DashBoardState extends State<DashBoard> {
                                             height: 30,
                                           ),
                                           const SizedBox(
-                                            width: 40,
+                                            width: 48,
                                           ),
                                           const Icon(
                                             Icons.arrow_forward,

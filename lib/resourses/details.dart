@@ -16,6 +16,7 @@ class DetailsController extends GetxController {
   String secretKey= "";
   String apiKey= "";
   String testToken= "";
+  String Authorization= "Token token=OYZdKwC9r8hwCb7yUXu2BA";
   getKey() {
     getKeyRepo(
 

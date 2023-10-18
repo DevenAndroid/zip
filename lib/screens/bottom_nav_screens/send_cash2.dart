@@ -128,7 +128,7 @@ class _SendCash2State extends State<SendCash2> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Benificiries',
+                                      'Recipient',
                                       style: GoogleFonts.poppins(
                                         textStyle: const TextStyle(
                                             fontSize: 14,

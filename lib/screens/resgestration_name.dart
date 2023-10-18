@@ -158,9 +158,8 @@ class _UserScreenState extends State<UserScreen> {
                     GestureDetector(
                         onTap: () {
                           if (formKeyName.currentState!.validate()) {
-                            Get.toNamed(
-                              MyRouters.birthdayScreen,
-                            );
+                             registorController.contactCreate(context);
+
                           }
                         },
                         child: const CustomOutlineButton(

@@ -41,25 +41,26 @@ class Data {
 }
 
 class User {
-  dynamic id;
-  dynamic fname;
-  dynamic lname;
-  dynamic email;
-  dynamic phone;
-  dynamic zipTag;
-  dynamic dob;
-  dynamic bvn;
-  dynamic primaryPurpose;
-  dynamic gender;
-  dynamic nationality;
-  dynamic birthPlace;
-  dynamic pin;
-  dynamic businessId;
-  dynamic countryCode;
-  dynamic profileImage;
+  int? id;
+  String? fname;
+  String? lname;
+  String? email;
+  String? phone;
+  String? zipTag;
+  String? dob;
+  String? bvn;
+  String? primaryPurpose;
+  String? gender;
+  String? nationality;
+  String? birthPlace;
+  String? pin;
+  String? businessId;
+  String? countryCode;
+  String? profileImage;
   bool? isProfileComplete;
   bool? status;
-  dynamic uniqueId;
+  String? uniqueId;
+  String? freshworkId;
   bool? enableSecurityLock;
   Address? address;
 
@@ -83,6 +84,7 @@ class User {
         this.isProfileComplete,
         this.status,
         this.uniqueId,
+        this.freshworkId,
         this.enableSecurityLock,
         this.address});
 
@@ -106,6 +108,7 @@ class User {
     isProfileComplete = json['is_profile_complete'];
     status = json['status'];
     uniqueId = json['unique_id'];
+    freshworkId = json['freshwork_id'];
     enableSecurityLock = json['enable_security_lock'];
     address =
     json['address'] != null ? new Address.fromJson(json['address']) : null;
@@ -132,6 +135,7 @@ class User {
     data['is_profile_complete'] = this.isProfileComplete;
     data['status'] = this.status;
     data['unique_id'] = this.uniqueId;
+    data['freshwork_id'] = this.freshworkId;
     data['enable_security_lock'] = this.enableSecurityLock;
     if (this.address != null) {
       data['address'] = this.address!.toJson();
@@ -145,7 +149,7 @@ class Address {
   int? userId;
   String? streetName;
   String? houseNumber;
-  String? additional;
+  Null? additional;
   int? postalCode;
   String? state;
   String? city;

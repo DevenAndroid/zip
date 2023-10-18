@@ -20,17 +20,23 @@ import '../models/fetchVirtualAccount_model.dart';
 import '../models/model_checkout.dart';
 import '../models/model_create_card.dart';
 import '../models/model_create_card_holder.dart';
+import '../models/model_create_contact.dart';
 import '../models/model_update_address.dart';
 import '../models/model_update_user.dart';
 import '../models/model_verif_account.dart';
+import '../models/save_freshwork_id_model.dart';
 import '../models/save_transastion_model.dart';
+import '../models/update_contact_model.dart';
 import '../models/verify_africa.dart';
 import '../repository/create_card_holder_repo.dart';
 import '../repository/create_card_repo.dart';
+import '../repository/create_contact_repo.dart';
 import '../repository/fetch_account_repo.dart';
 import '../repository/model_checkout_repo.dart';
 import '../repository/save_buy_plan_repo.dart';
+import '../repository/save_freshwork_repo.dart';
 import '../repository/update_address_repo.dart';
+import '../repository/update_contact_repo.dart';
 import '../repository/user_update_repo.dart';
 import '../repository/verify_account_reop.dart';
 import '../repository/verify_africa_b.dart';
@@ -38,6 +44,7 @@ import '../repository/vritual_account_repo.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../routers/my_routers.dart';
+import 'loan_controller.dart';
 import 'number_controller.dart';
 
 class registerController extends GetxController {
@@ -96,6 +103,95 @@ class registerController extends GetxController {
         statusOfaddress.value = RxStatus.error();
         showToast(value.message.toString());
       }
+    });
+  }
+
+
+
+
+  Rx<RxStatus> statusOfContact = RxStatus.empty().obs;
+  Rx<ModelCreateContact> createContact = ModelCreateContact().obs;
+  contactCreate(context) {
+    createContactRepo(
+      emails:emailController.text.trim() ,
+      first_name: firstNameController.text.trim(),
+      last_name: lastNameController.text.trim(),
+      mobile_number:molileController .text.trim(),
+      cf_product_type: "New Customer",
+      cf_customer_id: profileController.uniqueIdController.text.trim(),
+      last_source: "in-App",
+
+      context: context,
+    ).then((value) {
+      createContact.value = value;
+      contactIdSave(context);
+      Get.toNamed(
+        MyRouters.birthdayScreen,
+      );
+      statusOfContact.value = RxStatus.success();
+        showToast("Contact Created Sucessfully ");
+
+    });
+  }
+  Rx<RxStatus> statusOfId = RxStatus.empty().obs;
+  Rx<SaveFreshworkModel> saveId = SaveFreshworkModel().obs;
+  contactIdSave(context) {
+    saveIdRepo(
+      freshwork_id: createContact.value.contact!.id.toString()
+    ).then((value) {
+      saveId.value = value;
+      Get.toNamed(
+        MyRouters.birthdayScreen,
+      );
+      statusOfContact.value = RxStatus.success();
+      showToast("Contact Created Sucessfully ");
+
+    });
+  }
+  final loanController = Get.put(LoanController());
+  Rx<RxStatus> statusOfUpdateContact = RxStatus.empty().obs;
+  Rx<ModelUpdateContact> updateContact = ModelUpdateContact().obs;
+  contactUpdate(context) {
+    updateContactRepo(
+
+      mobile_number:profileController.mobileController.text.trim(),
+      cf_product_type: "Loan Application",
+      id:profileController.saveIdController.text.trim(),
+
+      context: context,
+    ).then((value) {
+      updateContact.value = value;
+      print( profileController.saveIdController.text.trim(),);
+      loanController.loan(context);
+      // Get.toNamed(
+      //   MyRouters.birthdayScreen,
+      // );
+      statusOfUpdateContact.value = RxStatus.success();
+      // showToast("Contact update Sucessfully ");
+
+    });
+  }
+
+  contactUpdateCard(context) {
+    updateContactRepo(
+
+      mobile_number:profileController.mobileController.text.trim(),
+      cf_product_type: "Virtual Card",
+      id: profileController.saveIdController.text.trim(),
+
+      context: context,
+
+    ).then((value) {
+
+      updateContact.value = value;
+      print( profileController.saveIdController.text.trim(),);
+      profileController. holder();
+      // Get.toNamed(
+      //   MyRouters.birthdayScreen,
+      // );
+      statusOfUpdateContact.value = RxStatus.success();
+      // showToast("Contact update Sucessfully ");
+
     });
   }
 

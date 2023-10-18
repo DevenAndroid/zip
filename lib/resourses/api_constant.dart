@@ -14,6 +14,7 @@ class ApiUrls {
   static const String otps = "${apiBaseUrl}otps";
   static const String applyLoan = "${apiBaseUrl}apply-loan";
   static const String saveCardInfo = "${apiBaseUrl}save-card-info";
+  static const String saveFreshwork = "${apiBaseUrl}freshwork";
   static const String verifyOtp = "${apiBaseUrl}otps/";
   static const String chooseBank = "https://sandboxapi.fincra.com/core/banks?";
   static const String registerUser = "${apiBaseUrl}register";
@@ -26,6 +27,7 @@ class ApiUrls {
   static const String beneficiariesCreate  = "https://sandboxapi.fincra.com/profile/beneficiaries/business/";
   static const String addFundCard  = "https://issuecards.api.bridgecard.co/v1/issuing/sandbox/cards/fund_card";
   static const String addFundIssuesWallet  = "https://issuecards.api.bridgecard.co/v1/issuing/sandbox/cards/fund_issuing_wallet";
+  static const String createContact  = "https://zipinternationallimited-team.myfreshworks.com/crm/sales/api/contacts";
   static const String payout  = "https://sandboxapi.fincra.com/disbursements/payouts";
   static const String plan  = "https://billing-staging.bytestacks.io/api/v1/bundles";
   static const String verifyMeter  = "https://billing-staging.bytestacks.io/api/v1/electricity/verify";

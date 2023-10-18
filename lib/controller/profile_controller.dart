@@ -200,6 +200,8 @@ class ProfileController extends GetxController {
   TextEditingController postalCodeController = TextEditingController();
   TextEditingController countryController = TextEditingController();
   TextEditingController stateController = TextEditingController();
+  TextEditingController uniqueIdController = TextEditingController();
+  TextEditingController saveIdController = TextEditingController();
   Rx<ProfileModel> modal = ProfileModel().obs;
   Rx<RxStatus> statusOfProfile = RxStatus.empty().obs;
   getData() {
@@ -215,6 +217,8 @@ class ProfileController extends GetxController {
         dobController.text = modal.value.data!.user!.dob.toString();
         emailController.text = modal.value.data!.user!.email.toString();
         mobileController.text = modal.value.data!.user!.phone.toString();
+        uniqueIdController.text = modal.value.data!.user!.uniqueId.toString();
+        saveIdController.text = modal.value.data!.user!.freshworkId.toString();
         // registorController.molileController.text = modal.value.data!.user!.phone.toString();
         bvnController.text = modal.value.data!.user!.bvn.toString();
         addressController.text =

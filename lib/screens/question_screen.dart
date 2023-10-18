@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 
 import '../controller/loan_controller.dart';
+import '../controller/update_user.dart';
 import '../routers/my_routers.dart';
 import '../widgets/common_button.dart';
 
@@ -19,6 +20,7 @@ class QuestionsScreen extends StatefulWidget {
 class _QuestionsScreenState extends State<QuestionsScreen> {
 
   final loanController = Get.put(LoanController());
+  final registorController = Get.put(registerController());
 
 
   List<DropdownMenuItem<String>> get dropdownItemsm1 {
@@ -687,7 +689,9 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                       const SizedBox(height: 15,),
                        InkWell(
                            onTap: (){
-                             loanController.loan(context);
+
+                             registorController.contactUpdate(context);
+                             // loanController.loan(context);
 
                              // emailLogin();
                              //

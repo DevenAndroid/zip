@@ -35,6 +35,7 @@ class _TagScreenState extends State<TagScreen> {
       ).then((value) async {
         zipTag.value = value;
         if (value.status == true) {
+         // registorController.contactCreate(context);
           Get.toNamed(MyRouters.extraDetailsScreen);
           statusOfZipTag.value = RxStatus.success();
 
@@ -47,6 +48,7 @@ class _TagScreenState extends State<TagScreen> {
       });
     }
   }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery
