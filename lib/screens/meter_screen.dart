@@ -315,10 +315,17 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
                           onChanged: (value) =>
                           doubleVar = double.parse(value),
                           validator: MultiValidator([
-                          RequiredValidator(
-                          errorText:
-                          'Please enter amount '),]),
-                          readOnly: false,
+                            RangeValidator(min: 0, max: profileController
+                                .currentBalanceModel
+                                .value
+                                .data!, errorText: "Can't add more than${profileController
+                                .currentBalanceModel
+                                .value
+                                .data!}"),
+                        RequiredValidator(
+                            errorText:
+                            'Please enter amount '),]),
+                readOnly: false,
                           controller: controller.amount,
                           obSecure: false,
                           hintText: "",

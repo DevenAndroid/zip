@@ -11,9 +11,11 @@ import '../widgets/common_colour.dart';
 
 class ApiUrls {
   static const String apiBaseUrl = 'https://zipfintech.eoxyslive.com/api/';
+  // static const String apiBaseUrl = 'http://178.128.83.16/api/';
   static const String otps = "${apiBaseUrl}otps";
   static const String applyLoan = "${apiBaseUrl}apply-loan";
   static const String saveCardInfo = "${apiBaseUrl}save-card-info";
+  static const String seveRequestMail = "${apiBaseUrl}send-email-globle";
   static const String saveFreshwork = "${apiBaseUrl}freshwork";
   static const String verifyOtp = "${apiBaseUrl}otps/";
   static const String chooseBank = "https://sandboxapi.fincra.com/core/banks?";
@@ -51,6 +53,7 @@ class ApiUrls {
   static const String biller  = "https://billing-staging.bytestacks.io/api/v1/electricity/billers";
   static const String cabelProviders  = "https://billing-staging.bytestacks.io/api/v1/cable/providers";
   static const String userVerifyOtp = "${apiBaseUrl}verify-otp";
+  static const String otpUsers = "${apiBaseUrl}resend-otp";
   static const String updateDetails = "${apiBaseUrl}update-details";
   static const String requestmail = "${apiBaseUrl}request-money-mail";
   static const String sendEmail = "${apiBaseUrl}send-email";

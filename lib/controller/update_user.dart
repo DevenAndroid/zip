@@ -24,6 +24,7 @@ import '../models/model_create_contact.dart';
 import '../models/model_update_address.dart';
 import '../models/model_update_user.dart';
 import '../models/model_verif_account.dart';
+import '../models/request_money_mail_model.dart';
 import '../models/save_freshwork_id_model.dart';
 import '../models/save_transastion_model.dart';
 import '../models/update_contact_model.dart';
@@ -33,6 +34,7 @@ import '../repository/create_card_repo.dart';
 import '../repository/create_contact_repo.dart';
 import '../repository/fetch_account_repo.dart';
 import '../repository/model_checkout_repo.dart';
+import '../repository/request_money_mail_repo.dart';
 import '../repository/save_buy_plan_repo.dart';
 import '../repository/save_freshwork_repo.dart';
 import '../repository/update_address_repo.dart';
@@ -125,9 +127,7 @@ class registerController extends GetxController {
     ).then((value) {
       createContact.value = value;
       contactIdSave(context);
-      Get.toNamed(
-        MyRouters.birthdayScreen,
-      );
+    updateUser(context);
       statusOfContact.value = RxStatus.success();
         showToast("Contact Created Sucessfully ");
 
@@ -206,7 +206,7 @@ class registerController extends GetxController {
   TextEditingController zipController = TextEditingController();
   TextEditingController countryController1 = TextEditingController();
   TextEditingController regionController = TextEditingController();
-  TextEditingController otpcontroller = TextEditingController();
+    TextEditingController otpcontroller = TextEditingController();
   TextEditingController amountController = TextEditingController();
   Rx<RxStatus> statusOfUpdate = RxStatus.empty().obs;
   Rx<ModelUpdateUser> userUpdate = ModelUpdateUser().obs;
@@ -350,6 +350,41 @@ class registerController extends GetxController {
   }
 
   updateUser(context) {
+    userUpdateRepo(
+            birth_place: regionController.text.trim(),
+            dob: dateOfBirthController.text.trim(),
+            fname: firstNameController.text.trim(),
+            lname: lastNameController.text.trim(),
+            nationality: countryController1.text.trim(),
+            gender: genderType.value,
+            pin: otpcontroller.text.trim(),
+            zip_tag: zipController.text.trim() + "@zip")
+        .then((value) {
+      userUpdate.value = value;
+      if (value.status == true) {
+        Get.offAllNamed(
+          MyRouters.bottomNavbar,
+        );
+        statusOfUpdate.value = RxStatus.success();
+        showToast(value.message.toString());
+      } else {
+        statusOfUpdate.value = RxStatus.error();
+        showToast(value.message.toString());
+      }
+    });
+
+    // if(value.status=="success"){
+    //   statusOfChooseBank.value.isSuccess;
+    // }
+    // Get.toNamed(MyRouters.bottomNavbar);
+
+    @override
+    void onInit() {
+      // TODO: implement onInit
+      super.onInit();
+    }
+  }
+  loginOtp(context) {
     userUpdateRepo(
             birth_place: regionController.text.trim(),
             dob: dateOfBirthController.text.trim(),
@@ -556,6 +591,37 @@ class registerController extends GetxController {
       // showToast(value.message.toString());
     });
   }
+
+
+  Rx<RxStatus> statusOfSaveMail= RxStatus.empty().obs;
+  Rx<RequestMoneyMail> saveMail = RequestMoneyMail().obs;
+  Future saveEmails()async {
+    print( profileController.modal.value.data!.user!.id.toString(),);
+    await requestMailRepo(
+        by_requested_id: profileController.modal.value.data!.user!.id.toString(),
+        amount:amountController.text.trim(),
+        phone: AddmobileController.text.trim(),
+        email: AddEmailController.text.trim(),
+        requested_id: AddNameController.text.trim(),
+        generate_link:link1.value.toString() ,
+
+        type: "request Payment"
+    ).then((value) {
+      log("response.body.....    ${value}");
+      saveMail.value = value;
+      if (value.status == true) {
+        statusOfSave.value = RxStatus.success();
+        Share.share(link1.value.toString());
+      } else {
+        statusOfSave.value = RxStatus.error();
+      }
+    }
+      // showToast(value.message.toString());
+    );
+  }
+
+
+
   Future cashCheckout1(context) async {
     await checkoutRepo(
             currency: fetchAccount.value.data!.currency.toString(),
@@ -569,33 +635,12 @@ class registerController extends GetxController {
       checkout.value = value;
       log(checkout.value.toString());
       if (value.status == true) {
+        link1.value = value.data!.link;
+        saveEmails();
+
 
         Share.share(value.data!.link);
-        // var url= value.data!.link;
-        // if (await canLaunchUrl(Uri.parse(url))) {
-        //   await launchUrl(url, );
-        // } else {
-        //   throw 'Could not launch $url';
-        // }
-        //
-        // _makingPhoneCall(value.data!.link.toString());
-        // var url = Uri.parse( value.data!.link.toString());
-        // if (await canLaunchUrl(url)) {
-        // await launchUrl(url);
-        // } else {
-        // throw 'Could not launch $url';
-        // }
 
-        //
-        //   var httpClient = HttpClient();
-        //   var request1 = await httpClient.getUrl(Uri.parse(value.data!.link));
-        //   var response = await request1.close();
-        //   var bytes = await consolidateHttpClientResponseBytes(response);
-        //   String dir = (await getApplicationDocumentsDirectory()).path;
-        // File file = File('$dir/${value.data!.link.split("/").last.replaceAll("%", " ")}');
-        // await file.writeAsBytes(bytes);
-        // // Share.shareFiles([file.path], text: 'Great picture');
-        // Share.share(value.data!.link);
         showToast(value.message.toString());
         statusOfCheckout.value = RxStatus.success();
         link1.value = value.data!.link;

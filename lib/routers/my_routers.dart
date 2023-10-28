@@ -99,9 +99,12 @@ import '../screens/limit_screen.dart';
 import '../screens/list_biller_screen.dart';
 import '../screens/loan_list.dart';
 import '../screens/loan_screen.dart';
+import '../screens/lofin_no_pin.dart';
+import '../screens/lofin_pin_screen.dart';
 import '../screens/meter_screen.dart';
 import '../screens/notification_screeb.dart';
 import '../screens/onboardingScreen.dart';
+import '../screens/opt_uesrs.dart';
 import '../screens/payment link2.dart';
 import '../screens/paymentlink.dart';
 import '../screens/personal_address.dart';
@@ -285,6 +288,9 @@ class MyRouters{
   static var addFundScreen = "/addFundScreen";
   static var fundIssuingWallet = "/fundIssuingWallet";
   static var privacyPolicyScreen = "/privacyPolicyScreen";
+  static var loginPinScreen = "/loginPinScreen";
+  static var loginNoPinScreen = "/loginNoPinScreen";
+  static var usersOtpScreen = "/usersOtpScreen";
 
 
 
@@ -295,6 +301,7 @@ class MyRouters{
 
 
     GetPage(name: '/onBoardingScreen', page: () =>   const OnBoardingScreen()),
+    GetPage(name: '/usersOtpScreen', page: () =>   const UsersOtpScreen()),
     GetPage(name: '/addFundScreen', page: () =>   const AddFundScreen()),
     GetPage(name: '/fundIssuingWallet', page: () =>   const FundIssuingWallet()),
     GetPage(name: '/addFundExchange', page: () =>   const AddFundExchange()),
@@ -381,6 +388,7 @@ class MyRouters{
 
 
 
+
     GetPage(name: '/selectableScreen', page: () =>  const SelectableScreen()),
     GetPage(name: '/personalAddress', page: () =>  const PersonalAddress()),
     GetPage(name: '/userScreen', page: () =>   const UserScreen()),
@@ -402,6 +410,7 @@ class MyRouters{
     GetPage(name: '/successScreen', page: () =>   const SuccessScreen()),
     GetPage(name: '/enterEmailScreen', page: () =>   const EmailScreen()),
     GetPage(name: '/otpEmailScreen', page: () =>   const EmailOtpScreen()),
+    GetPage(name: '/loginNoPinScreen', page: () =>   const LoginNoPinScreen()),
     GetPage(name: '/mobileOtpScreen', page: () =>   const MobileOtpScreen()),
     GetPage(name: "/walletScreen", page: ()=>  WalletScreen()),
     GetPage(name: "/telcosScreen", page: ()=>  TelcosScreen()),
@@ -431,6 +440,7 @@ class MyRouters{
     GetPage(name: "/sendOtpForPinScreen", page: ()=>  const SendOtpForPin()),
     GetPage(name: "/verifyOtpForPinScreen", page: ()=>  const VerifyOtpForPin()),
     GetPage(name: "/securityOtpScreen", page: ()=>  const SecurityOtpScreen()),
+    GetPage(name: "/loginPinScreen", page: ()=>  const LoginPinScreen()),
 
 
   ];

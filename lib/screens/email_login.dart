@@ -29,9 +29,7 @@ class EmailLoginScreen extends StatefulWidget {
 }
 
 class _EmailLoginScreenState extends State<EmailLoginScreen> {
-  final formKey2 = GlobalKey<FormState>();
-  Rx<RxStatus> statusOflogin = RxStatus.empty().obs;
-  Rx<LoginModel> login = LoginModel().obs;
+
   // Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
   // Rx<RxStatus> statusOfuserVerifyOtp = RxStatus.empty().obs;
   //
@@ -86,40 +84,10 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
   //     });
   //   }
   // }
-  final formKey6 = GlobalKey<FormState>();
-  TextEditingController emailNoController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+
   var obscureText1 = true;
   final details = Get.put(DetailsController());
-  Email() {
-    if (formKey6.currentState!.validate()) {
 
-      loginRepo(
-          context: context,
-          password:passwordController.text.trim(),
-          phone_email:emailNoController.text.trim(),
-          type: "email"
-      ).then((value) async {
-        login.value = value;
-        if (value.status == true) {
-          SharedPreferences pref = await SharedPreferences.getInstance();
-
-          pref.setString('business_id', login.value.data!.businessId.toString());
-          pref.setString('cookie', value.authToken.toString());
-          Get.offAllNamed(MyRouters.bottomNavbar);
-          statusOflogin.value = RxStatus.success();
-          showToast(value.message.toString());
-        } else {
-          statusOflogin.value = RxStatus.error();
-          showToast(value.message.toString());
-
-
-        }
-      }
-
-      );
-    }
-  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery
@@ -142,7 +110,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
           ),),
         body: SingleChildScrollView(
             child: Form(
-              key:formKey6 ,
+              key:details.formKey6 ,
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Column(
@@ -197,18 +165,18 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                       ),
                       CommonTextfield(
                         validator: (value) {
-                          if (emailNoController.text.isEmpty) {
+                          if (details.emailNoController.text.isEmpty) {
                             return "Please enter your email";
-                          } else if (emailNoController.text.contains('+') || emailNoController.text.contains(' ')) {
+                          } else if (details.emailNoController.text.contains('+') || details.emailNoController.text.contains(' ')) {
                             return "Email is invalid";
                           } else if (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                              .hasMatch(emailNoController.text)) {
+                              .hasMatch(details.emailNoController.text)) {
                             return null;
                           } else {
                             return 'Please type a valid email address';
                           }
                         },
-                        controller: emailNoController,obSecure: false, hintText: "pkp@gmail.com",labelText: "Email",),
+                        controller: details.emailNoController,obSecure: false, hintText: "pkp@gmail.com",labelText: "Email",),
                       SizedBox(height: 15,),
 
                       CommonTextfield(
@@ -237,14 +205,14 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                           PatternValidator(
                               r"(?=.*\W)(?=.*?[#?!@$%^&*-])(?=.*[0-9])",
                               errorText: "Password must be at least with 1 special character & 1 numerical"),
-                        ]),controller: passwordController,obSecure: obscureText1, labelText: "Password", hintText: 'Password',),
+                        ]),controller: details.passwordController,obSecure: obscureText1, labelText: "Password", hintText: 'Password',),
                       SizedBox(height: 15,),
 
                       SizedBox(height:size.height*.3,),
 
                       InkWell(
                           onTap: (){
-                            Email();
+                            details.Email(context);
                             // emailRegister();
                             // emailLogin();
                             //

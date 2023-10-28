@@ -336,7 +336,8 @@ class _RequestPaymentLinkState extends State<RequestPaymentLink> {
               SizedBox(height: 20,),
               InkWell(
                   onTap: (){
-                    send();
+                    Get.toNamed(MyRouters.sharePaymentLink,);
+                    // send();
                     // register.cashCheckout(context);
                     // emailLogin();
                     //

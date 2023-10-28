@@ -51,6 +51,7 @@ class PayoutController extends GetxController {
   Future CreateBenificery() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
 var uniqueIdentifier= pref.getString("uniqueIdentifier");
+    print("gyhyfyhyhfy"+details.businessID);
     // pref.getString('uniqueIdentifier', controllerProfile.modal.value.data!.user!.uniqueId.toString());
     await createBenificiryRepo(
         name:controller.bankController.text.trim() ,
@@ -64,7 +65,7 @@ var uniqueIdentifier= pref.getString("uniqueIdentifier");
       if (value.success == true) {
         statusOfBenificiry.value = RxStatus.success();
 
-
+print(details.businessID);
 Get.toNamed(MyRouters.yourRecipient);
         saveBenificery();
         showToast(value.message.toString());

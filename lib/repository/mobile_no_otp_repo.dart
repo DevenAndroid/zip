@@ -30,7 +30,7 @@ Future<ModelCommonResponse> loginUserRepo({name,email,context,phone,}) async {
 
   print(map);
   // try {
-  http.Response response = await http.post(Uri.parse(ApiUrls.otps),
+  http.Response response = await http.post(Uri.parse(ApiUrls. otps),
       headers: await getAuthHeader(),
       body: jsonEncode(map));
   log("Sign IN DATA${response.body}");

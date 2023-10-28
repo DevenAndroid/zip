@@ -3,8 +3,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zip/resourses/api_constant.dart';
 import 'package:zip/routers/my_routers.dart';
 
+import '../controller/profile_controller.dart';
 import '../models/model_cabel_providers.dart';
 import '../models/model_data_paln.dart';
 import '../models/model_fetch_telcos.dart';
@@ -23,7 +25,7 @@ class ProviderScreen extends StatefulWidget {
 }
 
 class _ProviderScreenState extends State<ProviderScreen> {
-
+  final profileController = Get.put(ProfileController());
   Rx<RxStatus> statusOfProviders= RxStatus.empty().obs;
   Rx<ModelCabelProvider> cabelProvider = ModelCabelProvider().obs;
   var initStateBlank = Get.arguments[0];
@@ -209,8 +211,23 @@ class _ProviderScreenState extends State<ProviderScreen> {
                   children: [
                     InkWell(
                         onTap: (){
+                          print(cabelProvider.value.data![index].availablePricingOptions![index1].price);
+                          print(profileController
+                              .currentBalanceModel
+                              .value
+                              .data);
+if(cabelProvider.value.data![index].availablePricingOptions![index1].price < profileController
+    .currentBalanceModel
+    .value
+    .data){
+  Get.toNamed(MyRouters.purchaseCabelScreen,arguments: [cabelProvider.value.data![index].availablePricingOptions![index1].price.toString(),cabelProvider.value.data![index].availablePricingOptions![index1].monthsPaidFor.toString(),cabelProvider.value.data![index].code.toString(),initStateBlank.toString(),]);
 
-                           Get.toNamed(MyRouters.purchaseCabelScreen,arguments: [cabelProvider.value.data![index].availablePricingOptions![index1].price.toString(),cabelProvider.value.data![index].availablePricingOptions![index1].monthsPaidFor.toString(),cabelProvider.value.data![index].code.toString(),initStateBlank.toString(),]);
+}
+else{
+  showToast("inefficient balance");
+}
+
+
                         },
                         child: Container(
                             padding: EdgeInsets.symmetric(vertical: 8,horizontal: 10),

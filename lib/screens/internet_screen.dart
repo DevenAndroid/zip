@@ -5,12 +5,14 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 
+import '../controller/profile_controller.dart';
 import '../models/model_data_paln.dart';
 import '../models/model_fetch_telcos.dart';
 import '../models/save_transastion_model.dart';
 import '../repository/data_plan_repo.dart';
 import '../repository/fetch_telcos_repo.dart';
 import '../repository/save_buy_plan_repo.dart';
+import '../resourses/api_constant.dart';
 import '../widgets/circular_progressindicator.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_colour.dart';
@@ -51,7 +53,7 @@ class _InterNetPlanScreenState extends State<InterNetPlanScreen> {
     super.initState();
     getPlanList();
   }
-
+  final profileController = Get.put(ProfileController());
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -181,8 +183,19 @@ class _InterNetPlanScreenState extends State<InterNetPlanScreen> {
                                             children: [
                                               InkWell(
                                                   onTap: (){
-                                                    Get.toNamed(MyRouters.purchaseDataScreen,arguments: [initStateBlank,dataPlan.value.data![index].price.toString(),dataPlan.value.data![index].name.toString(),dataPlan.value.data![index].datacode.toString(),]);
-                                                  },
+                                                    if(dataPlan.value.data![index].price < profileController
+                                                        .currentBalanceModel
+                                                        .value
+                                                        .data){
+                                                      Get.toNamed(MyRouters.purchaseDataScreen,arguments: [initStateBlank,dataPlan.value.data![index].price.toString(),dataPlan.value.data![index].name.toString(),dataPlan.value.data![index].datacode.toString(),]);
+
+                                                    }
+                                                    else{
+                                                      showToast("inefficient balance");
+                                                    }
+
+
+                                                   },
                                                   child: Container(
                                                       padding: EdgeInsets.symmetric(vertical: 8,horizontal: 10),
                                                       decoration: BoxDecoration(

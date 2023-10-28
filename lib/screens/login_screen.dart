@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../models/login_model.dart';
 import '../repository/login_repo.dart';
 import '../resourses/api_constant.dart';
+import '../resourses/details.dart';
 import '../routers/my_routers.dart';
 import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
@@ -28,40 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
   var obscureText1 = true;
   var obscureText2 = true;
 
-  Rx<RxStatus> statusOflogin = RxStatus.empty().obs;
-
-  Rx<LoginModel> login = LoginModel().obs;
-  TextEditingController mobileNoController = TextEditingController();
-  TextEditingController nopasswordController = TextEditingController();
-  // var initStateBlank = Get.arguments[0];
-  final formKey4 = GlobalKey<FormState>();
-
-
-  Login() {
-    if (formKey4.currentState!.validate()) {
-
-      loginRepo(
-          context: context,
-          password:nopasswordController.text.trim(),
-          phone_email:"+234"+mobileNoController.text.trim(),
-          type: "phone"
-      ).then((value) async {
-        login.value = value;
-        if (value.status == true) {
-          SharedPreferences pref = await SharedPreferences.getInstance();
-          pref.setString('cookie', value.authToken.toString());
-          Get.offAllNamed(MyRouters.bottomNavbar);
-          statusOflogin.value = RxStatus.success();
-          showToast(value.message.toString());
-        } else {
-          statusOflogin.value = RxStatus.error();
-          showToast(value.message.toString());
-        }
-      }
-
-      );
-    }
-  }
+  final details = Get.put(DetailsController());
   /* Login() {
     if (formKey4.currentState!.validate()) {
       loginUserRepo(
@@ -116,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),),
         body: SingleChildScrollView(
             child: Form(
-              key: formKey4,
+              key: details.formKey4,
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Column(
@@ -217,7 +185,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           r'(^(?:[+0]9)?[0-9]{10,12}$)',
                                           errorText: '')
                                     ]),
-                                    controller: mobileNoController,
+                                    controller: details.mobileNoController,
                                     decoration: const InputDecoration(
                                       hintText: "XXXXXXXXX",
                                       border: InputBorder.none,
@@ -265,14 +233,14 @@ class _LoginScreenState extends State<LoginScreen> {
                               r"(?=.*\W)(?=.*?[#?!@$%^&*-])(?=.*[0-9])",
                               errorText: "Password must be at least with 1 special character & 1 numerical"),
                         ]),
-                        controller: nopasswordController,obSecure: obscureText2, labelText: "Password", hintText: 'Password',),
+                        controller: details.nopasswordController,obSecure: obscureText2, labelText: "Password", hintText: 'Password',),
                       SizedBox(height: 15,),
 
                       SizedBox(height:size.height*.3,),
 
                       InkWell(
                           onTap: (){
-                            Login();
+                            details.Login(context);
                             // Get.toNamed(MyRouters.mobileOtpScreen);
                           },
                           child: CustomOutlineButton(title: "SignIn",)),

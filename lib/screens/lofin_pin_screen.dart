@@ -1,51 +1,103 @@
-
 import 'dart:convert';
 import 'dart:io';
-
 
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 
-
 import '../controller/number_controller.dart';
 import '../controller/update_user.dart';
+import '../models/model_otp.dart';
+import '../models/model_security_pin.dart';
 import '../models/model_setting.dart';
 import '../models/model_verify_africa.dart';
 import '../models/verify_africa.dart';
+import '../repository/otp_repo.dart';
+import '../repository/security_pin_repo].dart';
 import '../repository/setting_repo.dart';
 import '../repository/verify_africa_b.dart';
 import '../resourses/api_constant.dart';
 
 import '../controller/update_user.dart';
+import '../resourses/details.dart';
 
-
-class OtpScreen extends StatefulWidget {
-  const OtpScreen({Key? key}) : super(key: key);
+class LoginPinScreen extends StatefulWidget {
+  const LoginPinScreen({Key? key}) : super(key: key);
 
   @override
-  State<OtpScreen> createState() => _OtpScreenState();
+  State<LoginPinScreen> createState() => _LoginPinScreenState();
 }
 
-class _OtpScreenState extends State<OtpScreen> {
-
-
+class _LoginPinScreenState extends State<LoginPinScreen> {
+  final details = Get.put(DetailsController());
+  int invalidAttempts = 0;
   final formKeypin = GlobalKey<FormState>();
   final registorController = Get.put(registerController());
+  Rx<RxStatus> statusOfOtp = RxStatus.empty().obs;
+  Rx<ModelOtp> userOtp = ModelOtp().obs;
+  otp() {
+    userOtpRepo(
+      email:loginDetails.toString()
+
+    ).then((value) async {
+      userOtp.value = value;
+      if (value.status == true) {
+
+        Get.offAllNamed(MyRouters.usersOtpScreen,arguments: [loginDetails.toString()]);
+        statusOfOtp.value = RxStatus.success();
+        showToast(value.data!.otp.toString());
+      } else {
+        statusOfOtp.value = RxStatus.error();
+        showToast(value.message.toString());
 
 
+      }
+    }
 
+    );
 
-
+  }
+   var loginDetails = Get.arguments[0];
 
   final numbercontroller = Get.put(numberController());
+  TextEditingController loginPincontroller = TextEditingController();
+  TextEditingController otpPincontroller = TextEditingController();
+  Rx<ModelSecurityPin> modelVerifySecurity = ModelSecurityPin().obs;
+  Rx<RxStatus> statusOfSucess = RxStatus.empty().obs;
+  RxInt count = 0.obs;
+  verify() {
+    securityPinRepo(context: context, pin: loginPincontroller.text.trim())
+        .then((value) {
+      modelVerifySecurity.value = value;
+      if (value.status == true) {
+        Get.toNamed(MyRouters.bottomNavbar);
 
+        statusOfSucess.value = RxStatus.success();
+        showToast(value.message.toString());
+      } else {
+        statusOfSucess.value = RxStatus.error();
+        showToast(value.message.toString());
+        count.value++;
+        if (count.value == 3) {
+      otp();
+        }
+      }
+    }
+            // showToast(value.message.toString());
 
+            );
+
+    // if(value.status=="success"){
+    //   statusOfChooseBank.value.isSuccess;
+    // }
+    // Get.toNamed(MyRouters.bottomNavbar);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +129,6 @@ class _OtpScreenState extends State<OtpScreen> {
         ),
         body: SingleChildScrollView(
             child: Form(
-
           key: formKeypin,
           child: Padding(
               padding: const EdgeInsets.all(12.0),
@@ -88,7 +139,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     Padding(
                       padding: const EdgeInsets.only(left: 10.0, right: 10),
                       child: Text(
-                        "Create your unique 4-digits pin!",
+                        "Enter your unique 4-digits pin!",
                         style: GoogleFonts.poppins(
                             color: const Color(0xFF1D1D1D),
                             fontSize: 22,
@@ -119,7 +170,7 @@ class _OtpScreenState extends State<OtpScreen> {
                             RequiredValidator(errorText: 'Enter 4 Digit Pin')
                           ]),
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          controller: registorController.otpcontroller,
+                          controller: loginPincontroller,
                           keyboardType: TextInputType.number,
                           length: 4,
                           defaultPinTheme: defaultPinTheme,
@@ -132,8 +183,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     InkWell(
                       onTap: () {
                         if (formKeypin.currentState!.validate()) {
-                          registorController.contactCreate(context);
-
+                          verify();
                         }
                       },
                       child: CustomOutlineBoder(
@@ -147,6 +197,32 @@ class _OtpScreenState extends State<OtpScreen> {
                     )
                   ])),
         )));
-
   }
+
+  // void _validateOtp(BuildContext context) async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   String storedOtp = prefs.getString('otp') ??
+  //       loginPincontroller.text.toString(); // Replace with your generated OTP
+  //
+  //   if (loginPincontroller.text == storedOtp) {
+  //     // OTP is correct, navigate to the next screen
+  //
+  //     verify();
+  //     // Navigator.pushReplacementNamed(context, '/otpEmailScreen');
+  //   } else {
+  //     // Invalid OTP, increment the invalid attempts counter
+  //     invalidAttempts++;
+  //     prefs.setInt('invalidAttempts', invalidAttempts);
+  //
+  //     if (invalidAttempts >= 3) {
+  //       // If 3 or more invalid attempts, navigate to the error screen
+  //       Get.toNamed(MyRouters.otpEmailScreen, arguments: [loginDetails]);
+  //     } else {
+  //       // Show error message to the user
+  //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  //         content: Text('Invalid OTP. Please try again.'),
+  //       ));
+  //     }
+  //   }
+  // }
 }

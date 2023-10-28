@@ -187,7 +187,7 @@ child: Row(
           ),
           SizedBox(height: 5,),
           Text(
-            "pay your salary into your Zip \naccount and say goodbye to individual transfers.",
+            "pay your salary into your Zip account \nand say goodbye  to individual transfers.",
             style: GoogleFonts.poppins(
                 color: const Color(0xFF343434),
                 fontSize: 12,
