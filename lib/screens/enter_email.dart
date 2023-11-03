@@ -224,12 +224,17 @@ save1(context);
 
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0,right: 10),
-                        child: Text(
-                          "Enter your email to continue ",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 22,
-                              fontWeight: FontWeight.w500),
+                        child: InkWell(
+                          onTap: (){
+                            print("hgdfhhh"+Controller.avtar.toString());
+                          },
+                          child: Text(
+                            "Enter your email to continue ",
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF1D1D1D),
+                                fontSize: 22,
+                                fontWeight: FontWeight.w500),
+                          ),
                         ),
                       ),
                       const SizedBox(

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-
+import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -409,6 +409,12 @@ accountVritual(context);
   RxString genderType = "".obs;
   String selectedValuem = "";
 
+  Future<String?> networkImageToBase64(String imageUrl) async {
+    http.Response response = await http.get(Uri.parse(imageUrl));
+    final bytes = response.bodyBytes;
+    return (bytes != null ? base64Encode(bytes) : null);
+  }
+
 
 
   ///api
@@ -639,7 +645,10 @@ accountVritual(context);
         cityController.text = modal.value.data!.lgaOfResidence.toString();
         firstNameController.text = modal.value.data!.firstName.toString();
         regionController.text = modal.value.data!.lgaOfOrigin.toString();
-        avtar = modal.value.data!.avatar.toString();
+        avtar = (await networkImageToBase64( modal.value.data!.avatar.toString())) ?? "";
+        if(avtar.isNotEmpty){
+          avtar = "data:image/${modal.value.data!.avatar.toString().split(".").last};base64,$avtar";
+        }
         // holder();
       } else {
         statusOfAfricaDetails.value = RxStatus.error();
