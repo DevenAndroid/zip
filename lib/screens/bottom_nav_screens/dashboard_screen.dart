@@ -10,7 +10,9 @@ import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 
 import '../../controller/profile_controller.dart';
+import '../../controller/update_user.dart';
 import '../../repository/myprofile_repo.dart';
+import '../../resourses/api_constant.dart';
 
 bool isValue = false;
 
@@ -28,8 +30,9 @@ class _DashBoardState extends State<DashBoard> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getData1();
     getData();
+    getData1();
+
     profileController.getCurrentBalance();
     // getData1();
   }
@@ -38,6 +41,9 @@ class _DashBoardState extends State<DashBoard> {
     myProfileRepo().then((value) {
       profileController.modal.value = value;
       if (value.status == true) {
+        if( profileController.modal.value.data!.user!.isAfricaVerifed==false){
+          Get.offAllNamed(MyRouters.notVerifyAfricaScreen);
+        }
         print(value.message.toString());
       }
     });
@@ -51,7 +57,8 @@ class _DashBoardState extends State<DashBoard> {
       isValue = false;
     }
   }
-
+  final formKeyVerify = GlobalKey<FormState>();
+  final registorController = Get.put(registerController());
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -59,6 +66,7 @@ class _DashBoardState extends State<DashBoard> {
       body: Obx(() {
         return profileController.modal.value.status == true &&
                 profileController.currentBalanceModel.value.status == true
+
             ? RefreshIndicator(
                 color: Colors.white,
                 backgroundColor: AppTheme.primaryColor,

@@ -1,25 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/resourses/api_constant.dart';
 
 import '../controller/update_user.dart';
+import '../models/model_signout.dart';
+import '../repository/signout_repo.dart';
 import '../routers/my_routers.dart';
 import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_colour.dart';
 
-class VerifyAfricaScreen extends StatefulWidget {
-  const VerifyAfricaScreen({Key? key}) : super(key: key);
+class NotVerifyAfricaScreen extends StatefulWidget {
+  const NotVerifyAfricaScreen({Key? key}) : super(key: key);
 
   @override
-  State<VerifyAfricaScreen> createState() => _VerifyAfricaScreenState();
+  State<NotVerifyAfricaScreen> createState() => _NotVerifyAfricaScreenState();
 }
 
-class _VerifyAfricaScreenState extends State<VerifyAfricaScreen> {
+class _NotVerifyAfricaScreenState extends State<NotVerifyAfricaScreen> {
   final formKeyVerify = GlobalKey<FormState>();
   final registorController = Get.put(registerController());
-
+  Rx<RxStatus> statusOfsignout = RxStatus.empty().obs;
+  Rx<ModelSignout> signout = ModelSignout().obs;
+  signOut() {
+    signoutRepo(context).then((value) async {
+      signout.value = value;
+      if (value.status == true) {
+        statusOfsignout.value = RxStatus.success();
+        SharedPreferences pref = await SharedPreferences.getInstance();
+        Get.offAllNamed(MyRouters.onBoardingScreen);
+        pref.clear();
+        showToast(value.message.toString());
+      } else {
+        statusOfsignout.value = RxStatus.error();
+        showToast(value.message.toString());
+      }
+    }
+      // showToast(value.message.toString());
+    );
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -28,20 +49,17 @@ class _VerifyAfricaScreenState extends State<VerifyAfricaScreen> {
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
-          leading: InkWell(
-            onTap: () {
-              Get.back();
-            },
-            child: const Icon(
-              Icons.arrow_back_rounded,
-              color: AppTheme.primaryColor,
-            ),
-
-
-          ),
+          leading: SizedBox(),
+          actions: [
+            InkWell(
+                onTap: (){
+                  signOut();
+                },
+                child: Icon(Icons.exit_to_app))
+          ],
           centerTitle: true,
           title:  Text(
-            "Verify With Your Photo",
+            "Not Verify With Your Photo please verify again ",
             style: GoogleFonts.poppins(
                 color: const Color(0xFF1D1D1D),
                 fontSize: 22,
@@ -64,7 +82,7 @@ class _VerifyAfricaScreenState extends State<VerifyAfricaScreen> {
                           ),
                           Padding(
                             padding:
-                                const EdgeInsets.only(left: 10.0, right: 10),
+                            const EdgeInsets.only(left: 10.0, right: 10),
                             child: Center(
                               child: Text(
                                 "Click on Icon to take picture",
@@ -121,7 +139,7 @@ class _VerifyAfricaScreenState extends State<VerifyAfricaScreen> {
                           InkWell(
                               onTap: () {
                                 if (registorController.image.path != "") {
-                                  registorController. liveAfricaDetails(context);
+                                  registorController. liveAfricaDetails1(context);
                                 } else {
                                   showToast("please add photo for verify ");
                                 }

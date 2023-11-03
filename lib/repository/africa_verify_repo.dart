@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
+import '../models/africa_verify_model.dart';
 import '../models/modal_registor.dart';
 import '../models/verify_africa.dart';
 import '../resourses/api_constant.dart';
@@ -9,22 +10,14 @@ import '../resourses/helper.dart';
 
 
 
-Future<ModelVerifyAfrica> verifyRepo({phone_email,context,selfie,fname,lname,dob,bvn}) async {
+Future<ModelAfricaVerify> verificationAfricaRepo({verificationStatus,context,user_id,}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
 
-  map['phone_email'] = phone_email;
-  map['selfie'] = selfie;
-  map['fname'] = fname;
-  map['lname'] = lname;
-  map['dob'] = dob;
-  map['bvn'] = bvn;
-  print(map['phone_email']);
-  print(map['fname']);
-  print(map['lname']);
-  print(map['dob']);
-  print(map['bvn']);
+  map['verificationStatus'] = verificationStatus;
+  map['user_id'] = user_id;
+
 
 
 
@@ -41,12 +34,12 @@ Future<ModelVerifyAfrica> verifyRepo({phone_email,context,selfie,fname,lname,dob
   if (response.statusCode == 200) {
     Helpers.hideLoader(loader);
 
-    return ModelVerifyAfrica.fromJson(jsonDecode(response.body));
+    return ModelAfricaVerify.fromJson(jsonDecode(response.body));
 
   } else {
     Helpers.hideLoader(loader);
 
-    return ModelVerifyAfrica(message: jsonDecode(response.body)["message"],status: false );
+    return ModelAfricaVerify(message: jsonDecode(response.body)["message"],status: false );
   }
   // }  catch (e) {
   //   Helpers.hideLoader(loader);

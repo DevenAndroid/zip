@@ -81,7 +81,7 @@ class _CountryScreenState extends State<CountryScreen> {
                                 errorText: 'Enter Nationality Country')
                           ]),
 
-                          controller: registorController.countryController,obSecure: false, labelText: " Nationality Country", hintText: '',
+                          controller: registorController.nationalController,obSecure: false, labelText: " Nationality Country", hintText: '',
                           //   prefix:    Padding(
                           //   padding: const EdgeInsets.only(left: 12.0),
                           //   child: SvgPicture.asset('assets/images/address.svg',width: 20,height: 10,),

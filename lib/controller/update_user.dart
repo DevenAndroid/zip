@@ -15,24 +15,37 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:zip/controller/profile_controller.dart';
 
+import '../models/africa_verify_model.dart';
 import '../models/create_virtual_account_model.dart';
 import '../models/fetchVirtualAccount_model.dart';
+import '../models/modelAfricaLive.dart';
 import '../models/model_checkout.dart';
 import '../models/model_create_card.dart';
 import '../models/model_create_card_holder.dart';
 import '../models/model_create_contact.dart';
+import '../models/model_detail_africa.dart';
+import '../models/model_face_match.dart';
+import '../models/model_get_verify_africa.dart';
+import '../models/model_save_africa_details.dart';
 import '../models/model_update_address.dart';
 import '../models/model_update_user.dart';
 import '../models/model_verif_account.dart';
+import '../models/model_verify_africa.dart';
 import '../models/request_money_mail_model.dart';
 import '../models/save_freshwork_id_model.dart';
 import '../models/save_transastion_model.dart';
 import '../models/update_contact_model.dart';
 import '../models/verify_africa.dart';
+import '../repository/africaLive_repo.dart';
+import '../repository/africa_face_match_repo.dart';
+import '../repository/africa_save_repo.dart';
+import '../repository/africa_verify_repo.dart';
 import '../repository/create_card_holder_repo.dart';
 import '../repository/create_card_repo.dart';
 import '../repository/create_contact_repo.dart';
 import '../repository/fetch_account_repo.dart';
+import '../repository/get_africaDetails_repo.dart';
+import '../repository/live_deails_africa_repo.dart';
 import '../repository/model_checkout_repo.dart';
 import '../repository/request_money_mail_repo.dart';
 import '../repository/save_buy_plan_repo.dart';
@@ -58,7 +71,7 @@ class registerController extends GetxController {
   final provider = TextEditingController();
   final idController = TextEditingController();
   final idController1 = TextEditingController();
-
+String targetImage= "";
 
   TextEditingController amount1Controller = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
@@ -66,24 +79,181 @@ class registerController extends GetxController {
   TextEditingController sourceCurrencyController = TextEditingController();
   TextEditingController destinationCurrencyController = TextEditingController();
   TextEditingController accountNoController = TextEditingController();
-
-
-
-
   TextEditingController phoneController1 = TextEditingController();
   TextEditingController amountController1 = TextEditingController();
 
 
-  TextEditingController streetController = TextEditingController();
-  TextEditingController houseNoController = TextEditingController();
-  // TextEditingController additionalController = TextEditingController();
-  TextEditingController postalCodeController = TextEditingController();
-  TextEditingController countryController = TextEditingController();
-  TextEditingController stateController = TextEditingController();
-  TextEditingController cityController = TextEditingController();
+
+
+
+
+
+
+
+
+
+
+
   Rx<RxStatus> statusOfaddress = RxStatus.empty().obs;
   Rx<ModelUpdateAddress> userAdderss = ModelUpdateAddress().obs;
   final formKeyAddressField = GlobalKey<FormState>();
+  Rx<ModelVerifyAfrica> modelVerifyAfrica = ModelVerifyAfrica().obs;
+
+
+  Rx<RxStatus> statusOfSucess = RxStatus.empty().obs;
+  TextEditingController emailNoController = TextEditingController();
+  TextEditingController BVNController = TextEditingController();
+
+  Rx<ModelAfricaLive> liveAfricaModel = ModelAfricaLive().obs;
+  Rx<RxStatus> statusOfLiveAfrica = RxStatus.empty().obs;
+
+
+  liveAfricaDetails(context) {
+
+    africaLiveRepo(
+        verificationType:"PASSIVE-LIVELINESS-VERIFICATION",
+        selfie:base64Image,
+        context: context
+    ).then((value) {
+
+      liveAfricaModel.value = value;
+      if (value.description == "Success") {
+
+
+        statusOfLiveAfrica.value = RxStatus.success();
+        liveAfricaMatch(context);
+
+        showToast(value.description.toString());
+      } else {
+        statusOfLiveAfrica.value = RxStatus.error();
+        showToast(value.description.toString());
+      }
+    }
+
+    );
+
+  }
+  liveAfricaDetails1(context) {
+
+    africaLiveRepo(
+        verificationType:"PASSIVE-LIVELINESS-VERIFICATION",
+        selfie:base64Image,
+        context: context
+    ).then((value) {
+
+      liveAfricaModel.value = value;
+      if (value.description == "Success") {
+
+
+        statusOfLiveAfrica.value = RxStatus.success();
+        liveAfricaMatch1(context);
+
+        showToast(value.description.toString());
+      } else {
+        statusOfLiveAfrica.value = RxStatus.error();
+        showToast(value.description.toString());
+      }
+    }
+
+    );
+
+  }
+
+  Rx<ModelAfricaVerify> africaVerify = ModelAfricaVerify().obs;
+  Rx<RxStatus> statusOfVerify = RxStatus.empty().obs;
+  verifyAfrica(context) {
+
+    verificationAfricaRepo(
+user_id: userId1.toString(),
+        verificationStatus: africaFace.value.verificationStatus.toString(),
+        context: context,
+
+    ).then((value) {
+
+      africaVerify.value = value;
+      if (value.status == true) {
+print("aasssddffgghhk"+verificationStatus.toString(),);
+
+        statusOfVerify.value = RxStatus.success();
+Get.toNamed(MyRouters.otpScreen);
+
+        showToast(value.message.toString());
+      } else {
+        Get.toNamed(MyRouters.otpScreen);
+        statusOfVerify.value = RxStatus.error();
+
+        showToast(value.message.toString());
+      }
+    }
+
+    );
+
+  }
+
+  Rx<ModelAfricaFaceMatch> africaFace = ModelAfricaFaceMatch().obs;
+  Rx<RxStatus> statusOfMatch = RxStatus.empty().obs;
+  liveAfricaMatch(context) {
+
+    africaFaceRepo(
+        verificationType:"FACEMATCH-VERIFICATION",
+        selfie:base64Image,
+        context: context,
+      targetImage: avtar.toString()
+    ).then((value) {
+
+      africaFace.value = value;
+
+      if (value.description == "Success") {
+
+print("FACEMATCH-VERIFICATION");
+        statusOfMatch.value = RxStatus.success();
+
+        accountVritual(context);
+
+        showToast(value.description.toString());
+      } else {
+        verifyAfrica(context);
+        statusOfMatch.value = RxStatus.error();
+
+        showToast(value.description.toString());
+      }
+    }
+
+    );
+
+  }
+  liveAfricaMatch1(context) {
+
+    africaFaceRepo(
+        verificationType:"FACEMATCH-VERIFICATION",
+        selfie:base64Image,
+        context: context,
+      targetImage: avtar.toString()
+    ).then((value) {
+
+      africaFace.value = value;
+      if (value.description == "Success") {
+
+print("FACEMATCH-VERIFICATION");
+        statusOfMatch.value = RxStatus.success();
+accountVritual(context);
+        showToast(value.description.toString());
+      } else {
+        statusOfMatch.value = RxStatus.error();
+
+        showToast(value.description.toString());
+      }
+    }
+
+    );
+
+  }
+
+
+
+
+  String userId = "";
+
 
   updateUserAddress(context) {
     updateAddressRepo(
@@ -127,7 +297,27 @@ class registerController extends GetxController {
     ).then((value) {
       createContact.value = value;
       contactIdSave(context);
-    updateUser(context);
+
+      statusOfContact.value = RxStatus.success();
+        showToast("Contact Created Sucessfully ");
+
+    });
+  }
+  contactCreate1(context) {
+    createContactRepo(
+      emails:emailController.text.trim() ,
+      first_name: firstNameController.text.trim(),
+      last_name: lastNameController.text.trim(),
+      mobile_number:molileController .text.trim(),
+      cf_product_type: "New Customer",
+      cf_customer_id: profileController.uniqueIdController.text.trim(),
+      last_source: "in-App",
+
+      context: context,
+    ).then((value) {
+      createContact.value = value;
+      contactIdSave1(context);
+
       statusOfContact.value = RxStatus.success();
         showToast("Contact Created Sucessfully ");
 
@@ -135,14 +325,25 @@ class registerController extends GetxController {
   }
   Rx<RxStatus> statusOfId = RxStatus.empty().obs;
   Rx<SaveFreshworkModel> saveId = SaveFreshworkModel().obs;
-  contactIdSave(context) {
+  contactIdSave1(context) {
     saveIdRepo(
       freshwork_id: createContact.value.contact!.id.toString()
     ).then((value) {
       saveId.value = value;
       Get.toNamed(
-        MyRouters.birthdayScreen,
+        MyRouters.otpScreen,
       );
+      statusOfContact.value = RxStatus.success();
+      showToast("Contact Created Sucessfully ");
+
+    });
+  }
+  contactIdSave(context) {
+    saveIdRepo(
+      freshwork_id: createContact.value.contact!.id.toString()
+    ).then((value) {
+      saveId.value = value;
+      verifyAfrica(context);
       statusOfContact.value = RxStatus.success();
       showToast("Contact Created Sucessfully ");
 
@@ -200,18 +401,15 @@ class registerController extends GetxController {
   TextEditingController AddEmailController = TextEditingController();
 
 
-  TextEditingController dateOfBirthController = TextEditingController();
-  TextEditingController firstNameController = TextEditingController();
-  TextEditingController lastNameController = TextEditingController();
-  TextEditingController zipController = TextEditingController();
-  TextEditingController countryController1 = TextEditingController();
-  TextEditingController regionController = TextEditingController();
+
     TextEditingController otpcontroller = TextEditingController();
   TextEditingController amountController = TextEditingController();
   Rx<RxStatus> statusOfUpdate = RxStatus.empty().obs;
   Rx<ModelUpdateUser> userUpdate = ModelUpdateUser().obs;
   RxString genderType = "".obs;
   String selectedValuem = "";
+
+
 
   ///api
 
@@ -272,22 +470,72 @@ class registerController extends GetxController {
             lname: lastNameController.text.trim(),
             context: context)
         .then((value) {
-      statusOfSucess.value = RxStatus.success();
+      if (value.status == true) {
+        statusOfSucess.value = RxStatus.success();
+        liveAfricaDetails(context);
+        showToast(value.message.toString());
 
-      showToast(value.message.toString());
+        modelVerifyAfrica.value = value;
 
-      modelVerifyAfrica.value = value;
-      accountVritual(context);
-    }
-            // showToast(value.message.toString());
-            );
+
+
+      }
+      else{
+
+        liveAfricaDetails(context);
+        // showToast("not verify plz verify again ");
+      }
+      // showToast(value.message.toString());
+    }    );
+  }
+  Future verify1(context) async {
+
+
+    log(base64Image);
+    await verifyRepo(
+            selfie: base64Image,
+            phone_email: numbercontroller.isNumber
+                ? numbercontroller.number
+                : numbercontroller.email,
+            bvn: numbercontroller.isNumberBvn
+                ? numbercontroller.numberBvn
+                : numbercontroller.emailBvn,
+            dob: dateOfBirthController.text.trim(),
+            fname: firstNameController.text.trim(),
+            lname: lastNameController.text.trim(),
+            context: context)
+        .then((value) {
+      if (value.status == true) {
+        statusOfSucess.value = RxStatus.success();
+
+        showToast(value.message.toString());
+        liveAfricaDetails(context);
+        modelVerifyAfrica.value = value;
+        accountVritual1(context);
+      }
+      else{
+        liveAfricaDetails(context);
+        // showToast("not verify plz verify again ");
+        // showToast(value.message.toString());
+      }
+      // showToast(value.message.toString());
+    }  );
   }
 
   String base64Image = "";
 
   final numbercontroller = Get.put(numberController());
-  Rx<ModelVerifyAfrica> modelVerifyAfrica = ModelVerifyAfrica().obs;
-  Rx<RxStatus> statusOfSucess = RxStatus.empty().obs;
+
+
+
+
+
+
+
+
+
+
+
 
   Future holder(context) async {
     print("sdggfrdh");
@@ -348,6 +596,59 @@ class registerController extends GetxController {
       // showToast(value.message.toString());
     });
   }
+
+
+
+/////////////////////////////////
+  String userId1 = "";
+  String verificationStatus = "";
+  String avtar = "";
+  TextEditingController dateOfBirthController = TextEditingController();
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+  TextEditingController zipController = TextEditingController();
+  TextEditingController countryController1 = TextEditingController();
+  TextEditingController regionController = TextEditingController();
+
+  TextEditingController streetController = TextEditingController();
+  TextEditingController houseNoController = TextEditingController();
+  TextEditingController postalCodeController = TextEditingController();
+  TextEditingController countryController = TextEditingController();
+  TextEditingController nationalController = TextEditingController();
+  TextEditingController stateController = TextEditingController();
+  TextEditingController cityController = TextEditingController();
+  /////////////////////////////////
+
+
+
+
+  Rx<ModelGetAfrica> modal = ModelGetAfrica().obs;
+  Rx<RxStatus> statusOfAfricaDetails = RxStatus.empty().obs;
+  getData() {
+    getAfricaApiRepo(Id: userId1.toString()).then((value) async {
+      modal.value = value;
+      if (value.status == true) {
+        firstNameController.text = modal.value.data!.firstName.toString();
+        lastNameController.text = modal.value.data!.lastName.toString();
+        dateOfBirthController.text = modal.value.data!.dob.toString();
+        molileController.text = modal.value.data!.phone.toString();
+        countryController.text = modal.value.data!.country.toString();
+        nationalController.text = modal.value.data!.nationality.toString();
+        streetController.text = modal.value.data!.stateOfResidence.toString();
+        stateController.text = modal.value.data!.stateOfOrigin.toString();
+        cityController.text = modal.value.data!.lgaOfResidence.toString();
+        firstNameController.text = modal.value.data!.firstName.toString();
+        regionController.text = modal.value.data!.lgaOfOrigin.toString();
+        avtar = modal.value.data!.avatar.toString();
+        // holder();
+      } else {
+        statusOfAfricaDetails.value = RxStatus.error();
+      }
+
+      print(value.message.toString());
+    });
+  }
+
 
   updateUser(context) {
     userUpdateRepo(
@@ -449,8 +750,43 @@ class registerController extends GetxController {
         statusOfAccount.value = RxStatus.success();
         accountVritualVerify(context);
         // fetchVritualAccount(context);
+
+        showToast(value.message.toString());
+        SharedPreferences pref = await SharedPreferences.getInstance();
+
+        pref.setString(
+            'business_id', virtualAccount.value.data!.sId.toString());
+        // Get.toNamed(MyRouters.otpScreen,);
+      } else {
+        statusOfAccount.value = RxStatus.error();
+        showToast(value.message.toString());
+      }
+      //
+    });
+  }
+  Future accountVritual1(context) async {
+    await accountRepo(
+            bvn: numbercontroller.isNumberBvn
+                ? numbercontroller.numberBvn
+                : numbercontroller.emailBvn,
+            email: emailController.text.trim(),
+            phonenumber: molileController.text.trim(),
+            firstName: firstNameController.text.trim(),
+            lastName: lastNameController.text.trim(),
+            channel: "providus",
+            accountType: "individual",
+            context: context)
+        .then((value) async {
+      virtualAccount.value = value;
+      if (value.success == true) {
+        if (kDebugMode) {
+          print(virtualAccount.value = value);
+        }
+        statusOfAccount.value = RxStatus.success();
+        accountVritualVerify(context);
+        // fetchVritualAccount(context);
         Get.toNamed(
-          MyRouters.otpScreen,
+          MyRouters.bottomNavbar,
         );
         showToast(value.message.toString());
         SharedPreferences pref = await SharedPreferences.getInstance();
@@ -460,8 +796,9 @@ class registerController extends GetxController {
         // Get.toNamed(MyRouters.otpScreen,);
       } else {
         statusOfAccount.value = RxStatus.error();
+        showToast(value.message.toString());
       }
-      // showToast(value.message.toString());
+      //
     });
   }
 
@@ -678,10 +1015,8 @@ class registerController extends GetxController {
       verifyVritualAccount.value = value;
       if (value.status == true) {
         statusOfAccountVerify.value = RxStatus.success();
+        contactCreate(context);
 
-        Get.toNamed(
-          MyRouters.otpScreen,
-        );
         showToast(value.message.toString());
       }
       // showToast(value.message.toString());

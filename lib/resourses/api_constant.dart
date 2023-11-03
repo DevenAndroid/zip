@@ -52,6 +52,9 @@ class ApiUrls {
   static const String getTelcos  = "https://billing-staging.bytestacks.io/api/v1/telcos";
   static const String biller  = "https://billing-staging.bytestacks.io/api/v1/electricity/billers";
   static const String cabelProviders  = "https://billing-staging.bytestacks.io/api/v1/cable/providers";
+  static const String liveDetailsAfrica  = "https://api.verified.africa/sfx-verify/v3/id-service/";
+  static const String liveAfrica  = "https://api.verified.africa/sfx-verify/v3/id-service/";
+  static const String faceMatchAfrica  = "https://api.verified.africa/sfx-verify/v3/id-service/";
   static const String userVerifyOtp = "${apiBaseUrl}verify-otp";
   static const String otpUsers = "${apiBaseUrl}resend-otp";
   static const String updateDetails = "${apiBaseUrl}update-details";
@@ -60,6 +63,7 @@ class ApiUrls {
   static const String verifyAccount = "${apiBaseUrl}virtual-account";
   static const String saveTransaction = "${apiBaseUrl}save-transaction";
   static const String loginUser = "${apiBaseUrl}login";
+  static const String africaVerificationUser = "${apiBaseUrl}africa-verification-user";
   static const String changeZipPin = "${apiBaseUrl}change-zip-pin";
   static const String saveBankDetails = "${apiBaseUrl}save-bank-details";
   static const String saveBenificary = "${apiBaseUrl}save-beneficiary";
@@ -75,6 +79,7 @@ class ApiUrls {
   static const String favouriteBeneficiary = "${apiBaseUrl}favourite-beneficiary";
   static const String currentBalance = "${apiBaseUrl}current-balance";
   static const String supportCategories = "${apiBaseUrl}support-categories";
+  static const String getAfricaUser = "${apiBaseUrl}get-africa-verification-user?user_id=";
   static const String userBankList = "${apiBaseUrl}user-bank-list";
   static const String myAddress = "${apiBaseUrl}my-address";
   static const String appKey = "${apiBaseUrl}key-list";

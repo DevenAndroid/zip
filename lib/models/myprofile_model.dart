@@ -59,6 +59,7 @@ class User {
   String? profileImage;
   bool? isProfileComplete;
   bool? status;
+  bool? isAfricaVerifed;
   String? uniqueId;
   String? freshworkId;
   bool? enableSecurityLock;
@@ -83,6 +84,7 @@ class User {
         this.profileImage,
         this.isProfileComplete,
         this.status,
+        this.isAfricaVerifed,
         this.uniqueId,
         this.freshworkId,
         this.enableSecurityLock,
@@ -107,6 +109,7 @@ class User {
     profileImage = json['profile_image'];
     isProfileComplete = json['is_profile_complete'];
     status = json['status'];
+    isAfricaVerifed = json['is_africa_verifed'];
     uniqueId = json['unique_id'];
     freshworkId = json['freshwork_id'];
     enableSecurityLock = json['enable_security_lock'];
@@ -134,6 +137,7 @@ class User {
     data['profile_image'] = this.profileImage;
     data['is_profile_complete'] = this.isProfileComplete;
     data['status'] = this.status;
+    data['is_africa_verifed'] = this.isAfricaVerifed;
     data['unique_id'] = this.uniqueId;
     data['freshwork_id'] = this.freshworkId;
     data['enable_security_lock'] = this.enableSecurityLock;

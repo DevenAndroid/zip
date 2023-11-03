@@ -102,6 +102,7 @@ import '../screens/loan_screen.dart';
 import '../screens/lofin_no_pin.dart';
 import '../screens/lofin_pin_screen.dart';
 import '../screens/meter_screen.dart';
+import '../screens/not_verify_africa.dart';
 import '../screens/notification_screeb.dart';
 import '../screens/onboardingScreen.dart';
 import '../screens/opt_uesrs.dart';
@@ -291,6 +292,7 @@ class MyRouters{
   static var loginPinScreen = "/loginPinScreen";
   static var loginNoPinScreen = "/loginNoPinScreen";
   static var usersOtpScreen = "/usersOtpScreen";
+  static var notVerifyAfricaScreen = "/notVerifyAfricaScreen";
 
 
 
@@ -441,6 +443,7 @@ class MyRouters{
     GetPage(name: "/verifyOtpForPinScreen", page: ()=>  const VerifyOtpForPin()),
     GetPage(name: "/securityOtpScreen", page: ()=>  const SecurityOtpScreen()),
     GetPage(name: "/loginPinScreen", page: ()=>  const LoginPinScreen()),
+    GetPage(name: "/notVerifyAfricaScreen", page: ()=>  const NotVerifyAfricaScreen()),
 
 
   ];

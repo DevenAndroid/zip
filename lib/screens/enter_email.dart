@@ -12,8 +12,13 @@ import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
 import '../controller/number_controller.dart';
+import '../controller/update_user.dart';
 import '../models/modal_registor.dart';
+import '../models/model_detail_africa.dart';
+import '../models/model_save_africa_details.dart';
 import '../models/registor_model.dart';
+import '../repository/africa_save_repo.dart';
+import '../repository/live_deails_africa_repo.dart';
 import '../repository/mobile_no_otp_repo.dart';
 import '../repository/registor_repo.dart';
 import '../resourses/api_constant.dart';
@@ -33,38 +38,123 @@ class _EmailScreenState extends State<EmailScreen> {
   // Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
   Rx<RxStatus> statusOfemailregister = RxStatus.empty().obs;
   final numbercontroller = Get.put(numberController());
+  final Controller = Get.put(registerController());
   Rx<RegisterModel> emailregister = RegisterModel().obs;
 
-  TextEditingController emailNoController = TextEditingController();
-  TextEditingController BVNController = TextEditingController();
+
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   final formKey5 = GlobalKey<FormState>();
+  Rx<RxStatus> statusOfAfricaDetails = RxStatus.empty().obs;
+  Rx<ModelLiveDetails> africaDetails = ModelLiveDetails().obs;
+
+  liveAfrica(context) {
+
+    africaLiveDetailsRepo(
+        verificationType:"BVN-FULL-DETAILS",
+        searchParameter:Controller.BVNController.text.trim(),
+        context: context
+    ).then((value) {
+
+      africaDetails.value = value;
+      if (value.description == "Successful") {
+        emailRegister();
+
+
+        statusOfAfricaDetails.value = RxStatus.success();
+
+        showToast(value.description.toString());
+      } else {
+        statusOfAfricaDetails.value = RxStatus.error();
+        showToast(value.description.toString());
+      }
+    }
+
+    );
+
+  }
+  Rx<RxStatus> statusOfSavedDetails = RxStatus.empty().obs;
+  Rx<ModelSaveDetailsAfrica> saveDetails = ModelSaveDetailsAfrica().obs;
+  save1(context) {
+
+    africaDetailsRepo(
+      userid:Controller. userId1,
+
+        email: africaDetails.value.response!.email.toString(),
+        phone:  africaDetails.value.response!.phone.toString(),
+        last_name: africaDetails.value.response!.lastName.toString(),
+        first_name: africaDetails.value.response!.firstName.toString(),
+        country: africaDetails.value.response!.country.toString(),
+
+        address_line_2:africaDetails.value.response!.addressLine2.toString() ,
+        address_line_3: africaDetails.value.response!.addressLine3.toString(),
+        alternate_phone: africaDetails.value.response!.alternatePhone.toString(),
+        avatar: africaDetails.value.response!.avatar.toString(),
+        bvn: africaDetails.value.response!.bvn.toString(),
+        dob: africaDetails.value.response!.dob.toString(),
+        full_name: africaDetails.value.response!.fullName.toString(),
+        gender:africaDetails.value.response!.gender.toString() ,
+        lga_of_origin:africaDetails.value.response!.lgaOfOrigin.toString() ,
+        lga_of_residence: africaDetails.value.response!.lgaOfResidence.toString(),
+        marital_status: africaDetails.value.response!.maritalStatus.toString(),
+        middle_name: africaDetails.value.response!.maritalStatus.toString(),
+        nationality: africaDetails.value.response!.nationality.toString(),
+        nin:africaDetails.value.response!.nin.toString() ,
+        state_of_origin:africaDetails.value.response!.stateOfOrigin.toString() ,
+        state_of_residence:africaDetails.value.response!.stateOfResidence.toString() ,
+        context: context
+    ).then((value) {
+
+      saveDetails.value = value;
+      if (value.status == true) {
+        Controller.targetImage =saveDetails.value.data!.avatar.toString();
+        Get.toNamed(
+            MyRouters.otpEmailScreen, arguments: [Controller.emailNoController.text]);
+
+        statusOfSavedDetails.value = RxStatus.success();
+
+        showToast(value.message.toString());
+      } else {
+        statusOfSavedDetails.value = RxStatus.error();
+        showToast(value.message.toString());
+      }
+    }
+
+    );
+
+  }
   emailRegister() {
     if (formKey5.currentState!.validate()) {
 
       registerRepo(
           context: context,
           password:passwordController.text.trim(),
-          bvn: BVNController.text.trim(),
+          bvn: Controller.BVNController.text.trim(),
           password_confirmation: confirmPasswordController.text.trim(),
-          phone_email:emailNoController.text.trim(),
+          phone_email:Controller.emailNoController.text.trim(),
           type: "email"
       ).then((value) {
         numbercontroller.isNumber =false;
         numbercontroller.isNumberBvn =false;
-        numbercontroller.email=emailNoController.text.trim();
-        numbercontroller.emailBvn=BVNController.text.trim();
+        numbercontroller.email=Controller.emailNoController.text.trim();
+        numbercontroller.emailBvn=Controller.BVNController.text.trim();
+
         numbercontroller.number="";
         numbercontroller.numberBvn="";
 
 
 
         emailregister.value = value;
+        Controller. userId1=emailregister.value.data!.user!.id.toString();
         if (value.status == true) {
-          Get.toNamed(MyRouters.otpEmailScreen,arguments: [emailNoController.text]);
+
+print("Users::::::::::::"+Controller. userId1);
+
+
           statusOfemailregister.value = RxStatus.success();
+Controller. userId1=emailregister.value.data!.user!.id.toString();
           showToast(value.data!.otp.toString());
+save1(context);
           // showToast(value.message.toString());
         } else {
           statusOfemailregister.value = RxStatus.error();
@@ -75,6 +165,9 @@ class _EmailScreenState extends State<EmailScreen> {
       );
     }
   }
+
+
+
   var obscureText4 = true;
   var obscureText3 = true;
   // emailLogin() {
@@ -176,18 +269,18 @@ class _EmailScreenState extends State<EmailScreen> {
                       ),
                       CommonTextfield(
                         validator: (value) {
-                          if (emailNoController.text.isEmpty) {
+                          if (Controller.emailNoController.text.isEmpty) {
                             return "Please enter your email";
-                          } else if (emailNoController.text.contains('+') || emailNoController.text.contains(' ')) {
+                          } else if (Controller.emailNoController.text.contains('+') || Controller.emailNoController.text.contains(' ')) {
                             return "Email is invalid";
                           } else if (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                              .hasMatch(emailNoController.text)) {
+                              .hasMatch(Controller.emailNoController.text)) {
                             return null;
                           } else {
                             return 'Please type a valid email address';
                           }
                         },
-                        controller: emailNoController,obSecure: false, hintText: "pkp@gmail.com",labelText: "Email",),
+                        controller: Controller.emailNoController,obSecure: false, hintText: "pkp@gmail.com",labelText: "Email",),
                       SizedBox(height: 15,),
                       CommonTextfield(
                         keyboardType:
@@ -213,7 +306,7 @@ class _EmailScreenState extends State<EmailScreen> {
                           PatternValidator(
                               r'(^(?:[+0]9)?[0-9]{10,12}$)',
                               errorText: '')
-                        ]),controller: BVNController,obSecure: false, labelText: "BVN Number", hintText: 'BVN Number',),
+                        ]),controller: Controller.BVNController,obSecure: false, labelText: "BVN Number", hintText: 'BVN Number',),
                       SizedBox(height: 15,),
                       CommonTextfield(
                         suffixIcon: GestureDetector(
@@ -296,7 +389,8 @@ class _EmailScreenState extends State<EmailScreen> {
 
                       InkWell(
                           onTap: (){
-                            emailRegister();
+                            liveAfrica(context);
+
                             // emailLogin();
                             //
                           },
