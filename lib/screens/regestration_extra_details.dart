@@ -111,18 +111,6 @@ class _ExtraDetailsScreenState extends State<ExtraDetailsScreen> {
                           ],
                           onChanged: (value) =>
                           doubleVar = double.parse(value),
-                          validator: MultiValidator([
-                            RequiredValidator(
-                                errorText:
-                                'Please enter your postal code '),
-                            MinLengthValidator(6,
-                                errorText:
-                                'Please enter 6 digit postal code'),
-                            MaxLengthValidator(6,
-                                errorText:
-                                'Please enter 6 digit postal code'),
-
-                          ]),
                           controller: controller.postalCodeController,
                           obSecure: false, labelText: "Postal Code", hintText: ' ',),
                         const SizedBox(height: 15,),
