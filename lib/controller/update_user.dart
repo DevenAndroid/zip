@@ -7,12 +7,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:open_filex/open_filex.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 import 'package:zip/controller/profile_controller.dart';
 
 import '../models/africa_verify_model.dart';
@@ -23,14 +20,11 @@ import '../models/model_checkout.dart';
 import '../models/model_create_card.dart';
 import '../models/model_create_card_holder.dart';
 import '../models/model_create_contact.dart';
-import '../models/model_detail_africa.dart';
 import '../models/model_face_match.dart';
 import '../models/model_get_verify_africa.dart';
-import '../models/model_save_africa_details.dart';
 import '../models/model_update_address.dart';
 import '../models/model_update_user.dart';
 import '../models/model_verif_account.dart';
-import '../models/model_verify_africa.dart';
 import '../models/request_money_mail_model.dart';
 import '../models/save_freshwork_id_model.dart';
 import '../models/save_transastion_model.dart';
@@ -38,14 +32,12 @@ import '../models/update_contact_model.dart';
 import '../models/verify_africa.dart';
 import '../repository/africaLive_repo.dart';
 import '../repository/africa_face_match_repo.dart';
-import '../repository/africa_save_repo.dart';
 import '../repository/africa_verify_repo.dart';
 import '../repository/create_card_holder_repo.dart';
 import '../repository/create_card_repo.dart';
 import '../repository/create_contact_repo.dart';
 import '../repository/fetch_account_repo.dart';
 import '../repository/get_africaDetails_repo.dart';
-import '../repository/live_deails_africa_repo.dart';
 import '../repository/model_checkout_repo.dart';
 import '../repository/request_money_mail_repo.dart';
 import '../repository/save_buy_plan_repo.dart';
@@ -118,10 +110,15 @@ String targetImage= "";
 
       liveAfricaModel.value = value;
       if (value.description == "Success") {
+        if (value.response!.popScore! < 60.00) {
+          statusOfLiveAfrica.value = RxStatus.success();
+          liveAfricaMatch(context);
 
+        }
+else{
+  showToast("your image is not verified ");
+        }
 
-        statusOfLiveAfrica.value = RxStatus.success();
-        liveAfricaMatch(context);
 
         showToast(value.description.toString());
       } else {
@@ -145,8 +142,14 @@ String targetImage= "";
       if (value.description == "Success") {
 
 
-        statusOfLiveAfrica.value = RxStatus.success();
-        liveAfricaMatch1(context);
+        if (value.response!.popScore! < 60.00) {
+          statusOfLiveAfrica.value = RxStatus.success();
+          liveAfricaMatch(context);
+
+        }
+        else{
+          showToast("your image is not verified ");
+        }
 
         showToast(value.description.toString());
       } else {
