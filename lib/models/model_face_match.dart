@@ -8,7 +8,7 @@ class ModelAfricaFaceMatch {
   String? transactionDate;
   Null? searchParameter;
   Null? callBackUrl;
-  int? livenessScore;
+  dynamic livenessScore;
   Null? paymentRef;
   Response? response;
   Null? faceMatch;
@@ -69,8 +69,8 @@ class ModelAfricaFaceMatch {
 
 class Response {
   bool? faceMatch;
-  int? prediction;
-  String? message;
+ dynamic prediction;
+ dynamic message;
 
   Response({this.faceMatch, this.prediction, this.message});
 

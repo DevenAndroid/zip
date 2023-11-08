@@ -82,6 +82,7 @@ class ApiUrls {
   static const String getAfricaUser = "${apiBaseUrl}get-africa-verification-user?user_id=";
   static const String userBankList = "${apiBaseUrl}user-bank-list";
   static const String myAddress = "${apiBaseUrl}my-address";
+  static const String getLiveImage = "${apiBaseUrl}get-live-image";
   static const String appKey = "${apiBaseUrl}key-list";
   static const String getCardInfo = "${apiBaseUrl}get-card-info";
   static const String logout = "${apiBaseUrl}logout";
@@ -91,6 +92,7 @@ class ApiUrls {
   static const String submitQuery = "${apiBaseUrl}submit-query";
   static const String myProfile = "${apiBaseUrl}my-profile";
   static const String updateProfile = "${apiBaseUrl}update-profile";
+  static const String liveImage = "${apiBaseUrl}live-image";
   static const String updateSetting = "${apiBaseUrl}update-settings";
   static const String notificationSettings = "${apiBaseUrl}notification-settings";
   static const String userSetting = "${apiBaseUrl}user-settings";

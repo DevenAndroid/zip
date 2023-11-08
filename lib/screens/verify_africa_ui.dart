@@ -121,7 +121,7 @@ class _VerifyAfricaScreenState extends State<VerifyAfricaScreen> {
                           InkWell(
                               onTap: () {
                                 if (registorController.image.path != "") {
-                                  registorController. liveAfricaDetails(context);
+                                  registorController.  saveImage(context);
                                 } else {
                                   showToast("please add photo for verify ");
                                 }

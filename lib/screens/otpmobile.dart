@@ -36,7 +36,7 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
   Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
   final numbercontroller = Get.put(numberController());
 
-   var initStateBlank = Get.arguments[0];
+   var initStateBlank = Get.arguments;
   final formKey1 = GlobalKey<FormState>();
   // VerifyOtp() {
   //   if (formKey1.currentState!.validate()) {
@@ -187,6 +187,7 @@ Padding(
 
   ],),
 ),
+
 
                         const SizedBox(
                           height: 20,
