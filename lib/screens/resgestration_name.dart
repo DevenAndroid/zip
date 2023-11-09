@@ -118,28 +118,8 @@ class _UserScreenState extends State<UserScreen> {
                               keyboardType:
                               const TextInputType.numberWithOptions(
                                   decimal: true),
-                              inputFormatters: [
-                                LengthLimitingTextInputFormatter(12),
-                                FilteringTextInputFormatter.allow(
-                                    RegExp('[0-9]+')),
-                              ],
-                              onChanged: (value) =>
-                              doubleVar = double.parse(value),
-                              validator: MultiValidator([
-                                RequiredValidator(
-                                    errorText:
-                                    'Please enter your contact number '),
-                                MinLengthValidator(11,
-                                    errorText:
-                                    'Please enter minumum  11 digit number'),
-                                MaxLengthValidator(12,
-                                    errorText:
-                                    'Please enter 12 digit number'),
-                                PatternValidator(
-                                    r'(^(?:[+0]9)?[0-9]{10,12}$)',
-                                    errorText: '')
-                              ]),
-                              readOnly: numbercontroller.isNumber,
+                             readOnly: true,
+
                               controller:     registorController.molileController,
                               obSecure: false,
                               hintText: "mobile number"),
@@ -147,7 +127,7 @@ class _UserScreenState extends State<UserScreen> {
                             height: 10,
                           ),
                           CommonTextfield(
-                              readOnly: !numbercontroller.isNumber,
+readOnly: true,
                               validator: MultiValidator([
                                 RequiredValidator(
                                     errorText: 'Please enter your email'),
@@ -163,11 +143,12 @@ class _UserScreenState extends State<UserScreen> {
                           GestureDetector(
                               onTap: () {
                                 if (formKeyName.currentState!.validate()) {
-                                  Get.toNamed(
-                                      MyRouters.birthdayScreen,
-                                      arguments: [registorController.firstNameController.text.trim()]
-                                  );
-                                  // registorController.contactCreate(context);
+                                  // registorController.contactCreate1(context);
+                                   Get.toNamed(
+                                       MyRouters.birthdayScreen,
+                                       arguments: [registorController.firstNameController.text.trim()]
+                                   );
+
 
                                 }
                               },

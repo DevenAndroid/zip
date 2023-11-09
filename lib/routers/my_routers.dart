@@ -384,7 +384,7 @@ class MyRouters{
     GetPage(name: '/dashBoard', page: () =>  const DashBoard()),
     GetPage(name: '/dataPlanScreen', page: () =>  const DataPlanScreen()),
 
-    GetPage(name: '/mobileNumber', page: () =>  const MobileNumberScreen()),
+    // GetPage(name: '/mobileNumber', page: () =>  const MobileNumberScreen()),
     GetPage(name: '/updatePassword', page: () =>  const UpdatePassword()),
     GetPage(name: '/updatePassword', page: () =>  const UpdatePassword()),
 

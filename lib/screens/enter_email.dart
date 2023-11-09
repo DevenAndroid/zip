@@ -40,7 +40,7 @@ class _EmailScreenState extends State<EmailScreen> {
   final numbercontroller = Get.put(numberController());
   final Controller = Get.put(registerController());
   Rx<RegisterModel> emailregister = RegisterModel().obs;
-
+  TextEditingController mobileNoController = TextEditingController();
 
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
@@ -130,17 +130,19 @@ class _EmailScreenState extends State<EmailScreen> {
           context: context,
           password:passwordController.text.trim(),
           bvn: Controller.BVNController.text.trim(),
+          phone: "+234"+mobileNoController.text.trim(),
           password_confirmation: confirmPasswordController.text.trim(),
-          phone_email:Controller.emailNoController.text.trim(),
-          type: "email"
+          email:Controller.emailNoController.text.trim(),
+
       ).then((value) {
-        numbercontroller.isNumber =false;
+        numbercontroller.isNumber =true;
         numbercontroller.isNumberBvn =false;
         numbercontroller.email=Controller.emailNoController.text.trim();
+        numbercontroller.number="+234${mobileNoController.text.trim()}";
         numbercontroller.emailBvn=Controller.BVNController.text.trim();
 
-        numbercontroller.number="";
-        numbercontroller.numberBvn="";
+        // numbercontroller.number="";
+        // numbercontroller.numberBvn="";
 
 
 
@@ -154,7 +156,9 @@ print("Users::::::::::::"+Controller. userId1);
           statusOfemailregister.value = RxStatus.success();
 Controller. userId1=emailregister.value.data!.user!.id.toString();
           showToast(value.data!.otp.toString());
-save1(context);
+// Get.toNamed(
+//     MyRouters.otpEmailScreen, arguments: [Controller.emailNoController.text]);
+ save1(context);
           // showToast(value.message.toString());
         } else {
           statusOfemailregister.value = RxStatus.error();
@@ -229,7 +233,7 @@ save1(context);
                             print("hgdfhhh"+Controller.avtar.toString());
                           },
                           child: Text(
-                            "Enter your email to continue ",
+                            "Enter your email & Mobile No to continue ",
                             style: GoogleFonts.poppins(
                                 color: const Color(0xFF1D1D1D),
                                 fontSize: 22,
@@ -240,35 +244,35 @@ save1(context);
                       const SizedBox(
                         height: 20,
                       ),
-                      Row(
-                        children: [
-                          Expanded(
-                              child: InkWell(
-                                onTap: (){
-                                  Get.back();
-                                },
-                                child: CustomOutlineBoder(
-                                  title: "Phone",
-                                  backgroundColor: Colors.white,
-                                  textColor: AppTheme.buttonColor,onPressed: (){
-                                  Get.toNamed(MyRouters.mobileNumber);
-                                },),
-                              )),
-
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          Expanded(
-                            child: InkWell(
-                                onTap: () {
-
-                                },
-                                child: const CustomOutlineButton(
-                                  title: "Email",
-                                )),
-                          ),
-                        ],
-                      ),
+                      // Row(
+                      //   children: [
+                      //     Expanded(
+                      //         child: InkWell(
+                      //           onTap: (){
+                      //             Get.back();
+                      //           },
+                      //           child: CustomOutlineBoder(
+                      //             title: "Phone",
+                      //             backgroundColor: Colors.white,
+                      //             textColor: AppTheme.buttonColor,onPressed: (){
+                      //             Get.toNamed(MyRouters.mobileNumber);
+                      //           },),
+                      //         )),
+                      //
+                      //     const SizedBox(
+                      //       height: 15,
+                      //     ),
+                      //     Expanded(
+                      //       child: InkWell(
+                      //           onTap: () {
+                      //
+                      //           },
+                      //           child: const CustomOutlineButton(
+                      //             title: "Email",
+                      //           )),
+                      //     ),
+                      //   ],
+                      // ),
                       const SizedBox(
                         height: 23,
                       ),
@@ -286,6 +290,78 @@ save1(context);
                           }
                         },
                         controller: Controller.emailNoController,obSecure: false, hintText: "pkp@gmail.com",labelText: "Email",),
+                      SizedBox(height: 15,),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0,right: 10),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border:
+                              Border.all(color: AppTheme.primaryColor, width: 1.3),
+                              borderRadius: BorderRadius.circular(15)),
+                          child: Row(
+                            children: [
+                              const CountryCodePicker(
+                                onChanged: print,
+                                initialSelection: 'NG',
+                                favorite: ['+234', 'NG'],
+                                showCountryOnly: false,
+                                showOnlyCountryWhenClosed: false,
+                                alignLeft: false,
+                              ),
+                              const SizedBox(
+                                height: 30,
+                                child: VerticalDivider(
+                                  thickness: 1,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 120,
+                                child: TextFormField(
+                                    keyboardType:
+                                    const TextInputType.numberWithOptions(
+                                        decimal: true),
+                                    inputFormatters: [
+                                      LengthLimitingTextInputFormatter(12),
+                                      FilteringTextInputFormatter.allow(
+                                          RegExp('[0-9]+')),
+                                    ],
+                                    onChanged: (value) =>
+                                    doubleVar = double.parse(value),
+                                    validator: MultiValidator([
+                                      RequiredValidator(
+                                          errorText:
+                                          'Please enter your contact number '),
+                                      MinLengthValidator(10,
+                                          errorText:
+                                          'Please enter minumum  10 digit number'),
+                                      MaxLengthValidator(12,
+                                          errorText:
+                                          'Please enter 12 digit number'),
+                                      PatternValidator(
+                                          r'(^(?:[+0]9)?[0-9]{10,12}$)',
+                                          errorText: '')
+                                    ]),
+                                    controller: mobileNoController,
+                                    decoration: const InputDecoration(
+                                      hintText: "XXXXXXXXXX",
+                                      border: InputBorder.none,
+                                      focusedBorder: InputBorder.none,
+                                      enabledBorder: InputBorder.none,
+                                      errorBorder: InputBorder.none,
+                                      disabledBorder: InputBorder.none,
+                                      hintStyle: TextStyle(
+                                          color: Color(0xFF1D1D1D),
+                                          fontSize: 16,
+                                          decorationColor: Colors.transparent,
+                                          decorationThickness: 0,
+                                          fontWeight: FontWeight.w600),
+                                    )),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                       SizedBox(height: 15,),
                       CommonTextfield(
                         keyboardType:
@@ -394,22 +470,22 @@ save1(context);
 
                       InkWell(
                           onTap: (){
-                            liveAfrica(context);
+                          liveAfrica(context);
 
-                            // emailLogin();
+                            // emailRegister();
                             //
                           },
                           child: CustomOutlineButton(title: "Next",)),
                       SizedBox(height: 15,),
-                      InkWell(
-                        onTap: (){
-
-                          Get.toNamed(MyRouters.mobileNumber);
-                        },
-                        child: CustomOutlineBoder(title: "Use Mobile Number", backgroundColor: Colors.white,textColor: AppTheme.buttonColor,onPressed: (){
-                          Get.toNamed(MyRouters.mobileNumber);
-                        },),
-                      ),
+                      // InkWell(
+                      //   onTap: (){
+                      //
+                      //     Get.toNamed(MyRouters.mobileNumber);
+                      //   },
+                      //   child: CustomOutlineBoder(title: "Use Mobile Number", backgroundColor: Colors.white,textColor: AppTheme.buttonColor,onPressed: (){
+                      //     Get.toNamed(MyRouters.mobileNumber);
+                      //   },),
+                      // ),
 
 
                     ]),

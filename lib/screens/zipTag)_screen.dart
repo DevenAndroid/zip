@@ -124,6 +124,7 @@ class _TagScreenState extends State<TagScreen> {
         SizedBox(height: size.height*.52,),
         InkWell(
             onTap: (){
+              print( registorController.emailController.text);
               checkZipTag();
         // Get.toNamed(MyRouters.addressScreen);
 

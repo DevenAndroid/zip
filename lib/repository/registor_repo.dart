@@ -8,17 +8,17 @@ import '../resourses/helper.dart';
 
 
 
-Future<RegisterModel> registerRepo({password_confirmation,phone_email,context,bvn,type,password}) async {
+Future<RegisterModel> registerRepo({password_confirmation,phone,context,bvn,email,password}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
 
-  map['phone_email'] = phone_email;
+  map['phone'] = phone;
 
     map['bvn'] = bvn;
 
 
-  map['type'] =  type;
+  map['email'] =  email;
   map['password_confirmation'] = password_confirmation;
   map['password'] = password;
 

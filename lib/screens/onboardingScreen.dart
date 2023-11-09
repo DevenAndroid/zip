@@ -129,12 +129,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
             InkWell(
                 onTap: (){
-                  Get.toNamed(MyRouters.mobileNumber);
+                  Get.toNamed(MyRouters.enterEmailScreen);
                 },
                 child: CustomOutlineButton(title: "Open free account",)),
             SizedBox(height: 15,),
             InkWell(onTap:(){
-              Get.toNamed(MyRouters.loginScreen);
+              Get.toNamed(MyRouters.emailLoginScreen);
             },
                 child: const CustomOutlineBoder(title: "I have an account", backgroundColor: Colors.white,textColor: AppTheme.buttonColor)),
 

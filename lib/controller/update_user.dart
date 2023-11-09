@@ -353,8 +353,9 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
   Rx<RxStatus> statusOfContact = RxStatus.empty().obs;
   Rx<ModelCreateContact> createContact = ModelCreateContact().obs;
   contactCreate(context) {
+    showToast("Contact api before");
     createContactRepo(
-      emails:emailController.text.trim() ,
+      emails: emailController.text.trim() ,
       first_name: firstNameController.text.trim(),
       last_name: lastNameController.text.trim(),
       mobile_number:molileController .text.trim(),
@@ -364,15 +365,19 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
 
       context: context,
     ).then((value) {
+
+      showToast("Contact api after");
       createContact.value = value;
+      print("email:::::::::"+emailController.text.toString());
       contactIdSave(context);
 
       statusOfContact.value = RxStatus.success();
-        showToast("Contact Created Sucessfully ");
+       showToast("Contact created sucessfully  ");
 
     });
   }
   contactCreate1(context) {
+    showToast("Contact api before");
     createContactRepo(
       emails:emailController.text.trim() ,
       first_name: firstNameController.text.trim(),
@@ -384,7 +389,9 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
 
       context: context,
     ).then((value) {
+      showToast("Contact api before");
       createContact.value = value;
+      print("email:::::::::"+emailController.text.toString());
       contactIdSave1(context);
 
       statusOfContact.value = RxStatus.success();
@@ -403,7 +410,7 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
         MyRouters.otpScreen,
       );
       statusOfContact.value = RxStatus.success();
-      showToast("Contact Created Sucessfully ");
+      showToast("Contact save Sucessfully ");
 
     });
   }
@@ -414,7 +421,7 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
       saveId.value = value;
       verifyAfrica(context);
       statusOfContact.value = RxStatus.success();
-      showToast("Contact Created Sucessfully ");
+      showToast("Contact save Sucessfully ");
 
     });
   }
@@ -1082,6 +1089,7 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
   Rx<RxStatus> statusOfAccountVerify = RxStatus.empty().obs;
 
   Future accountVritualVerify(context) async {
+    showToast("Fincra  api before");
     await verifyAccountRepo(
             accountNumber: virtualAccount.value.data!.accountNumber.toString(),
             phone_email:

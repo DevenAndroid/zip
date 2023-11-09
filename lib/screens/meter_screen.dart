@@ -238,26 +238,24 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
                           keyboardType:
                           const TextInputType.numberWithOptions(
                               decimal: true),
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(11),
-                            FilteringTextInputFormatter.allow(
-                                RegExp('[0-9]+')),
-                          ],
+                          // inputFormatters: [
+                          //   // LengthLimitingTextInputFormatter(15),
+                          //   FilteringTextInputFormatter.allow(
+                          //       RegExp('[0-9]+')),
+                          // ],
                           onChanged: (value) =>
                           doubleVar = double.parse(value),
                           validator: MultiValidator([
                           RequiredValidator(
                               errorText:
                               'Please enter your meter number '),
-                            MinLengthValidator(11,
-                                errorText:
-                                'Please enter minumum  11 meter number'),
-                            MaxLengthValidator(15,
-                                errorText:
-                                'Please enter 10 meter number'),
-                            PatternValidator(
-                                r'(^(?:[+0]9)?[0-9]{10,12}$)',
-                                errorText: '')
+                            // MinLengthValidator(12,
+                            //     errorText:
+                            //     'Please enter minumum  11 meter number'),
+                            // MaxLengthValidator(15,
+                            //     errorText:
+                            //     'Please enter 10 meter number'),
+
                           ]),
                           controller: controller.meterNo,
 
