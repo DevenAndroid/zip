@@ -159,7 +159,7 @@ Controller. userId1=emailregister.value.data!.user!.id.toString();
 // Get.toNamed(
 //     MyRouters.otpEmailScreen, arguments: [Controller.emailNoController.text]);
  save1(context);
-          // showToast(value.message.toString());
+           showToast(value.message.toString());
         } else {
           statusOfemailregister.value = RxStatus.error();
           showToast(value.message.toString());

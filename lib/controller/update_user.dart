@@ -352,7 +352,9 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
 
   Rx<RxStatus> statusOfContact = RxStatus.empty().obs;
   Rx<ModelCreateContact> createContact = ModelCreateContact().obs;
-  contactCreate(context) {
+  contactCreate(context) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    var uniqueIdentifier= pref.getString("uniqueIdentifier");
     showToast("Contact api before");
     createContactRepo(
       emails: emailController.text.trim() ,
@@ -360,12 +362,12 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
       last_name: lastNameController.text.trim(),
       mobile_number:molileController .text.trim(),
       cf_product_type: "New Customer",
-      cf_customer_id: profileController.uniqueIdController.text.trim(),
+      cf_customer_id: uniqueIdentifier,
       last_source: "in-App",
 
       context: context,
     ).then((value) {
-
+print("uniqueIdentifier:::::::::::::::;"+uniqueIdentifier!);
       showToast("Contact api after");
       createContact.value = value;
       print("email:::::::::"+emailController.text.toString());
