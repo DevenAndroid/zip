@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
@@ -49,7 +50,7 @@ class _PayNowBalanceState extends State<PayNowBalance> {
           accountHolderName:data.accountHolderName.toString() ,
           accountNumber:data.destinationAddress.toString(),
           destinationCurrency:"NGN",
-          customerReference:  "Hfdfai",
+          customerReference:  DateFormat.jm().format(DateTime.now()),
 // RegistorController.descriptionController.text.trim(),
 // destinationCurrencyController.text.trim() ,
           sourceCurrency: "NGN",
@@ -99,7 +100,7 @@ class _PayNowBalanceState extends State<PayNowBalance> {
         amount:RegistorController.amount1Controller.text.trim() ,
         about: "Send Cash",
         send_type: "otherusers ",
-        beneficiary_id: data..toString(),
+        beneficiary_id: data.id.toString(),
         // complete_response: purchaseData.value.data!.toJson(),
         context: context,
         description:RegistorController.descriptionController.text.trim(),

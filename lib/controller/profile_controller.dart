@@ -381,10 +381,10 @@ zip_user_id:userId.toString(),
   saveList1(context) async {
     saveTransastionRepo(
         amount: amountController.text.trim(),
-        about: noteController.text.trim(),
+        about: "Request Cash",
         user_id:  modal.value.data!.user!.id.toString(),
         sender_id: modal.value.data!.user!.id.toString(),
-        send_type: "Bank request",
+
         // complete_response: purchaseData.value.data!.toJson(),
         context: context,
         description: noteController.text.trim(),

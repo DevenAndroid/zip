@@ -338,7 +338,7 @@ class _RequestPaymentLinkState extends State<RequestPaymentLink> {
                   onTap: (){
                     Get.toNamed(MyRouters.sharePaymentLink,);
                     // send();
-               register.cashCheckout(context);
+               // register.cashCheckout(context);
                     // emailLogin();
                     //
                   },
