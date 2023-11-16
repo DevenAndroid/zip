@@ -318,7 +318,7 @@ class _WalletScreen1State extends State<WalletScreen1> {
                                         ],
                                       ),
                                       const SizedBox(
-                                        width: 15,
+                                        width: 10,
                                       ),
                                       Stack(
                                         children: [

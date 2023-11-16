@@ -24,8 +24,8 @@ class ModelPayout {
 
 class Data {
   int? id;
-  String? reference;
-  Null? customerReference;
+  dynamic reference;
+  dynamic customerReference;
   String? status;
 
   Data({this.id, this.reference, this.customerReference, this.status});
