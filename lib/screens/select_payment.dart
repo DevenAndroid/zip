@@ -118,7 +118,7 @@ class _SelectMethodState extends State<SelectMethod> {
 
                   GestureDetector(
                     onTap: () {
-                      Get.toNamed(MyRouters.requestAPaymentContiune2);
+                      Get.toNamed(MyRouters.withdrawlCash);
                     },
                     child: Row(
                       children: [

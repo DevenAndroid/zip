@@ -136,6 +136,7 @@ import '../screens/send_your_balance_screen.dart';
 import '../screens/sendamount.dart';
 import '../screens/sent_transistion.dart';
 import '../screens/sucess2.dart';
+import '../screens/sucess3.dart';
 import '../screens/sucess_recharge_pin.dart';
 import '../screens/sucess_rechsarge.dart';
 import '../screens/sucess_request_screen.dart';
@@ -147,6 +148,7 @@ import '../screens/verify_africa_ui.dart';
 
 
 
+import '../screens/withdrawl_cash1.dart';
 import '../splash1.dart';
 
 class MyRouters{
@@ -293,6 +295,8 @@ class MyRouters{
   static var loginNoPinScreen = "/loginNoPinScreen";
   static var usersOtpScreen = "/usersOtpScreen";
   static var notVerifyAfricaScreen = "/notVerifyAfricaScreen";
+  static var withdrawlCash = "/withdrawlCash";
+  static var success3Screen = "/success3Screen";
 
 
 
@@ -303,6 +307,8 @@ class MyRouters{
 
 
     GetPage(name: '/onBoardingScreen', page: () =>   const OnBoardingScreen()),
+    GetPage(name: '/withdrawlCash', page: () =>   const WithdrawlCash()),
+    GetPage(name: '/success3Screen', page: () =>   const Success3Screen()),
     GetPage(name: '/usersOtpScreen', page: () =>   const UsersOtpScreen()),
     GetPage(name: '/addFundScreen', page: () =>   const AddFundScreen()),
     GetPage(name: '/fundIssuingWallet', page: () =>   const FundIssuingWallet()),

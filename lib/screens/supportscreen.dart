@@ -9,7 +9,7 @@ import 'package:freshchat_sdk/freshchat_sdk.dart';
 import 'package:freshchat_sdk/freshchat_user.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import '../resourses/api_constant.dart';
 import '../routers/my_routers.dart';
 import '../widgets/common_colour.dart';
@@ -22,6 +22,12 @@ class SupportScreen extends StatefulWidget {
 }
 
 class _SupportScreenState extends State<SupportScreen> {
+  Future<void> _launch(Uri url) async {
+    await canLaunchUrl(url)
+        ? await launchUrl(url)
+        : showToast('could_not_launch_this_app'.tr);
+  }
+  Uri gmailUrl = Uri.parse('mailto:test@example.org?subject=Greetings&body=Hello%20World');
   void handleFreshchatNotification(Map<String, dynamic> message) async {
     if (await Freshchat.isFreshchatNotification(message)) {
       print("is Freshchat notification");
@@ -526,8 +532,18 @@ class _SupportScreenState extends State<SupportScreen> {
                     height: 25,
                   ),
                   InkWell(
-                    onTap: () {
-                      Get.toNamed(MyRouters.contuctUsScreen);
+                    onTap: () async {
+                      String email = Uri.encodeComponent("customersupport@ziplimited.com");
+                      String subject = Uri.encodeComponent("");
+                      String body = Uri.encodeComponent("");
+                      print(subject); //output: Hello%20Flutter
+                      Uri mail = Uri.parse("mailto:$email?subject=$subject&body=$body");
+                      if (await launchUrl(mail)) {
+                      //email app opened
+                      }else{
+                      //email app is not opened
+                      }
+                      // Get.toNamed(MyRouters.contuctUsScreen);
                     },
                     child: Row(
                       children: [

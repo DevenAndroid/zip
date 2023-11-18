@@ -147,7 +147,7 @@ class _EmailScreenState extends State<EmailScreen> {
 
 
         emailregister.value = value;
-        Controller. userId1=emailregister.value.data!.user!.id.toString();
+        // Controller. userId1=emailregister.value.data!.user!.id.toString();
         if (value.status == true) {
 
 print("Users::::::::::::"+Controller. userId1);
@@ -156,13 +156,14 @@ print("Users::::::::::::"+Controller. userId1);
           statusOfemailregister.value = RxStatus.success();
 Controller. userId1=emailregister.value.data!.user!.id.toString();
           showToast(value.data!.otp.toString());
-// Get.toNamed(
-//     MyRouters.otpEmailScreen, arguments: [Controller.emailNoController.text]);
- save1(context);
+Get.toNamed(
+    MyRouters.otpEmailScreen, arguments: [Controller.emailNoController.text]);
+//  save1(context);
            showToast(value.message.toString());
         } else {
-          statusOfemailregister.value = RxStatus.error();
           showToast(value.message.toString());
+          statusOfemailregister.value = RxStatus.error();
+
         }
       }
 
@@ -470,9 +471,9 @@ Controller. userId1=emailregister.value.data!.user!.id.toString();
 
                       InkWell(
                           onTap: (){
-                          liveAfrica(context);
+                          // liveAfrica(context);
 
-                            // emailRegister();
+                             emailRegister();
                             //
                           },
                           child: CustomOutlineButton(title: "Next",)),

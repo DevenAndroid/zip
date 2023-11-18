@@ -378,10 +378,36 @@ zip_user_id:userId.toString(),
 
 
 
+  saveList3(context) async {
+    saveTransastionRepo(
+        amount: amountController.text.trim(),
+        about: "Withdrawl Cash",
+        user_id:  modal.value.data!.user!.id.toString(),
+        sender_id: modal.value.data!.user!.id.toString(),
+
+        // complete_response: purchaseData.value.data!.toJson(),
+        context: context,
+        description: noteController.text.trim(),
+        type: "dr")
+        .then((value) {
+      log("response.body.....    ${value}");
+      save.value = value;
+      if (value.status == true) {
+        Get.toNamed(MyRouters.bottomNavbar);
+        statusOfSave.value = RxStatus.success();
+        showToast(value.message.toString());
+      } else {
+        statusOfSave.value = RxStatus.error();
+        showToast(value.message.toString());
+      }
+    }
+      // showToast(value.message.toString());
+    );
+  }
   saveList1(context) async {
     saveTransastionRepo(
         amount: amountController.text.trim(),
-        about: "Request Cash",
+        about: "Request cash",
         user_id:  modal.value.data!.user!.id.toString(),
         sender_id: modal.value.data!.user!.id.toString(),
 
