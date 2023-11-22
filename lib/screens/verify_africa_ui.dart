@@ -122,6 +122,7 @@ class _VerifyAfricaScreenState extends State<VerifyAfricaScreen> {
                               onTap: () {
                                 if (registorController.image.path != "") {
                                   registorController.  saveImage(context);
+                                  // registorController.   contactCreate(context) ;
                                 } else {
                                   showToast("please add photo for verify ");
                                 }
