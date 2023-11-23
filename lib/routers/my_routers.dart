@@ -306,7 +306,7 @@ class MyRouters{
 
 
 
-    GetPage(name: '/onBoardingScreen', page: () =>   const OnBoardingScreen()),
+    GetPage(name: onBoardingScreen, page: () =>   const OnBoardingScreen()),
     GetPage(name: '/withdrawlCash', page: () =>   const WithdrawlCash()),
     GetPage(name: '/success3Screen', page: () =>   const Success3Screen()),
     GetPage(name: '/usersOtpScreen', page: () =>   const UsersOtpScreen()),

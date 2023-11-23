@@ -1,13 +1,19 @@
 import 'dart:async';
+import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:local_auth/local_auth.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:zip/repository/get_all_transistion_repo.dart';
 import 'package:zip/resourses/api_constant.dart';
 import 'package:zip/routers/my_routers.dart';
+
+import 'models/model_movement_rates_response.dart';
+
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
 
@@ -22,6 +28,7 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
+
     Timer(const Duration(seconds: 5), () async {
       enableCheck = true;
       userCheck();
@@ -70,7 +77,9 @@ class _SplashState extends State<Splash> {
         return authenticated;
       } catch (e) {
         // Handle any exceptions that occur during the authentication process.
-        print(e);
+        if (kDebugMode) {
+          print(e);
+        }
         return false;
       }
     } else{
@@ -80,15 +89,19 @@ class _SplashState extends State<Splash> {
   }
 
 
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery
         .of(context)
         .size;
+    // ModelMovementsRateResponse gg = ModelMovementsRateResponse.fromJson(jsonDecode(apiResponse));
+    // print(gg.movementInfo!);
+
     return GestureDetector(
       onTap: enableCheck ? (){userCheck();} : null,
       behavior: HitTestBehavior.translucent,
       child: Scaffold(
-          body: Container(
+          body: SizedBox(
             height: size.height,
             width: size.width,
             child: Image.asset((

@@ -70,6 +70,7 @@ class ApiUrls {
   static const String transfreLimitGet = "${apiBaseUrl}transfer-limit";
   static const String getBenificaryList = "${apiBaseUrl}get-beneficiary";
   static const String transactionList = "${apiBaseUrl}transaction-list";
+  static const String currencylist = "https://abokifx.com/api/v1/rates/movement";
   static const String transactionReceive = "${apiBaseUrl}transaction-receive";
   static const String buyAirtimeList = "${apiBaseUrl}buy-airtime-list";
   static const String buyDataList = "${apiBaseUrl}buy-data-list";
