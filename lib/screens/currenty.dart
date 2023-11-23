@@ -173,7 +173,7 @@ const SizedBox(height: 20,),
                           border: Border.all(color: AppTheme.primaryColor,width: 1),
                           borderRadius: BorderRadius.circular(15),
                         ),
-                        child: Text("1"+allConvert.value.movementInfo![index].currency_name.toString(),
+                        child: Text("1 "+allConvert.value.movementInfo![index].currency_name.toString(),
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
                               fontSize: 17,
