@@ -185,10 +185,10 @@ else{
 
 
         // showToast("LIVELINESS api hit::::"+value.response!.popScore.toString());
-        showToast(value.description.toString());
+        showToast(value.response!.popScore.toString());
       } else {
         statusOfLiveAfrica.value = RxStatus.error();
-        showToast(value.description.toString());
+        showToast(value.response!.popScore.toString());
       }
     }
 
@@ -216,10 +216,10 @@ else{
           showToast("your image is not verified ");
         }
         // showToast("LIVELINESS api hit::::"+value.response!.popScore.toString());
-        showToast(value.description.toString());
+        showToast(value.response!.popScore.toString());
       } else {
         statusOfLiveAfrica.value = RxStatus.error();
-        showToast(value.description.toString());
+        showToast(value.response!.popScore.toString());
       }
     }
 
@@ -374,7 +374,7 @@ print("uniqueIdentifier:::::::::::::::;"+uniqueIdentifier!);
       contactIdSave(context);
 
       statusOfContact.value = RxStatus.success();
-       showToast("Contact created sucessfully  ");
+       // showToast();
 
     });
   }

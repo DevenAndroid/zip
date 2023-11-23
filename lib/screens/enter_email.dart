@@ -156,9 +156,9 @@ print("Users::::::::::::"+Controller. userId1);
           statusOfemailregister.value = RxStatus.success();
 Controller. userId1=emailregister.value.data!.user!.id.toString();
           showToast(value.data!.otp.toString());
-Get.toNamed(
-    MyRouters.otpEmailScreen, arguments: [Controller.emailNoController.text]);
-//  save1(context);
+// Get.toNamed(
+//     MyRouters.otpEmailScreen, arguments: [Controller.emailNoController.text]);
+ save1(context);
            showToast(value.message.toString());
         } else {
           showToast(value.message.toString());
@@ -471,9 +471,9 @@ Get.toNamed(
 
                       InkWell(
                           onTap: (){
-                          // liveAfrica(context);
+                          liveAfrica(context);
 
-                             emailRegister();
+                             // emailRegister();
                             //
                           },
                           child: CustomOutlineButton(title: "Next",)),
