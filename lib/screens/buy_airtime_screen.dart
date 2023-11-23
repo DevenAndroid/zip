@@ -67,7 +67,7 @@ class _BuyAirtimeScreenState extends State<BuyAirtimeScreen> {
         // complete_response: purchaseData.value.data!.toJson(),
         context: context,
         description: initStateBlank2,
-        telcos: initStateBlank2,
+           telcos: initStateBlank2,
         phone: initStateBlank3,
 
         type: "dr")

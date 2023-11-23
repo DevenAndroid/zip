@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 import '../models/model_all_transistion.dart';
 import '../models/model_beneficary_list.dart';
 import '../models/model_get_transfre_limit.dart';
+import '../models/model_movement_rates_response.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
@@ -33,3 +34,5 @@ Future<ModelAllTransistion> transistionListGetRepo() async {
     return ModelAllTransistion(message: e.toString(), status: false, data: null);
   }
 }
+
+

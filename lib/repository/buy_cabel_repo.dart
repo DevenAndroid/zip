@@ -14,6 +14,9 @@ import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
 final details = Get.put(DetailsController());
+
+
+
 Future<BuyCabelTvModel> BuyCabelRepo({  amount,smartcard_number,product_code,month_paid_for,provider,reference,context}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);

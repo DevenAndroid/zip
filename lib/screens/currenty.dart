@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:currency_converter/currency.dart';
 import 'package:currency_converter/currency_converter.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +7,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../models/model_movement_rates_response.dart';
+import '../repository/get_currency_repo.dart';
 import '../widgets/common_colour.dart';
+import '../widgets/common_error_widget.dart';
 class CurrencyConvert extends StatefulWidget {
   const CurrencyConvert({Key? key}) : super(key: key);
 
@@ -24,6 +29,7 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
   @override
   void initState() {
     super.initState();
+    getAllTransitionList();
 // add in initState
     convertUsd();
     convertGbp();
@@ -55,6 +61,21 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
     setState(() {
       gbpToNgn = usdConvert1.toString();
     });
+  }
+
+  Rx<RxStatus> statusOfAllTransistion = RxStatus.empty().obs;
+  Rx<ModelMovementsRateResponse> allConvert = ModelMovementsRateResponse().obs;
+
+  getAllTransitionList() {
+    getCurrency().then((value) {
+      log("response.body.....    ${value}");
+      allConvert.value = value;
+
+        statusOfAllTransistion.value = RxStatus.success();
+
+    }
+      // showToast(value.message.toString());
+    );
   }
   void convertEur() async {
     Currency myCurrency = await CurrencyConverter.getMyCurrency();
@@ -130,136 +151,159 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
 const SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(13),
-    decoration: BoxDecoration(
-    border: Border.all(color: AppTheme.primaryColor,width: 1),
-    borderRadius: BorderRadius.circular(15),
-    ),
-    child: Text("1  NGN",
-    style: GoogleFonts.poppins(
-    color: const Color(0xFF1D1D1D),
-    fontSize: 17,
-    fontWeight: FontWeight.w400),),
-    ),
-    SvgPicture.asset("assets/images/arrow1.svg"),
+              Obx(() {
+                return
+ statusOfAllTransistion.value.isSuccess
+    ?
+    ListView.builder(
+    itemCount: allConvert.value.movementInfo!.length,
+    shrinkWrap: true,
+    physics: const NeverScrollableScrollPhysics(),
+    itemBuilder: (context, index) {
 
-    Container(
-      padding: const EdgeInsets.all(13),
-    decoration: BoxDecoration(
-    border: Border.all(color: AppTheme.primaryColor,width: 1),
-    borderRadius: BorderRadius.circular(15),
-    ),
-    child: Text(" USD ",
-    style: GoogleFonts.poppins(
-    color: const Color(0xFF1D1D1D),
-    fontSize: 17,
-    fontWeight: FontWeight.w400),),
-    ),
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: AppTheme.primaryColor,width: 1),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Text("$usdToNgn ${Currency.usd.name.toUpperCase()}",
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF1D1D1D),
-                          fontSize: 17,
-                          fontWeight: FontWeight.w500),),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 15,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(13),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: AppTheme.primaryColor,width: 1),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Text("1  NGN",
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF1D1D1D),
-                          fontSize: 17,
-                          fontWeight: FontWeight.w400),),
-                  ),
-                  SvgPicture.asset("assets/images/arrow1.svg"),
-                  Container(
-                    padding: const EdgeInsets.all(13),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: AppTheme.primaryColor,width: 1),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Text(" EUR ",
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF1D1D1D),
-                          fontSize: 17,
-                          fontWeight: FontWeight.w400),),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(13),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: AppTheme.primaryColor,width: 1),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Text( "$gbpToNgn ${Currency.eur.name.toUpperCase()}",
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF1D1D1D),
-                          fontSize: 17,
-                          fontWeight: FontWeight.w500),),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 15,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(13),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: AppTheme.primaryColor,width: 1),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Text("1  NGN",
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF1D1D1D),
-                          fontSize: 17,
-                          fontWeight: FontWeight.w400),),
-                  ),
-                  SvgPicture.asset("assets/images/arrow1.svg"),
-                  Container(
-                    padding: const EdgeInsets.all(13),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: AppTheme.primaryColor,width: 1),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Text(" GBP ",
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF1D1D1D),
-                          fontSize: 17,
-                          fontWeight: FontWeight.w400),),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(13),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: AppTheme.primaryColor,width: 1),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Text( "$eurToNgn ${Currency.gbp.name.toUpperCase()}",
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF1D1D1D),
-                          fontSize: 17,
-                          fontWeight: FontWeight.w500),),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 15,),
+    return
+    Column(
+      children: [
+        Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(13),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: AppTheme.primaryColor,width: 1),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: Text("1"+allConvert.value.movementInfo![index].currency_name.toString(),
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400),),
+                      ),
+        SvgPicture.asset("assets/images/arrow1.svg"),
+                      Container(
+                        padding: const EdgeInsets.all(13),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: AppTheme.primaryColor,width: 1),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: Text("NGN",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400),),
+                      ),
+
+                      Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: AppTheme.primaryColor,width: 1),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: Text(allConvert.value.movementInfo![index].currency_rate.toString(),
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 17,
+                              fontWeight: FontWeight.w500),),
+                      ),
+                    ],
+        ),
+        SizedBox(height: 10,)
+      ],
+    ); } ):  statusOfAllTransistion.value.isError
+    ? CommonErrorWidget(
+    errorText: "",
+    onTap: () {},
+    )
+        : const Center(
+    child: CircularProgressIndicator());
+  }),
+              // const SizedBox(height: 15,),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     Container(
+              //       padding: const EdgeInsets.all(13),
+              //       decoration: BoxDecoration(
+              //         border: Border.all(color: AppTheme.primaryColor,width: 1),
+              //         borderRadius: BorderRadius.circular(15),
+              //       ),
+              //       child: Text("1  NGN",
+              //         style: GoogleFonts.poppins(
+              //             color: const Color(0xFF1D1D1D),
+              //             fontSize: 17,
+              //             fontWeight: FontWeight.w400),),
+              //     ),
+              //     SvgPicture.asset("assets/images/arrow1.svg"),
+              //     Container(
+              //       padding: const EdgeInsets.all(13),
+              //       decoration: BoxDecoration(
+              //         border: Border.all(color: AppTheme.primaryColor,width: 1),
+              //         borderRadius: BorderRadius.circular(15),
+              //       ),
+              //       child: Text(allConvert.value.movementInfo![1].currency_name.toString(),
+              //         style: GoogleFonts.poppins(
+              //             color: const Color(0xFF1D1D1D),
+              //             fontSize: 17,
+              //             fontWeight: FontWeight.w400),),
+              //     ),
+              //     Container(
+              //       padding: const EdgeInsets.all(13),
+              //       decoration: BoxDecoration(
+              //         border: Border.all(color: AppTheme.primaryColor,width: 1),
+              //         borderRadius: BorderRadius.circular(15),
+              //       ),
+              //       child: Text( "$gbpToNgn ${Currency.eur.name.toUpperCase()}",
+              //         style: GoogleFonts.poppins(
+              //             color: const Color(0xFF1D1D1D),
+              //             fontSize: 17,
+              //             fontWeight: FontWeight.w500),),
+              //     ),
+              //   ],
+              // ),
+              // const SizedBox(height: 15,),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     Container(
+              //       padding: const EdgeInsets.all(13),
+              //       decoration: BoxDecoration(
+              //         border: Border.all(color: AppTheme.primaryColor,width: 1),
+              //         borderRadius: BorderRadius.circular(15),
+              //       ),
+              //       child: Text("1  NGN",
+              //         style: GoogleFonts.poppins(
+              //             color: const Color(0xFF1D1D1D),
+              //             fontSize: 17,
+              //             fontWeight: FontWeight.w400),),
+              //     ),
+              //     SvgPicture.asset("assets/images/arrow1.svg"),
+              //     Container(
+              //       padding: const EdgeInsets.all(13),
+              //       decoration: BoxDecoration(
+              //         border: Border.all(color: AppTheme.primaryColor,width: 1),
+              //         borderRadius: BorderRadius.circular(15),
+              //       ),
+              //       child: Text(allConvert.value.movementInfo![2].currency_name.toString(),
+              //         style: GoogleFonts.poppins(
+              //             color: const Color(0xFF1D1D1D),
+              //             fontSize: 17,
+              //             fontWeight: FontWeight.w400),),
+              //     ),
+              //     Container(
+              //       padding: const EdgeInsets.all(13),
+              //       decoration: BoxDecoration(
+              //         border: Border.all(color: AppTheme.primaryColor,width: 1),
+              //         borderRadius: BorderRadius.circular(15),
+              //       ),
+              //       child: Text( "$eurToNgn ${Currency.gbp.name.toUpperCase()}",
+              //         style: GoogleFonts.poppins(
+              //             color: const Color(0xFF1D1D1D),
+              //             fontSize: 17,
+              //             fontWeight: FontWeight.w500),),
+              //     ),
+              //   ],
+              // ),
+              // const SizedBox(height: 15,),
               // Row(
               //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
               //   children: [
