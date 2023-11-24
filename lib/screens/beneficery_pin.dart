@@ -113,38 +113,8 @@ class _BeneficeryPinState extends State<BeneficeryPin> {
     ).then((value) {
       modelVerifySecurity.value = value;
       if (value.status == true) {
+        Get.toNamed(MyRouters.payNowBalance,arguments: data);
 
-        payoutRepo(
-            amount:RegistorController.amount1Controller.text.trim() ,
-            context: context,
-            accountHolderName:data.accountHolderName.toString() ,
-            accountNumber:data.destinationAddress.toString(),
-            destinationCurrency:"NGN",
-// destinationCurrencyController.text.trim() ,
-            sourceCurrency: "NGN",
-            // sourceCurrencyController.text.trim(),
-            description: RegistorController.descriptionController.text.trim(),
-            // email:data.email.toString(),
-            firstName:data.firstName.toString() ,
-            // lastName:data.lastName.toString() ,
-            paymentDestination:"bank_account" ,
-            type:"individual" ,
-            business:  '64529bd2bfdf28e7c18aa9da'
-        ).then((value) {
-          payout.value = value;
-          if (value.success == true) {
-            statusOfpayout.value = RxStatus.success();
-            saveList();
-            Get.toNamed(MyRouters.successRechargeScreen);
-            // Get.back();
-            showToast(value.message.toString());
-          }
-          else{
-            statusOfpayout.value = RxStatus.success();
-            showToast(value.message.toString());
-          }
-          // showToast(value.message.toString());
-        });
         statusOfSucess.value = RxStatus.success();
         showToast(value.message.toString());
       } else {

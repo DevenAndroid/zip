@@ -25,11 +25,13 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
   String? usdToInr;
   String? usdToGbp;
   String? usdToEur;
+  String? numericValuesText;
 
   @override
   void initState() {
     super.initState();
     getAllTransitionList();
+
 // add in initState
     convertUsd();
     convertGbp();
@@ -70,13 +72,37 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
     getCurrency().then((value) {
       log("response.body.....    ${value}");
       allConvert.value = value;
-
+      convert();
         statusOfAllTransistion.value = RxStatus.success();
 
     }
       // showToast(value.message.toString());
     );
   }
+  void convert() {
+    // List currencyRate =  allConvert.value.movementInfo!.map((e) => e.currency_rate.toString()).toList();
+    //
+    // // Remove any non-numeric characters from the string
+    // String numericValue = currencyRate.toList().replaceAll(RegExp(r'[^0-9]'), '');
+
+    List<String> currencyRate = allConvert.value.movementInfo!
+        .map((e) => e.currency_rate.toString())
+        .toList();
+
+    List<String> numericValues = currencyRate
+        .map((currency) => RegExp(r'\d+').allMatches(currency).map((match) => match.group(0)!).toList())
+        .expand((element) => element)
+        .toList();
+
+    numericValuesText = numericValues.join(', ');
+
+
+    // Convert the string to an integer
+    // int rate = int.parse(numericValue);
+    //
+    // print("Currency Rate: $rate");
+  }
+
   void convertEur() async {
     Currency myCurrency = await CurrencyConverter.getMyCurrency();
     var usdConvert2 = await CurrencyConverter.convert(
@@ -154,62 +180,88 @@ const SizedBox(height: 20,),
               Obx(() {
                 return
  statusOfAllTransistion.value.isSuccess
-    ?
-    ListView.builder(
-    itemCount: allConvert.value.movementInfo!.length,
-    shrinkWrap: true,
-    physics: const NeverScrollableScrollPhysics(),
-    itemBuilder: (context, index) {
-
-    return
-    Column(
-      children: [
-        Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(13),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: AppTheme.primaryColor,width: 1),
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Text("1 "+allConvert.value.movementInfo![index].currency_name.toString(),
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 17,
-                              fontWeight: FontWeight.w400),),
-                      ),
-        SvgPicture.asset("assets/images/arrow1.svg"),
-                      Container(
-                        padding: const EdgeInsets.all(13),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: AppTheme.primaryColor,width: 1),
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Text("NGN",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 17,
-                              fontWeight: FontWeight.w400),),
-                      ),
-
-                      Container(
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: AppTheme.primaryColor,width: 1),
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Text(allConvert.value.movementInfo![index].currency_rate.toString(),
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 17,
-                              fontWeight: FontWeight.w500),),
-                      ),
-                    ],
-        ),
-        SizedBox(height: 10,)
-      ],
-    ); } ):  statusOfAllTransistion.value.isError
+    ? ListView.builder(
+                            itemCount: allConvert.value.movementInfo!.length,
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              String originalString = allConvert.value.movementInfo![index].currency_rate.toString();
+                              List<String> parts = originalString.split('/');
+                              String dataAfterSlash = parts.length > 1 ? parts[1] : originalString;
+                              String finalData = dataAfterSlash.replaceAll('*', '');
+                              return Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Container(
+                                        padding: const EdgeInsets.all(13),
+                                        decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: AppTheme.primaryColor,
+                                              width: 1),
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                        child: Text(
+                                          "1 " +
+                                              allConvert
+                                                  .value
+                                                  .movementInfo![index]
+                                                  .currency_name
+                                                  .toString(),
+                                          style: GoogleFonts.poppins(
+                                              color: const Color(0xFF1D1D1D),
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                      ),
+                                      SvgPicture.asset(
+                                          "assets/images/arrow1.svg"),
+                                      Container(
+                                        padding: const EdgeInsets.all(13),
+                                        decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: AppTheme.primaryColor,
+                                              width: 1),
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                        child: Text(
+                                          "NGN",
+                                          style: GoogleFonts.poppins(
+                                              color: const Color(0xFF1D1D1D),
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.all(12),
+                                        decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: AppTheme.primaryColor,
+                                              width: 1),
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                        child: Text(
+                                          finalData.toString(),
+                                          style: GoogleFonts.poppins(
+                                              color: const Color(0xFF1D1D1D),
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  )
+                                ],
+                              );
+                            })
+                        :  statusOfAllTransistion.value.isError
     ? CommonErrorWidget(
     errorText: "",
     onTap: () {},

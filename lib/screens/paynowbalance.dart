@@ -38,11 +38,8 @@ class _PayNowBalanceState extends State<PayNowBalance> {
   final formKey4 = GlobalKey<FormState>();
   Future CreatePayout() async {
     if (formKey4.currentState!.validate()) {
-      SharedPreferences pref = await SharedPreferences.getInstance();
-      if (pref.getBool('TransistionPin') == true) {
-        Get.toNamed(MyRouters.beneficeryPin);
-      }
-    else{
+
+
 
       payoutRepo(
           amount:RegistorController.amount1Controller.text.trim() ,
@@ -71,13 +68,13 @@ class _PayNowBalanceState extends State<PayNowBalance> {
           // Get.back();
           showToast(value.message.toString());
         }
-        else{
+        else {
           statusOfpayout.value = RxStatus.success();
           showToast(value.message.toString());
         }
         // showToast(value.message.toString());
       });
-    }}
+    }
   }
 
 
