@@ -194,7 +194,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                           child: child!,
                         );
                       },
-
+                      initialEntryMode: DatePickerEntryMode.calendarOnly,
                       context: context,
                       initialDate: DateTime.now(),
                       firstDate: DateTime(1950),

@@ -102,6 +102,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                         CommonTextfield(
                           onTap: () async {
                             DateTime? pickedDate = await showDatePicker(
+                              initialEntryMode: DatePickerEntryMode.calendarOnly,
                               builder: (context, child) {
                                 return Theme(
                                   data: Theme.of(context).copyWith(
@@ -145,6 +146,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                             } else {}
                           },
                           controller: registorController.dateOfBirthController,
+
                           keyboardType:
                           const TextInputType.numberWithOptions(decimal: true),
                           inputFormatters: [maskFormatter],
