@@ -45,23 +45,7 @@ class _ExtraDetailsScreenState extends State<ExtraDetailsScreen> {
             ),
 
           ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(top: 18.0,right: 10),
-              child: InkWell(
-                onTap: (){
-                  Get.toNamed(MyRouters.countryScreen);
-                },
-                child: Text(
-                  "Skip",
-                  style: GoogleFonts.poppins(
-                      color: const Color(0xFFF0D75F),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500),
-                ),
-              ),
-            ),
-          ],
+
 
         ),
         body: SingleChildScrollView(

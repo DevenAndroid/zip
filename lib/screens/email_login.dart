@@ -84,7 +84,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
   //     });
   //   }
   // }
-
+  final formKeylogin = GlobalKey<FormState>();
   var obscureText1 = true;
   final details = Get.put(DetailsController());
 
@@ -110,7 +110,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
           ),),
         body: SingleChildScrollView(
             child: Form(
-              key:details.formKey6 ,
+              key:formKeylogin ,
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Column(
@@ -221,7 +221,9 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                       SizedBox(height: 15,),
                       InkWell(
                         onTap: (){
-                          Get.toNamed(MyRouters.loginScreen);
+      if (formKeylogin.currentState!.validate()) {
+        Get.toNamed(MyRouters.loginScreen);
+      }
                         },
                         child: CustomOutlineBoder(title: "Use Mobile Number", backgroundColor: Colors.white,textColor: AppTheme.buttonColor,onPressed: (){
                           Get.toNamed(MyRouters.loginScreen);

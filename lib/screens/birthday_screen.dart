@@ -175,19 +175,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                         const SizedBox(
                           height: 20,
                         ),
-                        InkWell(
-                          onTap: () {
-                            Get.toNamed(MyRouters.tagScreen);
-                          },
-                          child: CustomOutlineBoder(
-                            title: "Skip",
-                            backgroundColor: Colors.white,
-                            textColor: AppTheme.buttonColor,
-                            onPressed: () {
-                              Get.toNamed(MyRouters.enterEmailScreen);
-                            },
-                          ),
-                        )
+
                       ])),
             )));
   }

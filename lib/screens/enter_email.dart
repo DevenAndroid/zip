@@ -58,7 +58,7 @@ class _EmailScreenState extends State<EmailScreen> {
 
       africaDetails.value = value;
       if (value.description == "Successful") {
-        emailRegister();
+        save1(context);
 
 
         statusOfAfricaDetails.value = RxStatus.success();
@@ -156,9 +156,10 @@ print("Users::::::::::::"+Controller. userId1);
           statusOfemailregister.value = RxStatus.success();
 Controller. userId1=emailregister.value.data!.user!.id.toString();
           showToast(value.data!.otp.toString());
+liveAfrica(context);
 // Get.toNamed(
 //     MyRouters.otpEmailScreen, arguments: [Controller.emailNoController.text]);
-   save1(context);
+
            showToast(value.message.toString());
         } else {
           showToast(value.message.toString());
@@ -471,9 +472,9 @@ Controller. userId1=emailregister.value.data!.user!.id.toString();
 
                       InkWell(
                           onTap: (){
-                        liveAfrica(context);
+                        // liveAfrica(context);
 
-                            // emailRegister();
+                            emailRegister();
                             //
                           },
                           child: CustomOutlineButton(title: "Next",)),

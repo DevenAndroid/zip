@@ -51,14 +51,14 @@ class DetailsController extends GetxController {
   final formKey2 = GlobalKey<FormState>();
   Rx<RxStatus> statusOflogin = RxStatus.empty().obs;
   Rx<LoginModel> login = LoginModel().obs;
-  final formKey6 = GlobalKey<FormState>();
+  final formKeylogin = GlobalKey<FormState>();
   TextEditingController emailNoController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
 
 
   Email(context) {
-    if (formKey6.currentState!.validate()) {
+
 
       loginRepo(
           context: context,
@@ -85,7 +85,7 @@ class DetailsController extends GetxController {
       }
 
       );
-    }
+
   }
 
 
@@ -102,11 +102,11 @@ class DetailsController extends GetxController {
   TextEditingController mobileNoController = TextEditingController();
   TextEditingController nopasswordController = TextEditingController();
   // var initStateBlank = Get.arguments[0];
-  final formKey4 = GlobalKey<FormState>();
+  final formKey13 = GlobalKey<FormState>();
 
 
   Login(context) {
-    if (formKey4.currentState!.validate()) {
+
 
       loginRepo(
           context: context,
@@ -129,7 +129,7 @@ class DetailsController extends GetxController {
       }
 
       );
-    }
+
   }
 
 

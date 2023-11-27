@@ -378,7 +378,9 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
 
     });
   }
-  contactCreate1(context) {
+  contactCreate1(context) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    var uniqueIdentifier= pref.getString("uniqueIdentifier");
     showToast("Contact api before");
     createContactRepo(
       emails:emailController.text.trim() ,
@@ -386,7 +388,7 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
       last_name: lastNameController.text.trim(),
       mobile_number:molileController .text.trim(),
       cf_product_type: "New Customer",
-      cf_customer_id: profileController.uniqueIdController.text.trim(),
+      cf_customer_id: uniqueIdentifier,
       last_source: "in-App",
 
       context: context,
@@ -430,9 +432,11 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
   final loanController = Get.put(LoanController());
   Rx<RxStatus> statusOfUpdateContact = RxStatus.empty().obs;
   Rx<ModelUpdateContact> updateContact = ModelUpdateContact().obs;
-  contactUpdate(context) {
+  contactUpdate(context) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    var uniqueIdentifier= pref.getString("uniqueIdentifier");
     updateContactRepo(
-
+      cf_customer_id: uniqueIdentifier,
       mobile_number:profileController.mobileController.text.trim(),
       cf_product_type: "Loan Application",
       id:profileController.saveIdController.text.trim(),
@@ -451,9 +455,11 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
     });
   }
 
-  contactUpdateCard(context) {
+  contactUpdateCard(context) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    var uniqueIdentifier= pref.getString("uniqueIdentifier");
     updateContactRepo(
-
+      cf_customer_id: uniqueIdentifier,
       mobile_number:profileController.mobileController.text.trim(),
       cf_product_type: "Virtual Card",
       id: profileController.saveIdController.text.trim(),
