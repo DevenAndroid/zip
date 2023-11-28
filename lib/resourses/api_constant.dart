@@ -18,19 +18,19 @@ class ApiUrls {
   static const String seveRequestMail = "${apiBaseUrl}send-email-globle";
   static const String saveFreshwork = "${apiBaseUrl}freshwork";
   static const String verifyOtp = "${apiBaseUrl}otps/";
-  static const String chooseBank = "https://sandboxapi.fincra.com/core/banks?";
+  static const String chooseBank = "https://api.fincra.com/core/banks?";
   static const String registerUser = "${apiBaseUrl}register";
   static const String updatePassword = "${apiBaseUrl}update-password";
   static const String SettingApi = "${apiBaseUrl}settings";
   static const String faq = "${apiBaseUrl}faq";
   static const String verificationAfrica = "${apiBaseUrl}verification-africa";
   static const String verifyAfrica = "https://api.verified.africa/sfx-verify/v3/id-service/";
-  static const String fetchAccount = "https://sandboxapi.fincra.com/profile/virtual-accounts/";
-  static const String beneficiariesCreate  = "https://sandboxapi.fincra.com/profile/beneficiaries/business/";
+  static const String fetchAccount = "https://api.fincra.com/profile/virtual-accounts/";
+  static const String beneficiariesCreate  = "https://api.fincra.com/profile/beneficiaries/business/";
   static const String addFundCard  = "https://issuecards.api.bridgecard.co/v1/issuing/sandbox/cards/fund_card";
   static const String addFundIssuesWallet  = "https://issuecards.api.bridgecard.co/v1/issuing/sandbox/cards/fund_issuing_wallet";
   static const String createContact  = "https://zipinternationallimited-team.myfreshworks.com/crm/sales/api/contacts";
-  static const String payout  = "https://sandboxapi.fincra.com/disbursements/payouts";
+  static const String payout  = "https://api.fincra.com/disbursements/payouts";
   static const String plan  = "https://billing-staging.bytestacks.io/api/v1/bundles";
   static const String verifyMeter  = "https://billing-staging.bytestacks.io/api/v1/electricity/verify";
   static const String provider  = "https://billing-staging.bytestacks.io/api/v1/cable/providers";
@@ -46,9 +46,9 @@ class ApiUrls {
   static const String UnfreezeCard  = "https://issuecards.api.bridgecard.co/v1/issuing/sandbox/cards/unfreeze_card?card_id=";
   static const String privicyPolicy  = "${apiBaseUrl}pages?slug=";
   static const String purchaseEnergy  = "https://billing-staging.bytestacks.io/api/v1/electricity/subscribe";
-  static const String conversion  = "https://sandboxapi.fincra.com/quotes/generate";
-  static const String resolve  = "https://sandboxapi.fincra.com/core/accounts/resolve";
-  static const String getBeneficiaries  = "https://sandboxapi.fincra.com/profile/beneficiaries/business/";
+  static const String conversion  = "https://api.fincra.com/quotes/generate";
+  static const String resolve  = "https://api.fincra.com/core/accounts/resolve";
+  static const String getBeneficiaries  = "https://api.fincra.com/profile/beneficiaries/business/";
   static const String getTelcos  = "https://billing-staging.bytestacks.io/api/v1/telcos";
   static const String biller  = "https://billing-staging.bytestacks.io/api/v1/electricity/billers";
   static const String cabelProviders  = "https://billing-staging.bytestacks.io/api/v1/cable/providers";
@@ -103,10 +103,10 @@ class ApiUrls {
   static const String zipTag = "${apiBaseUrl}check-zip-tag";
   static const String sendOtpForPin = "${apiBaseUrl}send-otp-for-pin";
   static const String verifyOtpForPin = "${apiBaseUrl}verify-otp-for-pin";
-  static const String benificeryList  = "https://api.flutterwave.com/v3/beneficiaries";
-  static const String vritualAccount  = "https://api.flutterwave.com/v3/virtual-account-numbers";
-  static const String vritualAccountCreate  = "https://sandboxapi.fincra.com/profile/virtual-accounts/requests/";
-  static const String checkoutPayment  = "https://sandboxapi.fincra.com/checkout/payments";
+  // static const String benificeryList  = "https://api.flutterwave.com/v3/beneficiaries";
+  // static const String vritualAccount  = "https://api.flutterwave.com/v3/virtual-account-numbers";
+  static const String vritualAccountCreate  = "https://api.fincra.com/profile/virtual-accounts/requests";
+  static const String checkoutPayment  = "https://api.fincra.com/checkout/payments";
 }
 
 Future getAuthHeader() async {
