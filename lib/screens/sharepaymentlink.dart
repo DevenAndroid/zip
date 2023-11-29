@@ -48,6 +48,16 @@ SizedBox(height: 10,),
                  fontWeight: FontWeight.w400),textAlign: TextAlign.center,
            ),
          ),
+
+         Center(
+           child: Text(
+             "Link "+register.link1.toString(),
+             style: GoogleFonts.poppins(
+                 color: const Color(0xFF1D1D1D),
+                 fontSize: 16,
+                 fontWeight: FontWeight.w400),textAlign: TextAlign.center,
+           ),
+         ),
          SizedBox(
            height: size.height * .5,
          ),
