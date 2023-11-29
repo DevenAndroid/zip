@@ -46,3 +46,4 @@ Future<RegisterModel> registerRepo({password_confirmation,phone,context,bvn,emai
   //   Helpers.hideLoader(loader);
   //   return ModelCommonResponse(message: e.toString(), success: false);
 }
+
