@@ -77,7 +77,6 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
       // showToast(value.message.toString());
     );
   }
-
   void convertEur() async {
     Currency myCurrency = await CurrencyConverter.getMyCurrency();
     var usdConvert2 = await CurrencyConverter.convert(

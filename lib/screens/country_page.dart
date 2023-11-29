@@ -201,15 +201,8 @@ borderRadius: BorderRadius.circular(10),
                             },
                             child: CustomOutlineButton(title: "Next",)),
                         SizedBox(height: 20,),
-                        InkWell(
-                          onTap: (){
-                            Get.toNamed(MyRouters.otpScreen);
-                          },
-                          child: CustomOutlineBoder(title: "Skip", backgroundColor: Colors.white,textColor: AppTheme.buttonColor,onPressed: (){
-                            Get.toNamed(MyRouters.otpScreen);
-                          },),
 
-                        )]
+                      ]
 
 
 

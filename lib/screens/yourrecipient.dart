@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
@@ -168,8 +169,13 @@ class _YourRecipientState extends State<YourRecipient> {
                       return Column(
                         children: [
                           InkWell(
-                            onTap: () {
-                            Get.toNamed(MyRouters.payNowBalance,arguments: item);
+                            onTap: () async {
+                              SharedPreferences pref = await SharedPreferences.getInstance();
+                              if (pref.getBool('TransistionPin') == true) {
+                                Get.toNamed(MyRouters.beneficeryPin,arguments: item);
+                              }
+                              else{ Get.toNamed(MyRouters.payNowBalance,arguments: item);}
+
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(

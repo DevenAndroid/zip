@@ -102,6 +102,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                         CommonTextfield(
                           onTap: () async {
                             DateTime? pickedDate = await showDatePicker(
+                              initialEntryMode: DatePickerEntryMode.calendarOnly,
                               builder: (context, child) {
                                 return Theme(
                                   data: Theme.of(context).copyWith(
@@ -145,6 +146,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                             } else {}
                           },
                           controller: registorController.dateOfBirthController,
+
                           keyboardType:
                           const TextInputType.numberWithOptions(decimal: true),
                           inputFormatters: [maskFormatter],
@@ -173,19 +175,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                         const SizedBox(
                           height: 20,
                         ),
-                        InkWell(
-                          onTap: () {
-                            Get.toNamed(MyRouters.tagScreen);
-                          },
-                          child: CustomOutlineBoder(
-                            title: "Skip",
-                            backgroundColor: Colors.white,
-                            textColor: AppTheme.buttonColor,
-                            onPressed: () {
-                              Get.toNamed(MyRouters.enterEmailScreen);
-                            },
-                          ),
-                        )
+
                       ])),
             )));
   }

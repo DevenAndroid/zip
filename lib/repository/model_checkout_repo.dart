@@ -22,12 +22,16 @@ Future<ModelCheckout> checkoutRepo({context,currency,amount,name,email}) async {
   var map2 = <String, dynamic>{};
 
 
+
   map['currency'] = currency;
-  // map['redirectUrl'] = "";
+  map['paymentMethods'] = "card";
   map['amount'] = amount;
+  map['defaultPaymentMethod'] = "card";
+  map['settlementDestination'] = "settlementDestination";
   map2['name'] = name;
   map2['email'] = email;
   map['customer'] = map2;
+
 
 
 
@@ -40,7 +44,7 @@ Future<ModelCheckout> checkoutRepo({context,currency,amount,name,email}) async {
       headers: { HttpHeaders.contentTypeHeader: 'application/json',
         HttpHeaders.acceptHeader: 'application/json',
         "api-key":  details.apiKey,
-        "x-pub-key": "pk_test_NjQ1MjliZDJiZmRmMjhlN2MxOGFhOWRhOjoxMjc5NDc",
+        "x-pub-key": details.publicKey,
         "x-business-id": details.businessID,
 
       },

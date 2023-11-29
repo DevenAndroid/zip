@@ -56,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
 //     super.initState();
 //    var userName=  Get.arguments[0];
 //   }
-
+  final formKeyNumber = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery
@@ -84,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),),
         body: SingleChildScrollView(
             child: Form(
-              key: details.formKey4,
+              key: formKeyNumber,
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Column(
@@ -240,7 +240,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       InkWell(
                           onTap: (){
-                            details.Login(context);
+      if (formKeyNumber.currentState!.validate()) {
+        details.Login(context);
+      }
                             // Get.toNamed(MyRouters.mobileOtpScreen);
                           },
                           child: CustomOutlineButton(title: "SignIn",)),
