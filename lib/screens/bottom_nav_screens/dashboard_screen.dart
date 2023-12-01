@@ -25,6 +25,7 @@ class DashBoard extends StatefulWidget {
 
 class _DashBoardState extends State<DashBoard> {
   final profileController = Get.put(ProfileController());
+  final RegisterController = Get.put(registerController());
 
   @override
   void initState() {
@@ -716,7 +717,8 @@ class _DashBoardState extends State<DashBoard> {
                           ),
                           InkWell(
                             onTap: () {
-                              Get.toNamed(MyRouters.currencyConvert);
+                              RegisterController.cashCheckout2(context);
+                              // Get.toNamed(MyRouters.currencyConvert);
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
