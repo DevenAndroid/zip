@@ -14,7 +14,7 @@ import '../resourses/helper.dart';
 
 
 final details = Get.put(DetailsController());
-Future<ModelPayout> payoutRepo({firstName,accountHolderName,accountNumber,context,type,customerReference,business,paymentDestination,sourceCurrency,destinationCurrency,amount,description}) async {
+Future<ModelPayout> payoutRepo({firstName,accountHolderName,accountNumber,key,context,type,customerReference,business,paymentDestination,sourceCurrency,destinationCurrency,amount,description}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
@@ -29,6 +29,7 @@ Future<ModelPayout> payoutRepo({firstName,accountHolderName,accountNumber,contex
   map['beneficiary'] = map1;
   map1['type'] =  type;
   map["customerReference"] =  customerReference;
+  map["key"] =  key;
   // map1['email'] =  email;
 
   map['paymentDestination'] =  paymentDestination;
@@ -42,7 +43,7 @@ Future<ModelPayout> payoutRepo({firstName,accountHolderName,accountNumber,contex
 
   print(map);
   // try {
-  http.Response response = await http.post(Uri.parse(ApiUrls.payout),
+  http.Response response = await http.post(Uri.parse(ApiUrls.common),
       headers: { HttpHeaders.contentTypeHeader: 'application/json',
         HttpHeaders.acceptHeader: 'application/json',
         "api-key":  details.apiKey

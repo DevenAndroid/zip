@@ -717,8 +717,8 @@ class _DashBoardState extends State<DashBoard> {
                           ),
                           InkWell(
                             onTap: () {
-                              RegisterController.cashCheckout2(context);
-                              // Get.toNamed(MyRouters.currencyConvert);
+                              // RegisterController.cashCheckout2(context);
+                             Get.toNamed(MyRouters.currencyConvert);
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,

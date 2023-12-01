@@ -15,7 +15,7 @@ import '../resourses/helper.dart';
 
 
 final details = Get.put(DetailsController());
-Future<ModelCheckout> checkoutRepo({context,currency,amount,name,type,email}) async {
+Future<ModelCheckout> checkoutRepo({context,currency,amount,name,key,email}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
@@ -24,7 +24,7 @@ Future<ModelCheckout> checkoutRepo({context,currency,amount,name,type,email}) as
 
 
   map['currency'] = currency;
-  map['type'] = type;
+  map['key'] = key;
   // map['paymentMethods'] = "card";
   map['amount'] = amount;
   // map['defaultPaymentMethod'] = "card";

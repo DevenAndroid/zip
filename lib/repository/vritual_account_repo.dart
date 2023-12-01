@@ -25,6 +25,7 @@ Future<CreateVirtualAccountModel> accountRepo({email,bvn,phonenumber,context,fir
 
   map2['email'] = email;
   map['currency'] = "NGN";
+  map['key'] = "createAcc";
   map2['bvn'] = bvn;
   map2['firstName'] = firstName;
   map['accountType'] = accountType;
@@ -35,7 +36,7 @@ Future<CreateVirtualAccountModel> accountRepo({email,bvn,phonenumber,context,fir
 
   print(map);
   // try {
-  http.Response response = await http.post(Uri.parse(ApiUrls.vritualAccountCreate),
+  http.Response response = await http.post(Uri.parse(ApiUrls.common),
       headers: { HttpHeaders.contentTypeHeader: 'application/json',
         HttpHeaders.acceptHeader: 'application/json',
         "api-key": details.apiKey

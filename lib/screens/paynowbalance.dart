@@ -44,6 +44,7 @@ class _PayNowBalanceState extends State<PayNowBalance> {
       payoutRepo(
           amount:RegistorController.amount1Controller.text.trim() ,
           context: context,
+          key: "payouts",
           accountHolderName:data.accountHolderName.toString() ,
           accountNumber:data.destinationAddress.toString(),
           destinationCurrency:"NGN",
