@@ -18,7 +18,7 @@ Future<CreateBenificiryModel> createBenificiryRepo({firstName,name,accountHolder
   var map = <String, dynamic>{};
   var map2 = <String, dynamic>{};
 
-  map['firstName'] = firstName;
+  map['first_name'] = firstName;
   map['accountHolderName'] = accountHolderName;
 
 
@@ -27,8 +27,9 @@ Future<CreateBenificiryModel> createBenificiryRepo({firstName,name,accountHolder
 
 
 
-
+  map['key'] = "beneficiaryCreate";
   map['type'] =  "individual";
+  map['businessID'] = businessID;
   map['currency'] =  "NGN";
   map['paymentDestination'] =  "bank_account";
   map['destinationAddress'] =  destinationAddress;
@@ -40,10 +41,10 @@ Future<CreateBenificiryModel> createBenificiryRepo({firstName,name,accountHolder
 
   print(map);
   // try {
-  http.Response response = await http.post(Uri.parse(ApiUrls.beneficiariesCreate+businessID),
+  http.Response response = await http.post(Uri.parse(ApiUrls.common),
       headers: { HttpHeaders.contentTypeHeader: 'application/json',
         HttpHeaders.acceptHeader: 'application/json',
-        "api-key": details.apiKey
+
 
       },
       body: jsonEncode(map));

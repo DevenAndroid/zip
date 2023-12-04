@@ -25,7 +25,9 @@ class _ChooseBank1State extends State<ChooseBank1> {
   Rx<ChooseBankList> chooseBank = ChooseBankList().obs;
 
   ChooseBankApi() {
-    chooseBankRepo(country: "NG", currency: "NGN").then((value) {
+    chooseBankRepo(
+        // country: "NG", currency: "NGN"
+    ).then((value) {
       chooseBank.value = value;
 
       if (value.success == true) {

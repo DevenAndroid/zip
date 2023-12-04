@@ -44,9 +44,7 @@ Future<ModelCheckout> checkoutRepo({context,currency,amount,name,key,email}) asy
   http.Response response = await http.post(Uri.parse(ApiUrls.checkoutPayment),
       headers: { HttpHeaders.contentTypeHeader: 'application/json',
         HttpHeaders.acceptHeader: 'application/json',
-        "api-key":  details.apiKey,
-        "x-pub-key": details.publicKey,
-        "x-business-id": details.businessID,
+
 
       },
       body: jsonEncode(map));

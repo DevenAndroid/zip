@@ -23,7 +23,7 @@ Future<ModelFetchTelcos> getTelcosRepo() async {
     headers: { HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.acceptHeader: 'application/json',
       "secret-key": details.secretKey,
-      "api-key":details.apiKey
+
 
     },
   );

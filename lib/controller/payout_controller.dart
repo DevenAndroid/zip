@@ -54,9 +54,9 @@ var uniqueIdentifier= pref.getString("uniqueIdentifier");
     print("gyhyfyhyhfy"+details.businessID);
     // pref.getString('uniqueIdentifier', controllerProfile.modal.value.data!.user!.uniqueId.toString());
     await createBenificiryRepo(
-        name:controller.bankController.text.trim() ,
+        name:controller.bankController.text.toString() ,
         destinationAddress: accountNo.text.trim(),
-        firstName:controller.bankController.text.trim() ,
+        firstName: accountName.text.toString(),
         accountHolderName: accountName.text.trim(),
       uniqueIdentifier: uniqueIdentifier,
       businessID: details.businessID
@@ -87,9 +87,9 @@ Get.toNamed(MyRouters.yourRecipient);
 var uniqueIdentifier= pref.getString("uniqueIdentifier");
     // pref.getString('uniqueIdentifier', controllerProfile.modal.value.data!.user!.uniqueId.toString());
     await saveBenificaryRepo(
-        bank_name: controller.bankController.text.trim() ,
+        bank_name: controller.bankController.text.toString(),
         destinationAddress: accountNo.text.trim(),
-        firstName:controller.bankController.text.trim() ,
+        firstName:controller.bankController.text.toString() ,
         account_holder_name:  accountName.text.trim(),
       unique_id: uniqueIdentifier,
 
@@ -112,7 +112,7 @@ var uniqueIdentifier= pref.getString("uniqueIdentifier");
     await createBRepo(
         name:controller.bankController1.text.trim() ,
         destinationAddress: accountNo.text.trim(),
-        firstName:accountName.text.trim() ,
+        firstName:accountName.text.toString() ,
         accountHolderName: accountName.text.trim(),
         businessID:details.businessID
     ).then((value) {

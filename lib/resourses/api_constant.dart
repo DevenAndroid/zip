@@ -10,7 +10,8 @@ import '../widgets/common_colour.dart';
 
 
 class ApiUrls {
-  static const String apiBaseUrl = 'https://zipfintech.eoxyslive.com/api/';
+  static const String apiBaseUrl = 'http://178.128.83.16/api/';
+  // static const String apiBaseUrl = 'https://zipfintech.eoxyslive.com/api/';
   // static const String apiBaseUrl = 'http://178.128.83.16/api/';
   static const String otps = "${apiBaseUrl}otps";
   static const String applyLoan = "${apiBaseUrl}apply-loan";
@@ -105,7 +106,7 @@ class ApiUrls {
   static const String verifyOtpForPin = "${apiBaseUrl}verify-otp-for-pin";
   // static const String benificeryList  = "https://api.flutterwave.com/v3/beneficiaries";
   // static const String vritualAccount  = "https://api.flutterwave.com/v3/virtual-account-numbers";
-  static const String vritualAccountCreate  = "https://api.fincra.com/profile/virtual-accounts/requests";
+  static const String vritualAccountCreate  = "https://sandboxapi.fincra.com/profile/virtual-accounts/requests";
   static const String checkoutPayment  = "https://api.fincra.com/checkout/payments";
   static const String common  = "http://178.128.83.16/api/link-generation";
 }

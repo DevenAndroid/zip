@@ -46,7 +46,6 @@ Future<ModelPayout> payoutRepo({firstName,accountHolderName,accountNumber,key,co
   http.Response response = await http.post(Uri.parse(ApiUrls.common),
       headers: { HttpHeaders.contentTypeHeader: 'application/json',
         HttpHeaders.acceptHeader: 'application/json',
-        "api-key":  details.apiKey
 
       },
       body: jsonEncode(map));

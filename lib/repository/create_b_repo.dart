@@ -20,6 +20,8 @@ Future<CreateBenificiryModel> createBRepo(
   var map = <String, dynamic>{};
   var map2 = <String, dynamic>{};
   map['firstName'] = firstName;
+  map['businessID'] = businessID;
+  map['key'] = "beneficiaryCreate";
   map['accountHolderName'] = accountHolderName;
   map2['name'] = name;
   map2['bank'] = map;
@@ -30,11 +32,11 @@ Future<CreateBenificiryModel> createBRepo(
   print(map);
   // try {
   http.Response response =
-      await http.post(Uri.parse(ApiUrls.beneficiariesCreate + businessID),
+      await http.post(Uri.parse(ApiUrls.common),
           headers: {
             HttpHeaders.contentTypeHeader: 'application/json',
             HttpHeaders.acceptHeader: 'application/json',
-            "api-key":details.apiKey
+
           },
           body: jsonEncode(map));
   log("Sign IN DATA${response.body}");

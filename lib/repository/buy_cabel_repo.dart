@@ -30,8 +30,7 @@ Future<BuyCabelTvModel> BuyCabelRepo({  amount,smartcard_number,product_code,mon
   http.Response response = await http.post(Uri.parse(ApiUrls.buyCabeltv),
       headers: { HttpHeaders.contentTypeHeader: 'application/json',
         HttpHeaders.acceptHeader: 'application/json',
-        "secret-key": details.secretKey,
-        "api-key": details.apiKey,
+
 
       },
       body: jsonEncode(map));

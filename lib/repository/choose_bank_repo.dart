@@ -12,14 +12,21 @@ import '../resourses/details.dart';
 
 
 final details = Get.put(DetailsController());
-Future<ChooseBankList> chooseBankRepo({required String currency,required String country,}) async {
+Future<ChooseBankList> chooseBankRepo() async {
+  var map = <String, dynamic>{};
+
+  map['key'] = "banklist";
+  print(map);
   try {
-    http.Response response = await http.get(
-      Uri.parse(ApiUrls.chooseBank+"currency=$currency&country=$country"),
+    http.Response response = await http.post(
+      // Uri.parse(ApiUrls.chooseBank+"currency=$currency&country=$country"),
+      Uri.parse(ApiUrls.common),
         headers: { HttpHeaders.contentTypeHeader: 'application/json',
     HttpHeaders.acceptHeader: 'application/json',
-    "api-key": details.apiKey,}
+    },    body: jsonEncode(map)
+
     );
+
     print(jsonDecode(response.body));
     if (response.statusCode == 200) {
 

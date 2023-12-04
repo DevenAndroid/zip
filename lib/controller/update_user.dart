@@ -59,7 +59,7 @@ import 'loan_controller.dart';
 import 'number_controller.dart';
 
 class registerController extends GetxController {
-  final bankController = TextEditingController();
+  TextEditingController bankController = TextEditingController();
   final bankController1 = TextEditingController();
   final mobileNO = TextEditingController();
   final amount = TextEditingController();
@@ -908,7 +908,7 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
     SharedPreferences pref = await SharedPreferences.getInstance();
     var id = pref.getString("business_id");
     log("aaaaaaaa---$id");
-    await fetchAccountRepo(virtualAccountId: "6565ec5cffe51fd62f5d3ba7").then((value) {
+    await fetchAccountRepo(virtualAccountId: id).then((value) {
       fetchAccount.value = value;
       if (value.success == true) {
         statusOfFetchAccount.value = RxStatus.success();

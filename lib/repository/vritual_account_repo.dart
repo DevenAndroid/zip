@@ -17,7 +17,7 @@ import '../resourses/helper.dart';
 
 final details = Get.put(DetailsController());
 
-Future<CreateVirtualAccountModel> accountRepo({email,bvn,phonenumber,context,firstName,accountType,lastName,channel}) async {
+Future<CreateVirtualAccountModel>accountRepo({email,bvn,phonenumber,context,firstName,accountType,lastName,channel}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
@@ -39,7 +39,7 @@ Future<CreateVirtualAccountModel> accountRepo({email,bvn,phonenumber,context,fir
   http.Response response = await http.post(Uri.parse(ApiUrls.common),
       headers: { HttpHeaders.contentTypeHeader: 'application/json',
         HttpHeaders.acceptHeader: 'application/json',
-        "api-key": details.apiKey
+
 
       },
       body: jsonEncode(map));

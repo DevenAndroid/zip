@@ -24,8 +24,6 @@ Future<ModelBuyInternet> BuyDataPlanRepo({  amount,phone_no,telco,data_code,cont
   http.Response response = await http.post(Uri.parse(ApiUrls.purchaseData),
       headers: { HttpHeaders.contentTypeHeader: 'application/json',
         HttpHeaders.acceptHeader: 'application/json',
-        "secret-key": details.secretKey,
-        "api-key": details.apiKey,
 
       },
       body: jsonEncode(map));

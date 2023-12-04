@@ -23,7 +23,7 @@ Future<FetchVirtualAccountModel> fetchAccountRepo({virtualAccountId,}) async {
         await http.post(Uri.parse(ApiUrls.common), headers: {
       HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.acceptHeader: 'application/json',
-      "api-key": details.apiKey
+
     },
     body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
