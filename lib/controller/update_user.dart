@@ -97,7 +97,6 @@ String targetImage= "";
     getLiveImageRepo().then((value) async {
       modalLiveImage.value = value;
       if (value.status == true) {
-
         liveUserImage = modalLiveImage.value.data!.userImage.toString();
         // liveUserImage = modalLiveImage.value.data!.userImage.toString();
         log("Image::::::::::::::"+liveUserImage);

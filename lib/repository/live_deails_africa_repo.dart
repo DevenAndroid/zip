@@ -12,11 +12,7 @@ import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
 
-Future<ModelLiveDetails> africaLiveDetailsRepo({
-  searchParameter,
-  verificationType,
-  context,
-}) async {
+Future<ModelLiveDetails> africaLiveDetailsRepo({searchParameter, verificationType, context,}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
