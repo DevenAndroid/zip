@@ -17,20 +17,21 @@ import '../resourses/helper.dart';
 
 final details = Get.put(DetailsController());
 
-Future<CreateVirtualAccountModel>accountRepo({email,bvn,phonenumber,context,firstName,accountType,lastName,channel}) async {
+Future<CreateVirtualAccountModel>accountRepo({bvn,phonenumber,dateOfBirth,context,firstName,lastName}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
   var map2 = <String, dynamic>{};
 
-  map2['email'] = email;
+
   map['currency'] = "NGN";
   map['key'] = "createAcc";
-  map2['bvn'] = bvn;
+  map['accountType'] = "individual";
+  map2['bvn'] =bvn ;
   map2['firstName'] = firstName;
-  map['accountType'] = accountType;
-  map['channel'] = channel;
+  map['channel'] = "globus";
   map2['lastName'] = lastName;
+  map['dateOfBirth'] = dateOfBirth;
   map["KYCInformation"]= map2;
 
 

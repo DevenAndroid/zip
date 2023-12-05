@@ -832,12 +832,10 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
             bvn: numbercontroller.isNumberBvn
                 ? numbercontroller.numberBvn
                 : numbercontroller.emailBvn,
-            email: emailController.text.trim(),
             phonenumber: molileController.text.trim(),
             firstName: firstNameController.text.trim(),
             lastName: lastNameController.text.trim(),
-            channel: "globus",
-            accountType: "individual",
+         dateOfBirth: dateOfBirthController.text.trim(),
             context: context)
         .then((value) async {
       virtualAccount.value = value;
@@ -846,7 +844,7 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
           print(virtualAccount.value = value);
         }
         statusOfAccount.value = RxStatus.success();
-        accountVritualVerify(context);
+         accountVritualVerify(context);
         // fetchVritualAccount(context);
 
         showToast(value.message.toString());
@@ -867,12 +865,11 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
             bvn: numbercontroller.isNumberBvn
                 ? numbercontroller.numberBvn
                 : numbercontroller.emailBvn,
-            email: emailController.text.trim(),
             phonenumber: molileController.text.trim(),
             firstName: firstNameController.text.trim(),
             lastName: lastNameController.text.trim(),
-            channel: "providus",
-            accountType: "individual",
+        dateOfBirth: dateOfBirthController.text.trim(),
+
             context: context)
         .then((value) async {
       virtualAccount.value = value;
