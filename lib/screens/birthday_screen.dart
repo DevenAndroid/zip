@@ -100,51 +100,51 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                           height: 40,
                         ),
                         CommonTextfield(
-                          onTap: () async {
-                            DateTime? pickedDate = await showDatePicker(
-                              initialEntryMode: DatePickerEntryMode.calendarOnly,
-                              builder: (context, child) {
-                                return Theme(
-                                  data: Theme.of(context).copyWith(
-                                    colorScheme: ColorScheme.light(
-                                        primary: AppTheme
-                                            .primaryColor, // header background color
-                                        onPrimary:
-                                        Colors.white, // header text color
-                                        onSurface:
-                                        AppTheme.buttonColor // body text color
-                                    ),
-                                    textButtonTheme: TextButtonThemeData(
-                                      style: TextButton.styleFrom(
-                                        foregroundColor: AppTheme
-                                            .buttonColor, // button text color
-                                      ),
-                                    ),
-                                  ),
-                                  child: child!,
-                                );
-                              },
-
-                              context: context,
-                              initialDate: DateTime.now(),
-                              firstDate: DateTime(1950),
-                              //DateTime.now() - not to allow to choose before today.
-                              lastDate: DateTime.now(),
-                            );
-
-                            if (pickedDate != null) {
-                              print(
-                                  pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
-                              String formattedDate =
-                              DateFormat('yyyy-MM-dd').format(pickedDate);
-                              print(
-                                  formattedDate); //formatted date output using intl package =>  2021-03-16
-                              setState(() {
-                                registorController.dateOfBirthController.text =
-                                    formattedDate; //set output date to TextField value.
-                              });
-                            } else {}
-                          },
+                          // onTap: () async {
+                          //   DateTime? pickedDate = await showDatePicker(
+                          //     initialEntryMode: DatePickerEntryMode.calendarOnly,
+                          //     builder: (context, child) {
+                          //       return Theme(
+                          //         data: Theme.of(context).copyWith(
+                          //           colorScheme: ColorScheme.light(
+                          //               primary: AppTheme
+                          //                   .primaryColor, // header background color
+                          //               onPrimary:
+                          //               Colors.white, // header text color
+                          //               onSurface:
+                          //               AppTheme.buttonColor // body text color
+                          //           ),
+                          //           textButtonTheme: TextButtonThemeData(
+                          //             style: TextButton.styleFrom(
+                          //               foregroundColor: AppTheme
+                          //                   .buttonColor, // button text color
+                          //             ),
+                          //           ),
+                          //         ),
+                          //         child: child!,
+                          //       );
+                          //     },
+                          //
+                          //     context: context,
+                          //     initialDate: DateTime.now(),
+                          //     firstDate: DateTime(1950),
+                          //     //DateTime.now() - not to allow to choose before today.
+                          //     lastDate: DateTime.now(),
+                          //   );
+                          //
+                          //   if (pickedDate != null) {
+                          //     print(
+                          //         pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                          //     String formattedDate =
+                          //     DateFormat('yyyy-MM-dd').format(pickedDate);
+                          //     print(
+                          //         formattedDate); //formatted date output using intl package =>  2021-03-16
+                          //     setState(() {
+                          //       registorController.dateOfBirthController.text =
+                          //           formattedDate; //set output date to TextField value.
+                          //     });
+                          //   } else {}
+                          // },
                           controller: registorController.dateOfBirthController,
 
                           keyboardType:

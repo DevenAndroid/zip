@@ -844,8 +844,9 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
           print(virtualAccount.value = value);
         }
         statusOfAccount.value = RxStatus.success();
-         accountVritualVerify(context);
+         // accountVritualVerify(context);
         // fetchVritualAccount(context);
+        contactCreate(context);
 
         showToast(value.message.toString());
         SharedPreferences pref = await SharedPreferences.getInstance();

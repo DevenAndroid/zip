@@ -106,7 +106,7 @@ class ApiUrls {
   static const String verifyOtpForPin = "${apiBaseUrl}verify-otp-for-pin";
   // static const String benificeryList  = "https://api.flutterwave.com/v3/beneficiaries";
   // static const String vritualAccount  = "https://api.flutterwave.com/v3/virtual-account-numbers";
-  static const String vritualAccountCreate  = "https://sandboxapi.fincra.com/profile/virtual-accounts/requests";
+  static const String vritualAccountCreate  = "https://api.fincra.com/profile/virtual-accounts/requests";
   static const String checkoutPayment  = "https://api.fincra.com/checkout/payments";
   static const String common  = "http://178.128.83.16/api/link-generation";
 }
