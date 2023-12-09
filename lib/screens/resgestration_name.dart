@@ -97,6 +97,7 @@ class _UserScreenState extends State<UserScreen> {
                                 RequiredValidator(
                                     errorText: 'Please enter your first name '),
                               ]),
+                              readOnly: true,
                               controller: registorController.firstNameController,
                               obSecure: false,
                               readOnly: true,
@@ -109,6 +110,7 @@ class _UserScreenState extends State<UserScreen> {
                                 RequiredValidator(
                                     errorText: 'Please enter your last name '),
                               ]),
+                              readOnly: true,
                               controller: registorController.lastNameController,
                               obSecure: false,
                               readOnly: true,
