@@ -99,6 +99,7 @@ class _UserScreenState extends State<UserScreen> {
                               ]),
                               controller: registorController.firstNameController,
                               obSecure: false,
+                              readOnly: true,
                               hintText:  "first name"),
                           const SizedBox(
                             height: 10,
@@ -110,6 +111,7 @@ class _UserScreenState extends State<UserScreen> {
                               ]),
                               controller: registorController.lastNameController,
                               obSecure: false,
+                              readOnly: true,
                               hintText: "Last Name"),
                           const SizedBox(
                             height: 10,

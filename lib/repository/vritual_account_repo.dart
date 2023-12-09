@@ -44,7 +44,7 @@ Future<CreateVirtualAccountModel>accountRepo({bvn,phonenumber,dateOfBirth,contex
 
       },
       body: jsonEncode(map));
-  log("Sign IN DATA${response.body}");
+  log("Sign IN DATA vritual ${response.body}");
   // http.Response response = await http.post(Uri.parse(ApiUrls.loginUser),
   //     headers: await getAuthHeader(),body: jsonEncode(map) );
 
