@@ -15,7 +15,7 @@ import '../resourses/helper.dart';
 
 
 final details = Get.put(DetailsController());
-Future<ModelCheckout> checkoutRepo({context,currency,amount,name,key,email}) async {
+Future<ModelCheckout>   checkoutRepo({context,currency,amount,name,key,phoneNumber,email}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
@@ -24,6 +24,7 @@ Future<ModelCheckout> checkoutRepo({context,currency,amount,name,key,email}) asy
 
 
   map['currency'] = currency;
+  map['api-key'] =  "m98zn3Y70MXGu1VaZNhYOZO7CbULj6uU";
   map['key'] = key;
   // map['paymentMethods'] = "card";
   map['amount'] = amount;
@@ -31,6 +32,7 @@ Future<ModelCheckout> checkoutRepo({context,currency,amount,name,key,email}) asy
   // map['settlementDestination'] = "settlementDestination";
   map2['name'] = name;
   map2['email'] = email;
+  map2['phoneNumber'] = phoneNumber;
   map['customer'] = map2;
 
 
@@ -41,7 +43,7 @@ Future<ModelCheckout> checkoutRepo({context,currency,amount,name,key,email}) asy
 
   print(map);
   // try {
-  http.Response response = await http.post(Uri.parse(ApiUrls.checkoutPayment),
+  http.Response response = await http.post(Uri.parse(ApiUrls.common),
       headers: { HttpHeaders.contentTypeHeader: 'application/json',
         HttpHeaders.acceptHeader: 'application/json',
 

@@ -16,6 +16,7 @@ import '../models/africa_verify_model.dart';
 import '../models/create_virtual_account_model.dart';
 import '../models/fetchVirtualAccount_model.dart';
 import '../models/modelAfricaLive.dart';
+import '../models/model_bank_details.dart';
 import '../models/model_checkout.dart';
 import '../models/model_create_card.dart';
 import '../models/model_create_card_holder.dart';
@@ -144,8 +145,8 @@ String targetImage= "";
     ).then((value) {
       if (value.status == true) {
         print(image);
-        accountVritual(context);
-        // liveImage(context);
+        // accountVritual(context);
+         liveImage(context);
 
       }
       showToast(value.message.toString());
@@ -898,16 +899,16 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
     });
   }
 
-  Rx<FetchVirtualAccountModel> fetchAccount = FetchVirtualAccountModel().obs;
+  Rx<ModelBankDetails> fetchAccount = ModelBankDetails().obs;
   Rx<RxStatus> statusOfFetchAccount = RxStatus.empty().obs;
   final details = Get.put(DetailsController());
   Future fetchVritualAccount() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var id = pref.getString("business_id");
     log("aaaaaaaa---$id");
-    await fetchAccountRepo(virtualAccountId: id).then((value) {
+    await fetchAccountRepo().then((value) {
       fetchAccount.value = value;
-      if (value.success == true) {
+      if (value.status == true) {
         statusOfFetchAccount.value = RxStatus.success();
         // Get.toNamed(MyRouters.otpScreen,);
         showToast(value.message.toString());
@@ -970,8 +971,9 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
     await checkoutRepo(
             currency: fetchAccount.value.data!.currency.toString(),
             email: fetchAccount.value.data!.kYCInformation!.email.toString(),
-            amount: amountController.text.trim(),
+            amount: amountController.text.trim().toString(),
             key: "link",
+        phoneNumber: AddmobileController.text.trim().toString(),
             name: "${fetchAccount.value.data!.kYCInformation!.firstName.toString()} " +
                 " ${fetchAccount.value.data!.kYCInformation!.lastName.toString()}",
             // numbercontroller.isNumber ? numbercontroller.number:numbercontroller.email,
@@ -1118,6 +1120,7 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
     await checkoutRepo(
             currency: fetchAccount.value.data!.currency.toString(),
             email: fetchAccount.value.data!.kYCInformation!.email.toString(),
+            phoneNumber: AddmobileController.text.trim().toString(),
             key: "link",
             amount: amountController.text.trim(),
             name: "${fetchAccount.value.data!.kYCInformation!.firstName.toString()} " +

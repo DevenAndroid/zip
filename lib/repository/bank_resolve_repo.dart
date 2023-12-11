@@ -27,6 +27,7 @@ Future<ModelAccountResolve> resolveRepo({accountNumber,bankCode,context,}) async
   map['bankCode'] =  bankCode;
   map['type'] =  "nuban";
   map['key'] =  "resolve";
+  map['api-key'] =  "m98zn3Y70MXGu1VaZNhYOZO7CbULj6uU";
 
 
 

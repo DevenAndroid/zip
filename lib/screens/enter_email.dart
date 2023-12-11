@@ -75,7 +75,7 @@ class _EmailScreenState extends State<EmailScreen> {
   }
   Rx<RxStatus> statusOfSavedDetails = RxStatus.empty().obs;
   Rx<ModelSaveDetailsAfrica> saveDetails = ModelSaveDetailsAfrica().obs;
-  save1(context) {
+   save1(context) {
 
     africaDetailsRepo(
       userid:Controller. userId1,

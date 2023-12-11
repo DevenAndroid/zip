@@ -28,6 +28,7 @@ Future<CreateBenificiryModel> createBenificiryRepo({firstName,name,accountHolder
 
 
   map['key'] = "beneficiaryCreate";
+  map['api-key'] =  "m98zn3Y70MXGu1VaZNhYOZO7CbULj6uU";
   map['type'] =  "individual";
   map['businessID'] = businessID;
   map['currency'] =  "NGN";

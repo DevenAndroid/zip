@@ -104,6 +104,7 @@ class ApiUrls {
   static const String zipTag = "${apiBaseUrl}check-zip-tag";
   static const String sendOtpForPin = "${apiBaseUrl}send-otp-for-pin";
   static const String verifyOtpForPin = "${apiBaseUrl}verify-otp-for-pin";
+  static const String bankDetails = "${apiBaseUrl}get-bank-details";
   // static const String benificeryList  = "https://api.flutterwave.com/v3/beneficiaries";
   // static const String vritualAccount  = "https://api.flutterwave.com/v3/virtual-account-numbers";
   static const String vritualAccountCreate  = "https://api.fincra.com/profile/virtual-accounts/requests";

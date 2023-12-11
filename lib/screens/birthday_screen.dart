@@ -107,8 +107,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                                 return Theme(
                                   data: Theme.of(context).copyWith(
                                     colorScheme: ColorScheme.light(
-                                        primary: AppTheme
-                                            .primaryColor, // header background color
+                                        primary: AppTheme.primaryColor, // header background color
                                         onPrimary:
                                         Colors.white, // header text color
                                         onSurface:

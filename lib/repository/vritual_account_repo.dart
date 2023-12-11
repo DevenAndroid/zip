@@ -26,6 +26,7 @@ Future<CreateVirtualAccountModel>accountRepo({bvn,phonenumber,dateOfBirth,contex
 
   map['currency'] = "NGN";
   map['key'] = "createAcc";
+  map['api-key'] =  "m98zn3Y70MXGu1VaZNhYOZO7CbULj6uU";
   map['accountType'] = "individual";
   map2['bvn'] =bvn ;
   map2['firstName'] = firstName;

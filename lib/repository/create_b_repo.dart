@@ -22,6 +22,7 @@ Future<CreateBenificiryModel> createBRepo(
   map['firstName'] = firstName;
   map['businessID'] = businessID;
   map['key'] = "beneficiaryCreate";
+  map['api-key'] =  "m98zn3Y70MXGu1VaZNhYOZO7CbULj6uU";
   map['accountHolderName'] = accountHolderName;
   map2['name'] = name;
   map2['bank'] = map;

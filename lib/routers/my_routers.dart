@@ -94,6 +94,7 @@ import '../screens/favourate_balance.dart';
 import '../screens/favourate_screen.dart';
 import '../screens/freshchat.dart';
 import '../screens/fund_issuing_wallet.dart';
+import '../screens/image.dart';
 import '../screens/internet_screen.dart';
 import '../screens/limit_screen.dart';
 import '../screens/list_biller_screen.dart';
@@ -302,7 +303,8 @@ class MyRouters{
 
 
   static var route = [
-    GetPage(name: '/', page: () => Splash()),
+    // GetPage(name: '/', page: () => ImageScreen()),
+   GetPage(name: '/', page: () => Splash()),
 
 
 
