@@ -144,7 +144,8 @@ String targetImage= "";
     ).then((value) {
       if (value.status == true) {
         print(image);
-        liveImage(context);
+        accountVritual(context);
+        // liveImage(context);
 
       }
       showToast(value.message.toString());
