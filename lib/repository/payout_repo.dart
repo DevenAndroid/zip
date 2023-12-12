@@ -45,10 +45,7 @@ Future<ModelPayout> payoutRepo({firstName,accountHolderName,accountNumber,key,co
   print(map);
   // try {
   http.Response response = await http.post(Uri.parse(ApiUrls.common),
-      headers: { HttpHeaders.contentTypeHeader: 'application/json',
-        HttpHeaders.acceptHeader: 'application/json',
-
-      },
+      headers: await getAuthHeader(),
       body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
   // http.Response response = await http.post(Uri.parse(ApiUrls.loginUser),
