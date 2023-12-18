@@ -33,8 +33,8 @@ class _SendCash2State extends State<SendCash2> {
 
   Future resolveData() async {
     await resolveRepo(
-            accountNumber: payOutcontroller.accountNo.text.trim(),
-            bankCode:  controller.idController.text.trim(),
+            accountNumber: payOutcontroller.accountNo.text.trim().toString(),
+            bankCode:  controller.idController1.text.trim().trim(),
             context: context)
         .then((value) {
       resolve.value = value;
@@ -95,7 +95,7 @@ class _SendCash2State extends State<SendCash2> {
           padding: const EdgeInsets.only(bottom: 20.0),
           child: InkWell(
               onTap: () {
-                print( controller.bankController,);
+                print( controller.bankController.text.trim(),);
                 if (formKey4.currentState!.validate()) {
                   payOutcontroller.CreateBenificery();
                 }
@@ -107,10 +107,10 @@ class _SendCash2State extends State<SendCash2> {
           padding: const EdgeInsets.only(bottom: 20.0),
           child: InkWell(
               onTap: () {
-                print( controller.bankController,);
+                print( controller.bankController.text.trim(),);
                 if (formKey4.currentState!.validate()) {
                   Get.toNamed(MyRouters.payNow2,arguments: [
-                    controller.bankController.text.toString(),payOutcontroller.accountNo.text.toString(),payOutcontroller.accountName.text.toString()]);
+                    controller.bankController.text.toString().trim(),payOutcontroller.accountNo.text.toString().trim(),payOutcontroller.accountName.text.toString().trim()]);
                   // payOutcontroller.CreateBenificery();
                 }
               },

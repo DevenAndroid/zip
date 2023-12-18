@@ -48,7 +48,7 @@ class _PayNow2State extends State<PayNow2> {
           key: "payouts",
           user_id: profileController.modal.value.data!.user!.id.toString(),
           about: "Pay Out",
-          bank_code: RegistorController.idController.text.toString(),
+          bank_code: RegistorController.idController1.text.toString(),
           accountHolderName:accountHolder.toString() ,
           accountNumber:destinationAddress.toString(),
           destinationCurrency:"NGN",

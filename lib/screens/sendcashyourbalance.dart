@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -109,6 +110,9 @@ class _SendCashYourBalanceState extends State<SendCashYourBalance> {
                           controller: profileController.amountController,
                           obSecure: false,
                           keyboardType: TextInputType.number,
+                          inputFormatters: <TextInputFormatter>[
+                            FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                          ],
                           hintText: "Amount",
                           validator: (value) {
                             if (value!.trim().isEmpty) {

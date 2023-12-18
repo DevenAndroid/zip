@@ -54,12 +54,12 @@ var uniqueIdentifier= pref.getString("uniqueIdentifier");
     print("gyhyfyhyhfy"+details.businessID);
     // pref.getString('uniqueIdentifier', controllerProfile.modal.value.data!.user!.uniqueId.toString());
     await createBRepo(
-        name:controller.bankController.text.trim() ,
+        name:controller.bankController.text.trim().toString() ,
         unique_id: uniqueIdentifier.toString(),
-        bank_code: controller.idController.text.toString(),
-        destinationAddress: accountNo.text.trim(),
+        bank_code: controller.idController1.text.toString(),
+        destinationAddress: accountNo.text.trim().toString(),
         firstName:accountName.text.trim().toString() ,
-        accountHolderName: accountName.text.trim(),
+        accountHolderName: accountName.text.trim().toString(),
         businessID:details.businessID
     ).then((value) {
       CreateBenificiry.value = value;

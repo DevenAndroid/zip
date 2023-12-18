@@ -66,8 +66,8 @@ class registerController extends GetxController {
   TextEditingController amount = TextEditingController();
   final meterNo = TextEditingController();
   final provider = TextEditingController();
-  final idController = TextEditingController();
-  final idController1 = TextEditingController();
+  TextEditingController idController = TextEditingController();
+  TextEditingController idController1 = TextEditingController();
 String targetImage= "";
 
   TextEditingController amount1Controller = TextEditingController();

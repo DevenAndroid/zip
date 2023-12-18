@@ -136,6 +136,7 @@ class _ChooseBank1State extends State<ChooseBank1> {
                                       onTap: () {
                                         controller.bankController1.text = item.name.toString();
                                         controller.idController1.text = item.code.toString();
+                                        print("eetr"+controller.idController1.text);
                                         Get.toNamed(MyRouters.addPaymentMethod,
                                             arguments: [item.name.toString(),item.code.toString()]);
                                       },

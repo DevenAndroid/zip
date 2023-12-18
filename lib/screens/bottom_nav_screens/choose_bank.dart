@@ -135,7 +135,8 @@ class _ChooseBankState extends State<ChooseBank> {
                                         InkWell(
                                           onTap: () {
                                             controller.bankController.text = item.name.toString();
-                                            controller.idController.text = item.code.toString();
+                                            controller.idController1.text = item.code.toString();
+                                            print("tget"+controller.idController1.text);
                                             Get.toNamed(MyRouters.sendCash2,
                                                 arguments: [item.name.toString(),item.code.toString()]);
                                           },
