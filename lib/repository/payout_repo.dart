@@ -14,23 +14,26 @@ import '../resourses/helper.dart';
 
 
 final details = Get.put(DetailsController());
-Future<ModelPayout> payoutRepo({firstName,accountHolderName,accountNumber,key,context,type,customerReference,business,paymentDestination,sourceCurrency,destinationCurrency,amount,description}) async {
+Future<ModelPayout> payoutRepo({firstName,accountHolderName,about,bank_code,accountNumber,user_id,key,context,type,customerReference,business,paymentDestination,sourceCurrency,destinationCurrency,amount,description}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
   var map1 = <String, dynamic>{};
 
   map1['firstName'] = firstName;
+  map1['about'] = about;
 
   map1['accountHolderName'] = accountHolderName;
   map1['accountNumber'] = accountNumber;
   map['description'] = description;
+  map['user_id'] = user_id;
   map['business'] = business;
   map['beneficiary'] = map1;
   map1['type'] =  type;
+  map1['bank_code'] =  bank_code;
   map["customerReference"] =  customerReference;
   map["key"] =  key;
-  map['api-key'] =  "m98zn3Y70MXGu1VaZNhYOZO7CbULj6uU";
+  map['api-key'] =   details.apiKey;
   // map1['email'] =  email;
 
   map['paymentDestination'] =  paymentDestination;
@@ -45,9 +48,13 @@ Future<ModelPayout> payoutRepo({firstName,accountHolderName,accountNumber,key,co
   print(map);
   // try {
   http.Response response = await http.post(Uri.parse(ApiUrls.common),
-      headers: await getAuthHeader(),
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json',
+        HttpHeaders.acceptHeader: 'application/json',
+      },
       body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
+  log("Sign IN DATA${getAuthHeader()}");
   // http.Response response = await http.post(Uri.parse(ApiUrls.loginUser),
   //     headers: await getAuthHeader(),body: jsonEncode(map) );
 

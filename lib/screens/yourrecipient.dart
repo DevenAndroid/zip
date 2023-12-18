@@ -174,7 +174,7 @@ class _YourRecipientState extends State<YourRecipient> {
                               if (pref.getBool('TransistionPin') == true) {
                                 Get.toNamed(MyRouters.beneficeryPin,arguments: item);
                               }
-                              else{ Get.toNamed(MyRouters.payNowBalance,arguments: item);}
+                              else{ Get.toNamed(MyRouters.payNowBalance,arguments: item,);}
 
                             },
                             child: Padding(
@@ -195,7 +195,7 @@ class _YourRecipientState extends State<YourRecipient> {
                                      CircleAvatar(
                                       backgroundColor: const Color(0xffF0D75F),
                                       maxRadius: 30,
-                                      child: Text(item.firstName!.toString().trim().substring(0,1)),
+                                      child: Text(item.firstName!.toString().substring(0,1)),
                                     ),
                                     const SizedBox(width: 10,),
                                     Column(

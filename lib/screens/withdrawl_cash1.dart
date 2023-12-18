@@ -2,10 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/routers/my_routers.dart';
 
+import '../controller/payout_controller.dart';
 import '../controller/profile_controller.dart';
+import '../controller/update_user.dart';
+import '../models/model_create_payout.dart';
+import '../repository/payout_repo.dart';
+import '../resourses/api_constant.dart';
 import '../widgets/common_button.dart';
 
 class WithdrawlCash extends StatefulWidget {
@@ -17,6 +23,53 @@ class WithdrawlCash extends StatefulWidget {
 
 class _WithdrawlCashState extends State<WithdrawlCash> {
   final profileController = Get.put(ProfileController());
+  Future CreatePayout() async {
+
+    final controller = Get.put(registerController());
+    final payOutcontroller = Get.put(PayoutController());
+
+    Rx<RxStatus> statusOfpayout = RxStatus.empty().obs;
+    Rx<ModelPayout> payout = ModelPayout().obs;
+    payoutRepo(
+        amount:profileController.amountController.text.toString().trim() ,
+        context: context,
+        bank_code: controller.idController1.text.toString(),
+        user_id: profileController.modal.value.data!.user!.id.toString(),
+        key: "payouts",
+        accountHolderName:payOutcontroller.accountName.toString().trim(),
+        accountNumber:payOutcontroller.accountNo.toString().trim(),
+        destinationCurrency:"NGN",
+        about: "Cash Out",
+        customerReference:  DateFormat.jm().format(DateTime.now()),
+// RegistorController.descriptionController.text.trim(),
+// destinationCurrencyController.text.trim() ,
+        sourceCurrency: "NGN",
+        // sourceCurrencyController.text.trim(),
+        description: DateFormat.jm().format(DateTime.now()),
+        // email:data.email.toString(),
+        firstName: controller.bankController1.toString().trim(),
+        // lastName:data.lastName.toString() ,
+        paymentDestination:"bank_account" ,
+        type:"individual" ,
+        business: details.businessID
+    ).then((value) {
+      payout.value = value;
+      if (value.success == true) {
+        statusOfpayout.value = RxStatus.success();
+        // saveList();
+        Get.toNamed(MyRouters.success3Screen);
+        // Get.back();
+        showToast(value.message.toString());
+      }
+      else {
+        statusOfpayout.value = RxStatus.success();
+        showToast(value.message.toString());
+      }
+      // showToast(value.message.toString());
+    });
+
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -71,7 +124,8 @@ class _WithdrawlCashState extends State<WithdrawlCash> {
                   Get.toNamed(MyRouters.securityOtpScreen1);
                 }
                 else{
-                  Get.toNamed(MyRouters.success3Screen);
+
+                  CreatePayout();
                 }
               },
               child: const CustomOutlineButton(

@@ -16,15 +16,18 @@ Future<ChooseBankList> chooseBankRepo() async {
   var map = <String, dynamic>{};
 
   map['key'] = "banklist";
-  map['api-key'] =  "m98zn3Y70MXGu1VaZNhYOZO7CbULj6uU";
+  map['api-key'] =   details.apiKey;
   print(map);
   try {
     http.Response response = await http.post(
       // Uri.parse(ApiUrls.chooseBank+"currency=$currency&country=$country"),
       Uri.parse(ApiUrls.common),
-        headers: { HttpHeaders.contentTypeHeader: 'application/json',
-    HttpHeaders.acceptHeader: 'application/json',
-    },    body: jsonEncode(map)
+        // headers: await getAuthHeader(),
+        headers: {
+          HttpHeaders.contentTypeHeader: 'application/json',
+          HttpHeaders.acceptHeader: 'application/json',
+        },
+        body: jsonEncode(map)
 
     );
 

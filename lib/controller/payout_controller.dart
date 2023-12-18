@@ -53,16 +53,17 @@ class PayoutController extends GetxController {
 var uniqueIdentifier= pref.getString("uniqueIdentifier");
     print("gyhyfyhyhfy"+details.businessID);
     // pref.getString('uniqueIdentifier', controllerProfile.modal.value.data!.user!.uniqueId.toString());
-    await createBenificiryRepo(
-        name:controller.bankController.text.toString() ,
+    await createBRepo(
+        name:controller.bankController.text.trim() ,
+        unique_id: uniqueIdentifier.toString(),
+        bank_code: controller.idController.text.toString(),
         destinationAddress: accountNo.text.trim(),
-        firstName: accountName.text.toString(),
+        firstName:accountName.text.trim().toString() ,
         accountHolderName: accountName.text.trim(),
-      uniqueIdentifier: uniqueIdentifier,
-      businessID: details.businessID
+        businessID:details.businessID
     ).then((value) {
       CreateBenificiry.value = value;
-      if (value.success == true) {
+      if (value.status == true) {
         statusOfBenificiry.value = RxStatus.success();
 
 print(details.businessID);
@@ -108,19 +109,51 @@ var uniqueIdentifier= pref.getString("uniqueIdentifier");
     });
   }
   Future save(context) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    var uniqueIdentifier = pref.getString("uniqueIdentifier");
     print("ifhuifhifhiuhfd");
     await createBRepo(
         name:controller.bankController1.text.trim() ,
+        unique_id: uniqueIdentifier.toString(),
+        bank_code: controller.idController1.text.toString(),
         destinationAddress: accountNo.text.trim(),
-        firstName:accountName.text.toString() ,
+        firstName:accountName.text.trim().toString() ,
         accountHolderName: accountName.text.trim(),
         businessID:details.businessID
     ).then((value) {
       CreateBenificiry1.value = value;
-      if (value.success == true) {
+      if (value.status == true) {
 
         print("ifhuifhifhrrfvrfvrfvrfvrfvrfvrfvtiuhfd");
         saveDetails(context);
+        statusOfBenificiry.value = RxStatus.success();
+        showToast(value.message.toString());
+      }
+      else{
+        statusOfBenificiry.value = RxStatus.success();
+        showToast(value.message.toString());
+      }
+      // showToast(value.message.toString());
+    });
+  }
+  Future save1(context) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    var uniqueIdentifier = pref.getString("uniqueIdentifier");
+    print("ifhuifhifhiuhfd");
+    await createBRepo(
+        bank_code: controller.idController1.text.toString(),
+        unique_id: uniqueIdentifier.toString(),
+        name:controller.bankController1.text.trim() ,
+        destinationAddress: accountNo.text.trim(),
+        firstName:accountName.text.trim().toString() ,
+        accountHolderName: accountName.text.trim(),
+        businessID:details.businessID
+    ).then((value) {
+      CreateBenificiry1.value = value;
+      if (value.status == true) {
+
+        print("ifhuifhifhrrfvrfvrfvrfvrfvrfvrfvtiuhfd");
+        saveDetails1(context);
         statusOfBenificiry.value = RxStatus.success();
         showToast(value.message.toString());
       }
@@ -153,6 +186,33 @@ var uniqueIdentifier= pref.getString("uniqueIdentifier");
         statusOfSaveDetails.value = RxStatus.success();
 
         Get.toNamed(MyRouters.sendCashYourBalance);
+
+
+        showToast(value.message.toString());
+
+      }
+      else{
+        statusOfSaveDetails.value = RxStatus.success();
+        showToast(value.message.toString());
+      }
+      // showToast(value.message.toString());
+    });
+  }
+  Future saveDetails1(context) async {
+    await saveBankRepo(
+        bank_name: controller.bankController1.text.trim() ,
+        destinationAddress: accountNo.text.trim(),
+        firstName:accountName.text.trim().toString() ,
+     context: context,
+
+
+
+    ).then((value) {
+      saveBankDetails.value = value;
+      if (value.status == true) {
+        statusOfSaveDetails.value = RxStatus.success();
+
+        Get.toNamed(MyRouters.success3Screen);
 
 
         showToast(value.message.toString());

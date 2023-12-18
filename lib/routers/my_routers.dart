@@ -109,6 +109,7 @@ import '../screens/onboardingScreen.dart';
 import '../screens/opt_uesrs.dart';
 import '../screens/payment link2.dart';
 import '../screens/paymentlink.dart';
+import '../screens/paynow_2_screen.dart';
 import '../screens/personal_address.dart';
 import '../screens/personal_screen.dart';
 import '../screens/privacy_policy.dart';
@@ -298,6 +299,7 @@ class MyRouters{
   static var notVerifyAfricaScreen = "/notVerifyAfricaScreen";
   static var withdrawlCash = "/withdrawlCash";
   static var success3Screen = "/success3Screen";
+  static var payNow2 = "/payNow2";
 
 
 
@@ -442,6 +444,7 @@ class MyRouters{
     GetPage(name: "/addRecipientsStart", page: ()=>  const AddRecipientStart()),
     GetPage(name: "/sendCashYourBalance", page: ()=>  const SendCashYourBalance()),
     GetPage(name: "/yourRecipient", page: ()=>  const YourRecipient()),
+    GetPage(name: "/payNow2", page: ()=>  const PayNow2()),
     GetPage(name: "/transferLimit", page: ()=>  const TransferLimit()),
     GetPage(name: "/loginScreen", page: ()=>  const LoginScreen()),
     GetPage(name: "/emailLoginScreen", page: ()=>  const EmailLoginScreen()),

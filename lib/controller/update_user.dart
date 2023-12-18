@@ -61,9 +61,9 @@ import 'number_controller.dart';
 
 class registerController extends GetxController {
   TextEditingController bankController = TextEditingController();
-  final bankController1 = TextEditingController();
-  final mobileNO = TextEditingController();
-  final amount = TextEditingController();
+  TextEditingController bankController1 = TextEditingController();
+  TextEditingController mobileNO = TextEditingController();
+  TextEditingController amount = TextEditingController();
   final meterNo = TextEditingController();
   final provider = TextEditingController();
   final idController = TextEditingController();
@@ -973,7 +973,7 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
             email: fetchAccount.value.data!.kYCInformation!.email.toString(),
             amount: amountController.text.trim().toString(),
             key: "link",
-        phoneNumber: AddmobileController.text.trim().toString(),
+        phoneNumber: fetchAccount.value.data!.kYCInformation!.phoneNumber.toString(),
             name: "${fetchAccount.value.data!.kYCInformation!.firstName.toString()} " +
                 " ${fetchAccount.value.data!.kYCInformation!.lastName.toString()}",
             // numbercontroller.isNumber ? numbercontroller.number:numbercontroller.email,
@@ -1094,7 +1094,7 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
     await requestMailRepo(
         by_requested_id: profileController.modal.value.data!.user!.id.toString(),
         amount:amountController.text.trim(),
-        phone: AddmobileController.text.trim(),
+        phone: fetchAccount.value.data!.kYCInformation!.phoneNumber.toString(),
         email: AddEmailController.text.trim(),
         requested_id: AddNameController.text.trim(),
         generate_link:link1.value.toString() ,
@@ -1120,7 +1120,7 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
     await checkoutRepo(
             currency: fetchAccount.value.data!.currency.toString(),
             email: fetchAccount.value.data!.kYCInformation!.email.toString(),
-            phoneNumber: AddmobileController.text.trim().toString(),
+            phoneNumber:fetchAccount.value.data!.kYCInformation!.phoneNumber.toString(),
             key: "link",
             amount: amountController.text.trim(),
             name: "${fetchAccount.value.data!.kYCInformation!.firstName.toString()} " +

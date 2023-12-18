@@ -26,7 +26,7 @@ Future<CreateVirtualAccountModel>accountRepo({bvn,phonenumber,dateOfBirth,contex
 
   map['currency'] = "NGN";
   map['key'] = "createAcc";
-  map['api-key'] =  "m98zn3Y70MXGu1VaZNhYOZO7CbULj6uU";
+  map['api-key'] =   details.apiKey;
   map['accountType'] = "individual";
   map2['bvn'] =bvn ;
   map2['firstName'] = firstName;
@@ -39,10 +39,9 @@ Future<CreateVirtualAccountModel>accountRepo({bvn,phonenumber,dateOfBirth,contex
   print(map);
   // try {
   http.Response response = await http.post(Uri.parse(ApiUrls.common),
-      headers: { HttpHeaders.contentTypeHeader: 'application/json',
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json',
         HttpHeaders.acceptHeader: 'application/json',
-
-
       },
       body: jsonEncode(map));
   log("Sign IN DATA vritual ${response.body}");

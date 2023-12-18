@@ -27,7 +27,7 @@ Future<ModelAccountResolve> resolveRepo({accountNumber,bankCode,context,}) async
   map['bankCode'] =  bankCode;
   map['type'] =  "nuban";
   map['key'] =  "resolve";
-  map['api-key'] =  "m98zn3Y70MXGu1VaZNhYOZO7CbULj6uU";
+  map['api-key'] =  details.apiKey;
 
 
 
@@ -36,10 +36,9 @@ Future<ModelAccountResolve> resolveRepo({accountNumber,bankCode,context,}) async
   print(map);
   // try {
   http.Response response = await http.post(Uri.parse(ApiUrls.common),
-      headers: { HttpHeaders.contentTypeHeader: 'application/json',
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json',
         HttpHeaders.acceptHeader: 'application/json',
-
-
       },
       body: jsonEncode(map));
   log("Sign IN DATA${response.body}");

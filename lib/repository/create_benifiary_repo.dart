@@ -28,7 +28,7 @@ Future<CreateBenificiryModel> createBenificiryRepo({firstName,name,accountHolder
 
 
   map['key'] = "beneficiaryCreate";
-  map['api-key'] =  "m98zn3Y70MXGu1VaZNhYOZO7CbULj6uU";
+  map['api-key'] =   details.apiKey;
   map['type'] =  "individual";
   map['businessID'] = businessID;
   map['currency'] =  "NGN";
@@ -43,10 +43,9 @@ Future<CreateBenificiryModel> createBenificiryRepo({firstName,name,accountHolder
   print(map);
   // try {
   http.Response response = await http.post(Uri.parse(ApiUrls.common),
-      headers: { HttpHeaders.contentTypeHeader: 'application/json',
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json',
         HttpHeaders.acceptHeader: 'application/json',
-
-
       },
       body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
@@ -61,7 +60,7 @@ Future<CreateBenificiryModel> createBenificiryRepo({firstName,name,accountHolder
   } else {
 
     print(jsonDecode(response.body));
-    return CreateBenificiryModel(message: jsonDecode(response.body)["message"],success: false );
+    return CreateBenificiryModel(message: jsonDecode(response.body)["message"],status: false );
   }
   // }  catch (e) {
   //   Helpers.hideLoader(loader);

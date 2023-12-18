@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
@@ -16,6 +17,10 @@ import '../../controller/update_user.dart';
 import '../../models/model_account_resolve.dart';
 import '../../repository/bank_resolve_repo.dart';
 import '../../resourses/api_constant.dart';
+import '../controller/profile_controller.dart';
+import '../models/model_create_payout.dart';
+import '../repository/payout_repo.dart';
+import '../resourses/details.dart';
 
 class AddPaymentMethod extends StatefulWidget {
   const AddPaymentMethod({Key? key}) : super(key: key);
@@ -25,9 +30,12 @@ class AddPaymentMethod extends StatefulWidget {
 }
 
 class _AddPaymentMethodState extends State<AddPaymentMethod> {
-  bool isSwitched = false;
 
-
+  final profileController = Get.put(ProfileController());
+  final RegistorController = Get.put(registerController());
+  final details = Get.put(DetailsController());
+  Rx<RxStatus> statusOfpayout = RxStatus.empty().obs;
+  Rx<ModelPayout> payout = ModelPayout().obs;
   Rx<ModelAccountResolve> resolve = ModelAccountResolve().obs;
   Rx<RxStatus> statusOfResolve = RxStatus.empty().obs;
 
@@ -54,7 +62,50 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
   // final TextEditingController bankController = TextEditingController();
   final controller = Get.put(registerController());
   final payOutcontroller = Get.put(PayoutController());
+  Future CreatePayout() async {
 
+
+
+
+      payoutRepo(
+          amount:profileController.amountController.text.toString().trim() ,
+          context: context,
+          user_id: profileController.modal.value.data!.user!.id.toString(),
+          key: "payouts",
+          bank_code: controller.idController1.text.toString(),
+          accountHolderName:payOutcontroller.accountName.toString().trim(),
+          accountNumber:payOutcontroller.accountNo.toString().trim(),
+          destinationCurrency:"NGN",
+          about: "Cash Out",
+          customerReference:  DateFormat.jm().format(DateTime.now()),
+// RegistorController.descriptionController.text.trim(),
+// destinationCurrencyController.text.trim() ,
+          sourceCurrency: "NGN",
+          // sourceCurrencyController.text.trim(),
+          description: DateFormat.jm().format(DateTime.now()),
+          // email:data.email.toString(),
+          firstName: controller.bankController1.toString().trim(),
+          // lastName:data.lastName.toString() ,
+          paymentDestination:"bank_account" ,
+          type:"individual" ,
+          business: details.businessID
+      ).then((value) {
+        payout.value = value;
+        if (value.success == true) {
+          statusOfpayout.value = RxStatus.success();
+          // saveList();
+          payOutcontroller.saveDetails1(context);
+          // Get.back();
+          showToast(value.message.toString());
+        }
+        else {
+          statusOfpayout.value = RxStatus.success();
+          showToast(value.message.toString());
+        }
+        // showToast(value.message.toString());
+      });
+
+  }
   @override
   void initState() {
     // TODO: implement initState
@@ -88,11 +139,25 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
                 fontWeight: FontWeight.w500),
           ),
         ),
-        bottomNavigationBar: Padding(
+        bottomNavigationBar: profileController.isSwitched ==true ?
+        Padding(
           padding: const EdgeInsets.only(bottom: 20.0),
           child: InkWell(
             onTap: (){
               payOutcontroller.save(context);
+            },
+            child: CustomOutlineButton(
+              title: "Continue",
+
+            ),
+          ),
+        ):
+        Padding(
+          padding: const EdgeInsets.only(bottom: 20.0),
+          child: InkWell(
+            onTap: (){
+              Get.toNamed(MyRouters.withdrawlCash);
+
             },
             child: CustomOutlineButton(
               title: "Continue",
@@ -226,12 +291,12 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
                               height: 20,
                               child: CupertinoSwitch(
                                 thumbColor: Colors.black,
-                                value: isSwitched,
+                                value: profileController.isSwitched,
                                 activeColor: Color(0xffF0D75F),
                                 onChanged: (value) {
                                   setState(() {
-                                    isSwitched = value;
-                                    print(isSwitched);
+                                    profileController.isSwitched = value;
+                                    print(profileController.isSwitched);
                                   });
                                 },
                               ),

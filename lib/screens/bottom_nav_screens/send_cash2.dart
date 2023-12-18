@@ -90,13 +90,28 @@ class _SendCash2State extends State<SendCash2> {
                 fontWeight: FontWeight.w500),
           ),
         ),
-        bottomNavigationBar: Padding(
+        bottomNavigationBar: isSwitched==true?
+        Padding(
           padding: const EdgeInsets.only(bottom: 20.0),
           child: InkWell(
               onTap: () {
                 print( controller.bankController,);
                 if (formKey4.currentState!.validate()) {
                   payOutcontroller.CreateBenificery();
+                }
+              },
+              child: const CustomOutlineButton(
+                title: "Continue",
+              )),
+        ):Padding(
+          padding: const EdgeInsets.only(bottom: 20.0),
+          child: InkWell(
+              onTap: () {
+                print( controller.bankController,);
+                if (formKey4.currentState!.validate()) {
+                  Get.toNamed(MyRouters.payNow2,arguments: [
+                    controller.bankController.text.toString(),payOutcontroller.accountNo.text.toString(),payOutcontroller.accountName.text.toString()]);
+                  // payOutcontroller.CreateBenificery();
                 }
               },
               child: const CustomOutlineButton(

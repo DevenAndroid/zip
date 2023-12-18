@@ -49,7 +49,7 @@ class ProfileController extends GetxController {
   final numbercontroller = Get.put(numberController());
 
   // final registorController = Get.put(registerController());
-
+  bool isSwitched = false;
   String resulttext = "0";
   String divideText = "0";
    String fundText = "0";

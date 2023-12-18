@@ -91,13 +91,15 @@ class KYCInformation {
   String? firstName;
   String? lastName;
   String? email;
+  String? phoneNumber;
 
-  KYCInformation({this.firstName, this.lastName, this.email});
+  KYCInformation({this.firstName, this.lastName, this.email, this.phoneNumber});
 
   KYCInformation.fromJson(Map<String, dynamic> json) {
     firstName = json['firstName'];
     lastName = json['lastName'];
     email = json['email'];
+    phoneNumber = json['phoneNumber'];
   }
 
   Map<String, dynamic> toJson() {
@@ -105,6 +107,7 @@ class KYCInformation {
     data['firstName'] = this.firstName;
     data['lastName'] = this.lastName;
     data['email'] = this.email;
+    data['phoneNumber'] = this.phoneNumber;
     return data;
   }
 }

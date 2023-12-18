@@ -20,6 +20,7 @@ import '../models/save_transastion_model.dart';
 import '../repository/payout_repo.dart';
 import '../repository/save_buy_plan_repo.dart';
 import '../resourses/api_constant.dart';
+import '../resourses/details.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_textfield.dart';
 
@@ -32,7 +33,7 @@ class PayNowBalance extends StatefulWidget {
 
 class _PayNowBalanceState extends State<PayNowBalance> {
   final RegistorController = Get.put(registerController());
-
+  final details = Get.put(DetailsController());
   Rx<RxStatus> statusOfpayout = RxStatus.empty().obs;
   Rx<ModelPayout> payout = ModelPayout().obs;
   final formKey4 = GlobalKey<FormState>();
@@ -45,9 +46,12 @@ class _PayNowBalanceState extends State<PayNowBalance> {
           amount:RegistorController.amount1Controller.text.trim() ,
           context: context,
           key: "payouts",
+          bank_code: RegistorController.idController1.text.toString(),
+          user_id: profileController.modal.value.data!.user!.id.toString(),
           accountHolderName:data.accountHolderName.toString() ,
           accountNumber:data.destinationAddress.toString(),
           destinationCurrency:"NGN",
+          about: "Pay Out",
           customerReference:  DateFormat.jm().format(DateTime.now()),
 // RegistorController.descriptionController.text.trim(),
 // destinationCurrencyController.text.trim() ,
@@ -55,16 +59,16 @@ class _PayNowBalanceState extends State<PayNowBalance> {
           // sourceCurrencyController.text.trim(),
           description: RegistorController.descriptionController.text.trim(),
           // email:data.email.toString(),
-          firstName:data.firstName.toString() ,
+          firstName: data.firstName.toString() ,
           // lastName:data.lastName.toString() ,
           paymentDestination:"bank_account" ,
           type:"individual" ,
-          business:  '64529bd2bfdf28e7c18aa9da'
+          business: details.businessID
       ).then((value) {
         payout.value = value;
         if (value.success == true) {
           statusOfpayout.value = RxStatus.success();
-          saveList();
+          // saveList();
           Get.toNamed(MyRouters.successRechargeScreen);
           // Get.back();
           showToast(value.message.toString());

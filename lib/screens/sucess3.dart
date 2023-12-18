@@ -58,7 +58,7 @@ class _Success3ScreenState extends State<Success3Screen> {
                       SizedBox(height: size.height*.5,),
                       InkWell(
                           onTap: (){
-                            profileController.saveList3(context);
+                            Get.toNamed(MyRouters.bottomNavbar);
 
                           },
                           child: CustomOutlineButton(title: "Done",)),

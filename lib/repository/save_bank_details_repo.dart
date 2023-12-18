@@ -20,7 +20,7 @@ Future<ModelSaveBankDetails> saveBankRepo({destinationAddress, context,bank_name
 
   http.Response response = await http.post(Uri.parse(ApiUrls.saveBankDetails),
       headers: await getAuthHeader(), body: jsonEncode(map));
-  log("Sign IN DATA${response.body}");
+  log("Sign IN DATAAAAAA${response.body}");
 
   if (response.statusCode == 200) {
     Helpers.hideLoader(loader);

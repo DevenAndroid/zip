@@ -44,15 +44,17 @@ class _FavourateBalanceState extends State<FavourateBalance> {
        payoutRepo(
            amount:amountController.text.trim() ,
            context: context,
+           user_id: profileController.modal.value.data!.user!.id.toString(),
+           bank_code: RegistorController.idController1.text.toString(),
            accountHolderName:data.accountHolderName.toString() ,
            accountNumber:data.destinationAddress.toString(),
            destinationCurrency:"NGN",
 // destinationCurrencyController.text.trim() ,
            sourceCurrency: "NGN",
            // sourceCurrencyController.text.trim(),
-           description: descriptionController.text.trim(),
+           description: descriptionController.text.trim().toString(),
            // email:data.email.toString(),
-           firstName:data.firstName.toString() ,
+           firstName:data.firstName.toString().trim() ,
            // lastName:data.lastName.toString() ,
            paymentDestination:"bank_account" ,
            type:"individual" ,
@@ -76,6 +78,7 @@ class _FavourateBalanceState extends State<FavourateBalance> {
 
 
   }
+
 
 
   favouriteData data = favouriteData();
