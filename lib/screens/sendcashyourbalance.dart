@@ -81,10 +81,7 @@ class _SendCashYourBalanceState extends State<SendCashYourBalance> {
                               Image.network("https://cdn-icons-png.flaticon.com/512/32/32974.png",color: Colors.black,width: 15,height: 15,),
                               Text(
 
-                                NumberFormat.currency(
-                                  symbol: '', // Set the currency symbol to empty since you're formatting as a plain number
-                                  decimalDigits: 0, // Set the number of decimal digits to 0
-                                ).format(profileController.currentBalanceModel.value.data),
+                              profileController.currentBalanceModel.value.data!.currentBalance.toString(),
                                 style: GoogleFonts.poppins(
                                     color: const Color(0xFF1D1D1D),
                                     fontSize: 20,
@@ -106,6 +103,22 @@ class _SendCashYourBalanceState extends State<SendCashYourBalance> {
                         const SizedBox(
                           height: 17,
                         ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15,right: 6),
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                              "FEE : "+ profileController.currentBalanceModel.value.data!.fee.toString(),
+                              style: GoogleFonts.poppins(
+                                  color: const Color(0xFF1D1D1D),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 7,
+                        ),
                         CommonTextfield(
                           controller: profileController.amountController,
                           obSecure: false,
@@ -122,11 +135,11 @@ class _SendCashYourBalanceState extends State<SendCashYourBalance> {
                               return "Enter valid amount";
                             }
                             if (double.parse(value.trim()) >
-                                (double.tryParse(profileController.currentBalanceModel.value.data.toString()) ?? 0)) {
+                                (double.tryParse(profileController.currentBalanceModel.value.data!.currentBalance.toString()) ?? 0)) {
                               return "Please enter amount less than balance ";
                             }
                           },
-                          labelText: "Amount",
+
                         ),
                         const SizedBox(
                           height: 20,

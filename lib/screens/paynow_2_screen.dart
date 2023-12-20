@@ -168,7 +168,7 @@ var accountHolder = Get.arguments[2];
                       Image.network("https://cdn-icons-png.flaticon.com/512/32/32974.png",color: Colors.black,width: 15,height: 15,),
 
                       Text(
-                        profileController. currentBalanceModel.value.data.toString(),
+                       profileController.currentBalanceModel.value.data!.currentBalance.toString(),
                         style: GoogleFonts.poppins(
                             color: const Color(0xFF1D1D1D),
                             fontSize: 20,
@@ -215,7 +215,7 @@ var accountHolder = Get.arguments[2];
                 Padding(
                   padding: const EdgeInsets.only(left: 15,right: 6),
                   child: Text(
-                    "Amount ",
+                    "Amount FEE "+ profileController.currentBalanceModel.value.data!.fee.toString(),
                     style: GoogleFonts.poppins(
                         color: const Color(0xFF1D1D1D),
                         fontSize: 15,
@@ -242,7 +242,7 @@ var accountHolder = Get.arguments[2];
                       return "Enter valid amount";
                     }
                     if (double.parse(value.trim()) >
-                        (double.tryParse(profileController.currentBalanceModel.value.data.toString()) ?? 0)) {
+                        (double.tryParse(profileController.currentBalanceModel.value.data!.currentBalance.toString()) ?? 0)) {
                       return "Please enter amount less than balance ";
                     }
                   },

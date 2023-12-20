@@ -63,6 +63,8 @@ import '../screens/add_fund_card_screen.dart';
 import '../screens/add_fund_exchange.dart';
 import '../screens/add_payment_method.dart';
 import '../screens/addfundsinbank.dart';
+import '../screens/airtime_country_screen.dart';
+import '../screens/airtime_product_screen.dart';
 import '../screens/bank_details.dart';
 import '../screens/beneficery_pin.dart';
 import '../screens/buy_airtime_list.dart';
@@ -300,6 +302,8 @@ class MyRouters{
   static var withdrawlCash = "/withdrawlCash";
   static var success3Screen = "/success3Screen";
   static var payNow2 = "/payNow2";
+  static var buyAirtimeCountryScreen = "/buyAirtimeCountryScreen";
+  static var buyAirtimeProductScreen = "/buyAirtimeProductScreen";
 
 
 
@@ -313,6 +317,7 @@ class MyRouters{
     GetPage(name: onBoardingScreen, page: () =>   const OnBoardingScreen()),
     GetPage(name: '/withdrawlCash', page: () =>   const WithdrawlCash()),
     GetPage(name: '/success3Screen', page: () =>   const Success3Screen()),
+    GetPage(name: '/buyAirtimeProductScreen', page: () =>   const BuyAirtimeProductScreen()),
     GetPage(name: '/usersOtpScreen', page: () =>   const UsersOtpScreen()),
     GetPage(name: '/addFundScreen', page: () =>   const AddFundScreen()),
     GetPage(name: '/fundIssuingWallet', page: () =>   const FundIssuingWallet()),
@@ -342,6 +347,7 @@ class MyRouters{
     GetPage(name: '/freshchat', page: () =>    Chat()),
     GetPage(name: '/successRechargeScreen', page: () =>   const SuccessRechargeScreen()),
     GetPage(name: '/buyAirtimecreen', page: () =>   const BuyAirtimecreen()),
+    GetPage(name: '/buyAirtimeCountryScreen', page: () =>   const BuyAirtimeCountryScreen()),
     GetPage(name: '/verifyPaymentLink2', page: () =>   const VerifyPaymentLink2()),
     GetPage(name: '/cabelTvPin', page: () =>   const CabelTvPin()),
     GetPage(name: '/favouriteScreen', page: () =>   const FavouriteScreen()),

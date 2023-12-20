@@ -164,15 +164,10 @@ class _DashBoardState extends State<DashBoard> {
                                                     ),
                                                     FittedBox(
                                                       child: Text(
-                                                        NumberFormat.currency(
-                                                          symbol: '',
-                                                          // Set the currency symbol to empty since you're formatting as a plain number
-                                                          decimalDigits:
-                                                              0, // Set the number of decimal digits to 0
-                                                        ).format(profileController
-                                                            .currentBalanceModel
-                                                            .value
-                                                            .data),
+                                                          profileController
+                                                              .currentBalanceModel
+                                                              .value
+                                                              .data!.currentBalance.toString(),
                                                         style:
                                                             GoogleFonts.poppins(
                                                                 color: Colors

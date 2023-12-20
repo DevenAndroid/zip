@@ -134,15 +134,14 @@ class _ChooseBank1State extends State<ChooseBank1> {
                                   children: [
                                     InkWell(
                                       onTap: () {
-                                        controller.bankController1.text = item.name.toString();
+                                        controller.bankController1.text = item.name.toString().toUpperCase();
                                         controller.idController1.text = item.code.toString();
                                         print("eetr"+controller.idController1.text);
                                         Get.toNamed(MyRouters.addPaymentMethod,
                                             arguments: [item.name.toString(),item.code.toString()]);
                                       },
                                       child: Text(
-                                        item.name
-                                            .toString(),
+                                        item.name.toString().toUpperCase(),
                                         style: GoogleFonts.poppins(
                                             color: const Color(0xFF1D1D1D),
                                             fontSize: 15,

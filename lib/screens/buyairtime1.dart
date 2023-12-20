@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,8 +10,10 @@ import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
 import '../models/mode_biller.dart';
 import '../models/model_fetch_telcos.dart';
+import '../models/service_common_model.dart';
 import '../repository/fetch_telcos_repo.dart';
 import '../repository/list_biller_repo.dart';
+import '../repository/service_common_repo.dart';
 import '../widgets/circular_progressindicator.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_colour.dart';
@@ -25,15 +28,28 @@ class BuyAirtimecreen extends StatefulWidget {
 class _BuyAirtimecreenState extends State<BuyAirtimecreen> {
 
   Rx<RxStatus> statusOftelcos= RxStatus.empty().obs;
-  Rx<ModelFetchTelcos> telcos = ModelFetchTelcos().obs;
+  Rx<ServiceCommonModel> telcos = ServiceCommonModel().obs;
   final profileController = Get.put(ProfileController());
+  // getTelcoList() {
+  //   commonServiceRepo(
+  //       key: "services"
+  //   ).then((value) {
+  //     log("response.body.....    ${value}");
+  //     telcos.value = value;
+  //
+  //     statusOftelcos.value = RxStatus.success();
+  //   }
+  //     // showToast(value.message.toString());
+  //   );
+  // }
   getTelcoList() {
-    getTelcosRepo(
-
+    commonServiceRepo(
+      key: "services",
+          identifier: "airtime "
     ).then((value) {
       log("response.body.....    ${value}");
       telcos.value = value;
-      if (value.success == true) {
+      if (value.status == true) {
         statusOftelcos.value = RxStatus.success();
       } else {
         statusOftelcos.value = RxStatus.error();
@@ -85,7 +101,7 @@ class _BuyAirtimecreenState extends State<BuyAirtimecreen> {
                         return  statusOftelcos.value.isSuccess ?
                         ListView.builder(
                             physics: const NeverScrollableScrollPhysics(),
-                            itemCount:telcos.value.data!.length,
+                            itemCount:telcos.value.data!.content!.length,
                             shrinkWrap: true,
                             itemBuilder: (context, index) {
                               return Padding(
@@ -95,15 +111,29 @@ class _BuyAirtimecreenState extends State<BuyAirtimecreen> {
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
+                                        ClipOval(
+                                          child: CachedNetworkImage(
+                                            width: 40,
+                                            height: 40,
+                                            fit: BoxFit.cover,
+                                            imageUrl: telcos.value.data!.content![index].image.toString(),
+                                            placeholder: (context, url) =>
+                                            const SizedBox(),
+                                            errorWidget: (context, url, error) =>
+                                            const SizedBox(),
+                                          ),
+                                        ),
+                                        SizedBox(width: 20,),
                                         Expanded(
                                           child: InkWell(
                                             onTap: () {
-                                              profileController.airtimeController.text = telcos.value.data![index].name.toString();
+                                              profileController.airtimeController.text = telcos.value.data!.content![index].name.toString();
                                               // controller.idController1.text = chooseBank.value.data![index].code.toString();
-                                              Get.toNamed(MyRouters.telcosScreen,
-                                                  arguments: [telcos.value.data![index].name.toString(),]);
+                                              // Get.toNamed(MyRouters.telcosScreen,
+                                              //     arguments: [telcos.value.data!.content![index].name.toString(),]);
+                                              Get.toNamed(MyRouters.buyAirtimeCountryScreen,);
                                             },
-                                            child: Text(telcos.value.data![index].name.toString(),
+                                            child: Text(telcos.value.data!.content![index].name.toString(),
                                               style: GoogleFonts.poppins(
                                                   color: const Color(0xFF1D1D1D),
                                                   fontSize: 16,
@@ -138,7 +168,7 @@ class _BuyAirtimecreenState extends State<BuyAirtimecreen> {
                             }):  statusOftelcos.value.isError
                             ? CommonErrorWidget(
                           errorText:
-                          telcos.value.message.toString(),
+                          "",
                           onTap: () {
                             getTelcoList();
                           },

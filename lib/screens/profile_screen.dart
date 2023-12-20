@@ -202,10 +202,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Image.network("https://cdn-icons-png.flaticon.com/512/32/32974.png",color: Colors.black,width: 15,height: 15,),
 
                         Text(
-                          NumberFormat.currency(
-                            symbol: '', // Set the currency symbol to empty since you're formatting as a plain number
-                            decimalDigits: 0, // Set the number of decimal digits to 0
-                          ).format(profileController.currentBalanceModel.value.data),
+                        profileController.currentBalanceModel.value.data!.currentBalance.toString(),
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
                               fontSize: 20,

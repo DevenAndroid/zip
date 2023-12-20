@@ -217,7 +217,7 @@ class _AddFundExchangeState extends State<AddFundExchange> {
                                           return "Enter valid amount";
                                         }
                                         if (double.parse(value.trim()) >
-                                            (double.tryParse(profileController.currentBalanceModel.value.data.toString()) ?? 0)) {
+                                            (double.tryParse(profileController.currentBalanceModel.value.data!.currentBalance.toString()) ?? 0)) {
                                           return "less than account balance ";
                                         }
                                       },

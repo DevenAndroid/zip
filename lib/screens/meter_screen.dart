@@ -316,10 +316,10 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
                             RangeValidator(min: 0, max: profileController
                                 .currentBalanceModel
                                 .value
-                                .data!, errorText: "Can't add more than${profileController
+                                .data!.currentBalance!.toInt(), errorText: "Can't add more than${profileController
                                 .currentBalanceModel
                                 .value
-                                .data!}"),
+                                .data!.currentBalance}"),
                         RequiredValidator(
                             errorText:
                             'Please enter amount '),]),

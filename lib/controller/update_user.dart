@@ -1105,7 +1105,7 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
       saveMail.value = value;
       if (value.status == true) {
         statusOfSave.value = RxStatus.success();
-        Share.share(link1.value.toString());
+        // Share.share(link1.value.toString());
       } else {
         statusOfSave.value = RxStatus.error();
       }
@@ -1120,7 +1120,7 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
     await checkoutRepo(
             currency: fetchAccount.value.data!.currency.toString(),
             email: fetchAccount.value.data!.kYCInformation!.email.toString(),
-            phoneNumber:fetchAccount.value.data!.kYCInformation!.phoneNumber.toString(),
+            phoneNumber:AddmobileController.text.toString(),
             key: "link",
             amount: amountController.text.trim(),
             name: "${fetchAccount.value.data!.kYCInformation!.firstName.toString()} " +

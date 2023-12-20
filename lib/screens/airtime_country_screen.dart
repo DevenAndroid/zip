@@ -7,25 +7,30 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 
 import '../controller/profile_controller.dart';
+import '../controller/update_user.dart';
+import '../models/airtime_country_model.dart';
+import '../models/mode_biller.dart';
 import '../models/model_fetch_telcos.dart';
 import '../models/service_common_model.dart';
+import '../repository/airtime_country_repo.dart';
 import '../repository/fetch_telcos_repo.dart';
+import '../repository/list_biller_repo.dart';
 import '../repository/service_common_repo.dart';
 import '../widgets/circular_progressindicator.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_colour.dart';
 import '../widgets/common_error_widget.dart';
-class BuyDataScreen extends StatefulWidget {
-  const BuyDataScreen({Key? key}) : super(key: key);
+class BuyAirtimeCountryScreen extends StatefulWidget {
+  const BuyAirtimeCountryScreen({Key? key}) : super(key: key);
 
   @override
-  State<BuyDataScreen> createState() => _BuyDataScreenState();
+  State<BuyAirtimeCountryScreen> createState() => _BuyAirtimeCountryScreenState();
 }
 
-class _BuyDataScreenState extends State<BuyDataScreen> {
+class _BuyAirtimeCountryScreenState extends State<BuyAirtimeCountryScreen> {
 
   Rx<RxStatus> statusOftelcos= RxStatus.empty().obs;
-  Rx<ServiceCommonModel> telcos = ServiceCommonModel().obs;
+  Rx<AirtimeCountryModel> telcos = AirtimeCountryModel().obs;
   final profileController = Get.put(ProfileController());
   // getTelcoList() {
   //   commonServiceRepo(
@@ -40,9 +45,9 @@ class _BuyDataScreenState extends State<BuyDataScreen> {
   //   );
   // }
   getTelcoList() {
-    commonServiceRepo(
-        key: "services",
-            identifier: "data"
+    commonCountryRepo(
+        key: "airtime-countries",
+
     ).then((value) {
       log("response.body.....    ${value}");
       telcos.value = value;
@@ -61,7 +66,6 @@ class _BuyDataScreenState extends State<BuyDataScreen> {
     super.initState();
     getTelcoList();
   }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -80,7 +84,7 @@ class _BuyDataScreenState extends State<BuyDataScreen> {
             ),
           ),
           title: Text(
-            "Data Plan",
+            "AirTime",
             style: GoogleFonts.poppins(
                 color: const Color(0xFF1D1D1D),
                 fontSize: 20,
@@ -99,7 +103,7 @@ class _BuyDataScreenState extends State<BuyDataScreen> {
                         return  statusOftelcos.value.isSuccess ?
                         ListView.builder(
                             physics: const NeverScrollableScrollPhysics(),
-                            itemCount:telcos.value.data!.content!.length,
+                            itemCount:telcos.value.data!.content!.countries!.length,
                             shrinkWrap: true,
                             itemBuilder: (context, index) {
                               return Padding(
@@ -114,39 +118,46 @@ class _BuyDataScreenState extends State<BuyDataScreen> {
                                             width: 40,
                                             height: 40,
                                             fit: BoxFit.cover,
-                                            imageUrl: telcos.value.data!.content![index].image.toString(),
+                                            imageUrl: telcos.value.data!.content!.countries![index].flag.toString(),
                                             placeholder: (context, url) =>
                                             const SizedBox(),
                                             errorWidget: (context, url, error) =>
                                             const SizedBox(),
                                           ),
                                         ),
-                                        Text(telcos.value.data!.content![index].name.toString(),
-                                          style: GoogleFonts.poppins(
-                                              color: const Color(0xFF1D1D1D),
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w500),),
-
-                                        InkWell(
-                                            onTap: (){
-                                              Get.toNamed(MyRouters.interNetPlanScreen,arguments: [
-                                                // telcos.value.data!.content![index].name.toString(),
-                                                telcos.value.data!.content![index].serviceID.toString(),
-
-                                              ]);
+                                        SizedBox(width: 20,),
+                                        Expanded(
+                                          child: InkWell(
+                                            onTap: () {
+                                              profileController.airtimeController.text = telcos.value.data!.content!.countries![index].name.toString();
+                                              // controller.idController1.text = chooseBank.value.data![index].code.toString();
+                                              Get.toNamed(MyRouters.buyAirtimeProductScreen,
+                                                  arguments: [telcos.value.data!.content!.countries![index].code.toString(),]);
                                             },
-                                            child: Container(
-                                                padding: EdgeInsets.symmetric(vertical: 8,horizontal: 10),
-                                                decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(7),
-                                                  color: AppTheme.secondaryColor,
-                                                ),
+                                            child: Text(telcos.value.data!.content!.countries![index].name.toString(),
+                                              style: GoogleFonts.poppins(
+                                                  color: const Color(0xFF1D1D1D),
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w500),),
+                                          ),
+                                        ),
 
-                                                child: Text("See Plan",
-                                                  style: GoogleFonts.poppins(
-                                                      color:  Colors.white,
-                                                      fontSize: 12,
-                                                      fontWeight: FontWeight.w500),))),
+                                        // InkWell(
+                                        //     onTap: (){
+                                        //       // Get.toNamed(MyRouters.dataPlanScreen,arguments: [biller.value.data![index].name.toString(),]);
+                                        //     },
+                                        //     child: Container(
+                                        //         padding: EdgeInsets.symmetric(vertical: 8,horizontal: 10),
+                                        //         decoration: BoxDecoration(
+                                        //           borderRadius: BorderRadius.circular(7),
+                                        //           color: AppTheme.secondaryColor,
+                                        //         ),
+                                        //
+                                        //         child: Text("See Plan",
+                                        //           style: GoogleFonts.poppins(
+                                        //               color:  Colors.white,
+                                        //               fontSize: 12,
+                                        //               fontWeight: FontWeight.w500),))),
                                       ],
                                     )
 
@@ -158,7 +169,7 @@ class _BuyDataScreenState extends State<BuyDataScreen> {
                             }):  statusOftelcos.value.isError
                             ? CommonErrorWidget(
                           errorText:
-                          telcos.value.message.toString(),
+                          "",
                           onTap: () {
                             getTelcoList();
                           },

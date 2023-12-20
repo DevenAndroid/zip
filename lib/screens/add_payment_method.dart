@@ -232,8 +232,15 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
                           FilteringTextInputFormatter.allow(
                               RegExp('[0-9]+')),
                         ],
-                        onChanged: (value) =>
-                        doubleVar = double.parse(value),
+                        onChanged: (value) {
+    if(value.length == 10 ){
+    FocusScope.of(context).unfocus();
+    resolveData();
+
+    }
+    },
+                        
+
                         validator: MultiValidator([
                           RequiredValidator(
                               errorText:
@@ -249,10 +256,10 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
                               errorText: '')
                         ]),
                         controller: payOutcontroller.accountNo,
-                        suffixIcon: InkWell(
-                            onTap: (){ resolveData();},
-
-                            child: Icon(Icons.arrow_forward)),
+                        // suffixIcon: InkWell(
+                        //     onTap: (){ resolveData();},
+                        //
+                        //     child: Icon(Icons.arrow_forward)),
                         obSecure: false,
                         hintText: "",
                         labelText: "Account Number",

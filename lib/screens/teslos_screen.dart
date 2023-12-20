@@ -14,9 +14,11 @@ import '../controller/update_user.dart';
 import '../models/buy_plan_model.dart';
 import '../models/model_fetch_telcos.dart';
 import '../models/save_transastion_model.dart';
+import '../models/service_common_model.dart';
 import '../repository/fetch_telcos_repo.dart';
 import '../repository/repo_buy_plan.dart';
 import '../repository/save_buy_plan_repo.dart';
+import '../repository/service_common_repo.dart';
 import '../resourses/api_constant.dart';
 import '../widgets/circular_progressindicator.dart';
 import '../widgets/common_button.dart';
@@ -49,7 +51,7 @@ class _TelcosScreenState extends State<TelcosScreen> {
   // TextEditingController amountController = TextEditingController();
 
   TextEditingController descriptionController = TextEditingController();
-  Rx<ModelBuy> purchaseData = ModelBuy().obs;
+  Rx<ServiceCommonModel> purchaseData = ServiceCommonModel().obs;
 
   Rx<RxStatus> statusOfSave = RxStatus.empty().obs;
   Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
@@ -91,17 +93,17 @@ class _TelcosScreenState extends State<TelcosScreen> {
       Get.toNamed(MyRouters.sucessRechargePin);
     }
     else{
-    BuyPlanRepo(
-      telco: profileController.airtimeController.text.trim(),
+      commonServiceRepo(
+      key: "services",
       amount: registorController.amountController1.text.trim(),
-      phone_no: registorController.phoneController1.text.trim(),
-      reference:
-          registorController.fetchAccount.value.data!.accountNumber.toString() +
-              DateTime.now().millisecondsSinceEpoch.toString(),
+      phone: registorController.phoneController1.text.trim(),
+      // reference:
+      //     registorController.fetchAccount.value.data!.accountNumber.toString() +
+      //         DateTime.now().millisecondsSinceEpoch.toString(),
     ).then((value) {
       log("response.body.....    ${value}");
       purchaseData.value = value;
-      if (value.success == true) {
+      if (value.status == true) {
         saveList();
         statusOfProviders.value = RxStatus.success();
         showToast(value.message.toString());
@@ -229,12 +231,10 @@ class _TelcosScreenState extends State<TelcosScreen> {
                           onChanged: (value) => doubleVar = double.parse(value),
                           validator: MultiValidator([
                             RangeValidator(min: 0, max: profileController
+                                .currentBalanceModel.value.data!.currentBalance!.toInt(), errorText: "Can't add more than${profileController
                                 .currentBalanceModel
                                 .value
-                                .data!, errorText: "Can't add more than${profileController
-                                .currentBalanceModel
-                                .value
-                                .data!}"),
+                                .data!.currentBalance}"),
                             RequiredValidator(
                                 errorText: 'Please enter your amount'),
                           ]),

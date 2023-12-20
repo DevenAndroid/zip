@@ -17,9 +17,11 @@ import '../controller/update_user.dart';
 import '../models/buy_plan_model.dart';
 import '../models/model_buy_interNet.dart';
 import '../models/save_transastion_model.dart';
+import '../models/service_buy_model.dart';
 import '../repository/buy_dataplan_repo.dart';
 import '../repository/repo_buy_plan.dart';
 import '../repository/save_buy_plan_repo.dart';
+import '../repository/service_buy_repo.dart';
 import '../resourses/api_constant.dart';
 import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
@@ -44,70 +46,72 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
   }
   Rx<RxStatus> statusOfProviders= RxStatus.empty().obs;
 
-  Rx<ModelBuyInternet> purchaseInternet = ModelBuyInternet().obs;
+  Rx<ServiceBuyModel> purchaseInternet = ServiceBuyModel().obs;
   var initStateBlank = Get.arguments[0];
   var initStateBlank1 = Get.arguments[1];
   var initStateBlank2 = Get.arguments[2];
-  var initStateBlank3 = Get.arguments[3];
+
 
   Rx<RxStatus> statusOfSave= RxStatus.empty().obs;
   Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
 
-  saveList() {
-    saveTransastionRepo(
-        user_id: profileController.modal.value.data!.user!.id.toString(),
-        amount:initStateBlank1,
-        about: "Buy Internet",
-        // complete_response: purchaseData.value.data!.toJson(),
-        context: context,
-        description:profileController.descriptionController.text.trim(),
-        type: "dr",
-      data_code: initStateBlank3.toString(),
-      telcos: initStateBlank.toString(),
-      phone: profileController.phoneController.text.trim(),
-      dataplan: initStateBlank2.toString()
-    ).then((value) {
-      log("response.body.....    ${value}");
-      save.value = value;
-      if (value.status == true) {
-        statusOfSave.value = RxStatus.success();
-        Get.toNamed(MyRouters.successRechargeScreen);
 
-      } else {
-        statusOfSave.value = RxStatus.error();
-      }
+saveList() {
+  saveTransastionRepo(
+      user_id: profileController.modal.value.data!.user!.id.toString(),
+      amount:initStateBlank,
+      about: "Buy Internet",
+      // complete_response: purchaseData.value.data!.toJson(),
+      context: context,
+      description:profileController.descriptionController.text.trim(),
+      type: "dr",
+    data_code: initStateBlank1.toString(),
+    telcos: initStateBlank.toString(),
+    phone: profileController.phoneController.text.trim(),
+    dataplan: initStateBlank2.toString()
+  ).then((value) {
+    log("response.body.....    ${value}");
+    save.value = value;
+    if (value.status == true) {
+      statusOfSave.value = RxStatus.success();
+      Get.toNamed(MyRouters.successRechargeScreen);
+
+    } else {
+      statusOfSave.value = RxStatus.error();
     }
-      // showToast(value.message.toString());
-    );
   }
+    // showToast(value.message.toString());
+  );
+}
   getInterNet() {
     print(initStateBlank);
     print(initStateBlank1);
     print(initStateBlank2);
-    print(initStateBlank3);
 
-    BuyDataPlanRepo(
-      telco: initStateBlank,
-      amount: initStateBlank1,
-      phone_no:profileController.phoneController.text.trim(),
-      data_code:  initStateBlank3,
-      context: context
-    ).then((value) {
-      log("response.body.....    ${value}");
-      purchaseInternet.value = value;
-      if (value.success == true) {
-        saveList();
-        statusOfProviders.value = RxStatus.success();
-        showToast(value.message.toString());
-        // print(  registorController.fetchAccount.value.data!.accountNumber.toString()+DateTime.now().millisecondsSinceEpoch.toString(),);
-      } else {
-        statusOfProviders.value = RxStatus.error();
-        showToast(value.message.toString());
-      }
+
+  commonBuyRepo(
+    phone: profileController.phoneController.text.trim(),
+    amount: initStateBlank,
+    key: "pay",
+    billersCode:"08011111111",
+    serviceID: initStateBlank2,
+    variation_code: initStateBlank1,
+  ).then((value) {
+    log("response.body.....    ${value}");
+    purchaseInternet.value = value;
+    if (value.status == true) {
+     saveList();
+      statusOfProviders.value = RxStatus.success();
+      showToast(value.message.toString());
+      // print(  registorController.fetchAccount.value.data!.accountNumber.toString()+DateTime.now().millisecondsSinceEpoch.toString(),);
+    } else {
+      statusOfProviders.value = RxStatus.error();
+      showToast(value.message.toString());
     }
-      // showToast(value.message.toString());
-    );
   }
+    // showToast(value.message.toString());
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -224,7 +228,7 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
               onTap: () async {
                 SharedPreferences pref = await SharedPreferences.getInstance();
                 if (pref.getBool('TransistionPin') == true) {
-                  Get.toNamed(MyRouters.dataPurchasePin,arguments: [initStateBlank,initStateBlank1,initStateBlank2,initStateBlank3]);
+                  Get.toNamed(MyRouters.dataPurchasePin,arguments: [initStateBlank,initStateBlank1,initStateBlank2]);
                 }
                 else{
                   getInterNet();

@@ -110,6 +110,7 @@ class ApiUrls {
   static const String vritualAccountCreate  = "https://api.fincra.com/profile/virtual-accounts/requests";
   static const String checkoutPayment  = "https://api.fincra.com/checkout/payments";
   static const String common  = "http://178.128.83.16/api/link-generation";
+  static const String serviceCommon  = "http://178.128.83.16/api/vtpass-services";
 }
 
 Future getAuthHeader() async {
