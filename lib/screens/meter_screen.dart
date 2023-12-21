@@ -82,12 +82,14 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
      else {
        if (formKey4.currentState!.validate()) {
          verifyMeterRepo(
-             meter_number: controller.meterNo.text.toString(),
-             provider: controller.provider.text.trim()
+             billersCode: controller.meterNo.text.toString(),
+             type:  controller.provider.text.trim(),
+           serviceID: controller.idController1.text,
+           key: "merchant-verify"
          )
              .then((value) {
            verifyMeter.value = value;
-           if (value.success == true) {
+           if (value.status == true) {
              buyEnergy();
              // payOutcontroller.accountName.text = (value.data!.accountName??"").toString();
              statusOfResolve.value = RxStatus.success();
@@ -238,11 +240,11 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
                           keyboardType:
                           const TextInputType.numberWithOptions(
                               decimal: true),
-                          // inputFormatters: [
-                          //   // LengthLimitingTextInputFormatter(15),
-                          //   FilteringTextInputFormatter.allow(
-                          //       RegExp('[0-9]+')),
-                          // ],
+                         inputFormatters: [
+                           LengthLimitingTextInputFormatter(13),
+                           FilteringTextInputFormatter.allow(
+                               RegExp('[0-9]+')),
+                         ],
                           onChanged: (value) =>
                           doubleVar = double.parse(value),
                           validator: MultiValidator([
@@ -323,7 +325,7 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
                         RequiredValidator(
                             errorText:
                             'Please enter amount '),]),
-                readOnly: false,
+                readOnly: true,
                           controller: controller.amount,
                           obSecure: false,
                           hintText: "",

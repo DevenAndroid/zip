@@ -1,75 +1,90 @@
 class ModelVerifyMeterNumber {
-  bool? success;
-  Data? data;
+  bool? status;
   String? message;
-  String? service;
+  Data? data;
 
-  ModelVerifyMeterNumber({this.success, this.data, this.message, this.service});
+  ModelVerifyMeterNumber({this.status, this.message, this.data});
 
   ModelVerifyMeterNumber.fromJson(Map<String, dynamic> json) {
-    success = json['success'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    status = json['status'];
     message = json['message'];
-    service = json['service'];
+    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['success'] = this.success;
+    data['status'] = this.status;
+    data['message'] = this.message;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
-    data['message'] = this.message;
-    data['service'] = this.service;
     return data;
   }
 }
 
 class Data {
-  dynamic name;
-  dynamic address;
-  dynamic outstandingBalance;
-  dynamic dueDate;
-  dynamic district;
-  dynamic accountNumber;
-  dynamic minimumAmount;
-  dynamic rawOutput;
-  dynamic errorMessage;
+  String? code;
+  Content? content;
 
-  Data(
-      {this.name,
-        this.address,
-        this.outstandingBalance,
-        this.dueDate,
-        this.district,
-        this.accountNumber,
-        this.minimumAmount,
-        this.rawOutput,
-        this.errorMessage});
+  Data({this.code, this.content});
 
   Data.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    address = json['address'];
-    outstandingBalance = json['outstandingBalance'];
-    dueDate = json['dueDate'];
-    district = json['district'];
-    accountNumber = json['accountNumber'];
-    minimumAmount = json['minimumAmount'];
-    rawOutput = json['rawOutput'];
-    errorMessage = json['errorMessage'];
+    code = json['code'];
+    content =
+    json['content'] != null ? new Content.fromJson(json['content']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['address'] = this.address;
-    data['outstandingBalance'] = this.outstandingBalance;
-    data['dueDate'] = this.dueDate;
-    data['district'] = this.district;
-    data['accountNumber'] = this.accountNumber;
-    data['minimumAmount'] = this.minimumAmount;
-    data['rawOutput'] = this.rawOutput;
-    data['errorMessage'] = this.errorMessage;
+    data['code'] = this.code;
+    if (this.content != null) {
+      data['content'] = this.content!.toJson();
+    }
+    return data;
+  }
+}
+
+class Content {
+  String? customerName;
+  String? status;
+  String? dueDate;
+  int? customerNumber;
+  String? customerType;
+  String? currentBouquet;
+  String? currentBouquetCode;
+  int? renewalAmount;
+
+  Content(
+      {this.customerName,
+        this.status,
+        this.dueDate,
+        this.customerNumber,
+        this.customerType,
+        this.currentBouquet,
+        this.currentBouquetCode,
+        this.renewalAmount});
+
+  Content.fromJson(Map<String, dynamic> json) {
+    customerName = json['Customer_Name'];
+    status = json['Status'];
+    dueDate = json['Due_Date'];
+    customerNumber = json['Customer_Number'];
+    customerType = json['Customer_Type'];
+    currentBouquet = json['Current_Bouquet'];
+    currentBouquetCode = json['Current_Bouquet_Code'];
+    renewalAmount = json['Renewal_Amount'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['Customer_Name'] = this.customerName;
+    data['Status'] = this.status;
+    data['Due_Date'] = this.dueDate;
+    data['Customer_Number'] = this.customerNumber;
+    data['Customer_Type'] = this.customerType;
+    data['Current_Bouquet'] = this.currentBouquet;
+    data['Current_Bouquet_Code'] = this.currentBouquetCode;
+    data['Renewal_Amount'] = this.renewalAmount;
     return data;
   }
 }

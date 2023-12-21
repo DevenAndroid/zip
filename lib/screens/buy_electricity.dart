@@ -88,12 +88,14 @@ class _BuyElectricityState extends State<BuyElectricity> {
     }
     else {
       verifyMeterRepo(
-          meter_number:initStateBlank3,
-          provider: initStateBlank2,
+          billersCode: controller.meterNo.text.toString(),
+          type:  controller.provider.text.trim(),
+          serviceID: "",
+          key: "merchant-verify"
       )
           .then((value) {
         verifyMeter.value = value;
-        if (value.success == true) {
+        if (value.status == true) {
           buyEnergy();
           // payOutcontroller.accountName.text = (value.data!.accountName??"").toString();
           statusOfResolve.value = RxStatus.success();

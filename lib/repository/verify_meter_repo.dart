@@ -11,17 +11,15 @@ import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
 final details = Get.put(DetailsController());
-Future<ModelVerifyMeterNumber> verifyMeterRepo({  provider,meter_number}) async {
+Future<ModelVerifyMeterNumber> verifyMeterRepo({key,type,billersCode,serviceID}) async {
 
   var map = <String, dynamic>{};
-  map['provider'] = provider;
-  map['meter_number'] = meter_number;
-  http.Response response = await http.post(Uri.parse(ApiUrls.verifyMeter),
-      headers: { HttpHeaders.contentTypeHeader: 'application/json',
-        HttpHeaders.acceptHeader: 'application/json',
-        "secret-key": details.secretKey
-
-      },
+  map['key'] = key;
+  map['type'] = type;
+  map['billersCode'] = billersCode;
+  map['serviceID'] = serviceID;
+  http.Response response = await http.post(Uri.parse(ApiUrls.serviceCommon),
+      headers:await getAuthHeader(),
       body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
   print(map);
@@ -34,7 +32,7 @@ Future<ModelVerifyMeterNumber> verifyMeterRepo({  provider,meter_number}) async 
 
 
     return ModelVerifyMeterNumber(
-        message: jsonDecode(response.body)["message"],success: false
+        message: jsonDecode(response.body)["message"],status: false
     );
   }
 }

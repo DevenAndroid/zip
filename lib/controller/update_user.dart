@@ -61,6 +61,7 @@ import 'number_controller.dart';
 
 class registerController extends GetxController {
   TextEditingController bankController = TextEditingController();
+  TextEditingController variationAmountController = TextEditingController();
   TextEditingController bankController1 = TextEditingController();
   TextEditingController mobileNO = TextEditingController();
   TextEditingController amount = TextEditingController();

@@ -119,12 +119,14 @@ class _PurchaseRechargePinState extends State<PurchaseRechargePin> {
       if (value.status == true) {
 
         verifyMeterRepo(
-            meter_number: controller.meterNo.text.toString(),
-            provider: controller.provider.text.trim()
+            billersCode: controller.meterNo.text.toString(),
+            type:  controller.provider.text.trim(),
+            serviceID: "",
+            key: "merchant-verify"
         )
             .then((value) {
           verifyMeter.value = value;
-          if (value.success == true) {
+          if (value.status == true) {
             buyEnergy();
             // payOutcontroller.accountName.text = (value.data!.accountName??"").toString();
             statusOfResolve.value = RxStatus.success();

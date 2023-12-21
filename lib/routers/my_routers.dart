@@ -64,7 +64,9 @@ import '../screens/add_fund_exchange.dart';
 import '../screens/add_payment_method.dart';
 import '../screens/addfundsinbank.dart';
 import '../screens/airtime_country_screen.dart';
+import '../screens/airtime_operator_screen.dart';
 import '../screens/airtime_product_screen.dart';
+import '../screens/airtime_variations_screen.dart';
 import '../screens/bank_details.dart';
 import '../screens/beneficery_pin.dart';
 import '../screens/buy_airtime_list.dart';
@@ -88,6 +90,7 @@ import '../screens/currenty.dart';
 import '../screens/data_list_screen.dart';
 import '../screens/data_plan_scree.dart';
 import '../screens/data_purchase_pin.dart';
+import '../screens/electricity_varition_screen.dart';
 import '../screens/eligible_screen.dart';
 import '../screens/email_login.dart';
 
@@ -304,6 +307,9 @@ class MyRouters{
   static var payNow2 = "/payNow2";
   static var buyAirtimeCountryScreen = "/buyAirtimeCountryScreen";
   static var buyAirtimeProductScreen = "/buyAirtimeProductScreen";
+  static var buyAirtimeOperatorScreen = "/buyAirtimeOperatorScreen";
+  static var buyAirtimeVariationScreen = "/buyAirtimeVariationScreen";
+  static var electricityVariationScreen = "/electricityVariationScreen";
 
 
 
@@ -316,6 +322,9 @@ class MyRouters{
 
     GetPage(name: onBoardingScreen, page: () =>   const OnBoardingScreen()),
     GetPage(name: '/withdrawlCash', page: () =>   const WithdrawlCash()),
+    GetPage(name: '/buyAirtimeOperatorScreen', page: () =>   const BuyAirtimeOperatorScreen()),
+    GetPage(name: '/electricityVariationScreen', page: () =>   const ElectricityVariationScreen()),
+    GetPage(name: '/buyAirtimeVariationScreen', page: () =>   const BuyAirtimeVariationScreen()),
     GetPage(name: '/success3Screen', page: () =>   const Success3Screen()),
     GetPage(name: '/buyAirtimeProductScreen', page: () =>   const BuyAirtimeProductScreen()),
     GetPage(name: '/usersOtpScreen', page: () =>   const UsersOtpScreen()),

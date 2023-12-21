@@ -9,11 +9,13 @@ import 'package:zip/routers/my_routers.dart';
 import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
 import '../models/airtime_country_model.dart';
+import '../models/airtime_operater_model.dart';
 import '../models/mode_biller.dart';
 import '../models/model_fetch_telcos.dart';
 import '../models/model_product_airtime.dart';
 import '../models/service_common_model.dart';
 import '../repository/airtime_country_repo.dart';
+import '../repository/airtime_operator_repo.dart';
 import '../repository/fetch_telcos_repo.dart';
 import '../repository/list_biller_repo.dart';
 import '../repository/product_airtime_repo.dart';
@@ -22,17 +24,17 @@ import '../widgets/circular_progressindicator.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_colour.dart';
 import '../widgets/common_error_widget.dart';
-class BuyAirtimeProductScreen extends StatefulWidget {
-  const BuyAirtimeProductScreen({Key? key}) : super(key: key);
+class BuyAirtimeVariationScreen extends StatefulWidget {
+  const BuyAirtimeVariationScreen({Key? key}) : super(key: key);
 
   @override
-  State<BuyAirtimeProductScreen> createState() => _BuyAirtimeProductScreenState();
+  State<BuyAirtimeVariationScreen> createState() => _BuyAirtimeVariationScreenState();
 }
 
-class _BuyAirtimeProductScreenState extends State<BuyAirtimeProductScreen> {
+class _BuyAirtimeVariationScreenState extends State<BuyAirtimeVariationScreen> {
 
   Rx<RxStatus> statusOftelcos= RxStatus.empty().obs;
-  Rx<AirtimeProductModel> telcos = AirtimeProductModel().obs;
+  Rx<AirtimeOperatorModel> telcos = AirtimeOperatorModel().obs;
   final profileController = Get.put(ProfileController());
   // getTelcoList() {
   //   commonServiceRepo(
@@ -48,10 +50,12 @@ class _BuyAirtimeProductScreenState extends State<BuyAirtimeProductScreen> {
   // }
   var code= Get.arguments[0];
   var service= Get.arguments[1];
+  // var service= Get.arguments[2];
   getTelcoList() {
-    commonProductRepo(
-      key: "airtime-product-types",
+    commonOperatorRepo(
+      key: "airtime-operators",
       code: code,
+      // product_type_id: id,
 
     ).then((value) {
       log("response.body.....    ${value}");
@@ -136,8 +140,8 @@ class _BuyAirtimeProductScreenState extends State<BuyAirtimeProductScreen> {
                                             onTap: () {
                                               profileController.airtimeController.text = telcos.value.data!.content![index].name.toString();
                                               // controller.idController1.text = chooseBank.value.data![index].code.toString();
-                                              Get.toNamed(MyRouters.buyAirtimeOperatorScreen,
-                                                  arguments: [code,telcos.value.data!.content![index].productTypeId.toString(),service]);
+                                              Get.toNamed(MyRouters.telcosScreen,
+                                                  arguments: [telcos.value.data!.content![index].name.toString(),]);
                                             },
                                             child: Text(telcos.value.data!.content![index].name.toString(),
                                               style: GoogleFonts.poppins(

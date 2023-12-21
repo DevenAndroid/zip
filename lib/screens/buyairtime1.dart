@@ -141,22 +141,32 @@ class _BuyAirtimecreenState extends State<BuyAirtimecreen> {
                                           ),
                                         ),
 
-                                        // InkWell(
-                                        //     onTap: (){
-                                        //       // Get.toNamed(MyRouters.dataPlanScreen,arguments: [biller.value.data![index].name.toString(),]);
-                                        //     },
-                                        //     child: Container(
-                                        //         padding: EdgeInsets.symmetric(vertical: 8,horizontal: 10),
-                                        //         decoration: BoxDecoration(
-                                        //           borderRadius: BorderRadius.circular(7),
-                                        //           color: AppTheme.secondaryColor,
-                                        //         ),
-                                        //
-                                        //         child: Text("See Plan",
-                                        //           style: GoogleFonts.poppins(
-                                        //               color:  Colors.white,
-                                        //               fontSize: 12,
-                                        //               fontWeight: FontWeight.w500),))),
+                                    InkWell(
+                                        onTap: (){
+                                          profileController.airtimeController.text = telcos.value.data!.content![index].name.toString();
+                                           // controller.idController1.text = chooseBank.value.data![index].code.toString();
+
+                                          telcos.value.data!.content![index].name=="Foreign Airtime"?
+                                          Get.toNamed(MyRouters.buyAirtimeCountryScreen,arguments: [telcos.value.data!.content![index].serviceID.toString(),]):
+                                           Get.toNamed(MyRouters.telcosScreen,
+                                               arguments: [telcos.value.data!.content![index].name.toString(),]);
+
+
+
+                                          // Get.toNamed(MyRouters.dataPlanScreen,arguments: [biller.value.data![index].name.toString(),]);
+                                        },
+                                        child: Container(
+                                            padding: EdgeInsets.symmetric(vertical: 8,horizontal: 10),
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(7),
+                                              color: AppTheme.secondaryColor,
+                                            ),
+
+                                            child: Text("See Plan",
+                                              style: GoogleFonts.poppins(
+                                                  color:  Colors.white,
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w500),))),
                                       ],
                                     )
 

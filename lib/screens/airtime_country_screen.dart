@@ -32,6 +32,7 @@ class _BuyAirtimeCountryScreenState extends State<BuyAirtimeCountryScreen> {
   Rx<RxStatus> statusOftelcos= RxStatus.empty().obs;
   Rx<AirtimeCountryModel> telcos = AirtimeCountryModel().obs;
   final profileController = Get.put(ProfileController());
+  var service = Get.arguments[0];
   // getTelcoList() {
   //   commonServiceRepo(
   //       key: "services"
@@ -132,7 +133,7 @@ class _BuyAirtimeCountryScreenState extends State<BuyAirtimeCountryScreen> {
                                               profileController.airtimeController.text = telcos.value.data!.content!.countries![index].name.toString();
                                               // controller.idController1.text = chooseBank.value.data![index].code.toString();
                                               Get.toNamed(MyRouters.buyAirtimeProductScreen,
-                                                  arguments: [telcos.value.data!.content!.countries![index].code.toString(),]);
+                                                  arguments: [telcos.value.data!.content!.countries![index].code.toString(),service]);
                                             },
                                             child: Text(telcos.value.data!.content!.countries![index].name.toString(),
                                               style: GoogleFonts.poppins(
