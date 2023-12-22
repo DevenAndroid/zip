@@ -90,7 +90,7 @@ class _BuyElectricityState extends State<BuyElectricity> {
       verifyMeterRepo(
           billersCode: controller.meterNo.text.toString(),
           type:  controller.provider.text.trim(),
-          serviceID: "",
+          serviceID:  controller.idController1.text,
           key: "merchant-verify"
       )
           .then((value) {
@@ -111,15 +111,19 @@ class _BuyElectricityState extends State<BuyElectricity> {
   }
   Future buyEnergy() async {
     await BuyEnergyPlanRepo(
-      meter_number: initStateBlank3,
-      provider: initStateBlank2,
-      amount: initStateBlank1,
-      phone_no: initStateBlank4,
+
+      billersCode: controller.meterNo.text.toString(),
+      variation_code:  controller.provider.text.trim(),
+      serviceID: controller.idController1.text,
+      key: "pay",
+      amount: controller.amount,
+      phone: controller.mobileNO,
       context: context,
+
     )
         .then((value) {
       Energy.value = value;
-      if (value.success == true) {
+      if (value.status == true) {
         // payOutcontroller.accountName.text = (value.data!.accountName??"").toString();
         statusOfBuyEnergy.value = RxStatus.success();
         saveList();

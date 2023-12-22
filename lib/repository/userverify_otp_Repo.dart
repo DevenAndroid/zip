@@ -7,11 +7,12 @@ import '../models/model_userverify_otp.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
-Future<UserVerifyOtpModel> userVerifyOtpRepo({phone_email, otp}) async {
+Future<UserVerifyOtpModel> userVerifyOtpRepo({phone_email, otp,device_token}) async {
   var map = <String, dynamic>{};
 
   map['phone_email'] = phone_email;
   map['otp'] = otp;
+  map['device_token'] = device_token;
 
   print(map);
   // try {

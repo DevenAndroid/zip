@@ -128,7 +128,7 @@ class _BuyAirtimecreenState extends State<BuyAirtimecreen> {
                                           child: InkWell(
                                             onTap: () {
                                               profileController.airtimeController.text = telcos.value.data!.content![index].name.toString();
-                                              // controller.idController1.text = chooseBank.value.data![index].code.toString();
+                                              profileController.serviceController.text = telcos.value.data!.content![index].serviceID.toString();
                                               // Get.toNamed(MyRouters.telcosScreen,
                                               //     arguments: [telcos.value.data!.content![index].name.toString(),]);
                                               Get.toNamed(MyRouters.buyAirtimeCountryScreen,);
@@ -145,6 +145,7 @@ class _BuyAirtimecreenState extends State<BuyAirtimecreen> {
                                         onTap: (){
                                           profileController.airtimeController.text = telcos.value.data!.content![index].name.toString();
                                            // controller.idController1.text = chooseBank.value.data![index].code.toString();
+                                          profileController.serviceController.text = telcos.value.data!.content![index].serviceID.toString();
 
                                           telcos.value.data!.content![index].name=="Foreign Airtime"?
                                           Get.toNamed(MyRouters.buyAirtimeCountryScreen,arguments: [telcos.value.data!.content![index].serviceID.toString(),]):

@@ -4,30 +4,25 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import '../models/buy_cabel_model.dart';
 import '../models/buy_plan_model.dart';
 import '../models/modal_send_otp_for_pin.dart';
-import '../models/model_buy_interNet.dart';
+import '../models/model_airtime.dart';
 import '../models/model_cabel_providers.dart';
 import '../models/model_data_paln.dart';
+import '../models/service_common_model.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
-final details = Get.put(DetailsController());
 
+Future<AirtimeModel> airtimeRepo({  key,serviceID,identifier,request_id,amount,phone}) async {
 
-
-Future<BuyCabelTvModel> BuyCabelRepo({  amount,key,serviceID,phone,billersCode,variation_code,subscription_type,context}) async {
-  OverlayEntry loader = Helpers.overlayLoader(context);
-  Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
-  map['amount'] = amount;
   map['key'] = key;
   map['serviceID'] = serviceID;
+  map['identifier'] = identifier;
+  map['amount'] = amount;
+  map['request_id'] = request_id;
   map['phone'] = phone;
-  map['billersCode'] = billersCode;
-  map['variation_code'] = variation_code;
-  map['subscription_type'] = subscription_type;
   http.Response response = await http.post(Uri.parse(ApiUrls.serviceCommon),
       headers:await getAuthHeader(),
       body: jsonEncode(map));
@@ -36,14 +31,13 @@ Future<BuyCabelTvModel> BuyCabelRepo({  amount,key,serviceID,phone,billersCode,v
   print(map);
 
   if (response.statusCode == 200) {
-    Helpers.hideLoader(loader);
 
-    return BuyCabelTvModel.fromJson(jsonDecode(response.body),);
+    // print(jsonDecode(response.body));
+    return AirtimeModel.fromJson(jsonDecode(response.body));
+
   } else {
-    Helpers.hideLoader(loader);
 
-    return BuyCabelTvModel(
-        message: jsonDecode(response.body)["message"],status: false
-    );
+    // print(jsonDecode(response.body));
+    return AirtimeModel(message: jsonDecode(response.body)["message"], );
   }
 }

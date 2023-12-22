@@ -188,6 +188,7 @@ class ProfileController extends GetxController {
   TextEditingController nameController = TextEditingController();
   TextEditingController fNameController = TextEditingController();
   TextEditingController airtimeController = TextEditingController();
+  TextEditingController serviceController = TextEditingController();
   TextEditingController lNameController = TextEditingController();
   TextEditingController zipController = TextEditingController();
   TextEditingController emailController = TextEditingController();

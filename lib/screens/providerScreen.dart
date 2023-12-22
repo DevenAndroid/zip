@@ -31,11 +31,13 @@ class _ProviderScreenState extends State<ProviderScreen> {
   var initStateBlank = Get.arguments[0];
   getProviderList() {
     providerRepo(
-        provider: initStateBlank
+        serviceID: initStateBlank,
+      key: "variations",
+      identifier: "tv-subscription",
     ).then((value) {
       log("response.body.....    ${value}");
       cabelProvider.value = value;
-      if (value.success == true) {
+      if (value.status == true) {
         statusOfProviders.value = RxStatus.success();
       } else {
         statusOfProviders.value = RxStatus.error();
@@ -88,179 +90,139 @@ class _ProviderScreenState extends State<ProviderScreen> {
                         return  statusOfProviders.value.isSuccess ?
                         ListView.builder(
                             physics: const NeverScrollableScrollPhysics(),
-                            itemCount:cabelProvider.value.data!.length,
+                            itemCount:cabelProvider.value.data!.content!.varations!.length,
                             shrinkWrap: true,
                             itemBuilder: (context, index) {
-                              return Column(
+                              return  Column(
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(6.0),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text("Provider  Plan",
-                                          style: GoogleFonts.poppins(
-                                              color: const Color(0xFF1D1D1D),
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w500),),
-                                        Text(cabelProvider.value.data![index].name.toString(),
-                                          style: GoogleFonts.poppins(
-                                              color: const Color(0xFF1D1D1D),
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w500),),
-
-
-                                      ],
+                                  Container(
+                                    padding: EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        border: Border.all(color: AppTheme.primaryColor)
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(6.0),
                                     child: Column(
                                       children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text("Plan",
+                                              style: GoogleFonts.poppins(
+                                                  color: const Color(0xFF1D1D1D),
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w500),),
+                                            SizedBox(width: 20,),
+                                            Expanded(
+                                              child: Text(cabelProvider.value.data!.content!.varations![index].name.toString(),
+                                                style: GoogleFonts.poppins(
+                                                    color: const Color(0xFF1D1D1D),
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w500),),
+                                            ),
 
 
-    ListView.builder(
-    physics: const NeverScrollableScrollPhysics(),
-    itemCount:cabelProvider.value.data![index].availablePricingOptions!.length,
-    shrinkWrap: true,
-    itemBuilder: (context, index1) {
-      return  Column(
-        children: [
-          Container(
-            padding: EdgeInsets.all(8),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: AppTheme.primaryColor)
-            ),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Invoice Period",
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF1D1D1D),
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500),),
-                    Text(cabelProvider.value.data![index].availablePricingOptions![index1].invoicePeriod.toString(),
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF1D1D1D),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500),),
+                                          ],
+                                        ),
+                                        SizedBox(height: 8,),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text("Price",
+                                              style: GoogleFonts.poppins(
+                                                  color: const Color(0xFF1D1D1D),
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w500),),
+                                            Text(cabelProvider.value.data!.content!.varations![index].variationAmount.toString(),
+                                              style: GoogleFonts.poppins(
+                                                  color: const Color(0xFF1D1D1D),
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w500),),
 
 
-                  ],
-                ),
-                SizedBox(height: 8,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Months Paid For",
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF1D1D1D),
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500),),
-                    Text(cabelProvider.value.data![index].availablePricingOptions![index1].monthsPaidFor.toString(),
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF1D1D1D),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500),),
+                                          ],
+                                        ),
+                                        SizedBox(height: 8,),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text("FixedPrice",
+                                              style: GoogleFonts.poppins(
+                                                  color: const Color(0xFF1D1D1D),
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w500),),
+                                            Text(cabelProvider.value.data!.content!.varations![index].fixedPrice.toString(),
+                                              style: GoogleFonts.poppins(
+                                                  color: const Color(0xFF1D1D1D),
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w500),),
 
 
-                  ],
-                ),
-                SizedBox(height: 8,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Price",
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF1D1D1D),
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500),),
-                    Text(cabelProvider.value.data![index].availablePricingOptions![index1].price.toString(),
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF1D1D1D),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500),),
+                                          ],
+                                        ),
+                                        SizedBox(height: 8,),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text("Code",
+                                              style: GoogleFonts.poppins(
+                                                  color: const Color(0xFF1D1D1D),
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w500),),
+                                            Text(cabelProvider.value.data!.content!.varations![index].variationCode.toString(),
+                                              style: GoogleFonts.poppins(
+                                                  color: const Color(0xFF1D1D1D),
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w500),),
 
 
-                  ],
-                ),
-                SizedBox(height: 8,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Code",
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF1D1D1D),
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500),),
-                    Text(cabelProvider.value.data![index].code.toString(),
-                      style: GoogleFonts.poppins(
-                          color: const Color(0xFF1D1D1D),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500),),
+                                          ],
+                                        ),
+                                        SizedBox(height: 15,),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          children: [
+                                            InkWell(
+                                                onTap: (){
+                                                  print(cabelProvider.value.data!.content!.varations![index].variationAmount.toString());
+                                                  print(profileController
+                                                      .currentBalanceModel
+                                                      .value
+                                                      .data);
+// if(cabelProvider.value.data!.content!.varations![index].v < profileController
+//     .currentBalanceModel
+//     .value
+//     .data){
+                                                  Get.toNamed(MyRouters.purchaseCabelScreen,arguments: [cabelProvider.value.data!.content!.varations![index].variationAmount.toString(),cabelProvider.value.data!.content!.varations![index].variationCode.toString(),initStateBlank.toString(),]);
+
+// }
+// else{
+//   showToast("inefficient balance");
+// }
 
 
-                  ],
-                ),
-                SizedBox(height: 15,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    InkWell(
-                        onTap: (){
-                          print(cabelProvider.value.data![index].availablePricingOptions![index1].price);
-                          print(profileController
-                              .currentBalanceModel
-                              .value
-                              .data);
-if(cabelProvider.value.data![index].availablePricingOptions![index1].price < profileController
-    .currentBalanceModel
-    .value
-    .data){
-  Get.toNamed(MyRouters.purchaseCabelScreen,arguments: [cabelProvider.value.data![index].availablePricingOptions![index1].price.toString(),cabelProvider.value.data![index].availablePricingOptions![index1].monthsPaidFor.toString(),cabelProvider.value.data![index].code.toString(),initStateBlank.toString(),]);
+                                                },
+                                                child: Container(
+                                                    padding: EdgeInsets.symmetric(vertical: 8,horizontal: 10),
+                                                    decoration: BoxDecoration(
+                                                      borderRadius: BorderRadius.circular(7),
+                                                      color: AppTheme.secondaryColor,
+                                                    ),
 
-}
-else{
-  showToast("inefficient balance");
-}
-
-
-                        },
-                        child: Container(
-                            padding: EdgeInsets.symmetric(vertical: 8,horizontal: 10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(7),
-                              color: AppTheme.secondaryColor,
-                            ),
-
-                            child: Text("Buy Plan ",
-                              style: GoogleFonts.poppins(
-                                  color:  Colors.white,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500),))),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: 20,),
-        ],
-      );
-
-    }),
-
-
-
-
+                                                    child: Text("Buy Plan ",
+                                                      style: GoogleFonts.poppins(
+                                                          color:  Colors.white,
+                                                          fontSize: 12,
+                                                          fontWeight: FontWeight.w500),))),
+                                          ],
+                                        ),
                                       ],
                                     ),
                                   ),
-                                  SizedBox(height: 15,),
+                                  SizedBox(height: 20,),
                                 ],
                               );
+
                             }):  statusOfProviders.value.isError
                             ? CommonErrorWidget(
                           errorText:

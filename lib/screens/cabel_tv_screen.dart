@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -27,11 +28,12 @@ class _CabelTvScreenState extends State<CabelTvScreen> {
 
   getCabelList() {
     getCableRepo(
-
+      identifier: "tv-subscription",
+     key: "services",
     ).then((value) {
-      log("response.body.....    ${value}");
+      // log("response.body.....    ${value}");
       cabelList.value = value;
-      if (value.success == true) {
+      if (value.status == true) {
         statusOfCabel.value = RxStatus.success();
       } else {
         statusOfCabel.value = RxStatus.error();
@@ -84,7 +86,7 @@ class _CabelTvScreenState extends State<CabelTvScreen> {
                         return  statusOfCabel.value.isSuccess ?
                         ListView.builder(
                             physics: const NeverScrollableScrollPhysics(),
-                            itemCount:cabelList.value.data!.length,
+                            itemCount:cabelList.value.data!.content!.length,
                             shrinkWrap: true,
                             itemBuilder: (context, index) {
                               return Padding(
@@ -94,8 +96,21 @@ class _CabelTvScreenState extends State<CabelTvScreen> {
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
+                                        ClipOval(
+                                          child: CachedNetworkImage(
+                                            width: 40,
+                                            height: 40,
+                                            fit: BoxFit.cover,
+                                            imageUrl: cabelList.value.data!.content![index].image.toString(),
+                                            placeholder: (context, url) =>
+                                            const SizedBox(),
+                                            errorWidget: (context, url, error) =>
+                                            const SizedBox(),
+                                          ),
+                                        ),
+                                        SizedBox(width: 20,),
                                         Expanded(
-                                          child: Text(cabelList.value.data![index].provider.toString(),
+                                          child: Text(cabelList.value.data!.content![index].name.toString(),
                                             style: GoogleFonts.poppins(
                                                 color: const Color(0xFF1D1D1D),
                                                 fontSize: 16,
@@ -104,7 +119,7 @@ class _CabelTvScreenState extends State<CabelTvScreen> {
 
                                         InkWell(
                                             onTap: (){
-                                              Get.toNamed(MyRouters.providerScreen,arguments: [cabelList.value.data![index].provider.toString(),]);
+                                              Get.toNamed(MyRouters.providerScreen,arguments: [cabelList.value.data!.content![index].serviceID.toString(),]);
                                             },
                                             child: Container(
                                                 padding: EdgeInsets.symmetric(vertical: 8,horizontal: 10),

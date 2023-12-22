@@ -1,11 +1,11 @@
-class BuyCabelTvModel {
+class ModelBuyElectricity {
   bool? status;
   String? message;
   Data? data;
 
-  BuyCabelTvModel({this.status, this.message, this.data});
+  ModelBuyElectricity({this.status, this.message, this.data});
 
-  BuyCabelTvModel.fromJson(Map<String, dynamic> json) {
+  ModelBuyElectricity.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
@@ -30,6 +30,23 @@ class Data {
   String? amount;
   TransactionDate? transactionDate;
   String? purchasedCode;
+  String? customerName;
+  Null? customerAddress;
+  Null? exchangeReference;
+  String? mainToken;
+  String? mainTokenDescription;
+  double? mainTokenUnits;
+  double? mainTokenTax;
+  double? mainsTokenAmount;
+  Null? bonusToken;
+  Null? bonusTokenDescription;
+  Null? bonusTokenUnits;
+  Null? bonusTokenTax;
+  Null? bonusTokenAmount;
+  String? tariffIndex;
+  Null? debtTariff;
+  Null? debtAmount;
+  Null? debtDescription;
 
   Data(
       {this.code,
@@ -38,7 +55,24 @@ class Data {
         this.requestId,
         this.amount,
         this.transactionDate,
-        this.purchasedCode});
+        this.purchasedCode,
+        this.customerName,
+        this.customerAddress,
+        this.exchangeReference,
+        this.mainToken,
+        this.mainTokenDescription,
+        this.mainTokenUnits,
+        this.mainTokenTax,
+        this.mainsTokenAmount,
+        this.bonusToken,
+        this.bonusTokenDescription,
+        this.bonusTokenUnits,
+        this.bonusTokenTax,
+        this.bonusTokenAmount,
+        this.tariffIndex,
+        this.debtTariff,
+        this.debtAmount,
+        this.debtDescription});
 
   Data.fromJson(Map<String, dynamic> json) {
     code = json['code'];
@@ -51,6 +85,23 @@ class Data {
         ? new TransactionDate.fromJson(json['transaction_date'])
         : null;
     purchasedCode = json['purchased_code'];
+    customerName = json['customerName'];
+    customerAddress = json['customerAddress'];
+    exchangeReference = json['exchangeReference'];
+    mainToken = json['mainToken'];
+    mainTokenDescription = json['mainTokenDescription'];
+    mainTokenUnits = json['mainTokenUnits'];
+    mainTokenTax = json['mainTokenTax'];
+    mainsTokenAmount = json['mainsTokenAmount'];
+    bonusToken = json['bonusToken'];
+    bonusTokenDescription = json['bonusTokenDescription'];
+    bonusTokenUnits = json['bonusTokenUnits'];
+    bonusTokenTax = json['bonusTokenTax'];
+    bonusTokenAmount = json['bonusTokenAmount'];
+    tariffIndex = json['tariffIndex'];
+    debtTariff = json['debtTariff'];
+    debtAmount = json['debtAmount'];
+    debtDescription = json['debtDescription'];
   }
 
   Map<String, dynamic> toJson() {
@@ -66,6 +117,23 @@ class Data {
       data['transaction_date'] = this.transactionDate!.toJson();
     }
     data['purchased_code'] = this.purchasedCode;
+    data['customerName'] = this.customerName;
+    data['customerAddress'] = this.customerAddress;
+    data['exchangeReference'] = this.exchangeReference;
+    data['mainToken'] = this.mainToken;
+    data['mainTokenDescription'] = this.mainTokenDescription;
+    data['mainTokenUnits'] = this.mainTokenUnits;
+    data['mainTokenTax'] = this.mainTokenTax;
+    data['mainsTokenAmount'] = this.mainsTokenAmount;
+    data['bonusToken'] = this.bonusToken;
+    data['bonusTokenDescription'] = this.bonusTokenDescription;
+    data['bonusTokenUnits'] = this.bonusTokenUnits;
+    data['bonusTokenTax'] = this.bonusTokenTax;
+    data['bonusTokenAmount'] = this.bonusTokenAmount;
+    data['tariffIndex'] = this.tariffIndex;
+    data['debtTariff'] = this.debtTariff;
+    data['debtAmount'] = this.debtAmount;
+    data['debtDescription'] = this.debtDescription;
     return data;
   }
 }

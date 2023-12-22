@@ -10,17 +10,15 @@ import '../models/model_data_paln.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
-final details = Get.put(DetailsController());
-Future<ModelCabelProvider> providerRepo({  provider}) async {
+
+Future<ModelCabelProvider> providerRepo({ serviceID, identifier,key}) async {
 
   var map = <String, dynamic>{};
-  map['provider'] = provider;
-  http.Response response = await http.post(Uri.parse(ApiUrls.provider),
-      headers: { HttpHeaders.contentTypeHeader: 'application/json',
-        HttpHeaders.acceptHeader: 'application/json',
-        "secret-key": details.secretKey,
-
-      },
+  map['serviceID'] = serviceID;
+  map['key'] = key;
+  map['identifier'] = identifier;
+  http.Response response = await http.post(Uri.parse(ApiUrls.serviceCommon),
+      headers: await getAuthHeader(),
       body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
   print(map);
@@ -33,7 +31,7 @@ Future<ModelCabelProvider> providerRepo({  provider}) async {
 
 
     return ModelCabelProvider(
-        message: jsonDecode(response.body)["message"],success: false
+        message: jsonDecode(response.body)["message"],status: false
     );
   }
 }

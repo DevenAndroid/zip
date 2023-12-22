@@ -86,18 +86,18 @@ class _CabelScreenState extends State<CabelScreen> {
     print(initStateBlank1);
     BuyCabelRepo(
       amount: initStateBlank1,
-      month_paid_for:  initStateBlank2,
-      product_code:  initStateBlank3,
-      provider: initStateBlank,
+      serviceID:  initStateBlank2,
+      variation_code:  initStateBlank3,
+      subscription_type:  initStateBlank,
       context: context,
-      smartcard_number: initStateBlank4,
-
-
-      reference: profileController.description2Controller.text.trim(),
+      billersCode:initStateBlank4,
+phone:profileController.modal.value.data!.user!.phone.toString() ,
+key: "pay"
+      // reference: profileController.description2Controller.text.trim(),
     ).then((value) {
       log("response.body.....    ${value}");
       buyCabelTv.value = value;
-      if (value.success == true) {
+      if (value.status == true) {
         saveList();
         statusOfProviders.value = RxStatus.success();
         showToast(value.message.toString());

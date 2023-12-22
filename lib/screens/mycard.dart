@@ -104,8 +104,9 @@ class _MyCardState extends State<MyCard> {
               CarouselSlider(
                 items: [
                   Card(
-                    elevation: 4.0,
+                    elevation: 3.0,
                     color: Colors.black,
+
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(14),
                     ),
@@ -252,60 +253,61 @@ class _MyCardState extends State<MyCard> {
                                       fontWeight: FontWeight.w600),)
                             ],
                           ),
-                          Row(
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    'Card Holder Name',
-                                    style: GoogleFonts.poppins(
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-
-                                  if(controller1.card.value.data==null)
-                                  Text(
-                                    '--',
-                                    style: GoogleFonts.poppins(
-                                        color: Colors.white,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600),
-                                  )
-                                  else
-
+                          FittedBox(
+                            child: Row(
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
                                     Text(
-                                      controller1.card.value.data!.cardName.toString(),
+                                      'Card Holder Name',
+                                      style: GoogleFonts.poppins(
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+
+                                    if(controller1.card.value.data==null)
+                                    Text(
+                                      '--',
                                       style: GoogleFonts.poppins(
                                           color: Colors.white,
                                           fontSize: 14,
                                           fontWeight: FontWeight.w600),
-                                      overflow: TextOverflow.ellipsis,
                                     )
-                                ],
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    'Expiry date',
-                                    style: GoogleFonts.poppins(
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                  if(controller1.card.value.data==null)
-                                  Text(
-                                    '--/--',
-                                    style: GoogleFonts.poppins(
-                                        color: Colors.white,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600),
-                                  )
+                                    else
+
+                                      Text(
+                                        controller1.card.value.data!.cardName.toString(),
+                                        style: GoogleFonts.poppins(
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600),
+                                        overflow: TextOverflow.ellipsis,
+                                      )
+                                  ],
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      'Expiry date',
+                                      style: GoogleFonts.poppins(
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                    if(controller1.card.value.data==null)
+                                    Text(
+                                      '--/--',
+                                      style: GoogleFonts.poppins(
+                                          color: Colors.white,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600),
+                                    )
           else
 
           Text(
@@ -315,29 +317,30 @@ class _MyCardState extends State<MyCard> {
     fontSize: 14,
     fontWeight: FontWeight.w600),
     )
-                                ],
-                              ),
-                              const SizedBox(
-                                width: 15,
-                              ),
-                              Stack(
-                                children: [
-                                  Image.asset(
-                                    "assets/images/round2.png",
-                                    height: 35,
-                                    width: 35,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20.0),
-                                    child: Image.asset(
-                                      "assets/images/round1.png",
-                                      height: 35,
-                                      width: 34,
+                                  ],
+                                ),
+                                const SizedBox(
+                                  width: 15,
+                                ),
+                                Stack(
+                                  children: [
+                                    Image.asset(
+                                      "assets/images/round2.png",
+                                      height: 30,
+                                      width: 30,
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 15.0),
+                                      child: Image.asset(
+                                        "assets/images/round1.png",
+                                        height: 30,
+                                        width: 30,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),

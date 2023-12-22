@@ -13,20 +13,18 @@ import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
 final details = Get.put(DetailsController());
-Future<ModelBuyEnergy> BuyEnergyPlanRepo({  amount,phone_no,provider,meter_number,context}) async {
+Future<ModelBuyEnergy> BuyEnergyPlanRepo({ key, amount,phone,billersCode,variation_code,serviceID,context}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
   map['amount'] = amount;
-  map['phone_no'] = phone_no;
-  map['provider'] = provider;
-  map['meter_number'] = meter_number;
-  http.Response response = await http.post(Uri.parse(ApiUrls.purchaseEnergy),
-      headers: { HttpHeaders.contentTypeHeader: 'application/json',
-        HttpHeaders.acceptHeader: 'application/json',
-        "secret-key": details.secretKey
-
-      },
+  map['key'] = key;
+  map['phone'] = phone;
+  map['billersCode'] = billersCode;
+  map['variation_code'] = variation_code;
+  map['serviceID'] = serviceID;
+  http.Response response = await http.post(Uri.parse(ApiUrls.serviceCommon),
+      headers:await getAuthHeader(),
       body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
   log("Sign IN DATA${response.statusCode}");
@@ -40,7 +38,7 @@ Future<ModelBuyEnergy> BuyEnergyPlanRepo({  amount,phone_no,provider,meter_numbe
     Helpers.hideLoader(loader);
 
     return ModelBuyEnergy(
-        message: jsonDecode(response.body)["message"],success: false
+        message: jsonDecode(response.body)["message"],status: false
     );
   }
 }

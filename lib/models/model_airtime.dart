@@ -1,11 +1,11 @@
-class BuyCabelTvModel {
+class AirtimeModel {
   bool? status;
   String? message;
   Data? data;
 
-  BuyCabelTvModel({this.status, this.message, this.data});
+  AirtimeModel({this.status, this.message, this.data});
 
-  BuyCabelTvModel.fromJson(Map<String, dynamic> json) {
+  AirtimeModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
@@ -91,25 +91,25 @@ class Content {
 }
 
 class Transactions {
-  String? status;
-  String? productName;
-  String? uniqueElement;
-  int? unitPrice;
-  int? quantity;
-  Null? serviceVerification;
-  String? channel;
-  int? commission;
-  double? totalAmount;
-  Null? discount;
-  String? type;
-  String? email;
-  String? phone;
-  Null? name;
-  int? convinienceFee;
-  int? amount;
-  String? platform;
-  String? method;
-  String? transactionId;
+  dynamic status;
+  dynamic productName;
+  dynamic uniqueElement;
+  dynamic unitPrice;
+  dynamic quantity;
+  dynamic serviceVerification;
+  dynamic channel;
+  dynamic commission;
+  dynamic totalAmount;
+  dynamic discount;
+  dynamic type;
+  dynamic email;
+  dynamic phone;
+  dynamic name;
+  dynamic convinienceFee;
+  dynamic amount;
+  dynamic platform;
+  dynamic method;
+  dynamic transactionId;
 
   Transactions(
       {this.status,

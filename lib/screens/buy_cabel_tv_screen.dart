@@ -48,7 +48,7 @@ class _PurchaseCabelScreenState extends State<PurchaseCabelScreen> {
   var initStateBlank = Get.arguments[0];
   var initStateBlank1 = Get.arguments[1];
   var initStateBlank2 = Get.arguments[2];
-  var initStateBlank3 = Get.arguments[3];
+  // var initStateBlank3 = Get.arguments[3];
   Rx<RxStatus> statusOfSave= RxStatus.empty().obs;
   Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
 
@@ -60,8 +60,8 @@ class _PurchaseCabelScreenState extends State<PurchaseCabelScreen> {
         // complete_response: purchaseData.value.data!.toJson(),
         context: context,
         description:profileController.description2Controller.text.trim(),
-        telcos: initStateBlank3,
-       data_code: initStateBlank2,
+        telcos: initStateBlank1,
+       data_code: initStateBlank1,
         dataplan:initStateBlank1,
         type: "dr",
       phone: profileController.phone2Controller.text.trim(),
@@ -85,18 +85,18 @@ class _PurchaseCabelScreenState extends State<PurchaseCabelScreen> {
     print(initStateBlank1);
     BuyCabelRepo(
      amount: initStateBlank,
-     month_paid_for:  initStateBlank1,
-     product_code:  initStateBlank2,
-      provider: initStateBlank3,
+     phone: profileController.modal.value.data!.user!.phone.toString(),
+     variation_code:   initStateBlank1,
+      serviceID:initStateBlank2,
       context: context,
-      smartcard_number: profileController.phone2Controller.text.trim(),
+      billersCode: profileController.phone2Controller.text.trim(),
+key: "pay"
 
 
-      reference: profileController.description2Controller.text.trim(),
     ).then((value) {
       log("response.body.....    ${value}");
       buyCabelTv.value = value;
-      if (value.success == true) {
+      if (value.status == true) {
         saveList();
         statusOfProviders.value = RxStatus.success();
         showToast(value.message.toString());
@@ -225,7 +225,7 @@ class _PurchaseCabelScreenState extends State<PurchaseCabelScreen> {
               onTap: () async {
                 SharedPreferences pref = await SharedPreferences.getInstance();
                 if (pref.getBool('TransistionPin') == true) {
-                  Get.toNamed(MyRouters.cabelTvPin,arguments: [initStateBlank,initStateBlank1,initStateBlank2,initStateBlank3]);
+                  Get.toNamed(MyRouters.cabelTvPin,arguments: [initStateBlank,initStateBlank1,initStateBlank2,]);
                 }
                 else{
                   getProviderList();

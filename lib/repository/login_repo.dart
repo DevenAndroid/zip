@@ -9,7 +9,7 @@ import '../resourses/helper.dart';
 
 
 
-Future<LoginModel> loginRepo({phone_email,context,type,password}) async {
+Future<LoginModel> loginRepo({phone_email,context,type,password,device_token}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
@@ -17,6 +17,7 @@ Future<LoginModel> loginRepo({phone_email,context,type,password}) async {
   map['phone_email'] = phone_email;
   map['type'] =  type;
   map['password'] = password;
+  map['device_token'] = device_token;
 
 
   print(map);

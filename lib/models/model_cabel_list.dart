@@ -1,50 +1,90 @@
 class ModelCabelList {
-  bool? success;
-  List<Data>? data;
+  bool? status;
   String? message;
-  String? service;
+  Data? data;
 
-  ModelCabelList({this.success, this.data, this.message, this.service});
+  ModelCabelList({this.status, this.message, this.data});
 
   ModelCabelList.fromJson(Map<String, dynamic> json) {
-    success = json['success'];
-    if (json['data'] != null) {
-      data = <Data>[];
-      json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
-      });
-    }
+    status = json['status'];
     message = json['message'];
-    service = json['service'];
+    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['success'] = this.success;
-    if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
-    }
+    data['status'] = this.status;
     data['message'] = this.message;
-    data['service'] = this.service;
+    if (this.data != null) {
+      data['data'] = this.data!.toJson();
+    }
     return data;
   }
 }
 
 class Data {
- dynamic name;
- dynamic provider;
+  String? responseDescription;
+  List<Content>? content;
 
-  Data({this.name, this.provider});
+  Data({this.responseDescription, this.content});
 
   Data.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    provider = json['provider'];
+    responseDescription = json['response_description'];
+    if (json['content'] != null) {
+      content = <Content>[];
+      json['content'].forEach((v) {
+        content!.add(new Content.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['response_description'] = this.responseDescription;
+    if (this.content != null) {
+      data['content'] = this.content!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Content {
+  String? serviceID;
+  String? name;
+  String? minimiumAmount;
+  String? maximumAmount;
+  String? convinienceFee;
+  String? productType;
+  String? image;
+
+  Content(
+      {this.serviceID,
+        this.name,
+        this.minimiumAmount,
+        this.maximumAmount,
+        this.convinienceFee,
+        this.productType,
+        this.image});
+
+  Content.fromJson(Map<String, dynamic> json) {
+    serviceID = json['serviceID'];
+    name = json['name'];
+    minimiumAmount = json['minimium_amount'];
+    maximumAmount = json['maximum_amount'];
+    convinienceFee = json['convinience_fee'];
+    productType = json['product_type'];
+    image = json['image'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['serviceID'] = this.serviceID;
     data['name'] = this.name;
-    data['provider'] = this.provider;
+    data['minimium_amount'] = this.minimiumAmount;
+    data['maximum_amount'] = this.maximumAmount;
+    data['convinience_fee'] = this.convinienceFee;
+    data['product_type'] = this.productType;
+    data['image'] = this.image;
     return data;
   }
 }

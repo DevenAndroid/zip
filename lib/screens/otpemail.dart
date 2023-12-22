@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -63,12 +64,13 @@ class _EmailOtpScreenState extends State<EmailOtpScreen> {
   //     });
   //   }
   // }
-  verifyOtpRepo() {
+  verifyOtpRepo() async {
+    String? token = await FirebaseMessaging.instance.getToken();
     if (formKey2.currentState!.validate()) {
       userVerifyOtpRepo(
         phone_email: initStateBlank,
         otp: emailOtpController.text.trim(),
-
+        device_token: token,
       ).then((value) async {
         SharedPreferences pref = await SharedPreferences.getInstance();
         pref.setString('cookie', value.authToken.toString());

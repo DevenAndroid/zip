@@ -101,17 +101,18 @@ class _CabelTvPinState extends State<CabelTvPin> {
     BuyCabelRepo(
       amount: initStateBlank,
       context: context,
-      month_paid_for:  initStateBlank1,
-      product_code:  initStateBlank2,
-      provider: initStateBlank3,
-      smartcard_number: profileController.phone2Controller.text.trim(),
+      subscription_type:    initStateBlank1,
+    variation_code:  initStateBlank2,
+      serviceID: initStateBlank3,
+      billersCode:  profileController.phone2Controller.text.trim(),
+        phone:profileController.modal.value.data!.user!.phone.toString() ,
+        key: "pay"
 
 
-      reference: profileController.description2Controller.text.trim(),
     ).then((value) {
       log("response.body.....    ${value}");
       buyCabelTv.value = value;
-      if (value.success == true) {
+      if (value.status == true) {
         saveList();
         statusOfProviders.value = RxStatus.success();
         showToast(value.message.toString());

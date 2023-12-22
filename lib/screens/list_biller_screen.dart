@@ -111,6 +111,7 @@ identifier: "electricity-bill",
                                             const SizedBox(),
                                           ),
                                         ),
+                                        SizedBox(width: 20,),
                                         Expanded(
                                           child: InkWell(
                                             onTap: () {

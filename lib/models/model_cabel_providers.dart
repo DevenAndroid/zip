@@ -1,86 +1,104 @@
 class ModelCabelProvider {
-  bool? success;
-  List<Data>? data;
+  bool? status;
   String? message;
-  String? service;
+  Data? data;
 
-  ModelCabelProvider({this.success, this.data, this.message, this.service});
+  ModelCabelProvider({this.status, this.message, this.data});
 
   ModelCabelProvider.fromJson(Map<String, dynamic> json) {
-    success = json['success'];
-    if (json['data'] != null) {
-      data = <Data>[];
-      json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
-      });
-    }
+    status = json['status'];
     message = json['message'];
-    service = json['service'];
+    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['success'] = this.success;
-    if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
-    }
+    data['status'] = this.status;
     data['message'] = this.message;
-    data['service'] = this.service;
+    if (this.data != null) {
+      data['data'] = this.data!.toJson();
+    }
     return data;
   }
 }
 
 class Data {
-  List<AvailablePricingOptions>? availablePricingOptions;
- dynamic code;
- dynamic name;
- dynamic description;
+  String? responseDescription;
+  Content? content;
 
-  Data({this.availablePricingOptions, this.code, this.name, this.description});
+  Data({this.responseDescription, this.content});
 
   Data.fromJson(Map<String, dynamic> json) {
-    if (json['availablePricingOptions'] != null) {
-      availablePricingOptions = <AvailablePricingOptions>[];
-      json['availablePricingOptions'].forEach((v) {
-        availablePricingOptions!.add(new AvailablePricingOptions.fromJson(v));
-      });
-    }
-    code = json['code'];
-    name = json['name'];
-    description = json['description'];
+    responseDescription = json['response_description'];
+    content =
+    json['content'] != null ? new Content.fromJson(json['content']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.availablePricingOptions != null) {
-      data['availablePricingOptions'] =
-          this.availablePricingOptions!.map((v) => v.toJson()).toList();
+    data['response_description'] = this.responseDescription;
+    if (this.content != null) {
+      data['content'] = this.content!.toJson();
     }
-    data['code'] = this.code;
-    data['name'] = this.name;
-    data['description'] = this.description;
     return data;
   }
 }
 
-class AvailablePricingOptions {
- dynamic monthsPaidFor;
- dynamic price;
- dynamic invoicePeriod;
+class Content {
+  String? serviceName;
+  String? serviceID;
+  String? convinienceFee;
+  List<Varations>? varations;
 
-  AvailablePricingOptions({this.monthsPaidFor, this.price, this.invoicePeriod});
+  Content(
+      {this.serviceName, this.serviceID, this.convinienceFee, this.varations});
 
-  AvailablePricingOptions.fromJson(Map<String, dynamic> json) {
-    monthsPaidFor = json['monthsPaidFor'];
-    price = json['price'];
-    invoicePeriod = json['invoicePeriod'];
+  Content.fromJson(Map<String, dynamic> json) {
+    serviceName = json['ServiceName'];
+    serviceID = json['serviceID'];
+    convinienceFee = json['convinience_fee'];
+    if (json['varations'] != null) {
+      varations = <Varations>[];
+      json['varations'].forEach((v) {
+        varations!.add(new Varations.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['monthsPaidFor'] = this.monthsPaidFor;
-    data['price'] = this.price;
-    data['invoicePeriod'] = this.invoicePeriod;
+    data['ServiceName'] = this.serviceName;
+    data['serviceID'] = this.serviceID;
+    data['convinience_fee'] = this.convinienceFee;
+    if (this.varations != null) {
+      data['varations'] = this.varations!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Varations {
+  String? variationCode;
+  String? name;
+  String? variationAmount;
+  String? fixedPrice;
+
+  Varations(
+      {this.variationCode, this.name, this.variationAmount, this.fixedPrice});
+
+  Varations.fromJson(Map<String, dynamic> json) {
+    variationCode = json['variation_code'];
+    name = json['name'];
+    variationAmount = json['variation_amount'];
+    fixedPrice = json['fixedPrice'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['variation_code'] = this.variationCode;
+    data['name'] = this.name;
+    data['variation_amount'] = this.variationAmount;
+    data['fixedPrice'] = this.fixedPrice;
     return data;
   }
 }

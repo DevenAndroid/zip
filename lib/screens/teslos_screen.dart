@@ -12,9 +12,11 @@ import 'package:zip/routers/my_routers.dart';
 import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
 import '../models/buy_plan_model.dart';
+import '../models/model_airtime.dart';
 import '../models/model_fetch_telcos.dart';
 import '../models/save_transastion_model.dart';
 import '../models/service_common_model.dart';
+import '../repository/airtime_repo.dart';
 import '../repository/fetch_telcos_repo.dart';
 import '../repository/repo_buy_plan.dart';
 import '../repository/save_buy_plan_repo.dart';
@@ -51,7 +53,7 @@ class _TelcosScreenState extends State<TelcosScreen> {
   // TextEditingController amountController = TextEditingController();
 
   TextEditingController descriptionController = TextEditingController();
-  Rx<ServiceCommonModel> purchaseData = ServiceCommonModel().obs;
+  Rx<AirtimeModel> purchaseData = AirtimeModel().obs;
 
   Rx<RxStatus> statusOfSave = RxStatus.empty().obs;
   Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
@@ -93,10 +95,11 @@ class _TelcosScreenState extends State<TelcosScreen> {
       Get.toNamed(MyRouters.sucessRechargePin);
     }
     else{
-      commonServiceRepo(
-      key: "services",
+      airtimeRepo(
+      key: "pay",
       amount: registorController.amountController1.text.trim(),
       phone: registorController.phoneController1.text.trim(),
+      serviceID: profileController.serviceController.text.trim()
       // reference:
       //     registorController.fetchAccount.value.data!.accountNumber.toString() +
       //         DateTime.now().millisecondsSinceEpoch.toString(),

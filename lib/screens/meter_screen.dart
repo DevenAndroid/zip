@@ -103,17 +103,19 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
          );
        }}
   }
-  Future buyEnergy() async {
-    await BuyEnergyPlanRepo(
-      meter_number: controller.meterNo.text.toString(),
-      provider: controller.provider.text.trim(),
-      amount: controller.amount.text.trim(),
-      phone_no: controller.mobileNO.text.trim(),
+   buyEnergy()  {
+     BuyEnergyPlanRepo(
+      billersCode: controller.meterNo.text.toString(),
+      variation_code:  controller.provider.text.trim(),
+      serviceID: controller.idController1.text.toString(),
+      key: "pay",
+      amount: controller.amount.text.toString(),
+      phone: controller.mobileNO.text.toString(),
       context: context,
       )
         .then((value) {
       Energy.value = value;
-      if (value.success == true) {
+      if (value.status == true) {
         // payOutcontroller.accountName.text = (value.data!.accountName??"").toString();
         statusOfBuyEnergy.value = RxStatus.success();
         saveList();
@@ -325,7 +327,8 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
                         RequiredValidator(
                             errorText:
                             'Please enter amount '),]),
-                readOnly: true,
+                readOnly: false,
+
                           controller: controller.amount,
                           obSecure: false,
                           hintText: "",
