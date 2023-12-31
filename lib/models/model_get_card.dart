@@ -1,4 +1,4 @@
-class ModelGetCard {
+class   ModelGetCard {
   bool? status;
   String? message;
   Data? data;
@@ -25,8 +25,8 @@ class ModelGetCard {
 class Data {
   int? id;
   String? cardId;
+  String? cardHolderId;
   int? cardNumber;
-  Null? resposnse;
   int? expiryYear;
   int? expiryMonth;
   int? cvv;
@@ -38,8 +38,8 @@ class Data {
   Data(
       {this.id,
         this.cardId,
+        this.cardHolderId,
         this.cardNumber,
-        this.resposnse,
         this.expiryYear,
         this.expiryMonth,
         this.cvv,
@@ -51,8 +51,8 @@ class Data {
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     cardId = json['card_id'];
+    cardHolderId = json['card_holder_id'];
     cardNumber = json['card_number'];
-    resposnse = json['resposnse'];
     expiryYear = json['expiry_year'];
     expiryMonth = json['expiry_month'];
     cvv = json['cvv'];
@@ -66,8 +66,8 @@ class Data {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['card_id'] = this.cardId;
+    data['card_holder_id'] = this.cardHolderId;
     data['card_number'] = this.cardNumber;
-    data['resposnse'] = this.resposnse;
     data['expiry_year'] = this.expiryYear;
     data['expiry_month'] = this.expiryMonth;
     data['cvv'] = this.cvv;

@@ -17,6 +17,7 @@ import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_colour.dart';
 import '../widgets/common_textfield.dart';
+import 'forgot_email.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -236,6 +237,22 @@ class _LoginScreenState extends State<LoginScreen> {
                         controller: details.nopasswordController,obSecure: obscureText2, labelText: "Password", hintText: 'Password',),
                       SizedBox(height: 15,),
 
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: InkWell(
+                          onTap: (){
+                            // Get.toNamed(MyRouters.forgotEmail);
+                            Get.to(()=>ForgotEmailScreen());
+                          },
+                          child: Text(
+                            "Forgot Password",
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF1D1D1D),
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                      ),
                       SizedBox(height:size.height*.3,),
 
                       InkWell(

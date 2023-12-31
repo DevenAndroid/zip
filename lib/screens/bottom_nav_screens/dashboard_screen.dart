@@ -33,7 +33,7 @@ class _DashBoardState extends State<DashBoard> {
     super.initState();
     getData();
     getData1();
-
+    profileController.getCard();
     profileController.getCurrentBalance();
     // getData1();
   }

@@ -12,7 +12,7 @@ import '../resourses/helper.dart';
 
 
 
-Future<ModelSaveCard> saveCardRepo({card_id,card_name,brand,card_currency,last_4,cvv,expiry_year,expiry_month,card_number}) async {
+Future<ModelSaveCard> saveCardRepo({card_id,card_name,card_holder_id,brand,card_currency,last_4,cvv,expiry_year,expiry_month,card_number}) async {
 
   var map = <String, dynamic>{};
 
@@ -25,6 +25,7 @@ Future<ModelSaveCard> saveCardRepo({card_id,card_name,brand,card_currency,last_4
   map['expiry_year'] = expiry_year;
   map['expiry_month'] = expiry_month;
   map['card_number'] = card_number;
+  map['card_holder_id'] = card_holder_id;
 
 
 

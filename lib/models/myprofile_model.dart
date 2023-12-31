@@ -153,14 +153,14 @@ class Address {
   int? userId;
   String? streetName;
   String? houseNumber;
-  Null? additional;
+  dynamic additional;
   int? postalCode;
   String? state;
   String? city;
   String? country;
   String? createdAt;
   String? updatedAt;
-  Null? deletedAt;
+  dynamic deletedAt;
 
   Address(
       {this.id,

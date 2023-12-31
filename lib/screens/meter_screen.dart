@@ -83,7 +83,7 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
        if (formKey4.currentState!.validate()) {
          verifyMeterRepo(
              billersCode: controller.meterNo.text.toString(),
-             type:  controller.provider.text.trim(),
+             type:  controller.provider1.text.trim(),
            serviceID: controller.idController1.text,
            key: "merchant-verify"
          )
@@ -106,7 +106,7 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
    buyEnergy()  {
      BuyEnergyPlanRepo(
       billersCode: controller.meterNo.text.toString(),
-      variation_code:  controller.provider.text.trim(),
+      variation_code:  controller.provider1.text.trim(),
       serviceID: controller.idController1.text.toString(),
       key: "pay",
       amount: controller.amount.text.toString(),

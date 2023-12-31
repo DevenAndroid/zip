@@ -150,6 +150,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                 child: CommonTextfield(
                   controller: profileController.fNameController,
                   obSecure: false,
+                  readOnly: true,
                   hintText: "Manish",
                   labelText: "First Name",
                 ),
@@ -163,6 +164,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   controller: profileController.lNameController,
                   obSecure: false,
                   hintText: "Manish",
+                  readOnly: true,
                   labelText: "Last Name",
                 ),
               ),
@@ -172,49 +174,49 @@ class _UpdateProfileState extends State<UpdateProfile> {
               Padding(
                 padding: const EdgeInsets.only(left: 6, right: 6),
                 child: CommonTextfield(
-                  onTap: () async {
-                    DateTime? pickedDate = await showDatePicker(
-                      builder: (context, child) {
-                        return Theme(
-                          data: Theme.of(context).copyWith(
-                            colorScheme: ColorScheme.light(
-                                primary: AppTheme
-                                    .primaryColor, // header background color
-                                onPrimary: Colors.white, // header text color
-                                onSurface:
-                                    AppTheme.buttonColor // body text color
-                                ),
-                            textButtonTheme: TextButtonThemeData(
-                              style: TextButton.styleFrom(
-                                foregroundColor:
-                                    AppTheme.buttonColor, // button text color
-                              ),
-                            ),
-                          ),
-                          child: child!,
-                        );
-                      },
-                      initialEntryMode: DatePickerEntryMode.calendarOnly,
-                      context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime(1950),
-                      //DateTime.now() - not to allow to choose before today.
-                      lastDate: DateTime.now(),
-                    );
-
-                    if (pickedDate != null) {
-                      print(
-                          pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
-                      String formattedDate =
-                          DateFormat('yyyy-MM-dd').format(pickedDate);
-                      print(
-                          formattedDate); //formatted date output using intl package =>  2021-03-16
-                      setState(() {
-                        profileController.dobController.text =
-                            formattedDate; //set output date to TextField value.
-                      });
-                    } else {}
-                  },
+                  // onTap: () async {
+                  //   DateTime? pickedDate = await showDatePicker(
+                  //     builder: (context, child) {
+                  //       return Theme(
+                  //         data: Theme.of(context).copyWith(
+                  //           colorScheme: ColorScheme.light(
+                  //               primary: AppTheme
+                  //                   .primaryColor, // header background color
+                  //               onPrimary: Colors.white, // header text color
+                  //               onSurface:
+                  //                   AppTheme.buttonColor // body text color
+                  //               ),
+                  //           textButtonTheme: TextButtonThemeData(
+                  //             style: TextButton.styleFrom(
+                  //               foregroundColor:
+                  //                   AppTheme.buttonColor, // button text color
+                  //             ),
+                  //           ),
+                  //         ),
+                  //         child: child!,
+                  //       );
+                  //     },
+                  //     initialEntryMode: DatePickerEntryMode.calendarOnly,
+                  //     context: context,
+                  //     initialDate: DateTime.now(),
+                  //     firstDate: DateTime(1950),
+                  //     //DateTime.now() - not to allow to choose before today.
+                  //     lastDate: DateTime.now(),
+                  //   );
+                  //
+                  //   if (pickedDate != null) {
+                  //     print(
+                  //         pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                  //     String formattedDate =
+                  //         DateFormat('yyyy-MM-dd').format(pickedDate);
+                  //     print(
+                  //         formattedDate); //formatted date output using intl package =>  2021-03-16
+                  //     setState(() {
+                  //       profileController.dobController.text =
+                  //           formattedDate; //set output date to TextField value.
+                  //     });
+                  //   } else {}
+                  // },
                   keyboardType:
                       const TextInputType.numberWithOptions(decimal: true),
                   inputFormatters: [maskFormatter],
@@ -238,6 +240,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   readOnly: true,
                   controller: profileController.emailController,
                   obSecure: false,
+
                   hintText: "Manish@gmail.com",
                   labelText: "Email",
                 ),
@@ -272,7 +275,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                         r'(^(?:[+0]9)?[0-9]{10,12}$)',
                         errorText: '')
                   ]),
-                  readOnly: false,
+                  readOnly: true,
                   controller: profileController.mobileController,
                   obSecure: false,
                   hintText: "7665096245",
@@ -286,7 +289,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
               Padding(
                 padding: const EdgeInsets.only(left: 6, right: 6),
                 child: CommonTextfield(
-                  readOnly: false,
+                  readOnly: true,
                   controller: profileController.zipController,
                   obSecure: false,
                   hintText: "Manish@zip",

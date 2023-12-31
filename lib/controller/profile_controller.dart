@@ -1,9 +1,11 @@
 import 'dart:developer';
 
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/controller/update_user.dart';
+import 'package:zip/screens/card_sucess.dart';
 
 import '../models/current_balance_repo.dart';
 import '../models/fund_issuing_wallet.dart';
@@ -12,6 +14,7 @@ import '../models/model_conversion.dart';
 import '../models/model_create_card.dart';
 import '../models/model_create_card_holder.dart';
 import '../models/model_create_payout.dart';
+import '../models/model_delete_card.dart';
 import '../models/model_freeze_card.dart';
 import '../models/model_fund_card.dart';
 import '../models/model_get_card.dart';
@@ -27,6 +30,7 @@ import '../repository/add_fund_repo.dart';
 import '../repository/card_details_repo.dart';
 import '../repository/create_card_holder_repo.dart';
 import '../repository/create_card_repo.dart';
+import '../repository/delete_card_repo.dart';
 import '../repository/freeze_card_repo.dart';
 import '../repository/fund_issuing_wallet_repo.dart';
 import '../repository/getBalanceRepo.dart';
@@ -43,10 +47,12 @@ import '../repository/unfreez_card_repo.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../routers/my_routers.dart';
+import 'bottomnavbar_controller.dart';
 import 'number_controller.dart';
 
 class ProfileController extends GetxController {
   final numbercontroller = Get.put(numberController());
+  final bottomController = Get.put(BottomNavBarController());
 
   // final registorController = Get.put(registerController());
   bool isSwitched = false;
@@ -176,7 +182,7 @@ class ProfileController extends GetxController {
         // showToast(value.message.toString());
       });
     }}
-
+  // final registorController = Get.put(registerController());
 
   TextEditingController phone2Controller = TextEditingController();
   TextEditingController description2Controller = TextEditingController();
@@ -245,14 +251,65 @@ class ProfileController extends GetxController {
   }
 
   String base64Image = "";
+  String liveUserImage1 = "";
   ///////update profile
-  Future holder() async {
+   holder()  {
     print("sdggfrdh");
     print(
       modal.value.data!.user!.phone.toString(),
     );
-    await cardHolderRepo(
-      selfie_image: base64Image,
+     cardHolderRepo(
+      // selfie_image: liveUserImage1.toString(),
+      user_id: modal.value.data!.user!.id .toString(),
+      card_brand: "Visa",
+      card_currency: "USD",
+      card_type: "virtual",
+      email_address: emailController.text.trim(),
+      address: addressController.text.trim(),
+      house_no: houseNumberController.text.trim(),
+      city: cityController.text.trim(),
+      phone: modal.value.data!.user!.phone.toString(),
+      country: "Nigeria",
+      postal_code: postalCodeController.text.trim(),
+      id_type: "NIGERIAN_BVN_VERIFICATION",
+      state: "Abia",
+      // numbercontroller.isNumber ? numbercontroller.number:numbercontroller.email,
+      bvn:bvnController.text.trim(),
+      // bvnController.text.trim(),
+      // bvnController.text.trim(),
+
+      first_name: modal.value.data!.user!.fname.toString(),
+      last_name: modal.value.data!.user!.lname.toString(),
+    ).then((value) {
+      if (value.status == "success") {
+
+
+        cardHolder.value = value;
+        // Get.toNamed(MyRouters.cardSuccessScreen);
+        // print("sdggfrdh");
+        // create(context);
+
+        statusOfCardHolder.value = RxStatus.success();
+        log("anjalim");
+        log(cardId.toString());
+
+        showToast(value.message.toString());
+      } else {
+        showToast(value.message.toString());
+      } // showToast(value.message.toString());
+    });
+  }
+   holder1()  {
+    print("sdggfrdh");
+    print(
+      modal.value.data!.user!.phone.toString(),
+    );
+     cardHolderRepo(
+// selfie_image: liveUserImage1.toString(),
+       card_brand: "MasterCard",
+       card_currency: "USD",
+       card_type: "virtual",
+      user_id:  modal.value.data!.user!.id.toString(),
       email_address: emailController.text.trim(),
       address: addressController.text.trim(),
       house_no: houseNumberController.text.trim(),
@@ -273,11 +330,12 @@ class ProfileController extends GetxController {
       if (value.status == "success") {
         cardHolder.value = value;
         // print("sdggfrdh");
-        Get.toNamed(MyRouters.myCard);
+        // create1();
+
         statusOfCardHolder.value = RxStatus.success();
         log("anjalim");
         log(cardId.toString());
-        create();
+
         showToast(value.message.toString());
       } else {
         showToast(value.message.toString());
@@ -288,12 +346,90 @@ class ProfileController extends GetxController {
   Rx<ModelCreateCard> createCard = ModelCreateCard().obs;
   Rx<RxStatus> statusOfCreate = RxStatus.empty().obs;
 
-  Future create() async {
+  Future create(context) async {
     await createCardRepo(
             card_brand: "Visa",
             card_currency: "USD",
             card_type: "virtual",
-            cardholder_id: cardHolder.value.data!.cardholderId.toString())
+            context: context,
+            // cardholder_id: cardHolder.value.data!.cardholderId.toString()
+    )
+        .then((value) {
+      createCard.value = value;
+      // Get.to(()=>CardSuccessScreen());
+
+      if (value.status == "success") {
+
+        cardId.value = value.data!.cardId.toString();
+        log("CardId${cardId.value}");
+        statusOfCreate.value = RxStatus.success();
+        cardId.value = value.data!.cardId.toString();
+
+          getCardDetails();
+        showToast(value.message.toString());
+      } else {
+        showToast(value.message.toString());
+      }
+      // showToast(value.message.toString());
+    });
+  }
+  Future create3() async {
+    await createCardRepo(
+            card_brand: "Visa",
+            card_currency: "USD",
+            card_type: "virtual",
+            cardholder_id:  card.value.data!.cardHolderId.toString())
+        .then((value) {
+      createCard.value = value;
+      if (value.status == "success") {
+
+        cardId.value = value.data!.cardId.toString();
+        log("CardId${cardId.value}");
+        statusOfCreate.value = RxStatus.success();
+        cardId.value = value.data!.cardId.toString();
+
+         getCardDetails();
+        showToast(value.message.toString());
+      } else {
+        showToast(value.message.toString());
+      }
+      // showToast(value.message.toString());
+    });
+  }
+  Future create1(context) async {
+    await createCardRepo(
+            card_brand: "Mastercard",
+            card_currency: "USD",
+            card_type: "virtual",
+            context: context
+            // cardholder_id: cardHolder.value.data!.cardholderId.toString()
+    )
+        .then((value) {
+      createCard.value = value;
+     // Get.to(()=>CardSuccessScreen());
+      if (value.status == "success") {
+        // Get.to(()=>CardSuccessScreen());
+        cardId.value = value.data!.cardId.toString();
+        log("CardId${cardId.value}");
+        statusOfCreate.value = RxStatus.success();
+        cardId.value = value.data!.cardId.toString();
+
+         getCardDetails();
+        showToast(value.message.toString());
+      } else {
+        showToast(value.message.toString());
+      }
+      // showToast(value.message.toString());
+    });
+  }
+  Future create4(context) async {
+    await createCardRepo(
+            card_brand: "Mastercard",
+            card_currency: "USD",
+            card_type: "virtual",
+            cardholder_id: card.value.data!.cardHolderId.toString(),
+    context: context,
+    )
         .then((value) {
       createCard.value = value;
       if (value.status == "success") {
@@ -325,6 +461,7 @@ class ProfileController extends GetxController {
   final TextEditingController amountController = TextEditingController();
   final TextEditingController amountController1 = TextEditingController();
   final TextEditingController noteController = TextEditingController();
+  final TextEditingController cardHolderController = TextEditingController();
 
 
   TextEditingController requestPhoneController = TextEditingController();
@@ -605,6 +742,7 @@ zip_user_id:userId.toString(),
         // Get.toNamed(MyRouters.cardDetails);
         // holder();
         cardDetails.value = value;
+        cardHolderController.text = cardDetails.value.data!.cardholderId.toString();
 
          saveCardDetails();
       } else {
@@ -645,6 +783,7 @@ zip_user_id:userId.toString(),
       card_id:  card.value.data!.cardId.toString()
     )
         .then((value) {
+
       if (value.status == "success") {
         statusOfCardBalance.value = RxStatus.success();
 print(card.value.data!.cardId.toString());
@@ -670,7 +809,7 @@ print(card.value.data!.cardId.toString());
 
 saveCardDetails() {
   saveCardRepo(card_id:cardDetails.value.data!.cardId.toString(),
-
+card_holder_id: cardDetails.value.data!.cardholderId.toString(),
      card_currency:  cardDetails.value.data!.cardCurrency.toString(),
     brand:  cardDetails.value.data!.brand.toString(),
     card_name:  cardDetails.value.data!.cardName.toString(),
@@ -686,7 +825,8 @@ saveCardDetails() {
       .then((value) {
     if (value.status == true) {
       statusOfSaveDetails.value = RxStatus.success();
-      // Get.toNamed(MyRouters.cardDetails);
+      Get.to(()=>CardSuccessScreen());
+      // Get.toNamed(MyRouters.myCard);
       // holder();
       saveDetails.value = value;
     } else {
@@ -752,6 +892,33 @@ saveCardDetails() {
   Rx<RxStatus> statusOfKey = RxStatus.empty().obs;
 
 
+  Rx<ModelDeleteCard> cardDelete= ModelDeleteCard().obs;
+  Rx<RxStatus> statusOfCardDelete= RxStatus.empty().obs;
+  delete() {
+    deleteCardRepo(
+      card_id:  card.value.data!.cardId.toString()
+    )
+        .then((value) {
+          print(card.value.data!.cardId.toString());
+      if (value.status == "success") {
+
+        statusOfCardDelete.value = RxStatus.success();
+   Get.back();
+        showToast(value.message.toString());
+        bottomController.pageIndex.value = 0;
+        card.value.data = null;
+
+        // Get.toNamed(MyRouters.walletScreen);
+        // holder();
+        cardDelete.value = value;
+      } else {
+        statusOfCardDelete.value = RxStatus.error();
+        showToast(value.message.toString());
+      }
+
+      print(value.message.toString());
+    });
+  }
 
 
   @override

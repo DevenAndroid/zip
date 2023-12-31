@@ -17,6 +17,7 @@ import '../models/model_freeze_card.dart';
 import '../repository/freeze_card_repo.dart';
 import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
+import '../widgets/common_error_widget.dart';
 
 class MyCard extends StatefulWidget {
   @override
@@ -31,8 +32,10 @@ class _MyCardState extends State<MyCard> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    // controller1. getCardDetails();
     controller1.getData();
     controller1.getCard();
+
     // controller1.getBalance();
   }
 
@@ -53,9 +56,9 @@ class _MyCardState extends State<MyCard> {
         centerTitle: true,
         leading: InkWell(
           onTap: (){
-            // Get.back();
+           // Get.toNamed(MyRouters.walletScreen1);
           },
-          child: const SizedBox()
+          child: SizedBox()
         ),
       ),
       body: RefreshIndicator(
@@ -68,19 +71,23 @@ class _MyCardState extends State<MyCard> {
 
         },
         child: Obx(() {
-    return controller1.currentBalanceModel.value.status ==true&&controller1.cardBalance.value.status =="success"?
+    return controller1.statusOfCard.value.isSuccess?
         SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
-          child: Column(
+          child:
+          
+          Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 15,),
+
               Text(
                 "Your Balance",
                 style: GoogleFonts.poppins(
                     color: const Color(0xFF1D1D1D),
                     fontSize: 20,
                     fontWeight: FontWeight.w400),
+
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -627,13 +634,30 @@ class _MyCardState extends State<MyCard> {
               const SizedBox(
                 height: 15,
               ),
+              InkWell(
+                onTap: () {
+                  showDialogueDelete2();
+                  // controller.contactUpdateCard(context);
+                  // controller1. holder();
 
+                },
+                child: const SizedBox(
+                  width: 200,
+                  child: CustomOutlineButton(
+                    title: "Delete card ",
+                  ),
+                ),
+              ),
               const SizedBox(
-                height: 30,
+                height: 100,
               ),
             ],
-          ),
-        ): const Center(child: CircularProgressIndicator(),);
+          )
+        ): controller1.statusOfCard.value.isError
+          ? Center(child: Text("Please contact customer support")):
+
+
+    const Center(child: CircularProgressIndicator(),);
         }),
       ),
     );
@@ -916,6 +940,162 @@ class _MyCardState extends State<MyCard> {
                                   onTap: () {
                                     setState(() {
                                       controller1.unFrozenCard();
+                                    });
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 50, vertical: 10),
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.rectangle,
+                                      color: AppTheme.buttonColor,
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: const Text(
+                                      'Yes',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          );
+        });
+  }
+  showDialogueDelete2() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          Size size = MediaQuery.of(context).size;
+          double doubleVar;
+          return Dialog(
+            shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            insetPadding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+            child: Form(
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              Get.back();
+                            });
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(6),
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: AppTheme.buttonColor,
+                            ),
+                            child: const Icon(
+                              Icons.clear,
+                              size: 10,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 1),
+                              child: Text(
+                                'Are You Sure you want to Delete your card !',
+                                style: GoogleFonts.poppins(
+                                    color: const Color(0xFF4F537A),
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 6,
+                          ),
+                          // Text(
+                          //   'Click on yes to freeze your card',
+                          //   style: GoogleFonts.poppins(
+                          //       color: const Color(0xFF4F537A),
+                          //       fontSize: 14,
+                          //       fontWeight: FontWeight.w500),
+                          // ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  // Get.toNamed(MyRouters.prescription);
+                                },
+                                child: Center(
+                                  child: InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        Get.back();
+                                      });
+                                    },
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 50, vertical: 10),
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.rectangle,
+                                        border: Border.all(
+                                            color: AppTheme.buttonColor),
+                                        color: const Color(0xffffffffff),
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      child: const Text(
+                                        'No',
+                                        style: TextStyle(
+                                            color: AppTheme.buttonColor,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Center(
+                                child: InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      controller1.delete();
                                     });
                                   },
                                   child: Container(

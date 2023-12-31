@@ -15,14 +15,20 @@ import '../resourses/details.dart';
 import '../resourses/helper.dart';
 final details = Get.put(DetailsController());
 Future<ModelUnfreezCard> UnFreezeCardRepo({card_id}) async {
+  var map = <String, dynamic>{};
+
+  map['key'] = "unfreezeCard";
+  map['card_id'] = card_id;
   try {
-    http.Response response = await http.patch(
-      Uri.parse(ApiUrls.UnfreezeCard + card_id),
-      headers: {
-        HttpHeaders.contentTypeHeader: 'application/json',
-        HttpHeaders.acceptHeader: 'application/json',
-        "token": details.testToken
-      },
+    http.Response response = await http.post(
+      Uri.parse(ApiUrls.bridgeCard),
+        headers: await getAuthHeader(),
+      // headers: {
+      //   HttpHeaders.contentTypeHeader: 'application/json',
+      //   HttpHeaders.acceptHeader: 'application/json',
+      //   "token": details.testToken
+      // },
+        body: jsonEncode(map)
     );
 
     if (response.statusCode == 200) {

@@ -149,7 +149,7 @@ key: "pay"
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: Text(
-                "Smart Card number ",
+                "Phone number ",
                 style: GoogleFonts.poppins(
                     color: const Color(0xFF2E2E2E),
                     fontSize: 15,
@@ -190,7 +190,7 @@ key: "pay"
                 controller: profileController.phone2Controller,
                 obSecure: false,
                 hintText: "123456789",
-                labelText: "Smart Card Number",
+                labelText: "Phone Number",
               ),
             ),
             SizedBox(height: 20,),

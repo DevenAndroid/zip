@@ -69,6 +69,7 @@ import '../screens/airtime_product_screen.dart';
 import '../screens/airtime_variations_screen.dart';
 import '../screens/bank_details.dart';
 import '../screens/beneficery_pin.dart';
+import '../screens/bottom_nav_screens/wallet_screen.dart';
 import '../screens/buy_airtime_list.dart';
 import '../screens/buy_airtime_screen.dart';
 import '../screens/buy_cabel_tv_list.dart';
@@ -82,6 +83,7 @@ import '../screens/cabelTv_pin.dart';
 import '../screens/cabel_tv.dart';
 import '../screens/cabel_tv_screen.dart';
 import '../screens/card_details_screen.dart';
+import '../screens/card_sucess.dart';
 import '../screens/choose_bank_2.dart';
 import '../screens/contact_us_screen.dart';
 import '../screens/create_account.dart';
@@ -97,6 +99,9 @@ import '../screens/email_login.dart';
 import '../screens/exchenge2.dart';
 import '../screens/favourate_balance.dart';
 import '../screens/favourate_screen.dart';
+import '../screens/forgot_change_pass.dart';
+import '../screens/forgot_email.dart';
+import '../screens/forgot_otp.dart';
 import '../screens/freshchat.dart';
 import '../screens/fund_issuing_wallet.dart';
 import '../screens/image.dart';
@@ -310,6 +315,11 @@ class MyRouters{
   static var buyAirtimeOperatorScreen = "/buyAirtimeOperatorScreen";
   static var buyAirtimeVariationScreen = "/buyAirtimeVariationScreen";
   static var electricityVariationScreen = "/electricityVariationScreen";
+  static var forgotEmail = "/forgotEmail ";
+  static var forgotOtpScreen = "/forgotOtpScreen ";
+  static var forgotChangePassword = "/forgotChangePassword ";
+  static var walletScreen1 = "/walletScreen1 ";
+  static var cardSuccessScreen = "/cardSuccessScreen ";
 
 
 
@@ -322,7 +332,12 @@ class MyRouters{
 
     GetPage(name: onBoardingScreen, page: () =>   const OnBoardingScreen()),
     GetPage(name: '/withdrawlCash', page: () =>   const WithdrawlCash()),
+    GetPage(name: '/walletScreen1', page: () =>   const WalletScreen1()),
+    GetPage(name: '/cardSuccessScreen', page: () =>   const CardSuccessScreen()),
     GetPage(name: '/buyAirtimeOperatorScreen', page: () =>   const BuyAirtimeOperatorScreen()),
+    GetPage(name: '/forgotOtpScreen', page: () =>   const ForgotScreenOtp()),
+    GetPage(name: '/forgotChangePassword', page: () =>   const ForgotChangePassword()),
+    GetPage(name: '/ForgotEmailScreen', page: () =>   const ForgotEmailScreen()),
     GetPage(name: '/electricityVariationScreen', page: () =>   const ElectricityVariationScreen()),
     GetPage(name: '/buyAirtimeVariationScreen', page: () =>   const BuyAirtimeVariationScreen()),
     GetPage(name: '/success3Screen', page: () =>   const Success3Screen()),

@@ -23,25 +23,26 @@ class ModelGetCardDetails {
 }
 
 class Data {
-  dynamic cardId;
-  dynamic cardNumber;
-  dynamic expiryMonth;
-  dynamic expiryYear;
-  dynamic cvv;
-  dynamic last4;
-  dynamic cardCurrency;
-  dynamic brand;
+  String? cardId;
+  String? cardNumber;
+  String? expiryMonth;
+  String? expiryYear;
+  String? cvv;
+  String? last4;
+  String? cardCurrency;
+  String? brand;
   BillingAddress? billingAddress;
-  dynamic cardName;
-  dynamic cardholderId;
-  dynamic createdAt;
-  dynamic issuingAppId;
-  dynamic cardType;
+  String? cardName;
+  String? cardholderId;
+  int? createdAt;
+  String? issuingAppId;
+  String? cardType;
   bool? isActive;
   bool? livemode;
-  MetaData? metaData;
+  dynamic metaData;
   bool? pin3dsActivated;
-  Null? insufficientFundsDeclineCount;
+  dynamic insufficientFundsDeclineCount;
+  dynamic hasDoneDebitInAMonth;
   String? balance;
 
   Data(
@@ -64,6 +65,7 @@ class Data {
         this.metaData,
         this.pin3dsActivated,
         this.insufficientFundsDeclineCount,
+        this.hasDoneDebitInAMonth,
         this.balance});
 
   Data.fromJson(Map<String, dynamic> json) {
@@ -85,11 +87,10 @@ class Data {
     cardType = json['card_type'];
     isActive = json['is_active'];
     livemode = json['livemode'];
-    metaData = json['meta_data'] != null
-        ? new MetaData.fromJson(json['meta_data'])
-        : null;
+    metaData = json['meta_data'];
     pin3dsActivated = json['pin_3ds_activated'];
     insufficientFundsDeclineCount = json['insufficient_funds_decline_count'];
+    hasDoneDebitInAMonth = json['has_done_debit_in_a_month'];
     balance = json['balance'];
   }
 
@@ -113,25 +114,24 @@ class Data {
     data['card_type'] = this.cardType;
     data['is_active'] = this.isActive;
     data['livemode'] = this.livemode;
-    if (this.metaData != null) {
-      data['meta_data'] = this.metaData!.toJson();
-    }
+    data['meta_data'] = this.metaData;
     data['pin_3ds_activated'] = this.pin3dsActivated;
     data['insufficient_funds_decline_count'] =
         this.insufficientFundsDeclineCount;
+    data['has_done_debit_in_a_month'] = this.hasDoneDebitInAMonth;
     data['balance'] = this.balance;
     return data;
   }
 }
 
 class BillingAddress {
-  dynamic billingAddress1;
-  dynamic billingCity;
-  dynamic billingCountry;
-  dynamic billingZipCode;
-  dynamic countryCode;
-  dynamic state;
-  dynamic stateCode;
+  String? billingAddress1;
+  String? billingCity;
+  String? billingCountry;
+  String? billingZipCode;
+  String? countryCode;
+  String? state;
+  String? stateCode;
 
   BillingAddress(
       {this.billingAddress1,
@@ -161,22 +161,6 @@ class BillingAddress {
     data['country_code'] = this.countryCode;
     data['state'] = this.state;
     data['state_code'] = this.stateCode;
-    return data;
-  }
-}
-
-class MetaData {
-  String? userId;
-
-  MetaData({this.userId});
-
-  MetaData.fromJson(Map<String, dynamic> json) {
-    userId = json['user_id'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['user_id'] = this.userId;
     return data;
   }
 }

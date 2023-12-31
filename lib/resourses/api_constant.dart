@@ -14,6 +14,9 @@ class ApiUrls {
   // static const String apiBaseUrl = 'https://zipfintech.eoxyslive.com/api/';
   // static const String apiBaseUrl = 'http://178.128.83.16/api/';
   static const String otps = "${apiBaseUrl}otps";
+  static const String forgotEmail = "${apiBaseUrl}forgot-password";
+  static const String resetPassword = "${apiBaseUrl}reset-password";
+  static const String bridgeCard = "${apiBaseUrl}bridge-card";
   static const String applyLoan = "${apiBaseUrl}apply-loan";
   static const String saveCardInfo = "${apiBaseUrl}save-card-info";
   static const String seveRequestMail = "${apiBaseUrl}send-email-globle";
@@ -44,6 +47,7 @@ class ApiUrls {
   static const String getCardBalance  = "https://issuecards.api.bridgecard.co/v1/issuing/sandbox/cards/get_card_balance?card_id=";
   static const String getRate  = "https://issuecards.api.bridgecard.co/v1/issuing/cards/fx-rate";
   static const String freezeCard  = "https://issuecards.api.bridgecard.co/v1/issuing/sandbox/cards/freeze_card?card_id=";
+  static const String deleteCard  = "https://issuecards.api.bridgecard.co/v1/issuing/sandbox/cards/delete_card/44faae6059834696b2ad9eecc94ca955";
   static const String UnfreezeCard  = "https://issuecards.api.bridgecard.co/v1/issuing/sandbox/cards/unfreeze_card?card_id=";
   static const String privicyPolicy  = "${apiBaseUrl}pages?slug=";
   static const String purchaseEnergy  = "https://billing-staging.bytestacks.io/api/v1/electricity/subscribe";

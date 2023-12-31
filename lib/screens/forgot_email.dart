@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:zip/routers/my_routers.dart';
-import 'package:zip/screens/forgot_email.dart';
+import 'package:zip/screens/forgot_otp.dart';
 import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
@@ -22,14 +22,14 @@ import '../repository/verify_otp_repo.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 
-class EmailLoginScreen extends StatefulWidget {
-  const EmailLoginScreen({Key? key}) : super(key: key);
+class ForgotEmailScreen extends StatefulWidget {
+  const ForgotEmailScreen({Key? key}) : super(key: key);
 
   @override
-  State<EmailLoginScreen> createState() => _EmailLoginScreenState();
+  State<ForgotEmailScreen> createState() => _ForgotEmailScreenState();
 }
 
-class _EmailLoginScreenState extends State<EmailLoginScreen> {
+class _ForgotEmailScreenState extends State<ForgotEmailScreen> {
 
   // Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
   // Rx<RxStatus> statusOfuserVerifyOtp = RxStatus.empty().obs;
@@ -122,130 +122,90 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0,right: 10),
                         child: Text(
-                          "Enter your email to continue",
+                          "Enter your email to forgot password",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
-                              fontSize: 22,
+                              fontSize: 19,
                               fontWeight: FontWeight.w500),
                         ),
                       ),
                       const SizedBox(
                         height: 20,
                       ),
-                      Row(
-                        children: [
-                          Expanded(
-                              child: InkWell(
-                                onTap: (){
-                                  Get.toNamed(MyRouters.loginScreen);
-                                },
-                                child: CustomOutlineBoder(
-                                  title: "Phone",
-                                  backgroundColor: Colors.white,
-                                  textColor: AppTheme.buttonColor,onPressed: (){
-                                  Get.toNamed(MyRouters.mobileNumber);
-                                },),
-                              )),
 
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          Expanded(
-                            child: InkWell(
-                                onTap: () {
-
-                                },
-                                child: const CustomOutlineButton(
-                                  title: "Email",
-                                )),
-                          ),
-                        ],
-                      ),
                       const SizedBox(
                         height: 23,
                       ),
                       CommonTextfield(
                         validator: (value) {
-                          if (details.emailNoController.text.isEmpty) {
+                          if (details.emailForgotController.text.isEmpty) {
                             return "Please enter your email";
-                          } else if (details.emailNoController.text.contains('+') || details.emailNoController.text.contains(' ')) {
+                          } else if (details.emailForgotController.text.contains('+') || details.emailForgotController.text.contains(' ')) {
                             return "Email is invalid";
                           } else if (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                              .hasMatch(details.emailNoController.text)) {
+                              .hasMatch(details.emailForgotController.text)) {
                             return null;
                           } else {
                             return 'Please type a valid email address';
                           }
                         },
-                        controller: details.emailNoController,obSecure: false, hintText: "pkp@gmail.com",labelText: "Email",),
+                        controller: details.emailForgotController,obSecure: false, hintText: "pkp@gmail.com",labelText: "Email",),
                       SizedBox(height: 15,),
 
-                      CommonTextfield(
-                        suffixIcon: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                obscureText1 =
-                                !obscureText1;
-                              });
-                            },
-                            child: obscureText1
-                                ? const Icon(
-                              Icons.visibility_off,
-                              color: Color(0xFF8487A1),
-                            )
-                                : const Icon(
-                                Icons.visibility,
-                                color: Color(
-                                    0xFF8487A1))),
-
-                        validator: MultiValidator([
-                          RequiredValidator(
-                              errorText: 'Please enter your password'),
-                          MinLengthValidator(8,
-                              errorText: 'Password must be at least 8 characters, with 1 special character & 1 numerical'),
-                          PatternValidator(
-                              r"(?=.*\W)(?=.*?[#?!@$%^&*-])(?=.*[0-9])",
-                              errorText: "Password must be at least with 1 special character & 1 numerical"),
-                        ]),controller: details.passwordController,obSecure: obscureText1, labelText: "Password", hintText: 'Password',),
+                      // CommonTextfield(
+                      //   suffixIcon: GestureDetector(
+                      //       onTap: () {
+                      //         setState(() {
+                      //           obscureText1 =
+                      //           !obscureText1;
+                      //         });
+                      //       },
+                      //       child: obscureText1
+                      //           ? const Icon(
+                      //         Icons.visibility_off,
+                      //         color: Color(0xFF8487A1),
+                      //       )
+                      //           : const Icon(
+                      //           Icons.visibility,
+                      //           color: Color(
+                      //               0xFF8487A1))),
+                      //
+                      //   validator: MultiValidator([
+                      //     RequiredValidator(
+                      //         errorText: 'Please enter your password'),
+                      //     MinLengthValidator(8,
+                      //         errorText: 'Password must be at least 8 characters, with 1 special character & 1 numerical'),
+                      //     PatternValidator(
+                      //         r"(?=.*\W)(?=.*?[#?!@$%^&*-])(?=.*[0-9])",
+                      //         errorText: "Password must be at least with 1 special character & 1 numerical"),
+                      //   ]),controller: details.passwordController,obSecure: obscureText1, labelText: "Password", hintText: 'Password',),
                       SizedBox(height: 15,),
 
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: InkWell(
-                          onTap: (){
-                        // Get.toNamed(MyRouters.forgotEmail);
-                        Get.to(()=>ForgotEmailScreen());
-                          },
-                          child: Text(
-                            "Forgot Password",
-                            style: GoogleFonts.poppins(
-                                color: const Color(0xFF1D1D1D),
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height:size.height*.3,),
+
+                      SizedBox(height:size.height*.4,),
 
                       InkWell(
                           onTap: (){
-                            details.Email(context);
+      if (formKeylogin.currentState!.validate()) {
+        details.forgot(context);
+      }
                             // emailRegister();
                             // emailLogin();
                             //
+                            // Get.to(()=>ForgotScreenOtp());
                           },
                           child: CustomOutlineButton(title: "Next",)),
                       SizedBox(height: 15,),
-                      InkWell(
-                        onTap: (){
-      if (formKeylogin.currentState!.validate()) {
-        Get.toNamed(MyRouters.loginScreen);
-      }
-                        },
-                        child: CustomOutlineBoder(title: "Use Mobile Number", backgroundColor: Colors.white,textColor: AppTheme.buttonColor,onPressed: (){
-                          Get.toNamed(MyRouters.loginScreen);
-                        },),
-                      ),
+                      // InkWell(
+                      //   onTap: (){
+                      //     if (formKeylogin.currentState!.validate()) {
+                      //       Get.toNamed(MyRouters.loginScreen);
+                      //     }
+                      //   },
+                      //   child: CustomOutlineBoder(title: "Use Mobile Number", backgroundColor: Colors.white,textColor: AppTheme.buttonColor,onPressed: (){
+                      //     Get.toNamed(MyRouters.loginScreen);
+                      //   },),
+                      // ),
 
 
                     ]),

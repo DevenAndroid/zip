@@ -66,7 +66,7 @@ saveList() {
       description:profileController.descriptionController.text.trim(),
       type: "dr",
     data_code: initStateBlank1.toString(),
-    telcos: initStateBlank.toString(),
+    telcos: initStateBlank2.toString(),
     phone: profileController.phoneController.text.trim(),
     dataplan: initStateBlank2.toString()
   ).then((value) {

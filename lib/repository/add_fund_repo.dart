@@ -23,16 +23,12 @@ Future<ModelFundCard> addFundRepo(
   map['amount'] = amount;
   map['transaction_reference'] = transaction_reference;
   map['currency'] = currency;
+  map['key'] = "fundCard";
   print(map);
   // try {
   http.Response response =
-  await http.patch(Uri.parse(ApiUrls.addFundCard),
-      headers: {
-        HttpHeaders.contentTypeHeader: 'application/json',
-        HttpHeaders.acceptHeader: 'application/json',
-        "api-key": details.apiKey,
-        "token":details.testToken
-      },
+  await http.patch(Uri.parse(ApiUrls.bridgeCard),
+      headers: await getAuthHeader(),
       body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
   // http.Response response = await http.post(Uri.parse(ApiUrls.loginUser),

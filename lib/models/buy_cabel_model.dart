@@ -96,15 +96,15 @@ class Transactions {
   String? uniqueElement;
   int? unitPrice;
   int? quantity;
-  Null? serviceVerification;
+  dynamic serviceVerification;
   String? channel;
   int? commission;
   double? totalAmount;
-  Null? discount;
+  dynamic discount;
   String? type;
   String? email;
   String? phone;
-  Null? name;
+  dynamic name;
   int? convinienceFee;
   int? amount;
   String? platform;

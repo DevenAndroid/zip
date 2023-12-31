@@ -130,7 +130,7 @@ class Address {
   String? country;
   String? createdAt;
   String? updatedAt;
-  Null? deletedAt;
+  dynamic deletedAt;
 
   Address(
       {this.id,

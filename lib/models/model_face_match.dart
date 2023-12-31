@@ -6,12 +6,12 @@ class ModelAfricaFaceMatch {
   String? transactionStatus;
   String? transactionReference;
   String? transactionDate;
-  Null? searchParameter;
-  Null? callBackUrl;
+  dynamic searchParameter;
+  dynamic callBackUrl;
   dynamic livenessScore;
-  Null? paymentRef;
+  dynamic paymentRef;
   Response? response;
-  Null? faceMatch;
+  dynamic faceMatch;
 
   ModelAfricaFaceMatch(
       {this.responseCode,

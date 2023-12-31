@@ -16,29 +16,30 @@ import '../resourses/details.dart';
 import '../resourses/helper.dart';
 final details = Get.put(DetailsController());
 Future<ModelCreateCard> createCardRepo(
-    {cardholder_id, card_type, card_brand, card_currency}) async {
+    {cardholder_id, card_type, card_brand, card_currency,context}) async {
+  OverlayEntry loader = Helpers.overlayLoader(context);
+  Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
   map['cardholder_id'] = cardholder_id;
+  map['key'] = "createCard";
   map['card_type'] = card_type;
   map['card_brand'] = card_brand;
   map['card_currency'] = card_currency;
 log(map.toString());
-  http.Response response = await http.post(Uri.parse(ApiUrls.createCard),
-      headers: {
-        HttpHeaders.contentTypeHeader: 'application/json',
-        HttpHeaders.acceptHeader: 'application/json',
-        "token": details.testToken
-      },
+  http.Response response = await http.post(Uri.parse(ApiUrls.bridgeCard),
+      headers: await getAuthHeader(),
       body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
   log("Sign IN DATA${response.statusCode}");
   print(map);
 
   if (response.statusCode == 200 || response.statusCode == 201) {
+    Helpers.hideLoader(loader);
     return ModelCreateCard.fromJson(
       jsonDecode(response.body),
     );
   } else {
+    Helpers.hideLoader(loader);
     return ModelCreateCard(
         message: jsonDecode(response.body)["message"],
         status: false.toString());

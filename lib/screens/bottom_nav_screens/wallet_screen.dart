@@ -21,7 +21,16 @@ class WalletScreen1 extends StatefulWidget {
 class _WalletScreen1State extends State<WalletScreen1> {
   final controller = Get.put(registerController());
   final controller1 = Get.put(ProfileController());
+  CarouselController carouselController = CarouselController();
 
+  int cyu = 0;
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // controller1. getCardDetails();
+    controller1.getCard();
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -62,7 +71,8 @@ class _WalletScreen1State extends State<WalletScreen1> {
           child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: Column(
+                child:
+                Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -101,7 +111,7 @@ class _WalletScreen1State extends State<WalletScreen1> {
                         height: 33,
                       ),
                       CarouselSlider(
-
+carouselController: carouselController,
                         items: [
                           Card(
 
@@ -245,7 +255,7 @@ class _WalletScreen1State extends State<WalletScreen1> {
                                           ),
                                         ]
                                       else
-                                        Text(controller1.card.value.data!.last4.toString(),
+                                        Text("1234",
                                           style: GoogleFonts.poppins(
                                               color: Colors.white,
                                               fontSize: 14,
@@ -253,91 +263,321 @@ class _WalletScreen1State extends State<WalletScreen1> {
                                               fontWeight: FontWeight.w600),)
                                     ],
                                   ),
+                                  FittedBox(
+                                    child: Row(
+                                      children: [
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Text(
+                                              'Card Holder Name',
+                                              style: GoogleFonts.poppins(
+                                                  color: Colors.white,
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+
+                                            if(controller1.card.value.data==null)
+                                              Text(
+                                                '--',
+                                                style: GoogleFonts.poppins(
+                                                    color: Colors.white,
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w600),
+                                              )
+                                            else
+
+                                              Text(
+                                               "----",
+                                                style: GoogleFonts.poppins(
+                                                    color: Colors.white,
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w600),
+                                              )
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Text(
+                                              'Expiry date',
+                                              style: GoogleFonts.poppins(
+                                                  color: Colors.white,
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                            if(controller1.card.value.data==null)
+                                              Text(
+                                                '--/--',
+                                                style: GoogleFonts.poppins(
+                                                    color: Colors.white,
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w600),
+                                              )
+                                            else
+
+                                              Text(
+                                                "--/--",
+                                                style: GoogleFonts.poppins(
+                                                    color: Colors.white,
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w600),
+                                              )
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Stack(
+                                          children: [
+                                           Image.network(
+                                             "https://cdn.freebiesupply.com/logos/large/2x/visa-logo-png-transparent.png",
+                                              height: 40,
+                                              width: 55,
+                                            ),
+
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Card(
+
+                            elevation: 4.0,
+                            color: Colors.black,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(14),
+                            ),
+                            child: Container(
+                              height: 180,
+                              padding: const EdgeInsets.only(
+                                  left: 18.0, right: 15, bottom: 22.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 18, top: 17),
+                                    child: Image.asset(
+                                      "assets/images/walletlogo.png",
+                                      height: 45,
+                                      width: 44,
+                                    ),
+                                  ),
                                   Row(
                                     children: [
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Text(
-                                            'Card Holder Name',
-                                            style: GoogleFonts.poppins(
-                                                color: Colors.white,
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w400),
-                                          ),
-
-                                          if(controller1.card.value.data==null)
-                                            Text(
-                                              '--',
-                                              style: GoogleFonts.poppins(
-                                                  color: Colors.white,
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w600),
-                                            )
-                                          else
-
-                                            Text(
-                                              controller1.card.value.data!.cardName.toString(),
-                                              style: GoogleFonts.poppins(
-                                                  color: Colors.white,
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w600),
-                                            )
-                                        ],
+                                      const CircleAvatar(
+                                        maxRadius: 4,
+                                        backgroundColor: Colors.white,
                                       ),
                                       const SizedBox(
-                                        width: 10,
+                                        width: 3,
                                       ),
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Text(
-                                            'Expiry date',
-                                            style: GoogleFonts.poppins(
-                                                color: Colors.white,
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w400),
-                                          ),
-                                          if(controller1.card.value.data==null)
-                                            Text(
-                                              '--/--',
-                                              style: GoogleFonts.poppins(
-                                                  color: Colors.white,
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w600),
-                                            )
-                                          else
-
-                                            Text(
-                                              controller1.card.value.data!.expiryMonth.toString()+"/"+  controller1.card.value.data!.expiryYear.toString(),
-                                              style: GoogleFonts.poppins(
-                                                  color: Colors.white,
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w600),
-                                            )
-                                        ],
+                                      const CircleAvatar(
+                                        maxRadius: 4,
+                                        backgroundColor: Colors.white,
                                       ),
                                       const SizedBox(
-                                        width: 10,
+                                        width: 3,
                                       ),
-                                      Stack(
-                                        children: [
-                                          Image.asset(
-                                            "assets/images/round2.png",
-                                            height: 35,
-                                            width: 35,
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(left: 20.0),
-                                            child: Image.asset(
-                                              "assets/images/round1.png",
-                                              height: 35,
-                                              width: 34,
-                                            ),
-                                          ),
-                                        ],
+                                      const CircleAvatar(
+                                        maxRadius: 4,
+                                        backgroundColor: Colors.white,
                                       ),
+                                      const SizedBox(
+                                        width: 3,
+                                      ),
+                                      const CircleAvatar(
+                                        maxRadius: 4,
+                                        backgroundColor: Colors.white,
+                                      ),
+                                      const SizedBox(
+                                        width: 8,
+                                      ),
+                                      const CircleAvatar(
+                                        maxRadius: 4,
+                                        backgroundColor: Colors.white,
+                                      ),
+                                      const SizedBox(
+                                        width: 3,
+                                      ),
+                                      const CircleAvatar(
+                                        maxRadius: 4,
+                                        backgroundColor: Colors.white,
+                                      ),
+                                      const SizedBox(
+                                        width: 3,
+                                      ),
+                                      const CircleAvatar(
+                                        maxRadius: 4,
+                                        backgroundColor: Colors.white,
+                                      ),
+                                      const SizedBox(
+                                        width: 3,
+                                      ),
+                                      const CircleAvatar(
+                                        maxRadius: 4,
+                                        backgroundColor: Colors.white,
+                                      ),
+                                      const SizedBox(
+                                        width: 8,
+                                      ),
+                                      const CircleAvatar(
+                                        maxRadius: 4,
+                                        backgroundColor: Colors.white,
+                                      ),
+                                      const SizedBox(
+                                        width: 3,
+                                      ),
+                                      const CircleAvatar(
+                                        maxRadius: 4,
+                                        backgroundColor: Colors.white,
+                                      ),
+                                      const SizedBox(
+                                        width: 3,
+                                      ),
+                                      const CircleAvatar(
+                                        maxRadius: 4,
+                                        backgroundColor: Colors.white,
+                                      ),
+                                      const SizedBox(
+                                        width: 3,
+                                      ),
+                                      const CircleAvatar(
+                                        maxRadius: 4,
+                                        backgroundColor: Colors.white,
+                                      ),
+                                      const SizedBox(
+                                        width: 8,
+                                      ),
+
+                                      if(controller1.card.value.data==null)
+                                        ...[
+                                          const CircleAvatar(
+                                            maxRadius: 4,
+                                            backgroundColor: Colors.white,
+                                          ),
+                                          const SizedBox(
+                                            width: 3,
+                                          ),
+                                          const CircleAvatar(
+                                            maxRadius: 4,
+                                            backgroundColor: Colors.white,
+                                          ),
+                                          const SizedBox(
+                                            width: 3,
+                                          ),
+                                          const CircleAvatar(
+                                            maxRadius: 4,
+                                            backgroundColor: Colors.white,
+                                          ),
+                                          const SizedBox(
+                                            width: 3,
+                                          ),
+                                          const CircleAvatar(
+                                            maxRadius: 4,
+                                            backgroundColor: Colors.white,
+                                          ),
+                                          const SizedBox(
+                                            width: 8,
+                                          ),
+                                        ]
+                                      else
+                                        Text("1234",
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.white,
+                                              fontSize: 14,
+                                              letterSpacing: 2,
+                                              fontWeight: FontWeight.w600),)
                                     ],
+                                  ),
+                                  FittedBox(
+                                    child: Row(
+                                      children: [
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Text(
+                                              'Card Holder Name',
+                                              style: GoogleFonts.poppins(
+                                                  color: Colors.white,
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+
+                                            if(controller1.card.value.data==null)
+                                              Text(
+                                                '--',
+                                                style: GoogleFonts.poppins(
+                                                    color: Colors.white,
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w600),
+                                              )
+                                            else
+
+                                              Text(
+                                               "----",
+                                                style: GoogleFonts.poppins(
+                                                    color: Colors.white,
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w600),
+                                              )
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Text(
+                                              'Expiry date',
+                                              style: GoogleFonts.poppins(
+                                                  color: Colors.white,
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                            if(controller1.card.value.data==null)
+                                              Text(
+                                                '--/--',
+                                                style: GoogleFonts.poppins(
+                                                    color: Colors.white,
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w600),
+                                              )
+                                            else
+
+                                              Text(
+                                                "--/--",
+                                                style: GoogleFonts.poppins(
+                                                    color: Colors.white,
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w600),
+                                              )
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Stack(
+                                          children: [
+                                           Image.network(
+                                             "https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-transparent-png-stickpng-10.png",
+                                              height: 40,
+                                              width: 55,
+                                            ),
+
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
@@ -351,6 +591,12 @@ class _WalletScreen1State extends State<WalletScreen1> {
                           enlargeCenterPage: true,
                           autoPlay: false,
                           aspectRatio: 16 / 9,
+                          onPageChanged: (int index, CarouselPageChangedReason reason){
+                            cyu = index;
+                            setState(() {
+
+                            });
+                          },
                           autoPlayCurve: Curves.fastOutSlowIn,
                           enableInfiniteScroll: true,
                           autoPlayAnimationDuration: const Duration(milliseconds: 800),
@@ -406,13 +652,33 @@ class _WalletScreen1State extends State<WalletScreen1> {
                       SizedBox(
                         height: size.height * .25,
                       ),
+                      cyu.isEven ?
                       InkWell(
                         onTap: (){
+                          print("object");
+                          // controller1. getCardDetails();
+                          //
                           // Get.toNamed(MyRouters.myCard);
-                          controller1. holder();
+                         //  print( controller1. card.value.data!.cardHolderId.toString());
+                         // controller1. card.value.data!.cardHolderId == null ?
+                         controller1. create(context);
+                         // :controller1. create3();
                         },
-                        child: const CustomOutlineButton(
-                          title: "Add Card",
+                        child:  CustomOutlineButton(
+                          title:  "Create a Visa Card" ,
+
+                        ),
+                      ): InkWell(
+                        onTap: (){
+                          // Get.toNamed(MyRouters.myCard);
+                          // print( controller1. card.value.data!.cardHolderId.toString());
+                          // controller1. card.value.data!.cardHolderId == null ?
+                          controller1.  create1(context) ;
+                          // controller1. holder1() ;
+                          // :controller1. create4();
+                        },
+                        child:  CustomOutlineButton(
+                          title:"Create a Master Card",
 
                         ),
                       ),

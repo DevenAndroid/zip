@@ -67,6 +67,7 @@ class registerController extends GetxController {
   TextEditingController amount = TextEditingController();
   final meterNo = TextEditingController();
   final provider = TextEditingController();
+  final provider1 = TextEditingController();
   TextEditingController idController = TextEditingController();
   TextEditingController idController1 = TextEditingController();
 String targetImage= "";
@@ -121,6 +122,7 @@ String targetImage= "";
       if (value.status == true) {
 
         liveUserImage = modalLiveImage.value.data!.userImage.toString();
+        profileController.liveUserImage1 = modalLiveImage.value.data!.userImage.toString();
         log("Image::::::::::::::"+liveUserImage);
         liveAfricaDetails1(context);
          //     (await networkImageToBase64( modal.value.data!.avatar.toString())) ?? "";
@@ -633,10 +635,10 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
 
 
 
-  Future holder(context) async {
+  Future holder() async {
     print("sdggfrdh");
     await cardHolderRepo(
-      selfie_image: base64Image,
+      // selfie_image:image.toString(),
       email_address: emailController.text.trim(),
       address: cityController.text.trim(),
       house_no: houseNoController.text.trim(),
@@ -645,6 +647,7 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
       country: countryController.text.trim(),
       postal_code: postalCodeController.text.trim(),
       id_type: "NIGERIAN_BVN_VERIFICATION",
+      user_id:   userId1.toString(),
       state: stateController.text.trim(),
       // numbercontroller.isNumber ? numbercontroller.number:numbercontroller.email,
       bvn: numbercontroller.isNumberBvn
@@ -653,16 +656,16 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
 
       first_name: firstNameController.text.trim(),
       last_name: lastNameController.text.trim(),
-      context: context,
+
     ).then((value) {
       cardHolder.value = value;
-      if (value.status == true) {
+      if (value.status == "success") {
         print("sdggfrdh");
         statusOfCardHolder.value = RxStatus.success();
 
         showToast(value.message.toString());
 
-        create();
+        // create(context);
       }
       else {
         showToast(value.message.toString());
@@ -673,15 +676,17 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
   Rx<ModelCreateCard> createCard = ModelCreateCard().obs;
   Rx<RxStatus> statusOfCreate = RxStatus.empty().obs;
 
-  Future create() async {
+  Future create(context) async {
     await createCardRepo(
             card_brand: "Visa",
             card_currency: "NGN",
             card_type: "Vritual",
-            cardholder_id: cardHolder.value.data!.cardholderId.toString())
+            cardholder_id: cardHolder.value.data!.cardholderId.toString(),
+    context: context,
+    )
         .then((value) {
       createCard.value = value;
-      if (value.status == true) {
+      if (value.status == "success") {
         statusOfCreate.value = RxStatus.success();
 
         showToast(value.message.toString());

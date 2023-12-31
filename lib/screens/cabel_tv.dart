@@ -150,7 +150,7 @@ key: "pay"
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: Text(
-                "Smart Card number ",
+                "Phone number ",
                 style: GoogleFonts.poppins(
                     color: const Color(0xFF2E2E2E),
                     fontSize: 15,

@@ -28,8 +28,8 @@ class Data {
  dynamic id;
  dynamic code;
  dynamic name;
-  Null? isMobileVerified;
-  Null? branches;
+  dynamic isMobileVerified;
+  dynamic branches;
   bool? isCashPickUp;
 
   Data(

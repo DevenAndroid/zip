@@ -32,11 +32,12 @@ class WalletScreen extends StatefulWidget {
   void initState() {
     // TODO: implement initState
     super.initState();
-    controller1. getCard().then((value) {
+    controller1.getCard().then((value) {
       setState(() {
-
       });
     });
+    // controller1. getCardDetails();
+
     // controller1. getData();
     // controller1. getCardDetails();
   }

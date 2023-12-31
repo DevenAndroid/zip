@@ -31,22 +31,22 @@ class Data {
   TransactionDate? transactionDate;
   String? purchasedCode;
   String? customerName;
-  Null? customerAddress;
-  Null? exchangeReference;
+  dynamic customerAddress;
+  dynamic exchangeReference;
   String? mainToken;
   String? mainTokenDescription;
   double? mainTokenUnits;
   double? mainTokenTax;
   double? mainsTokenAmount;
-  Null? bonusToken;
-  Null? bonusTokenDescription;
-  Null? bonusTokenUnits;
-  Null? bonusTokenTax;
-  Null? bonusTokenAmount;
+  dynamic bonusToken;
+  dynamic bonusTokenDescription;
+  dynamic bonusTokenUnits;
+  dynamic bonusTokenTax;
+  dynamic bonusTokenAmount;
   String? tariffIndex;
-  Null? debtTariff;
-  Null? debtAmount;
-  Null? debtDescription;
+  dynamic debtTariff;
+  dynamic debtAmount;
+  dynamic debtDescription;
 
   Data(
       {this.code,
@@ -164,15 +164,15 @@ class Transactions {
   String? uniqueElement;
   int? unitPrice;
   int? quantity;
-  Null? serviceVerification;
+  dynamic serviceVerification;
   String? channel;
   int? commission;
   double? totalAmount;
-  Null? discount;
+  dynamic discount;
   String? type;
   String? email;
   String? phone;
-  Null? name;
+  dynamic name;
   int? convinienceFee;
   int? amount;
   String? platform;

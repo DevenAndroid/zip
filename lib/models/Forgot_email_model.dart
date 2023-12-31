@@ -1,11 +1,11 @@
-class ModelCreateCardHolder {
-  String? status;
+class ForgotEmailModel {
+  bool? status;
   String? message;
   Data? data;
 
-  ModelCreateCardHolder({this.status, this.message, this.data});
+  ForgotEmailModel({this.status, this.message, this.data});
 
-  ModelCreateCardHolder.fromJson(Map<String, dynamic> json) {
+  ForgotEmailModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
@@ -23,17 +23,17 @@ class ModelCreateCardHolder {
 }
 
 class Data {
-  String? cardholderId;
+  int? otp;
 
-  Data({this.cardholderId});
+  Data({this.otp});
 
   Data.fromJson(Map<String, dynamic> json) {
-    cardholderId = json['cardholder_id'];
+    otp = json['otp'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['cardholder_id'] = this.cardholderId;
+    data['otp'] = this.otp;
     return data;
   }
 }

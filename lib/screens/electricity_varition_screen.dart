@@ -192,7 +192,7 @@ class _ElectricityVariationScreenState extends State<ElectricityVariationScreen>
                                               children: [
                                                 InkWell(
                                                     onTap: (){
-                                                      controller.provider.text = biller.value.data!.content!.varations![index].name.toString();
+                                                      controller.provider1.text = biller.value.data!.content!.varations![index].name.toString();
                                                       controller.idController1.text = service;
                                                       controller.amount.text =  biller.value.data!.content!.varations![index].variationAmount.toString();
                                                       Get.toNamed(MyRouters.meterVerifyScreen,
