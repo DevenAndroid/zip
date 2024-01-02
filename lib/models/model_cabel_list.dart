@@ -49,13 +49,13 @@ class Data {
 }
 
 class Content {
-  String? serviceID;
-  String? name;
-  String? minimiumAmount;
-  String? maximumAmount;
-  String? convinienceFee;
-  String? productType;
-  String? image;
+  dynamic serviceID;
+  dynamic name;
+  dynamic minimiumAmount;
+  dynamic maximumAmount;
+  dynamic convinienceFee;
+  dynamic productType;
+  dynamic image;
 
   Content(
       {this.serviceID,

@@ -33,10 +33,10 @@ class _WithdrawlCashState extends State<WithdrawlCash> {
     payoutRepo(
         amount:profileController.amountController.text.toString().trim() ,
         context: context,
-        bank_code: controller.idController1.text.toString().trim(),
+        bank_code: controller.idController1.text.toString(),
         user_id: profileController.modal.value.data!.user!.id.toString().trim(),
         key: "payouts",
-        accountHolderName:payOutcontroller.accountName.text.trim(),
+        accountHolderName:payOutcontroller.accountName.text.trim().toString(),
         accountNumber:payOutcontroller.accountNo.text.trim(),
         destinationCurrency:"NGN",
         about: "Cash Out",

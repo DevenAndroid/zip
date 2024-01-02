@@ -35,6 +35,7 @@ class BenificaryData {
   dynamic accountHolderName;
   dynamic businessId;
   dynamic createdAt;
+  dynamic bankCode;
 
   BenificaryData(
       {this.id,
@@ -42,6 +43,7 @@ class BenificaryData {
         this.destinationAddress,
         this.firstName,
         this.accountHolderName,
+        this.bankCode,
         this.businessId,
         this.createdAt});
 
@@ -49,6 +51,7 @@ class BenificaryData {
     id = json['id'];
     bankName = json['bank_name'];
     destinationAddress = json['destination_address'];
+    bankCode = json['bank_code'];
     firstName = json['first_name'];
     accountHolderName = json['account_holder_name'];
     businessId = json['business_id'];
@@ -59,6 +62,7 @@ class BenificaryData {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['bank_name'] = this.bankName;
+    data['bank_code'] = this.bankCode;
     data['destination_address'] = this.destinationAddress;
     data['first_name'] = this.firstName;
     data['account_holder_name'] = this.accountHolderName;

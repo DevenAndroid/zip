@@ -60,12 +60,12 @@ Future<ModelPayout> payoutRepo({firstName,accountHolderName,about,bank_code,acco
 
   if (response.statusCode == 200) {
     Helpers.hideLoader(loader);
-    print(jsonDecode(response.body));
+
     return ModelPayout.fromJson(jsonDecode(response.body));
 
   } else {
     Helpers.hideLoader(loader);
-    print(jsonDecode(response.body));
+
     return ModelPayout(message: jsonDecode(response.body)["message"],success: false );
   }
   // }  catch (e) {

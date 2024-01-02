@@ -46,7 +46,7 @@ class _PayNowBalanceState extends State<PayNowBalance> {
           amount:RegistorController.amount1Controller.text.trim() ,
           context: context,
           key: "payouts",
-          bank_code: RegistorController.idController1.text.toString(),
+          bank_code:RegistorController.idController1.text.trim(),
           user_id: profileController.modal.value.data!.user!.id.toString(),
           accountHolderName:data.accountHolderName.toString() ,
           accountNumber:data.destinationAddress.toString(),

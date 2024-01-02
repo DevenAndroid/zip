@@ -101,7 +101,7 @@ class ProfileController extends GetxController {
         description: "Fund To Card ",
         type: "dr")
         .then((value) {
-      log("response.body.....    ${value}");
+      log("response.body.....    $value");
       save.value = value;
       if (value.status == true) {
         Get.back();
@@ -246,7 +246,6 @@ class ProfileController extends GetxController {
         statusOfProfile.value = RxStatus.error();
       }
 
-      print(value.message.toString());
     });
   }
 
@@ -254,10 +253,6 @@ class ProfileController extends GetxController {
   String liveUserImage1 = "";
   ///////update profile
    holder()  {
-    print("sdggfrdh");
-    print(
-      modal.value.data!.user!.phone.toString(),
-    );
      cardHolderRepo(
       // selfie_image: liveUserImage1.toString(),
       user_id: modal.value.data!.user!.id .toString(),
@@ -300,10 +295,6 @@ class ProfileController extends GetxController {
     });
   }
    holder1()  {
-    print("sdggfrdh");
-    print(
-      modal.value.data!.user!.phone.toString(),
-    );
      cardHolderRepo(
 // selfie_image: liveUserImage1.toString(),
        card_brand: "MasterCard",
@@ -478,7 +469,7 @@ class ProfileController extends GetxController {
 zip_user_id: userId.toString(),
         type: "request")
         .then((value) {
-      log("response.body.....    ${value}");
+      log("response.body.....    $value");
       sendMail.value = value;
       if (value.status == true) {
         Get.offAllNamed(MyRouters.bottomNavbar);
@@ -498,7 +489,7 @@ zip_user_id: userId.toString(),
 zip_user_id:userId.toString(),
         type: "send")
         .then((value) {
-      log("response.body.....    ${value}");
+      log("response.body.....    $value");
       sendMail.value = value;
       if (value.status == true) {
         Get.offAllNamed(MyRouters.bottomNavbar);
@@ -528,7 +519,7 @@ zip_user_id:userId.toString(),
         description: noteController.text.trim(),
         type: "dr")
         .then((value) {
-      log("response.body.....    ${value}");
+      log("response.body.....    $value");
       save.value = value;
       if (value.status == true) {
         Get.toNamed(MyRouters.bottomNavbar);
@@ -554,7 +545,7 @@ zip_user_id:userId.toString(),
         description: noteController.text.trim(),
         type: "dr")
         .then((value) {
-      log("response.body.....    ${value}");
+      log("response.body.....    $value");
       save.value = value;
       if (value.status == true) {
         Get.toNamed(MyRouters.bottomNavbar);
@@ -603,7 +594,7 @@ zip_user_id:userId.toString(),
             description: noteController.text.trim(),
             type: "cr")
         .then((value) {
-      log("response.body.....    ${value}");
+      log("response.body.....    $value");
       save.value = value;
       if (value.status == true) {
         // saveList2(context);
@@ -663,10 +654,9 @@ zip_user_id:userId.toString(),
              description: noteController.text.trim(),
              type: "dr")
          .then((value) {
-       log("response.body.....    ${value}");
+       log("response.body.....    $value");
        save.value = value;
        if (value.status == true) {
-         print(userId);
          saveList5(context);
         // send1();
 
@@ -691,7 +681,7 @@ zip_user_id:userId.toString(),
         description: noteController.text.trim(),
         type: "cr")
         .then((value) {
-      log("response.body.....    ${value}");
+      log("response.body.....    $value");
       save.value = value;
       if (value.status == true) {
         // saveList2(context);
@@ -723,7 +713,6 @@ zip_user_id:userId.toString(),
         statusOfCurrentBalance.value = RxStatus.error();
       }
 
-      print(value.message.toString());
     });
   }
 
@@ -749,7 +738,6 @@ zip_user_id:userId.toString(),
         statusOfCardDetails.value = RxStatus.error();
       }
 
-      print(value.message.toString());
     });
   }
 
@@ -771,7 +759,6 @@ zip_user_id:userId.toString(),
         statusOfCard.value = RxStatus.error();
       }
 
-      print(value.message.toString());
     });
   }
 
@@ -786,7 +773,6 @@ zip_user_id:userId.toString(),
 
       if (value.status == "success") {
         statusOfCardBalance.value = RxStatus.success();
-print(card.value.data!.cardId.toString());
         // saveCardDetails();
         // Get.toNamed(MyRouters.cardDetails);
 
@@ -801,7 +787,6 @@ print(card.value.data!.cardId.toString());
         showToast(value.message.toString());
       }
 
-      print(value.message.toString());
     });
   }
   Rx<ModelSaveCard> saveDetails = ModelSaveCard().obs;
@@ -833,7 +818,6 @@ card_holder_id: cardDetails.value.data!.cardholderId.toString(),
       statusOfSaveDetails.value = RxStatus.error();
     }
 
-    print(value.message.toString());
   });
 }
 
@@ -860,7 +844,6 @@ card_holder_id: cardDetails.value.data!.cardholderId.toString(),
         showToast(value.message.toString());
       }
 
-      print(value.message.toString());
     });
   }
 
@@ -884,7 +867,6 @@ card_holder_id: cardDetails.value.data!.cardholderId.toString(),
         showToast(value.message.toString());
       }
 
-      print(value.message.toString());
     });
   }
 
@@ -899,7 +881,6 @@ card_holder_id: cardDetails.value.data!.cardholderId.toString(),
       card_id:  card.value.data!.cardId.toString()
     )
         .then((value) {
-          print(card.value.data!.cardId.toString());
       if (value.status == "success") {
 
         statusOfCardDelete.value = RxStatus.success();
@@ -916,7 +897,6 @@ card_holder_id: cardDetails.value.data!.cardholderId.toString(),
         showToast(value.message.toString());
       }
 
-      print(value.message.toString());
     });
   }
 
