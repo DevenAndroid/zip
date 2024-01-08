@@ -10,29 +10,27 @@ import '../models/model_veryfy_meter.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
-final details = Get.put(DetailsController());
-Future<ModelVerifyMeterNumber> verifyMeterRepo({key,type,billersCode,serviceID}) async {
 
+final details = Get.put(DetailsController());
+
+Future<ModelVerifyMeterNumber> verifyMeterRepo(
+    {key, type, billersCode, serviceID}) async {
   var map = <String, dynamic>{};
   map['key'] = key;
   map['type'] = type;
   map['billersCode'] = billersCode;
   map['serviceID'] = serviceID;
   http.Response response = await http.post(Uri.parse(ApiUrls.serviceCommon),
-      headers:await getAuthHeader(),
-      body: jsonEncode(map));
+      headers: await getAuthHeader(), body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
   print(map);
 
   if (response.statusCode == 200) {
-
-
-    return ModelVerifyMeterNumber.fromJson(jsonDecode(response.body),);
-  } else {
-
-
-    return ModelVerifyMeterNumber(
-        message: jsonDecode(response.body)["message"],status: false
+    return ModelVerifyMeterNumber.fromJson(
+      jsonDecode(response.body),
     );
+  } else {
+    return ModelVerifyMeterNumber(
+        message: jsonDecode(response.body)["message"], status: false);
   }
 }

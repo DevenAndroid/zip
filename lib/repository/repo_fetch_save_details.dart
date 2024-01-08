@@ -1,10 +1,7 @@
-
-
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-
 
 import '../models/model_fetch_save_bank.dart';
 import '../models/model_get_support_system.dart';
@@ -30,6 +27,7 @@ Future<ModelFetchSaveBankDetails> getSaveBankRepo() async {
           data: null);
     }
   } catch (e) {
-    return ModelFetchSaveBankDetails(message: e.toString(), status: false, data: null);
+    return ModelFetchSaveBankDetails(
+        message: e.toString(), status: false, data: null);
   }
 }

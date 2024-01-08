@@ -14,6 +14,7 @@ import '../widgets/circular_progressindicator.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_colour.dart';
 import '../widgets/common_error_widget.dart';
+
 class CabelTvScreen extends StatefulWidget {
   const CabelTvScreen({Key? key}) : super(key: key);
 
@@ -22,14 +23,13 @@ class CabelTvScreen extends StatefulWidget {
 }
 
 class _CabelTvScreenState extends State<CabelTvScreen> {
-
-  Rx<RxStatus> statusOfCabel= RxStatus.empty().obs;
+  Rx<RxStatus> statusOfCabel = RxStatus.empty().obs;
   Rx<ModelCabelList> cabelList = ModelCabelList().obs;
 
   getCabelList() {
     getCableRepo(
       identifier: "tv-subscription",
-     key: "services",
+      key: "services",
     ).then((value) {
       // log("response.body.....    ${value}");
       cabelList.value = value;
@@ -39,9 +39,10 @@ class _CabelTvScreenState extends State<CabelTvScreen> {
         statusOfCabel.value = RxStatus.error();
       }
     }
-      // showToast(value.message.toString());
-    );
+        // showToast(value.message.toString());
+        );
   }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -83,76 +84,104 @@ class _CabelTvScreenState extends State<CabelTvScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Obx(() {
-                        return  statusOfCabel.value.isSuccess ?
-                        ListView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount:cabelList.value.data!.content!.length,
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        return statusOfCabel.value.isSuccess
+                            ? ListView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount:
+                                    cabelList.value.data!.content!.length,
+                                shrinkWrap: true,
+                                itemBuilder: (context, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(12.0),
+                                    child: Column(
                                       children: [
-                                        ClipOval(
-                                          child: CachedNetworkImage(
-                                            width: 40,
-                                            height: 40,
-                                            fit: BoxFit.cover,
-                                            imageUrl: cabelList.value.data!.content![index].image.toString(),
-                                            placeholder: (context, url) =>
-                                            const SizedBox(),
-                                            errorWidget: (context, url, error) =>
-                                            const SizedBox(),
-                                          ),
-                                        ),
-                                        SizedBox(width: 20,),
-                                        Expanded(
-                                          child: Text(cabelList.value.data!.content![index].name.toString(),
-                                            style: GoogleFonts.poppins(
-                                                color: const Color(0xFF1D1D1D),
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w500),),
-                                        ),
-
-                                        InkWell(
-                                            onTap: (){
-                                              Get.toNamed(MyRouters.providerScreen,arguments: [cabelList.value.data!.content![index].serviceID.toString(),]);
-                                            },
-                                            child: Container(
-                                                padding: EdgeInsets.symmetric(vertical: 8,horizontal: 10),
-                                                decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(7),
-                                                  color: AppTheme.secondaryColor,
-                                                ),
-
-                                                child: Text("See Plan",
-                                                  style: GoogleFonts.poppins(
-                                                      color:  Colors.white,
-                                                      fontSize: 12,
-                                                      fontWeight: FontWeight.w500),))),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            ClipOval(
+                                              child: CachedNetworkImage(
+                                                width: 40,
+                                                height: 40,
+                                                fit: BoxFit.cover,
+                                                imageUrl: cabelList.value.data!
+                                                    .content![index].image
+                                                    .toString(),
+                                                placeholder: (context, url) =>
+                                                    const SizedBox(),
+                                                errorWidget:
+                                                    (context, url, error) =>
+                                                        const SizedBox(),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 20,
+                                            ),
+                                            Expanded(
+                                              child: Text(
+                                                cabelList.value.data!
+                                                    .content![index].name
+                                                    .toString(),
+                                                style: GoogleFonts.poppins(
+                                                    color:
+                                                        const Color(0xFF1D1D1D),
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              ),
+                                            ),
+                                            InkWell(
+                                                onTap: () {
+                                                  Get.toNamed(
+                                                      MyRouters.providerScreen,
+                                                      arguments: [
+                                                        cabelList
+                                                            .value
+                                                            .data!
+                                                            .content![index]
+                                                            .serviceID
+                                                            .toString(),
+                                                      ]);
+                                                },
+                                                child: Container(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            vertical: 8,
+                                                            horizontal: 10),
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              7),
+                                                      color: AppTheme
+                                                          .secondaryColor,
+                                                    ),
+                                                    child: Text(
+                                                      "See Plan",
+                                                      style:
+                                                          GoogleFonts.poppins(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 12,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500),
+                                                    ))),
+                                          ],
+                                        )
                                       ],
-                                    )
-
-
-
-                                  ],
-                                ),
-                              );
-                            }):  statusOfCabel.value.isError
-                            ? CommonErrorWidget(
-                          errorText:
-                          cabelList.value.message.toString(),
-                          onTap: () {
-                            getCabelList();
-                          },
-                        )
-                            : const CommonProgressIndicator();
+                                    ),
+                                  );
+                                })
+                            : statusOfCabel.value.isError
+                                ? CommonErrorWidget(
+                                    errorText:
+                                        cabelList.value.message.toString(),
+                                    onTap: () {
+                                      getCabelList();
+                                    },
+                                  )
+                                : const CommonProgressIndicator();
                       })
-
-                    ]
-                ))));
+                    ]))));
   }
 }

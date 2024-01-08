@@ -12,9 +12,25 @@ import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
 
-
 final details = Get.put(DetailsController());
-Future<ModelPayout> payoutRepo({firstName,accountHolderName,about,bank_code,accountNumber,user_id,key,context,type,customerReference,business,paymentDestination,sourceCurrency,destinationCurrency,amount,description}) async {
+
+Future<ModelPayout> payoutRepo(
+    {firstName,
+    accountHolderName,
+    about,
+    bank_code,
+    accountNumber,
+    user_id,
+    key,
+    context,
+    type,
+    customerReference,
+    business,
+    paymentDestination,
+    sourceCurrency,
+    destinationCurrency,
+    amount,
+    description}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
@@ -29,21 +45,18 @@ Future<ModelPayout> payoutRepo({firstName,accountHolderName,about,bank_code,acco
   map['user_id'] = user_id;
   map['business'] = business;
   map['beneficiary'] = map1;
-  map1['type'] =  type;
-  map1['bank_code'] =  bank_code;
-  map["customerReference"] =  customerReference;
-  map["key"] =  key;
-  map['api-key'] =   details.apiKey;
+  map1['type'] = type;
+  map1['bank_code'] = bank_code;
+  map["customerReference"] = customerReference;
+  map["key"] = key;
+  map['api-key'] = details.apiKey;
   // map1['email'] =  email;
 
-  map['paymentDestination'] =  paymentDestination;
-  map['sourceCurrency'] =  sourceCurrency;
-  map['destinationCurrency'] =  destinationCurrency;
+  map['paymentDestination'] = paymentDestination;
+  map['sourceCurrency'] = sourceCurrency;
+  map['destinationCurrency'] = destinationCurrency;
   // map1['lastName'] =  lastName;
-  map['amount'] =  amount;
-
-
-
+  map['amount'] = amount;
 
   print(map);
   // try {
@@ -62,11 +75,11 @@ Future<ModelPayout> payoutRepo({firstName,accountHolderName,about,bank_code,acco
     Helpers.hideLoader(loader);
 
     return ModelPayout.fromJson(jsonDecode(response.body));
-
   } else {
     Helpers.hideLoader(loader);
 
-    return ModelPayout(message: jsonDecode(response.body)["message"],success: false );
+    return ModelPayout(
+        message: jsonDecode(response.body)["message"], success: false);
   }
   // }  catch (e) {
   //   Helpers.hideLoader(loader);

@@ -15,26 +15,23 @@ import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
 
-Future<AirtimeProductModel> commonProductRepo({  key,code}) async {
-
+Future<AirtimeProductModel> commonProductRepo({key, code}) async {
   var map = <String, dynamic>{};
   map['key'] = key;
   map['code'] = code;
   http.Response response = await http.post(Uri.parse(ApiUrls.serviceCommon),
-      headers:await getAuthHeader(),
-      body: jsonEncode(map));
+      headers: await getAuthHeader(), body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
   log("Sign IN DATA${response.statusCode}");
   print(map);
 
   if (response.statusCode == 200) {
-
     // print(jsonDecode(response.body));
     return AirtimeProductModel.fromJson(jsonDecode(response.body));
-
   } else {
-
     // print(jsonDecode(response.body));
-    return AirtimeProductModel(message: jsonDecode(response.body)["message"], );
+    return AirtimeProductModel(
+      message: jsonDecode(response.body)["message"],
+    );
   }
 }

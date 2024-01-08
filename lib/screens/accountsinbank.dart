@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
-
 import '../widgets/common_button.dart';
 
 class AccountsInBank extends StatefulWidget {
@@ -17,7 +16,6 @@ class AccountsInBank extends StatefulWidget {
 }
 
 class _AccountsInBankState extends State<AccountsInBank> {
-
   String _selectedCurrency = 'NGN';
   String _selectedEur = 'EUR';
   String _selectedCurrencyUsd = 'USD';
@@ -39,7 +37,9 @@ class _AccountsInBankState extends State<AccountsInBank> {
         ),
         centerTitle: true,
         leading: InkWell(
-          onTap: (){ Get.back();},
+          onTap: () {
+            Get.back();
+          },
           child: const Icon(
             Icons.arrow_back_rounded,
             color: AppTheme.primaryColor,
@@ -52,11 +52,14 @@ class _AccountsInBankState extends State<AccountsInBank> {
           child: Container(
             child: Column(
               children: [
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 InkWell(
-                  onTap: (){
-                    _selectedCurrency ;
-                    Get.toNamed(MyRouters.exchangeMoney,arguments: [_selectedCurrency]);
+                  onTap: () {
+                    _selectedCurrency;
+                    Get.toNamed(MyRouters.exchangeMoney,
+                        arguments: [_selectedCurrency]);
                   },
                   child: Container(
                       height: 62,
@@ -65,39 +68,41 @@ class _AccountsInBankState extends State<AccountsInBank> {
                           border: Border.all(color: const Color(0xff1D1D1D))),
                       child: Column(
                         children: [
-                          SizedBox(height: 10,),
+                          SizedBox(
+                            height: 10,
+                          ),
                           ListTile(
-                              visualDensity:
-                                  const VisualDensity(horizontal: 0, vertical: -4),
-                              leading: Image.asset(
-                                'assets/images/nigeria.png',
-                                height: 35,
-                              ),
-                              title: Text(
-                                "NG Naira",
-                                style: GoogleFonts.poppins(
-                                    color: const Color(0xFF1D1D1D),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              // subtitle: Text(
-                              //   "N1098.00",
-                              //   style: GoogleFonts.poppins(
-                              //       color: const Color(0x571D1D1D),
-                              //       fontSize: 14,
-                              //       fontWeight: FontWeight.w400),
-                              // ),
-                              trailing :Radio<String>(
-                    value: 'NGN',
-                    groupValue: _selectedCurrency,
-                                activeColor: AppTheme.secondaryColor,
-                    onChanged: (value) {
-                      setState(() {
-                        _selectedCurrency = value!;
-                      });
-                    },
-                  ),
-                  ),
+                            visualDensity: const VisualDensity(
+                                horizontal: 0, vertical: -4),
+                            leading: Image.asset(
+                              'assets/images/nigeria.png',
+                              height: 35,
+                            ),
+                            title: Text(
+                              "NG Naira",
+                              style: GoogleFonts.poppins(
+                                  color: const Color(0xFF1D1D1D),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            // subtitle: Text(
+                            //   "N1098.00",
+                            //   style: GoogleFonts.poppins(
+                            //       color: const Color(0x571D1D1D),
+                            //       fontSize: 14,
+                            //       fontWeight: FontWeight.w400),
+                            // ),
+                            trailing: Radio<String>(
+                              value: 'NGN',
+                              groupValue: _selectedCurrency,
+                              activeColor: AppTheme.secondaryColor,
+                              onChanged: (value) {
+                                setState(() {
+                                  _selectedCurrency = value!;
+                                });
+                              },
+                            ),
+                          ),
                         ],
                       )),
                 ),
@@ -253,9 +258,10 @@ class _AccountsInBankState extends State<AccountsInBank> {
                   height: size.height * .65,
                 ),
                 InkWell(
-                  onTap: (){
-                    _selectedCurrency ;
-                    Get.toNamed(MyRouters.exchangeMoney,arguments: [_selectedCurrency]);
+                  onTap: () {
+                    _selectedCurrency;
+                    Get.toNamed(MyRouters.exchangeMoney,
+                        arguments: [_selectedCurrency]);
                   },
                   child: const CustomOutlineButton(
                     title: "Create new account",

@@ -81,14 +81,11 @@ class _ImageScreeenState extends State<ImageScreeen> {
             SizedBox(height: 16),
             _imageUrl.isNotEmpty
                 ? Container(
-               
-                child: CachedNetworkImage(
-                  imageUrl: _imageUrl,
-
-
-                  placeholder: (context, url) => CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
-                ))
+                    child: CachedNetworkImage(
+                    imageUrl: _imageUrl,
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  ))
                 : Text('No image to display'),
           ],
         ),

@@ -23,36 +23,38 @@ class WithdrawlCash extends StatefulWidget {
 
 class _WithdrawlCashState extends State<WithdrawlCash> {
   final profileController = Get.put(ProfileController());
-  Future CreatePayout() async {
 
+  Future CreatePayout() async {
     final controller = Get.put(registerController());
     final payOutcontroller = Get.put(PayoutController());
 
     Rx<RxStatus> statusOfpayout = RxStatus.empty().obs;
     Rx<ModelPayout> payout = ModelPayout().obs;
     payoutRepo(
-        amount:profileController.amountController.text.toString().trim() ,
-        context: context,
-        bank_code: controller.idController1.text.toString(),
-        user_id: profileController.modal.value.data!.user!.id.toString().trim(),
-        key: "payouts",
-        accountHolderName:payOutcontroller.accountName.text.trim().toString(),
-        accountNumber:payOutcontroller.accountNo.text.trim(),
-        destinationCurrency:"NGN",
-        about: "Cash Out",
-        customerReference:  DateFormat.jm().format(DateTime.now()),
+            amount: profileController.amountController.text.toString().trim(),
+            context: context,
+            bank_code: controller.idController1.text.toString(),
+            user_id:
+                profileController.modal.value.data!.user!.id.toString().trim(),
+            key: "payouts",
+            accountHolderName:
+                payOutcontroller.accountName.text.trim().toString(),
+            accountNumber: payOutcontroller.accountNo.text.trim(),
+            destinationCurrency: "NGN",
+            about: "Cash Out",
+            customerReference: DateFormat.jm().format(DateTime.now()),
 // RegistorController.descriptionController.text.trim(),
 // destinationCurrencyController.text.trim() ,
-        sourceCurrency: "NGN",
-        // sourceCurrencyController.text.trim(),
-        description: DateFormat.jm().format(DateTime.now()),
-        // email:data.email.toString(),
-        firstName: controller.bankController1.text.trim(),
-        // lastName:data.lastName.toString() ,
-        paymentDestination:"bank_account" ,
-        type:"individual" ,
-        business: details.businessID
-    ).then((value) {
+            sourceCurrency: "NGN",
+            // sourceCurrencyController.text.trim(),
+            description: DateFormat.jm().format(DateTime.now()),
+            // email:data.email.toString(),
+            firstName: controller.bankController1.text.trim(),
+            // lastName:data.lastName.toString() ,
+            paymentDestination: "bank_account",
+            type: "individual",
+            business: details.businessID)
+        .then((value) {
       payout.value = value;
       if (value.success == true) {
         statusOfpayout.value = RxStatus.success();
@@ -60,14 +62,12 @@ class _WithdrawlCashState extends State<WithdrawlCash> {
         Get.toNamed(MyRouters.success3Screen);
         // Get.back();
         showToast(value.message.toString());
-      }
-      else {
+      } else {
         statusOfpayout.value = RxStatus.success();
         showToast(value.message.toString());
       }
       // showToast(value.message.toString());
     });
-
   }
 
   @override
@@ -89,7 +89,9 @@ class _WithdrawlCashState extends State<WithdrawlCash> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 48,),
+            SizedBox(
+              height: 48,
+            ),
             ClipRRect(
               borderRadius: BorderRadius.circular(30),
               child: Image.asset(
@@ -97,7 +99,9 @@ class _WithdrawlCashState extends State<WithdrawlCash> {
                 height: 121,
               ),
             ),
-            SizedBox(height: 25,),
+            SizedBox(
+              height: 25,
+            ),
 
             Text(
               "You requested \$ ${profileController.amountController.text.trim()}",
@@ -118,13 +122,10 @@ class _WithdrawlCashState extends State<WithdrawlCash> {
             ),
             InkWell(
               onTap: () async {
-
                 SharedPreferences pref = await SharedPreferences.getInstance();
                 if (pref.getBool('TransistionPin') == true) {
                   Get.toNamed(MyRouters.securityOtpScreen1);
-                }
-                else{
-
+                } else {
                   CreatePayout();
                 }
               },

@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/screens/paybillsservices.dart';
 import 'package:zip/widgets/common_colour.dart';
 
-
 import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_textfield.dart';
@@ -34,7 +33,7 @@ class _BuyServicesState extends State<BuyServices> {
         ),
         centerTitle: true,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Get.back();
           },
           child: Icon(
@@ -66,7 +65,10 @@ class _BuyServicesState extends State<BuyServices> {
               child: CommonTextfield(
                 prefix: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Image.asset('assets/images/nigeria.png',height: 20,),
+                  child: Image.asset(
+                    'assets/images/nigeria.png',
+                    height: 20,
+                  ),
                 ),
                 obSecure: false,
                 hintText: "Nigeria",
@@ -93,7 +95,9 @@ class _BuyServicesState extends State<BuyServices> {
                 title: "Contacts",
               ),
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             InkWell(
               onTap: () {
                 Get.to(PayBillsServices());

@@ -16,14 +16,11 @@ import '../resourses/helper.dart';
 final details = Get.put(DetailsController());
 
 Future<ModelBankDetails> fetchAccountRepo() async {
-
-
   try {
-    http.Response response =
-        await http.get(Uri.parse(ApiUrls.bankDetails),
-          headers: await getAuthHeader(),
-        );
-
+    http.Response response = await http.get(
+      Uri.parse(ApiUrls.bankDetails),
+      headers: await getAuthHeader(),
+    );
 
     // http.Response response = await http.post(Uri.parse(ApiUrls.loginUser),
     //     headers: await getAuthHeader(),body: jsonEncode(map) );

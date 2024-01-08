@@ -8,6 +8,7 @@ import 'package:zip/widgets/common_button.dart';
 
 import '../controller/bottomnavbar_controller.dart';
 import '../controller/profile_controller.dart';
+
 class CardSuccessScreen extends StatefulWidget {
   const CardSuccessScreen({Key? key}) : super(key: key);
 
@@ -18,12 +19,12 @@ class CardSuccessScreen extends StatefulWidget {
 class _CardSuccessScreenState extends State<CardSuccessScreen> {
   final profileController = Get.put(ProfileController());
   final bottomController = Get.put(BottomNavBarController());
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
-
         body: SingleChildScrollView(
             child: Padding(
                 padding: const EdgeInsets.all(12.0),
@@ -31,10 +32,11 @@ class _CardSuccessScreenState extends State<CardSuccessScreen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: size.height*.1,),
+                      SizedBox(
+                        height: size.height * .1,
+                      ),
                       Center(
                         child: Text(
-
                           "Success!",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
@@ -42,15 +44,21 @@ class _CardSuccessScreenState extends State<CardSuccessScreen> {
                               fontWeight: FontWeight.w500),
                         ),
                       ),
-                      SizedBox(height: 45,),
+                      SizedBox(
+                        height: 45,
+                      ),
                       Center(
                         child: Image.asset(
-                          'assets/images/tick.png',height: 90,width: 90,),
+                          'assets/images/tick.png',
+                          height: 90,
+                          width: 90,
+                        ),
                       ),
-                      SizedBox(height: 25,),
+                      SizedBox(
+                        height: 25,
+                      ),
                       Center(
                         child: Text(
-
                           "Your Card will be processed soon",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
@@ -58,16 +66,18 @@ class _CardSuccessScreenState extends State<CardSuccessScreen> {
                               fontWeight: FontWeight.w400),
                         ),
                       ),
-                      SizedBox(height: size.height*.5,),
+                      SizedBox(
+                        height: size.height * .5,
+                      ),
                       InkWell(
-                          onTap: (){
+                          onTap: () {
                             //
-                            Get.to(()=>BottomNavbar());
+                            Get.to(() => BottomNavbar());
                             bottomController.pageIndex.value = 0;
                           },
-                          child: CustomOutlineButton(title: "Go To Home",)),
-                    ]
-                ))));
+                          child: CustomOutlineButton(
+                            title: "Go To Home",
+                          )),
+                    ]))));
   }
 }
-

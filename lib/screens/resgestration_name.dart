@@ -22,32 +22,26 @@ class _UserScreenState extends State<UserScreen> {
   final formKeyName = GlobalKey<FormState>();
   final numbercontroller = Get.put(numberController());
 
-
   final registorController = Get.put(registerController());
 
   @override
   void initState() {
     super.initState();
-    registorController.molileController.text=numbercontroller.number;
-    registorController.emailController.text=numbercontroller.email;
+    registorController.molileController.text = numbercontroller.number;
+    registorController.emailController.text = numbercontroller.email;
     print(numbercontroller.number);
     print(numbercontroller.email);
     registorController.getData();
   }
-
-
-
 
   List<DropdownMenuItem<String>> get dropdownItemsm {
     List<DropdownMenuItem<String>> menuItemsm = [
       const DropdownMenuItem(value: "wema", child: Text("wema")),
       const DropdownMenuItem(value: "providus", child: Text("providus")),
       const DropdownMenuItem(value: "", child: Text("")),
-
     ];
     return menuItemsm;
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -69,98 +63,88 @@ class _UserScreenState extends State<UserScreen> {
           ),
         ),
         body: SingleChildScrollView(
-            child:
-
-              Form(
-                key: formKeyName,
-                child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10.0, right: 10),
-                            child: Text(
-                              "Please enter your first & last name",
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 40,
-                          ),
-                          CommonTextfield(
-                              validator: MultiValidator([
-                                RequiredValidator(
-                                    errorText: 'Please enter your first name '),
-                              ]),
-                              readOnly: true,
-                              controller: registorController.firstNameController,
-                              obSecure: false,
-                              // readOnly: true,
-                              hintText:  "first name"),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          CommonTextfield(
-                              validator: MultiValidator([
-                                RequiredValidator(
-                                    errorText: 'Please enter your last name '),
-                              ]),
-                              readOnly: true,
-                              controller: registorController.lastNameController,
-                              obSecure: false,
-                              // readOnly: true,
-                              hintText: "Last Name"),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          CommonTextfield(
-                              keyboardType:
-                              const TextInputType.numberWithOptions(
-                                  decimal: true),
-                             readOnly: true,
-
-                              controller:     registorController.molileController,
-                              obSecure: false,
-                              hintText: "mobile number"),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          CommonTextfield(
-readOnly: true,
-                              validator: MultiValidator([
-                                RequiredValidator(
-                                    errorText: 'Please enter your email'),
-                              ]),
-                              controller:     registorController.emailController,
-                              obSecure: false,
-                              hintText:"email"),
-
-
-                          SizedBox(
-                            height: size.height * .2,
-                          ),
-                          GestureDetector(
-                              onTap: () {
-                                if (formKeyName.currentState!.validate()) {
-                                  // registorController.contactCreate1(context);
-                                   Get.toNamed(
-                                       MyRouters.birthdayScreen,
-                                       arguments: [registorController.firstNameController.text.trim()]
-                                   );
-
-
-                                }
-                              },
-                              child: const CustomOutlineButton(
-                                title: "Next ",
-                              )),
-                        ])),
-              )
-            ));
+            child: Form(
+          key: formKeyName,
+          child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0, right: 10),
+                      child: Text(
+                        "Please enter your first & last name",
+                        style: GoogleFonts.poppins(
+                            color: const Color(0xFF1D1D1D),
+                            fontSize: 22,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    CommonTextfield(
+                        validator: MultiValidator([
+                          RequiredValidator(
+                              errorText: 'Please enter your first name '),
+                        ]),
+                        readOnly: true,
+                        controller: registorController.firstNameController,
+                        obSecure: false,
+                        // readOnly: true,
+                        hintText: "first name"),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    CommonTextfield(
+                        validator: MultiValidator([
+                          RequiredValidator(
+                              errorText: 'Please enter your last name '),
+                        ]),
+                        readOnly: true,
+                        controller: registorController.lastNameController,
+                        obSecure: false,
+                        // readOnly: true,
+                        hintText: "Last Name"),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    CommonTextfield(
+                        keyboardType: const TextInputType.numberWithOptions(
+                            decimal: true),
+                        readOnly: true,
+                        controller: registorController.molileController,
+                        obSecure: false,
+                        hintText: "mobile number"),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    CommonTextfield(
+                        readOnly: true,
+                        validator: MultiValidator([
+                          RequiredValidator(
+                              errorText: 'Please enter your email'),
+                        ]),
+                        controller: registorController.emailController,
+                        obSecure: false,
+                        hintText: "email"),
+                    SizedBox(
+                      height: size.height * .2,
+                    ),
+                    GestureDetector(
+                        onTap: () {
+                          if (formKeyName.currentState!.validate()) {
+                            // registorController.contactCreate1(context);
+                            Get.toNamed(MyRouters.birthdayScreen, arguments: [
+                              registorController.firstNameController.text.trim()
+                            ]);
+                          }
+                        },
+                        child: const CustomOutlineButton(
+                          title: "Next ",
+                        )),
+                  ])),
+        )));
   }
 }

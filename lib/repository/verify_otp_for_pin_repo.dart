@@ -8,9 +8,7 @@ import '../models/verify_otp_for_pin_modal.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
-
-
-Future<VerifyOtpForPinModal> verifyOtpForPinRepo({otp,context}) async {
+Future<VerifyOtpForPinModal> verifyOtpForPinRepo({otp, context}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
@@ -18,17 +16,17 @@ Future<VerifyOtpForPinModal> verifyOtpForPinRepo({otp,context}) async {
   map['otp'] = otp;
 
   http.Response response = await http.post(Uri.parse(ApiUrls.verifyOtpForPin),
-      headers: await getAuthHeader(),
-      body: jsonEncode(map));
+      headers: await getAuthHeader(), body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
   if (response.statusCode == 200) {
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
     return VerifyOtpForPinModal.fromJson(jsonDecode(response.body));
-
   } else {
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
-    return VerifyOtpForPinModal(message: jsonDecode(response.body)["message"], );
+    return VerifyOtpForPinModal(
+      message: jsonDecode(response.body)["message"],
+    );
   }
 }

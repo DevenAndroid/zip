@@ -14,24 +14,22 @@ import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
 
-
 final details = Get.put(DetailsController());
-Future<ModelAccountResolve> resolveRepo({accountNumber,bankCode,context,}) async {
+
+Future<ModelAccountResolve> resolveRepo({
+  accountNumber,
+  bankCode,
+  context,
+}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
 
-
-
-  map['accountNumber'] =  accountNumber;
-  map['bankCode'] =  bankCode;
-  map['type'] =  "nuban";
-  map['key'] =  "resolve";
-  map['api-key'] =  details.apiKey;
-
-
-
-
+  map['accountNumber'] = accountNumber;
+  map['bankCode'] = bankCode;
+  map['type'] = "nuban";
+  map['key'] = "resolve";
+  map['api-key'] = details.apiKey;
 
   print(map);
   // try {
@@ -49,11 +47,11 @@ Future<ModelAccountResolve> resolveRepo({accountNumber,bankCode,context,}) async
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
     return ModelAccountResolve.fromJson(jsonDecode(response.body));
-
   } else {
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
-    return ModelAccountResolve(message: jsonDecode(response.body)["message"],success: false );
+    return ModelAccountResolve(
+        message: jsonDecode(response.body)["message"], success: false);
   }
   // }  catch (e) {
   //   Helpers.hideLoader(loader);

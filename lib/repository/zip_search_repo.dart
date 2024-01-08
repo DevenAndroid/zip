@@ -10,20 +10,13 @@ import '../models/model_update_address.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
-
-
-Future<ModelSearchZip> zipSearchRepo({required String zip_tag,context}) async {
+Future<ModelSearchZip> zipSearchRepo({required String zip_tag, context}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
 
-
-
-
-
-
-
   // try {
-  http.Response response = await http.get(Uri.parse(ApiUrls.zipSearch+"zip_tag=$zip_tag"),
+  http.Response response = await http.get(
+    Uri.parse(ApiUrls.zipSearch + "zip_tag=$zip_tag"),
     headers: await getAuthHeader(),
   );
   log("Sign IN DATA${response.body}");
@@ -34,11 +27,12 @@ Future<ModelSearchZip> zipSearchRepo({required String zip_tag,context}) async {
     Helpers.hideLoader(loader);
 
     return ModelSearchZip.fromJson(jsonDecode(response.body));
-
   } else {
     Helpers.hideLoader(loader);
 
-    return ModelSearchZip(message: jsonDecode(response.body)["message"], );
+    return ModelSearchZip(
+      message: jsonDecode(response.body)["message"],
+    );
   }
   // }  catch (e) {
   //   Helpers.hideLoader(loader);

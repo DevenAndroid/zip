@@ -16,8 +16,8 @@ import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
 
-Future<AirtimeOperatorModel> commonOperatorRepo({  key,code,product_type_id}) async {
-
+Future<AirtimeOperatorModel> commonOperatorRepo(
+    {key, code, product_type_id}) async {
   var map = <String, dynamic>{};
   map['key'] = key;
   map['code'] = code;
@@ -28,20 +28,18 @@ Future<AirtimeOperatorModel> commonOperatorRepo({  key,code,product_type_id}) as
   // map['billersCode'] = billersCode;
   // map['phone'] = phone;
   http.Response response = await http.post(Uri.parse(ApiUrls.serviceCommon),
-      headers:await getAuthHeader(),
-      body: jsonEncode(map));
+      headers: await getAuthHeader(), body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
   log("Sign IN DATA${response.statusCode}");
   print(map);
 
   if (response.statusCode == 200) {
-
     // print(jsonDecode(response.body));
     return AirtimeOperatorModel.fromJson(jsonDecode(response.body));
-
   } else {
-
     // print(jsonDecode(response.body));
-    return AirtimeOperatorModel(message: jsonDecode(response.body)["message"], );
+    return AirtimeOperatorModel(
+      message: jsonDecode(response.body)["message"],
+    );
   }
 }

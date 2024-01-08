@@ -41,6 +41,7 @@ class _PurchaseCabelScreenState extends State<PurchaseCabelScreen> {
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
       registorController.fetchVritualAccount();});
+    profileController.getCurrentBalance();
   }
   Rx<RxStatus> statusOfProviders= RxStatus.empty().obs;
 
@@ -147,16 +148,30 @@ key: "pay"
               height: 20,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: Text(
-                "Phone number ",
-                style: GoogleFonts.poppins(
-                    color: const Color(0xFF2E2E2E),
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500),
+              padding: const EdgeInsets.only(left: 20, right: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Phone number ",
+                    style: GoogleFonts.poppins(
+                        color: const Color(0xFF2E2E2E),
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  Text(
+                    "FEE : " +
+                        profileController
+                            .currentBalanceModel.value.data!.fee!.serviceFee
+                            .toString(),
+                    style: GoogleFonts.poppins(
+                        color: const Color(0xFF1D1D1D),
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ],
               ),
             ),
-
             const SizedBox(
               height: 10,
             ),

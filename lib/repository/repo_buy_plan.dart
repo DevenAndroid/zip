@@ -11,19 +11,20 @@ import '../models/model_data_paln.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
-final details = Get.put(DetailsController());
-Future<ModelBuy> BuyPlanRepo({  amount,phone_no,telco,reference}) async {
 
+final details = Get.put(DetailsController());
+
+Future<ModelBuy> BuyPlanRepo({amount, phone_no, telco, reference}) async {
   var map = <String, dynamic>{};
   map['amount'] = amount;
   map['phone_no'] = phone_no;
   map['telco'] = telco;
   map['reference'] = reference;
   http.Response response = await http.post(Uri.parse(ApiUrls.purchase),
-      headers: { HttpHeaders.contentTypeHeader: 'application/json',
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json',
         HttpHeaders.acceptHeader: 'application/json',
-        "secret-key":details.secretKey
-
+        "secret-key": details.secretKey
       },
       body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
@@ -31,14 +32,11 @@ Future<ModelBuy> BuyPlanRepo({  amount,phone_no,telco,reference}) async {
   print(map);
 
   if (response.statusCode == 200) {
-
-
-    return ModelBuy.fromJson(jsonDecode(response.body),);
-  } else {
-
-
-    return ModelBuy(
-        message: jsonDecode(response.body)["message"],success: false
+    return ModelBuy.fromJson(
+      jsonDecode(response.body),
     );
+  } else {
+    return ModelBuy(
+        message: jsonDecode(response.body)["message"], success: false);
   }
 }

@@ -30,7 +30,6 @@ class AddPaymentMethod extends StatefulWidget {
 }
 
 class _AddPaymentMethodState extends State<AddPaymentMethod> {
-
   final profileController = Get.put(ProfileController());
   final RegistorController = Get.put(registerController());
   final details = Get.put(DetailsController());
@@ -41,13 +40,14 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
 
   Future resolveData() async {
     await resolveRepo(
-        accountNumber: payOutcontroller.accountNo.text.trim(),
-        bankCode:  controller.idController1.text.trim(),
-        context: context)
+            accountNumber: payOutcontroller.accountNo.text.trim(),
+            bankCode: controller.idController1.text.trim(),
+            context: context)
         .then((value) {
       resolve.value = value;
       if (value.success == true) {
-        payOutcontroller.accountName.text = (value.data!.accountName??"").toString();
+        payOutcontroller.accountName.text =
+            (value.data!.accountName ?? "").toString();
         statusOfResolve.value = RxStatus.success();
 
         showToast(value.message.toString());
@@ -55,57 +55,53 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
         showToast(value.message.toString());
       }
     }
-      // showToast(value.message.toString());
-    );
+            // showToast(value.message.toString());
+            );
   }
 
   // final TextEditingController bankController = TextEditingController();
   final controller = Get.put(registerController());
   final payOutcontroller = Get.put(PayoutController());
+
   Future CreatePayout() async {
-
-
-
-
-      payoutRepo(
-          amount:profileController.amountController.text.toString().trim() ,
-          context: context,
-          user_id: profileController.modal.value.data!.user!.id.toString(),
-          key: "payouts",
-          bank_code: controller.idController1.text.toString(),
-          accountHolderName:payOutcontroller.accountName.toString().trim(),
-          accountNumber:payOutcontroller.accountNo.toString().trim(),
-          destinationCurrency:"NGN",
-          about: "Cash Out",
-          customerReference:  DateFormat.jm().format(DateTime.now()),
+    payoutRepo(
+            amount: profileController.amountController.text.toString().trim(),
+            context: context,
+            user_id: profileController.modal.value.data!.user!.id.toString(),
+            key: "payouts",
+            bank_code: controller.idController1.text.toString(),
+            accountHolderName: payOutcontroller.accountName.toString().trim(),
+            accountNumber: payOutcontroller.accountNo.toString().trim(),
+            destinationCurrency: "NGN",
+            about: "Cash Out",
+            customerReference: DateFormat.jm().format(DateTime.now()),
 // RegistorController.descriptionController.text.trim(),
 // destinationCurrencyController.text.trim() ,
-          sourceCurrency: "NGN",
-          // sourceCurrencyController.text.trim(),
-          description: DateFormat.jm().format(DateTime.now()),
-          // email:data.email.toString(),
-          firstName: controller.bankController1.toString().trim(),
-          // lastName:data.lastName.toString() ,
-          paymentDestination:"bank_account" ,
-          type:"individual" ,
-          business: details.businessID
-      ).then((value) {
-        payout.value = value;
-        if (value.success == true) {
-          statusOfpayout.value = RxStatus.success();
-          // saveList();
-          payOutcontroller.saveDetails1(context);
-          // Get.back();
-          showToast(value.message.toString());
-        }
-        else {
-          statusOfpayout.value = RxStatus.success();
-          showToast(value.message.toString());
-        }
-        // showToast(value.message.toString());
-      });
-
+            sourceCurrency: "NGN",
+            // sourceCurrencyController.text.trim(),
+            description: DateFormat.jm().format(DateTime.now()),
+            // email:data.email.toString(),
+            firstName: controller.bankController1.toString().trim(),
+            // lastName:data.lastName.toString() ,
+            paymentDestination: "bank_account",
+            type: "individual",
+            business: details.businessID)
+        .then((value) {
+      payout.value = value;
+      if (value.success == true) {
+        statusOfpayout.value = RxStatus.success();
+        // saveList();
+        payOutcontroller.saveDetails1(context);
+        // Get.back();
+        showToast(value.message.toString());
+      } else {
+        statusOfpayout.value = RxStatus.success();
+        showToast(value.message.toString());
+      }
+      // showToast(value.message.toString());
+    });
   }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -139,32 +135,29 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
                 fontWeight: FontWeight.w500),
           ),
         ),
-        bottomNavigationBar: profileController.isSwitched ==true ?
-        Padding(
-          padding: const EdgeInsets.only(bottom: 20.0),
-          child: InkWell(
-            onTap: (){
-              payOutcontroller.save(context);
-            },
-            child: CustomOutlineButton(
-              title: "Continue",
-
-            ),
-          ),
-        ):
-        Padding(
-          padding: const EdgeInsets.only(bottom: 20.0),
-          child: InkWell(
-            onTap: (){
-              Get.toNamed(MyRouters.withdrawlCash);
-
-            },
-            child: CustomOutlineButton(
-              title: "Continue",
-
-            ),
-          ),
-        ),
+        bottomNavigationBar: profileController.isSwitched == true
+            ? Padding(
+                padding: const EdgeInsets.only(bottom: 20.0),
+                child: InkWell(
+                  onTap: () {
+                    payOutcontroller.save(context);
+                  },
+                  child: CustomOutlineButton(
+                    title: "Continue",
+                  ),
+                ),
+              )
+            : Padding(
+                padding: const EdgeInsets.only(bottom: 20.0),
+                child: InkWell(
+                  onTap: () {
+                    Get.toNamed(MyRouters.withdrawlCash);
+                  },
+                  child: CustomOutlineButton(
+                    title: "Continue",
+                  ),
+                ),
+              ),
         body: SingleChildScrollView(
             child: Padding(
                 padding: const EdgeInsets.all(12.0),
@@ -224,35 +217,28 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
                         height: 20,
                       ),
                       CommonTextfield(
-                        keyboardType:
-                        const TextInputType.numberWithOptions(
+                        keyboardType: const TextInputType.numberWithOptions(
                             decimal: true),
                         inputFormatters: [
                           LengthLimitingTextInputFormatter(10),
-                          FilteringTextInputFormatter.allow(
-                              RegExp('[0-9]+')),
+                          FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
                         ],
                         onChanged: (value) {
-    if(value.length == 10 ){
-    FocusScope.of(context).unfocus();
-    resolveData();
-
-    }
-    },
-                        
+                          if (value.length == 10) {
+                            FocusScope.of(context).unfocus();
+                            resolveData();
+                          }
+                        },
 
                         validator: MultiValidator([
                           RequiredValidator(
-                              errorText:
-                              'Please enter your account number '),
+                              errorText: 'Please enter your account number '),
                           MinLengthValidator(10,
                               errorText:
-                              'Please enter minumum  10 account number'),
+                                  'Please enter minumum  10 account number'),
                           MaxLengthValidator(12,
-                              errorText:
-                              'Please enter 10 account number'),
-                          PatternValidator(
-                              r'(^(?:[+0]9)?[0-9]{10,12}$)',
+                              errorText: 'Please enter 10 account number'),
+                          PatternValidator(r'(^(?:[+0]9)?[0-9]{10,12}$)',
                               errorText: '')
                         ]),
                         controller: payOutcontroller.accountNo,
@@ -263,7 +249,6 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
                         obSecure: false,
                         hintText: "",
                         labelText: "Account Number",
-
                       ),
                       SizedBox(
                         height: 20,
@@ -314,7 +299,6 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
                       SizedBox(
                         height: size.height * .4,
                       ),
-
                       SizedBox(
                         height: 15,
                       ),

@@ -7,8 +7,6 @@ import 'package:zip/widgets/common_colour.dart';
 
 import '../controller/update_user.dart';
 
-
-
 class AddRecipientStart extends StatefulWidget {
   const AddRecipientStart({Key? key}) : super(key: key);
 
@@ -18,13 +16,16 @@ class AddRecipientStart extends StatefulWidget {
 
 class _AddRecipientStartState extends State<AddRecipientStart> {
   final registorController = Get.put(registerController());
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-      registorController.fetchVritualAccount();});
+      registorController.fetchVritualAccount();
+    });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +42,7 @@ class _AddRecipientStartState extends State<AddRecipientStart> {
         ),
         centerTitle: true,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Get.back();
           },
           child: const Icon(
@@ -49,7 +50,6 @@ class _AddRecipientStartState extends State<AddRecipientStart> {
             color: AppTheme.primaryColor,
           ),
         ),
-
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -63,11 +63,10 @@ class _AddRecipientStartState extends State<AddRecipientStart> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 InkWell(
-                  onTap: (){
+                  onTap: () {
                     Get.toNamed(MyRouters.accountsInBank);
                   },
                   child: Container(
-
                     height: 140,
                     width: 140,
                     decoration: BoxDecoration(
@@ -111,11 +110,10 @@ class _AddRecipientStartState extends State<AddRecipientStart> {
                   ),
                 ),
                 InkWell(
-                  onTap: (){
+                  onTap: () {
                     Get.toNamed(MyRouters.regularTransfer);
                   },
                   child: Container(
-
                     height: 140,
                     width: 140,
                     decoration: BoxDecoration(
@@ -160,16 +158,16 @@ class _AddRecipientStartState extends State<AddRecipientStart> {
                 ),
               ],
             ),
-
-SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             Padding(
               padding: const EdgeInsets.only(left: 28.0),
               child: InkWell(
-                onTap: (){
+                onTap: () {
                   Get.toNamed(MyRouters.verifyPaymentLink);
                 },
                 child: Container(
-
                   height: 140,
                   width: 140,
                   decoration: BoxDecoration(
@@ -213,10 +211,9 @@ SizedBox(height: 20,),
                 ),
               ),
             ),
-            SizedBox(height: 100,),
-
-
-
+            SizedBox(
+              height: 100,
+            ),
           ],
         ),
       ),

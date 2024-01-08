@@ -24,6 +24,7 @@ class _NotVerifyAfricaScreenState extends State<NotVerifyAfricaScreen> {
   final registorController = Get.put(registerController());
   Rx<RxStatus> statusOfsignout = RxStatus.empty().obs;
   Rx<ModelSignout> signout = ModelSignout().obs;
+
   signOut() {
     signoutRepo(context).then((value) async {
       signout.value = value;
@@ -38,9 +39,10 @@ class _NotVerifyAfricaScreenState extends State<NotVerifyAfricaScreen> {
         showToast(value.message.toString());
       }
     }
-      // showToast(value.message.toString());
-    );
+        // showToast(value.message.toString());
+        );
   }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -52,13 +54,13 @@ class _NotVerifyAfricaScreenState extends State<NotVerifyAfricaScreen> {
           leading: SizedBox(),
           actions: [
             InkWell(
-                onTap: (){
+                onTap: () {
                   signOut();
                 },
                 child: Icon(Icons.exit_to_app))
           ],
           centerTitle: true,
-          title:  Text(
+          title: Text(
             "Not Verify With Your Photo please verify again ",
             style: GoogleFonts.poppins(
                 color: const Color(0xFF1D1D1D),
@@ -66,7 +68,6 @@ class _NotVerifyAfricaScreenState extends State<NotVerifyAfricaScreen> {
                 fontWeight: FontWeight.w500),
           ),
         ),
-
         body: SingleChildScrollView(
             child: Form(
                 key: formKeyVerify,
@@ -76,13 +77,12 @@ class _NotVerifyAfricaScreenState extends State<NotVerifyAfricaScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-
                           const SizedBox(
                             height: 30,
                           ),
                           Padding(
                             padding:
-                            const EdgeInsets.only(left: 10.0, right: 10),
+                                const EdgeInsets.only(left: 10.0, right: 10),
                             child: Center(
                               child: Text(
                                 "Click on Icon to take picture",
@@ -124,7 +124,8 @@ class _NotVerifyAfricaScreenState extends State<NotVerifyAfricaScreen> {
                                         width: 200,
                                         height: 200,
                                         fit: BoxFit.cover,
-                                        errorBuilder: (_, __, ___) => const Icon(
+                                        errorBuilder: (_, __, ___) =>
+                                            const Icon(
                                           Icons.person,
                                           size: 50,
                                         ),
@@ -139,7 +140,7 @@ class _NotVerifyAfricaScreenState extends State<NotVerifyAfricaScreen> {
                           InkWell(
                               onTap: () {
                                 if (registorController.image.path != "") {
-                                  registorController. saveImage1(context);
+                                  registorController.saveImage1(context);
                                 } else {
                                   showToast("please add photo for verify ");
                                 }

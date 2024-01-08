@@ -1,5 +1,3 @@
-
-
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
@@ -10,35 +8,31 @@ import '../models/model_choose_bank.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 
-
 final details = Get.put(DetailsController());
+
 Future<ChooseBankList> chooseBankRepo() async {
   var map = <String, dynamic>{};
 
   map['key'] = "banklist";
-  map['api-key'] =   details.apiKey;
+  map['api-key'] = details.apiKey;
   print(map);
   try {
     http.Response response = await http.post(
-      // Uri.parse(ApiUrls.chooseBank+"currency=$currency&country=$country"),
-      Uri.parse(ApiUrls.common),
+        // Uri.parse(ApiUrls.chooseBank+"currency=$currency&country=$country"),
+        Uri.parse(ApiUrls.common),
         // headers: await getAuthHeader(),
         headers: {
           HttpHeaders.contentTypeHeader: 'application/json',
           HttpHeaders.acceptHeader: 'application/json',
         },
-        body: jsonEncode(map)
-
-    );
+        body: jsonEncode(map));
 
     print(jsonDecode(response.body));
     if (response.statusCode == 200) {
-
       return ChooseBankList.fromJson(jsonDecode(response.body));
     } else {
       print(jsonDecode(response.body));
-      return ChooseBankList(
-          data: null);
+      return ChooseBankList(data: null);
     }
   } catch (e) {
     throw Exception(e);

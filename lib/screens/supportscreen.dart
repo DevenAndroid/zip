@@ -27,7 +27,10 @@ class _SupportScreenState extends State<SupportScreen> {
         ? await launchUrl(url)
         : showToast('could_not_launch_this_app'.tr);
   }
-  Uri gmailUrl = Uri.parse('mailto:test@example.org?subject=Greetings&body=Hello%20World');
+
+  Uri gmailUrl =
+      Uri.parse('mailto:test@example.org?subject=Greetings&body=Hello%20World');
+
   void handleFreshchatNotification(Map<String, dynamic> message) async {
     if (await Freshchat.isFreshchatNotification(message)) {
       print("is Freshchat notification");
@@ -301,6 +304,7 @@ class _SupportScreenState extends State<SupportScreen> {
   String APP_ID = "582cb772-77e7-4903-a46e-5eb59f6f74f0",
       APP_KEY = "1da483f8-ed29-4998-b74d-8469a609875f",
       DOMAIN = "msdk.eu.freshchat.com";
+
   void initState() {
     super.initState();
     Freshchat.init(APP_ID, APP_KEY, DOMAIN);
@@ -533,15 +537,17 @@ class _SupportScreenState extends State<SupportScreen> {
                   ),
                   InkWell(
                     onTap: () async {
-                      String email = Uri.encodeComponent("customersupport@ziplimited.com");
+                      String email =
+                          Uri.encodeComponent("customersupport@ziplimited.com");
                       String subject = Uri.encodeComponent("");
                       String body = Uri.encodeComponent("");
                       print(subject); //output: Hello%20Flutter
-                      Uri mail = Uri.parse("mailto:$email?subject=$subject&body=$body");
+                      Uri mail = Uri.parse(
+                          "mailto:$email?subject=$subject&body=$body");
                       if (await launchUrl(mail)) {
-                      //email app opened
-                      }else{
-                      //email app is not opened
+                        //email app opened
+                      } else {
+                        //email app is not opened
                       }
                       // Get.toNamed(MyRouters.contuctUsScreen);
                     },

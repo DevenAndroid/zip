@@ -4,8 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
-
-
 class SendCashReciptant extends StatefulWidget {
   const SendCashReciptant({Key? key}) : super(key: key);
 
@@ -30,7 +28,7 @@ class _SendCashReciptantState extends State<SendCashReciptant> {
         ),
         centerTitle: true,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Get.toNamed(MyRouters.bottomNavbar);
           },
           child: const Icon(
@@ -38,7 +36,6 @@ class _SendCashReciptantState extends State<SendCashReciptant> {
             color: AppTheme.primaryColor,
           ),
         ),
-
       ),
       body: Column(
         children: [
@@ -49,12 +46,11 @@ class _SendCashReciptantState extends State<SendCashReciptant> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               InkWell(
-                onTap: (){
+                onTap: () {
                   // Get.toNamed(MyRouters.yourRecipient);
                   Get.toNamed(MyRouters.createRecipients);
                 },
                 child: Container(
-
                   height: 148,
                   width: 148,
                   decoration: BoxDecoration(
@@ -91,11 +87,10 @@ class _SendCashReciptantState extends State<SendCashReciptant> {
                 ),
               ),
               InkWell(
-                onTap: (){
+                onTap: () {
                   Get.toNamed(MyRouters.sendCash2);
                 },
                 child: Container(
-
                   height: 148,
                   width: 148,
                   decoration: BoxDecoration(

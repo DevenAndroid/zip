@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
@@ -41,7 +40,7 @@ class PayoutController extends GetxController {
   TextEditingController emailController1 = TextEditingController();
   Rx<CreateBenificiryModel> CreateBenificiry = CreateBenificiryModel().obs;
   Rx<CreateBenificiryModel> CreateBenificiry1 = CreateBenificiryModel().obs;
-  Rx<RxStatus> statusOfBenificiry= RxStatus.empty().obs;
+  Rx<RxStatus> statusOfBenificiry = RxStatus.empty().obs;
   TextEditingController accountName = TextEditingController();
   TextEditingController mobileNo = TextEditingController();
   TextEditingController Amount = TextEditingController();
@@ -50,30 +49,28 @@ class PayoutController extends GetxController {
 
   Future CreateBenificery() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-var uniqueIdentifier= pref.getString("uniqueIdentifier");
-    print("gyhyfyhyhfy"+details.businessID);
+    var uniqueIdentifier = pref.getString("uniqueIdentifier");
+    print("gyhyfyhyhfy" + details.businessID);
     // pref.getString('uniqueIdentifier', controllerProfile.modal.value.data!.user!.uniqueId.toString());
     await createBRepo(
-        name:controller.bankController.text.trim().toString() ,
-        unique_id: uniqueIdentifier.toString(),
-        bank_code: controller.idController1.text.toString(),
-        destinationAddress: accountNo.text.trim().toString(),
-        firstName:accountName.text.trim().toString() ,
-        accountHolderName: accountName.text.trim().toString(),
-        businessID:details.businessID
-    ).then((value) {
+            name: controller.bankController.text.trim().toString(),
+            unique_id: uniqueIdentifier.toString(),
+            bank_code: controller.idController1.text.toString(),
+            destinationAddress: accountNo.text.trim().toString(),
+            firstName: accountName.text.trim().toString(),
+            accountHolderName: accountName.text.trim().toString(),
+            businessID: details.businessID)
+        .then((value) {
       CreateBenificiry.value = value;
       if (value.status == true) {
         statusOfBenificiry.value = RxStatus.success();
 
-print(details.businessID);
-Get.toNamed(MyRouters.yourRecipient);
+        print(details.businessID);
+        Get.toNamed(MyRouters.yourRecipient);
         saveBenificery();
         showToast(value.message.toString());
         // getDataList();
-
-      }
-      else{
+      } else {
         statusOfBenificiry.value = RxStatus.success();
         showToast(value.message.toString());
       }
@@ -82,82 +79,78 @@ Get.toNamed(MyRouters.yourRecipient);
   }
 
   Rx<SaveBenificaryModel> saveBenificiry = SaveBenificaryModel().obs;
-  Rx<RxStatus> statusOfSaveBenificiry= RxStatus.empty().obs;
+  Rx<RxStatus> statusOfSaveBenificiry = RxStatus.empty().obs;
+
   Future saveBenificery() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-var uniqueIdentifier= pref.getString("uniqueIdentifier");
+    var uniqueIdentifier = pref.getString("uniqueIdentifier");
     // pref.getString('uniqueIdentifier', controllerProfile.modal.value.data!.user!.uniqueId.toString());
     await saveBenificaryRepo(
-        bank_name: controller.bankController.text.toString(),
-        destinationAddress: accountNo.text.trim(),
-        firstName:controller.bankController.text.toString() ,
-        account_holder_name:  accountName.text.trim(),
+      bank_name: controller.bankController.text.toString(),
+      destinationAddress: accountNo.text.trim(),
+      firstName: controller.bankController.text.toString(),
+      account_holder_name: accountName.text.trim(),
       unique_id: uniqueIdentifier,
-
-
     ).then((value) {
       saveBenificiry.value = value;
       if (value.status == true) {
         statusOfSaveBenificiry.value = RxStatus.success();
         showToast(value.message.toString());
-      }
-      else{
+      } else {
         statusOfSaveBenificiry.value = RxStatus.success();
         showToast(value.message.toString());
       }
       // showToast(value.message.toString());
     });
   }
+
   Future save(context) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var uniqueIdentifier = pref.getString("uniqueIdentifier");
     print("ifhuifhifhiuhfd");
     await createBRepo(
-        name:controller.bankController1.text.trim() ,
-        unique_id: uniqueIdentifier.toString(),
-        bank_code: controller.idController1.text.toString(),
-        destinationAddress: accountNo.text.trim(),
-        firstName:accountName.text.trim().toString() ,
-        accountHolderName: accountName.text.trim(),
-        businessID:details.businessID
-    ).then((value) {
+            name: controller.bankController1.text.trim(),
+            unique_id: uniqueIdentifier.toString(),
+            bank_code: controller.idController1.text.toString(),
+            destinationAddress: accountNo.text.trim(),
+            firstName: accountName.text.trim().toString(),
+            accountHolderName: accountName.text.trim(),
+            businessID: details.businessID)
+        .then((value) {
       CreateBenificiry1.value = value;
       if (value.status == true) {
-
         print("ifhuifhifhrrfvrfvrfvrfvrfvrfvrfvtiuhfd");
         saveDetails(context);
         statusOfBenificiry.value = RxStatus.success();
         showToast(value.message.toString());
-      }
-      else{
+      } else {
         statusOfBenificiry.value = RxStatus.success();
         showToast(value.message.toString());
       }
       // showToast(value.message.toString());
     });
   }
+
   Future save1(context) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var uniqueIdentifier = pref.getString("uniqueIdentifier");
     print("ifhuifhifhiuhfd");
     await createBRepo(
-        bank_code: controller.idController1.text.toString(),
-        unique_id: uniqueIdentifier.toString(),
-        name:controller.bankController1.text.trim() ,
-        destinationAddress: accountNo.text.trim(),
-        firstName:accountName.text.trim().toString() ,
-        accountHolderName: accountName.text.trim(),
-        businessID:details.businessID
-    ).then((value) {
+            bank_code: controller.idController1.text.toString(),
+            unique_id: uniqueIdentifier.toString(),
+            name: controller.bankController1.text.trim(),
+            destinationAddress: accountNo.text.trim(),
+            firstName: accountName.text.trim().toString(),
+            accountHolderName: accountName.text.trim(),
+            businessID: details.businessID)
+        .then((value) {
       CreateBenificiry1.value = value;
       if (value.status == true) {
-
         print("ifhuifhifhrrfvrfvrfvrfvrfvrfvrfvtiuhfd");
         saveDetails1(context);
         statusOfBenificiry.value = RxStatus.success();
         showToast(value.message.toString());
-      }
-      else{
+      } else {
         statusOfBenificiry.value = RxStatus.success();
         showToast(value.message.toString());
       }
@@ -165,21 +158,15 @@ var uniqueIdentifier= pref.getString("uniqueIdentifier");
     });
   }
 
-
-
-
   Rx<ModelSaveBankDetails> saveBankDetails = ModelSaveBankDetails().obs;
-  Rx<RxStatus> statusOfSaveDetails= RxStatus.empty().obs;
+  Rx<RxStatus> statusOfSaveDetails = RxStatus.empty().obs;
 
   Future saveDetails(context) async {
     await saveBankRepo(
-        bank_name: controller.bankController1.text.trim() ,
-        destinationAddress: accountNo.text.trim(),
-        firstName:accountName.text.trim() ,
-     context: context,
-
-
-
+      bank_name: controller.bankController1.text.trim(),
+      destinationAddress: accountNo.text.trim(),
+      firstName: accountName.text.trim(),
+      context: context,
     ).then((value) {
       saveBankDetails.value = value;
       if (value.status == true) {
@@ -187,26 +174,21 @@ var uniqueIdentifier= pref.getString("uniqueIdentifier");
 
         Get.toNamed(MyRouters.sendCashYourBalance);
 
-
         showToast(value.message.toString());
-
-      }
-      else{
+      } else {
         statusOfSaveDetails.value = RxStatus.success();
         showToast(value.message.toString());
       }
       // showToast(value.message.toString());
     });
   }
+
   Future saveDetails1(context) async {
     await saveBankRepo(
-        bank_name: controller.bankController1.text.trim() ,
-        destinationAddress: accountNo.text.trim(),
-        firstName:accountName.text.trim().toString() ,
-     context: context,
-
-
-
+      bank_name: controller.bankController1.text.trim(),
+      destinationAddress: accountNo.text.trim(),
+      firstName: accountName.text.trim().toString(),
+      context: context,
     ).then((value) {
       saveBankDetails.value = value;
       if (value.status == true) {
@@ -214,11 +196,8 @@ var uniqueIdentifier= pref.getString("uniqueIdentifier");
 
         Get.toNamed(MyRouters.success3Screen);
 
-
         showToast(value.message.toString());
-
-      }
-      else{
+      } else {
         statusOfSaveDetails.value = RxStatus.success();
         showToast(value.message.toString());
       }
@@ -231,10 +210,7 @@ var uniqueIdentifier= pref.getString("uniqueIdentifier");
   Rx<RxStatus> statusOfListBenificery = RxStatus.empty().obs;
 
   getDataList1() {
-    benificaryListGetRepo(
-
-    ).then((value) {
-
+    benificaryListGetRepo().then((value) {
       log("response.body.....    ${value}");
       listBenificery.value = value;
       if (value.status == true) {
@@ -243,19 +219,15 @@ var uniqueIdentifier= pref.getString("uniqueIdentifier");
         statusOfListBenificery.value = RxStatus.error();
       }
     }
-      // showToast(value.message.toString());
-    );
+        // showToast(value.message.toString());
+        );
   }
-
 
   Rx<ModelFavourite> listFavouriteBenificery = ModelFavourite().obs;
   Rx<RxStatus> statusOfListFavouriteBenificery = RxStatus.empty().obs;
 
   getDataList2() {
-    favouriteListGetRepo(
-
-    ).then((value) {
-
+    favouriteListGetRepo().then((value) {
       log("response.body.....    ${value}");
       listFavouriteBenificery.value = value;
       if (value.status == true) {
@@ -264,9 +236,10 @@ var uniqueIdentifier= pref.getString("uniqueIdentifier");
         statusOfListFavouriteBenificery.value = RxStatus.error();
       }
     }
-      // showToast(value.message.toString());
-    );
+        // showToast(value.message.toString());
+        );
   }
+
   // Rx<RxStatus> statusOfListBenificery = RxStatus.empty().obs;
   // Rx<GetBenificiryModel> addRecipitentsList = GetBenificiryModel().obs;
   //
@@ -289,12 +262,11 @@ var uniqueIdentifier= pref.getString("uniqueIdentifier");
   // }
 
   String selectedValue = "individual";
+
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
     // getDataList();
   }
-
-
 }

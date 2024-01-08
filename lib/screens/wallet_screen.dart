@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/widgets/common_colour.dart';
 
-
 import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
 import '../models/model_freeze_card.dart';
@@ -23,18 +22,16 @@ class WalletScreen extends StatefulWidget {
   State<WalletScreen> createState() => _WalletScreenState();
 }
 
-  class _WalletScreenState extends State<WalletScreen> {
-    final controller = Get.put(registerController());
-    final controller1 = Get.put(ProfileController());
+class _WalletScreenState extends State<WalletScreen> {
+  final controller = Get.put(registerController());
+  final controller1 = Get.put(ProfileController());
 
-
-@override
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
     controller1.getCard().then((value) {
-      setState(() {
-      });
+      setState(() {});
     });
     // controller1. getCardDetails();
 
@@ -44,8 +41,6 @@ class WalletScreen extends StatefulWidget {
 
   @override
   Widget build(BuildContext context) {
-    return controller1.card.value.data == null ? WalletScreen1() :
-    MyCard();
+    return controller1.card.value.data == null ? WalletScreen1() : MyCard();
   }
-
 }

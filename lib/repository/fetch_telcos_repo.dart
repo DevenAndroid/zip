@@ -1,11 +1,9 @@
-
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-
 
 import '../models/model_fetch_telcos.dart';
 import '../models/model_get_binificery.dart';
@@ -20,11 +18,10 @@ Future<ModelFetchTelcos> getTelcosRepo() async {
   // try {
   http.Response response = await http.get(
     Uri.parse(ApiUrls.getTelcos),
-    headers: { HttpHeaders.contentTypeHeader: 'application/json',
+    headers: {
+      HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.acceptHeader: 'application/json',
       "secret-key": details.secretKey,
-
-
     },
   );
 
@@ -34,9 +31,10 @@ Future<ModelFetchTelcos> getTelcosRepo() async {
   if (response.statusCode == 200) {
     return ModelFetchTelcos.fromJson(jsonDecode(response.body));
   } else {
-    return ModelFetchTelcos(message: jsonDecode(response.body)["message"],
-
-        data: null,success: false);
+    return ModelFetchTelcos(
+        message: jsonDecode(response.body)["message"],
+        data: null,
+        success: false);
   }
 
   // } catch (e) {

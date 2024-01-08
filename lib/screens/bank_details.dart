@@ -9,6 +9,7 @@ import '../controller/update_user.dart';
 import '../widgets/circular_progressindicator.dart';
 import '../widgets/common_colour.dart';
 import '../widgets/common_error_widget.dart';
+
 class BankDetailsScreen extends StatefulWidget {
   const BankDetailsScreen({Key? key}) : super(key: key);
 
@@ -18,13 +19,16 @@ class BankDetailsScreen extends StatefulWidget {
 
 class _BankDetailsScreenState extends State<BankDetailsScreen> {
   final registorController = Get.put(registerController());
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-      registorController.fetchVritualAccount();});
+      registorController.fetchVritualAccount();
+    });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,8 +37,10 @@ class _BankDetailsScreenState extends State<BankDetailsScreen> {
           backgroundColor: Colors.white,
           elevation: 0,
           title: InkWell(
-            onTap: (){
-              print(registorController.fetchAccount.value.data!.kYCInformation!.firstName.toString() );
+            onTap: () {
+              print(registorController
+                  .fetchAccount.value.data!.kYCInformation!.firstName
+                  .toString());
             },
             child: Text(
               "Bank Details",
@@ -46,7 +52,7 @@ class _BankDetailsScreenState extends State<BankDetailsScreen> {
           ),
           centerTitle: true,
           leading: InkWell(
-            onTap: (){
+            onTap: () {
               Get.back();
             },
             child: const Icon(
@@ -55,175 +61,189 @@ class _BankDetailsScreenState extends State<BankDetailsScreen> {
             ),
           ),
         ),
-        body:
-        Obx(() {
-          return  registorController.statusOfFetchAccount.value.isSuccess
-              ?
-
-          SingleChildScrollView(
-              child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(height: 15,),
-
-                        Center(
-                          child: Image.asset(
-                            'assets/images/zip.png',
-                            height: 120,
-                          ),
-                        ),
-                        SizedBox(height: 30,),
-                        Text(
-                          "make a bank transfer from another account using these details",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF565656),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500),
-                          textAlign: TextAlign.center,
-                        ),
-                        SizedBox(height: 25,),
-                        Text(
-                          "NAME",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF7D7D7D),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600),
-                          textAlign: TextAlign.center,
-                        ),
-                        SizedBox(height: 10,),
-                        Text(
-                          "${registorController.fetchAccount.value.data!.kYCInformation!.firstName.toString()}"+ "${registorController.fetchAccount.value.data!.kYCInformation!.lastName.toString()}",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFFBA8C31),
-                              fontSize: 22,
-                              fontWeight: FontWeight.w700),
-                          textAlign: TextAlign.center,
-                        ),
-                        SizedBox(height: 18,),
-                        Text(
-                          "ACCOUNT NUMBER",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF7D7D7D),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600),
-                          textAlign: TextAlign.center,
-                        ),
-                        SizedBox(height: 10,),
-                        Text(
-                          registorController.fetchAccount.value.data!.accountNumber.toString(),
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFFBA8C31),
-                              fontSize: 22,
-                              fontWeight: FontWeight.w700),
-                          textAlign: TextAlign.center,
-                        ),
-                        SizedBox(height: 18,),
-                        Text(
-                          "Bank Name",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF7D7D7D),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600),
-                          textAlign: TextAlign.center,
-                        ),
-                        SizedBox(height: 10,),
-                        Text(
-                          registorController.fetchAccount.value.data!.accountInformation!.bankName.toString(),
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFFBA8C31),
-                              fontSize: 22,
-                              fontWeight: FontWeight.w700),
-                          textAlign: TextAlign.center,
-                        ),
-
-                        SizedBox(height: 40,),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            padding: EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: Colors.grey),
-
+        body: Obx(() {
+          return registorController.statusOfFetchAccount.value.isSuccess
+              ? SingleChildScrollView(
+                  child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              height: 15,
                             ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: AppTheme.secondaryColor,
-
-                                  ),
-                                  child: Text("\$",
-                                    style: GoogleFonts.poppins(
-                                        color:  Colors.white,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w500),),
+                            Center(
+                              child: Image.asset(
+                                'assets/images/zip.png',
+                                height: 120,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            Text(
+                              "make a bank transfer from another account using these details",
+                              style: GoogleFonts.poppins(
+                                  color: const Color(0xFF565656),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500),
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(
+                              height: 25,
+                            ),
+                            Text(
+                              "NAME",
+                              style: GoogleFonts.poppins(
+                                  color: const Color(0xFF7D7D7D),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600),
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "${registorController.fetchAccount.value.data!.kYCInformation!.firstName.toString()}" +
+                                  "${registorController.fetchAccount.value.data!.kYCInformation!.lastName.toString()}",
+                              style: GoogleFonts.poppins(
+                                  color: const Color(0xFFBA8C31),
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w700),
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(
+                              height: 18,
+                            ),
+                            Text(
+                              "ACCOUNT NUMBER",
+                              style: GoogleFonts.poppins(
+                                  color: const Color(0xFF7D7D7D),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600),
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              registorController
+                                  .fetchAccount.value.data!.accountNumber
+                                  .toString(),
+                              style: GoogleFonts.poppins(
+                                  color: const Color(0xFFBA8C31),
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w700),
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(
+                              height: 18,
+                            ),
+                            Text(
+                              "Bank Name",
+                              style: GoogleFonts.poppins(
+                                  color: const Color(0xFF7D7D7D),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600),
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              registorController.fetchAccount.value.data!
+                                  .accountInformation!.bankName
+                                  .toString(),
+                              style: GoogleFonts.poppins(
+                                  color: const Color(0xFFBA8C31),
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w700),
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(
+                              height: 40,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                padding: EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(color: Colors.grey),
                                 ),
-                                SizedBox(width: 15,),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Helping you save",
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: AppTheme.secondaryColor,
+                                      ),
+                                      child: Text(
+                                        "\$",
                                         style: GoogleFonts.poppins(
-                                            color: const Color(0xFF838383),
-                                            fontSize: 15,
+                                            color: Colors.white,
+                                            fontSize: 20,
                                             fontWeight: FontWeight.w500),
-
                                       ),
-                                      SizedBox(height: 5,),
-                                      Text(
-                                        "pay your salary into your Manzo account\n and say goodbye to individual transfers.",
-                                        style: GoogleFonts.poppins(
-                                            color: const Color(0xFF343434),
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w500),
-
+                                    ),
+                                    SizedBox(
+                                      width: 15,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 8.0),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Helping you save",
+                                            style: GoogleFonts.poppins(
+                                                color: const Color(0xFF838383),
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          Text(
+                                            "pay your salary into your Manzo account\n and say goodbye to individual transfers.",
+                                            style: GoogleFonts.poppins(
+                                                color: const Color(0xFF343434),
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          Text(
+                                            "Find out more",
+                                            style: GoogleFonts.poppins(
+                                                color: const Color(0xFFBA8C31),
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w600),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ],
                                       ),
-
-                                      SizedBox(height: 5,),
-                                      Text(
-                                        "Find out more",
-                                        style: GoogleFonts.poppins(
-                                            color: const Color(0xFFBA8C31),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ],
-                                  ),
-                                )
-
-
-                              ],
-                            ),
-
-
-                          ),
-                        )
-
-                      ]
-                  ))):  registorController.statusOfFetchAccount.value.isError
-              ? CommonErrorWidget(
-            errorText:
-            registorController.fetchAccount.value.message.toString(),
-            onTap: () {
-
-            },
-          )
-              : const CommonProgressIndicator();
-        })
-
-    );
+                                    )
+                                  ],
+                                ),
+                              ),
+                            )
+                          ])))
+              : registorController.statusOfFetchAccount.value.isError
+                  ? CommonErrorWidget(
+                      errorText: registorController.fetchAccount.value.message
+                          .toString(),
+                      onTap: () {},
+                    )
+                  : const CommonProgressIndicator();
+        }));
   }
 }

@@ -13,8 +13,8 @@ import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
 
-Future<ServiceCommonModel> commonServiceRepo({  key,serviceID,identifier,request_id,amount,phone}) async {
-
+Future<ServiceCommonModel> commonServiceRepo(
+    {key, serviceID, identifier, request_id, amount, phone}) async {
   var map = <String, dynamic>{};
   map['key'] = key;
   map['serviceID'] = serviceID;
@@ -23,20 +23,18 @@ Future<ServiceCommonModel> commonServiceRepo({  key,serviceID,identifier,request
   map['request_id'] = request_id;
   map['phone'] = phone;
   http.Response response = await http.post(Uri.parse(ApiUrls.serviceCommon),
-      headers:await getAuthHeader(),
-      body: jsonEncode(map));
+      headers: await getAuthHeader(), body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
   log("Sign IN DATA${response.statusCode}");
   print(map);
 
   if (response.statusCode == 200) {
-
     // print(jsonDecode(response.body));
     return ServiceCommonModel.fromJson(jsonDecode(response.body));
-
   } else {
-
     // print(jsonDecode(response.body));
-    return ServiceCommonModel(message: jsonDecode(response.body)["message"], );
+    return ServiceCommonModel(
+      message: jsonDecode(response.body)["message"],
+    );
   }
 }

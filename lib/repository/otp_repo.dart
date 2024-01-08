@@ -8,11 +8,12 @@ import '../models/model_userverify_otp.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
-Future<ModelOtp> userOtpRepo({email, }) async {
+Future<ModelOtp> userOtpRepo({
+  email,
+}) async {
   var map = <String, dynamic>{};
 
   map['email'] = email;
-
 
   print(map);
   // try {

@@ -17,8 +17,10 @@ import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
 
-Future<BuyElectricityModel> commonElectricityRepo({  key,identifier,}) async {
-
+Future<BuyElectricityModel> commonElectricityRepo({
+  key,
+  identifier,
+}) async {
   var map = <String, dynamic>{};
   map['key'] = key;
   map['identifier'] = identifier;
@@ -29,20 +31,18 @@ Future<BuyElectricityModel> commonElectricityRepo({  key,identifier,}) async {
   // map['billersCode'] = billersCode;
   // map['phone'] = phone;
   http.Response response = await http.post(Uri.parse(ApiUrls.serviceCommon),
-      headers:await getAuthHeader(),
-      body: jsonEncode(map));
+      headers: await getAuthHeader(), body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
   log("Sign IN DATA${response.statusCode}");
   print(map);
 
   if (response.statusCode == 200) {
-
     // print(jsonDecode(response.body));
     return BuyElectricityModel.fromJson(jsonDecode(response.body));
-
   } else {
-
     // print(jsonDecode(response.body));
-    return BuyElectricityModel(message: jsonDecode(response.body)["message"], );
+    return BuyElectricityModel(
+      message: jsonDecode(response.body)["message"],
+    );
   }
 }

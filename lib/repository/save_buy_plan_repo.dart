@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
-
 import '../models/model_create_vritual_account.dart';
 import '../models/model_verif_account.dart';
 import '../models/model_verify_otp.dart';
@@ -13,9 +12,21 @@ import '../models/save_transastion_model.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
-
 Future<ModelSaveTransastion> saveTransastionRepo(
-    {type, about, amount, description, user_id,context,send_type,sender_id,receiver_id,beneficiary_id,phone,telcos,data_code,dataplan }) async {
+    {type,
+    about,
+    amount,
+    description,
+    user_id,
+    context,
+    send_type,
+    sender_id,
+    receiver_id,
+    beneficiary_id,
+    phone,
+    telcos,
+    data_code,
+    dataplan}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
@@ -34,13 +45,10 @@ Future<ModelSaveTransastion> saveTransastionRepo(
   map['data_code'] = data_code;
   map['dataplan '] = dataplan;
 
-
-
   print(map);
   try {
     http.Response response = await http.post(Uri.parse(ApiUrls.saveTransaction),
-        headers: await getAuthHeader(),
-        body: jsonEncode(map));
+        headers: await getAuthHeader(), body: jsonEncode(map));
     log("Sign IN DATA${response.body}");
     // http.Response response = await http.post(Uri.parse(ApiUrls.loginUser),
     //     headers: await getAuthHeader(),body: jsonEncode(map) );
@@ -49,15 +57,17 @@ Future<ModelSaveTransastion> saveTransastionRepo(
       Helpers.hideLoader(loader);
       print(jsonDecode(response.body));
       return ModelSaveTransastion.fromJson(jsonDecode(response.body));
-    }
-    else {
+    } else {
       Helpers.hideLoader(loader);
       print(jsonDecode(response.body));
-      return ModelSaveTransastion(message: jsonDecode(response.body)["message"],status: false);
+      return ModelSaveTransastion(
+          message: jsonDecode(response.body)["message"], status: false);
     }
-
-  }catch (e) {
+  } catch (e) {
     throw Exception(e);
-    return ModelSaveTransastion(message: e.toString(), status: false,);
+    return ModelSaveTransastion(
+      message: e.toString(),
+      status: false,
+    );
   }
 }

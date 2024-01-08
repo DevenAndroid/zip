@@ -14,8 +14,8 @@ import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
 
-Future<ServiceBuyModel> commonBuyRepo({  key,serviceID,variation_code,billersCode,amount,phone}) async {
-
+Future<ServiceBuyModel> commonBuyRepo(
+    {key, serviceID, variation_code, billersCode, amount, phone}) async {
   var map = <String, dynamic>{};
   map['key'] = key;
   map['serviceID'] = serviceID;
@@ -24,20 +24,18 @@ Future<ServiceBuyModel> commonBuyRepo({  key,serviceID,variation_code,billersCod
   map['billersCode'] = billersCode;
   map['phone'] = phone;
   http.Response response = await http.post(Uri.parse(ApiUrls.serviceCommon),
-      headers:await getAuthHeader(),
-      body: jsonEncode(map));
+      headers: await getAuthHeader(), body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
   log("Sign IN DATA${response.statusCode}");
   print(map);
 
   if (response.statusCode == 200) {
-
     // print(jsonDecode(response.body));
     return ServiceBuyModel.fromJson(jsonDecode(response.body));
-
   } else {
-
     // print(jsonDecode(response.body));
-    return ServiceBuyModel(message: jsonDecode(response.body)["message"], );
+    return ServiceBuyModel(
+      message: jsonDecode(response.body)["message"],
+    );
   }
 }

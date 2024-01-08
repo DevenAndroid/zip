@@ -8,9 +8,11 @@ import '../models/set_transfre_limit_model.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
-
-
-Future<ModelSetTransfreLimit> setTransferRepo({context,tranfer_limit,pin,}) async {
+Future<ModelSetTransfreLimit> setTransferRepo({
+  context,
+  tranfer_limit,
+  pin,
+}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
@@ -18,16 +20,10 @@ Future<ModelSetTransfreLimit> setTransferRepo({context,tranfer_limit,pin,}) asyn
   map['tranfer_limit'] = tranfer_limit;
   map['pin'] = pin;
 
-
-
-
-
-
   print(map);
   // try {
   http.Response response = await http.post(Uri.parse(ApiUrls.transfreLimitPost),
-      headers: await getAuthHeader(),
-      body: jsonEncode(map));
+      headers: await getAuthHeader(), body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
   // http.Response response = await http.post(Uri.parse(ApiUrls.loginUser),
   //     headers: await getAuthHeader(),body: jsonEncode(map) );
@@ -36,11 +32,11 @@ Future<ModelSetTransfreLimit> setTransferRepo({context,tranfer_limit,pin,}) asyn
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
     return ModelSetTransfreLimit.fromJson(jsonDecode(response.body));
-
   } else {
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
-    return ModelSetTransfreLimit(message: jsonDecode(response.body)["message"],status: false );
+    return ModelSetTransfreLimit(
+        message: jsonDecode(response.body)["message"], status: false);
   }
   // }  catch (e) {
   //   Helpers.hideLoader(loader);

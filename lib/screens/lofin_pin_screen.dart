@@ -41,29 +41,23 @@ class _LoginPinScreenState extends State<LoginPinScreen> {
   final registorController = Get.put(registerController());
   Rx<RxStatus> statusOfOtp = RxStatus.empty().obs;
   Rx<ModelOtp> userOtp = ModelOtp().obs;
-  otp() {
-    userOtpRepo(
-      email:loginDetails.toString()
 
-    ).then((value) async {
+  otp() {
+    userOtpRepo(email: loginDetails.toString()).then((value) async {
       userOtp.value = value;
       if (value.status == true) {
-
-        Get.offAllNamed(MyRouters.usersOtpScreen,arguments: [loginDetails.toString()]);
+        Get.offAllNamed(MyRouters.usersOtpScreen,
+            arguments: [loginDetails.toString()]);
         statusOfOtp.value = RxStatus.success();
         showToast(value.data!.otp.toString());
       } else {
         statusOfOtp.value = RxStatus.error();
         showToast(value.message.toString());
-
-
       }
-    }
-
-    );
-
+    });
   }
-   var loginDetails = Get.arguments[0];
+
+  var loginDetails = Get.arguments[0];
 
   final numbercontroller = Get.put(numberController());
   TextEditingController loginPincontroller = TextEditingController();
@@ -71,6 +65,7 @@ class _LoginPinScreenState extends State<LoginPinScreen> {
   Rx<ModelSecurityPin> modelVerifySecurity = ModelSecurityPin().obs;
   Rx<RxStatus> statusOfSucess = RxStatus.empty().obs;
   RxInt count = 0.obs;
+
   verify() {
     securityPinRepo(context: context, pin: loginPincontroller.text.trim())
         .then((value) {
@@ -85,7 +80,7 @@ class _LoginPinScreenState extends State<LoginPinScreen> {
         showToast(value.message.toString());
         count.value++;
         if (count.value == 3) {
-      otp();
+          otp();
         }
       }
     }
@@ -199,30 +194,30 @@ class _LoginPinScreenState extends State<LoginPinScreen> {
         )));
   }
 
-  // void _validateOtp(BuildContext context) async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   String storedOtp = prefs.getString('otp') ??
-  //       loginPincontroller.text.toString(); // Replace with your generated OTP
-  //
-  //   if (loginPincontroller.text == storedOtp) {
-  //     // OTP is correct, navigate to the next screen
-  //
-  //     verify();
-  //     // Navigator.pushReplacementNamed(context, '/otpEmailScreen');
-  //   } else {
-  //     // Invalid OTP, increment the invalid attempts counter
-  //     invalidAttempts++;
-  //     prefs.setInt('invalidAttempts', invalidAttempts);
-  //
-  //     if (invalidAttempts >= 3) {
-  //       // If 3 or more invalid attempts, navigate to the error screen
-  //       Get.toNamed(MyRouters.otpEmailScreen, arguments: [loginDetails]);
-  //     } else {
-  //       // Show error message to the user
-  //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-  //         content: Text('Invalid OTP. Please try again.'),
-  //       ));
-  //     }
-  //   }
-  // }
+// void _validateOtp(BuildContext context) async {
+//   SharedPreferences prefs = await SharedPreferences.getInstance();
+//   String storedOtp = prefs.getString('otp') ??
+//       loginPincontroller.text.toString(); // Replace with your generated OTP
+//
+//   if (loginPincontroller.text == storedOtp) {
+//     // OTP is correct, navigate to the next screen
+//
+//     verify();
+//     // Navigator.pushReplacementNamed(context, '/otpEmailScreen');
+//   } else {
+//     // Invalid OTP, increment the invalid attempts counter
+//     invalidAttempts++;
+//     prefs.setInt('invalidAttempts', invalidAttempts);
+//
+//     if (invalidAttempts >= 3) {
+//       // If 3 or more invalid attempts, navigate to the error screen
+//       Get.toNamed(MyRouters.otpEmailScreen, arguments: [loginDetails]);
+//     } else {
+//       // Show error message to the user
+//       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+//         content: Text('Invalid OTP. Please try again.'),
+//       ));
+//     }
+//   }
+// }
 }

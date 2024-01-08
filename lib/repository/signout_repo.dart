@@ -1,10 +1,7 @@
-
-
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-
 
 import '../models/model_get_support_system.dart';
 import '../models/model_get_transfre_limit.dart';
@@ -29,12 +26,14 @@ Future<ModelSignout> signoutRepo(context) async {
       Helpers.hideLoader(loader);
       print(jsonDecode(response.body));
       return ModelSignout(
-          message: jsonDecode(response.body)["message"],
-          status: false,
-        );
+        message: jsonDecode(response.body)["message"],
+        status: false,
+      );
     }
   } catch (e) {
-
-    return ModelSignout(message: e.toString(), status: false, );
+    return ModelSignout(
+      message: e.toString(),
+      status: false,
+    );
   }
 }

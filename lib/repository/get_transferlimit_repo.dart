@@ -1,10 +1,7 @@
-
-
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-
 
 import '../models/model_get_transfre_limit.dart';
 import '../resourses/api_constant.dart';
@@ -28,6 +25,7 @@ Future<ModelGetTransfreLimit> transferLimitGetRepo() async {
           data: null);
     }
   } catch (e) {
-    return ModelGetTransfreLimit(message: e.toString(), status: false, data: null);
+    return ModelGetTransfreLimit(
+        message: e.toString(), status: false, data: null);
   }
 }

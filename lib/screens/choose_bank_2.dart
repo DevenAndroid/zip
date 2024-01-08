@@ -26,8 +26,9 @@ class _ChooseBank1State extends State<ChooseBank1> {
 
   ChooseBankApi() {
     chooseBankRepo(
-        // country: "NG", currency: "NGN"
-    ).then((value) {
+            // country: "NG", currency: "NGN"
+            )
+        .then((value) {
       chooseBank.value = value;
 
       if (value.success == true) {
@@ -49,6 +50,7 @@ class _ChooseBank1State extends State<ChooseBank1> {
 
   final controller = Get.put(registerController());
   final TextEditingController search1Controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -94,12 +96,10 @@ class _ChooseBank1State extends State<ChooseBank1> {
                             width: 10,
                           ),
                         ),
-                        onTap: (){
-                          setState(() {
-
-                          });
+                        onTap: () {
+                          setState(() {});
                         },
-                        onChanged: (gt){
+                        onChanged: (gt) {
                           setState(() {});
                         },
                       ),
@@ -107,61 +107,76 @@ class _ChooseBank1State extends State<ChooseBank1> {
                         height: 20,
                       ),
                       Obx(() {
-                        List<Data> searchData=[];
-                        if(statusOfChooseBank.value.isSuccess && chooseBank.value.data!= null){
-                          String search = search1Controller.text.trim().toLowerCase();
-                          if(search.isNotEmpty) {
-                            searchData = chooseBank.value.data!.where((element) => element.name.toString().toLowerCase().contains(search)
-                            ).toList();
+                        List<Data> searchData = [];
+                        if (statusOfChooseBank.value.isSuccess &&
+                            chooseBank.value.data != null) {
+                          String search =
+                              search1Controller.text.trim().toLowerCase();
+                          if (search.isNotEmpty) {
+                            searchData = chooseBank.value.data!
+                                .where((element) => element.name
+                                    .toString()
+                                    .toLowerCase()
+                                    .contains(search))
+                                .toList();
                           } else {
                             searchData = chooseBank.value.data!;
                           }
                         }
                         return statusOfChooseBank.value.isSuccess
                             ? ListView.builder(
-                            itemCount: searchData.length,
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemBuilder: (context, index) {
-                              final item = searchData[index];
-                              return Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.start,
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                                  children: [
-                                    InkWell(
-                                      onTap: () {
-                                        controller.bankController1.text = item.name.toString().toUpperCase();
-                                        controller.idController1.text = item.code.toString();
-                                        print("eetr"+controller.idController1.text);
-                                        Get.toNamed(MyRouters.addPaymentMethod,
-                                            arguments: [item.name.toString(),item.code.toString()]);
-                                      },
-                                      child: Text(
-                                        item.name.toString().toUpperCase(),
-                                        style: GoogleFonts.poppins(
-                                            color: const Color(0xFF1D1D1D),
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w500),
-                                      ),
+                                itemCount: searchData.length,
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemBuilder: (context, index) {
+                                  final item = searchData[index];
+                                  return Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        InkWell(
+                                          onTap: () {
+                                            controller.bankController1.text =
+                                                item.name
+                                                    .toString()
+                                                    .toUpperCase();
+                                            controller.idController1.text =
+                                                item.code.toString();
+                                            print("eetr" +
+                                                controller.idController1.text);
+                                            Get.toNamed(
+                                                MyRouters.addPaymentMethod,
+                                                arguments: [
+                                                  item.name.toString(),
+                                                  item.code.toString()
+                                                ]);
+                                          },
+                                          child: Text(
+                                            item.name.toString().toUpperCase(),
+                                            style: GoogleFonts.poppins(
+                                                color: const Color(0xFF1D1D1D),
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 2,
+                                        ),
+                                      ],
                                     ),
-                                    const SizedBox(
-                                      height: 2,
-                                    ),
-                                  ],
-                                ),
-                              );
-                            })
+                                  );
+                                })
                             : statusOfChooseBank.value.isError
-                            ? CommonErrorWidget(
-                          errorText: "",
-                          onTap: () {},
-                        )
-                            : const Center(
-                            child: CircularProgressIndicator());
+                                ? CommonErrorWidget(
+                                    errorText: "",
+                                    onTap: () {},
+                                  )
+                                : const Center(
+                                    child: CircularProgressIndicator());
                       })
                     ]))));
   }

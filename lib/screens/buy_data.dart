@@ -10,7 +10,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
-
 import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
 import '../models/buy_plan_model.dart';
@@ -34,14 +33,17 @@ class BuyData extends StatefulWidget {
 class _BuyDataState extends State<BuyData> {
   final registorController = Get.put(registerController());
   final profileController = Get.put(ProfileController());
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-      registorController.fetchVritualAccount();});
+      registorController.fetchVritualAccount();
+    });
   }
-  Rx<RxStatus> statusOfProviders= RxStatus.empty().obs;
+
+  Rx<RxStatus> statusOfProviders = RxStatus.empty().obs;
   TextEditingController phoneController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   Rx<ModelBuyInternet> purchaseInternet = ModelBuyInternet().obs;
@@ -51,21 +53,21 @@ class _BuyDataState extends State<BuyData> {
   var initStateBlank3 = Get.arguments[3];
   var initStateBlank4 = Get.arguments[4];
   var initStateBlank5 = Get.arguments[5];
-  Rx<RxStatus> statusOfSave= RxStatus.empty().obs;
+  Rx<RxStatus> statusOfSave = RxStatus.empty().obs;
   Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
 
   saveList() {
     saveTransastionRepo(
-        user_id: initStateBlank5,
-        amount:initStateBlank1,
-        about: "Buy Internet",
-        // complete_response: purchaseData.value.data!.toJson(),
-        context: context,
-        description:descriptionController.text.trim(),
-        type: "dr",
+      user_id: initStateBlank5,
+      amount: initStateBlank1,
+      about: "Buy Internet",
+      // complete_response: purchaseData.value.data!.toJson(),
+      context: context,
+      description: descriptionController.text.trim(),
+      type: "dr",
       dataplan: initStateBlank2,
-      phone:initStateBlank4 ,
-      data_code:initStateBlank3 ,
+      phone: initStateBlank4,
+      data_code: initStateBlank3,
       telcos: initStateBlank,
     ).then((value) {
       log("response.body.....    ${value}");
@@ -73,27 +75,26 @@ class _BuyDataState extends State<BuyData> {
       if (value.status == true) {
         statusOfSave.value = RxStatus.success();
         Get.toNamed(MyRouters.successRechargeScreen);
-
       } else {
         statusOfSave.value = RxStatus.error();
       }
     }
-      // showToast(value.message.toString());
-    );
+        // showToast(value.message.toString());
+        );
   }
+
   getInterNet() {
     print(initStateBlank);
     print(initStateBlank1);
     print(initStateBlank3);
     if (formKey4.currentState!.validate()) {
       BuyDataPlanRepo(
-        telco: initStateBlank,
-        amount: initStateBlank1,
-        phone_no: initStateBlank4,
-        data_code: initStateBlank3,
-        context: context
-
-      ).then((value) {
+              telco: initStateBlank,
+              amount: initStateBlank1,
+              phone_no: initStateBlank4,
+              data_code: initStateBlank3,
+              context: context)
+          .then((value) {
         log("response.body.....    ${value}");
         purchaseInternet.value = value;
         if (value.success == true) {
@@ -106,14 +107,15 @@ class _BuyDataState extends State<BuyData> {
           showToast(value.message.toString());
         }
       }
-        // showToast(value.message.toString());
-      );
+              // showToast(value.message.toString());
+              );
     }
   }
+
   final formKey4 = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-
     Size size = MediaQuery.of(context).size;
     double doubleVar;
     return Scaffold(
@@ -130,7 +132,7 @@ class _BuyDataState extends State<BuyData> {
         ),
         centerTitle: true,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Get.back();
           },
           child: const Icon(
@@ -138,7 +140,6 @@ class _BuyDataState extends State<BuyData> {
             color: AppTheme.primaryColor,
           ),
         ),
-
       ),
       body: SingleChildScrollView(
         child: Form(
@@ -159,20 +160,21 @@ class _BuyDataState extends State<BuyData> {
                       fontWeight: FontWeight.w500),
                 ),
               ),
-
               const SizedBox(
                 height: 10,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 6, right: 6),
                 child: CommonTextfield(
-                 readOnly: true,
+                  readOnly: true,
                   obSecure: false,
                   hintText: initStateBlank4,
                   // labelText: "Phone Number",
                 ),
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: Text(
@@ -183,7 +185,6 @@ class _BuyDataState extends State<BuyData> {
                       fontWeight: FontWeight.w500),
                 ),
               ),
-
               const SizedBox(
                 height: 10,
               ),
@@ -193,16 +194,13 @@ class _BuyDataState extends State<BuyData> {
                   controller: descriptionController,
                   validator: MultiValidator([
                     RequiredValidator(
-                        errorText:
-                        'Please enter your description'),
-
+                        errorText: 'Please enter your description'),
                   ]),
                   obSecure: false,
                   hintText: "Recharge",
                   labelText: "Description",
                 ),
               ),
-
               SizedBox(
                 height: size.height * .5,
               ),

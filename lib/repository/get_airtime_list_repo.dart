@@ -1,10 +1,7 @@
-
-
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-
 
 import '../models/airtimeTransistionModel.dart';
 import '../models/model_all_transistion.dart';
@@ -32,6 +29,7 @@ Future<BuyAirtimeListModel> buyAirtimeListRepo() async {
           data: null);
     }
   } catch (e) {
-    return BuyAirtimeListModel(message: e.toString(), status: false, data: null);
+    return BuyAirtimeListModel(
+        message: e.toString(), status: false, data: null);
   }
 }

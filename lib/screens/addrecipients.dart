@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
-
 import '../controller/profile_controller.dart';
 import '../models/model_search.dart';
 import '../repository/serach_repo.dart';
@@ -23,8 +22,7 @@ class AddRecipients extends StatefulWidget {
 }
 
 class _AddRecipientsState extends State<AddRecipients> {
-
-  Rx<RxStatus> statusOfSearch= RxStatus.empty().obs;
+  Rx<RxStatus> statusOfSearch = RxStatus.empty().obs;
   TextEditingController phoneController = TextEditingController();
   Rx<ModelSearchTag> searchData = ModelSearchTag().obs;
   TextEditingController ziptagController = TextEditingController();
@@ -32,24 +30,21 @@ class _AddRecipientsState extends State<AddRecipients> {
   final profileController = Get.put(ProfileController());
 
   getSearchList() {
-
     searchRepo(
       email: email1Controller.text.trim(),
-     phone:phoneController.text.trim() ,
-     zip_tag: ziptagController.text.trim()+"@zip",
-     context: context,
-
+      phone: phoneController.text.trim(),
+      zip_tag: ziptagController.text.trim() + "@zip",
+      context: context,
     ).then((value) {
       log("response.body.....    ${value}");
       searchData.value = value;
       if (value.status == true) {
         statusOfSearch.value = RxStatus.success();
         showToast(value.message.toString());
-         email1Controller.text = (value.data!.email ?? "").toString();
+        email1Controller.text = (value.data!.email ?? "").toString();
         phoneController.text = (value.data!.phone ?? "").toString();
         ziptagController.text = (value.data!.zipTag ?? "").toString();
-        profileController.userId=value.data!.id.toString();
-
+        profileController.userId = value.data!.id.toString();
 
         print(value.data!.email.toString());
       } else {
@@ -57,9 +52,10 @@ class _AddRecipientsState extends State<AddRecipients> {
         showToast(value.message.toString());
       }
     }
-      // showToast(value.message.toString());
-    );
+        // showToast(value.message.toString());
+        );
   }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -76,8 +72,8 @@ class _AddRecipientsState extends State<AddRecipients> {
         ),
         centerTitle: true,
         leading: InkWell(
-          onTap: (){
-           Get.back();
+          onTap: () {
+            Get.back();
           },
           child: const Icon(
             Icons.arrow_back_rounded,
@@ -87,7 +83,10 @@ class _AddRecipientsState extends State<AddRecipients> {
         actions: const [
           Padding(
             padding: EdgeInsets.only(right: 20),
-            child: Icon(Icons.search,color: Colors.black,),
+            child: Icon(
+              Icons.search,
+              color: Colors.black,
+            ),
           )
         ],
       ),
@@ -128,7 +127,7 @@ class _AddRecipientsState extends State<AddRecipients> {
               height: 25,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20,right: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               child: Text(
                 "Search user by email or phone",
                 style: GoogleFonts.poppins(
@@ -137,7 +136,6 @@ class _AddRecipientsState extends State<AddRecipients> {
                     fontWeight: FontWeight.w500),
               ),
             ),
-
             const SizedBox(
               height: 27,
             ),
@@ -149,7 +147,7 @@ class _AddRecipientsState extends State<AddRecipients> {
                 hintText: "@",
                 labelText: "ZIP Tag",
                 suffixIcon: InkWell(
-                    onTap: (){
+                    onTap: () {
                       getSearchList();
                     },
                     child: Icon(Icons.arrow_forward)),
@@ -166,7 +164,7 @@ class _AddRecipientsState extends State<AddRecipients> {
                 hintText: "Email",
                 labelText: "Enter Email",
                 suffixIcon: InkWell(
-                    onTap: (){
+                    onTap: () {
                       getSearchList();
                     },
                     child: Icon(Icons.arrow_forward)),
@@ -183,7 +181,7 @@ class _AddRecipientsState extends State<AddRecipients> {
                 hintText: "Phone",
                 labelText: "Enter Phone no ",
                 suffixIcon: InkWell(
-                    onTap: (){
+                    onTap: () {
                       getSearchList();
                     },
                     child: Icon(Icons.arrow_forward)),
@@ -196,16 +194,17 @@ class _AddRecipientsState extends State<AddRecipients> {
               height: size.height * .27,
             ),
             InkWell(
-                onTap: (){
-                  email1Controller.text="";
-                  phoneController.text="";
-                  ziptagController.text="";
+                onTap: () {
+                  email1Controller.text = "";
+                  phoneController.text = "";
+                  ziptagController.text = "";
                 },
                 child: CustomOutlineBoder(title: "Clear")),
-            SizedBox(height: 25,),
+            SizedBox(
+              height: 25,
+            ),
             InkWell(
               onTap: () {
-
                 Get.toNamed(MyRouters.sendYourBalanceScreen);
               },
               child: const CustomOutlineButton(

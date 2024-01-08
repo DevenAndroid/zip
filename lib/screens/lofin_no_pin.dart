@@ -1,7 +1,5 @@
-
 import 'dart:convert';
 import 'dart:io';
-
 
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -12,7 +10,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_colour.dart';
-
 
 import '../controller/number_controller.dart';
 import '../controller/update_user.dart';
@@ -28,7 +25,6 @@ import '../resourses/api_constant.dart';
 import '../controller/update_user.dart';
 import '../resourses/details.dart';
 
-
 class LoginNoPinScreen extends StatefulWidget {
   const LoginNoPinScreen({Key? key}) : super(key: key);
 
@@ -37,7 +33,6 @@ class LoginNoPinScreen extends StatefulWidget {
 }
 
 class _LoginNoPinScreenState extends State<LoginNoPinScreen> {
-
   int invalidAttempts = 0;
   final formKeypin = GlobalKey<FormState>();
   final registorController = Get.put(registerController());
@@ -50,21 +45,17 @@ class _LoginNoPinScreenState extends State<LoginNoPinScreen> {
   final numbercontroller = Get.put(numberController());
   TextEditingController loginPincontroller = TextEditingController();
   Rx<ModelSecurityPin> modelVerifySecurity = ModelSecurityPin().obs;
-  Rx<RxStatus> statusOfSucess= RxStatus.empty().obs;
+  Rx<RxStatus> statusOfSucess = RxStatus.empty().obs;
+
   verify() {
-    securityPinRepo(
-        context: context,
-        pin:  loginPincontroller.text.trim()
-
-
-    ).then((value) {
+    securityPinRepo(context: context, pin: loginPincontroller.text.trim())
+        .then((value) {
       modelVerifySecurity.value = value;
       if (value.status == true) {
         Get.toNamed(MyRouters.bottomNavbar);
 
         statusOfSucess.value = RxStatus.success();
         showToast(value.message.toString());
-
       } else {
         statusOfSucess.value = RxStatus.error();
         showToast(value.message.toString());
@@ -74,17 +65,14 @@ class _LoginNoPinScreenState extends State<LoginNoPinScreen> {
         // }
       }
     }
-      // showToast(value.message.toString());
+            // showToast(value.message.toString());
 
-    );
+            );
 
     // if(value.status=="success"){
     //   statusOfChooseBank.value.isSuccess;
     // }
     // Get.toNamed(MyRouters.bottomNavbar);
-
-
-
   }
 
   @override
@@ -117,81 +105,80 @@ class _LoginNoPinScreenState extends State<LoginNoPinScreen> {
         ),
         body: SingleChildScrollView(
             child: Form(
-
-              key: formKeypin,
-              child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10.0, right: 10),
-                          child: Text(
-                            "Enter your unique 4-digits pin!",
-                            style: GoogleFonts.poppins(
-                                color: const Color(0xFF1D1D1D),
-                                fontSize: 22,
-                                fontWeight: FontWeight.w500),
-                          ),
+          key: formKeypin,
+          child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0, right: 10),
+                      child: Text(
+                        "Enter your unique 4-digits pin!",
+                        style: GoogleFonts.poppins(
+                            color: const Color(0xFF1D1D1D),
+                            fontSize: 22,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0, right: 10),
+                      child: Text(
+                        "Please remember this pin. It’ll be used to keep your account secure ",
+                        style: GoogleFonts.poppins(
+                            color: const Color(0xFF1D1D1D),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 25.0, right: 25),
+                      child: Center(
+                        child: Pinput(
+                          validator: MultiValidator([
+                            RequiredValidator(errorText: 'Enter 4 Digit Pin')
+                          ]),
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          controller: loginPincontroller,
+                          keyboardType: TextInputType.number,
+                          length: 4,
+                          defaultPinTheme: defaultPinTheme,
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10.0, right: 10),
-                          child: Text(
-                            "Please remember this pin. It’ll be used to keep your account secure ",
-                            style: GoogleFonts.poppins(
-                                color: const Color(0xFF1D1D1D),
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 40,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 25.0, right: 25),
-                          child: Center(
-                            child: Pinput(
-                              validator: MultiValidator([
-                                RequiredValidator(errorText: 'Enter 4 Digit Pin')
-                              ]),
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              controller: loginPincontroller,
-                              keyboardType: TextInputType.number,
-                              length: 4,
-                              defaultPinTheme: defaultPinTheme,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: size.height * .5,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            if (formKeypin.currentState!.validate()) {
-                              verify();
-
-                            }
-                          },
-                          child: CustomOutlineBoder(
-                            title: "Next",
-                            backgroundColor: Colors.white,
-                            textColor: AppTheme.buttonColor,
-                            onPressed: () {
-                              // Get.toNamed(MyRouters.otpScreen);
-                            },
-                          ),
-                        )
-                      ])),
-            )));
-
+                      ),
+                    ),
+                    SizedBox(
+                      height: size.height * .5,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        if (formKeypin.currentState!.validate()) {
+                          verify();
+                        }
+                      },
+                      child: CustomOutlineBoder(
+                        title: "Next",
+                        backgroundColor: Colors.white,
+                        textColor: AppTheme.buttonColor,
+                        onPressed: () {
+                          // Get.toNamed(MyRouters.otpScreen);
+                        },
+                      ),
+                    )
+                  ])),
+        )));
   }
+
   void _validateOtp(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String storedOtp = prefs.getString('otp') ?? loginPincontroller.text.toString(); // Replace with your generated OTP
+    String storedOtp = prefs.getString('otp') ??
+        loginPincontroller.text.toString(); // Replace with your generated OTP
 
     if (loginPincontroller.text == storedOtp) {
       // OTP is correct, navigate to the next screen
@@ -205,7 +192,7 @@ class _LoginNoPinScreenState extends State<LoginNoPinScreen> {
 
       if (invalidAttempts >= 3) {
         // If 3 or more invalid attempts, navigate to the error screen
-        Get.toNamed(MyRouters.mobileOtpScreen,arguments: [loginDetails]);
+        Get.toNamed(MyRouters.mobileOtpScreen, arguments: [loginDetails]);
       } else {
         // Show error message to the user
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -213,4 +200,5 @@ class _LoginNoPinScreenState extends State<LoginNoPinScreen> {
         ));
       }
     }
-  }}
+  }
+}

@@ -17,7 +17,8 @@ class RequestAPaymentContiune extends StatefulWidget {
   const RequestAPaymentContiune({Key? key}) : super(key: key);
 
   @override
-  State<RequestAPaymentContiune> createState() => _RequestAPaymentContiuneState();
+  State<RequestAPaymentContiune> createState() =>
+      _RequestAPaymentContiuneState();
 }
 
 class _RequestAPaymentContiuneState extends State<RequestAPaymentContiune> {
@@ -29,10 +30,9 @@ class _RequestAPaymentContiuneState extends State<RequestAPaymentContiune> {
 
   send() async {
     sendEmailRepo(
-        amount:profileController.amountController.text.trim(),
-        email: initStateBlank1,
-        context: context
-    )
+            amount: profileController.amountController.text.trim(),
+            email: initStateBlank1,
+            context: context)
         .then((value) {
       log("response.body.....    ${value}");
       sendEmail.value = value;
@@ -45,8 +45,8 @@ class _RequestAPaymentContiuneState extends State<RequestAPaymentContiune> {
         showToast(value.message.toString());
       }
     }
-      // showToast(value.message.toString());
-    );
+            // showToast(value.message.toString());
+            );
   }
 
   @override
@@ -68,7 +68,9 @@ class _RequestAPaymentContiuneState extends State<RequestAPaymentContiune> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 48,),
+            SizedBox(
+              height: 48,
+            ),
             ClipRRect(
               borderRadius: BorderRadius.circular(30),
               child: Image.asset(
@@ -76,17 +78,19 @@ class _RequestAPaymentContiuneState extends State<RequestAPaymentContiune> {
                 height: 121,
               ),
             ),
-            SizedBox(height: 25,),
-
+            SizedBox(
+              height: 25,
+            ),
             Text(
-              "Request Money \$ "+profileController.amountController.text.trim(),
+              "Request Money \$ " +
+                  profileController.amountController.text.trim(),
               style: GoogleFonts.poppins(
                   color: const Color(0xFF1D1D1D),
                   fontSize: 18,
                   fontWeight: FontWeight.w500),
             ),
             Text(
-              "From"+  "  ${initStateBlank}",
+              "From" + "  ${initStateBlank}",
               style: GoogleFonts.poppins(
                   color: const Color(0xFF1D1D1D),
                   fontSize: 16,
@@ -97,10 +101,8 @@ class _RequestAPaymentContiuneState extends State<RequestAPaymentContiune> {
             ),
             InkWell(
               onTap: () async {
-
                 send();
               },
-
               child: CustomOutlineButton(
                 title: "Continue",
               ),

@@ -20,6 +20,7 @@ class SendCashYourBalance extends StatefulWidget {
 class _SendCashYourBalanceState extends State<SendCashYourBalance> {
   final profileController = Get.put(ProfileController());
   final formKey2 = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -45,7 +46,7 @@ class _SendCashYourBalanceState extends State<SendCashYourBalance> {
           ),
         ),
       ),
-      bottomNavigationBar:     Padding(
+      bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(bottom: 28.0),
         child: InkWell(
           onTap: () {
@@ -62,8 +63,8 @@ class _SendCashYourBalanceState extends State<SendCashYourBalance> {
         ),
       ),
       body: Obx(() {
-        print(double.tryParse(profileController.currentBalanceModel.value.data
-            .toString()));
+        print(double.tryParse(
+            profileController.currentBalanceModel.value.data.toString()));
         return profileController.currentBalanceModel.value.status == true
             ? SingleChildScrollView(
                 child: Padding(
@@ -78,10 +79,16 @@ class _SendCashYourBalanceState extends State<SendCashYourBalance> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Image.network("https://cdn-icons-png.flaticon.com/512/32/32974.png",color: Colors.black,width: 15,height: 15,),
+                              Image.network(
+                                "https://cdn-icons-png.flaticon.com/512/32/32974.png",
+                                color: Colors.black,
+                                width: 15,
+                                height: 15,
+                              ),
                               Text(
-
-                              profileController.currentBalanceModel.value.data!.currentBalance.toString(),
+                                profileController.currentBalanceModel.value
+                                    .data!.currentBalance
+                                    .toString(),
                                 style: GoogleFonts.poppins(
                                     color: const Color(0xFF1D1D1D),
                                     fontSize: 20,
@@ -104,11 +111,14 @@ class _SendCashYourBalanceState extends State<SendCashYourBalance> {
                           height: 17,
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 15,right: 6),
+                          padding: const EdgeInsets.only(left: 15, right: 6),
                           child: Align(
                             alignment: Alignment.centerRight,
                             child: Text(
-                              "FEE : "+ profileController.currentBalanceModel.value.data!.fee.toString(),
+                              "FEE : " +
+                                  profileController
+                                      .currentBalanceModel.value.data!.fee!.cashoutFee
+                                      .toString(),
                               style: GoogleFonts.poppins(
                                   color: const Color(0xFF1D1D1D),
                                   fontSize: 15,
@@ -135,11 +145,16 @@ class _SendCashYourBalanceState extends State<SendCashYourBalance> {
                               return "Enter valid amount";
                             }
                             if (double.parse(value.trim()) >
-                                (double.tryParse(profileController.currentBalanceModel.value.data!.currentBalance.toString()) ?? 0)) {
+                                (double.tryParse(profileController
+                                        .currentBalanceModel
+                                        .value
+                                        .data!
+                                        .currentBalance
+                                        .toString()) ??
+                                    0)) {
                               return "Please enter amount less than balance ";
                             }
                           },
-
                         ),
                         const SizedBox(
                           height: 20,
@@ -154,7 +169,6 @@ class _SendCashYourBalanceState extends State<SendCashYourBalance> {
                         SizedBox(
                           height: size.height * .5,
                         ),
-
                       ],
                     ),
                   ),

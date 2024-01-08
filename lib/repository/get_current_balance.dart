@@ -1,10 +1,7 @@
-
-
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-
 
 import '../models/current_balance_repo.dart';
 import '../models/model_beneficary_list.dart';
@@ -30,6 +27,7 @@ Future<CurrentBalanceModel> getCurrentBalanceRepo() async {
           data: null);
     }
   } catch (e) {
-    return CurrentBalanceModel(message: e.toString(), status: false, data: null);
+    return CurrentBalanceModel(
+        message: e.toString(), status: false, data: null);
   }
 }

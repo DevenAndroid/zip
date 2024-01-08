@@ -34,17 +34,19 @@ class _SendCash2State extends State<SendCash2> {
   Future resolveData() async {
     await resolveRepo(
             accountNumber: payOutcontroller.accountNo.text.trim().toString(),
-            bankCode:  controller.idController1.text.trim().trim(),
+            bankCode: controller.idController1.text.trim().trim(),
             context: context)
         .then((value) {
       resolve.value = value;
       if (value.success == true) {
-        payOutcontroller.accountName.text = (value.data!.accountName??"").toString();
+        payOutcontroller.accountName.text =
+            (value.data!.accountName ?? "").toString();
         statusOfResolve.value = RxStatus.success();
 
         showToast(value.message.toString());
       } else {
-        showToast("Account could not be resolved. Please check your selection and try again");
+        showToast(
+            "Account could not be resolved. Please check your selection and try again");
       }
     }
             // showToast(value.message.toString());
@@ -72,9 +74,8 @@ class _SendCash2State extends State<SendCash2> {
           backgroundColor: Colors.white,
           leading: InkWell(
             onTap: () {
-               Get.back();
+              Get.back();
               // Get.toNamed(MyRouters.sendCashReciptant);
-
             },
             child: const Icon(
               Icons.arrow_back_rounded, color: Colors.black,
@@ -90,45 +91,53 @@ class _SendCash2State extends State<SendCash2> {
                 fontWeight: FontWeight.w500),
           ),
         ),
-        bottomNavigationBar: isSwitched==true?
-        Padding(
-          padding: const EdgeInsets.only(bottom: 20.0),
-          child: InkWell(
-              onTap: () {
-                print( controller.bankController.text.trim(),);
-                if (formKey4.currentState!.validate()) {
-                  payOutcontroller.CreateBenificery();
-                }
-              },
-              child: const CustomOutlineButton(
-                title: "Continue",
-              )),
-        ):Padding(
-          padding: const EdgeInsets.only(bottom: 20.0),
-          child: InkWell(
-              onTap: () {
-                print( controller.bankController.text.trim(),);
-                if (formKey4.currentState!.validate()) {
-                  Get.toNamed(MyRouters.payNow2,arguments: [
-                    controller.bankController.text.toString().trim(),payOutcontroller.accountNo.text.toString().trim(),payOutcontroller.accountName.text.toString().trim()]);
-                  // payOutcontroller.CreateBenificery();
-                }
-              },
-              child: const CustomOutlineButton(
-                title: "Continue",
-              )),
-        ),
+        bottomNavigationBar: isSwitched == true
+            ? Padding(
+                padding: const EdgeInsets.only(bottom: 20.0),
+                child: InkWell(
+                    onTap: () {
+                      print(
+                        controller.bankController.text.trim(),
+                      );
+                      if (formKey4.currentState!.validate()) {
+                        payOutcontroller.CreateBenificery();
+                      }
+                    },
+                    child: const CustomOutlineButton(
+                      title: "Continue",
+                    )),
+              )
+            : Padding(
+                padding: const EdgeInsets.only(bottom: 20.0),
+                child: InkWell(
+                    onTap: () {
+                      print(
+                        controller.bankController.text.trim(),
+                      );
+                      if (formKey4.currentState!.validate()) {
+                        Get.toNamed(MyRouters.payNow2, arguments: [
+                          controller.bankController.text.toString().trim(),
+                          payOutcontroller.accountNo.text.toString().trim(),
+                          payOutcontroller.accountName.text.toString().trim()
+                        ]);
+                        // payOutcontroller.CreateBenificery();
+                      }
+                    },
+                    child: const CustomOutlineButton(
+                      title: "Continue",
+                    )),
+              ),
         body: SingleChildScrollView(
             child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Form(
-                  key:formKey4 ,
+                  key: formKey4,
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         InkWell(
-                          onTap: (){
+                          onTap: () {
                             Get.toNamed(MyRouters.yourRecipient);
                           },
                           child: Padding(
@@ -184,33 +193,27 @@ class _SendCash2State extends State<SendCash2> {
                           height: 20,
                         ),
                         CommonTextfield(
-                          keyboardType:
-                          const TextInputType.numberWithOptions(
+                          keyboardType: const TextInputType.numberWithOptions(
                               decimal: true),
                           inputFormatters: [
                             LengthLimitingTextInputFormatter(10),
-                            FilteringTextInputFormatter.allow(
-                                RegExp('[0-9]+')),
+                            FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
                           ],
-                          onChanged: (value){
-                     if(value.length == 10 ){
-                       FocusScope.of(context).unfocus();
-                        resolveData();
-
-                     }
+                          onChanged: (value) {
+                            if (value.length == 10) {
+                              FocusScope.of(context).unfocus();
+                              resolveData();
+                            }
                           },
                           validator: MultiValidator([
                             RequiredValidator(
-                                errorText:
-                                'Please enter your account number '),
+                                errorText: 'Please enter your account number '),
                             MinLengthValidator(10,
                                 errorText:
-                                'Please enter minumum  10 account number'),
+                                    'Please enter minumum  10 account number'),
                             MaxLengthValidator(12,
-                                errorText:
-                                'Please enter 10 account number'),
-                            PatternValidator(
-                                r'(^(?:[+0]9)?[0-9]{10,12}$)',
+                                errorText: 'Please enter 10 account number'),
+                            PatternValidator(r'(^(?:[+0]9)?[0-9]{10,12}$)',
                                 errorText: '')
                           ]),
                           controller: payOutcontroller.accountNo,
@@ -224,15 +227,13 @@ class _SendCash2State extends State<SendCash2> {
                           obSecure: false,
                           hintText: "",
                           labelText: "Account Number",
-
                         ),
                         SizedBox(
                           height: 20,
                         ),
                         CommonTextfield(
                           validator: RequiredValidator(
-                            errorText: "please enter account name "
-                          ),
+                              errorText: "please enter account name "),
                           readOnly: true,
                           controller: payOutcontroller.accountName,
                           obSecure: false,
@@ -278,7 +279,6 @@ class _SendCash2State extends State<SendCash2> {
                         SizedBox(
                           height: size.height * .4,
                         ),
-
                         SizedBox(
                           height: 15,
                         ),

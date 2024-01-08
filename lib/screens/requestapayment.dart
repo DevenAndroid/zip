@@ -16,6 +16,7 @@ class RequestAPayment extends StatefulWidget {
 
 class _RequestAPaymentState extends State<RequestAPayment> {
   final register = Get.put(registerController());
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -33,7 +34,7 @@ class _RequestAPaymentState extends State<RequestAPayment> {
         centerTitle: true,
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 20,top: 20),
+            padding: const EdgeInsets.only(right: 20, top: 20),
             child: Text(
               "Cancel",
               style: GoogleFonts.poppins(
@@ -44,7 +45,9 @@ class _RequestAPaymentState extends State<RequestAPayment> {
           )
         ],
         leading: InkWell(
-          onTap: (){Get.back();},
+          onTap: () {
+            Get.back();
+          },
           child: Icon(Icons.arrow_back),
         ),
       ),
@@ -52,7 +55,9 @@ class _RequestAPaymentState extends State<RequestAPayment> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 27,),
+            SizedBox(
+              height: 27,
+            ),
             Text(
               "Enter amount to request from Daneil",
               style: GoogleFonts.poppins(
@@ -60,7 +65,9 @@ class _RequestAPaymentState extends State<RequestAPayment> {
                   fontSize: 13,
                   fontWeight: FontWeight.w400),
             ),
-            SizedBox(height: 30,),
+            SizedBox(
+              height: 30,
+            ),
             Container(
               height: 28,
               width: 38,
@@ -69,7 +76,7 @@ class _RequestAPaymentState extends State<RequestAPayment> {
                   borderRadius: BorderRadius.circular(5)),
               child: Padding(
                 padding: const EdgeInsets.all(1.0),
-                child:  Center(
+                child: Center(
                   child: Text(
                     "USD",
                     style: GoogleFonts.poppins(
@@ -77,7 +84,7 @@ class _RequestAPaymentState extends State<RequestAPayment> {
                         fontSize: 13,
                         fontWeight: FontWeight.w400),
                   ),
-                ) ,
+                ),
               ),
             ),
             Text(
@@ -88,7 +95,7 @@ class _RequestAPaymentState extends State<RequestAPayment> {
                   fontWeight: FontWeight.w400),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 70,right: 70),
+              padding: const EdgeInsets.only(left: 70, right: 70),
               child: Divider(
                 thickness: 1,
                 color: Colors.black,
@@ -106,7 +113,7 @@ class _RequestAPaymentState extends State<RequestAPayment> {
             ),
             InkWell(
               onTap: () {
-              Get.to(RequestApaymentConfirm());
+                Get.to(RequestApaymentConfirm());
               },
               child: CustomOutlineButton(
                 title: "Next",

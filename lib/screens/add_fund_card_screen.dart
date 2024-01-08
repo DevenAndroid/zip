@@ -35,8 +35,6 @@ class AddFundScreen extends StatefulWidget {
 class _AddFundScreenState extends State<AddFundScreen> {
   final profileController = Get.put(ProfileController());
 
-
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -68,12 +66,11 @@ class _AddFundScreenState extends State<AddFundScreen> {
             child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Form(
-key: profileController.formKeyFund,
+                  key: profileController.formKeyFund,
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-
                         Padding(
                           padding: const EdgeInsets.only(left: 10),
                           child: Text(
@@ -100,11 +97,9 @@ key: profileController.formKeyFund,
                             RequiredValidator(
                                 errorText: 'Please enter your amount '),
                           ]),
-
                           obSecure: false,
                           readOnly: false,
                           hintText: "please enter your amount",
-
                         ),
                         SizedBox(
                           height: 20,
@@ -123,15 +118,13 @@ key: profileController.formKeyFund,
                           height: 10,
                         ),
                         CommonTextfield(
-controller: profileController.refrenceController,
+                          controller: profileController.refrenceController,
                           validator: MultiValidator([
                             RequiredValidator(
                                 errorText: 'Please enter reference'),
                           ]),
-
                           obSecure: false,
                           hintText: "refrence",
-
                         ),
                         SizedBox(
                           height: size.height * .3,
@@ -145,10 +138,12 @@ controller: profileController.refrenceController,
                             title: "Add Fund ",
                           ),
                         ),
-SizedBox(height: 30,),
+                        SizedBox(
+                          height: 30,
+                        ),
                         InkWell(
                           onTap: () {
-                           Get.toNamed(MyRouters.fundIssuingWallet);
+                            Get.toNamed(MyRouters.fundIssuingWallet);
                           },
                           child: const CustomOutlineBoder(
                             title: "Issuing Fund",

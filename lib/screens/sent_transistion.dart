@@ -16,7 +16,8 @@ class SentTransactionsHistory extends StatefulWidget {
   const SentTransactionsHistory({Key? key}) : super(key: key);
 
   @override
-  State<SentTransactionsHistory> createState() => _SentTransactionsHistoryState();
+  State<SentTransactionsHistory> createState() =>
+      _SentTransactionsHistoryState();
 }
 
 class _SentTransactionsHistoryState extends State<SentTransactionsHistory> {
@@ -34,8 +35,8 @@ class _SentTransactionsHistoryState extends State<SentTransactionsHistory> {
         statusOfSendTransistion.value = RxStatus.error();
       }
     }
-      // showToast(value.message.toString());
-    );
+        // showToast(value.message.toString());
+        );
   }
 
   @override
@@ -44,6 +45,7 @@ class _SentTransactionsHistoryState extends State<SentTransactionsHistory> {
     super.initState();
     getSentTransitionList();
   }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -72,14 +74,18 @@ class _SentTransactionsHistoryState extends State<SentTransactionsHistory> {
             Padding(
               padding: const EdgeInsets.only(right: 8.0),
               child: GestureDetector(
-                onTap: (){
+                onTap: () {
                   Get.toNamed(MyRouters.fAQScreens);
                 },
                 child: Container(
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: Border.all(color: AppTheme.primaryColor, width: 2)),
-                  child: Icon(Icons.question_mark_rounded,color: Colors.black,),
+                      border:
+                          Border.all(color: AppTheme.primaryColor, width: 2)),
+                  child: Icon(
+                    Icons.question_mark_rounded,
+                    color: Colors.black,
+                  ),
                 ),
               ),
             )
@@ -100,8 +106,8 @@ class _SentTransactionsHistoryState extends State<SentTransactionsHistory> {
                         child: SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   GestureDetector(
                                     onTap: () {
@@ -116,30 +122,35 @@ class _SentTransactionsHistoryState extends State<SentTransactionsHistory> {
                                           horizontal: 18, vertical: 12),
                                       decoration: currentDrawer == 1
                                           ? BoxDecoration(
-                                        gradient: const LinearGradient(
-                                            colors: [
-                                              Color(0xFFF0D75F),
-                                              Color(0xFFB2802A),
-                                            ],
-                                            begin: Alignment.topCenter,
-                                            end: Alignment.bottomCenter),
-                                        borderRadius: BorderRadius.circular(15),
-                                      )
+                                              gradient: const LinearGradient(
+                                                  colors: [
+                                                    Color(0xFFF0D75F),
+                                                    Color(0xFFB2802A),
+                                                  ],
+                                                  begin: Alignment.topCenter,
+                                                  end: Alignment.bottomCenter),
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            )
                                           : BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            ),
                                       child: Center(
                                         child: Text("All",
                                             style: currentDrawer == 1
                                                 ? GoogleFonts.poppins(
-                                                color: const Color(0xFFFFFFFF),
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w500)
+                                                    color:
+                                                        const Color(0xFFFFFFFF),
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w500)
                                                 : GoogleFonts.poppins(
-                                                color: const Color(0xFF1D1D1D),
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w500)),
+                                                    color:
+                                                        const Color(0xFF1D1D1D),
+                                                    fontSize: 15,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
                                       ),
                                     ),
                                   ),
@@ -158,30 +169,35 @@ class _SentTransactionsHistoryState extends State<SentTransactionsHistory> {
                                           horizontal: 18, vertical: 12),
                                       decoration: currentDrawer == 0
                                           ? BoxDecoration(
-                                        gradient: const LinearGradient(
-                                            colors: [
-                                              Color(0xFFF0D75F),
-                                              Color(0xFFB2802A),
-                                            ],
-                                            begin: Alignment.topCenter,
-                                            end: Alignment.bottomCenter),
-                                        borderRadius: BorderRadius.circular(15),
-                                      )
+                                              gradient: const LinearGradient(
+                                                  colors: [
+                                                    Color(0xFFF0D75F),
+                                                    Color(0xFFB2802A),
+                                                  ],
+                                                  begin: Alignment.topCenter,
+                                                  end: Alignment.bottomCenter),
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            )
                                           : BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            ),
                                       child: Center(
                                         child: Text("Sent",
                                             style: currentDrawer == 0
                                                 ? GoogleFonts.poppins(
-                                                color: const Color(0xFFFFFFFF),
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w500)
+                                                    color:
+                                                        const Color(0xFFFFFFFF),
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w500)
                                                 : GoogleFonts.poppins(
-                                                color: const Color(0xFF1D1D1D),
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w500)),
+                                                    color:
+                                                        const Color(0xFF1D1D1D),
+                                                    fontSize: 15,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
                                       ),
                                     ),
                                   ),
@@ -192,7 +208,8 @@ class _SentTransactionsHistoryState extends State<SentTransactionsHistory> {
                                     onTap: () {
                                       setState(() {
                                         currentDrawer = 2;
-                                        Get.toNamed(MyRouters.reciveTransactionsHistory);
+                                        Get.toNamed(MyRouters
+                                            .reciveTransactionsHistory);
                                       });
                                     },
                                     child: Container(
@@ -200,188 +217,174 @@ class _SentTransactionsHistoryState extends State<SentTransactionsHistory> {
                                           horizontal: 18, vertical: 12),
                                       decoration: currentDrawer == 2
                                           ? BoxDecoration(
-                                        gradient: const LinearGradient(
-                                            colors: [
-                                              Color(0xFFF0D75F),
-                                              Color(0xFFB2802A),
-                                            ],
-                                            begin: Alignment.topCenter,
-                                            end: Alignment.bottomCenter),
-                                        borderRadius: BorderRadius.circular(15),
-                                      )
+                                              gradient: const LinearGradient(
+                                                  colors: [
+                                                    Color(0xFFF0D75F),
+                                                    Color(0xFFB2802A),
+                                                  ],
+                                                  begin: Alignment.topCenter,
+                                                  end: Alignment.bottomCenter),
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            )
                                           : BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            ),
                                       child: Text("Received",
                                           style: currentDrawer == 2
                                               ? GoogleFonts.poppins(
-                                              color: const Color(0xFFFFFFFF),
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w500)
+                                                  color:
+                                                      const Color(0xFFFFFFFF),
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w500)
                                               : GoogleFonts.poppins(
-                                              color: const Color(0xFF1D1D1D),
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w500)),
+                                                  color:
+                                                      const Color(0xFF1D1D1D),
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w500)),
                                     ),
                                   ),
                                 ])),
                       ),
-                      SizedBox(height: 20,),
+                      SizedBox(
+                        height: 20,
+                      ),
                       Obx(() {
                         return statusOfSendTransistion.value.isSuccess
                             ? ListView.builder(
-                            shrinkWrap: true,
-                            physics: const BouncingScrollPhysics(),
-                            itemCount: sendTransistion.value.data!.length,
-                            itemBuilder: (context, index) {
-                              return GestureDetector(
-                                onTap: () {
-
-                                },
-                                child: Column(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.start,
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                                  children: [
-
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          border: Border.all(color: Colors.grey)
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment
-                                            .spaceBetween,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                            padding: EdgeInsets.all(8),
-                                            decoration: BoxDecoration(color: AppTheme.secondaryColor,shape: BoxShape.circle),
-
-
-                                            child: Icon(
-                                              sendTransistion
-                                                  .value
-                                                  .data![index]
-                                                  .transactionType ==
-                                                  "Credit"
-                                                  ? Icons
-                                                  .arrow_downward_sharp
-                                                  : Icons
-                                                  .arrow_upward_sharp,
-                                              color: Colors.white,
-                                              size: 25,
-                                            ),
-                                          ),
-
-                                          Column(
+                                shrinkWrap: true,
+                                physics: const BouncingScrollPhysics(),
+                                itemCount: sendTransistion.value.data!.length,
+                                itemBuilder: (context, index) {
+                                  return GestureDetector(
+                                    onTap: () {},
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              border: Border.all(
+                                                  color: Colors.grey)),
+                                          child: Row(
                                             mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                                MainAxisAlignment.spaceBetween,
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                                CrossAxisAlignment.start,
                                             children: [
-                                              Text(
-                                                "NGN " +
+                                              Container(
+                                                padding: EdgeInsets.all(8),
+                                                decoration: BoxDecoration(
+                                                    color:
+                                                        AppTheme.secondaryColor,
+                                                    shape: BoxShape.circle),
+                                                child: Icon(
+                                                  sendTransistion
+                                                              .value
+                                                              .data![index]
+                                                              .transactionType ==
+                                                          "Credit"
+                                                      ? Icons
+                                                          .arrow_downward_sharp
+                                                      : Icons
+                                                          .arrow_upward_sharp,
+                                                  color: Colors.white,
+                                                  size: 25,
+                                                ),
+                                              ),
+                                              Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    "NGN " +
+                                                        sendTransistion.value
+                                                            .data![index].amount
+                                                            .toString(),
+                                                    style: GoogleFonts.poppins(
+                                                        color: AppTheme
+                                                            .primaryColor,
+                                                        fontSize: 16,
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  ),
+                                                  Text(
                                                     sendTransistion
                                                         .value
                                                         .data![index]
-                                                        .amount
+                                                        .transactionAbout
                                                         .toString(),
-                                                style:
-                                                GoogleFonts.poppins(
-                                                    color: AppTheme
-                                                        .primaryColor,
-                                                    fontSize: 16,
-                                                    fontWeight:
-                                                    FontWeight
-                                                        .w600),
+                                                    style: GoogleFonts.poppins(
+                                                        color: Colors.grey,
+                                                        fontSize: 13,
+                                                        fontWeight:
+                                                            FontWeight.w500),
+                                                  ),
+                                                ],
                                               ),
-                                              Text(
-                                                sendTransistion
-                                                    .value
-                                                    .data![index]
-                                                    .transactionAbout
-                                                    .toString(),
-                                                style:
-                                                GoogleFonts.poppins(
-                                                    color:
-                                                    Colors.grey,
-                                                    fontSize: 13,
-                                                    fontWeight:
-                                                    FontWeight
-                                                        .w500),
-                                              ),
-                                            ],
-                                          ),
-                                          Column(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                sendTransistion
-                                                    .value
-                                                    .data![index]
-                                                    .transactionType
-                                                    .toString(),
-                                                style:
-                                                GoogleFonts.poppins(
-                                                    color: AppTheme
-                                                        .primaryColor,
-                                                    fontSize: 16,
-                                                    fontWeight:
-                                                    FontWeight
-                                                        .w600),
-                                              ),
-                                              Text(
-                                                sendTransistion
-                                                    .value
-                                                    .data![index]
-                                                    .createdAt
-                                                    .toString(),
-                                                style:
-                                                GoogleFonts.poppins(
-                                                    color:
-                                                    Colors.grey,
-                                                    fontSize: 13,
-                                                    fontWeight:
-                                                    FontWeight
-                                                        .w500),
+                                              Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    sendTransistion
+                                                        .value
+                                                        .data![index]
+                                                        .transactionType
+                                                        .toString(),
+                                                    style: GoogleFonts.poppins(
+                                                        color: AppTheme
+                                                            .primaryColor,
+                                                        fontSize: 16,
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  ),
+                                                  Text(
+                                                    sendTransistion.value
+                                                        .data![index].createdAt
+                                                        .toString(),
+                                                    style: GoogleFonts.poppins(
+                                                        color: Colors.grey,
+                                                        fontSize: 13,
+                                                        fontWeight:
+                                                            FontWeight.w500),
+                                                  ),
+                                                ],
                                               ),
                                             ],
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        )
+                                      ],
                                     ),
-                                    SizedBox(
-                                      height: 10,
-                                    )
-                                  ],
-                                ),
-                              );
-                            })
+                                  );
+                                })
                             : statusOfSendTransistion.value.isError
-                            ? CommonErrorWidget(
-                          errorText: sendTransistion.value.message
-                              .toString(),
-                          onTap: () {
-                            getSentTransitionList();
-                          },
-                        )
-                            : const CommonProgressIndicator();
+                                ? CommonErrorWidget(
+                                    errorText: sendTransistion.value.message
+                                        .toString(),
+                                    onTap: () {
+                                      getSentTransitionList();
+                                    },
+                                  )
+                                : const CommonProgressIndicator();
                       })
-
-
-
-
                     ]))));
   }
 }

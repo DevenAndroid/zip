@@ -15,8 +15,9 @@ import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
 
-Future<AirtimeCountryModel> commonCountryRepo({  key,}) async {
-
+Future<AirtimeCountryModel> commonCountryRepo({
+  key,
+}) async {
   var map = <String, dynamic>{};
   map['key'] = key;
   // map['serviceID'] = serviceID;
@@ -25,20 +26,18 @@ Future<AirtimeCountryModel> commonCountryRepo({  key,}) async {
   // map['billersCode'] = billersCode;
   // map['phone'] = phone;
   http.Response response = await http.post(Uri.parse(ApiUrls.serviceCommon),
-      headers:await getAuthHeader(),
-      body: jsonEncode(map));
+      headers: await getAuthHeader(), body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
   log("Sign IN DATA${response.statusCode}");
   print(map);
 
   if (response.statusCode == 200) {
-
     // print(jsonDecode(response.body));
     return AirtimeCountryModel.fromJson(jsonDecode(response.body));
-
   } else {
-
     // print(jsonDecode(response.body));
-    return AirtimeCountryModel(message: jsonDecode(response.body)["message"], );
+    return AirtimeCountryModel(
+      message: jsonDecode(response.body)["message"],
+    );
   }
 }

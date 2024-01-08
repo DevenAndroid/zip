@@ -1,8 +1,6 @@
-
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-
 
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -13,7 +11,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_colour.dart';
-
 
 import '../controller/number_controller.dart';
 import '../controller/profile_controller.dart';
@@ -33,7 +30,6 @@ import '../resourses/api_constant.dart';
 
 import '../controller/update_user.dart';
 
-
 class SucessRechargePin extends StatefulWidget {
   const SucessRechargePin({Key? key}) : super(key: key);
 
@@ -48,52 +44,52 @@ class _SucessRechargePinState extends State<SucessRechargePin> {
   final formKeypin = GlobalKey<FormState>();
 
   TextEditingController otpcontroller = TextEditingController();
-  Rx<RxStatus> statusOfProviders= RxStatus.empty().obs;
+  Rx<RxStatus> statusOfProviders = RxStatus.empty().obs;
   Rx<ModelSecurityPin> modelVerifySecurity = ModelSecurityPin().obs;
-  Rx<RxStatus> statusOfSucess= RxStatus.empty().obs;
+  Rx<RxStatus> statusOfSucess = RxStatus.empty().obs;
   Rx<ModelBuy> purchaseData = ModelBuy().obs;
-  Rx<RxStatus> statusOfSave= RxStatus.empty().obs;
+  Rx<RxStatus> statusOfSave = RxStatus.empty().obs;
   Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
+
   saveList() async {
-    SharedPreferences pref =  await SharedPreferences.getInstance();
+    SharedPreferences pref = await SharedPreferences.getInstance();
     var uniqueIdentifier = pref.getString("uniqueIdentifier");
     saveTransastionRepo(
-        user_id: profileController.modal.value.data!.user!.id.toString(),
-        amount:controller.amountController1.text.trim(),
-        about: "Buy Airtime",
-        // complete_response: purchaseData.value.data!.toJson(),
-        context: context,
-        description: controller.fetchAccount.value.data!.accountNumber.toString()+DateTime.now().millisecondsSinceEpoch.toString(),
-        type: "dr"
-    ).then((value) {
+            user_id: profileController.modal.value.data!.user!.id.toString(),
+            amount: controller.amountController1.text.trim(),
+            about: "Buy Airtime",
+            // complete_response: purchaseData.value.data!.toJson(),
+            context: context,
+            description:
+                controller.fetchAccount.value.data!.accountNumber.toString() +
+                    DateTime.now().millisecondsSinceEpoch.toString(),
+            type: "dr")
+        .then((value) {
       log("response.body.....    ${value}");
       save.value = value;
       if (value.status == true) {
         statusOfSave.value = RxStatus.success();
         Get.toNamed(MyRouters.successRechargeScreen);
-
       } else {
         statusOfSave.value = RxStatus.error();
       }
     }
-      // showToast(value.message.toString());
-    );
+            // showToast(value.message.toString());
+            );
   }
+
   verify() {
-    securityPinRepo(
-        context: context,
-        pin:  otpcontroller.text.trim()
-
-
-    ).then((value) {
+    securityPinRepo(context: context, pin: otpcontroller.text.trim())
+        .then((value) {
       modelVerifySecurity.value = value;
       if (value.status == true) {
-
         BuyPlanRepo(
           telco: profileController.airtimeController.text.trim(),
           amount: controller.amountController1.text.trim(),
-          phone_no:controller.phoneController1.text.trim(),
-          reference: controller.fetchAccount.value.data!.accountNumber.toString()+DateTime.now().millisecondsSinceEpoch.toString(),
+          phone_no: controller.phoneController1.text.trim(),
+          reference:
+              controller.fetchAccount.value.data!.accountNumber.toString() +
+                  DateTime.now().millisecondsSinceEpoch.toString(),
         ).then((value) {
           log("response.body.....    ${value}");
           purchaseData.value = value;
@@ -101,41 +97,41 @@ class _SucessRechargePinState extends State<SucessRechargePin> {
             saveList();
             statusOfProviders.value = RxStatus.success();
             showToast(value.message.toString());
-            print(  controller.fetchAccount.value.data!.accountNumber.toString()+DateTime.now().millisecondsSinceEpoch.toString(),);
+            print(
+              controller.fetchAccount.value.data!.accountNumber.toString() +
+                  DateTime.now().millisecondsSinceEpoch.toString(),
+            );
           } else {
             statusOfProviders.value = RxStatus.error();
             showToast(value.message.toString());
           }
         }
-        // showToast(value.message.toString());
-        );
+            // showToast(value.message.toString());
+            );
         statusOfSucess.value = RxStatus.success();
         showToast(value.message.toString());
       } else {
         statusOfSucess.value = RxStatus.error();
         showToast(value.message.toString());
       }
-    }
-
-    );
+    });
 
     // if(value.status=="success"){
     //   statusOfChooseBank.value.isSuccess;
     // }
     // Get.toNamed(MyRouters.bottomNavbar);
-
-
-
   }
 
   getCheckValue() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
 
-    pref.getBool('TransistionPin', );
-    print( pref.getBool('TransistionPin', ));
+    pref.getBool(
+      'TransistionPin',
+    );
+    print(pref.getBool(
+      'TransistionPin',
+    ));
   }
-
-
 
   @override
   void initState() {
@@ -144,7 +140,6 @@ class _SucessRechargePinState extends State<SucessRechargePin> {
     // getCheckValue(
     //
     // );
-
   }
 
   @override
@@ -166,87 +161,86 @@ class _SucessRechargePinState extends State<SucessRechargePin> {
           backgroundColor: Colors.white,
           elevation: 0,
           centerTitle: true,
-          title:Text( "Verify Pin" ,style: GoogleFonts.poppins(
-              color: const Color(0xFF1D1D1D),
-              fontSize: 20,
-              fontWeight: FontWeight.w500),),
+          title: Text(
+            "Verify Pin",
+            style: GoogleFonts.poppins(
+                color: const Color(0xFF1D1D1D),
+                fontSize: 20,
+                fontWeight: FontWeight.w500),
+          ),
         ),
         body: SingleChildScrollView(
             child: Form(
-
-              key: formKeypin,
-              child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10.0, right: 10),
-                          child: InkWell(
-                            onTap: (){
-
-                            },
-                            child: Text(
-                              "Create your unique 4-digits pin!",
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          ),
+          key: formKeypin,
+          child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0, right: 10),
+                      child: InkWell(
+                        onTap: () {},
+                        child: Text(
+                          "Create your unique 4-digits pin!",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 22,
+                              fontWeight: FontWeight.w500),
                         ),
-                        const SizedBox(
-                          height: 10,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0, right: 10),
+                      child: Text(
+                        "Please remember this pin. It’ll be used to keep your account secure ",
+                        style: GoogleFonts.poppins(
+                            color: const Color(0xFF1D1D1D),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 25.0, right: 25),
+                      child: Center(
+                        child: Pinput(
+                          validator: MultiValidator([
+                            RequiredValidator(errorText: 'Enter 4 Digit Pin')
+                          ]),
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          controller: otpcontroller,
+                          keyboardType: TextInputType.number,
+                          length: 4,
+                          defaultPinTheme: defaultPinTheme,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10.0, right: 10),
-                          child: Text(
-                            "Please remember this pin. It’ll be used to keep your account secure ",
-                            style: GoogleFonts.poppins(
-                                color: const Color(0xFF1D1D1D),
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 40,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 25.0, right: 25),
-                          child: Center(
-                            child: Pinput(
-                              validator: MultiValidator([
-                                RequiredValidator(errorText: 'Enter 4 Digit Pin')
-                              ]),
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              controller:otpcontroller,
-                              keyboardType: TextInputType.number,
-                              length: 4,
-                              defaultPinTheme: defaultPinTheme,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: size.height * .5,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            if (formKeypin.currentState!.validate()) {
-                              verify();
-                            }
-                          },
-                          child: CustomOutlineBoder(
-                            title: "Next",
-                            backgroundColor: Colors.white,
-                            textColor: AppTheme.buttonColor,
-                            onPressed: () {
-                              Get.toNamed(MyRouters.otpScreen);
-                            },
-                          ),
-                        )
-                      ])),
-            )));
-
+                      ),
+                    ),
+                    SizedBox(
+                      height: size.height * .5,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        if (formKeypin.currentState!.validate()) {
+                          verify();
+                        }
+                      },
+                      child: CustomOutlineBoder(
+                        title: "Next",
+                        backgroundColor: Colors.white,
+                        textColor: AppTheme.buttonColor,
+                        onPressed: () {
+                          Get.toNamed(MyRouters.otpScreen);
+                        },
+                      ),
+                    )
+                  ])),
+        )));
   }
 }

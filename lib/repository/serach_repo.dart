@@ -9,22 +9,19 @@ import '../models/model_update_address.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
-
-
-Future<ModelSearchTag> searchRepo({required String zip_tag,required String email,required String phone,context}) async {
+Future<ModelSearchTag> searchRepo(
+    {required String zip_tag,
+    required String email,
+    required String phone,
+    context}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
 
-
-
-
-
-
-
   // try {
-  http.Response response = await http.get(Uri.parse(ApiUrls.search+"zip_tag=$zip_tag&email=$email&phone=$phone"),
-      headers: await getAuthHeader(),
-      );
+  http.Response response = await http.get(
+    Uri.parse(ApiUrls.search + "zip_tag=$zip_tag&email=$email&phone=$phone"),
+    headers: await getAuthHeader(),
+  );
   log("Sign IN DATA${response.body}");
   // http.Response response = await http.post(Uri.parse(ApiUrls.loginUser),
   //     headers: await getAuthHeader(),body: jsonEncode(map) );
@@ -33,11 +30,12 @@ Future<ModelSearchTag> searchRepo({required String zip_tag,required String email
     Helpers.hideLoader(loader);
 
     return ModelSearchTag.fromJson(jsonDecode(response.body));
-
   } else {
     Helpers.hideLoader(loader);
 
-    return ModelSearchTag(message: jsonDecode(response.body)["message"], );
+    return ModelSearchTag(
+      message: jsonDecode(response.body)["message"],
+    );
   }
   // }  catch (e) {
   //   Helpers.hideLoader(loader);

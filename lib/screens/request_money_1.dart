@@ -7,8 +7,6 @@ import 'package:zip/widgets/common_colour.dart';
 
 import '../controller/update_user.dart';
 
-
-
 class RequestMoney1 extends StatefulWidget {
   const RequestMoney1({Key? key}) : super(key: key);
 
@@ -18,13 +16,16 @@ class RequestMoney1 extends StatefulWidget {
 
 class _RequestMoney1State extends State<RequestMoney1> {
   final registorController = Get.put(registerController());
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-      registorController.fetchVritualAccount();});
+      registorController.fetchVritualAccount();
+    });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +42,7 @@ class _RequestMoney1State extends State<RequestMoney1> {
         ),
         centerTitle: true,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Get.back();
           },
           child: const Icon(
@@ -49,7 +50,6 @@ class _RequestMoney1State extends State<RequestMoney1> {
             color: AppTheme.primaryColor,
           ),
         ),
-
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -63,12 +63,11 @@ class _RequestMoney1State extends State<RequestMoney1> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 InkWell(
-                  onTap: (){
+                  onTap: () {
                     // Get.toNamed(MyRouters.yourRecipient);
                     Get.toNamed(MyRouters.requestMoney2);
                   },
                   child: Container(
-
                     height: 148,
                     width: 148,
                     decoration: BoxDecoration(
@@ -105,11 +104,10 @@ class _RequestMoney1State extends State<RequestMoney1> {
                   ),
                 ),
                 InkWell(
-                  onTap: (){
+                  onTap: () {
                     Get.toNamed(MyRouters.requestPayment3);
                   },
                   child: Container(
-
                     height: 148,
                     width: 148,
                     decoration: BoxDecoration(
@@ -147,20 +145,19 @@ class _RequestMoney1State extends State<RequestMoney1> {
                 ),
               ],
             ),
-
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             Padding(
               padding: const EdgeInsets.only(left: 20.0),
               child: InkWell(
-                onTap: (){
+                onTap: () {
                   Get.toNamed(MyRouters.verifyPaymentLink2);
                 },
                 child: Container(
-
                   height: 140,
                   width: 140,
                   decoration: BoxDecoration(
-
                       color: const Color(0xffFAFAFA),
                       borderRadius: BorderRadius.circular(21)),
                   child: Column(
@@ -194,10 +191,9 @@ class _RequestMoney1State extends State<RequestMoney1> {
                 ),
               ),
             ),
-            SizedBox(height: 100,),
-
-
-
+            SizedBox(
+              height: 100,
+            ),
           ],
         ),
       ),

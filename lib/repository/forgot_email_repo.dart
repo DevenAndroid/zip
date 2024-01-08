@@ -9,25 +9,16 @@ import '../models/verify_africa.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
-
-
-Future<ForgotEmailModel> forgotEmailRepo({context,email}) async {
+Future<ForgotEmailModel> forgotEmailRepo({context, email}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
 
   map['email'] = email;
 
-
-
-
-
-
-
   // try {
   http.Response response = await http.post(Uri.parse(ApiUrls.forgotEmail),
-      headers: await getAuthHeader(),
-      body: jsonEncode(map));
+      headers: await getAuthHeader(), body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
   // http.Response response = await http.post(Uri.parse(ApiUrls.loginUser),
   //     headers: await getAuthHeader(),body: jsonEncode(map) );
@@ -36,11 +27,11 @@ Future<ForgotEmailModel> forgotEmailRepo({context,email}) async {
     Helpers.hideLoader(loader);
 
     return ForgotEmailModel.fromJson(jsonDecode(response.body));
-
   } else {
     Helpers.hideLoader(loader);
 
-    return ForgotEmailModel(message: jsonDecode(response.body)["message"],status: false );
+    return ForgotEmailModel(
+        message: jsonDecode(response.body)["message"], status: false);
   }
   // }  catch (e) {
   //   Helpers.hideLoader(loader);
