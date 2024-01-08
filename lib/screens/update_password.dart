@@ -18,9 +18,6 @@ class UpdatePassword extends StatefulWidget {
 
 class _UpdatePasswordState extends State<UpdatePassword> {
 
-
-
-
   Rx<RxStatus> statusOfUpdatePass = RxStatus.empty().obs;
   Rx<ModelUpdatePassword> updatePass = ModelUpdatePassword().obs;
 

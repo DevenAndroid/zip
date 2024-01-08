@@ -40,7 +40,7 @@ class _EmailScreenState extends State<EmailScreen> {
   final numbercontroller = Get.put(numberController());
   final Controller = Get.put(registerController());
   Rx<RegisterModel> emailregister = RegisterModel().obs;
-  TextEditingController mobileNoController = TextEditingController();
+
 
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
@@ -130,7 +130,7 @@ class _EmailScreenState extends State<EmailScreen> {
           context: context,
           password:passwordController.text.trim(),
           bvn: Controller.BVNController.text.trim(),
-          phone: "+234"+mobileNoController.text.trim(),
+          phone: "+234"+Controller.mobileNoController.text.trim(),
           password_confirmation: confirmPasswordController.text.trim(),
           email:Controller.emailNoController.text.trim(),
 
@@ -138,7 +138,7 @@ class _EmailScreenState extends State<EmailScreen> {
         numbercontroller.isNumber =true;
         numbercontroller.isNumberBvn =false;
         numbercontroller.email=Controller.emailNoController.text.trim();
-        numbercontroller.number="+234${mobileNoController.text.trim()}";
+        numbercontroller.number="+234${Controller.mobileNoController.text.trim()}";
         numbercontroller.emailBvn=Controller.BVNController.text.trim();
 
         // numbercontroller.number="";
@@ -344,7 +344,7 @@ liveAfrica(context);
                                           r'(^(?:[+0]9)?[0-9]{10,12}$)',
                                           errorText: '')
                                     ]),
-                                    controller: mobileNoController,
+                                    controller: Controller.mobileNoController,
                                     decoration: const InputDecoration(
                                       hintText: "XXXXXXXXXX",
                                       border: InputBorder.none,

@@ -112,6 +112,7 @@ import '../screens/loan_list.dart';
 import '../screens/loan_screen.dart';
 import '../screens/lofin_no_pin.dart';
 import '../screens/lofin_pin_screen.dart';
+import '../screens/meter_details.dart';
 import '../screens/meter_screen.dart';
 import '../screens/not_verify_africa.dart';
 import '../screens/notification_screeb.dart';
@@ -221,9 +222,7 @@ class MyRouters{
   static var sharePaymentLink = "/sharePaymentLink";
   static var loginScreen = "/loginScreen";
   static var emailLoginScreen = "/emailLoginScreen";
-
   static var verifyAfricaScreen = "/verifyAfricaScreen";
-
   static var profileUpdateScreen = "/profileUpdateScreen";
   static var changeZipPinScreen = "/changeZipPinScreen";
   static var sendOtpForPinScreen = "/sendOtpForPinScreen";
@@ -320,13 +319,13 @@ class MyRouters{
   static var forgotChangePassword = "/forgotChangePassword ";
   static var walletScreen1 = "/walletScreen1 ";
   static var cardSuccessScreen = "/cardSuccessScreen ";
-
+  static var meterDetails = "/meterDetails ";
 
 
 
   static var route = [
     // GetPage(name: '/', page: () => ImageScreen()),
-   GetPage(name: '/', page: () => Splash()),
+   GetPage(name: '/', page: () => const Splash()),
 
 
 
@@ -334,6 +333,7 @@ class MyRouters{
     GetPage(name: '/withdrawlCash', page: () =>   const WithdrawlCash()),
     GetPage(name: '/walletScreen1', page: () =>   const WalletScreen1()),
     GetPage(name: '/cardSuccessScreen', page: () =>   const CardSuccessScreen()),
+    GetPage(name: '/meterDetails', page: () =>   const MeterDetails()),
     GetPage(name: '/buyAirtimeOperatorScreen', page: () =>   const BuyAirtimeOperatorScreen()),
     GetPage(name: '/forgotOtpScreen', page: () =>   const ForgotScreenOtp()),
     GetPage(name: '/forgotChangePassword', page: () =>   const ForgotChangePassword()),
@@ -379,8 +379,8 @@ class MyRouters{
     GetPage(name: '/exchangeMoney2', page: () =>   const ExchangeMoney2()),
     GetPage(name: '/purchaseCabelScreen', page: () =>   const PurchaseCabelScreen()),
     GetPage(name: '/favourateBalance', page: () =>   const FavourateBalance()),
-    GetPage(name: '/requestPayment4', page: () =>    RequestPayment4()),
-    GetPage(name: '/requestPayment3', page: () =>    RequestPayment3()),
+    GetPage(name: '/requestPayment4', page: () =>    const RequestPayment4()),
+    GetPage(name: '/requestPayment3', page: () =>    const RequestPayment3()),
     GetPage(name: '/requestMoney2', page: () =>   const RequestMoney2()),
     GetPage(name: '/requestMoney1', page: () =>   const RequestMoney1()),
     GetPage(name: '/purchaseDataScreen', page: () =>   const PurchaseDataScreen()),
@@ -455,7 +455,7 @@ class MyRouters{
     GetPage(name: '/loginNoPinScreen', page: () =>   const LoginNoPinScreen()),
     GetPage(name: '/mobileOtpScreen', page: () =>   const MobileOtpScreen()),
     GetPage(name: "/walletScreen", page: ()=>  WalletScreen()),
-    GetPage(name: "/telcosScreen", page: ()=>  TelcosScreen()),
+    GetPage(name: "/telcosScreen", page: ()=>  const TelcosScreen()),
     GetPage(name: "/addCard", page: ()=>  AddCard()),
     GetPage(name: "/myCard", page: ()=>  MyCard()),
     GetPage(name: "/buyServices", page: ()=>  BuyServices()),

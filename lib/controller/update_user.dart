@@ -60,6 +60,18 @@ import 'loan_controller.dart';
 import 'number_controller.dart';
 
 class registerController extends GetxController {
+  ////meter details
+
+  TextEditingController CustomerNameController = TextEditingController();
+  TextEditingController CustomerNumberController = TextEditingController();
+  TextEditingController MeterNumberController = TextEditingController();
+  TextEditingController productNameController = TextEditingController();
+
+  //////
+
+
+
+
   TextEditingController bankController = TextEditingController();
   TextEditingController variationAmountController = TextEditingController();
   TextEditingController bankController1 = TextEditingController();
@@ -116,6 +128,60 @@ String targetImage= "";
       print(value.message.toString());
     });
   }
+  TextEditingController mobileNoController = TextEditingController();
+  RxInt count = 0.obs;
+  holder3(context)  {
+    cardHolderRepo(
+      selfie_image: UserImage.toString(),
+      user_id: userId1.toString(),
+      card_brand: "Visa",
+      card_currency: "USD",
+      card_type: "virtual",
+      email_address: emailController.text.trim(),
+      address:  cityController.text.trim(),
+      house_no:   houseNoController.text.trim(),
+      city: cityController.text.trim(),
+      // phone:"+2348023442212",
+      phone: mobileNoController.text.toString(),
+      country: "Nigeria",
+      postal_code: postalCodeController.text == ""?
+          "000000" :postalCodeController.text.trim(),
+      id_type: "NIGERIAN_BVN_VERIFICATION",
+      state: "Abia",
+      // numbercontroller.isNumber ? numbercontroller.number:numbercontroller.email,
+      bvn:  BVNController.text.toString(),
+      // bvnController.text.trim(),
+      // bvnController.text.trim(),
+
+      first_name: firstNameController.text.toString(),
+      last_name: lastNameController.text.toString(),
+    ).then((value) {
+      if (value.status == "success") {
+        cardHolder.value = value;
+        // Get.toNamed(MyRouters.cardSuccessScreen);
+        // print("sdggfrdh");
+        // create(context);
+        accountVritual3(context);
+        statusOfCardHolder.value = RxStatus.success();
+        log("anjalim");
+        // log(cardId.toString());
+       // showToast(count.toString());
+       showToast(count.toString()+value.message.toString());
+      }
+      else {
+        count.value++;
+        log(count.toString());
+        if (count.value == 3) {
+          showToast("verify africa hit ");
+       saveImage(context);
+        }
+        // else{
+        //   showToast("verify africa hit already ");
+        // }
+        showToast("count"+"${count.toString()} " + value.message.toString());
+      } // showToast(value.message.toString());
+    });
+  }
   liveImage1(context) {
     getLiveImageRepo().then((value) async {
       modalLiveImage.value = value;
@@ -150,6 +216,23 @@ String targetImage= "";
         print(image);
         // accountVritual(context);
          liveImage(context);
+
+      }
+      showToast(value.message.toString());
+    });
+  }
+  saveUserImage(context) async {
+    // await image.rename(image.path.split(".").first+".jpg");
+    liveImageRepo(
+      fieldName1: 'user_image',
+      context: context,
+      file1: image,
+    ).then((value) {
+      if (value.status == true) {
+        UserImage = value.data.toString();
+        print(image);
+        // accountVritual(context);
+        holder3(context);
 
       }
       showToast(value.message.toString());
@@ -382,6 +465,32 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
 
     });
   }
+  contactCreate2(context) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    var uniqueIdentifier= pref.getString("uniqueIdentifier");
+    showToast("Contact api before");
+    createContactRepo(
+      emails: emailController.text.trim() ,
+      first_name: firstNameController.text.trim(),
+      last_name: lastNameController.text.trim(),
+      mobile_number: mobileNoController.text.toString(),
+      cf_product_type: "New Customer",
+      cf_customer_id: uniqueIdentifier,
+      last_source: "in-App",
+
+      context: context,
+    ).then((value) {
+// print("uniqueIdentifier:::::::::::::::;"+uniqueIdentifier!);
+      showToast("Contact api after");
+      createContact.value = value;
+      print("email:::::::::"+emailController.text.toString());
+      contactIdSave2(context);
+
+      statusOfContact.value = RxStatus.success();
+       showToast("Contact created sucessfully  ");
+
+    });
+  }
   contactCreate1(context) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var uniqueIdentifier= pref.getString("uniqueIdentifier");
@@ -428,6 +537,17 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
     ).then((value) {
       saveId.value = value;
       verifyAfrica(context);
+      statusOfContact.value = RxStatus.success();
+      showToast("Contact save Sucessfully ");
+
+    });
+  }
+  contactIdSave2(context) {
+    saveIdRepo(
+      freshwork_id: createContact.value.contact!.id.toString()
+    ).then((value) {
+      saveId.value = value;
+      Get.toNamed(MyRouters.otpScreen);
       statusOfContact.value = RxStatus.success();
       showToast("Contact save Sucessfully ");
 
@@ -703,6 +823,7 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
 /////////////////////////////////
   String userId1 = "";
   String liveUserImage = "";
+  String UserImage = "";
   String verificationStatus = "";
   String avtar = "";
   TextEditingController dateOfBirthController = TextEditingController();
@@ -853,6 +974,39 @@ showToast("FACEMATCH-VERIFICATION api hit::::");
         }
         statusOfAccount.value = RxStatus.success();
         contactCreate(context);
+        // fetchVritualAccount(context);
+
+        showToast(value.message.toString());
+        SharedPreferences pref = await SharedPreferences.getInstance();
+
+        pref.setString(
+            'business_id', virtualAccount.value.data!.sId.toString());
+        // Get.toNamed(MyRouters.otpScreen,);
+      } else {
+        statusOfAccount.value = RxStatus.error();
+        showToast(value.message.toString());
+      }
+      //
+    });
+  }
+  Future accountVritual3(context) async {
+    await accountRepo(
+            bvn: numbercontroller.isNumberBvn
+                ? numbercontroller.numberBvn
+                : numbercontroller.emailBvn,
+            phonenumber: molileController.text.trim(),
+            firstName: firstNameController.text.trim(),
+            lastName: lastNameController.text.trim(),
+         dateOfBirth: dateOfBirthController.text.trim(),
+            context: context)
+        .then((value) async {
+      virtualAccount.value = value;
+      if (value.success == true) {
+        if (kDebugMode) {
+          print(virtualAccount.value = value);
+        }
+        statusOfAccount.value = RxStatus.success();
+        contactCreate2(context);
         // fetchVritualAccount(context);
 
         showToast(value.message.toString());

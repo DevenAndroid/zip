@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/routers/my_routers.dart';
+import 'package:zip/screens/meter_details.dart';
 import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
@@ -90,6 +91,8 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
              .then((value) {
            verifyMeter.value = value;
            if (value.status == true) {
+             controller.CustomerNameController.text= verifyMeter.value.data!.content!.customerName.toString();
+             controller.CustomerNumberController.text= verifyMeter.value.data!.content!.customerNumber.toString();
              buyEnergy();
              // payOutcontroller.accountName.text = (value.data!.accountName??"").toString();
              statusOfResolve.value = RxStatus.success();
@@ -116,10 +119,10 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
         .then((value) {
       Energy.value = value;
       if (value.status == true) {
-        // payOutcontroller.accountName.text = (value.data!.accountName??"").toString();
+        controller.productNameController.text =  Energy.value.data!.content!.transactions!.productName.toString();
         statusOfBuyEnergy.value = RxStatus.success();
         saveList();
-        Get.toNamed(MyRouters.successRechargeScreen);
+        Get.to(()=>MeterDetails());
         showToast(value.message.toString());
       } else {
         showToast(value.message.toString());

@@ -294,6 +294,48 @@ class ProfileController extends GetxController {
       } // showToast(value.message.toString());
     });
   }
+   holder3()  {
+     cardHolderRepo(
+      // selfie_image: liveUserImage1.toString(),
+      user_id: modal.value.data!.user!.id .toString(),
+      card_brand: "Visa",
+      card_currency: "USD",
+      card_type: "virtual",
+      email_address: emailController.text.trim(),
+      address: addressController.text.trim(),
+      house_no: houseNumberController.text.trim(),
+      city: cityController.text.trim(),
+      phone: modal.value.data!.user!.phone.toString(),
+      country: "Nigeria",
+      postal_code: postalCodeController.text.trim(),
+      id_type: "NIGERIAN_BVN_VERIFICATION",
+      state: "Abia",
+      // numbercontroller.isNumber ? numbercontroller.number:numbercontroller.email,
+      bvn:bvnController.text.trim(),
+      // bvnController.text.trim(),
+      // bvnController.text.trim(),
+
+      first_name: modal.value.data!.user!.fname.toString(),
+      last_name: modal.value.data!.user!.lname.toString(),
+    ).then((value) {
+      if (value.status == "success") {
+
+
+        cardHolder.value = value;
+        // Get.toNamed(MyRouters.cardSuccessScreen);
+        // print("sdggfrdh");
+        // create(context);
+
+        statusOfCardHolder.value = RxStatus.success();
+        log("anjalim");
+        log(cardId.toString());
+
+        showToast(value.message.toString());
+      } else {
+        showToast(value.message.toString());
+      } // showToast(value.message.toString());
+    });
+  }
    holder1()  {
      cardHolderRepo(
 // selfie_image: liveUserImage1.toString(),
