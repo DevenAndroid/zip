@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-
 import 'common_colour.dart';
 import '../resourses/size.dart';
 import 'common_button.dart';
 
-
-
 class CommonErrorWidget extends StatelessWidget {
   final String errorText;
   final VoidCallback onTap;
-  const CommonErrorWidget({Key? key, required this.errorText, required this.onTap}) : super(key: key);
+
+  const CommonErrorWidget(
+      {Key? key, required this.errorText, required this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,6 @@ class CommonErrorWidget extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-
           CustomOutlineButton(
             title: "Refresh",
             backgroundColor: Colors.white,

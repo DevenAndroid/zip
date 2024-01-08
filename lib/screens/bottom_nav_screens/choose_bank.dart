@@ -26,8 +26,9 @@ class _ChooseBankState extends State<ChooseBank> {
 
   ChooseBankApi() {
     chooseBankRepo(
-        // country: "NG", currency: "NGN"
-    ).then((value) {
+            // country: "NG", currency: "NGN"
+            )
+        .then((value) {
       chooseBank.value = value;
 
       if (value.success == true) {
@@ -49,6 +50,7 @@ class _ChooseBankState extends State<ChooseBank> {
 
   final controller = Get.put(registerController());
   final TextEditingController search1Controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -94,12 +96,10 @@ class _ChooseBankState extends State<ChooseBank> {
                             width: 10,
                           ),
                         ),
-                        onTap: (){
-                          setState(() {
-
-                          });
+                        onTap: () {
+                          setState(() {});
                         },
-                        onChanged: (gt){
+                        onChanged: (gt) {
                           setState(() {});
                         },
                       ),
@@ -107,15 +107,21 @@ class _ChooseBankState extends State<ChooseBank> {
                         height: 20,
                       ),
                       Obx(() {
-                        List<Data> searchData=[];
-                        if(statusOfChooseBank.value.isSuccess && chooseBank.value.data!= null){
-    String search = search1Controller.text.trim().toLowerCase();
-    if(search.isNotEmpty) {
-      searchData = chooseBank.value.data!.where((element) => element.name.toString().toLowerCase().contains(search)
-          ).toList();
-    } else {
-      searchData = chooseBank.value.data!;
-    }
+                        List<Data> searchData = [];
+                        if (statusOfChooseBank.value.isSuccess &&
+                            chooseBank.value.data != null) {
+                          String search =
+                              search1Controller.text.trim().toLowerCase();
+                          if (search.isNotEmpty) {
+                            searchData = chooseBank.value.data!
+                                .where((element) => element.name
+                                    .toString()
+                                    .toLowerCase()
+                                    .contains(search))
+                                .toList();
+                          } else {
+                            searchData = chooseBank.value.data!;
+                          }
                         }
                         return statusOfChooseBank.value.isSuccess
                             ? ListView.builder(
@@ -134,15 +140,22 @@ class _ChooseBankState extends State<ChooseBank> {
                                       children: [
                                         InkWell(
                                           onTap: () {
-                                            controller.bankController.text = item.name.toString().toUpperCase();
-                                            controller.idController1.text = item.code.toString();
-                                            print("tget"+controller.idController1.text);
+                                            controller.bankController.text =
+                                                item.name
+                                                    .toString()
+                                                    .toUpperCase();
+                                            controller.idController1.text =
+                                                item.code.toString();
+                                            print("tget" +
+                                                controller.idController1.text);
                                             Get.toNamed(MyRouters.sendCash2,
-                                                arguments: [item.name.toString(),item.code.toString()]);
+                                                arguments: [
+                                                  item.name.toString(),
+                                                  item.code.toString()
+                                                ]);
                                           },
                                           child: Text(
-                                            item.name
-                                                .toString().toUpperCase(),
+                                            item.name.toString().toUpperCase(),
                                             style: GoogleFonts.poppins(
                                                 color: const Color(0xFF1D1D1D),
                                                 fontSize: 15,

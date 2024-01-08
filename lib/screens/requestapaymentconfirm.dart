@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -29,13 +28,15 @@ class _RequestApaymentConfirmState extends State<RequestApaymentConfirm> {
               fontWeight: FontWeight.w500),
         ),
         leading: InkWell(
-          onTap: (){Get.back();},
+          onTap: () {
+            Get.back();
+          },
           child: Icon(Icons.arrow_back),
         ),
         centerTitle: true,
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 20,top: 20),
+            padding: const EdgeInsets.only(right: 20, top: 20),
             child: Text(
               "Cancel",
               style: GoogleFonts.poppins(
@@ -44,7 +45,6 @@ class _RequestApaymentConfirmState extends State<RequestApaymentConfirm> {
                   fontWeight: FontWeight.w400),
             ),
           )
-
         ],
       ),
       body: SingleChildScrollView(
@@ -62,9 +62,11 @@ class _RequestApaymentConfirmState extends State<RequestApaymentConfirm> {
                     fontWeight: FontWeight.w400),
               ),
             ),
-            SizedBox(height: 4,),
+            SizedBox(
+              height: 4,
+            ),
             Padding(
-              padding: const EdgeInsets.only(left: 35,right: 35),
+              padding: const EdgeInsets.only(left: 35, right: 35),
               child: Text(
                 "Add a description for your payer of the services or goods provided",
                 style: GoogleFonts.poppins(
@@ -78,7 +80,7 @@ class _RequestApaymentConfirmState extends State<RequestApaymentConfirm> {
             ),
             InkWell(
               onTap: () {
-Get.toNamed(MyRouters.paymentLink);
+                Get.toNamed(MyRouters.paymentLink);
               },
               child: CustomOutlineButton(
                 title: "Confirm",

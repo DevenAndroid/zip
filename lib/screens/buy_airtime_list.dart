@@ -34,12 +34,14 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
   Rx<RxStatus> statusOfBuyDataList = RxStatus.empty().obs;
   Rx<BuyCavelTvList> buyCableList = BuyCavelTvList().obs;
   Rx<RxStatus> statusOfelEctricityTransistion = RxStatus.empty().obs;
-  Rx<BuyElectricityListModel> electricityTransistion = BuyElectricityListModel().obs;
+  Rx<BuyElectricityListModel> electricityTransistion =
+      BuyElectricityListModel().obs;
 
-   Rx<RxStatus> statusOfBuyDataList1 = RxStatus.empty().obs;
+  Rx<RxStatus> statusOfBuyDataList1 = RxStatus.empty().obs;
   Rx<BuyDataListModel> buyDataList = BuyDataListModel().obs;
 
   String? appBarName = "Airtime Transistion";
+
   getAllTransitionList() {
     buyAirtimeListRepo().then((value) {
       log("response.body.....    ${value}");
@@ -50,9 +52,10 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
         statusOfAirtimeTransistion.value = RxStatus.error();
       }
     }
-      // showToast(value.message.toString());
-    );
+        // showToast(value.message.toString());
+        );
   }
+
   getSentTransitionList() {
     buyElectricityListRepo().then((value) {
       log("response.body.....    ${value}");
@@ -63,8 +66,8 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
         statusOfelEctricityTransistion.value = RxStatus.error();
       }
     }
-      // showToast(value.message.toString());
-    );
+        // showToast(value.message.toString());
+        );
   }
 
   getBuyDataList() {
@@ -77,9 +80,10 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
         statusOfBuyDataList1.value = RxStatus.error();
       }
     }
-      // showToast(value.message.toString());
-    );
+        // showToast(value.message.toString());
+        );
   }
+
   getBuyCableList() {
     buyCabelTvListRepo().then((value) {
       log("response.body.....    ${value}");
@@ -90,10 +94,9 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
         statusOfBuyDataList.value = RxStatus.error();
       }
     }
-      // showToast(value.message.toString());
-    );
+        // showToast(value.message.toString());
+        );
   }
-
 
   @override
   void initState() {
@@ -126,7 +129,6 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                 fontSize: 20,
                 fontWeight: FontWeight.w500),
           ),
-
           centerTitle: true,
         ),
         body: Theme(
@@ -146,7 +148,7 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                               scrollDirection: Axis.horizontal,
                               child: Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     GestureDetector(
                                       onTap: () {
@@ -162,37 +164,37 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                             horizontal: 18, vertical: 12),
                                         decoration: currentDrawer == 0
                                             ? BoxDecoration(
-                                          gradient: const LinearGradient(
-                                              colors: [
-                                                Color(0xFFF0D75F),
-                                                Color(0xFFB2802A),
-                                              ],
-                                              begin: Alignment.topCenter,
-                                              end:
-                                              Alignment.bottomCenter),
-                                          borderRadius:
-                                          BorderRadius.circular(15),
-                                        )
+                                                gradient: const LinearGradient(
+                                                    colors: [
+                                                      Color(0xFFF0D75F),
+                                                      Color(0xFFB2802A),
+                                                    ],
+                                                    begin: Alignment.topCenter,
+                                                    end:
+                                                        Alignment.bottomCenter),
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                              )
                                             : BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                          BorderRadius.circular(15),
-                                        ),
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                              ),
                                         child: Center(
                                           child: Text("Airtime",
                                               style: currentDrawer == 0
                                                   ? GoogleFonts.poppins(
-                                                  color: const Color(
-                                                      0xFFFFFFFF),
-                                                  fontSize: 13,
-                                                  fontWeight:
-                                                  FontWeight.w500)
+                                                      color: const Color(
+                                                          0xFFFFFFFF),
+                                                      fontSize: 13,
+                                                      fontWeight:
+                                                          FontWeight.w500)
                                                   : GoogleFonts.poppins(
-                                                  color: const Color(
-                                                      0xFF1D1D1D),
-                                                  fontSize: 13,
-                                                  fontWeight:
-                                                  FontWeight.w500)),
+                                                      color: const Color(
+                                                          0xFF1D1D1D),
+                                                      fontSize: 13,
+                                                      fontWeight:
+                                                          FontWeight.w500)),
                                         ),
                                       ),
                                     ),
@@ -203,7 +205,8 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                       onTap: () {
                                         setState(() {
                                           currentDrawer = 1;
-                                          appBarName = "Electricity Transaction";
+                                          appBarName =
+                                              "Electricity Transaction";
                                           getSentTransitionList();
                                         });
                                       },
@@ -213,37 +216,37 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                             horizontal: 16, vertical: 12),
                                         decoration: currentDrawer == 1
                                             ? BoxDecoration(
-                                          gradient: const LinearGradient(
-                                              colors: [
-                                                Color(0xFFF0D75F),
-                                                Color(0xFFB2802A),
-                                              ],
-                                              begin: Alignment.topCenter,
-                                              end:
-                                              Alignment.bottomCenter),
-                                          borderRadius:
-                                          BorderRadius.circular(15),
-                                        )
+                                                gradient: const LinearGradient(
+                                                    colors: [
+                                                      Color(0xFFF0D75F),
+                                                      Color(0xFFB2802A),
+                                                    ],
+                                                    begin: Alignment.topCenter,
+                                                    end:
+                                                        Alignment.bottomCenter),
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                              )
                                             : BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                          BorderRadius.circular(15),
-                                        ),
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                              ),
                                         child: Center(
                                           child: Text("Electricity",
                                               style: currentDrawer == 1
                                                   ? GoogleFonts.poppins(
-                                                  color: const Color(
-                                                      0xFFFFFFFF),
-                                                  fontSize: 13,
-                                                  fontWeight:
-                                                  FontWeight.w500)
+                                                      color: const Color(
+                                                          0xFFFFFFFF),
+                                                      fontSize: 13,
+                                                      fontWeight:
+                                                          FontWeight.w500)
                                                   : GoogleFonts.poppins(
-                                                  color: const Color(
-                                                      0xFF1D1D1D),
-                                                  fontSize: 13,
-                                                  fontWeight:
-                                                  FontWeight.w500)),
+                                                      color: const Color(
+                                                          0xFF1D1D1D),
+                                                      fontSize: 13,
+                                                      fontWeight:
+                                                          FontWeight.w500)),
                                         ),
                                       ),
                                     ),
@@ -264,36 +267,37 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                             horizontal: 18, vertical: 12),
                                         decoration: currentDrawer == 2
                                             ? BoxDecoration(
-                                          gradient: const LinearGradient(
-                                              colors: [
-                                                Color(0xFFF0D75F),
-                                                Color(0xFFB2802A),
-                                              ],
-                                              begin: Alignment.topCenter,
-                                              end:
-                                              Alignment.bottomCenter),
-                                          borderRadius:
-                                          BorderRadius.circular(15),
-                                        )
+                                                gradient: const LinearGradient(
+                                                    colors: [
+                                                      Color(0xFFF0D75F),
+                                                      Color(0xFFB2802A),
+                                                    ],
+                                                    begin: Alignment.topCenter,
+                                                    end:
+                                                        Alignment.bottomCenter),
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                              )
                                             : BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                          BorderRadius.circular(15),
-                                        ),
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                              ),
                                         child: Center(
                                           child: Text("Data",
                                               style: currentDrawer == 2
                                                   ? GoogleFonts.poppins(
-                                                  color:
-                                                  const Color(0xFFFFFFFF),
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.w500)
+                                                      color: const Color(
+                                                          0xFFFFFFFF),
+                                                      fontSize: 13,
+                                                      fontWeight:
+                                                          FontWeight.w500)
                                                   : GoogleFonts.poppins(
-                                                  color:
-                                                  const Color(0xFF1D1D1D),
-                                                  fontSize: 13,
-                                                  fontWeight:
-                                                  FontWeight.w500)),
+                                                      color: const Color(
+                                                          0xFF1D1D1D),
+                                                      fontSize: 13,
+                                                      fontWeight:
+                                                          FontWeight.w500)),
                                         ),
                                       ),
                                     ),
@@ -315,36 +319,37 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                             horizontal: 18, vertical: 12),
                                         decoration: currentDrawer == 3
                                             ? BoxDecoration(
-                                          gradient: const LinearGradient(
-                                              colors: [
-                                                Color(0xFFF0D75F),
-                                                Color(0xFFB2802A),
-                                              ],
-                                              begin: Alignment.topCenter,
-                                              end:
-                                              Alignment.bottomCenter),
-                                          borderRadius:
-                                          BorderRadius.circular(15),
-                                        )
+                                                gradient: const LinearGradient(
+                                                    colors: [
+                                                      Color(0xFFF0D75F),
+                                                      Color(0xFFB2802A),
+                                                    ],
+                                                    begin: Alignment.topCenter,
+                                                    end:
+                                                        Alignment.bottomCenter),
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                              )
                                             : BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                          BorderRadius.circular(15),
-                                        ),
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                              ),
                                         child: Center(
                                           child: Text("Cabel Tv",
                                               style: currentDrawer == 3
                                                   ? GoogleFonts.poppins(
-                                                  color:
-                                                  const Color(0xFFFFFFFF),
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.w500)
+                                                      color: const Color(
+                                                          0xFFFFFFFF),
+                                                      fontSize: 13,
+                                                      fontWeight:
+                                                          FontWeight.w500)
                                                   : GoogleFonts.poppins(
-                                                  color:
-                                                  const Color(0xFF1D1D1D),
-                                                  fontSize: 13,
-                                                  fontWeight:
-                                                  FontWeight.w500)),
+                                                      color: const Color(
+                                                          0xFF1D1D1D),
+                                                      fontSize: 13,
+                                                      fontWeight:
+                                                          FontWeight.w500)),
                                         ),
                                       ),
                                     ),
@@ -353,768 +358,944 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                         SizedBox(
                           height: 20,
                         ),
-                        if(currentDrawer ==0 )
-                        Obx(() {
-                          return statusOfAirtimeTransistion.value.isSuccess
-                              ? Column(
-                                children: [
-                                  airtimeTransistion.value.data!.isEmpty?Center(
-                                    child: Text("No records found.", style:
-                                    GoogleFonts.poppins(
-                                        color: AppTheme
-                                            .primaryColor,
-                                        fontSize: 16,
-                                        fontWeight:
-                                        FontWeight
-                                            .w600),),
-                                  ):
-                                  ListView.builder(
-                                  shrinkWrap: true,
-                                  physics: const BouncingScrollPhysics(),
-                                  itemCount: airtimeTransistion.value.data!.length,
-                                  itemBuilder: (context, index) {
-                                    return GestureDetector(
-                                      onTap: () {},
-                                      child: Column(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                        children: [
-                                          airtimeTransistion.value.data!.isEmpty?Center(
-                                            child: Text("No records found.", style:
-                                            GoogleFonts.poppins(
-                                                color: AppTheme
-                                                    .primaryColor,
-                                                fontSize: 16,
-                                                fontWeight:
-                                                FontWeight
-                                                    .w600),),
-                                          ):
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          InkWell(
-                                            onTap: (){
-                                              Get.toNamed(MyRouters.buyAirtimeScreen,arguments: [  airtimeTransistion.value.data![index].userId.toString(),
-                                                airtimeTransistion.value.data![index].amount.toString(),
-                                                airtimeTransistion.value.data![index].telcos.toString(),
-                                                airtimeTransistion.value.data![index].phone.toString(),
-
-                                              ]
-
-                                              );
-                                            },
-                                            child: Container(
-                                              padding: EdgeInsets.all(10),
-                                              decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(10),
-                                                  border: Border.all(color: Colors.grey)
-                                              ),
-                                              child: Padding(
-                                                padding: const EdgeInsets.all(5.0),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                  children: [
-
-
-                                                    Column(
-                                                      mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                      crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                      children: [
-                                                        Text(
-
-                                                          airtimeTransistion
-                                                                  .value
-                                                                  .data![index]
-                                                                  .phone
-                                                                  .toString(),
-                                                          style:
-                                                          GoogleFonts.poppins(
-                                                              color: AppTheme
-                                                                  .primaryColor,
-                                                              fontSize: 16,
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .w600),
-                                                        ),
-                                                        Text(
-                                                          airtimeTransistion
-                                                              .value
-                                                              .data![index]
-                                                              .telcos
-                                                              .toString(),
-                                                          style:
-                                                          GoogleFonts.poppins(
-                                                              color:
-                                                              Colors.grey,
-                                                              fontSize: 13,
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .w500),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    Column(
-                                                      mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                      crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                      children: [
-                                                        Text(
-                                                          airtimeTransistion
-                                                              .value
-                                                              .data![index]
-                                                              .createdAt
-                                                              .toString(),
-                                                          style:
-                                                          GoogleFonts.poppins(
-                                                              color: Colors.grey,
-                                                              fontSize: 13,
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .w300),
-                                                        ),
-                                                        Row(
-                                                          mainAxisAlignment: MainAxisAlignment.start,
-                                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                                          children: [
-                                                            SvgPicture.asset("assets/images/ngn.svg"),
-                                                            Text(
-                                                              airtimeTransistion
-                                                                  .value
-                                                                  .data![index]
-                                                                  .amount
-                                                                  .toString(),
-                                                              style:
-                                                              GoogleFonts.poppins(
-                                                                  color:
-                                                                  Colors.grey,
-                                                                  fontSize: 14,
-                                                                  fontWeight:
-                                                                  FontWeight
-                                                                      .w400),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          )
-                                        ],
-                                      ),
-                                    );
-                                  }),
-                                ],
-                              )
-                              : statusOfAirtimeTransistion.value.isError
-                              ? CommonErrorWidget(
-                            errorText: airtimeTransistion.value.message
-                                .toString(),
-                            onTap: () {
-                              getAllTransitionList();
-                            },
-                          )
-                              : const CommonProgressIndicator();
-                        }),
-                        if(currentDrawer ==1 )
+                        if (currentDrawer == 0)
                           Obx(() {
-                            return statusOfelEctricityTransistion.value.isSuccess
+                            return statusOfAirtimeTransistion.value.isSuccess
                                 ? Column(
-                              children: [
-                                electricityTransistion.value.data!.isEmpty?Center(
-                                  child: Text("No records found.", style:
-                                  GoogleFonts.poppins(
-                                      color: AppTheme
-                                          .primaryColor,
-                                      fontSize: 16,
-                                      fontWeight:
-                                      FontWeight
-                                          .w600),),
-                                ):
-                                ListView.builder(
-                                    shrinkWrap: true,
-                                    physics: const BouncingScrollPhysics(),
-                                    itemCount: electricityTransistion.value.data!.length,
-                                    itemBuilder: (context, index) {
-                                      return GestureDetector(
-                                        onTap: () {
-
-                                        },
-                                        child: Column(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                          children: [
-
-                                            SizedBox(
-                                              height: 10,
-                                            ),
-                                            InkWell(
-                                              onTap: (){
-                                                Get.toNamed(MyRouters.buyElectricity,arguments: [
-                                                  electricityTransistion.value.data![index].userId.toString(),
-                                                  electricityTransistion.value.data![index].amount.toString(),
-                                                  electricityTransistion.value.data![index].telcos.toString(),
-                                                  electricityTransistion.value.data![index].description.toString(),
-                                                  electricityTransistion.value.data![index].phone.toString(),
-                                                ]);
-                                              },
-                                              child: Container(
-                                                padding: EdgeInsets.all(10),
-                                                decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(10),
-                                                    border: Border.all(color: Colors.grey)
-                                                ),
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(5.0),
-                                                  child: Row(
+                                    children: [
+                                      airtimeTransistion.value.data!.isEmpty
+                                          ? Center(
+                                              child: Text(
+                                                "No records found.",
+                                                style: GoogleFonts.poppins(
+                                                    color:
+                                                        AppTheme.primaryColor,
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              ),
+                                            )
+                                          : ListView.builder(
+                                              shrinkWrap: true,
+                                              physics:
+                                                  const BouncingScrollPhysics(),
+                                              itemCount: airtimeTransistion
+                                                  .value.data!.length,
+                                              itemBuilder: (context, index) {
+                                                return GestureDetector(
+                                                  onTap: () {},
+                                                  child: Column(
                                                     mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                                    children: [
-
-
-                                                      Column(
-                                                        mainAxisAlignment:
                                                         MainAxisAlignment.start,
-                                                        crossAxisAlignment:
-                                                        CrossAxisAlignment.start,
-                                                        children: [
-                                                          Row(
-                                                            children: [ Image.asset("assets/images/meter.png"),
-                                                              SizedBox(width: 6,),
-                                                              Text(
-
-                                                                electricityTransistion
-                                                                    .value
-                                                                    .data![index]
-                                                                    .description
-                                                                    .toString(),
-                                                                style:
-                                                                GoogleFonts.poppins(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      airtimeTransistion.value
+                                                              .data!.isEmpty
+                                                          ? Center(
+                                                              child: Text(
+                                                                "No records found.",
+                                                                style: GoogleFonts.poppins(
                                                                     color: AppTheme
                                                                         .primaryColor,
-                                                                    fontSize: 16,
+                                                                    fontSize:
+                                                                        16,
                                                                     fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
+                                                                        FontWeight
+                                                                            .w600),
                                                               ),
-                                                            ],
-                                                          ),
-                                                          Text(
-                                                            electricityTransistion
-                                                                .value
-                                                                .data![index]
-                                                                .telcos
-                                                                .toString(),
-                                                            style:
-                                                            GoogleFonts.poppins(
-                                                                color:
-                                                                Colors.grey,
-                                                                fontSize: 13,
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .w500),
-                                                          ),
-                                                          Text(
-                                                            electricityTransistion
-                                                                .value
-                                                                .data![index]
-                                                                .phone
-                                                                .toString(),
-                                                            style:
-                                                            GoogleFonts.poppins(
-                                                                color:
-                                                                Colors.grey,
-                                                                fontSize: 13,
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .w500),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      Column(
-                                                        mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                        crossAxisAlignment:
-                                                        CrossAxisAlignment.start,
-                                                        children: [
-                                                          Text(
-                                                            electricityTransistion
-                                                                .value
-                                                                .data![index]
-                                                                .createdAt
-                                                                .toString(),
-                                                            style:
-                                                            GoogleFonts.poppins(
-                                                                color: Colors.grey,
-                                                                fontSize: 13,
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .w300),
-                                                          ),
-                                                          Row(
-                                                            children: [SvgPicture.asset("assets/images/ngn.svg"),
-
-                                                              Text(
-                                                                electricityTransistion
+                                                            )
+                                                          : SizedBox(
+                                                              height: 10,
+                                                            ),
+                                                      InkWell(
+                                                        onTap: () {
+                                                          Get.toNamed(
+                                                              MyRouters
+                                                                  .buyAirtimeScreen,
+                                                              arguments: [
+                                                                airtimeTransistion
                                                                     .value
-                                                                    .data![index]
+                                                                    .data![
+                                                                        index]
+                                                                    .userId
+                                                                    .toString(),
+                                                                airtimeTransistion
+                                                                    .value
+                                                                    .data![
+                                                                        index]
                                                                     .amount
                                                                     .toString(),
-                                                                style:
-                                                                GoogleFonts.poppins(
-                                                                    color:
-                                                                    Colors.grey,
-                                                                    fontSize: 14,
-                                                                    fontWeight:
-                                                                    FontWeight
-                                                                        .w400),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: 10,
-                                            )
-                                          ],
-                                        ),
-                                      );
-                                    }),
-                              ],
-                            )
-                                : statusOfelEctricityTransistion.value.isError
-                                ? CommonErrorWidget(
-                              errorText: electricityTransistion.value.message
-                                  .toString(),
-                              onTap: () {
-                                // getSentTransitionList();
-                              },
-                            )
-                                : const CommonProgressIndicator();
-                          }),
-                          if(currentDrawer ==2 )
-                            Obx(() {
-                              return statusOfBuyDataList1.value.isSuccess
-                                  ? Column(
-                                children: [
-                                  buyDataList.value.data!.isEmpty?Center(
-                                    child: Text("No records found.", style:
-                                    GoogleFonts.poppins(
-                                        color: AppTheme
-                                            .primaryColor,
-                                        fontSize: 16,
-                                        fontWeight:
-                                        FontWeight
-                                            .w600),),
-                                  ):
-                                  ListView.builder(
-                                      shrinkWrap: true,
-                                      physics: const BouncingScrollPhysics(),
-                                      itemCount: buyDataList.value.data!.length,
-                                      itemBuilder: (context, index) {
-                                        return GestureDetector(
-                                          onTap: () {
-
-                                          },
-                                          child: Column(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                            children: [
-
-                                              SizedBox(
-                                                height: 10,
-                                              ),
-                                              InkWell(
-                                                onTap: (){
-                                                  Get.toNamed(MyRouters.buyData,arguments: [
-                                                    buyDataList.value.data![index].telcos.toString(),
-                                                    buyDataList.value.data![index].amount.toString(),
-                                                    buyDataList.value.data![index].dataplan.toString(),
-                                                    buyDataList.value.data![index].dataCode.toString(),
-                                                    buyDataList.value.data![index].phone.toString(),
-                                                    buyDataList.value.data![index].userId.toString(),
-
-
-                                                  ]);
-                                                },
-                                                child: Container(
-                                                  padding: EdgeInsets.all(10),
-                                                  decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.circular(10),
-                                                      border: Border.all(color: Colors.grey)
-                                                  ),
-                                                  child: Padding(
-                                                    padding: const EdgeInsets.all(5.0),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: [
-
-
-                                                        Column(
-                                                          mainAxisAlignment:
-                                                          MainAxisAlignment.start,
-                                                          crossAxisAlignment:
-                                                          CrossAxisAlignment.start,
-                                                          children: [
-                                                            Text(
-
-                                                              buyDataList
-                                                                  .value
-                                                                  .data![index]
-                                                                  .phone
-                                                                  .toString(),
-                                                              style:
-                                                              GoogleFonts.poppins(
-                                                                  color: AppTheme
-                                                                      .primaryColor,
-                                                                  fontSize: 16,
-                                                                  fontWeight:
-                                                                  FontWeight
-                                                                      .w600),
-                                                            ),
-                                                            Text(
-                                                              buyDataList
-                                                                  .value
-                                                                  .data![index]
-                                                                  .telcos
-                                                                  .toString(),
-                                                              style:
-                                                              GoogleFonts.poppins(
-                                                                  color:
-                                                                  Colors.grey,
-                                                                  fontSize: 13,
-                                                                  fontWeight:
-                                                                  FontWeight
-                                                                      .w500),
-                                                            ),
-                                                            Text(
-                                                              "Plan:- "+ buyDataList
-                                                                  .value
-                                                                  .data![index]
-                                                                  .dataplan
-                                                                  .toString(),
-                                                              style:
-                                                              GoogleFonts.poppins(
-                                                                  color:
-                                                                  Colors.grey,
-                                                                  fontSize: 13,
-                                                                  fontWeight:
-                                                                  FontWeight
-                                                                      .w500),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        Column(
-                                                          mainAxisAlignment:
-                                                          MainAxisAlignment.start,
-                                                          crossAxisAlignment:
-                                                          CrossAxisAlignment.end,
-                                                          children: [
-                                                            Text(
-                                                              buyDataList
-                                                                  .value
-                                                                  .data![index]
-                                                                  .createdAt
-                                                                  .toString(),
-                                                              style:
-                                                              GoogleFonts.poppins(
-                                                                  color: Colors.grey,
-                                                                  fontSize: 13,
-                                                                  fontWeight:
-                                                                  FontWeight
-                                                                      .w300),
-                                                            ),
-                                                            Row(
-                                                              mainAxisAlignment: MainAxisAlignment.start,
-                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                                airtimeTransistion
+                                                                    .value
+                                                                    .data![
+                                                                        index]
+                                                                    .telcos
+                                                                    .toString(),
+                                                                airtimeTransistion
+                                                                    .value
+                                                                    .data![
+                                                                        index]
+                                                                    .phone
+                                                                    .toString(),
+                                                              ]);
+                                                        },
+                                                        child: Container(
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  10),
+                                                          decoration: BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10),
+                                                              border: Border.all(
+                                                                  color: Colors
+                                                                      .grey)),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(5.0),
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
                                                               children: [
-                                                                SvgPicture.asset("assets/images/ngn.svg"),
-                                                                Text(
-                                                                  buyDataList
-                                                                      .value
-                                                                      .data![index]
-                                                                      .amount
-                                                                      .toString(),
-                                                                  style:
-                                                                  GoogleFonts.poppins(
-                                                                      color:
-                                                                      Colors.grey,
-                                                                      fontSize: 14,
-                                                                      fontWeight:
-                                                                      FontWeight
-                                                                          .w400),
+                                                                Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Text(
+                                                                      airtimeTransistion
+                                                                          .value
+                                                                          .data![
+                                                                              index]
+                                                                          .phone
+                                                                          .toString(),
+                                                                      style: GoogleFonts.poppins(
+                                                                          color: AppTheme
+                                                                              .primaryColor,
+                                                                          fontSize:
+                                                                              16,
+                                                                          fontWeight:
+                                                                              FontWeight.w600),
+                                                                    ),
+                                                                    Text(
+                                                                      airtimeTransistion
+                                                                          .value
+                                                                          .data![
+                                                                              index]
+                                                                          .telcos
+                                                                          .toString(),
+                                                                      style: GoogleFonts.poppins(
+                                                                          color: Colors
+                                                                              .grey,
+                                                                          fontSize:
+                                                                              13,
+                                                                          fontWeight:
+                                                                              FontWeight.w500),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Text(
+                                                                      airtimeTransistion
+                                                                          .value
+                                                                          .data![
+                                                                              index]
+                                                                          .createdAt
+                                                                          .toString(),
+                                                                      style: GoogleFonts.poppins(
+                                                                          color: Colors
+                                                                              .grey,
+                                                                          fontSize:
+                                                                              13,
+                                                                          fontWeight:
+                                                                              FontWeight.w300),
+                                                                    ),
+                                                                    Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .start,
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .start,
+                                                                      children: [
+                                                                        SvgPicture.asset(
+                                                                            "assets/images/ngn.svg"),
+                                                                        Text(
+                                                                          airtimeTransistion
+                                                                              .value
+                                                                              .data![index]
+                                                                              .amount
+                                                                              .toString(),
+                                                                          style: GoogleFonts.poppins(
+                                                                              color: Colors.grey,
+                                                                              fontSize: 14,
+                                                                              fontWeight: FontWeight.w400),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ],
                                                                 ),
                                                               ],
                                                             ),
-                                                            Text(
-                                                              "Code:- "+buyDataList
-                                                                  .value
-                                                                  .data![index]
-                                                                  .dataCode
-                                                                  .toString(),
-                                                              style:
-                                                              GoogleFonts.poppins(
-                                                                  color:
-                                                                  Colors.grey,
-                                                                  fontSize: 14,
-                                                                  fontWeight:
-                                                                  FontWeight
-                                                                      .w400),
-                                                            ),
-                                                          ],
+                                                          ),
                                                         ),
-                                                      ],
-                                                    ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 10,
+                                                      )
+                                                    ],
                                                   ),
-                                                ),
+                                                );
+                                              }),
+                                    ],
+                                  )
+                                : statusOfAirtimeTransistion.value.isError
+                                    ? CommonErrorWidget(
+                                        errorText: airtimeTransistion
+                                            .value.message
+                                            .toString(),
+                                        onTap: () {
+                                          getAllTransitionList();
+                                        },
+                                      )
+                                    : const CommonProgressIndicator();
+                          }),
+                        if (currentDrawer == 1)
+                          Obx(() {
+                            return statusOfelEctricityTransistion
+                                    .value.isSuccess
+                                ? Column(
+                                    children: [
+                                      electricityTransistion.value.data!.isEmpty
+                                          ? Center(
+                                              child: Text(
+                                                "No records found.",
+                                                style: GoogleFonts.poppins(
+                                                    color:
+                                                        AppTheme.primaryColor,
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
-
-                                              SizedBox(
-                                                height: 10,
-                                              )
-                                            ],
-                                          ),
-                                        );
-                                      }),
-                                ],
-                              )
-                                  : statusOfBuyDataList1.value.isError
-                                  ? CommonErrorWidget(
-                                errorText: buyDataList.value.message
-                                    .toString(),
-                                onTap: () {
-                                  // getBuyDataList();
-                                },
-                              )
-                                  : const CommonProgressIndicator();
-                            }),
-                          if(currentDrawer ==3 )
-                        Obx(() {
-                          return statusOfBuyDataList.value.isSuccess
-                              ? Column(
-                            children: [
-                              buyCableList.value.data!.isEmpty?Center(
-                                child: Text("No records found.", style:
-                                GoogleFonts.poppins(
-                                    color: AppTheme
-                                        .primaryColor,
-                                    fontSize: 16,
-                                    fontWeight:
-                                    FontWeight
-                                        .w600),),
-                              ):
-                              ListView.builder(
-                                  shrinkWrap: true,
-                                  physics: const BouncingScrollPhysics(),
-                                  itemCount: buyCableList.value.data!.length,
-                                  itemBuilder: (context, index) {
-                                    return GestureDetector(
-                                      onTap: () {
-
-                                      },
-                                      child: Column(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                        children: [
-
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          InkWell(
-                                            onTap: (){
-                                              Get.toNamed(MyRouters.cabelScreen,arguments: [
-                                                buyCableList.value.data![index].telcos.toString(),
-                                                buyCableList.value.data![index].amount.toString(),
-                                                buyCableList.value.data![index].dataplan.toString(),
-                                                buyCableList.value.data![index].dataCode.toString(),
-                                                buyCableList.value.data![index].phone.toString(),
-                                                buyCableList.value.data![index].userId.toString(),
-
-
-                                              ]);
-                                            },
-                                            child: Container(
-                                              padding: EdgeInsets.all(10),
-                                              decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(10),
-                                                  border: Border.all(color: Colors.grey)
-                                              ),
-                                              child: Padding(
-                                                padding: const EdgeInsets.all(5.0),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                  children: [
-
-
-                                                    Column(
-                                                      mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                      crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                      children: [
-                                                        Text(
-
-                                                          buyCableList
-                                                              .value
-                                                              .data![index]
-                                                              .phone
-                                                              .toString(),
-                                                          style:
-                                                          GoogleFonts.poppins(
-                                                              color: AppTheme
-                                                                  .primaryColor,
-                                                              fontSize: 16,
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .w600),
-                                                        ),
-                                                        Text(
-                                                          buyCableList
-                                                              .value
-                                                              .data![index]
-                                                              .telcos
-                                                              .toString(),
-                                                          style:
-                                                          GoogleFonts.poppins(
-                                                              color:
-                                                              Colors.grey,
-                                                              fontSize: 13,
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .w500),
-                                                        ),
-                                                        Text(
-                                                          "Plan:- "+ buyCableList
-                                                              .value
-                                                              .data![index]
-                                                              .dataplan
-                                                              .toString(),
-                                                          style:
-                                                          GoogleFonts.poppins(
-                                                              color:
-                                                              Colors.grey,
-                                                              fontSize: 13,
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .w500),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    Column(
-                                                      mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                      crossAxisAlignment:
-                                                      CrossAxisAlignment.end,
-                                                      children: [
-                                                        Text(
-                                                          buyCableList
-                                                              .value
-                                                              .data![index]
-                                                              .createdAt
-                                                              .toString(),
-                                                          style:
-                                                          GoogleFonts.poppins(
-                                                              color: Colors.grey,
-                                                              fontSize: 13,
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .w300),
-                                                        ),
-                                                        Row(
-                                                          mainAxisAlignment: MainAxisAlignment.start,
-                                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                                          children: [
-                                                            SvgPicture.asset("assets/images/ngn.svg"),
-                                                            Text(
-                                                              buyCableList
-                                                                  .value
-                                                                  .data![index]
-                                                                  .amount
-                                                                  .toString(),
-                                                              style:
-                                                              GoogleFonts.poppins(
-                                                                  color:
-                                                                  Colors.grey,
-                                                                  fontSize: 14,
-                                                                  fontWeight:
-                                                                  FontWeight
-                                                                      .w400),
+                                            )
+                                          : ListView.builder(
+                                              shrinkWrap: true,
+                                              physics:
+                                                  const BouncingScrollPhysics(),
+                                              itemCount: electricityTransistion
+                                                  .value.data!.length,
+                                              itemBuilder: (context, index) {
+                                                return GestureDetector(
+                                                  onTap: () {},
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      InkWell(
+                                                        onTap: () {
+                                                          Get.toNamed(
+                                                              MyRouters
+                                                                  .buyElectricity,
+                                                              arguments: [
+                                                                electricityTransistion
+                                                                    .value
+                                                                    .data![
+                                                                        index]
+                                                                    .userId
+                                                                    .toString(),
+                                                                electricityTransistion
+                                                                    .value
+                                                                    .data![
+                                                                        index]
+                                                                    .amount
+                                                                    .toString(),
+                                                                electricityTransistion
+                                                                    .value
+                                                                    .data![
+                                                                        index]
+                                                                    .telcos
+                                                                    .toString(),
+                                                                electricityTransistion
+                                                                    .value
+                                                                    .data![
+                                                                        index]
+                                                                    .description
+                                                                    .toString(),
+                                                                electricityTransistion
+                                                                    .value
+                                                                    .data![
+                                                                        index]
+                                                                    .phone
+                                                                    .toString(),
+                                                              ]);
+                                                        },
+                                                        child: Container(
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  10),
+                                                          decoration: BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10),
+                                                              border: Border.all(
+                                                                  color: Colors
+                                                                      .grey)),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(5.0),
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Row(
+                                                                      children: [
+                                                                        Image.asset(
+                                                                            "assets/images/meter.png"),
+                                                                        SizedBox(
+                                                                          width:
+                                                                              6,
+                                                                        ),
+                                                                        Text(
+                                                                          electricityTransistion
+                                                                              .value
+                                                                              .data![index]
+                                                                              .description
+                                                                              .toString(),
+                                                                          style: GoogleFonts.poppins(
+                                                                              color: AppTheme.primaryColor,
+                                                                              fontSize: 16,
+                                                                              fontWeight: FontWeight.w600),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                    Text(
+                                                                      electricityTransistion
+                                                                          .value
+                                                                          .data![
+                                                                              index]
+                                                                          .telcos
+                                                                          .toString(),
+                                                                      style: GoogleFonts.poppins(
+                                                                          color: Colors
+                                                                              .grey,
+                                                                          fontSize:
+                                                                              13,
+                                                                          fontWeight:
+                                                                              FontWeight.w500),
+                                                                    ),
+                                                                    Text(
+                                                                      electricityTransistion
+                                                                          .value
+                                                                          .data![
+                                                                              index]
+                                                                          .phone
+                                                                          .toString(),
+                                                                      style: GoogleFonts.poppins(
+                                                                          color: Colors
+                                                                              .grey,
+                                                                          fontSize:
+                                                                              13,
+                                                                          fontWeight:
+                                                                              FontWeight.w500),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Text(
+                                                                      electricityTransistion
+                                                                          .value
+                                                                          .data![
+                                                                              index]
+                                                                          .createdAt
+                                                                          .toString(),
+                                                                      style: GoogleFonts.poppins(
+                                                                          color: Colors
+                                                                              .grey,
+                                                                          fontSize:
+                                                                              13,
+                                                                          fontWeight:
+                                                                              FontWeight.w300),
+                                                                    ),
+                                                                    Row(
+                                                                      children: [
+                                                                        SvgPicture.asset(
+                                                                            "assets/images/ngn.svg"),
+                                                                        Text(
+                                                                          electricityTransistion
+                                                                              .value
+                                                                              .data![index]
+                                                                              .amount
+                                                                              .toString(),
+                                                                          style: GoogleFonts.poppins(
+                                                                              color: Colors.grey,
+                                                                              fontSize: 14,
+                                                                              fontWeight: FontWeight.w400),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ],
                                                             ),
-                                                          ],
+                                                          ),
                                                         ),
-                                                        Text(
-                                                          "Code:- "+buyCableList
-                                                              .value
-                                                              .data![index]
-                                                              .dataCode
-                                                              .toString(),
-                                                          style:
-                                                          GoogleFonts.poppins(
-                                                              color:
-                                                              Colors.grey,
-                                                              fontSize: 14,
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .w400),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 10,
+                                                      )
+                                                    ],
+                                                  ),
+                                                );
+                                              }),
+                                    ],
+                                  )
+                                : statusOfelEctricityTransistion.value.isError
+                                    ? CommonErrorWidget(
+                                        errorText: electricityTransistion
+                                            .value.message
+                                            .toString(),
+                                        onTap: () {
+                                          // getSentTransitionList();
+                                        },
+                                      )
+                                    : const CommonProgressIndicator();
+                          }),
+                        if (currentDrawer == 2)
+                          Obx(() {
+                            return statusOfBuyDataList1.value.isSuccess
+                                ? Column(
+                                    children: [
+                                      buyDataList.value.data!.isEmpty
+                                          ? Center(
+                                              child: Text(
+                                                "No records found.",
+                                                style: GoogleFonts.poppins(
+                                                    color:
+                                                        AppTheme.primaryColor,
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
-                                            ),
-                                          ),
-
-                                          SizedBox(
-                                            height: 10,
-                                          )
-                                        ],
-                                      ),
-                                    );
-                                  }),
-                            ],
-                          )
-                              : statusOfBuyDataList.value.isError
-                              ? CommonErrorWidget(
-                            errorText: buyCableList.value.message
-                                .toString(),
-                            onTap: () {
-                              // getBuyCableList();
-                            },
-                          )
-                              : const CommonProgressIndicator();
-                        })
+                                            )
+                                          : ListView.builder(
+                                              shrinkWrap: true,
+                                              physics:
+                                                  const BouncingScrollPhysics(),
+                                              itemCount: buyDataList
+                                                  .value.data!.length,
+                                              itemBuilder: (context, index) {
+                                                return GestureDetector(
+                                                  onTap: () {},
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      InkWell(
+                                                        onTap: () {
+                                                          Get.toNamed(
+                                                              MyRouters.buyData,
+                                                              arguments: [
+                                                                buyDataList
+                                                                    .value
+                                                                    .data![
+                                                                        index]
+                                                                    .telcos
+                                                                    .toString(),
+                                                                buyDataList
+                                                                    .value
+                                                                    .data![
+                                                                        index]
+                                                                    .amount
+                                                                    .toString(),
+                                                                buyDataList
+                                                                    .value
+                                                                    .data![
+                                                                        index]
+                                                                    .dataplan
+                                                                    .toString(),
+                                                                buyDataList
+                                                                    .value
+                                                                    .data![
+                                                                        index]
+                                                                    .dataCode
+                                                                    .toString(),
+                                                                buyDataList
+                                                                    .value
+                                                                    .data![
+                                                                        index]
+                                                                    .phone
+                                                                    .toString(),
+                                                                buyDataList
+                                                                    .value
+                                                                    .data![
+                                                                        index]
+                                                                    .userId
+                                                                    .toString(),
+                                                              ]);
+                                                        },
+                                                        child: Container(
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  10),
+                                                          decoration: BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10),
+                                                              border: Border.all(
+                                                                  color: Colors
+                                                                      .grey)),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(5.0),
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Text(
+                                                                      buyDataList
+                                                                          .value
+                                                                          .data![
+                                                                              index]
+                                                                          .phone
+                                                                          .toString(),
+                                                                      style: GoogleFonts.poppins(
+                                                                          color: AppTheme
+                                                                              .primaryColor,
+                                                                          fontSize:
+                                                                              16,
+                                                                          fontWeight:
+                                                                              FontWeight.w600),
+                                                                    ),
+                                                                    Text(
+                                                                      buyDataList
+                                                                          .value
+                                                                          .data![
+                                                                              index]
+                                                                          .telcos
+                                                                          .toString(),
+                                                                      style: GoogleFonts.poppins(
+                                                                          color: Colors
+                                                                              .grey,
+                                                                          fontSize:
+                                                                              13,
+                                                                          fontWeight:
+                                                                              FontWeight.w500),
+                                                                    ),
+                                                                    Text(
+                                                                      "Plan:- " +
+                                                                          buyDataList
+                                                                              .value
+                                                                              .data![index]
+                                                                              .dataplan
+                                                                              .toString(),
+                                                                      style: GoogleFonts.poppins(
+                                                                          color: Colors
+                                                                              .grey,
+                                                                          fontSize:
+                                                                              13,
+                                                                          fontWeight:
+                                                                              FontWeight.w500),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .end,
+                                                                  children: [
+                                                                    Text(
+                                                                      buyDataList
+                                                                          .value
+                                                                          .data![
+                                                                              index]
+                                                                          .createdAt
+                                                                          .toString(),
+                                                                      style: GoogleFonts.poppins(
+                                                                          color: Colors
+                                                                              .grey,
+                                                                          fontSize:
+                                                                              13,
+                                                                          fontWeight:
+                                                                              FontWeight.w300),
+                                                                    ),
+                                                                    Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .start,
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .start,
+                                                                      children: [
+                                                                        SvgPicture.asset(
+                                                                            "assets/images/ngn.svg"),
+                                                                        Text(
+                                                                          buyDataList
+                                                                              .value
+                                                                              .data![index]
+                                                                              .amount
+                                                                              .toString(),
+                                                                          style: GoogleFonts.poppins(
+                                                                              color: Colors.grey,
+                                                                              fontSize: 14,
+                                                                              fontWeight: FontWeight.w400),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                    Text(
+                                                                      "Code:- " +
+                                                                          buyDataList
+                                                                              .value
+                                                                              .data![index]
+                                                                              .dataCode
+                                                                              .toString(),
+                                                                      style: GoogleFonts.poppins(
+                                                                          color: Colors
+                                                                              .grey,
+                                                                          fontSize:
+                                                                              14,
+                                                                          fontWeight:
+                                                                              FontWeight.w400),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 10,
+                                                      )
+                                                    ],
+                                                  ),
+                                                );
+                                              }),
+                                    ],
+                                  )
+                                : statusOfBuyDataList1.value.isError
+                                    ? CommonErrorWidget(
+                                        errorText: buyDataList.value.message
+                                            .toString(),
+                                        onTap: () {
+                                          // getBuyDataList();
+                                        },
+                                      )
+                                    : const CommonProgressIndicator();
+                          }),
+                        if (currentDrawer == 3)
+                          Obx(() {
+                            return statusOfBuyDataList.value.isSuccess
+                                ? Column(
+                                    children: [
+                                      buyCableList.value.data!.isEmpty
+                                          ? Center(
+                                              child: Text(
+                                                "No records found.",
+                                                style: GoogleFonts.poppins(
+                                                    color:
+                                                        AppTheme.primaryColor,
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              ),
+                                            )
+                                          : ListView.builder(
+                                              shrinkWrap: true,
+                                              physics:
+                                                  const BouncingScrollPhysics(),
+                                              itemCount: buyCableList
+                                                  .value.data!.length,
+                                              itemBuilder: (context, index) {
+                                                return GestureDetector(
+                                                  onTap: () {},
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      InkWell(
+                                                        onTap: () {
+                                                          Get.toNamed(
+                                                              MyRouters
+                                                                  .cabelScreen,
+                                                              arguments: [
+                                                                buyCableList
+                                                                    .value
+                                                                    .data![
+                                                                        index]
+                                                                    .telcos
+                                                                    .toString(),
+                                                                buyCableList
+                                                                    .value
+                                                                    .data![
+                                                                        index]
+                                                                    .amount
+                                                                    .toString(),
+                                                                buyCableList
+                                                                    .value
+                                                                    .data![
+                                                                        index]
+                                                                    .dataplan
+                                                                    .toString(),
+                                                                buyCableList
+                                                                    .value
+                                                                    .data![
+                                                                        index]
+                                                                    .dataCode
+                                                                    .toString(),
+                                                                buyCableList
+                                                                    .value
+                                                                    .data![
+                                                                        index]
+                                                                    .phone
+                                                                    .toString(),
+                                                                buyCableList
+                                                                    .value
+                                                                    .data![
+                                                                        index]
+                                                                    .userId
+                                                                    .toString(),
+                                                              ]);
+                                                        },
+                                                        child: Container(
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  10),
+                                                          decoration: BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10),
+                                                              border: Border.all(
+                                                                  color: Colors
+                                                                      .grey)),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(5.0),
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Text(
+                                                                      buyCableList
+                                                                          .value
+                                                                          .data![
+                                                                              index]
+                                                                          .phone
+                                                                          .toString(),
+                                                                      style: GoogleFonts.poppins(
+                                                                          color: AppTheme
+                                                                              .primaryColor,
+                                                                          fontSize:
+                                                                              16,
+                                                                          fontWeight:
+                                                                              FontWeight.w600),
+                                                                    ),
+                                                                    Text(
+                                                                      buyCableList
+                                                                          .value
+                                                                          .data![
+                                                                              index]
+                                                                          .telcos
+                                                                          .toString(),
+                                                                      style: GoogleFonts.poppins(
+                                                                          color: Colors
+                                                                              .grey,
+                                                                          fontSize:
+                                                                              13,
+                                                                          fontWeight:
+                                                                              FontWeight.w500),
+                                                                    ),
+                                                                    Text(
+                                                                      "Plan:- " +
+                                                                          buyCableList
+                                                                              .value
+                                                                              .data![index]
+                                                                              .dataplan
+                                                                              .toString(),
+                                                                      style: GoogleFonts.poppins(
+                                                                          color: Colors
+                                                                              .grey,
+                                                                          fontSize:
+                                                                              13,
+                                                                          fontWeight:
+                                                                              FontWeight.w500),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .end,
+                                                                  children: [
+                                                                    Text(
+                                                                      buyCableList
+                                                                          .value
+                                                                          .data![
+                                                                              index]
+                                                                          .createdAt
+                                                                          .toString(),
+                                                                      style: GoogleFonts.poppins(
+                                                                          color: Colors
+                                                                              .grey,
+                                                                          fontSize:
+                                                                              13,
+                                                                          fontWeight:
+                                                                              FontWeight.w300),
+                                                                    ),
+                                                                    Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .start,
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .start,
+                                                                      children: [
+                                                                        SvgPicture.asset(
+                                                                            "assets/images/ngn.svg"),
+                                                                        Text(
+                                                                          buyCableList
+                                                                              .value
+                                                                              .data![index]
+                                                                              .amount
+                                                                              .toString(),
+                                                                          style: GoogleFonts.poppins(
+                                                                              color: Colors.grey,
+                                                                              fontSize: 14,
+                                                                              fontWeight: FontWeight.w400),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                    Text(
+                                                                      "Code:- " +
+                                                                          buyCableList
+                                                                              .value
+                                                                              .data![index]
+                                                                              .dataCode
+                                                                              .toString(),
+                                                                      style: GoogleFonts.poppins(
+                                                                          color: Colors
+                                                                              .grey,
+                                                                          fontSize:
+                                                                              14,
+                                                                          fontWeight:
+                                                                              FontWeight.w400),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 10,
+                                                      )
+                                                    ],
+                                                  ),
+                                                );
+                                              }),
+                                    ],
+                                  )
+                                : statusOfBuyDataList.value.isError
+                                    ? CommonErrorWidget(
+                                        errorText: buyCableList.value.message
+                                            .toString(),
+                                        onTap: () {
+                                          // getBuyCableList();
+                                        },
+                                      )
+                                    : const CommonProgressIndicator();
+                          })
                       ]))),
         ));
   }

@@ -14,9 +14,11 @@ import '../models/model_data_paln.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
+
 final details = Get.put(DetailsController());
+
 Future<ModelCreateCard> createCardRepo(
-    {cardholder_id, card_type, card_brand, card_currency,context}) async {
+    {cardholder_id, card_type, card_brand, card_currency, context}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
@@ -25,10 +27,9 @@ Future<ModelCreateCard> createCardRepo(
   map['card_type'] = card_type;
   map['card_brand'] = card_brand;
   map['card_currency'] = card_currency;
-log(map.toString());
+  log(map.toString());
   http.Response response = await http.post(Uri.parse(ApiUrls.bridgeCard),
-      headers: await getAuthHeader(),
-      body: jsonEncode(map));
+      headers: await getAuthHeader(), body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
   log("Sign IN DATA${response.statusCode}");
   print(map);

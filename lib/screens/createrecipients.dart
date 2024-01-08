@@ -7,7 +7,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
-
 import '../controller/profile_controller.dart';
 import '../models/model_search.dart';
 import '../models/model_search_zip.dart';
@@ -26,31 +25,32 @@ class CreateRecipients extends StatefulWidget {
 }
 
 class _CreateRecipientsState extends State<CreateRecipients> {
-
-  Rx<RxStatus> statusOfSearch= RxStatus.empty().obs;
+  Rx<RxStatus> statusOfSearch = RxStatus.empty().obs;
 
   Rx<ModelSearchZip> searchZip = ModelSearchZip().obs;
 
   final profileController = Get.put(ProfileController());
 
   getSearchList() {
-
     zipSearchRepo(
-
-      zip_tag: profileController.ziptag1Controller.text.trim()+"@zip",
+      zip_tag: profileController.ziptag1Controller.text.trim() + "@zip",
       context: context,
-
     ).then((value) {
       log("response.body.....    ${value}");
       searchZip.value = value;
       if (value.status == true) {
         statusOfSearch.value = RxStatus.success();
         showToast(value.message.toString());
-        profileController. nameController.text = "${value.data!.fname.toString()} "+"${value.data!.lname.toString()}";
-        profileController.phone1Controller.text =( value.data!.phone??"").toString();
-        profileController.ziptag1Controller.text = (value.data!.zipTag??"").toString();
-        profileController.zipUserController.text = (value.data!.id??"").toString();
-        profileController.userId=value.data!.id.toString();
+        profileController.nameController.text =
+            "${value.data!.fname.toString()} " +
+                "${value.data!.lname.toString()}";
+        profileController.phone1Controller.text =
+            (value.data!.phone ?? "").toString();
+        profileController.ziptag1Controller.text =
+            (value.data!.zipTag ?? "").toString();
+        profileController.zipUserController.text =
+            (value.data!.id ?? "").toString();
+        profileController.userId = value.data!.id.toString();
 
         print(value.data!.email.toString());
       } else {
@@ -58,9 +58,10 @@ class _CreateRecipientsState extends State<CreateRecipients> {
         showToast(value.message.toString());
       }
     }
-      // showToast(value.message.toString());
-    );
+        // showToast(value.message.toString());
+        );
   }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -77,7 +78,7 @@ class _CreateRecipientsState extends State<CreateRecipients> {
         ),
         centerTitle: true,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Get.back();
           },
           child: const Icon(
@@ -85,7 +86,6 @@ class _CreateRecipientsState extends State<CreateRecipients> {
             color: AppTheme.primaryColor,
           ),
         ),
-
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -108,23 +108,23 @@ class _CreateRecipientsState extends State<CreateRecipients> {
                 ),
                 Expanded(
                     child: InkWell(
-                      onTap: () {
-                        Get.toNamed(MyRouters.addRecipients);
-                      },
-                      child: CustomOutlineBoder(
-                        title: "Search Zip User",
-                        backgroundColor: Colors.white,
-                        textColor: AppTheme.buttonColor,
-                        onPressed: () {},
-                      ),
-                    )),
+                  onTap: () {
+                    Get.toNamed(MyRouters.addRecipients);
+                  },
+                  child: CustomOutlineBoder(
+                    title: "Search Zip User",
+                    backgroundColor: Colors.white,
+                    textColor: AppTheme.buttonColor,
+                    onPressed: () {},
+                  ),
+                )),
               ],
             ),
             const SizedBox(
               height: 25,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 25,right: 25),
+              padding: const EdgeInsets.only(left: 25, right: 25),
               child: Text(
                 "Search Zip Tag",
                 style: GoogleFonts.poppins(
@@ -133,7 +133,6 @@ class _CreateRecipientsState extends State<CreateRecipients> {
                     fontWeight: FontWeight.w400),
               ),
             ),
-
             const SizedBox(
               height: 27,
             ),
@@ -141,12 +140,10 @@ class _CreateRecipientsState extends State<CreateRecipients> {
               padding: const EdgeInsets.only(left: 6, right: 6),
               child: CommonTextfield(
                 suffixIcon: InkWell(
-                    onTap: (){
+                    onTap: () {
                       getSearchList();
                     },
                     child: Icon(Icons.arrow_forward)),
-
-
                 controller: profileController.ziptag1Controller,
                 obSecure: false,
                 hintText: "Zip Tag ",
@@ -183,17 +180,17 @@ class _CreateRecipientsState extends State<CreateRecipients> {
               height: size.height * .04,
             ),
             InkWell(
-                onTap: (){
-
-                  profileController.nameController.text="";
-                  profileController.phone1Controller.text="";
-                  profileController.ziptag1Controller.text="";
+                onTap: () {
+                  profileController.nameController.text = "";
+                  profileController.phone1Controller.text = "";
+                  profileController.ziptag1Controller.text = "";
                 },
                 child: CustomOutlineBoder(title: "Clear")),
-            SizedBox(height: 25,),
+            SizedBox(
+              height: 25,
+            ),
             InkWell(
               onTap: () {
-
                 Get.toNamed(MyRouters.sendYourBalanceScreen);
               },
               child: const CustomOutlineButton(

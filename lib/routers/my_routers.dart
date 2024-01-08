@@ -11,7 +11,6 @@ import 'package:zip/screens/change_zip_pin.dart';
 import 'package:zip/screens/confirm_bank.dart';
 import 'package:zip/screens/country_page.dart';
 
-
 import 'package:zip/screens/enterMobileno.dart';
 import 'package:zip/screens/enter_email.dart';
 import 'package:zip/screens/exchange_screen.dart';
@@ -159,12 +158,10 @@ import '../screens/transastion_screen.dart';
 import '../screens/update_password.dart';
 import '../screens/verify_africa_ui.dart';
 
-
-
 import '../screens/withdrawl_cash1.dart';
 import '../splash1.dart';
 
-class MyRouters{
+class MyRouters {
   static var splash = "/splash";
   static var onBoardingScreen = "/onBoardingScreen";
   static var dashBoard = "/dashBoard";
@@ -194,8 +191,6 @@ class MyRouters{
   static var bottomNavbar = "/bottomNavbar";
   static var sendCash2 = "/sendCash2";
   static var chooseBank = "/chooseBank";
-
-
 
   static var addCard = "/addCard";
   static var myCard = "/myCard";
@@ -321,171 +316,209 @@ class MyRouters{
   static var cardSuccessScreen = "/cardSuccessScreen ";
   static var meterDetails = "/meterDetails ";
 
-
-
   static var route = [
     // GetPage(name: '/', page: () => ImageScreen()),
-   GetPage(name: '/', page: () => const Splash()),
+    GetPage(name: '/', page: () => const Splash()),
 
-
-
-    GetPage(name: onBoardingScreen, page: () =>   const OnBoardingScreen()),
-    GetPage(name: '/withdrawlCash', page: () =>   const WithdrawlCash()),
-    GetPage(name: '/walletScreen1', page: () =>   const WalletScreen1()),
-    GetPage(name: '/cardSuccessScreen', page: () =>   const CardSuccessScreen()),
-    GetPage(name: '/meterDetails', page: () =>   const MeterDetails()),
-    GetPage(name: '/buyAirtimeOperatorScreen', page: () =>   const BuyAirtimeOperatorScreen()),
-    GetPage(name: '/forgotOtpScreen', page: () =>   const ForgotScreenOtp()),
-    GetPage(name: '/forgotChangePassword', page: () =>   const ForgotChangePassword()),
-    GetPage(name: '/ForgotEmailScreen', page: () =>   const ForgotEmailScreen()),
-    GetPage(name: '/electricityVariationScreen', page: () =>   const ElectricityVariationScreen()),
-    GetPage(name: '/buyAirtimeVariationScreen', page: () =>   const BuyAirtimeVariationScreen()),
-    GetPage(name: '/success3Screen', page: () =>   const Success3Screen()),
-    GetPage(name: '/buyAirtimeProductScreen', page: () =>   const BuyAirtimeProductScreen()),
-    GetPage(name: '/usersOtpScreen', page: () =>   const UsersOtpScreen()),
-    GetPage(name: '/addFundScreen', page: () =>   const AddFundScreen()),
-    GetPage(name: '/fundIssuingWallet', page: () =>   const FundIssuingWallet()),
-    GetPage(name: '/addFundExchange', page: () =>   const AddFundExchange()),
-    GetPage(name: '/cabelScreen', page: () =>   const CabelScreen()),
-    GetPage(name: '/buyCabelTvList', page: () =>   const BuyCabelTvList()),
-    GetPage(name: '/dataPurchasePin', page: () =>   const DataPurchasePin()),
-    GetPage(name: '/requestMoneyPin', page: () =>   const RequestMoneyPin()),
-    GetPage(name: '/requestPaymentLink', page: () =>   const RequestPaymentLink()),
-    GetPage(name: '/successRequestScreen', page: () =>   const SuccessRequestScreen()),
-    GetPage(name: '/requestPaymentContiune', page: () =>   const RequestPaymentContiune()),
-    GetPage(name: '/buyElectricity', page: () =>   const BuyElectricity()),
-    GetPage(name: '/buyDataList', page: () =>   const BuyDataList()),
-    GetPage(name: '/privacyPolicyScreen', page: () =>   const PrivacyPolicyScreen()),
-    GetPage(name: '/buyElectricityList', page: () =>   const BuyElectricityList()),
-    GetPage(name: '/buyAirtimeList', page: () =>   const BuyAirtimeList()),
-    GetPage(name: '/buyAirtimeScreen', page: () =>   const BuyAirtimeScreen()),
-    GetPage(name: '/buyData', page: () =>   const BuyData()),
-    GetPage(name: '/sendYourBalanceScreen', page: () =>   const SendYourBalanceScreen()),
-    GetPage(name: '/securityOtpScreen1', page: () =>   const SecurityOtpScreen1()),
-    GetPage(name: '/beneficeryPin', page: () =>   const BeneficeryPin()),
-    GetPage(name: '/sucessRechargePin', page: () =>   const SucessRechargePin()),
-    GetPage(name: '/sendMoneyPin', page: () =>   const SendMoneyPin()),
-    GetPage(name: '/purchaseRechargePin', page: () =>   const PurchaseRechargePin()),
-    GetPage(name: '/sentTransactionsHistory', page: () =>   const SentTransactionsHistory()),
-    GetPage(name: '/reciveTransactionsHistory', page: () =>   const ReciveTransactionsHistory()),
-    GetPage(name: '/freshchat', page: () =>    Chat()),
-    GetPage(name: '/successRechargeScreen', page: () =>   const SuccessRechargeScreen()),
-    GetPage(name: '/buyAirtimecreen', page: () =>   const BuyAirtimecreen()),
-    GetPage(name: '/buyAirtimeCountryScreen', page: () =>   const BuyAirtimeCountryScreen()),
-    GetPage(name: '/verifyPaymentLink2', page: () =>   const VerifyPaymentLink2()),
-    GetPage(name: '/cabelTvPin', page: () =>   const CabelTvPin()),
-    GetPage(name: '/favouriteScreen', page: () =>   const FavouriteScreen()),
-    GetPage(name: '/cardDetails', page: () =>   const CardDetails()),
-    GetPage(name: '/exchangeMoney2', page: () =>   const ExchangeMoney2()),
-    GetPage(name: '/purchaseCabelScreen', page: () =>   const PurchaseCabelScreen()),
-    GetPage(name: '/favourateBalance', page: () =>   const FavourateBalance()),
-    GetPage(name: '/requestPayment4', page: () =>    const RequestPayment4()),
-    GetPage(name: '/requestPayment3', page: () =>    const RequestPayment3()),
-    GetPage(name: '/requestMoney2', page: () =>   const RequestMoney2()),
-    GetPage(name: '/requestMoney1', page: () =>   const RequestMoney1()),
-    GetPage(name: '/purchaseDataScreen', page: () =>   const PurchaseDataScreen()),
-    GetPage(name: '/buyDataScreen', page: () =>   const BuyDataScreen()),
-    GetPage(name: '/meterVerifyScreen', page: () =>   const MeterVerifyScreen()),
-    GetPage(name: '/requestAPaymentContiune2', page: () =>   const RequestAPaymentContiune2()),
-    GetPage(name: '/success2Screen', page: () =>   const Success2Screen()),
-    GetPage(name: '/addPaymentMethod', page: () =>   const AddPaymentMethod()),
-    GetPage(name: '/transastionScreen', page: () =>   const TransastionScreen()),
-    GetPage(name: '/purchaseScreen', page: () =>   const PurchaseScreen()),
-    GetPage(name: '/bankDetailsScreen', page: () =>   const BankDetailsScreen()),
-    GetPage(name: '/chooseBank1', page: () =>   const ChooseBank1()),
-    GetPage(name: '/cabelTvScreen', page: () =>   const CabelTvScreen()),
-    GetPage(name: '/providerScreen', page: () =>   const ProviderScreen()),
-    GetPage(name: '/billerScreen', page: () =>   const BillerScreen()),
-    GetPage(name: '/personalScreen', page: () =>   const PersonalScreen()),
-    GetPage(name: '/verifyPaymentLink', page: () =>   const VerifyPaymentLink()),
-    GetPage(name: '/createBenificeryScreen', page: () =>   const CreateBenificeryScreen()),
-    GetPage(name: '/sendCashReciptant', page: () =>   const SendCashReciptant()),
-    GetPage(name: '/regularTransfer', page: () =>   const RegularTransfer()),
-    GetPage(name: '/eligibleScreen', page: () =>   const EligibleScreen()),
-    GetPage(name: '/currencyConvert', page: () =>   const CurrencyConvert()),
-    GetPage(name: '/questionsScreen', page: () =>   const QuestionsScreen()),
+    GetPage(name: onBoardingScreen, page: () => const OnBoardingScreen()),
+    GetPage(name: '/withdrawlCash', page: () => const WithdrawlCash()),
+    GetPage(name: '/walletScreen1', page: () => const WalletScreen1()),
+    GetPage(name: '/cardSuccessScreen', page: () => const CardSuccessScreen()),
+    GetPage(name: '/meterDetails', page: () => const MeterDetails()),
+    GetPage(
+        name: '/buyAirtimeOperatorScreen',
+        page: () => const BuyAirtimeOperatorScreen()),
+    GetPage(name: '/forgotOtpScreen', page: () => const ForgotScreenOtp()),
+    GetPage(
+        name: '/forgotChangePassword',
+        page: () => const ForgotChangePassword()),
+    GetPage(name: '/ForgotEmailScreen', page: () => const ForgotEmailScreen()),
+    GetPage(
+        name: '/electricityVariationScreen',
+        page: () => const ElectricityVariationScreen()),
+    GetPage(
+        name: '/buyAirtimeVariationScreen',
+        page: () => const BuyAirtimeVariationScreen()),
+    GetPage(name: '/success3Screen', page: () => const Success3Screen()),
+    GetPage(
+        name: '/buyAirtimeProductScreen',
+        page: () => const BuyAirtimeProductScreen()),
+    GetPage(name: '/usersOtpScreen', page: () => const UsersOtpScreen()),
+    GetPage(name: '/addFundScreen', page: () => const AddFundScreen()),
+    GetPage(name: '/fundIssuingWallet', page: () => const FundIssuingWallet()),
+    GetPage(name: '/addFundExchange', page: () => const AddFundExchange()),
+    GetPage(name: '/cabelScreen', page: () => const CabelScreen()),
+    GetPage(name: '/buyCabelTvList', page: () => const BuyCabelTvList()),
+    GetPage(name: '/dataPurchasePin', page: () => const DataPurchasePin()),
+    GetPage(name: '/requestMoneyPin', page: () => const RequestMoneyPin()),
+    GetPage(
+        name: '/requestPaymentLink', page: () => const RequestPaymentLink()),
+    GetPage(
+        name: '/successRequestScreen',
+        page: () => const SuccessRequestScreen()),
+    GetPage(
+        name: '/requestPaymentContiune',
+        page: () => const RequestPaymentContiune()),
+    GetPage(name: '/buyElectricity', page: () => const BuyElectricity()),
+    GetPage(name: '/buyDataList', page: () => const BuyDataList()),
+    GetPage(
+        name: '/privacyPolicyScreen', page: () => const PrivacyPolicyScreen()),
+    GetPage(
+        name: '/buyElectricityList', page: () => const BuyElectricityList()),
+    GetPage(name: '/buyAirtimeList', page: () => const BuyAirtimeList()),
+    GetPage(name: '/buyAirtimeScreen', page: () => const BuyAirtimeScreen()),
+    GetPage(name: '/buyData', page: () => const BuyData()),
+    GetPage(
+        name: '/sendYourBalanceScreen',
+        page: () => const SendYourBalanceScreen()),
+    GetPage(
+        name: '/securityOtpScreen1', page: () => const SecurityOtpScreen1()),
+    GetPage(name: '/beneficeryPin', page: () => const BeneficeryPin()),
+    GetPage(name: '/sucessRechargePin', page: () => const SucessRechargePin()),
+    GetPage(name: '/sendMoneyPin', page: () => const SendMoneyPin()),
+    GetPage(
+        name: '/purchaseRechargePin', page: () => const PurchaseRechargePin()),
+    GetPage(
+        name: '/sentTransactionsHistory',
+        page: () => const SentTransactionsHistory()),
+    GetPage(
+        name: '/reciveTransactionsHistory',
+        page: () => const ReciveTransactionsHistory()),
+    GetPage(name: '/freshchat', page: () => Chat()),
+    GetPage(
+        name: '/successRechargeScreen',
+        page: () => const SuccessRechargeScreen()),
+    GetPage(name: '/buyAirtimecreen', page: () => const BuyAirtimecreen()),
+    GetPage(
+        name: '/buyAirtimeCountryScreen',
+        page: () => const BuyAirtimeCountryScreen()),
+    GetPage(
+        name: '/verifyPaymentLink2', page: () => const VerifyPaymentLink2()),
+    GetPage(name: '/cabelTvPin', page: () => const CabelTvPin()),
+    GetPage(name: '/favouriteScreen', page: () => const FavouriteScreen()),
+    GetPage(name: '/cardDetails', page: () => const CardDetails()),
+    GetPage(name: '/exchangeMoney2', page: () => const ExchangeMoney2()),
+    GetPage(
+        name: '/purchaseCabelScreen', page: () => const PurchaseCabelScreen()),
+    GetPage(name: '/favourateBalance', page: () => const FavourateBalance()),
+    GetPage(name: '/requestPayment4', page: () => const RequestPayment4()),
+    GetPage(name: '/requestPayment3', page: () => const RequestPayment3()),
+    GetPage(name: '/requestMoney2', page: () => const RequestMoney2()),
+    GetPage(name: '/requestMoney1', page: () => const RequestMoney1()),
+    GetPage(
+        name: '/purchaseDataScreen', page: () => const PurchaseDataScreen()),
+    GetPage(name: '/buyDataScreen', page: () => const BuyDataScreen()),
+    GetPage(name: '/meterVerifyScreen', page: () => const MeterVerifyScreen()),
+    GetPage(
+        name: '/requestAPaymentContiune2',
+        page: () => const RequestAPaymentContiune2()),
+    GetPage(name: '/success2Screen', page: () => const Success2Screen()),
+    GetPage(name: '/addPaymentMethod', page: () => const AddPaymentMethod()),
+    GetPage(name: '/transastionScreen', page: () => const TransastionScreen()),
+    GetPage(name: '/purchaseScreen', page: () => const PurchaseScreen()),
+    GetPage(name: '/bankDetailsScreen', page: () => const BankDetailsScreen()),
+    GetPage(name: '/chooseBank1', page: () => const ChooseBank1()),
+    GetPage(name: '/cabelTvScreen', page: () => const CabelTvScreen()),
+    GetPage(name: '/providerScreen', page: () => const ProviderScreen()),
+    GetPage(name: '/billerScreen', page: () => const BillerScreen()),
+    GetPage(name: '/personalScreen', page: () => const PersonalScreen()),
+    GetPage(name: '/verifyPaymentLink', page: () => const VerifyPaymentLink()),
+    GetPage(
+        name: '/createBenificeryScreen',
+        page: () => const CreateBenificeryScreen()),
+    GetPage(name: '/sendCashReciptant', page: () => const SendCashReciptant()),
+    GetPage(name: '/regularTransfer', page: () => const RegularTransfer()),
+    GetPage(name: '/eligibleScreen', page: () => const EligibleScreen()),
+    GetPage(name: '/currencyConvert', page: () => const CurrencyConvert()),
+    GetPage(name: '/questionsScreen', page: () => const QuestionsScreen()),
     // GetPage(name: '/virtualAccount', page: () =>   const VirtualAccount()),
-    GetPage(name: '/limitScreen', page: () =>   const LimitScreen()),
-    GetPage(name: '/loanList', page: () =>   const LoanList()),
-    GetPage(name: '/cardLimitScreen', page: () =>   const CardLimitScreen()),
-    GetPage(name: '/notificationScreen', page: () =>   const NotificationScreen()),
-    GetPage(name: '/requestAPaymentContiune', page: () =>   const RequestAPaymentContiune()),
-    GetPage(name: '/sendCash1', page: () =>  const SendCash1()),
-    GetPage(name: '/sharePaymentLink', page: () =>  const SharePaymentLink()),
-    GetPage(name: '/verifyAfricaScreen', page: () =>  const VerifyAfricaScreen()),
-    GetPage(name: '/interNetPlanScreen', page: () =>  const InterNetPlanScreen()),
-    GetPage(name: '/sendCash2', page: () =>  const SendCash2()),
-    GetPage(name: '/chooseBank', page: () =>  const ChooseBank()),
-    GetPage(name: '/bottomNavbar', page: () =>  const BottomNavbar()),
-    GetPage(name: '/walletScreen', page: () =>   WalletScreen()),
-    GetPage(name: '/profileScreen', page: () =>  const ProfileScreen()),
-    GetPage(name: '/contuctUsScreen', page: () =>  const ContuctUsScreen()),
-    GetPage(name: '/supportScreen', page: () =>  const SupportScreen()),
-    GetPage(name: '/dashBoard', page: () =>  const DashBoard()),
-    GetPage(name: '/dataPlanScreen', page: () =>  const DataPlanScreen()),
+    GetPage(name: '/limitScreen', page: () => const LimitScreen()),
+    GetPage(name: '/loanList', page: () => const LoanList()),
+    GetPage(name: '/cardLimitScreen', page: () => const CardLimitScreen()),
+    GetPage(
+        name: '/notificationScreen', page: () => const NotificationScreen()),
+    GetPage(
+        name: '/requestAPaymentContiune',
+        page: () => const RequestAPaymentContiune()),
+    GetPage(name: '/sendCash1', page: () => const SendCash1()),
+    GetPage(name: '/sharePaymentLink', page: () => const SharePaymentLink()),
+    GetPage(
+        name: '/verifyAfricaScreen', page: () => const VerifyAfricaScreen()),
+    GetPage(
+        name: '/interNetPlanScreen', page: () => const InterNetPlanScreen()),
+    GetPage(name: '/sendCash2', page: () => const SendCash2()),
+    GetPage(name: '/chooseBank', page: () => const ChooseBank()),
+    GetPage(name: '/bottomNavbar', page: () => const BottomNavbar()),
+    GetPage(name: '/walletScreen', page: () => WalletScreen()),
+    GetPage(name: '/profileScreen', page: () => const ProfileScreen()),
+    GetPage(name: '/contuctUsScreen', page: () => const ContuctUsScreen()),
+    GetPage(name: '/supportScreen', page: () => const SupportScreen()),
+    GetPage(name: '/dashBoard', page: () => const DashBoard()),
+    GetPage(name: '/dataPlanScreen', page: () => const DataPlanScreen()),
 
     // GetPage(name: '/mobileNumber', page: () =>  const MobileNumberScreen()),
-    GetPage(name: '/updatePassword', page: () =>  const UpdatePassword()),
-    GetPage(name: '/updatePassword', page: () =>  const UpdatePassword()),
+    GetPage(name: '/updatePassword', page: () => const UpdatePassword()),
+    GetPage(name: '/updatePassword', page: () => const UpdatePassword()),
 
-
-
-
-    GetPage(name: '/selectableScreen', page: () =>  const SelectableScreen()),
-    GetPage(name: '/personalAddress', page: () =>  const PersonalAddress()),
-    GetPage(name: '/userScreen', page: () =>   const UserScreen()),
-    GetPage(name: '/birthdayScreen', page: () =>   const BirthdayScreen()),
-    GetPage(name: '/loanScreen', page: () =>   const LoanScreen()),
-    GetPage(name: '/tagScreen', page: () =>   const TagScreen()),
-    GetPage(name: '/addressScreen', page: () =>   const AddressScreen()),
-    GetPage(name: '/sendSuccessScreen', page: () =>   const SendSuccessScreen()),
-    GetPage(name: '/extraDetailsScreen', page: () =>   const ExtraDetailsScreen()),
-    GetPage(name: '/countryScreen', page: () =>   const CountryScreen()),
-    GetPage(name: '/otpScreen', page: () =>   const OtpScreen()),
-    GetPage(name: '/transactionsFirst', page: () =>   const TransactionsFirst()),
-    GetPage(name: '/transactionsHistory', page: () =>   const TransactionsHistory()),
-    GetPage(name: '/exchangeMoney', page: () =>   const ExchangeMoney()),
-    GetPage(name: '/fAQScreen', page: () =>   const FAQScreen()),
-    GetPage(name: '/yourBalanceScreen', page: () =>   const YourBalanceScreen()),
-    GetPage(name: '/selectMethod', page: () =>   const SelectMethod()),
-    GetPage(name: '/confirmBankScreen', page: () =>   const ConfirmBank()),
-    GetPage(name: '/successScreen', page: () =>   const SuccessScreen()),
-    GetPage(name: '/enterEmailScreen', page: () =>   const EmailScreen()),
-    GetPage(name: '/otpEmailScreen', page: () =>   const EmailOtpScreen()),
-    GetPage(name: '/loginNoPinScreen', page: () =>   const LoginNoPinScreen()),
-    GetPage(name: '/mobileOtpScreen', page: () =>   const MobileOtpScreen()),
-    GetPage(name: "/walletScreen", page: ()=>  WalletScreen()),
-    GetPage(name: "/telcosScreen", page: ()=>  const TelcosScreen()),
-    GetPage(name: "/addCard", page: ()=>  AddCard()),
-    GetPage(name: "/myCard", page: ()=>  MyCard()),
-    GetPage(name: "/buyServices", page: ()=>  BuyServices()),
-    GetPage(name: "/payBillsServices", page: ()=>  const PayBillsServices()),
-    GetPage(name: "/paymentLink", page: ()=>  const GeneratePaymentLink()),
-    GetPage(name: "/profile", page: ()=>  const ProfileScreen()),
-    GetPage(name: "/setting", page: ()=>  const Setting()),
-    GetPage(name: "/requestPayment", page: ()=>  const RequestPayment()),
-    GetPage(name: "/addAPayer", page: ()=>  const AddAPayer()),
-    GetPage(name: "/addFundsInBank", page: ()=>  const AddFundsInBank()),
-    GetPage(name: "/accountsInBank", page: ()=>  const AccountsInBank()),
-    GetPage(name: "/payNowBalance", page: ()=>  const PayNowBalance()),
-    GetPage(name: "/sendCash", page: ()=>  const SendCash()),
-    GetPage(name: "/addRecipients", page: ()=>  const AddRecipients()),
-    GetPage(name: "/createRecipients", page: ()=>  const CreateRecipients()),
-    GetPage(name: "/addRecipientsStart", page: ()=>  const AddRecipientStart()),
-    GetPage(name: "/sendCashYourBalance", page: ()=>  const SendCashYourBalance()),
-    GetPage(name: "/yourRecipient", page: ()=>  const YourRecipient()),
-    GetPage(name: "/payNow2", page: ()=>  const PayNow2()),
-    GetPage(name: "/transferLimit", page: ()=>  const TransferLimit()),
-    GetPage(name: "/loginScreen", page: ()=>  const LoginScreen()),
-    GetPage(name: "/emailLoginScreen", page: ()=>  const EmailLoginScreen()),
-    GetPage(name: "/profileUpdateScreen", page: ()=>  const UpdateProfile()),
-    GetPage(name: "/changeZipPinScreen", page: ()=>  const ChangeZipPin()),
-    GetPage(name: "/sendOtpForPinScreen", page: ()=>  const SendOtpForPin()),
-    GetPage(name: "/verifyOtpForPinScreen", page: ()=>  const VerifyOtpForPin()),
-    GetPage(name: "/securityOtpScreen", page: ()=>  const SecurityOtpScreen()),
-    GetPage(name: "/loginPinScreen", page: ()=>  const LoginPinScreen()),
-    GetPage(name: "/notVerifyAfricaScreen", page: ()=>  const NotVerifyAfricaScreen()),
-
-
+    GetPage(name: '/selectableScreen', page: () => const SelectableScreen()),
+    GetPage(name: '/personalAddress', page: () => const PersonalAddress()),
+    GetPage(name: '/userScreen', page: () => const UserScreen()),
+    GetPage(name: '/birthdayScreen', page: () => const BirthdayScreen()),
+    GetPage(name: '/loanScreen', page: () => const LoanScreen()),
+    GetPage(name: '/tagScreen', page: () => const TagScreen()),
+    GetPage(name: '/addressScreen', page: () => const AddressScreen()),
+    GetPage(name: '/sendSuccessScreen', page: () => const SendSuccessScreen()),
+    GetPage(
+        name: '/extraDetailsScreen', page: () => const ExtraDetailsScreen()),
+    GetPage(name: '/countryScreen', page: () => const CountryScreen()),
+    GetPage(name: '/otpScreen', page: () => const OtpScreen()),
+    GetPage(name: '/transactionsFirst', page: () => const TransactionsFirst()),
+    GetPage(
+        name: '/transactionsHistory', page: () => const TransactionsHistory()),
+    GetPage(name: '/exchangeMoney', page: () => const ExchangeMoney()),
+    GetPage(name: '/fAQScreen', page: () => const FAQScreen()),
+    GetPage(name: '/yourBalanceScreen', page: () => const YourBalanceScreen()),
+    GetPage(name: '/selectMethod', page: () => const SelectMethod()),
+    GetPage(name: '/confirmBankScreen', page: () => const ConfirmBank()),
+    GetPage(name: '/successScreen', page: () => const SuccessScreen()),
+    GetPage(name: '/enterEmailScreen', page: () => const EmailScreen()),
+    GetPage(name: '/otpEmailScreen', page: () => const EmailOtpScreen()),
+    GetPage(name: '/loginNoPinScreen', page: () => const LoginNoPinScreen()),
+    GetPage(name: '/mobileOtpScreen', page: () => const MobileOtpScreen()),
+    GetPage(name: "/walletScreen", page: () => WalletScreen()),
+    GetPage(name: "/telcosScreen", page: () => const TelcosScreen()),
+    GetPage(name: "/addCard", page: () => AddCard()),
+    GetPage(name: "/myCard", page: () => MyCard()),
+    GetPage(name: "/buyServices", page: () => BuyServices()),
+    GetPage(name: "/payBillsServices", page: () => const PayBillsServices()),
+    GetPage(name: "/paymentLink", page: () => const GeneratePaymentLink()),
+    GetPage(name: "/profile", page: () => const ProfileScreen()),
+    GetPage(name: "/setting", page: () => const Setting()),
+    GetPage(name: "/requestPayment", page: () => const RequestPayment()),
+    GetPage(name: "/addAPayer", page: () => const AddAPayer()),
+    GetPage(name: "/addFundsInBank", page: () => const AddFundsInBank()),
+    GetPage(name: "/accountsInBank", page: () => const AccountsInBank()),
+    GetPage(name: "/payNowBalance", page: () => const PayNowBalance()),
+    GetPage(name: "/sendCash", page: () => const SendCash()),
+    GetPage(name: "/addRecipients", page: () => const AddRecipients()),
+    GetPage(name: "/createRecipients", page: () => const CreateRecipients()),
+    GetPage(name: "/addRecipientsStart", page: () => const AddRecipientStart()),
+    GetPage(
+        name: "/sendCashYourBalance", page: () => const SendCashYourBalance()),
+    GetPage(name: "/yourRecipient", page: () => const YourRecipient()),
+    GetPage(name: "/payNow2", page: () => const PayNow2()),
+    GetPage(name: "/transferLimit", page: () => const TransferLimit()),
+    GetPage(name: "/loginScreen", page: () => const LoginScreen()),
+    GetPage(name: "/emailLoginScreen", page: () => const EmailLoginScreen()),
+    GetPage(name: "/profileUpdateScreen", page: () => const UpdateProfile()),
+    GetPage(name: "/changeZipPinScreen", page: () => const ChangeZipPin()),
+    GetPage(name: "/sendOtpForPinScreen", page: () => const SendOtpForPin()),
+    GetPage(
+        name: "/verifyOtpForPinScreen", page: () => const VerifyOtpForPin()),
+    GetPage(name: "/securityOtpScreen", page: () => const SecurityOtpScreen()),
+    GetPage(name: "/loginPinScreen", page: () => const LoginPinScreen()),
+    GetPage(
+        name: "/notVerifyAfricaScreen",
+        page: () => const NotVerifyAfricaScreen()),
   ];
 }

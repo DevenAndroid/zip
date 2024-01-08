@@ -1,5 +1,3 @@
-
-
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
@@ -10,10 +8,8 @@ import '../models/setting_modal.dart';
 import '../resourses/api_constant.dart';
 
 Future<SettingModal> settingRepo() async {
-
   try {
-    http.Response response = await http.get(
-        Uri.parse(ApiUrls.userSetting),
+    http.Response response = await http.get(Uri.parse(ApiUrls.userSetting),
         headers: await getAuthHeader());
 
     if (response.statusCode == 200) {
@@ -42,4 +38,3 @@ Future<SettingModal> settingRepo() async {
 //     throw Exception(e);
 //   }
 // }
-

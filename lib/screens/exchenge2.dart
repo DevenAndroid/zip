@@ -24,13 +24,10 @@ class ExchangeMoney2 extends StatefulWidget {
 }
 
 class _ExchangeMoney2State extends State<ExchangeMoney2> {
-
-
   Rx<ModelConversion> modelConversion = ModelConversion().obs;
   Rx<RxStatus> statusOfConversion = RxStatus.empty().obs;
   TextEditingController amountController = TextEditingController();
   String? usdToNgn;
-
 
   @override
   void initState() {
@@ -38,34 +35,46 @@ class _ExchangeMoney2State extends State<ExchangeMoney2> {
     super.initState();
     convertUsd();
   }
+
   String dropdownvalue = 'NGN';
+
   List<DropdownMenuItem<String>> get dropdownItemsm1 {
     List<DropdownMenuItem<String>> menuItemsm = [
-      const DropdownMenuItem(value: "NGN", child: Text("NGN",)),
+      const DropdownMenuItem(
+          value: "NGN",
+          child: Text(
+            "NGN",
+          )),
       const DropdownMenuItem(value: "GBP", child: Text("GBP")),
       const DropdownMenuItem(value: "EUR", child: Text("EUR")),
       const DropdownMenuItem(value: "USD", child: Text("USD")),
-
     ];
     return menuItemsm;
   }
 
   String dropdownvalue2 = 'NGN';
+
   List<DropdownMenuItem<String>> get dropdownItemsm2 {
     List<DropdownMenuItem<String>> menuItemsm = [
-      const DropdownMenuItem(value: "NGN", child: Text("NGN",)),
+      const DropdownMenuItem(
+          value: "NGN",
+          child: Text(
+            "NGN",
+          )),
       const DropdownMenuItem(value: "GBP", child: Text("GBP")),
       const DropdownMenuItem(value: "EUR", child: Text("EUR")),
       const DropdownMenuItem(value: "USD", child: Text("USD")),
-
     ];
     return menuItemsm;
   }
 
-
   void convertUsd() async {
-    var convert =  Currency.values.firstWhere((element) => element.name.toString().toLowerCase() ==dropdownvalue2.toString().toLowerCase());
-    var myCurrency =  Currency.values.firstWhere((element) => element.name.toString().toLowerCase() ==dropdownvalue.toString().toLowerCase());
+    var convert = Currency.values.firstWhere((element) =>
+        element.name.toString().toLowerCase() ==
+        dropdownvalue2.toString().toLowerCase());
+    var myCurrency = Currency.values.firstWhere((element) =>
+        element.name.toString().toLowerCase() ==
+        dropdownvalue.toString().toLowerCase());
 
     print(convert);
     // Currency myCurrency = await CurrencyConverter.getMyCurrency();
@@ -82,16 +91,16 @@ class _ExchangeMoney2State extends State<ExchangeMoney2> {
 
   Future Conversions() async {
     await conversionRepo(
-        amount: amountController.text.trim(),
-        action: "send",
-        sourceCurrency: "NGN",
-        destinationCurrency: dropdownvalue2.toString(),
-        business: "64529bd2bfdf28e7c18aa9da",
-        beneficiaryType: "individual",
-        feeBearer: "business",
-        paymentDestination: "fliqpay_wallet",
-        transactionType: "conversion",
-        context: context)
+            amount: amountController.text.trim(),
+            action: "send",
+            sourceCurrency: "NGN",
+            destinationCurrency: dropdownvalue2.toString(),
+            business: "64529bd2bfdf28e7c18aa9da",
+            beneficiaryType: "individual",
+            feeBearer: "business",
+            paymentDestination: "fliqpay_wallet",
+            transactionType: "conversion",
+            context: context)
         .then((value) {
       modelConversion.value = value;
       if (value.success == true) {
@@ -104,13 +113,14 @@ class _ExchangeMoney2State extends State<ExchangeMoney2> {
         showToast(value.message.toString());
       }
     }
-      // showToast(value.message.toString());
-    );
+            // showToast(value.message.toString());
+            );
   }
 
   RxString currency = "0".obs;
   RxString fee = "".obs;
   RxString receive = "".obs;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -142,7 +152,7 @@ class _ExchangeMoney2State extends State<ExchangeMoney2> {
           ),
           centerTitle: true,
         ),
-        body: Obx((){
+        body: Obx(() {
           return SingleChildScrollView(
               child: Padding(
                   padding: const EdgeInsets.all(12.0),
@@ -161,65 +171,75 @@ class _ExchangeMoney2State extends State<ExchangeMoney2> {
                           child: Row(
                             children: [
                               Container(
-                                  padding: const EdgeInsets.all(12),
-                                  decoration: const BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(16),
-                                          bottomLeft: Radius.circular(16)),
-                                      color: Color(0xFFEEEEEE)),
-                                  child:    SizedBox(
-                                    width: 100,
-                                    child: DropdownButtonHideUnderline(
-                                      child: DropdownButtonFormField(
-                                        validator: MultiValidator([
-                                          RequiredValidator(
-                                              errorText: 'Please select your channel'),
-                                        ]),
-                                        style: GoogleFonts.poppins(color: const Color(0xFF585757),fontWeight: FontWeight.w400,fontSize: 16),
-                                        decoration: InputDecoration(
-                                          contentPadding: const EdgeInsets.all(10),
-                                          border: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                              10,
-                                            ),
-                                            borderSide: const BorderSide(
-                                                color: Colors.transparent, width: 1.5),
+                                padding: const EdgeInsets.all(12),
+                                decoration: const BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(16),
+                                        bottomLeft: Radius.circular(16)),
+                                    color: Color(0xFFEEEEEE)),
+                                child: SizedBox(
+                                  width: 100,
+                                  child: DropdownButtonHideUnderline(
+                                    child: DropdownButtonFormField(
+                                      validator: MultiValidator([
+                                        RequiredValidator(
+                                            errorText:
+                                                'Please select your channel'),
+                                      ]),
+                                      style: GoogleFonts.poppins(
+                                          color: const Color(0xFF585757),
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 16),
+                                      decoration: InputDecoration(
+                                        contentPadding:
+                                            const EdgeInsets.all(10),
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            10,
                                           ),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                              10,
-                                            ),
-                                            borderSide: const BorderSide(
-                                                color:Colors.transparent,width: 1.5),
-                                          ),
-                                          disabledBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                              10,
-                                            ),
-                                            borderSide: const BorderSide(
-                                                color: Colors.transparent,width: 1.5),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                              10,
-                                            ),
-                                            borderSide: const BorderSide(
-                                                color:Colors.transparent,width: 1.5),
-                                          ),
+                                          borderSide: const BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1.5),
                                         ),
-                                        hint: const Text(""),
-                                        icon: const Icon(Icons.keyboard_arrow_down),
-                                        isExpanded: true,
-                                        value:  dropdownvalue,
-                                        items: dropdownItemsm1,
-                                        onChanged: (String? value) {
-                                          setState(() {
-                                            dropdownvalue = value!;
-                                          });
-                                        },
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            10,
+                                          ),
+                                          borderSide: const BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1.5),
+                                        ),
+                                        disabledBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            10,
+                                          ),
+                                          borderSide: const BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1.5),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            10,
+                                          ),
+                                          borderSide: const BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1.5),
+                                        ),
                                       ),
+                                      hint: const Text(""),
+                                      icon:
+                                          const Icon(Icons.keyboard_arrow_down),
+                                      isExpanded: true,
+                                      value: dropdownvalue,
+                                      items: dropdownItemsm1,
+                                      onChanged: (String? value) {
+                                        setState(() {
+                                          dropdownvalue = value!;
+                                        });
+                                      },
                                     ),
                                   ),
+                                ),
 
                                 // CountryCodePicker(
                                 //   onChanged: print,
@@ -310,7 +330,7 @@ class _ExchangeMoney2State extends State<ExchangeMoney2> {
                                   Row(
                                     children: [
                                       InkWell(
-                                        onTap: (){
+                                        onTap: () {
                                           print(usdToNgn.toString());
                                         },
                                         child: Text(
@@ -321,8 +341,8 @@ class _ExchangeMoney2State extends State<ExchangeMoney2> {
                                               fontWeight: FontWeight.w500),
                                         ),
                                       ),
-
-                                      Text( "$usdToNgn",
+                                      Text(
+                                        "$usdToNgn",
                                         style: GoogleFonts.poppins(
                                             color: const Color(0xFF7E7E7E),
                                             fontSize: 15,
@@ -464,65 +484,75 @@ class _ExchangeMoney2State extends State<ExchangeMoney2> {
                           child: Row(
                             children: [
                               Container(
-                                  padding: const EdgeInsets.all(12),
-                                  decoration: const BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(16),
-                                          bottomLeft: Radius.circular(16)),
-                                      color: Color(0xFFEEEEEE)),
-                                  child:    SizedBox(
-                                    width: 100,
-                                    child: DropdownButtonHideUnderline(
-                                      child: DropdownButtonFormField(
-                                        validator: MultiValidator([
-                                          RequiredValidator(
-                                              errorText: 'Please select your channel'),
-                                        ]),
-                                        style: GoogleFonts.poppins(color: const Color(0xFF585757),fontWeight: FontWeight.w400,fontSize: 16),
-                                        decoration: InputDecoration(
-                                          contentPadding: const EdgeInsets.all(10),
-                                          border: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                              10,
-                                            ),
-                                            borderSide: const BorderSide(
-                                                color:Colors.transparent, width: 1.5),
+                                padding: const EdgeInsets.all(12),
+                                decoration: const BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(16),
+                                        bottomLeft: Radius.circular(16)),
+                                    color: Color(0xFFEEEEEE)),
+                                child: SizedBox(
+                                  width: 100,
+                                  child: DropdownButtonHideUnderline(
+                                    child: DropdownButtonFormField(
+                                      validator: MultiValidator([
+                                        RequiredValidator(
+                                            errorText:
+                                                'Please select your channel'),
+                                      ]),
+                                      style: GoogleFonts.poppins(
+                                          color: const Color(0xFF585757),
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 16),
+                                      decoration: InputDecoration(
+                                        contentPadding:
+                                            const EdgeInsets.all(10),
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            10,
                                           ),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                              10,
-                                            ),
-                                            borderSide: const BorderSide(
-                                                color: Colors.transparent, width: 1.5),
-                                          ),
-                                          disabledBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                              10,
-                                            ),
-                                            borderSide: const BorderSide(
-                                                color: Colors.transparent, width: 1.5),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                              10,
-                                            ),
-                                            borderSide: const BorderSide(
-                                                color: Colors.transparent, width: 1.5),
-                                          ),
+                                          borderSide: const BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1.5),
                                         ),
-                                        hint: const Text(""),
-                                        icon: const Icon(Icons.keyboard_arrow_down),
-                                        isExpanded: true,
-                                        value:  dropdownvalue2,
-                                        items: dropdownItemsm2,
-                                        onChanged: (String? value) {
-                                          setState(() {
-                                            dropdownvalue2 = value!;
-                                          });
-                                        },
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            10,
+                                          ),
+                                          borderSide: const BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1.5),
+                                        ),
+                                        disabledBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            10,
+                                          ),
+                                          borderSide: const BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1.5),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            10,
+                                          ),
+                                          borderSide: const BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1.5),
+                                        ),
                                       ),
+                                      hint: const Text(""),
+                                      icon:
+                                          const Icon(Icons.keyboard_arrow_down),
+                                      isExpanded: true,
+                                      value: dropdownvalue2,
+                                      items: dropdownItemsm2,
+                                      onChanged: (String? value) {
+                                        setState(() {
+                                          dropdownvalue2 = value!;
+                                        });
+                                      },
                                     ),
                                   ),
+                                ),
                                 // CountryCodePicker(
                                 //   onChanged: print,
                                 //   initialSelection: 'IT',
@@ -547,7 +577,8 @@ class _ExchangeMoney2State extends State<ExchangeMoney2> {
                               const SizedBox(
                                 width: 50,
                               ),
-                              Text(receive.value.toString(),
+                              Text(
+                                receive.value.toString(),
                                 style: const TextStyle(
                                     color: Colors.black,
                                     fontSize: 16,

@@ -1,10 +1,7 @@
-
-
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-
 
 import '../models/model_all_transistion.dart';
 import '../models/model_beneficary_list.dart';
@@ -32,6 +29,7 @@ Future<ModelAllTransistion> sendTransistionListGetRepo() async {
           data: null);
     }
   } catch (e) {
-    return ModelAllTransistion(message: e.toString(), status: false, data: null);
+    return ModelAllTransistion(
+        message: e.toString(), status: false, data: null);
   }
 }

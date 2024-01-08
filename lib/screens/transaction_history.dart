@@ -39,6 +39,7 @@ class _TransactionsHistoryState extends State<TransactionsHistory> {
         // showToast(value.message.toString());
         );
   }
+
   getAllTransitionList1() {
     sendTransistionListGetRepo().then((value) {
       log("response.body.....    ${value}");
@@ -49,9 +50,10 @@ class _TransactionsHistoryState extends State<TransactionsHistory> {
         statusOfAllTransistion.value = RxStatus.error();
       }
     }
-      // showToast(value.message.toString());
-    );
+        // showToast(value.message.toString());
+        );
   }
+
   getAllTransitionList2() {
     recieveTransistionListGetRepo().then((value) {
       log("response.body.....    ${value}");
@@ -62,9 +64,10 @@ class _TransactionsHistoryState extends State<TransactionsHistory> {
         statusOfAllTransistion.value = RxStatus.error();
       }
     }
-      // showToast(value.message.toString());
-    );
+        // showToast(value.message.toString());
+        );
   }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -80,12 +83,11 @@ class _TransactionsHistoryState extends State<TransactionsHistory> {
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
-           leading: InkWell(
-             onTap: () {
-               Get.toNamed(MyRouters.bottomNavbar);
-             },
-             child: const SizedBox()
-           ),
+          leading: InkWell(
+              onTap: () {
+                Get.toNamed(MyRouters.bottomNavbar);
+              },
+              child: const SizedBox()),
           title: Text(
             appBarName.toString(),
             style: GoogleFonts.poppins(
@@ -289,455 +291,464 @@ class _TransactionsHistoryState extends State<TransactionsHistory> {
                         SizedBox(
                           height: 20,
                         ),
-                        if(currentDrawer ==0 )
-                        Obx(() {
-                          return statusOfAllTransistion.value.isSuccess
-                              ? ListView.builder(
-                                  shrinkWrap: true,
-                                  physics: const BouncingScrollPhysics(),
-                                  itemCount: allTransistion.value.data!.length,
-                                  itemBuilder: (context, index) {
-                                    return GestureDetector(
-                                      onTap: () {},
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Container(
-                                            padding: EdgeInsets.all(10),
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(10),
-                                              border: Border.all(color: Colors.grey)
+                        if (currentDrawer == 0)
+                          Obx(() {
+                            return statusOfAllTransistion.value.isSuccess
+                                ? ListView.builder(
+                                    shrinkWrap: true,
+                                    physics: const BouncingScrollPhysics(),
+                                    itemCount:
+                                        allTransistion.value.data!.length,
+                                    itemBuilder: (context, index) {
+                                      return GestureDetector(
+                                        onTap: () {},
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            SizedBox(
+                                              height: 10,
                                             ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Container(
-                                                  padding: EdgeInsets.all(8),
-                                                  decoration: BoxDecoration(color: AppTheme.secondaryColor,shape: BoxShape.circle),
-
-
-                                                  child: Icon(
-                                                    allTransistion
+                                            Container(
+                                              padding: EdgeInsets.all(10),
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  border: Border.all(
+                                                      color: Colors.grey)),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Container(
+                                                    padding: EdgeInsets.all(8),
+                                                    decoration: BoxDecoration(
+                                                        color: AppTheme
+                                                            .secondaryColor,
+                                                        shape: BoxShape.circle),
+                                                    child: Icon(
+                                                      allTransistion
+                                                                  .value
+                                                                  .data![index]
+                                                                  .transactionType ==
+                                                              "Credit"
+                                                          ? Icons
+                                                              .arrow_downward_sharp
+                                                          : Icons
+                                                              .arrow_upward_sharp,
+                                                      color: Colors.white,
+                                                      size: 25,
+                                                    ),
+                                                  ),
+                                                  Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Text(
+                                                        "NGN " +
+                                                            allTransistion
                                                                 .value
                                                                 .data![index]
-                                                                .transactionType ==
-                                                            "Credit"
-                                                        ? Icons
-                                                            .arrow_downward_sharp
-                                                        : Icons
-                                                            .arrow_upward_sharp,
-                                                    color: Colors.white,
-                                                    size: 25,
+                                                                .amount
+                                                                .toString(),
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                                color: AppTheme
+                                                                    .primaryColor,
+                                                                fontSize: 16,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600),
+                                                      ),
+                                                      Text(
+                                                        allTransistion
+                                                            .value
+                                                            .data![index]
+                                                            .transactionAbout
+                                                            .toString(),
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                                color:
+                                                                    Colors.grey,
+                                                                fontSize: 13,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500),
+                                                      ),
+                                                    ],
                                                   ),
-                                                ),
-
-                                                Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      "NGN " +
-                                                          allTransistion
-                                                              .value
-                                                              .data![index]
-                                                              .amount
-                                                              .toString(),
-                                                      style:
-                                                          GoogleFonts.poppins(
-                                                              color: AppTheme
-                                                                  .primaryColor,
-                                                              fontSize: 16,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600),
-                                                    ),
-                                                    Text(
-                                                      allTransistion
-                                                          .value
-                                                          .data![index]
-                                                          .transactionAbout
-                                                          .toString(),
-                                                      style:
-                                                          GoogleFonts.poppins(
-                                                              color:
-                                                                  Colors.grey,
-                                                              fontSize: 13,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Column(
-                                                  mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                                  crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      allTransistion
-                                                          .value
-                                                          .data![index]
-                                                          .transactionType
-                                                          .toString(),
-                                                      style:
-                                                          GoogleFonts.poppins(
-                                                              color: AppTheme
-                                                                  .primaryColor,
-                                                              fontSize: 16,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600),
-                                                    ),
-                                                    Text(
-                                                      allTransistion
-                                                          .value
-                                                          .data![index]
-                                                          .createdAt
-                                                          .toString(),
-                                                      style:
-                                                          GoogleFonts.poppins(
-                                                              color:
-                                                                  Colors.grey,
-                                                              fontSize: 13,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
+                                                  Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Text(
+                                                        allTransistion
+                                                            .value
+                                                            .data![index]
+                                                            .transactionType
+                                                            .toString(),
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                                color: AppTheme
+                                                                    .primaryColor,
+                                                                fontSize: 16,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600),
+                                                      ),
+                                                      Text(
+                                                        allTransistion
+                                                            .value
+                                                            .data![index]
+                                                            .createdAt
+                                                            .toString(),
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                                color:
+                                                                    Colors.grey,
+                                                                fontSize: 13,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          )
-                                        ],
-                                      ),
-                                    );
-                                  })
-                              : statusOfAllTransistion.value.isError
-                                  ? CommonErrorWidget(
-                                      errorText: allTransistion.value.message
-                                          .toString(),
-                                      onTap: () {
-                                        getAllTransitionList();
-                                      },
-                                    )
-                                  : const CommonProgressIndicator();
-                        }),
-                        if(currentDrawer ==1 )
-                          Obx(() {
-                            return statusOfAllTransistion.value.isSuccess
-                                ? ListView.builder(
-                                shrinkWrap: true,
-                                physics: const BouncingScrollPhysics(),
-                                itemCount: allTransistion.value.data!.length,
-                                itemBuilder: (context, index) {
-                                  return GestureDetector(
-                                    onTap: () {
-
-                                    },
-                                    child: Column(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-
-                                        SizedBox(
-                                          height: 10,
+                                            SizedBox(
+                                              height: 10,
+                                            )
+                                          ],
                                         ),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(10),
-                                              border: Border.all(color: Colors.grey)
-                                          ),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment
-                                                .spaceBetween,
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                padding: EdgeInsets.all(8),
-                                                decoration: BoxDecoration(color: AppTheme.secondaryColor,shape: BoxShape.circle),
-
-
-                                                child: Icon(
-                                                  allTransistion
-                                                      .value
-                                                      .data![index]
-                                                      .transactionType ==
-                                                      "Credit"
-                                                      ? Icons
-                                                      .arrow_downward_sharp
-                                                      : Icons
-                                                      .arrow_upward_sharp,
-                                                  color: Colors.white,
-                                                  size: 25,
-                                                ),
-                                              ),
-
-                                              Column(
-                                                mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    "NGN " +
-                                                        allTransistion
-                                                            .value
-                                                            .data![index]
-                                                            .amount
-                                                            .toString(),
-                                                    style:
-                                                    GoogleFonts.poppins(
-                                                        color: AppTheme
-                                                            .primaryColor,
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w600),
-                                                  ),
-                                                  Text(
-                                                    allTransistion
-                                                        .value
-                                                        .data![index]
-                                                        .transactionAbout
-                                                        .toString(),
-                                                    style:
-                                                    GoogleFonts.poppins(
-                                                        color:
-                                                        Colors.grey,
-                                                        fontSize: 13,
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w500),
-                                                  ),
-                                                ],
-                                              ),
-                                              Column(
-                                                mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    allTransistion
-                                                        .value
-                                                        .data![index]
-                                                        .transactionType
-                                                        .toString(),
-                                                    style:
-                                                    GoogleFonts.poppins(
-                                                        color: AppTheme
-                                                            .primaryColor,
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w600),
-                                                  ),
-                                                  Text(
-                                                    allTransistion
-                                                        .value
-                                                        .data![index]
-                                                        .createdAt
-                                                        .toString(),
-                                                    style:
-                                                    GoogleFonts.poppins(
-                                                        color:
-                                                        Colors.grey,
-                                                        fontSize: 13,
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w500),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        )
-                                      ],
-                                    ),
-                                  );
-                                })
+                                      );
+                                    })
                                 : statusOfAllTransistion.value.isError
-                                ? CommonErrorWidget(
-                              errorText: allTransistion.value.message
-                                  .toString(),
-                              onTap: () {
-                                // getSentTransitionList();
-                              },
-                            )
-                                : const CommonProgressIndicator();
+                                    ? CommonErrorWidget(
+                                        errorText: allTransistion.value.message
+                                            .toString(),
+                                        onTap: () {
+                                          getAllTransitionList();
+                                        },
+                                      )
+                                    : const CommonProgressIndicator();
                           }),
-                        if(currentDrawer ==2 )
+                        if (currentDrawer == 1)
                           Obx(() {
                             return statusOfAllTransistion.value.isSuccess
                                 ? ListView.builder(
-                                shrinkWrap: true,
-                                physics: const BouncingScrollPhysics(),
-                                itemCount: allTransistion.value.data!.length,
-                                itemBuilder: (context, index) {
-                                  return GestureDetector(
-                                    onTap: () {
-
-                                    },
-                                    child: Column(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(10),
-                                              border: Border.all(color: Colors.grey)
-                                          ),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment
-                                                .spaceBetween,
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                padding: EdgeInsets.all(8),
-                                                decoration: BoxDecoration(color: AppTheme.secondaryColor,shape: BoxShape.circle),
-
-
-                                                child: Icon(
-                                                  allTransistion
-                                                      .value
-                                                      .data![index]
-                                                      .transactionType ==
-                                                      "Credit"
-                                                      ? Icons
-                                                      .arrow_downward_sharp
-                                                      : Icons
-                                                      .arrow_upward_sharp,
-                                                  color: Colors.white,
-                                                  size: 25,
-                                                ),
-                                              ),
-
-                                              Column(
+                                    shrinkWrap: true,
+                                    physics: const BouncingScrollPhysics(),
+                                    itemCount:
+                                        allTransistion.value.data!.length,
+                                    itemBuilder: (context, index) {
+                                      return GestureDetector(
+                                        onTap: () {},
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            Container(
+                                              padding: EdgeInsets.all(10),
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  border: Border.all(
+                                                      color: Colors.grey)),
+                                              child: Row(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment.start,
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 crossAxisAlignment:
-                                                CrossAxisAlignment.center,
+                                                    CrossAxisAlignment.start,
                                                 children: [
-                                                  Text(
-                                                    "NGN " +
+                                                  Container(
+                                                    padding: EdgeInsets.all(8),
+                                                    decoration: BoxDecoration(
+                                                        color: AppTheme
+                                                            .secondaryColor,
+                                                        shape: BoxShape.circle),
+                                                    child: Icon(
+                                                      allTransistion
+                                                                  .value
+                                                                  .data![index]
+                                                                  .transactionType ==
+                                                              "Credit"
+                                                          ? Icons
+                                                              .arrow_downward_sharp
+                                                          : Icons
+                                                              .arrow_upward_sharp,
+                                                      color: Colors.white,
+                                                      size: 25,
+                                                    ),
+                                                  ),
+                                                  Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Text(
+                                                        "NGN " +
+                                                            allTransistion
+                                                                .value
+                                                                .data![index]
+                                                                .amount
+                                                                .toString(),
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                                color: AppTheme
+                                                                    .primaryColor,
+                                                                fontSize: 16,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600),
+                                                      ),
+                                                      Text(
                                                         allTransistion
                                                             .value
                                                             .data![index]
-                                                            .amount
+                                                            .transactionAbout
                                                             .toString(),
-                                                    style:
-                                                    GoogleFonts.poppins(
-                                                        color: AppTheme
-                                                            .primaryColor,
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w600),
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                                color:
+                                                                    Colors.grey,
+                                                                fontSize: 13,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500),
+                                                      ),
+                                                    ],
                                                   ),
-                                                  Text(
-                                                    allTransistion
-                                                        .value
-                                                        .data![index]
-                                                        .transactionAbout
-                                                        .toString(),
-                                                    style:
-                                                    GoogleFonts.poppins(
-                                                        color:
-                                                        Colors.grey,
-                                                        fontSize: 13,
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w500),
-                                                  ),
-                                                ],
-                                              ),
-                                              Column(
-                                                mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    allTransistion
-                                                        .value
-                                                        .data![index]
-                                                        .transactionType
-                                                        .toString(),
-                                                    style:
-                                                    GoogleFonts.poppins(
-                                                        color: AppTheme
-                                                            .primaryColor,
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w600),
-                                                  ),
-                                                  Text(
-                                                    allTransistion
-                                                        .value
-                                                        .data![index]
-                                                        .createdAt
-                                                        .toString(),
-                                                    style:
-                                                    GoogleFonts.poppins(
-                                                        color:
-                                                        Colors.grey,
-                                                        fontSize: 13,
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w500),
+                                                  Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Text(
+                                                        allTransistion
+                                                            .value
+                                                            .data![index]
+                                                            .transactionType
+                                                            .toString(),
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                                color: AppTheme
+                                                                    .primaryColor,
+                                                                fontSize: 16,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600),
+                                                      ),
+                                                      Text(
+                                                        allTransistion
+                                                            .value
+                                                            .data![index]
+                                                            .createdAt
+                                                            .toString(),
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                                color:
+                                                                    Colors.grey,
+                                                                fontSize: 13,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500),
+                                                      ),
+                                                    ],
                                                   ),
                                                 ],
                                               ),
-                                            ],
-                                          ),
+                                            ),
+                                            SizedBox(
+                                              height: 10,
+                                            )
+                                          ],
                                         ),
-
-                                        SizedBox(
-                                          height: 10,
-                                        )
-                                      ],
-                                    ),
-                                  );
-                                })
+                                      );
+                                    })
                                 : statusOfAllTransistion.value.isError
-                                ? CommonErrorWidget(
-                              errorText: allTransistion.value.message
-                                  .toString(),
-                              onTap: () {
-                                // getRecieveTransitionList();
-                              },
-                            )
-                                : const CommonProgressIndicator();
+                                    ? CommonErrorWidget(
+                                        errorText: allTransistion.value.message
+                                            .toString(),
+                                        onTap: () {
+                                          // getSentTransitionList();
+                                        },
+                                      )
+                                    : const CommonProgressIndicator();
+                          }),
+                        if (currentDrawer == 2)
+                          Obx(() {
+                            return statusOfAllTransistion.value.isSuccess
+                                ? ListView.builder(
+                                    shrinkWrap: true,
+                                    physics: const BouncingScrollPhysics(),
+                                    itemCount:
+                                        allTransistion.value.data!.length,
+                                    itemBuilder: (context, index) {
+                                      return GestureDetector(
+                                        onTap: () {},
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            Container(
+                                              padding: EdgeInsets.all(10),
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  border: Border.all(
+                                                      color: Colors.grey)),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Container(
+                                                    padding: EdgeInsets.all(8),
+                                                    decoration: BoxDecoration(
+                                                        color: AppTheme
+                                                            .secondaryColor,
+                                                        shape: BoxShape.circle),
+                                                    child: Icon(
+                                                      allTransistion
+                                                                  .value
+                                                                  .data![index]
+                                                                  .transactionType ==
+                                                              "Credit"
+                                                          ? Icons
+                                                              .arrow_downward_sharp
+                                                          : Icons
+                                                              .arrow_upward_sharp,
+                                                      color: Colors.white,
+                                                      size: 25,
+                                                    ),
+                                                  ),
+                                                  Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Text(
+                                                        "NGN " +
+                                                            allTransistion
+                                                                .value
+                                                                .data![index]
+                                                                .amount
+                                                                .toString(),
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                                color: AppTheme
+                                                                    .primaryColor,
+                                                                fontSize: 16,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600),
+                                                      ),
+                                                      Text(
+                                                        allTransistion
+                                                            .value
+                                                            .data![index]
+                                                            .transactionAbout
+                                                            .toString(),
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                                color:
+                                                                    Colors.grey,
+                                                                fontSize: 13,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Text(
+                                                        allTransistion
+                                                            .value
+                                                            .data![index]
+                                                            .transactionType
+                                                            .toString(),
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                                color: AppTheme
+                                                                    .primaryColor,
+                                                                fontSize: 16,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600),
+                                                      ),
+                                                      Text(
+                                                        allTransistion
+                                                            .value
+                                                            .data![index]
+                                                            .createdAt
+                                                            .toString(),
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                                color:
+                                                                    Colors.grey,
+                                                                fontSize: 13,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 10,
+                                            )
+                                          ],
+                                        ),
+                                      );
+                                    })
+                                : statusOfAllTransistion.value.isError
+                                    ? CommonErrorWidget(
+                                        errorText: allTransistion.value.message
+                                            .toString(),
+                                        onTap: () {
+                                          // getRecieveTransitionList();
+                                        },
+                                      )
+                                    : const CommonProgressIndicator();
                           })
                       ]))),
         ));

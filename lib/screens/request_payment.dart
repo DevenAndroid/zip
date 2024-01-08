@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/screens/addapayer.dart';
 import 'package:zip/widgets/common_colour.dart';
 
-
 import '../widgets/common_textfield.dart';
 
 class RequestPayment extends StatefulWidget {
@@ -17,7 +16,8 @@ class RequestPayment extends StatefulWidget {
 }
 
 class _RequestPaymentState extends State<RequestPayment> {
-  bool isSwitched =false;
+  bool isSwitched = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +33,7 @@ class _RequestPaymentState extends State<RequestPayment> {
         ),
         centerTitle: true,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Get.back();
           },
           child: Icon(
@@ -43,9 +43,9 @@ class _RequestPaymentState extends State<RequestPayment> {
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 20,top: 20,bottom: 10),
+            padding: const EdgeInsets.only(right: 20, top: 20, bottom: 10),
             child: InkWell(
-              onTap: (){
+              onTap: () {
                 Get.to(AddAPayer());
               },
               child: Container(
@@ -68,7 +68,7 @@ class _RequestPaymentState extends State<RequestPayment> {
           children: [
             Padding(
               padding: const EdgeInsets.only(
-                  left: 29, right: 29, bottom: 35,top: 36),
+                  left: 29, right: 29, bottom: 35, top: 36),
               child: CommonTextfield(
                 prefix: Icon(Icons.search),
                 obSecure: false,
@@ -94,7 +94,6 @@ class _RequestPaymentState extends State<RequestPayment> {
                   ],
                 ),
                 Spacer(),
-
                 CupertinoSwitch(
                   value: isSwitched,
                   activeColor: Color(0xffF0D75F),
@@ -103,7 +102,6 @@ class _RequestPaymentState extends State<RequestPayment> {
                       isSwitched = value;
                       print(isSwitched);
                     });
-
                   },
                 ),
                 SizedBox(
@@ -111,8 +109,9 @@ class _RequestPaymentState extends State<RequestPayment> {
                 ),
               ],
             ),
-            SizedBox(height: 16,),
-
+            SizedBox(
+              height: 16,
+            ),
             Container(
               height: 29,
               width: Get.width,
@@ -127,45 +126,8 @@ class _RequestPaymentState extends State<RequestPayment> {
                 ),
               ),
             ),
-
-           Padding(
-             padding: const EdgeInsets.only(left: 30,right: 30,top: 21),
-             child: Row(
-               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-               children: [
-                 Text(
-                   "Raquel Smitham",
-                   style: GoogleFonts.poppins(
-                       color: const Color(0xFF1D1D1D),
-                       fontSize: 13,
-                       fontWeight: FontWeight.w400),
-                 ),
-                 Text(
-                   "100.00 USD",
-                   style: GoogleFonts.poppins(
-                       color: const Color(0xFF1D1D1D),
-                       fontSize: 13,
-                       fontWeight: FontWeight.w400),
-                 ),
-               ],
-             ),
-           ),
             Padding(
-              padding: const EdgeInsets.only(left: 30,right: 30),
-              child: Align(
-                alignment: Alignment.topLeft ,
-                child: Text(
-                  "Pending",
-                  style: GoogleFonts.poppins(
-                      color: const Color(0xFF1D1D1D),
-                      fontSize: 11,
-                      fontWeight: FontWeight.w300),
-                ),
-              ),
-            ),
-            SizedBox(height: 11,),
-            Padding(
-              padding: const EdgeInsets.only(left: 30,right: 30,top: 21),
+              padding: const EdgeInsets.only(left: 30, right: 30, top: 21),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -187,9 +149,47 @@ class _RequestPaymentState extends State<RequestPayment> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 30,right: 30),
+              padding: const EdgeInsets.only(left: 30, right: 30),
               child: Align(
-                alignment: Alignment.topLeft ,
+                alignment: Alignment.topLeft,
+                child: Text(
+                  "Pending",
+                  style: GoogleFonts.poppins(
+                      color: const Color(0xFF1D1D1D),
+                      fontSize: 11,
+                      fontWeight: FontWeight.w300),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 11,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 30, right: 30, top: 21),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Raquel Smitham",
+                    style: GoogleFonts.poppins(
+                        color: const Color(0xFF1D1D1D),
+                        fontSize: 13,
+                        fontWeight: FontWeight.w400),
+                  ),
+                  Text(
+                    "100.00 USD",
+                    style: GoogleFonts.poppins(
+                        color: const Color(0xFF1D1D1D),
+                        fontSize: 13,
+                        fontWeight: FontWeight.w400),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 30, right: 30),
+              child: Align(
+                alignment: Alignment.topLeft,
                 child: Text(
                   "Clear",
                   style: GoogleFonts.poppins(
@@ -199,8 +199,6 @@ class _RequestPaymentState extends State<RequestPayment> {
                 ),
               ),
             ),
-
-
           ],
         ),
       ),

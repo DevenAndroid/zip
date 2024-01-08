@@ -9,6 +9,7 @@ import '../widgets/circular_progressindicator.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_colour.dart';
 import '../widgets/common_error_widget.dart';
+
 class MeterDetails extends StatefulWidget {
   const MeterDetails({super.key});
 
@@ -17,15 +18,15 @@ class MeterDetails extends StatefulWidget {
 }
 
 class _MeterDetailsState extends State<MeterDetails> {
-
   final controller1 = Get.put(registerController());
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     // controller1. getCard();
-
   }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -55,13 +56,12 @@ class _MeterDetailsState extends State<MeterDetails> {
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.only(bottom: 20.0),
           child: InkWell(
-            onTap: (){
+            onTap: () {
               Get.toNamed(MyRouters.successRechargeScreen);
               // payOutcontroller.save(context);
             },
             child: CustomOutlineButton(
               title: "Continue",
-
             ),
           ),
         ),
@@ -70,105 +70,142 @@ class _MeterDetailsState extends State<MeterDetails> {
                 padding: const EdgeInsets.all(12.0),
                 child: FittedBox(
                   child: Row(
-                   //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                   // crossAxisAlignment: CrossAxisAlignment.start,
+                    //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    // crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       FittedBox(
                         child: Column(
                           // mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-
-                            Text('Meter Number ',
+                            Text(
+                              'Meter Number ',
                               style: GoogleFonts.poppins(
                                   color: const Color(0xFF1D1D1D),
                                   fontSize: 16,
-                                  fontWeight: FontWeight.w500),),
-                            SizedBox(height: 10,),
-                            Text('Customer Name',
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              'Customer Name',
                               style: GoogleFonts.poppins(
                                   color: const Color(0xFF1D1D1D),
                                   fontSize: 16,
-                                  fontWeight: FontWeight.w500),),
-                            SizedBox(height: 10,),
-                            Text('Service',
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              'Service',
                               style: GoogleFonts.poppins(
                                   color: const Color(0xFF1D1D1D),
                                   fontSize: 16,
-                                  fontWeight: FontWeight.w500),),
-                            SizedBox(height: 10,),
-                            Text('Product Name',
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              'Product Name',
                               style: GoogleFonts.poppins(
                                   color: const Color(0xFF1D1D1D),
                                   fontSize: 16,
-                                  fontWeight: FontWeight.w500),),
-                            SizedBox(height: 10,),
-                            Text('Mobile number',
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              'Mobile number',
                               style: GoogleFonts.poppins(
                                   color: const Color(0xFF1D1D1D),
                                   fontSize: 16,
-                                  fontWeight: FontWeight.w500),),
-                            SizedBox(height: 10,),
-                            Text('Price',
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              'Price',
                               style: GoogleFonts.poppins(
                                   color: const Color(0xFF1D1D1D),
                                   fontSize: 16,
-                                  fontWeight: FontWeight.w500),),
-
-
+                                  fontWeight: FontWeight.w500),
+                            ),
                           ],
                         ),
                       ),
                       FittedBox(
                         child: Column(
-                         // mainAxisAlignment: MainAxisAlignment.end,
+                          // mainAxisAlignment: MainAxisAlignment.end,
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-
-                            Text(controller1.meterNo.text.toString(),
+                            Text(
+                              controller1.meterNo.text.toString(),
                               style: GoogleFonts.poppins(
                                   color: const Color(0xFF1D1D1D),
                                   fontSize: 15,
-                                  fontWeight: FontWeight.w500),),
-                            SizedBox(height: 10,),
-                            Text(controller1.CustomerNameController.text.toString(),
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              controller1.CustomerNameController.text
+                                  .toString(),
                               style: GoogleFonts.poppins(
                                   color: const Color(0xFF1D1D1D),
                                   fontSize: 15,
-                                  fontWeight: FontWeight.w500),),
-                            SizedBox(height: 10,),
-                            Text(controller1.idController1.text.toString(),
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              controller1.idController1.text.toString(),
                               style: GoogleFonts.poppins(
                                   color: const Color(0xFF1D1D1D),
                                   fontSize: 15,
-                                  fontWeight: FontWeight.w500),),
-                            SizedBox(height: 10,),
-                            Text(controller1.productNameController.text.toString(),
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              controller1.productNameController.text.toString(),
                               style: GoogleFonts.poppins(
                                   color: const Color(0xFF1D1D1D),
                                   fontSize: 15,
-
-                                  fontWeight: FontWeight.w500),),
-                            SizedBox(height: 10,),
-                            Text(controller1.mobileNO.text.toString(),
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              controller1.mobileNO.text.toString(),
                               style: GoogleFonts.poppins(
                                   color: const Color(0xFF1D1D1D),
                                   fontSize: 15,
-                                  fontWeight: FontWeight.w500),),
-                            SizedBox(height: 10,),
-                            Text(controller1.amount.text.toString(),
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              controller1.amount.text.toString(),
                               style: GoogleFonts.poppins(
                                   color: const Color(0xFF1D1D1D),
                                   fontSize: 15,
-                                  fontWeight: FontWeight.w500),),
+                                  fontWeight: FontWeight.w500),
+                            ),
                           ],
                         ),
                       ),
-
-
                     ],
                   ),
-                )
-            )));
+                ))));
   }
 }

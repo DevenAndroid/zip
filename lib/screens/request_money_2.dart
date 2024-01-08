@@ -8,7 +8,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
-
 import '../controller/profile_controller.dart';
 import '../models/model_search.dart';
 import '../models/model_search_zip.dart';
@@ -27,31 +26,33 @@ class RequestMoney2 extends StatefulWidget {
 }
 
 class _RequestMoney2State extends State<RequestMoney2> {
-
-  Rx<RxStatus> statusOfSearch= RxStatus.empty().obs;
+  Rx<RxStatus> statusOfSearch = RxStatus.empty().obs;
 
   final profileController = Get.put(ProfileController());
   Rx<ModelSearchZip> searchZip = ModelSearchZip().obs;
   final formKey4 = GlobalKey<FormState>();
+
   getSearchList() {
-
     zipSearchRepo(
-
-      zip_tag: profileController.requestZiptag1Controller.text.trim()+"@zip",
+      zip_tag: profileController.requestZiptag1Controller.text.trim() + "@zip",
       context: context,
-
     ).then((value) {
       log("response.body.....    ${value}");
       searchZip.value = value;
       if (value.status == true) {
         statusOfSearch.value = RxStatus.success();
         showToast(value.message.toString());
-        profileController.requestNameController.text = "${value.data!.fname.toString()} "+"${value.data!.lname.toString()}";
-        profileController.requestPhoneController.text =( value.data!.phone??"").toString();
-        profileController.requestZiptag1Controller.text = (value.data!.zipTag??"").toString();
-        profileController.requestemailController.text = (value.data!.email??"").toString();
+        profileController.requestNameController.text =
+            "${value.data!.fname.toString()} " +
+                "${value.data!.lname.toString()}";
+        profileController.requestPhoneController.text =
+            (value.data!.phone ?? "").toString();
+        profileController.requestZiptag1Controller.text =
+            (value.data!.zipTag ?? "").toString();
+        profileController.requestemailController.text =
+            (value.data!.email ?? "").toString();
         // profileController.zipUserController.text = (value.data!.id??"").toString()
-        profileController.userId=value.data!.id.toString();
+        profileController.userId = value.data!.id.toString();
 
         print(value.data!.email.toString());
       } else {
@@ -59,9 +60,10 @@ class _RequestMoney2State extends State<RequestMoney2> {
         showToast(value.message.toString());
       }
     }
-      // showToast(value.message.toString());
-    );
+        // showToast(value.message.toString());
+        );
   }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -78,16 +80,14 @@ class _RequestMoney2State extends State<RequestMoney2> {
         ),
         centerTitle: true,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Get.toNamed(MyRouters.bottomNavbar);
-
           },
           child: const Icon(
             Icons.arrow_back_rounded,
             color: AppTheme.primaryColor,
           ),
         ),
-
       ),
       body: SingleChildScrollView(
         child: Form(
@@ -112,23 +112,23 @@ class _RequestMoney2State extends State<RequestMoney2> {
                   ),
                   Expanded(
                       child: InkWell(
-                        onTap: () {
-                          Get.toNamed(MyRouters.requestPayment4);
-                        },
-                        child: CustomOutlineBoder(
-                          title: "Search Zip User",
-                          backgroundColor: Colors.white,
-                          textColor: AppTheme.buttonColor,
-                          onPressed: () {},
-                        ),
-                      )),
+                    onTap: () {
+                      Get.toNamed(MyRouters.requestPayment4);
+                    },
+                    child: CustomOutlineBoder(
+                      title: "Search Zip User",
+                      backgroundColor: Colors.white,
+                      textColor: AppTheme.buttonColor,
+                      onPressed: () {},
+                    ),
+                  )),
                 ],
               ),
               const SizedBox(
                 height: 25,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 25,right: 25),
+                padding: const EdgeInsets.only(left: 25, right: 25),
                 child: Text(
                   "Search Zip Tag",
                   style: GoogleFonts.poppins(
@@ -137,7 +137,6 @@ class _RequestMoney2State extends State<RequestMoney2> {
                       fontWeight: FontWeight.w400),
                 ),
               ),
-
               const SizedBox(
                 height: 27,
               ),
@@ -145,16 +144,13 @@ class _RequestMoney2State extends State<RequestMoney2> {
                 padding: const EdgeInsets.only(left: 6, right: 6),
                 child: CommonTextfield(
                   validator: MultiValidator([
-                    RequiredValidator(
-                        errorText:
-                        'Please enter ZipTag '),]),
+                    RequiredValidator(errorText: 'Please enter ZipTag '),
+                  ]),
                   suffixIcon: InkWell(
-                      onTap: (){
+                      onTap: () {
                         getSearchList();
                       },
                       child: Icon(Icons.arrow_forward)),
-
-
                   controller: profileController.requestZiptag1Controller,
                   obSecure: false,
                   hintText: "Zip Tag ",
@@ -168,9 +164,8 @@ class _RequestMoney2State extends State<RequestMoney2> {
                 padding: const EdgeInsets.only(left: 6, right: 6),
                 child: CommonTextfield(
                   validator: MultiValidator([
-                    RequiredValidator(
-                        errorText:
-                        'Please enter Name '),]),
+                    RequiredValidator(errorText: 'Please enter Name '),
+                  ]),
                   readOnly: true,
                   controller: profileController.requestNameController,
                   obSecure: false,
@@ -185,9 +180,8 @@ class _RequestMoney2State extends State<RequestMoney2> {
                 padding: const EdgeInsets.only(left: 6, right: 6),
                 child: CommonTextfield(
                   validator: MultiValidator([
-                    RequiredValidator(
-                        errorText:
-                        'Please enter Phone '),]),
+                    RequiredValidator(errorText: 'Please enter Phone '),
+                  ]),
                   readOnly: true,
                   controller: profileController.requestPhoneController,
                   obSecure: false,
@@ -199,19 +193,20 @@ class _RequestMoney2State extends State<RequestMoney2> {
                 height: size.height * .03,
               ),
               InkWell(
-                  onTap: (){
-
-                    profileController.requestNameController.text="";
-                    profileController.requestPhoneController.text="";
-                    profileController.requestZiptag1Controller.text="";
+                  onTap: () {
+                    profileController.requestNameController.text = "";
+                    profileController.requestPhoneController.text = "";
+                    profileController.requestZiptag1Controller.text = "";
                   },
                   child: CustomOutlineBoder(title: "Clear")),
-              SizedBox(height: 25,),
+              SizedBox(
+                height: 25,
+              ),
               InkWell(
                 onTap: () {
-      if (formKey4.currentState!.validate()) {
-        Get.toNamed(MyRouters.yourBalanceScreen);
-      }
+                  if (formKey4.currentState!.validate()) {
+                    Get.toNamed(MyRouters.yourBalanceScreen);
+                  }
                 },
                 child: const CustomOutlineButton(
                   title: "Continue",

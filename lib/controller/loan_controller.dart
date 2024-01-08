@@ -1,4 +1,3 @@
-
 import 'package:get/get.dart';
 
 import '../models/model_apply_loan.dart';
@@ -21,18 +20,14 @@ class LoanController extends GetxController {
 
   loan(context) {
     loanRepo(
-     desired_amount: selectedValuem3,
+      desired_amount: selectedValuem3,
       duration_of_loan: selectedValuem2,
       employed_status: dropdownvalue,
-      increament: selectedValuem4 =="yes"?1:0,
+      increament: selectedValuem4 == "yes" ? 1 : 0,
       loan_purpose: selectedValue,
       monthly_income: selectedValuem1,
       residential_status: selectedValuem,
       context: context,
-
-
-
-
     ).then((value) {
       modelLoan.value = value;
       if (value.status == true) {
@@ -43,8 +38,6 @@ class LoanController extends GetxController {
         statusOfLoan.value = RxStatus.error();
         showToast(value.message.toString());
       }
-    }
-
-    );
+    });
   }
 }

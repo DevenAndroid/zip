@@ -45,6 +45,7 @@ class _BuyAirtimeScreenState extends State<BuyAirtimeScreen> {
   }
 
   Rx<RxStatus> statusOfProviders = RxStatus.empty().obs;
+
   // TextEditingController phoneController = TextEditingController();
   // TextEditingController amountController = TextEditingController();
 
@@ -57,20 +58,20 @@ class _BuyAirtimeScreenState extends State<BuyAirtimeScreen> {
   var initStateBlank1 = Get.arguments[1];
   var initStateBlank2 = Get.arguments[2];
   var initStateBlank3 = Get.arguments[3];
+
   saveList() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var uniqueIdentifier = pref.getString("uniqueIdentifier");
     saveTransastionRepo(
-        user_id: initStateBlank,
-        amount: initStateBlank1,
-        about: "Buy Airtime",
-        // complete_response: purchaseData.value.data!.toJson(),
-        context: context,
-        description: initStateBlank2,
-           telcos: initStateBlank2,
-        phone: initStateBlank3,
-
-        type: "dr")
+            user_id: initStateBlank,
+            amount: initStateBlank1,
+            about: "Buy Airtime",
+            // complete_response: purchaseData.value.data!.toJson(),
+            context: context,
+            description: initStateBlank2,
+            telcos: initStateBlank2,
+            phone: initStateBlank3,
+            type: "dr")
         .then((value) {
       log("response.body.....    ${value}");
       save.value = value;
@@ -81,9 +82,10 @@ class _BuyAirtimeScreenState extends State<BuyAirtimeScreen> {
         statusOfSave.value = RxStatus.error();
       }
     }
-      // showToast(value.message.toString());
-    );
+            // showToast(value.message.toString());
+            );
   }
+
   final formKey4 = GlobalKey<FormState>();
 
   getProviderList() async {
@@ -91,41 +93,35 @@ class _BuyAirtimeScreenState extends State<BuyAirtimeScreen> {
     var uniqueIdentifier = pref.getString("uniqueIdentifier");
     if (pref.getBool('TransistionPin') == true) {
       Get.toNamed(MyRouters.sucessRechargePin);
-    }
-    else{
-
-        BuyPlanRepo(
-          telco: initStateBlank2,
-          amount: initStateBlank1,
-          phone_no: initStateBlank3,
-          reference:
-          registorController.fetchAccount.value.data!.accountNumber.toString() +
-              DateTime
-                  .now()
-                  .millisecondsSinceEpoch
-                  .toString(),
-        ).then((value) {
-          log("response.body.....    ${value}");
-          purchaseData.value = value;
-          if (value.success == true) {
-            saveList();
-            statusOfProviders.value = RxStatus.success();
-            showToast(value.message.toString());
-            print(
-              registorController.fetchAccount.value.data!.accountNumber.toString() +
-                  DateTime
-                      .now()
-                      .millisecondsSinceEpoch
-                      .toString(),
-            );
-          } else {
-            statusOfProviders.value = RxStatus.error();
-            showToast(value.message.toString());
-          }
+    } else {
+      BuyPlanRepo(
+        telco: initStateBlank2,
+        amount: initStateBlank1,
+        phone_no: initStateBlank3,
+        reference: registorController.fetchAccount.value.data!.accountNumber
+                .toString() +
+            DateTime.now().millisecondsSinceEpoch.toString(),
+      ).then((value) {
+        log("response.body.....    ${value}");
+        purchaseData.value = value;
+        if (value.success == true) {
+          saveList();
+          statusOfProviders.value = RxStatus.success();
+          showToast(value.message.toString());
+          print(
+            registorController.fetchAccount.value.data!.accountNumber
+                    .toString() +
+                DateTime.now().millisecondsSinceEpoch.toString(),
+          );
+        } else {
+          statusOfProviders.value = RxStatus.error();
+          showToast(value.message.toString());
         }
+      }
           // showToast(value.message.toString());
-        );
-      }}
+          );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -156,116 +152,109 @@ class _BuyAirtimeScreenState extends State<BuyAirtimeScreen> {
         ),
         body: SingleChildScrollView(
             child: Form(
-              key: formKey4,
-              child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CommonTextfield(
-                          // onTap: () {
-                          //   // Get.toNamed(MyRouters.buyAirtimecreen);
-                          // },
-                          // suffixIcon: Icon(Icons.keyboard_arrow_down),
+          key: formKey4,
+          child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CommonTextfield(
+                      // onTap: () {
+                      //   // Get.toNamed(MyRouters.buyAirtimecreen);
+                      // },
+                      // suffixIcon: Icon(Icons.keyboard_arrow_down),
 
-                          readOnly: true,
-                          obSecure: false,
-                          hintText: initStateBlank2,
+                      readOnly: true,
+                      obSecure: false,
+                      hintText: initStateBlank2,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Text(
+                        "Phone number ",
+                        style: GoogleFonts.poppins(
+                            color: const Color(0xFF2E2E2E),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    CommonTextfield(
+                      keyboardType:
+                          const TextInputType.numberWithOptions(decimal: true),
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(11),
+                        FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                      ],
+                      onChanged: (value) => doubleVar = double.parse(value),
+                      validator: RequiredValidator(
+                          errorText: "please enter your phone no "),
 
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Text(
-                            "Phone number ",
-                            style: GoogleFonts.poppins(
-                                color: const Color(0xFF2E2E2E),
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        CommonTextfield(
-                          keyboardType: const TextInputType.numberWithOptions(
-                              decimal: true),
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(11),
-                            FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
-                          ],
-                          onChanged: (value) => doubleVar = double.parse(value),
-                          validator: RequiredValidator(
-                            errorText: "please enter your phone no "
-                          ),
+                      // validator: MultiValidator([
+                      //   RequiredValidator(
+                      //       errorText: 'Please enter your meter number '),
+                      //   MinLengthValidator(10,
+                      //       errorText: 'Please enter minumum  10  number'),
+                      //   MaxLengthValidator(12,
+                      //       errorText: 'Please enter 12  number'),
+                      //   PatternValidator(r'(^(?:[+0]9)?[0-9]{10,12}$)',
+                      //       errorText: '')
+                      // ]),
 
-                          // validator: MultiValidator([
-                          //   RequiredValidator(
-                          //       errorText: 'Please enter your meter number '),
-                          //   MinLengthValidator(10,
-                          //       errorText: 'Please enter minumum  10  number'),
-                          //   MaxLengthValidator(12,
-                          //       errorText: 'Please enter 12  number'),
-                          //   PatternValidator(r'(^(?:[+0]9)?[0-9]{10,12}$)',
-                          //       errorText: '')
-                          // ]),
-
-                          obSecure: false,
-                          readOnly: true,
-                          hintText: initStateBlank3,
-
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: Text(
-                            "Amount ",
-                            style: GoogleFonts.poppins(
-                                color: const Color(0xFF2E2E2E),
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        CommonTextfield(
-                          keyboardType: const TextInputType.numberWithOptions(
-                              decimal: true),
-                          inputFormatters: [
-                            FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
-                          ],
-                          onChanged: (value) => doubleVar = double.parse(value),
-                       validator: MultiValidator([
-                         RequiredValidator(
-                             errorText: 'Please enter your amount'),
-                       ]),
-
-                          obSecure: false,
-                          hintText: initStateBlank1,
-
-                        ),
-                        SizedBox(
-                          height: size.height * .26,
-                        ),
-
-                        InkWell(
-                          onTap: () {
-
-    if (formKey4.currentState!.validate()) {
-      getProviderList();
-    }
-                          },
-                          child: const CustomOutlineButton(
-                            title: "Continue",
-                          ),
-                        ),
-                      ])),
-            )));
+                      obSecure: false,
+                      readOnly: true,
+                      hintText: initStateBlank3,
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Text(
+                        "Amount ",
+                        style: GoogleFonts.poppins(
+                            color: const Color(0xFF2E2E2E),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    CommonTextfield(
+                      keyboardType:
+                          const TextInputType.numberWithOptions(decimal: true),
+                      inputFormatters: [
+                        FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                      ],
+                      onChanged: (value) => doubleVar = double.parse(value),
+                      validator: MultiValidator([
+                        RequiredValidator(
+                            errorText: 'Please enter your amount'),
+                      ]),
+                      obSecure: false,
+                      hintText: initStateBlank1,
+                    ),
+                    SizedBox(
+                      height: size.height * .26,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        if (formKey4.currentState!.validate()) {
+                          getProviderList();
+                        }
+                      },
+                      child: const CustomOutlineButton(
+                        title: "Continue",
+                      ),
+                    ),
+                  ])),
+        )));
   }
 }

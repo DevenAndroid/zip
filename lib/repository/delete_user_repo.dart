@@ -1,10 +1,7 @@
-
-
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-
 
 import '../models/delete_model.dart';
 import '../models/model_get_support_system.dart';
@@ -35,7 +32,9 @@ Future<ModelDelete> deleteRepo(context) async {
       );
     }
   } catch (e) {
-
-    return ModelDelete(message: e.toString(), status: false, );
+    return ModelDelete(
+      message: e.toString(),
+      status: false,
+    );
   }
 }

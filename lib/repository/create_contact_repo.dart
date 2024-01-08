@@ -8,8 +8,18 @@ import '../models/model_create_contact.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
+
 final details = Get.put(DetailsController());
-Future<ModelCreateContact> createContactRepo({  first_name,last_name,mobile_number,emails,cf_customer_id,last_source,context,cf_product_type}) async {
+
+Future<ModelCreateContact> createContactRepo(
+    {first_name,
+    last_name,
+    mobile_number,
+    emails,
+    cf_customer_id,
+    last_source,
+    context,
+    cf_product_type}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
@@ -26,11 +36,10 @@ Future<ModelCreateContact> createContactRepo({  first_name,last_name,mobile_numb
   map2['last_source'] = last_source;
 
   http.Response response = await http.post(Uri.parse(ApiUrls.createContact),
-      headers: { HttpHeaders.contentTypeHeader: 'application/json',
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json',
         HttpHeaders.acceptHeader: 'application/json',
         "Authorization": details.Authorization,
-
-
       },
       body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
@@ -38,14 +47,15 @@ Future<ModelCreateContact> createContactRepo({  first_name,last_name,mobile_numb
   print(map);
 
   if (response.statusCode == 200) {
-
     Helpers.hideLoader(loader);
-    return ModelCreateContact.fromJson(jsonDecode(response.body),);
+    return ModelCreateContact.fromJson(
+      jsonDecode(response.body),
+    );
   } else {
-
     Helpers.hideLoader(loader);
-    return ModelCreateContact.fromJson(jsonDecode(response.body),);
+    return ModelCreateContact.fromJson(
+      jsonDecode(response.body),
+    );
     // return ModelCreateContact()
-
   }
 }

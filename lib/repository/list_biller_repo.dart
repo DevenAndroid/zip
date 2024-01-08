@@ -1,11 +1,9 @@
-
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-
 
 import '../models/mode_biller.dart';
 import '../models/model_cabel_list.dart';
@@ -15,16 +13,17 @@ import '../models/modelbenificerylist.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
-final details = Get.put(DetailsController());
-Future<ModelBiller> getBillerRepo() async {
 
+final details = Get.put(DetailsController());
+
+Future<ModelBiller> getBillerRepo() async {
   // try {
   http.Response response = await http.get(
     Uri.parse(ApiUrls.biller),
-    headers: { HttpHeaders.contentTypeHeader: 'application/json',
+    headers: {
+      HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.acceptHeader: 'application/json',
       "secret-key": details.secretKey
-
     },
   );
 
@@ -34,9 +33,10 @@ Future<ModelBiller> getBillerRepo() async {
   if (response.statusCode == 200) {
     return ModelBiller.fromJson(jsonDecode(response.body));
   } else {
-    return ModelBiller(message: jsonDecode(response.body)["message"],
-
-        data: null,success: false);
+    return ModelBiller(
+        message: jsonDecode(response.body)["message"],
+        data: null,
+        success: false);
   }
   // } catch (e) {
   //   return GetBenificiryModel(message: e.toString(),  data: null,success: false);

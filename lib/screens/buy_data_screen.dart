@@ -15,6 +15,7 @@ import '../widgets/circular_progressindicator.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_colour.dart';
 import '../widgets/common_error_widget.dart';
+
 class BuyDataScreen extends StatefulWidget {
   const BuyDataScreen({Key? key}) : super(key: key);
 
@@ -23,10 +24,10 @@ class BuyDataScreen extends StatefulWidget {
 }
 
 class _BuyDataScreenState extends State<BuyDataScreen> {
-
-  Rx<RxStatus> statusOftelcos= RxStatus.empty().obs;
+  Rx<RxStatus> statusOftelcos = RxStatus.empty().obs;
   Rx<ServiceCommonModel> telcos = ServiceCommonModel().obs;
   final profileController = Get.put(ProfileController());
+
   // getTelcoList() {
   //   commonServiceRepo(
   //       key: "services"
@@ -40,10 +41,7 @@ class _BuyDataScreenState extends State<BuyDataScreen> {
   //   );
   // }
   getTelcoList() {
-    commonServiceRepo(
-        key: "services",
-            identifier: "data"
-    ).then((value) {
+    commonServiceRepo(key: "services", identifier: "data").then((value) {
       log("response.body.....    ${value}");
       telcos.value = value;
       if (value.status == true) {
@@ -52,9 +50,10 @@ class _BuyDataScreenState extends State<BuyDataScreen> {
         statusOftelcos.value = RxStatus.error();
       }
     }
-      // showToast(value.message.toString());
-    );
+        // showToast(value.message.toString());
+        );
   }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -96,77 +95,98 @@ class _BuyDataScreenState extends State<BuyDataScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Obx(() {
-                        return  statusOftelcos.value.isSuccess ?
-                        ListView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount:telcos.value.data!.content!.length,
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        return statusOftelcos.value.isSuccess
+                            ? ListView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: telcos.value.data!.content!.length,
+                                shrinkWrap: true,
+                                itemBuilder: (context, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(12.0),
+                                    child: Column(
                                       children: [
-                                        ClipOval(
-                                          child: CachedNetworkImage(
-                                            width: 40,
-                                            height: 40,
-                                            fit: BoxFit.cover,
-                                            imageUrl: telcos.value.data!.content![index].image.toString(),
-                                            placeholder: (context, url) =>
-                                            const SizedBox(),
-                                            errorWidget: (context, url, error) =>
-                                            const SizedBox(),
-                                          ),
-                                        ),
-                                        Text(telcos.value.data!.content![index].name.toString(),
-                                          style: GoogleFonts.poppins(
-                                              color: const Color(0xFF1D1D1D),
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w500),),
-
-                                        InkWell(
-                                            onTap: (){
-                                              Get.toNamed(MyRouters.interNetPlanScreen,arguments: [
-                                                // telcos.value.data!.content![index].name.toString(),
-                                                telcos.value.data!.content![index].serviceID.toString(),
-
-                                              ]);
-                                            },
-                                            child: Container(
-                                                padding: EdgeInsets.symmetric(vertical: 8,horizontal: 10),
-                                                decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(7),
-                                                  color: AppTheme.secondaryColor,
-                                                ),
-
-                                                child: Text("See Plan",
-                                                  style: GoogleFonts.poppins(
-                                                      color:  Colors.white,
-                                                      fontSize: 12,
-                                                      fontWeight: FontWeight.w500),))),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            ClipOval(
+                                              child: CachedNetworkImage(
+                                                width: 40,
+                                                height: 40,
+                                                fit: BoxFit.cover,
+                                                imageUrl: telcos.value.data!
+                                                    .content![index].image
+                                                    .toString(),
+                                                placeholder: (context, url) =>
+                                                    const SizedBox(),
+                                                errorWidget:
+                                                    (context, url, error) =>
+                                                        const SizedBox(),
+                                              ),
+                                            ),
+                                            Text(
+                                              telcos.value.data!.content![index]
+                                                  .name
+                                                  .toString(),
+                                              style: GoogleFonts.poppins(
+                                                  color:
+                                                      const Color(0xFF1D1D1D),
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                            InkWell(
+                                                onTap: () {
+                                                  Get.toNamed(
+                                                      MyRouters
+                                                          .interNetPlanScreen,
+                                                      arguments: [
+                                                        // telcos.value.data!.content![index].name.toString(),
+                                                        telcos
+                                                            .value
+                                                            .data!
+                                                            .content![index]
+                                                            .serviceID
+                                                            .toString(),
+                                                      ]);
+                                                },
+                                                child: Container(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            vertical: 8,
+                                                            horizontal: 10),
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              7),
+                                                      color: AppTheme
+                                                          .secondaryColor,
+                                                    ),
+                                                    child: Text(
+                                                      "See Plan",
+                                                      style:
+                                                          GoogleFonts.poppins(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 12,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500),
+                                                    ))),
+                                          ],
+                                        )
                                       ],
-                                    )
-
-
-
-                                  ],
-                                ),
-                              );
-                            }):  statusOftelcos.value.isError
-                            ? CommonErrorWidget(
-                          errorText:
-                          telcos.value.message.toString(),
-                          onTap: () {
-                            getTelcoList();
-                          },
-                        )
-                            : const CommonProgressIndicator();
+                                    ),
+                                  );
+                                })
+                            : statusOftelcos.value.isError
+                                ? CommonErrorWidget(
+                                    errorText: telcos.value.message.toString(),
+                                    onTap: () {
+                                      getTelcoList();
+                                    },
+                                  )
+                                : const CommonProgressIndicator();
                       })
-
-                    ]
-                ))));
+                    ]))));
   }
 }

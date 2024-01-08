@@ -13,18 +13,17 @@ import '../models/model_get_transfre_limit.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
+
 final details = Get.put(DetailsController());
+
 Future<ModelDeleteCard> deleteCardRepo({card_id}) async {
   var map = <String, dynamic>{};
 
   map['key'] = "deleteCard";
   map['card_id'] = card_id;
   try {
-    http.Response response = await http.post(
-      Uri.parse(ApiUrls.bridgeCard),
-        headers: await getAuthHeader(),
-        body: jsonEncode(map)
-    );
+    http.Response response = await http.post(Uri.parse(ApiUrls.bridgeCard),
+        headers: await getAuthHeader(), body: jsonEncode(map));
 
     if (response.statusCode == 200) {
       print(jsonDecode(response.body));
@@ -32,12 +31,14 @@ Future<ModelDeleteCard> deleteCardRepo({card_id}) async {
     } else {
       print(jsonDecode(response.body));
       return ModelDeleteCard(
-          message: jsonDecode(response.body)["message"],
-          status: false.toString(),
-        );
+        message: jsonDecode(response.body)["message"],
+        status: false.toString(),
+      );
     }
   } catch (e) {
     return ModelDeleteCard(
-        message: e.toString(), status: false.toString(),);
+      message: e.toString(),
+      status: false.toString(),
+    );
   }
 }

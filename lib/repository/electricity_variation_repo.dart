@@ -18,8 +18,8 @@ import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
 
-Future<ElectricityVariationModel> commonElectricityVariationRepo({  key,identifier,serviceID}) async {
-
+Future<ElectricityVariationModel> commonElectricityVariationRepo(
+    {key, identifier, serviceID}) async {
   var map = <String, dynamic>{};
   map['key'] = key;
   map['identifier'] = identifier;
@@ -32,20 +32,18 @@ Future<ElectricityVariationModel> commonElectricityVariationRepo({  key,identifi
   // map['billersCode'] = billersCode;
   // map['phone'] = phone;
   http.Response response = await http.post(Uri.parse(ApiUrls.serviceCommon),
-      headers:await getAuthHeader(),
-      body: jsonEncode(map));
+      headers: await getAuthHeader(), body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
   log("Sign IN DATA${response.statusCode}");
   print(map);
 
   if (response.statusCode == 200) {
-
     // print(jsonDecode(response.body));
     return ElectricityVariationModel.fromJson(jsonDecode(response.body));
-
   } else {
-
     // print(jsonDecode(response.body));
-    return ElectricityVariationModel(message: jsonDecode(response.body)["message"], );
+    return ElectricityVariationModel(
+      message: jsonDecode(response.body)["message"],
+    );
   }
 }

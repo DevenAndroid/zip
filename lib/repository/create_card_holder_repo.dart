@@ -17,9 +17,10 @@ import '../resourses/details.dart';
 import '../resourses/helper.dart';
 
 final details = Get.put(DetailsController());
+
 Future<ModelCreateCardHolder> cardHolderRepo({
   first_name,
-   selfie_image,
+  selfie_image,
   card_brand,
   card_type,
   card_currency,
@@ -56,7 +57,7 @@ Future<ModelCreateCardHolder> cardHolderRepo({
   map1['house_no'] = house_no;
   map2['id_type'] = id_type;
   map2['bvn'] = bvn;
- map2['selfie_image'] = selfie_image;
+  map2['selfie_image'] = selfie_image;
   map3['user_id'] = user_id;
   map3['card_currency'] = card_currency;
   map3['card_type'] = card_type;

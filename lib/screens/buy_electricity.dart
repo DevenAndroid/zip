@@ -38,7 +38,7 @@ class _BuyElectricityState extends State<BuyElectricity> {
   bool isSwitched = false;
   final registorController = Get.put(registerController());
   final profileController = Get.put(ProfileController());
-  Rx<RxStatus> statusOfSave= RxStatus.empty().obs;
+  Rx<RxStatus> statusOfSave = RxStatus.empty().obs;
   Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
   final controller = Get.put(registerController());
   final payOutcontroller = Get.put(PayoutController());
@@ -50,28 +50,26 @@ class _BuyElectricityState extends State<BuyElectricity> {
 
   saveList() {
     saveTransastionRepo(
-        user_id: initStateBlank,
-        amount:initStateBlank1,
-        about: "Buy Electricity",
-        // complete_response: purchaseData.value.data!.toJson(),
-        context: context,
-        description:initStateBlank2,
-        type: "dr",
+      user_id: initStateBlank,
+      amount: initStateBlank1,
+      about: "Buy Electricity",
+      // complete_response: purchaseData.value.data!.toJson(),
+      context: context,
+      description: initStateBlank2,
+      type: "dr",
       telcos: initStateBlank2,
       phone: initStateBlank4,
-
     ).then((value) {
       log("response.body.....    ${value}");
       save.value = value;
       if (value.status == true) {
         statusOfSave.value = RxStatus.success();
-
       } else {
         statusOfSave.value = RxStatus.error();
       }
     }
-      // showToast(value.message.toString());
-    );
+        // showToast(value.message.toString());
+        );
   }
 
   Rx<ModelVerifyMeterNumber> verifyMeter = ModelVerifyMeterNumber().obs;
@@ -79,20 +77,17 @@ class _BuyElectricityState extends State<BuyElectricity> {
   Rx<ModelBuyEnergy> Energy = ModelBuyEnergy().obs;
   Rx<RxStatus> statusOfBuyEnergy = RxStatus.empty().obs;
 
-
-  verifyMeterData()  async {
+  verifyMeterData() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var uniqueIdentifier = pref.getString("uniqueIdentifier");
     if (pref.getBool('TransistionPin') == true) {
       Get.toNamed(MyRouters.purchaseRechargePin);
-    }
-    else {
+    } else {
       verifyMeterRepo(
-          billersCode: controller.meterNo.text.toString(),
-          type:  controller.provider.text.trim(),
-          serviceID:  controller.idController1.text,
-          key: "merchant-verify"
-      )
+              billersCode: controller.meterNo.text.toString(),
+              type: controller.provider.text.trim(),
+              serviceID: controller.idController1.text,
+              key: "merchant-verify")
           .then((value) {
         verifyMeter.value = value;
         if (value.status == true) {
@@ -105,23 +100,21 @@ class _BuyElectricityState extends State<BuyElectricity> {
           showToast(value.message.toString());
         }
       }
-        // showToast(value.message.toString());
-      );
+              // showToast(value.message.toString());
+              );
     }
   }
+
   Future buyEnergy() async {
     await BuyEnergyPlanRepo(
-
       billersCode: controller.meterNo.text.toString(),
-      variation_code:  controller.provider.text.trim(),
+      variation_code: controller.provider.text.trim(),
       serviceID: controller.idController1.text,
       key: "pay",
       amount: controller.amount,
       phone: controller.mobileNO,
       context: context,
-
-    )
-        .then((value) {
+    ).then((value) {
       Energy.value = value;
       if (value.status == true) {
         // payOutcontroller.accountName.text = (value.data!.accountName??"").toString();
@@ -133,12 +126,11 @@ class _BuyElectricityState extends State<BuyElectricity> {
         showToast(value.message.toString());
       }
     }
-      // showToast(value.message.toString());
-    );
+        // showToast(value.message.toString());
+        );
   }
 
   // final TextEditingController bankController = TextEditingController();
-
 
   @override
   void initState() {
@@ -176,13 +168,12 @@ class _BuyElectricityState extends State<BuyElectricity> {
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.only(bottom: 20.0),
           child: InkWell(
-            onTap: (){
+            onTap: () {
               verifyMeterData();
               // payOutcontroller.save(context);
             },
             child: CustomOutlineButton(
               title: "Continue",
-
             ),
           ),
         ),
@@ -238,70 +229,57 @@ class _BuyElectricityState extends State<BuyElectricity> {
 
                         readOnly: true,
                         obSecure: false,
-                        hintText:initStateBlank2,
+                        hintText: initStateBlank2,
                         // labelText: "Select Provider",
                       ),
                       SizedBox(
                         height: 20,
                       ),
                       CommonTextfield(
-                        keyboardType:
-                        const TextInputType.numberWithOptions(
+                        keyboardType: const TextInputType.numberWithOptions(
                             decimal: true),
                         inputFormatters: [
                           LengthLimitingTextInputFormatter(11),
-                          FilteringTextInputFormatter.allow(
-                              RegExp('[0-9]+')),
+                          FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
                         ],
-                        onChanged: (value) =>
-                        doubleVar = double.parse(value),
+                        onChanged: (value) => doubleVar = double.parse(value),
                         validator: MultiValidator([
                           RequiredValidator(
-                              errorText:
-                              'Please enter your meter number '),
+                              errorText: 'Please enter your meter number '),
                           MinLengthValidator(11,
                               errorText:
-                              'Please enter minumum  11 meter number'),
+                                  'Please enter minumum  11 meter number'),
                           MaxLengthValidator(15,
-                              errorText:
-                              'Please enter 10 meter number'),
-                          PatternValidator(
-                              r'(^(?:[+0]9)?[0-9]{10,12}$)',
+                              errorText: 'Please enter 10 meter number'),
+                          PatternValidator(r'(^(?:[+0]9)?[0-9]{10,12}$)',
                               errorText: '')
                         ]),
 
-readOnly: true,
+                        readOnly: true,
                         obSecure: false,
                         hintText: initStateBlank3,
                         // labelText: "Meter Number",
-
                       ),
                       SizedBox(
                         height: 20,
                       ),
                       CommonTextfield(
-                        keyboardType:
-                        const TextInputType.numberWithOptions(
+                        keyboardType: const TextInputType.numberWithOptions(
                             decimal: true),
                         inputFormatters: [
                           LengthLimitingTextInputFormatter(11),
-                          FilteringTextInputFormatter.allow(
-                              RegExp('[0-9]+')),
+                          FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
                         ],
-                        onChanged: (value) =>
-                        doubleVar = double.parse(value),
+                        onChanged: (value) => doubleVar = double.parse(value),
                         validator: MultiValidator([
                           RequiredValidator(
-                              errorText:
-                              'Please enter your mobile number '),
+                              errorText: 'Please enter your mobile number '),
                           MinLengthValidator(11,
                               errorText:
-                              'Please enter minumum  11 mobile number'),
+                                  'Please enter minumum  11 mobile number'),
                           MaxLengthValidator(12,
-                              errorText:
-                              'Please enter 10 mobile number'),
-                          PatternValidator(
-                              r'(^(?:[+0]9)?[0-9]{10,12}$)',
+                              errorText: 'Please enter 10 mobile number'),
+                          PatternValidator(r'(^(?:[+0]9)?[0-9]{10,12}$)',
                               errorText: '')
                         ]),
                         readOnly: false,
@@ -314,17 +292,13 @@ readOnly: true,
                         height: 20,
                       ),
                       CommonTextfield(
-                        keyboardType:
-                        const TextInputType.numberWithOptions(
+                        keyboardType: const TextInputType.numberWithOptions(
                             decimal: true),
                         inputFormatters: [
                           LengthLimitingTextInputFormatter(10),
-                          FilteringTextInputFormatter.allow(
-                              RegExp('[0-9]+')),
+                          FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
                         ],
-                        onChanged: (value) =>
-                        doubleVar = double.parse(value),
-
+                        onChanged: (value) => doubleVar = double.parse(value),
                         readOnly: false,
                         controller: controller.amount,
                         obSecure: false,

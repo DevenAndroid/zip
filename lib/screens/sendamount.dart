@@ -18,7 +18,6 @@ class RequestPaymentContiune extends StatefulWidget {
 class _RequestPaymentContiuneState extends State<RequestPaymentContiune> {
   final profileController = Get.put(ProfileController());
 
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -35,20 +34,17 @@ class _RequestPaymentContiuneState extends State<RequestPaymentContiune> {
         ),
         centerTitle: true,
       ),
-      bottomNavigationBar:      Padding(
+      bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(bottom: 28.0),
         child: InkWell(
           onTap: () async {
             SharedPreferences pref = await SharedPreferences.getInstance();
             if (pref.getBool('TransistionPin') == true) {
               Get.toNamed(MyRouters.sendMoneyPin);
-            }
-            else{
+            } else {
               Get.toNamed(MyRouters.sendSuccessScreen);
             }
           },
-
-
           child: CustomOutlineButton(
             title: "Continue",
           ),
@@ -58,7 +54,9 @@ class _RequestPaymentContiuneState extends State<RequestPaymentContiune> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: 48,),
+          SizedBox(
+            height: 48,
+          ),
           ClipRRect(
             borderRadius: BorderRadius.circular(30),
             child: Image.asset(
@@ -66,11 +64,12 @@ class _RequestPaymentContiuneState extends State<RequestPaymentContiune> {
               height: 121,
             ),
           ),
-          SizedBox(height: 25,),
-
+          SizedBox(
+            height: 25,
+          ),
           Center(
             child: Text(
-              "Send Money \$ "+profileController.amountController.text.trim(),
+              "Send Money \$ " + profileController.amountController.text.trim(),
               style: GoogleFonts.poppins(
                   color: const Color(0xFF1D1D1D),
                   fontSize: 18,
@@ -78,14 +77,12 @@ class _RequestPaymentContiuneState extends State<RequestPaymentContiune> {
             ),
           ),
           Text(
-            "To"+  "  ${ profileController. nameController.text.toString()} ",
+            "To" + "  ${profileController.nameController.text.toString()} ",
             style: GoogleFonts.poppins(
                 color: const Color(0xFF1D1D1D),
                 fontSize: 16,
                 fontWeight: FontWeight.w400),
           ),
-
-
         ],
       ),
     );

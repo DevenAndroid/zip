@@ -23,6 +23,7 @@ class _VerifyOtpForPinState extends State<VerifyOtpForPin> {
   Rx<RxStatus> statusOfverify = RxStatus.empty().obs;
   TextEditingController verifyotpController = TextEditingController();
   Rx<VerifyOtpForPinModal> verifyotp = VerifyOtpForPinModal().obs;
+
   VerifyOtp() {
     if (formKeypin.currentState!.validate()) {
       verifyOtpForPinRepo(

@@ -11,27 +11,22 @@ import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
 
-Future<ModelCabelProvider> providerRepo({ serviceID, identifier,key}) async {
-
+Future<ModelCabelProvider> providerRepo({serviceID, identifier, key}) async {
   var map = <String, dynamic>{};
   map['serviceID'] = serviceID;
   map['key'] = key;
   map['identifier'] = identifier;
   http.Response response = await http.post(Uri.parse(ApiUrls.serviceCommon),
-      headers: await getAuthHeader(),
-      body: jsonEncode(map));
+      headers: await getAuthHeader(), body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
   print(map);
 
   if (response.statusCode == 200) {
-
-
-    return ModelCabelProvider.fromJson(jsonDecode(response.body),);
-  } else {
-
-
-    return ModelCabelProvider(
-        message: jsonDecode(response.body)["message"],status: false
+    return ModelCabelProvider.fromJson(
+      jsonDecode(response.body),
     );
+  } else {
+    return ModelCabelProvider(
+        message: jsonDecode(response.body)["message"], status: false);
   }
 }

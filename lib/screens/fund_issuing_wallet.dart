@@ -34,8 +34,6 @@ class FundIssuingWallet extends StatefulWidget {
 class _FundIssuingWalletState extends State<FundIssuingWallet> {
   final profileController = Get.put(ProfileController());
 
-
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -72,7 +70,6 @@ class _FundIssuingWalletState extends State<FundIssuingWallet> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-
                         Padding(
                           padding: const EdgeInsets.only(left: 10),
                           child: Text(
@@ -96,20 +93,18 @@ class _FundIssuingWalletState extends State<FundIssuingWallet> {
                           ],
                           onChanged: (value) => doubleVar = double.parse(value),
                           validator: MultiValidator([
-                            MinLengthValidator(3, errorText: "enter amount at least 100 "),
+                            MinLengthValidator(3,
+                                errorText: "enter amount at least 100 "),
                             RequiredValidator(
                                 errorText: 'Please enter your amount '),
                           ]),
-
                           obSecure: false,
                           readOnly: false,
                           hintText: "please enter your amount",
-
                         ),
                         SizedBox(
                           height: 20,
                         ),
-
                         SizedBox(
                           height: size.height * .26,
                         ),

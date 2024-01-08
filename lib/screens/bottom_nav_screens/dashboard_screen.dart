@@ -42,7 +42,8 @@ class _DashBoardState extends State<DashBoard> {
     myProfileRepo().then((value) {
       profileController.modal.value = value;
       if (value.status == true) {
-        if( profileController.modal.value.data!.user!.isAfricaVerifed==false){
+        if (profileController.modal.value.data!.user!.isAfricaVerifed ==
+            false) {
           Get.offAllNamed(MyRouters.notVerifyAfricaScreen);
         }
         print(value.message.toString());
@@ -58,8 +59,10 @@ class _DashBoardState extends State<DashBoard> {
       isValue = false;
     }
   }
+
   final formKeyVerify = GlobalKey<FormState>();
   final registorController = Get.put(registerController());
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -67,7 +70,6 @@ class _DashBoardState extends State<DashBoard> {
       body: Obx(() {
         return profileController.modal.value.status == true &&
                 profileController.currentBalanceModel.value.status == true
-
             ? RefreshIndicator(
                 color: Colors.white,
                 backgroundColor: AppTheme.primaryColor,
@@ -164,10 +166,12 @@ class _DashBoardState extends State<DashBoard> {
                                                     ),
                                                     FittedBox(
                                                       child: Text(
-                                                          profileController
-                                                              .currentBalanceModel
-                                                              .value
-                                                              .data!.currentBalance.toString(),
+                                                        profileController
+                                                            .currentBalanceModel
+                                                            .value
+                                                            .data!
+                                                            .currentBalance
+                                                            .toString(),
                                                         style:
                                                             GoogleFonts.poppins(
                                                                 color: Colors
@@ -712,7 +716,7 @@ class _DashBoardState extends State<DashBoard> {
                           ),
                           InkWell(
                             onTap: () {
-                            // /   RegisterController.accountVritual(context);
+                              // /   RegisterController.accountVritual(context);
                               Get.toNamed(MyRouters.currencyConvert);
                             },
                             child: Row(

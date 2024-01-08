@@ -6,7 +6,7 @@ import '../models/modal_send_otp_for_pin.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
-Future<SendOtpForPinModal> sendOtpForPinRepo({ context, type}) async {
+Future<SendOtpForPinModal> sendOtpForPinRepo({context, type}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};

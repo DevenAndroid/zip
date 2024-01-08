@@ -24,8 +24,6 @@ class ExchangeMoney extends StatefulWidget {
 }
 
 class _ExchangeMoneyState extends State<ExchangeMoney> {
-
-
   Rx<ModelConversion> modelConversion = ModelConversion().obs;
   Rx<RxStatus> statusOfConversion = RxStatus.empty().obs;
   TextEditingController amountController = TextEditingController();
@@ -41,12 +39,17 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
     // convertGbp();
     // convertEur();
   }
+
   void convertUsd() async {
-    var myCurrency =  Currency.values.firstWhere((element) => element.name.toString().toLowerCase() ==Get.arguments[0].toString().toLowerCase());
-    var convert =  Currency.values.firstWhere((element) => element.name.toString().toLowerCase() ==dropdownvalue2.toString().toLowerCase());
+    var myCurrency = Currency.values.firstWhere((element) =>
+        element.name.toString().toLowerCase() ==
+        Get.arguments[0].toString().toLowerCase());
+    var convert = Currency.values.firstWhere((element) =>
+        element.name.toString().toLowerCase() ==
+        dropdownvalue2.toString().toLowerCase());
     print(Get.arguments[0]);
     print(convert);
-   // Currency myCurrency = await CurrencyConverter.getMyCurrency();
+    // Currency myCurrency = await CurrencyConverter.getMyCurrency();
     var usdConvert = await CurrencyConverter.convert(
       from: myCurrency,
       to: convert,
@@ -57,6 +60,7 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
       usdToNgn = usdConvert.toString();
     });
   }
+
   // void convertUsd() async {
   //   Currency myCurrency = await CurrencyConverter.getMyCurrency();
   //   var usdConvert = await CurrencyConverter.convert(
@@ -69,12 +73,11 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
   //   });
   // }
 
-
-  Future  Conversions() async {
+  Future Conversions() async {
     await conversionRepo(
             amount: amountController.text.trim(),
             action: "send",
-            sourceCurrency:  Get.arguments[0],
+            sourceCurrency: Get.arguments[0],
             destinationCurrency: dropdownvalue2.toString(),
             business: "64529bd2bfdf28e7c18aa9da",
             beneficiaryType: "individual",
@@ -103,16 +106,16 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
   RxString receive = "".obs;
 
   String dropdownvalue2 = 'USD';
+
   List<DropdownMenuItem<String>> get dropdownItemsm2 {
     List<DropdownMenuItem<String>> menuItemsm = [
-
       const DropdownMenuItem(value: "USD", child: Text("USD")),
       const DropdownMenuItem(value: "EUR", child: Text("EUR")),
       const DropdownMenuItem(value: "GBP", child: Text("GBP")),
-
     ];
     return menuItemsm;
   }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -144,7 +147,7 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
           ),
           centerTitle: true,
         ),
-        bottomNavigationBar:   Padding(
+        bottomNavigationBar: Padding(
           padding: const EdgeInsets.only(bottom: 28.0),
           child: InkWell(
               onTap: () {
@@ -154,8 +157,8 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
               },
               child: const CustomOutlineButton(title: "Continue")),
         ),
-        body: Obx((){
-         return SingleChildScrollView(
+        body: Obx(() {
+          return SingleChildScrollView(
               child: Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Column(
@@ -173,7 +176,7 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
                           child: Row(
                             children: [
                               Container(
-                                height: 70,
+                                  height: 70,
                                   width: 100,
                                   padding: const EdgeInsets.all(12),
                                   decoration: const BoxDecoration(
@@ -182,7 +185,8 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
                                           bottomLeft: Radius.circular(16)),
                                       color: Color(0xFFEEEEEE)),
                                   child: Padding(
-                                    padding: const EdgeInsets.only(top: 10.0,left: 20),
+                                    padding: const EdgeInsets.only(
+                                        top: 10.0, left: 20),
                                     child: Text(
                                       Get.arguments[0],
                                       style: GoogleFonts.poppins(
@@ -192,15 +196,15 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
                                     ),
                                   )
 
-                                // CountryCodePicker(
-                                //   onChanged: print,
-                                //   initialSelection: 'IT',
-                                //   favorite: ['+39', 'FR'],
-                                //   showCountryOnly: false,
-                                //   showOnlyCountryWhenClosed: true,
-                                //   alignLeft: false,
-                                // ),
-                              ),
+                                  // CountryCodePicker(
+                                  //   onChanged: print,
+                                  //   initialSelection: 'IT',
+                                  //   favorite: ['+39', 'FR'],
+                                  //   showCountryOnly: false,
+                                  //   showOnlyCountryWhenClosed: true,
+                                  //   alignLeft: false,
+                                  // ),
+                                  ),
                               const SizedBox(
                                 width: 20,
                               ),
@@ -222,7 +226,6 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
                                     keyboardType: TextInputType.number,
                                     controller: amountController,
                                     decoration: const InputDecoration(
-
                                       hintText: "0",
                                       border: InputBorder.none,
                                       focusedBorder: InputBorder.none,
@@ -285,26 +288,26 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
                                     Row(
                                       children: [
                                         InkWell(
-                                          onTap: (){
-
-                                          },
+                                          onTap: () {},
                                           child: Text(
-                                            dropdownvalue2=="EUR"?"€":dropdownvalue2=="GBP"?"£":
-                                            "\$1 = ",
+                                            dropdownvalue2 == "EUR"
+                                                ? "€"
+                                                : dropdownvalue2 == "GBP"
+                                                    ? "£"
+                                                    : "\$1 = ",
                                             style: GoogleFonts.poppins(
                                                 color: const Color(0xFF7E7E7E),
                                                 fontSize: 15,
                                                 fontWeight: FontWeight.w500),
                                           ),
                                         ),
-
-                                        Text( "$usdToNgn",
+                                        Text(
+                                          "$usdToNgn",
                                           style: GoogleFonts.poppins(
                                               color: const Color(0xFF7E7E7E),
                                               fontSize: 15,
                                               fontWeight: FontWeight.w500),
                                         ),
-
                                       ],
                                     ),
                                   ],
@@ -448,67 +451,77 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
                           child: Row(
                             children: [
                               Container(
-                                  padding: const EdgeInsets.all(12),
-                                  decoration: const BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(16),
-                                          bottomLeft: Radius.circular(16)),
-                                      color: Color(0xFFEEEEEE)),
-                                  child:   SizedBox(
-                                    width: 100,
-                                    child: DropdownButtonHideUnderline(
-                                      child: DropdownButtonFormField(
-                                        validator: MultiValidator([
-                                          RequiredValidator(
-                                              errorText: 'Please select your channel'),
-                                        ]),
-                                        style: GoogleFonts.poppins(color: const Color(0xFF585757),fontWeight: FontWeight.w400,fontSize: 16),
-                                        decoration: InputDecoration(
-                                          contentPadding: const EdgeInsets.all(10),
-                                          border: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                              10,
-                                            ),
-                                            borderSide: const BorderSide(
-                                                color:Colors.transparent, width: 1.5),
+                                padding: const EdgeInsets.all(12),
+                                decoration: const BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(16),
+                                        bottomLeft: Radius.circular(16)),
+                                    color: Color(0xFFEEEEEE)),
+                                child: SizedBox(
+                                  width: 100,
+                                  child: DropdownButtonHideUnderline(
+                                    child: DropdownButtonFormField(
+                                      validator: MultiValidator([
+                                        RequiredValidator(
+                                            errorText:
+                                                'Please select your channel'),
+                                      ]),
+                                      style: GoogleFonts.poppins(
+                                          color: const Color(0xFF585757),
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 16),
+                                      decoration: InputDecoration(
+                                        contentPadding:
+                                            const EdgeInsets.all(10),
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            10,
                                           ),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                              10,
-                                            ),
-                                            borderSide: const BorderSide(
-                                                color: Colors.transparent, width: 1.5),
-                                          ),
-                                          disabledBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                              10,
-                                            ),
-                                            borderSide: const BorderSide(
-                                                color: Colors.transparent, width: 1.5),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                              10,
-                                            ),
-                                            borderSide: const BorderSide(
-                                                color: Colors.transparent, width: 1.5),
-                                          ),
+                                          borderSide: const BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1.5),
                                         ),
-                                        hint: const Text(""),
-                                        icon: const Icon(Icons.keyboard_arrow_down),
-                                        isExpanded: true,
-                                        value:  dropdownvalue2,
-                                        items: dropdownItemsm2,
-                                        onChanged: (String? value) {
-                                          setState(() {
-                                            dropdownvalue2 = value!;
-                                            print(dropdownvalue2.toString());
-                                            convertUsd();
-                                          });
-                                        },
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            10,
+                                          ),
+                                          borderSide: const BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1.5),
+                                        ),
+                                        disabledBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            10,
+                                          ),
+                                          borderSide: const BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1.5),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            10,
+                                          ),
+                                          borderSide: const BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1.5),
+                                        ),
                                       ),
+                                      hint: const Text(""),
+                                      icon:
+                                          const Icon(Icons.keyboard_arrow_down),
+                                      isExpanded: true,
+                                      value: dropdownvalue2,
+                                      items: dropdownItemsm2,
+                                      onChanged: (String? value) {
+                                        setState(() {
+                                          dropdownvalue2 = value!;
+                                          print(dropdownvalue2.toString());
+                                          convertUsd();
+                                        });
+                                      },
                                     ),
                                   ),
+                                ),
                                 // CountryCodePicker(
                                 //   onChanged: print,
                                 //   initialSelection: 'IT',
@@ -533,7 +546,8 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
                               const SizedBox(
                                 width: 50,
                               ),
-                              Text(receive.value.toString(),
+                              Text(
+                                receive.value.toString(),
                                 style: const TextStyle(
                                     color: Colors.black,
                                     fontSize: 16,
@@ -562,8 +576,6 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
                             ],
                           ),
                         ),
-
-
                       ])));
         }));
   }

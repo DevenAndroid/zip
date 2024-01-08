@@ -12,11 +12,13 @@ class RequestAPaymentContiune2 extends StatefulWidget {
   const RequestAPaymentContiune2({Key? key}) : super(key: key);
 
   @override
-  State<RequestAPaymentContiune2> createState() => _RequestAPaymentContiune2State();
+  State<RequestAPaymentContiune2> createState() =>
+      _RequestAPaymentContiune2State();
 }
 
 class _RequestAPaymentContiune2State extends State<RequestAPaymentContiune2> {
   final profileController = Get.put(ProfileController());
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -36,7 +38,9 @@ class _RequestAPaymentContiune2State extends State<RequestAPaymentContiune2> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 48,),
+            SizedBox(
+              height: 48,
+            ),
             ClipRRect(
               borderRadius: BorderRadius.circular(30),
               child: Image.asset(
@@ -44,7 +48,9 @@ class _RequestAPaymentContiune2State extends State<RequestAPaymentContiune2> {
                 height: 121,
               ),
             ),
-            SizedBox(height: 25,),
+            SizedBox(
+              height: 25,
+            ),
 
             Text(
               "You requested \$ ${profileController.amountController.text.trim()}",
@@ -65,12 +71,10 @@ class _RequestAPaymentContiune2State extends State<RequestAPaymentContiune2> {
             ),
             InkWell(
               onTap: () async {
-
                 SharedPreferences pref = await SharedPreferences.getInstance();
                 if (pref.getBool('TransistionPin') == true) {
                   Get.toNamed(MyRouters.securityOtpScreen1);
-                }
-                else{
+                } else {
                   Get.toNamed(MyRouters.success2Screen);
                 }
               },

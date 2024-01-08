@@ -21,14 +21,15 @@ class CreateBenificeryScreen extends StatefulWidget {
 
 class _CreateBenificeryScreenState extends State<CreateBenificeryScreen> {
   final payoutController = Get.put(PayoutController());
+
   List<DropdownMenuItem<String>> get dropdownItemsm {
     List<DropdownMenuItem<String>> menuItemsm = [
       const DropdownMenuItem(value: "individual", child: Text("individual")),
       const DropdownMenuItem(value: "corporate ", child: Text("corporate ")),
-
     ];
     return menuItemsm;
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,10 +80,9 @@ class _CreateBenificeryScreenState extends State<CreateBenificeryScreen> {
                     ),
                     CommonTextfield(
                         controller: payoutController.firstNameController,
-                        obSecure: false, hintText: "First Name "),
-                    const SizedBox(
-                      height: 4
-                    ),
+                        obSecure: false,
+                        hintText: "First Name "),
+                    const SizedBox(height: 4),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Text(
@@ -98,12 +98,9 @@ class _CreateBenificeryScreenState extends State<CreateBenificeryScreen> {
                     ),
                     CommonTextfield(
                         controller: payoutController.lastNameController,
-
-                        obSecure: false, hintText: "Last Name "),
-                    const SizedBox(
-                        height: 4
-                    ),
-
+                        obSecure: false,
+                        hintText: "Last Name "),
+                    const SizedBox(height: 4),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Text(
@@ -119,11 +116,9 @@ class _CreateBenificeryScreenState extends State<CreateBenificeryScreen> {
                     ),
                     CommonTextfield(
                         controller: payoutController.emailController1,
-
-                        obSecure: false, hintText: "Email "),
-                    const SizedBox(
-                        height: 4
-                    ),
+                        obSecure: false,
+                        hintText: "Email "),
+                    const SizedBox(height: 4),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Text(
@@ -138,11 +133,11 @@ class _CreateBenificeryScreenState extends State<CreateBenificeryScreen> {
                       height: 6,
                     ),
                     CommonTextfield(
-                        controller: payoutController.accountHolderNameController,
-                        obSecure: false, hintText: "Account Holder Name "),
-                    const SizedBox(
-                        height: 4
-                    ),
+                        controller:
+                            payoutController.accountHolderNameController,
+                        obSecure: false,
+                        hintText: "Account Holder Name "),
+                    const SizedBox(height: 4),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Text(
@@ -159,84 +154,59 @@ class _CreateBenificeryScreenState extends State<CreateBenificeryScreen> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: DropdownButtonHideUnderline(
-                        child:
-                        DropdownButtonFormField(
-
+                        child: DropdownButtonFormField(
                           validator: MultiValidator([
                             RequiredValidator(
                                 errorText: 'Please select your bank type '),
-
                           ]),
-                          style: const TextStyle(
-                              color: AppTheme
-                                  .primaryColor),
+                          style: const TextStyle(color: AppTheme.primaryColor),
                           decoration: InputDecoration(
-                            contentPadding:
-                            const EdgeInsets.all(10),
-                            border:
-                            OutlineInputBorder(
-                              borderRadius:
-                              BorderRadius
-                                  .circular(
+                            contentPadding: const EdgeInsets.all(10),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(
                                 10,
                               ),
                               borderSide: const BorderSide(
-                                  color: AppTheme
-                                      .primaryColor,width: 1.5),
+                                  color: AppTheme.primaryColor, width: 1.5),
                             ),
-                            enabledBorder:
-                            OutlineInputBorder(
-                              borderRadius:
-                              BorderRadius
-                                  .circular(
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(
                                 10,
                               ),
                               borderSide: const BorderSide(
-                                  color: AppTheme
-                                      .primaryColor,width: 1.5),
+                                  color: AppTheme.primaryColor, width: 1.5),
                             ),
-                            disabledBorder:
-                            OutlineInputBorder(
-                              borderRadius:
-                              BorderRadius
-                                  .circular(
+                            disabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(
                                 10,
                               ),
                               borderSide: const BorderSide(
-                                  color: AppTheme
-                                      .primaryColor,width: 1.5),
+                                  color: AppTheme.primaryColor, width: 1.5),
                             ),
-                            focusedBorder:
-                            OutlineInputBorder(
-                              borderRadius:
-                              BorderRadius
-                                  .circular(
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(
                                 10,
                               ),
                               borderSide: const BorderSide(
-                                  color: AppTheme
-                                      .primaryColor,width: 1.5),
+                                  color: AppTheme.primaryColor, width: 1.5),
                             ),
                           ),
                           hint: const Text(""),
-                          icon: const Icon(Icons
-
-                              .keyboard_arrow_down),
+                          icon: const Icon(Icons.keyboard_arrow_down),
                           isExpanded: true,
                           value: payoutController.selectedValue,
                           items: dropdownItemsm,
                           onChanged: (Object? value) {
                             setState(() {
                               payoutController.selectedValue = value.toString();
-                              print( payoutController.selectedValue= value.toString());
+                              print(payoutController.selectedValue =
+                                  value.toString());
                             });
                           },
                         ),
                       ),
                     ),
-                    const SizedBox(
-                        height: 4
-                    ),
+                    const SizedBox(height: 4),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Text(
@@ -252,10 +222,9 @@ class _CreateBenificeryScreenState extends State<CreateBenificeryScreen> {
                     ),
                     CommonTextfield(
                         controller: payoutController.currencyController,
-                        obSecure: false, hintText: "Currency "),
-                    const SizedBox(
-                        height: 4
-                    ),
+                        obSecure: false,
+                        hintText: "Currency "),
+                    const SizedBox(height: 4),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Text(
@@ -270,12 +239,12 @@ class _CreateBenificeryScreenState extends State<CreateBenificeryScreen> {
                       height: 6,
                     ),
                     CommonTextfield(
-                        controller: payoutController.paymentDestinationController,
+                        controller:
+                            payoutController.paymentDestinationController,
                         readOnly: true,
-                        obSecure: false, hintText: "Bank Account "),
-                    const SizedBox(
-                        height: 4
-                    ),
+                        obSecure: false,
+                        hintText: "Bank Account "),
+                    const SizedBox(height: 4),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Text(
@@ -290,20 +259,25 @@ class _CreateBenificeryScreenState extends State<CreateBenificeryScreen> {
                       height: 6,
                     ),
                     CommonTextfield(
-                        controller: payoutController.destinationAddressController,
-                        obSecure: false, hintText: "Destination Address "),
-                    SizedBox(height: 30,),
+                        controller:
+                            payoutController.destinationAddressController,
+                        obSecure: false,
+                        hintText: "Destination Address "),
+                    SizedBox(
+                      height: 30,
+                    ),
                     InkWell(
-                        onTap: (){
+                        onTap: () {
                           payoutController.CreateBenificery();
                           // emailLogin();
                           //
                         },
-                        child: CustomOutlineButton(title: "Create ",)),
-                    SizedBox(height: 15,),
-
-
-
+                        child: CustomOutlineButton(
+                          title: "Create ",
+                        )),
+                    SizedBox(
+                      height: 15,
+                    ),
                   ]),
             )));
   }

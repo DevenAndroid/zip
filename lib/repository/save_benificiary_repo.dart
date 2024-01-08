@@ -11,9 +11,15 @@ import '../models/save_benificary_model.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
-final details = Get.put(DetailsController());
-Future<SaveBenificaryModel> saveBenificaryRepo({destinationAddress,bank_name,account_holder_name, unique_id,firstName}) async {
 
+final details = Get.put(DetailsController());
+
+Future<SaveBenificaryModel> saveBenificaryRepo(
+    {destinationAddress,
+    bank_name,
+    account_holder_name,
+    unique_id,
+    firstName}) async {
   var map = <String, dynamic>{};
 
   map['destination_address'] = destinationAddress;
@@ -28,11 +34,9 @@ Future<SaveBenificaryModel> saveBenificaryRepo({destinationAddress,bank_name,acc
   log("Sign IN DATA${response.body}");
 
   if (response.statusCode == 200) {
-
     print(jsonDecode(response.body));
     return SaveBenificaryModel.fromJson(jsonDecode(response.body));
   } else {
-
     print(jsonDecode(response.body));
     return SaveBenificaryModel(
       message: jsonDecode(response.body)["message"],

@@ -9,30 +9,28 @@ import '../models/model_data_paln.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
-final details = Get.put(DetailsController());
-Future<ModelDataPlan> dataPlanRepo({  telco}) async {
 
+final details = Get.put(DetailsController());
+
+Future<ModelDataPlan> dataPlanRepo({telco}) async {
   var map = <String, dynamic>{};
   map['telco'] = telco;
   http.Response response = await http.post(Uri.parse(ApiUrls.plan),
-    headers: { HttpHeaders.contentTypeHeader: 'application/json',
-      HttpHeaders.acceptHeader: 'application/json',
-      "secret-key": details.secretKey
-
-    },
-   body: jsonEncode(map));
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json',
+        HttpHeaders.acceptHeader: 'application/json',
+        "secret-key": details.secretKey
+      },
+      body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
   print(map);
 
   if (response.statusCode == 200) {
-
-
-    return ModelDataPlan.fromJson(jsonDecode(response.body),);
-  } else {
-
-
-    return ModelDataPlan(
-      message: jsonDecode(response.body)["message"],success: false
+    return ModelDataPlan.fromJson(
+      jsonDecode(response.body),
     );
+  } else {
+    return ModelDataPlan(
+        message: jsonDecode(response.body)["message"], success: false);
   }
 }

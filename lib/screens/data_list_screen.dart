@@ -46,6 +46,7 @@ class _BuyDataListState extends State<BuyDataList> {
     super.initState();
     // getBuyDataList();
   }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -70,7 +71,6 @@ class _BuyDataListState extends State<BuyDataList> {
                 fontSize: 20,
                 fontWeight: FontWeight.w500),
           ),
-
           centerTitle: true,
         ),
         body: SingleChildScrollView(
@@ -87,8 +87,8 @@ class _BuyDataListState extends State<BuyDataList> {
                         child: SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   GestureDetector(
                                     onTap: () {
@@ -103,30 +103,35 @@ class _BuyDataListState extends State<BuyDataList> {
                                           horizontal: 18, vertical: 12),
                                       decoration: currentDrawer == 2
                                           ? BoxDecoration(
-                                        gradient: const LinearGradient(
-                                            colors: [
-                                              Color(0xFFF0D75F),
-                                              Color(0xFFB2802A),
-                                            ],
-                                            begin: Alignment.topCenter,
-                                            end: Alignment.bottomCenter),
-                                        borderRadius: BorderRadius.circular(15),
-                                      )
+                                              gradient: const LinearGradient(
+                                                  colors: [
+                                                    Color(0xFFF0D75F),
+                                                    Color(0xFFB2802A),
+                                                  ],
+                                                  begin: Alignment.topCenter,
+                                                  end: Alignment.bottomCenter),
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            )
                                           : BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            ),
                                       child: Center(
                                         child: Text("Airtime",
                                             style: currentDrawer == 2
                                                 ? GoogleFonts.poppins(
-                                                color: const Color(0xFFFFFFFF),
-                                                fontSize: 13,
-                                                fontWeight: FontWeight.w500)
+                                                    color:
+                                                        const Color(0xFFFFFFFF),
+                                                    fontSize: 13,
+                                                    fontWeight: FontWeight.w500)
                                                 : GoogleFonts.poppins(
-                                                color: const Color(0xFF1D1D1D),
-                                                fontSize: 13,
-                                                fontWeight: FontWeight.w500)),
+                                                    color:
+                                                        const Color(0xFF1D1D1D),
+                                                    fontSize: 13,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
                                       ),
                                     ),
                                   ),
@@ -137,7 +142,8 @@ class _BuyDataListState extends State<BuyDataList> {
                                     onTap: () {
                                       setState(() {
                                         // currentDrawer = 1;
-                                        Get.toNamed(MyRouters.buyElectricityList);
+                                        Get.toNamed(
+                                            MyRouters.buyElectricityList);
                                       });
                                     },
                                     child: Container(
@@ -146,30 +152,35 @@ class _BuyDataListState extends State<BuyDataList> {
                                           horizontal: 18, vertical: 12),
                                       decoration: currentDrawer == 1
                                           ? BoxDecoration(
-                                        gradient: const LinearGradient(
-                                            colors: [
-                                              Color(0xFFF0D75F),
-                                              Color(0xFFB2802A),
-                                            ],
-                                            begin: Alignment.topCenter,
-                                            end: Alignment.bottomCenter),
-                                        borderRadius: BorderRadius.circular(15),
-                                      )
+                                              gradient: const LinearGradient(
+                                                  colors: [
+                                                    Color(0xFFF0D75F),
+                                                    Color(0xFFB2802A),
+                                                  ],
+                                                  begin: Alignment.topCenter,
+                                                  end: Alignment.bottomCenter),
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            )
                                           : BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            ),
                                       child: Center(
                                         child: Text("Electricity",
                                             style: currentDrawer == 1
                                                 ? GoogleFonts.poppins(
-                                                color: const Color(0xFFFFFFFF),
-                                                fontSize: 13,
-                                                fontWeight: FontWeight.w500)
+                                                    color:
+                                                        const Color(0xFFFFFFFF),
+                                                    fontSize: 13,
+                                                    fontWeight: FontWeight.w500)
                                                 : GoogleFonts.poppins(
-                                                color: const Color(0xFF1D1D1D),
-                                                fontSize: 13,
-                                                fontWeight: FontWeight.w500)),
+                                                    color:
+                                                        const Color(0xFF1D1D1D),
+                                                    fontSize: 13,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
                                       ),
                                     ),
                                   ),
@@ -187,29 +198,33 @@ class _BuyDataListState extends State<BuyDataList> {
                                           horizontal: 18, vertical: 12),
                                       decoration: currentDrawer == 0
                                           ? BoxDecoration(
-                                        gradient: const LinearGradient(
-                                            colors: [
-                                              Color(0xFFF0D75F),
-                                              Color(0xFFB2802A),
-                                            ],
-                                            begin: Alignment.topCenter,
-                                            end: Alignment.bottomCenter),
-                                        borderRadius: BorderRadius.circular(15),
-                                      )
+                                              gradient: const LinearGradient(
+                                                  colors: [
+                                                    Color(0xFFF0D75F),
+                                                    Color(0xFFB2802A),
+                                                  ],
+                                                  begin: Alignment.topCenter,
+                                                  end: Alignment.bottomCenter),
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            )
                                           : BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            ),
                                       child: Text("Data",
                                           style: currentDrawer == 0
                                               ? GoogleFonts.poppins(
-                                              color: const Color(0xFFFFFFFF),
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.w500)
+                                                  color:
+                                                      const Color(0xFFFFFFFF),
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w500)
                                               : GoogleFonts.poppins(
-                                              color: const Color(0xFF1D1D1D),
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.w500)),
+                                                  color:
+                                                      const Color(0xFF1D1D1D),
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w500)),
                                     ),
                                   ),
                                   const SizedBox(
@@ -227,238 +242,285 @@ class _BuyDataListState extends State<BuyDataList> {
                                           horizontal: 18, vertical: 12),
                                       decoration: currentDrawer == 3
                                           ? BoxDecoration(
-                                        gradient: const LinearGradient(
-                                            colors: [
-                                              Color(0xFFF0D75F),
-                                              Color(0xFFB2802A),
-                                            ],
-                                            begin: Alignment.topCenter,
-                                            end: Alignment.bottomCenter),
-                                        borderRadius: BorderRadius.circular(15),
-                                      )
+                                              gradient: const LinearGradient(
+                                                  colors: [
+                                                    Color(0xFFF0D75F),
+                                                    Color(0xFFB2802A),
+                                                  ],
+                                                  begin: Alignment.topCenter,
+                                                  end: Alignment.bottomCenter),
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            )
                                           : BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            ),
                                       child: Text("Cable Tv",
                                           style: currentDrawer == 3
                                               ? GoogleFonts.poppins(
-                                              color: const Color(0xFFFFFFFF),
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.w500)
+                                                  color:
+                                                      const Color(0xFFFFFFFF),
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w500)
                                               : GoogleFonts.poppins(
-                                              color: const Color(0xFF1D1D1D),
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.w500)),
+                                                  color:
+                                                      const Color(0xFF1D1D1D),
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w500)),
                                     ),
                                   ),
                                 ])),
                       ),
-                      SizedBox(height: 20,),
+                      SizedBox(
+                        height: 20,
+                      ),
                       Obx(() {
                         return statusOfBuyDataList.value.isSuccess
                             ? Column(
-                              children: [
-                                buyDataList.value.data!.isEmpty?Center(
-                                  child: Text("No records found.", style:
-                                  GoogleFonts.poppins(
-                                      color: AppTheme
-                                          .primaryColor,
-                                      fontSize: 16,
-                                      fontWeight:
-                                      FontWeight
-                                          .w600),),
-                                ):
-                                ListView.builder(
-                                shrinkWrap: true,
-                                physics: const BouncingScrollPhysics(),
-                                itemCount: buyDataList.value.data!.length,
-                                itemBuilder: (context, index) {
-                                  return GestureDetector(
-                                    onTap: () {
-
-                                    },
-                                    child: Column(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        InkWell(
-                                          onTap: (){
-                                            Get.toNamed(MyRouters.buyData,arguments: [
-                                              buyDataList.value.data![index].telcos.toString(),
-                                              buyDataList.value.data![index].amount.toString(),
-                                              buyDataList.value.data![index].dataplan.toString(),
-                                              buyDataList.value.data![index].dataCode.toString(),
-                                              buyDataList.value.data![index].phone.toString(),
-                                              buyDataList.value.data![index].userId.toString(),
-
-
-                                            ]);
-                                          },
-                                          child: Container(
-                                            padding: EdgeInsets.all(10),
-                                            decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(10),
-                                                border: Border.all(color: Colors.grey)
-                                            ),
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(5.0),
-                                              child: Row(
+                                children: [
+                                  buyDataList.value.data!.isEmpty
+                                      ? Center(
+                                          child: Text(
+                                            "No records found.",
+                                            style: GoogleFonts.poppins(
+                                                color: AppTheme.primaryColor,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                        )
+                                      : ListView.builder(
+                                          shrinkWrap: true,
+                                          physics:
+                                              const BouncingScrollPhysics(),
+                                          itemCount:
+                                              buyDataList.value.data!.length,
+                                          itemBuilder: (context, index) {
+                                            return GestureDetector(
+                                              onTap: () {},
+                                              child: Column(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .spaceBetween,
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-
-
-                                                  Column(
-                                                    mainAxisAlignment:
                                                     MainAxisAlignment.start,
-                                                    crossAxisAlignment:
+                                                crossAxisAlignment:
                                                     CrossAxisAlignment.start,
-                                                    children: [
-                                                      Text(
-
-                                                        buyDataList
-                                                            .value
-                                                            .data![index]
-                                                            .phone
-                                                            .toString(),
-                                                        style:
-                                                        GoogleFonts.poppins(
-                                                            color: AppTheme
-                                                                .primaryColor,
-                                                            fontSize: 16,
-                                                            fontWeight:
-                                                            FontWeight
-                                                                .w600),
-                                                      ),
-                                                      Text(
-                                                        buyDataList
-                                                            .value
-                                                            .data![index]
-                                                            .telcos
-                                                            .toString(),
-                                                        style:
-                                                        GoogleFonts.poppins(
-                                                            color:
-                                                            Colors.grey,
-                                                            fontSize: 13,
-                                                            fontWeight:
-                                                            FontWeight
-                                                                .w500),
-                                                      ),
-                                                      Text(
-                                                       "Plan:- "+ buyDataList
-                                                            .value
-                                                            .data![index]
-                                                            .dataplan
-                                                            .toString(),
-                                                        style:
-                                                        GoogleFonts.poppins(
-                                                            color:
-                                                            Colors.grey,
-                                                            fontSize: 13,
-                                                            fontWeight:
-                                                            FontWeight
-                                                                .w500),
-                                                      ),
-                                                    ],
+                                                children: [
+                                                  SizedBox(
+                                                    height: 10,
                                                   ),
-                                                  Column(
-                                                    mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                    crossAxisAlignment:
-                                                    CrossAxisAlignment.end,
-                                                    children: [
-                                                      Text(
-                                                        buyDataList
-                                                            .value
-                                                            .data![index]
-                                                            .createdAt
-                                                            .toString(),
-                                                        style:
-                                                        GoogleFonts.poppins(
-                                                            color: Colors.grey,
-                                                            fontSize: 13,
-                                                            fontWeight:
-                                                            FontWeight
-                                                                .w300),
-                                                      ),
-                                                      Row(
-                                                        mainAxisAlignment: MainAxisAlignment.start,
-                                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                                        children: [
-                                                          SvgPicture.asset("assets/images/ngn.svg"),
-                                                          Text(
+                                                  InkWell(
+                                                    onTap: () {
+                                                      Get.toNamed(
+                                                          MyRouters.buyData,
+                                                          arguments: [
+                                                            buyDataList
+                                                                .value
+                                                                .data![index]
+                                                                .telcos
+                                                                .toString(),
                                                             buyDataList
                                                                 .value
                                                                 .data![index]
                                                                 .amount
                                                                 .toString(),
-                                                            style:
-                                                            GoogleFonts.poppins(
-                                                                color:
-                                                                Colors.grey,
-                                                                fontSize: 14,
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .w400),
-                                                          ),
-                                                        ],
+                                                            buyDataList
+                                                                .value
+                                                                .data![index]
+                                                                .dataplan
+                                                                .toString(),
+                                                            buyDataList
+                                                                .value
+                                                                .data![index]
+                                                                .dataCode
+                                                                .toString(),
+                                                            buyDataList
+                                                                .value
+                                                                .data![index]
+                                                                .phone
+                                                                .toString(),
+                                                            buyDataList
+                                                                .value
+                                                                .data![index]
+                                                                .userId
+                                                                .toString(),
+                                                          ]);
+                                                    },
+                                                    child: Container(
+                                                      padding:
+                                                          EdgeInsets.all(10),
+                                                      decoration: BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(10),
+                                                          border: Border.all(
+                                                              color:
+                                                                  Colors.grey)),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(5.0),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Column(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .start,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Text(
+                                                                  buyDataList
+                                                                      .value
+                                                                      .data![
+                                                                          index]
+                                                                      .phone
+                                                                      .toString(),
+                                                                  style: GoogleFonts.poppins(
+                                                                      color: AppTheme
+                                                                          .primaryColor,
+                                                                      fontSize:
+                                                                          16,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600),
+                                                                ),
+                                                                Text(
+                                                                  buyDataList
+                                                                      .value
+                                                                      .data![
+                                                                          index]
+                                                                      .telcos
+                                                                      .toString(),
+                                                                  style: GoogleFonts.poppins(
+                                                                      color: Colors
+                                                                          .grey,
+                                                                      fontSize:
+                                                                          13,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500),
+                                                                ),
+                                                                Text(
+                                                                  "Plan:- " +
+                                                                      buyDataList
+                                                                          .value
+                                                                          .data![
+                                                                              index]
+                                                                          .dataplan
+                                                                          .toString(),
+                                                                  style: GoogleFonts.poppins(
+                                                                      color: Colors
+                                                                          .grey,
+                                                                      fontSize:
+                                                                          13,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                            Column(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .start,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .end,
+                                                              children: [
+                                                                Text(
+                                                                  buyDataList
+                                                                      .value
+                                                                      .data![
+                                                                          index]
+                                                                      .createdAt
+                                                                      .toString(),
+                                                                  style: GoogleFonts.poppins(
+                                                                      color: Colors
+                                                                          .grey,
+                                                                      fontSize:
+                                                                          13,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w300),
+                                                                ),
+                                                                Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    SvgPicture
+                                                                        .asset(
+                                                                            "assets/images/ngn.svg"),
+                                                                    Text(
+                                                                      buyDataList
+                                                                          .value
+                                                                          .data![
+                                                                              index]
+                                                                          .amount
+                                                                          .toString(),
+                                                                      style: GoogleFonts.poppins(
+                                                                          color: Colors
+                                                                              .grey,
+                                                                          fontSize:
+                                                                              14,
+                                                                          fontWeight:
+                                                                              FontWeight.w400),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                Text(
+                                                                  "Code:- " +
+                                                                      buyDataList
+                                                                          .value
+                                                                          .data![
+                                                                              index]
+                                                                          .dataCode
+                                                                          .toString(),
+                                                                  style: GoogleFonts.poppins(
+                                                                      color: Colors
+                                                                          .grey,
+                                                                      fontSize:
+                                                                          14,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w400),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ],
+                                                        ),
                                                       ),
-                                                      Text(
-                                                        "Code:- "+buyDataList
-                                                            .value
-                                                            .data![index]
-                                                            .dataCode
-                                                            .toString(),
-                                                        style:
-                                                        GoogleFonts.poppins(
-                                                            color:
-                                                            Colors.grey,
-                                                            fontSize: 14,
-                                                            fontWeight:
-                                                            FontWeight
-                                                                .w400),
-                                                      ),
-                                                    ],
+                                                    ),
                                                   ),
+                                                  SizedBox(
+                                                    height: 10,
+                                                  )
                                                 ],
                                               ),
-                                            ),
-                                          ),
-                                        ),
-
-                                        SizedBox(
-                                          height: 10,
-                                        )
-                                      ],
-                                    ),
-                                  );
-                                }),
-                              ],
-                            )
+                                            );
+                                          }),
+                                ],
+                              )
                             : statusOfBuyDataList.value.isError
-                            ? CommonErrorWidget(
-                          errorText: buyDataList.value.message
-                              .toString(),
-                          onTap: () {
-                            // getBuyDataList();
-                          },
-                        )
-                            : const CommonProgressIndicator();
+                                ? CommonErrorWidget(
+                                    errorText:
+                                        buyDataList.value.message.toString(),
+                                    onTap: () {
+                                      // getBuyDataList();
+                                    },
+                                  )
+                                : const CommonProgressIndicator();
                       })
-
-
-
-
                     ]))));
   }
 }

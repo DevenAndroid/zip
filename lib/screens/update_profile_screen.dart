@@ -30,6 +30,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
   File image = File("");
 
   final profileController = Get.put(ProfileController());
+
   Future pickImage() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -45,6 +46,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
   var maskFormatter = MaskTextInputFormatter(
       mask: '####-##-##', filter: {"#": RegExp(r'[0-9]')});
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -240,7 +242,6 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   readOnly: true,
                   controller: profileController.emailController,
                   obSecure: false,
-
                   hintText: "Manish@gmail.com",
                   labelText: "Email",
                 ),
@@ -252,27 +253,20 @@ class _UpdateProfileState extends State<UpdateProfile> {
                 padding: const EdgeInsets.only(left: 6, right: 6),
                 child: CommonTextfield(
                   keyboardType:
-                  const TextInputType.numberWithOptions(
-                      decimal: true),
+                      const TextInputType.numberWithOptions(decimal: true),
                   inputFormatters: [
                     LengthLimitingTextInputFormatter(12),
-                    FilteringTextInputFormatter.allow(
-                        RegExp('[0-9]+')),
+                    FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
                   ],
-                  onChanged: (value) =>
-                  doubleVar = double.parse(value),
+                  onChanged: (value) => doubleVar = double.parse(value),
                   validator: MultiValidator([
                     RequiredValidator(
-                        errorText:
-                        'Please enter your contact number '),
+                        errorText: 'Please enter your contact number '),
                     MinLengthValidator(10,
-                        errorText:
-                        'Please enter minumum  11 digit number'),
+                        errorText: 'Please enter minumum  11 digit number'),
                     MaxLengthValidator(12,
-                        errorText:
-                        'Please enter 12 digit number'),
-                    PatternValidator(
-                        r'(^(?:[+0]9)?[0-9]{10,12}$)',
+                        errorText: 'Please enter 12 digit number'),
+                    PatternValidator(r'(^(?:[+0]9)?[0-9]{10,12}$)',
                         errorText: '')
                   ]),
                   readOnly: true,
@@ -304,7 +298,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                 child: Align(
                   alignment: Alignment.topRight,
                   child: InkWell(
-                    onTap: (){
+                    onTap: () {
                       Get.toNamed(MyRouters.updatePassword);
                     },
                     child: Text(
@@ -331,8 +325,10 @@ class _UpdateProfileState extends State<UpdateProfile> {
                         profileController.lNameController.text.trim();
 
                     map['dob'] = profileController.dobController.text.trim();
-                    map['phone'] = profileController.mobileController.text.trim();
-                    map['email'] = profileController.emailController.text.trim();
+                    map['phone'] =
+                        profileController.mobileController.text.trim();
+                    map['email'] =
+                        profileController.emailController.text.trim();
 
                     UpdateProfileRepo(
                       fieldName1: 'profile_image',

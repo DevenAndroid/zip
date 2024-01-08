@@ -7,8 +7,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:freshchat_sdk/freshchat_user.dart';
 import 'package:zip/resourses/api_constant.dart';
 
-
-
 class Chat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -40,6 +38,7 @@ class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key, this.title}) : super(key: key);
 
   final String? title;
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -143,221 +142,222 @@ class _MyHomePageState extends State<MyHomePage> {
       // showToast("Restore ID copied: $restoreId");
     }
   }
-    void getUserProps(BuildContext context) {
-      final userInfoKey = GlobalKey<FormState>();
-      String? key, value;
-      var alert = AlertDialog(
-        scrollable: true,
-        shape:
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-        title: const Text(
-          "Custom User Properties:",
-          textDirection: TextDirection.ltr,
-          style: TextStyle(fontFamily: 'OpenSans-Regular'),
-        ),
-        content: Form(
-          key: userInfoKey,
-          child: Column(
-            children: [
-              TextFormField(
-                  autofocus: true,
-                  decoration: const InputDecoration(
-                    hintText: "Key",
-                  ),
-                  onChanged: (val) {
-                    setState(() {
-                      key = val;
-                    });
-                  }),
-              TextFormField(
-                  autofocus: true,
-                  decoration: const InputDecoration(
-                    hintText: "Value",
-                  ),
-                  onChanged: (val) {
-                    setState(() {
-                      value = val;
-                    });
-                  }),
-            ],
-          ),
-        ),
-        actions: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              MaterialButton(
-                elevation: 10.0,
-                child: const Text(
-                  "Add Properties",
-                  textDirection: TextDirection.ltr,
+
+  void getUserProps(BuildContext context) {
+    final userInfoKey = GlobalKey<FormState>();
+    String? key, value;
+    var alert = AlertDialog(
+      scrollable: true,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+      title: const Text(
+        "Custom User Properties:",
+        textDirection: TextDirection.ltr,
+        style: TextStyle(fontFamily: 'OpenSans-Regular'),
+      ),
+      content: Form(
+        key: userInfoKey,
+        child: Column(
+          children: [
+            TextFormField(
+                autofocus: true,
+                decoration: const InputDecoration(
+                  hintText: "Key",
                 ),
-                onPressed: () {
+                onChanged: (val) {
                   setState(() {
-                    Map map = {key: value};
-                    Freshchat.setUserProperties(map);
+                    key = val;
                   });
-                },
-              ),
-              MaterialButton(
-                elevation: 10.0,
-                child: const Text(
-                  "Cancel",
-                  textDirection: TextDirection.ltr,
+                }),
+            TextFormField(
+                autofocus: true,
+                decoration: const InputDecoration(
+                  hintText: "Value",
                 ),
-                onPressed: () {
+                onChanged: (val) {
                   setState(() {
-                    Navigator.of(context, rootNavigator: true).pop(context);
+                    value = val;
                   });
-                },
-              ),
-            ],
-          ),
-        ],
-      );
-      showDialog(
-          context: context,
-          builder: (context) {
-            return alert;
-          });
-    }
-    void sendMessageApi(BuildContext context) {
-      final userInfoKey = GlobalKey<FormState>();
-      String? conversationTag, message;
-      var alert = AlertDialog(
-        scrollable: true,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-        title: const Text(
-          "Send Message API",
-          textDirection: TextDirection.ltr,
-          style: TextStyle(fontFamily: 'OpenSans-Regular'),
+                }),
+          ],
         ),
-        content: Form(
-          key: userInfoKey,
-          child: Column(
-            children: [
-              TextFormField(
-                  autofocus: true,
-                  decoration: const InputDecoration(
-                    hintText: "Conversation Tag",
-                  ),
-                  onChanged: (val) {
-                    setState(() {
-                      conversationTag = val;
-                    });
-                  }),
-              TextFormField(
-                  autofocus: true,
-                  decoration: const InputDecoration(
-                    hintText: "Message",
-                  ),
-                  onChanged: (val) {
-                    setState(() {
-                      message = val;
-                    });
-                  }),
-            ],
-          ),
+      ),
+      actions: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            MaterialButton(
+              elevation: 10.0,
+              child: const Text(
+                "Add Properties",
+                textDirection: TextDirection.ltr,
+              ),
+              onPressed: () {
+                setState(() {
+                  Map map = {key: value};
+                  Freshchat.setUserProperties(map);
+                });
+              },
+            ),
+            MaterialButton(
+              elevation: 10.0,
+              child: const Text(
+                "Cancel",
+                textDirection: TextDirection.ltr,
+              ),
+              onPressed: () {
+                setState(() {
+                  Navigator.of(context, rootNavigator: true).pop(context);
+                });
+              },
+            ),
+          ],
         ),
-        actions: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              MaterialButton(
-                elevation: 10.0,
-                child: const Text(
-                  "Send Message",
-                  textDirection: TextDirection.ltr,
-                ),
-                onPressed: () {
-                  setState(
-                    () {
-                      Freshchat.sendMessage(conversationTag!, message!);
-                      Navigator.of(context, rootNavigator: true).pop(context);
-                    },
-                  );
-                },
-              ),
-              MaterialButton(
-                elevation: 10.0,
-                child: const Text(
-                  "Cancel",
-                  textDirection: TextDirection.ltr,
-                ),
-                onPressed: () {
-                  setState(() {
-                    Navigator.of(context, rootNavigator: true).pop(context);
-                  });
-                },
-              ),
-            ],
-          ),
-        ],
-      );
-      showDialog(
-          context: context,
-          builder: (context) {
-            return alert;
-          });
-    }
-
-     String APP_ID = "582cb772-77e7-4903-a46e-5eb59f6f74f0",
-        APP_KEY = "1da483f8-ed29-4998-b74d-8469a609875f",
-        DOMAIN = "msdk.eu.freshchat.com";
-    void initState() {
-      super.initState();
-      Freshchat.init(APP_ID, APP_KEY, DOMAIN);
-      /**
-       * This is the Firebase push notification server key for this sample app.
-       * Please save this in your Freshchat account to test push notifications in Sample app.
-       *
-       * Server key: Please refer support documentation for the server key of this sample app.
-       *
-       * Note: This is the push notification server key for sample app. You need to use your own server key for testing in your application
-       */
-      var restoreStream = Freshchat.onRestoreIdGenerated;
-      var restoreStreamSubsctiption = restoreStream.listen((event) {
-        print("Restore ID Generated: $event");
-        notifyRestoreId(event);
-      });
-
-      var unreadCountStream = Freshchat.onMessageCountUpdate;
-      unreadCountStream.listen((event) {
-        print("Have unread messages: $event");
-      });
-
-      var userInteractionStream = Freshchat.onUserInteraction;
-      userInteractionStream.listen((event) {
-        print("User interaction for Freshchat SDK");
-      });
-
-      if (Platform.isAndroid) {
-        registerFcmToken();
-        FirebaseMessaging.instance.onTokenRefresh
-            .listen(Freshchat.setPushRegistrationToken);
-
-        Freshchat.setNotificationConfig(notificationInterceptionEnabled: true);
-        var notificationInterceptStream = Freshchat.onNotificationIntercept;
-        notificationInterceptStream.listen((event) {
-          print("Freshchat Notification Intercept detected");
-          Freshchat.openFreshchatDeeplink(event["url"]);
+      ],
+    );
+    showDialog(
+        context: context,
+        builder: (context) {
+          return alert;
         });
+  }
 
-        FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-          var data = message.data;
-          handleFreshchatNotification(data);
-          print("Notification Content: $data");
+  void sendMessageApi(BuildContext context) {
+    final userInfoKey = GlobalKey<FormState>();
+    String? conversationTag, message;
+    var alert = AlertDialog(
+      scrollable: true,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+      title: const Text(
+        "Send Message API",
+        textDirection: TextDirection.ltr,
+        style: TextStyle(fontFamily: 'OpenSans-Regular'),
+      ),
+      content: Form(
+        key: userInfoKey,
+        child: Column(
+          children: [
+            TextFormField(
+                autofocus: true,
+                decoration: const InputDecoration(
+                  hintText: "Conversation Tag",
+                ),
+                onChanged: (val) {
+                  setState(() {
+                    conversationTag = val;
+                  });
+                }),
+            TextFormField(
+                autofocus: true,
+                decoration: const InputDecoration(
+                  hintText: "Message",
+                ),
+                onChanged: (val) {
+                  setState(() {
+                    message = val;
+                  });
+                }),
+          ],
+        ),
+      ),
+      actions: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            MaterialButton(
+              elevation: 10.0,
+              child: const Text(
+                "Send Message",
+                textDirection: TextDirection.ltr,
+              ),
+              onPressed: () {
+                setState(
+                  () {
+                    Freshchat.sendMessage(conversationTag!, message!);
+                    Navigator.of(context, rootNavigator: true).pop(context);
+                  },
+                );
+              },
+            ),
+            MaterialButton(
+              elevation: 10.0,
+              child: const Text(
+                "Cancel",
+                textDirection: TextDirection.ltr,
+              ),
+              onPressed: () {
+                setState(() {
+                  Navigator.of(context, rootNavigator: true).pop(context);
+                });
+              },
+            ),
+          ],
+        ),
+      ],
+    );
+    showDialog(
+        context: context,
+        builder: (context) {
+          return alert;
         });
-        FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
-      }
-    }
+  }
 
-    void _incrementCounter() {
-      setState(() {
-        Freshchat.showConversations();
+  String APP_ID = "582cb772-77e7-4903-a46e-5eb59f6f74f0",
+      APP_KEY = "1da483f8-ed29-4998-b74d-8469a609875f",
+      DOMAIN = "msdk.eu.freshchat.com";
+
+  void initState() {
+    super.initState();
+    Freshchat.init(APP_ID, APP_KEY, DOMAIN);
+    /**
+     * This is the Firebase push notification server key for this sample app.
+     * Please save this in your Freshchat account to test push notifications in Sample app.
+     *
+     * Server key: Please refer support documentation for the server key of this sample app.
+     *
+     * Note: This is the push notification server key for sample app. You need to use your own server key for testing in your application
+     */
+    var restoreStream = Freshchat.onRestoreIdGenerated;
+    var restoreStreamSubsctiption = restoreStream.listen((event) {
+      print("Restore ID Generated: $event");
+      notifyRestoreId(event);
+    });
+
+    var unreadCountStream = Freshchat.onMessageCountUpdate;
+    unreadCountStream.listen((event) {
+      print("Have unread messages: $event");
+    });
+
+    var userInteractionStream = Freshchat.onUserInteraction;
+    userInteractionStream.listen((event) {
+      print("User interaction for Freshchat SDK");
+    });
+
+    if (Platform.isAndroid) {
+      registerFcmToken();
+      FirebaseMessaging.instance.onTokenRefresh
+          .listen(Freshchat.setPushRegistrationToken);
+
+      Freshchat.setNotificationConfig(notificationInterceptionEnabled: true);
+      var notificationInterceptStream = Freshchat.onNotificationIntercept;
+      notificationInterceptStream.listen((event) {
+        print("Freshchat Notification Intercept detected");
+        Freshchat.openFreshchatDeeplink(event["url"]);
       });
+
+      FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+        var data = message.data;
+        handleFreshchatNotification(data);
+        print("Notification Content: $data");
+      });
+      FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
     }
+  }
+
+  void _incrementCounter() {
+    setState(() {
+      Freshchat.showConversations();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

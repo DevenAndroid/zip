@@ -26,7 +26,7 @@ class AddCard extends StatelessWidget {
         ),
         centerTitle: true,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Get.back();
           },
           child: Icon(
@@ -52,7 +52,9 @@ class AddCard extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: Container(
@@ -91,16 +93,13 @@ class AddCard extends StatelessWidget {
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
                                     colors: [
-
                                       Color(0xFFF0D75F),
                                       Color(0xFFB2802A),
                                     ],
                                     begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter
-                                ),
+                                    end: Alignment.bottomCenter),
                                 borderRadius: BorderRadius.circular(7),
                               ),
-
                               height: 25,
                               width: 110,
                               child: Center(
@@ -120,7 +119,9 @@ class AddCard extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               Text(
                 "Enter your card details to pay",
                 style: GoogleFonts.poppins(

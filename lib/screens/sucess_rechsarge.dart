@@ -6,6 +6,7 @@ import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_button.dart';
 
 import '../controller/profile_controller.dart';
+
 class SuccessRechargeScreen extends StatefulWidget {
   const SuccessRechargeScreen({Key? key}) : super(key: key);
 
@@ -15,12 +16,12 @@ class SuccessRechargeScreen extends StatefulWidget {
 
 class _SuccessRechargeScreenState extends State<SuccessRechargeScreen> {
   final profileController = Get.put(ProfileController());
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
-
         body: SingleChildScrollView(
             child: Padding(
                 padding: const EdgeInsets.all(12.0),
@@ -28,10 +29,11 @@ class _SuccessRechargeScreenState extends State<SuccessRechargeScreen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: size.height*.1,),
+                      SizedBox(
+                        height: size.height * .1,
+                      ),
                       Center(
                         child: Text(
-
                           "Success!",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
@@ -39,15 +41,21 @@ class _SuccessRechargeScreenState extends State<SuccessRechargeScreen> {
                               fontWeight: FontWeight.w500),
                         ),
                       ),
-                      SizedBox(height: 45,),
+                      SizedBox(
+                        height: 45,
+                      ),
                       Center(
                         child: Image.asset(
-                          'assets/images/tick.png',height: 90,width: 90,),
+                          'assets/images/tick.png',
+                          height: 90,
+                          width: 90,
+                        ),
                       ),
-                      SizedBox(height: 25,),
+                      SizedBox(
+                        height: 25,
+                      ),
                       Center(
                         child: Text(
-
                           "Your Transaction is successful",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
@@ -55,15 +63,16 @@ class _SuccessRechargeScreenState extends State<SuccessRechargeScreen> {
                               fontWeight: FontWeight.w400),
                         ),
                       ),
-                      SizedBox(height: size.height*.5,),
+                      SizedBox(
+                        height: size.height * .5,
+                      ),
                       InkWell(
-                          onTap: (){
-                           Get.offAllNamed(MyRouters.bottomNavbar);
-
+                          onTap: () {
+                            Get.offAllNamed(MyRouters.bottomNavbar);
                           },
-                          child: CustomOutlineButton(title: "Go To Home ",)),
-                    ]
-                ))));
+                          child: CustomOutlineButton(
+                            title: "Go To Home ",
+                          )),
+                    ]))));
   }
 }
-

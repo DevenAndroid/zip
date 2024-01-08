@@ -29,11 +29,10 @@ Future<PrivacyPolicyModel> privacyPolicyRepo({slug}) async {
       print(jsonDecode(response.body));
       return PrivacyPolicyModel(
           message: jsonDecode(response.body)["message"],
-          status:false,
+          status: false,
           data: null);
     }
   } catch (e) {
-    return PrivacyPolicyModel(
-        message: e.toString(), status: false, data: null);
+    return PrivacyPolicyModel(message: e.toString(), status: false, data: null);
   }
 }

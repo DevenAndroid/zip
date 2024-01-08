@@ -10,13 +10,14 @@ import '../models/model_update_password.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
+
 final details = Get.put(DetailsController());
 
 Future<CreateBenificiryModel> createBRepo(
     {firstName,
     name,
-      bank_code,
-      unique_id,
+    bank_code,
+    unique_id,
     accountHolderName,
     destinationAddress,
     required String businessID}) async {
@@ -38,10 +39,8 @@ Future<CreateBenificiryModel> createBRepo(
   map['destination_address'] = destinationAddress;
   print(map);
   // try {
-  http.Response response =
-      await http.post(Uri.parse(ApiUrls.saveBenificary),
-          headers:await getAuthHeader(),
-          body: jsonEncode(map));
+  http.Response response = await http.post(Uri.parse(ApiUrls.saveBenificary),
+      headers: await getAuthHeader(), body: jsonEncode(map));
   log("Sign IN DATAAAAAA${response.body}");
   // http.Response response = await http.post(Uri.parse(ApiUrls.loginUser),
   //     headers: await getAuthHeader(),body: jsonEncode(map) );

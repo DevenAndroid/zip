@@ -8,9 +8,11 @@ import '../models/verify_africa.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
-
-
-Future<ModelAfricaVerify> verificationAfricaRepo({verificationStatus,context,user_id,}) async {
+Future<ModelAfricaVerify> verificationAfricaRepo({
+  verificationStatus,
+  context,
+  user_id,
+}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
@@ -18,13 +20,9 @@ Future<ModelAfricaVerify> verificationAfricaRepo({verificationStatus,context,use
   map['verificationStatus'] = verificationStatus;
   map['user_id'] = user_id;
 
-
-
-
-
-
   // try {
-  http.Response response = await http.post(Uri.parse(ApiUrls.verificationAfrica),
+  http.Response response = await http.post(
+      Uri.parse(ApiUrls.verificationAfrica),
       headers: await getAuthHeader(),
       body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
@@ -35,11 +33,11 @@ Future<ModelAfricaVerify> verificationAfricaRepo({verificationStatus,context,use
     Helpers.hideLoader(loader);
 
     return ModelAfricaVerify.fromJson(jsonDecode(response.body));
-
   } else {
     Helpers.hideLoader(loader);
 
-    return ModelAfricaVerify(message: jsonDecode(response.body)["message"],status: false );
+    return ModelAfricaVerify(
+        message: jsonDecode(response.body)["message"], status: false);
   }
   // }  catch (e) {
   //   Helpers.hideLoader(loader);

@@ -1,10 +1,7 @@
-
-
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-
 
 import '../models/buy_electricity_list_model.dart';
 import '../models/model_all_transistion.dart';
@@ -32,6 +29,7 @@ Future<BuyElectricityListModel> buyElectricityListRepo() async {
           data: null);
     }
   } catch (e) {
-    return BuyElectricityListModel(message: e.toString(), status: false, data: null);
+    return BuyElectricityListModel(
+        message: e.toString(), status: false, data: null);
   }
 }

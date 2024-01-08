@@ -8,7 +8,6 @@ import 'package:zip/routers/my_routers.dart';
 import 'package:zip/screens/requestapayment.dart';
 import 'package:zip/widgets/common_colour.dart';
 
-
 import '../controller/update_user.dart';
 import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
@@ -24,6 +23,7 @@ class AddAPayer extends StatefulWidget {
 class _AddAPayerState extends State<AddAPayer> {
   final formKey4 = GlobalKey<FormState>();
   final register = Get.put(registerController());
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -33,11 +33,13 @@ class _AddAPayerState extends State<AddAPayer> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Get.back();
-
           },
-          child: Icon(Icons.arrow_back,color: Colors.black,),
+          child: Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
         ),
         title: Text(
           "Add a payer",
@@ -96,11 +98,17 @@ class _AddAPayerState extends State<AddAPayer> {
               Padding(
                 padding: const EdgeInsets.only(left: 6, right: 6),
                 child: CommonTextfield(
-                  prefix:  Padding(
-                    padding: const EdgeInsets.only(top: 8.0,bottom: 9),
-                    child: Image.asset('assets/images/nigeria.png',height: 20,width: 20,),
+                  prefix: Padding(
+                    padding: const EdgeInsets.only(top: 8.0, bottom: 9),
+                    child: Image.asset(
+                      'assets/images/nigeria.png',
+                      height: 20,
+                      width: 20,
+                    ),
                   ),
-                  hintText: "Nigeria", obSecure: false,readOnly: true,
+                  hintText: "Nigeria",
+                  obSecure: false,
+                  readOnly: true,
                 ),
               ),
               // Padding(
@@ -159,27 +167,20 @@ class _AddAPayerState extends State<AddAPayer> {
                 padding: const EdgeInsets.only(left: 6, right: 6),
                 child: CommonTextfield(
                   keyboardType:
-                  const TextInputType.numberWithOptions(
-                      decimal: true),
+                      const TextInputType.numberWithOptions(decimal: true),
                   inputFormatters: [
                     LengthLimitingTextInputFormatter(12),
-                    FilteringTextInputFormatter.allow(
-                        RegExp('[0-9]+')),
+                    FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
                   ],
-                  onChanged: (value) =>
-                  doubleVar = double.parse(value),
+                  onChanged: (value) => doubleVar = double.parse(value),
                   validator: MultiValidator([
                     RequiredValidator(
-                        errorText:
-                        'Please enter your contact number '),
+                        errorText: 'Please enter your contact number '),
                     MinLengthValidator(10,
-                        errorText:
-                        'Please enter minumum 10 digit number'),
+                        errorText: 'Please enter minumum 10 digit number'),
                     MaxLengthValidator(12,
-                        errorText:
-                        'Please enter 12 digit number'),
-                    PatternValidator(
-                        r'(^(?:[+0]9)?[0-9]{10,12}$)',
+                        errorText: 'Please enter 12 digit number'),
+                    PatternValidator(r'(^(?:[+0]9)?[0-9]{10,12}$)',
                         errorText: '')
                   ]),
                   obSecure: false,
@@ -193,11 +194,10 @@ class _AddAPayerState extends State<AddAPayer> {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 6, right: 6),
-                child: CommonTextfield(  validator: MultiValidator([
-                RequiredValidator(
-                errorText:
-                'Please enter your Name '),]),
-
+                child: CommonTextfield(
+                  validator: MultiValidator([
+                    RequiredValidator(errorText: 'Please enter your Name '),
+                  ]),
                   obSecure: false,
                   controller: register.AddNameController,
                   hintText: "",
@@ -213,9 +213,11 @@ class _AddAPayerState extends State<AddAPayer> {
                   validator: (value) {
                     if (register.AddEmailController.text.isEmpty) {
                       return "Please enter your email";
-                    } else if (register.AddEmailController.text.contains('+') || register.AddEmailController.text.contains(' ')) {
+                    } else if (register.AddEmailController.text.contains('+') ||
+                        register.AddEmailController.text.contains(' ')) {
                       return "Email is invalid";
-                    } else if (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                    } else if (RegExp(
+                            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                         .hasMatch(register.AddEmailController.text)) {
                       return null;
                     } else {
@@ -233,15 +235,17 @@ class _AddAPayerState extends State<AddAPayer> {
               ),
               InkWell(
                 onTap: () {
-      if (formKey4.currentState!.validate()) {
-        Get.toNamed(MyRouters.requestPaymentLink);
-      }
+                  if (formKey4.currentState!.validate()) {
+                    Get.toNamed(MyRouters.requestPaymentLink);
+                  }
                 },
                 child: const CustomOutlineButton(
                   title: "Next",
                 ),
               ),
-          const SizedBox(height: 30,),
+              const SizedBox(
+                height: 30,
+              ),
             ],
           ),
         ),

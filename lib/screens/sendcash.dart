@@ -31,7 +31,9 @@ class _SendCashState extends State<SendCash> {
         ),
         centerTitle: true,
         leading: InkWell(
-        onTap: (){ Get.back();},
+          onTap: () {
+            Get.back();
+          },
           child: const Icon(
             Icons.arrow_back_rounded,
             color: AppTheme.primaryColor,
@@ -118,9 +120,7 @@ class _SendCashState extends State<SendCash> {
               height: 20,
             ),
             InkWell(
-              onTap: () {
-
-              },
+              onTap: () {},
               child: const Padding(
                 padding: EdgeInsets.only(left: 10, right: 10),
                 child: CustomOutlineButton(

@@ -9,7 +9,8 @@ import '../models/model_save_bank_detilks.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
-Future<ModelSaveBankDetails> saveBankRepo({destinationAddress, context,bank_name, firstName}) async {
+Future<ModelSaveBankDetails> saveBankRepo(
+    {destinationAddress, context, bank_name, firstName}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};

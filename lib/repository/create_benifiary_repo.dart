@@ -13,32 +13,30 @@ import '../resourses/helper.dart';
 
 final details = Get.put(DetailsController());
 
-Future<CreateBenificiryModel> createBenificiryRepo({firstName,name,accountHolderName,destinationAddress,uniqueIdentifier,required String businessID}) async {
-
+Future<CreateBenificiryModel> createBenificiryRepo(
+    {firstName,
+    name,
+    accountHolderName,
+    destinationAddress,
+    uniqueIdentifier,
+    required String businessID}) async {
   var map = <String, dynamic>{};
   var map2 = <String, dynamic>{};
 
   map['first_name'] = firstName;
   map['accountHolderName'] = accountHolderName;
 
-
   map2['name'] = name;
   map2['bank'] = map;
 
-
-
   map['key'] = "beneficiaryCreate";
-  map['api-key'] =   details.apiKey;
-  map['type'] =  "individual";
+  map['api-key'] = details.apiKey;
+  map['type'] = "individual";
   map['businessID'] = businessID;
-  map['currency'] =  "NGN";
-  map['paymentDestination'] =  "bank_account";
-  map['destinationAddress'] =  destinationAddress;
-  map['uniqueIdentifier'] =  uniqueIdentifier;
-
-
-
-
+  map['currency'] = "NGN";
+  map['paymentDestination'] = "bank_account";
+  map['destinationAddress'] = destinationAddress;
+  map['uniqueIdentifier'] = uniqueIdentifier;
 
   print(map);
   // try {
@@ -53,14 +51,12 @@ Future<CreateBenificiryModel> createBenificiryRepo({firstName,name,accountHolder
   //     headers: await getAuthHeader(),body: jsonEncode(map) );
 
   if (response.statusCode == 200) {
-
     print(jsonDecode(response.body));
     return CreateBenificiryModel.fromJson(jsonDecode(response.body));
-
   } else {
-
     print(jsonDecode(response.body));
-    return CreateBenificiryModel(message: jsonDecode(response.body)["message"],status: false );
+    return CreateBenificiryModel(
+        message: jsonDecode(response.body)["message"], status: false);
   }
   // }  catch (e) {
   //   Helpers.hideLoader(loader);

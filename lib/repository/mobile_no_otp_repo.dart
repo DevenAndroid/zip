@@ -4,14 +4,16 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
-
 import '../models/registor_model.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
-
-
-Future<ModelCommonResponse> loginUserRepo({name,email,context,phone,}) async {
+Future<ModelCommonResponse> loginUserRepo({
+  name,
+  email,
+  context,
+  phone,
+}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
@@ -24,15 +26,13 @@ Future<ModelCommonResponse> loginUserRepo({name,email,context,phone,}) async {
   map1['phone'] = phone;
   map['sender'] = "Example Business";
   map['send'] = true;
-  map['medium'] =  ["email"];
+  map['medium'] = ["email"];
   map['expiry'] = "5";
-
 
   print(map);
   // try {
-  http.Response response = await http.post(Uri.parse(ApiUrls. otps),
-      headers: await getAuthHeader(),
-      body: jsonEncode(map));
+  http.Response response = await http.post(Uri.parse(ApiUrls.otps),
+      headers: await getAuthHeader(), body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
   // http.Response response = await http.post(Uri.parse(ApiUrls.loginUser),
   //     headers: await getAuthHeader(),body: jsonEncode(map) );
@@ -41,11 +41,12 @@ Future<ModelCommonResponse> loginUserRepo({name,email,context,phone,}) async {
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
     return ModelCommonResponse.fromJson(jsonDecode(response.body));
-
   } else {
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
-    return ModelCommonResponse(message: jsonDecode(response.body)["message"], );
+    return ModelCommonResponse(
+      message: jsonDecode(response.body)["message"],
+    );
   }
   // }  catch (e) {
   //   Helpers.hideLoader(loader);

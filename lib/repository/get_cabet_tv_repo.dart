@@ -18,14 +18,10 @@ Future<ModelCabelList> getCableRepo({key, identifier}) async {
   map['key'] = key;
   map['identifier'] = identifier;
   // try {
-  http.Response response = await http.post(
-    Uri.parse(ApiUrls.serviceCommon),
-    headers:await getAuthHeader(),
-      body: jsonEncode(map)
-  );
+  http.Response response = await http.post(Uri.parse(ApiUrls.serviceCommon),
+      headers: await getAuthHeader(), body: jsonEncode(map));
 
   // log("response.body.....    ${response.body}");
-
 
   if (response.statusCode == 200) {
     return ModelCabelList.fromJson(jsonDecode(response.body));

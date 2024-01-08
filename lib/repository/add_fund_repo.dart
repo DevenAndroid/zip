@@ -11,7 +11,9 @@ import '../models/model_update_password.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
+
 final details = Get.put(DetailsController());
+
 Future<ModelFundCard> addFundRepo(
     {card_id, amount, transaction_reference, currency, context}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
@@ -26,10 +28,8 @@ Future<ModelFundCard> addFundRepo(
   map['key'] = "fundCard";
   print(map);
   // try {
-  http.Response response =
-  await http.patch(Uri.parse(ApiUrls.bridgeCard),
-      headers: await getAuthHeader(),
-      body: jsonEncode(map));
+  http.Response response = await http.patch(Uri.parse(ApiUrls.bridgeCard),
+      headers: await getAuthHeader(), body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
   // http.Response response = await http.post(Uri.parse(ApiUrls.loginUser),
   //     headers: await getAuthHeader(),body: jsonEncode(map) );
@@ -42,7 +42,8 @@ Future<ModelFundCard> addFundRepo(
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
     return ModelFundCard(
-        message: jsonDecode(response.body)["message"], status: false.toString());
+        message: jsonDecode(response.body)["message"],
+        status: false.toString());
   }
   // }  catch (e) {
   //   Helpers.hideLoader(loader);

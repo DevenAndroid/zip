@@ -10,23 +10,22 @@ import '../models/update_setting_modal.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
-
-
-Future<ModelNotificationUpdate> updateNotificationRepo({push_notification,context,email_notification,}) async {
-
-
+Future<ModelNotificationUpdate> updateNotificationRepo({
+  push_notification,
+  context,
+  email_notification,
+}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
 
   map['push_notification'] = push_notification;
-  map['email_notification'] =  email_notification;
-
-
+  map['email_notification'] = email_notification;
 
   print(map);
   // try {
-  http.Response response = await http.post(Uri.parse(ApiUrls.notificationSettings),
+  http.Response response = await http.post(
+      Uri.parse(ApiUrls.notificationSettings),
       headers: await getAuthHeader(),
       body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
@@ -37,11 +36,12 @@ Future<ModelNotificationUpdate> updateNotificationRepo({push_notification,contex
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
     return ModelNotificationUpdate.fromJson(jsonDecode(response.body));
-
   } else {
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
-    return ModelNotificationUpdate(message: jsonDecode(response.body)["message"], );
+    return ModelNotificationUpdate(
+      message: jsonDecode(response.body)["message"],
+    );
   }
   // }  catch (e) {
   //   Helpers.hideLoader(loader);

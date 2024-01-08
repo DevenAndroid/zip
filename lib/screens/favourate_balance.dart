@@ -8,7 +8,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
-
 import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
 import '../models/model_beneficary_list.dart';
@@ -22,7 +21,7 @@ import '../resourses/api_constant.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_textfield.dart';
 
-  class FavourateBalance extends StatefulWidget {
+class FavourateBalance extends StatefulWidget {
   const FavourateBalance({Key? key}) : super(key: key);
 
   @override
@@ -37,87 +36,83 @@ class _FavourateBalanceState extends State<FavourateBalance> {
   TextEditingController destinationCurrencyController = TextEditingController();
   TextEditingController accountNoController = TextEditingController();
   Rx<RxStatus> statusOfpayout = RxStatus.empty().obs;
-  Rx<ModelPayout> payout = ModelPayout().obs;     final formKey4 = GlobalKey<FormState>();
-   CreatePayout()  {
-     if (formKey4.currentState!.validate()) {
+  Rx<ModelPayout> payout = ModelPayout().obs;
+  final formKey4 = GlobalKey<FormState>();
 
-       payoutRepo(
-           amount:amountController.text.trim() ,
-           context: context,
-           user_id: profileController.modal.value.data!.user!.id.toString(),
-           bank_code: RegistorController.idController1.text.toString(),
-           accountHolderName:data.accountHolderName.toString() ,
-           accountNumber:data.destinationAddress.toString(),
-           destinationCurrency:"NGN",
+  CreatePayout() {
+    if (formKey4.currentState!.validate()) {
+      payoutRepo(
+              amount: amountController.text.trim(),
+              context: context,
+              user_id: profileController.modal.value.data!.user!.id.toString(),
+              bank_code: RegistorController.idController1.text.toString(),
+              accountHolderName: data.accountHolderName.toString(),
+              accountNumber: data.destinationAddress.toString(),
+              destinationCurrency: "NGN",
 // destinationCurrencyController.text.trim() ,
-           sourceCurrency: "NGN",
-           // sourceCurrencyController.text.trim(),
-           description: descriptionController.text.trim().toString(),
-           // email:data.email.toString(),
-           firstName:data.firstName.toString().trim() ,
-           // lastName:data.lastName.toString() ,
-           paymentDestination:"bank_account" ,
-           type:"individual" ,
-           business:  '64529bd2bfdf28e7c18aa9da'
-       ).then((value) {
-         payout.value = value;
-         if (value.success == true) {
-           statusOfpayout.value = RxStatus.success();
-           saveList();
-           Get.toNamed(MyRouters.successRechargeScreen);
-           // Get.back();
-           showToast(value.message.toString());
-         }
-         else{
-           statusOfpayout.value = RxStatus.success();
-           showToast(value.message.toString());
-         }
-         // showToast(value.message.toString());
-       });
-     }
-
-
+              sourceCurrency: "NGN",
+              // sourceCurrencyController.text.trim(),
+              description: descriptionController.text.trim().toString(),
+              // email:data.email.toString(),
+              firstName: data.firstName.toString().trim(),
+              // lastName:data.lastName.toString() ,
+              paymentDestination: "bank_account",
+              type: "individual",
+              business: '64529bd2bfdf28e7c18aa9da')
+          .then((value) {
+        payout.value = value;
+        if (value.success == true) {
+          statusOfpayout.value = RxStatus.success();
+          saveList();
+          Get.toNamed(MyRouters.successRechargeScreen);
+          // Get.back();
+          showToast(value.message.toString());
+        } else {
+          statusOfpayout.value = RxStatus.success();
+          showToast(value.message.toString());
+        }
+        // showToast(value.message.toString());
+      });
+    }
   }
-
-
 
   favouriteData data = favouriteData();
 
   @override
   void initState() {
     super.initState();
-    if(Get.arguments != null){
+    if (Get.arguments != null) {
       data = Get.arguments;
-
     }
   }
-  Rx<RxStatus> statusOfSave= RxStatus.empty().obs;
+
+  Rx<RxStatus> statusOfSave = RxStatus.empty().obs;
   Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
   final profileController = Get.put(ProfileController());
+
   saveList() {
     saveTransastionRepo(
-        user_id: profileController.modal.value.data!.user!.id.toString(),
-        amount:amountController.text.trim() ,
-        about: "Send Cash",
-        send_type: "otherusers ",
-        beneficiary_id: data.id.toString(),
-        // complete_response: purchaseData.value.data!.toJson(),
-        context: context,
-        description:descriptionController.text.trim(),
-        type: "dr"
-    ).then((value) {
+            user_id: profileController.modal.value.data!.user!.id.toString(),
+            amount: amountController.text.trim(),
+            about: "Send Cash",
+            send_type: "otherusers ",
+            beneficiary_id: data.id.toString(),
+            // complete_response: purchaseData.value.data!.toJson(),
+            context: context,
+            description: descriptionController.text.trim(),
+            type: "dr")
+        .then((value) {
       log("response.body.....    ${value}");
       save.value = value;
       if (value.status == true) {
         statusOfSave.value = RxStatus.success();
         Get.toNamed(MyRouters.successRechargeScreen);
-
       } else {
         statusOfSave.value = RxStatus.error();
       }
     }
-      // showToast(value.message.toString());
-    );
+            // showToast(value.message.toString());
+            );
   }
 
   @override
@@ -137,7 +132,9 @@ class _FavourateBalanceState extends State<FavourateBalance> {
         ),
         centerTitle: true,
         leading: InkWell(
-          onTap: (){ Get.back();},
+          onTap: () {
+            Get.back();
+          },
           child: const Icon(
             Icons.arrow_back_rounded,
             color: AppTheme.primaryColor,
@@ -179,25 +176,23 @@ class _FavourateBalanceState extends State<FavourateBalance> {
                         ),
                       ),
                     ),
-
                   ],
                 ),
               ),
               Center(
                 child: Text(
-                  data.accountHolderName.toString() ,
+                  data.accountHolderName.toString(),
                   style: GoogleFonts.poppins(
                       color: const Color(0xFF1D1D1D),
                       fontSize: 20,
                       fontWeight: FontWeight.w400),
                 ),
               ),
-
               const SizedBox(
                 height: 29,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 15,right: 6),
+                padding: const EdgeInsets.only(left: 15, right: 6),
                 child: Text(
                   "Amount ",
                   style: GoogleFonts.poppins(
@@ -206,38 +201,32 @@ class _FavourateBalanceState extends State<FavourateBalance> {
                       fontWeight: FontWeight.w500),
                 ),
               ),
-              SizedBox(height: 6,),
+              SizedBox(
+                height: 6,
+              ),
               Padding(
-                padding: const EdgeInsets.only(left: 6,right: 6),
+                padding: const EdgeInsets.only(left: 6, right: 6),
                 child: CommonTextfield(
                   keyboardType:
-                  const TextInputType.numberWithOptions(
-                      decimal: true),
+                      const TextInputType.numberWithOptions(decimal: true),
                   inputFormatters: [
                     // LengthLimitingTextInputFormatter(8),
-                    FilteringTextInputFormatter.allow(
-                        RegExp('[0-9]+')),
+                    FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
                   ],
-                  onChanged: (value) =>
-                  doubleVar = double.parse(value),
+                  onChanged: (value) => doubleVar = double.parse(value),
                   validator: MultiValidator([
-                    RequiredValidator(
-                        errorText:
-                        'Please enter your amount '),
-
-                    
+                    RequiredValidator(errorText: 'Please enter your amount '),
                   ]),
                   controller: amountController,
                   obSecure: false,
                   hintText: "Enter  Amount",
-
                 ),
               ),
               const SizedBox(
                 height: 12,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 15,right: 6),
+                padding: const EdgeInsets.only(left: 15, right: 6),
                 child: Text(
                   "Account Number ",
                   style: GoogleFonts.poppins(
@@ -246,25 +235,23 @@ class _FavourateBalanceState extends State<FavourateBalance> {
                       fontWeight: FontWeight.w500),
                 ),
               ),
-              SizedBox(height: 6,),
+              SizedBox(
+                height: 6,
+              ),
               Padding(
-                padding: const EdgeInsets.only(left: 6,right: 6),
+                padding: const EdgeInsets.only(left: 6, right: 6),
                 child: CommonTextfield(
                   readOnly: true,
                   controller: accountNoController,
                   obSecure: false,
                   hintText: data.destinationAddress,
-
                 ),
               ),
-
-
-
               const SizedBox(
                 height: 12,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 15,right: 6),
+                padding: const EdgeInsets.only(left: 15, right: 6),
                 child: Text(
                   "Description ",
                   style: GoogleFonts.poppins(
@@ -273,9 +260,11 @@ class _FavourateBalanceState extends State<FavourateBalance> {
                       fontWeight: FontWeight.w500),
                 ),
               ),
-              SizedBox(height: 6,),
+              SizedBox(
+                height: 6,
+              ),
               Padding(
-                padding: const EdgeInsets.only(left: 6,right: 6),
+                padding: const EdgeInsets.only(left: 6, right: 6),
                 child: CommonTextfield(
                   validator: MultiValidator([
                     RequiredValidator(
@@ -284,14 +273,13 @@ class _FavourateBalanceState extends State<FavourateBalance> {
                   controller: descriptionController,
                   obSecure: false,
                   hintText: "write a note",
-
                 ),
               ),
               const SizedBox(
                 height: 12,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 15,right: 6),
+                padding: const EdgeInsets.only(left: 15, right: 6),
                 child: Text(
                   "Bank Name ",
                   style: GoogleFonts.poppins(
@@ -300,18 +288,17 @@ class _FavourateBalanceState extends State<FavourateBalance> {
                       fontWeight: FontWeight.w500),
                 ),
               ),
-              SizedBox(height: 6,),
+              SizedBox(
+                height: 6,
+              ),
               Padding(
-                padding: const EdgeInsets.only(left: 6,right: 6),
+                padding: const EdgeInsets.only(left: 6, right: 6),
                 child: CommonTextfield(
                   readOnly: true,
                   obSecure: false,
                   hintText: data.firstName,
-
                 ),
               ),
-
-
               SizedBox(
                 height: size.height * .12,
               ),
@@ -321,14 +308,15 @@ class _FavourateBalanceState extends State<FavourateBalance> {
                   CreatePayout();
                 },
                 child: const Padding(
-                  padding: EdgeInsets.only(left: 10,right: 8),
+                  padding: EdgeInsets.only(left: 10, right: 8),
                   child: CustomOutlineButton(
                     title: "Send",
                   ),
                 ),
               ),
-              SizedBox(height: 30,)
-
+              SizedBox(
+                height: 30,
+              )
             ],
           ),
         ),

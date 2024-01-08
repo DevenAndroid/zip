@@ -23,20 +23,55 @@ class CurrentBalanceModel {
 }
 
 class Data {
- dynamic currentBalance;
- dynamic fee;
+  int? currentBalance;
+  Fee? fee;
 
   Data({this.currentBalance, this.fee});
 
   Data.fromJson(Map<String, dynamic> json) {
     currentBalance = json['current_balance'];
-    fee = json['fee'];
+    fee = json['fee'] != null ? new Fee.fromJson(json['fee']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['current_balance'] = this.currentBalance;
-    data['fee'] = this.fee;
+    if (this.fee != null) {
+      data['fee'] = this.fee!.toJson();
+    }
+    return data;
+  }
+}
+
+class Fee {
+  int? payoutFee;
+  int? cashoutFee;
+  int? cashinFee;
+  int? serviceFee;
+  int? bridgeCardFee;
+
+  Fee(
+      {this.payoutFee,
+        this.cashoutFee,
+        this.cashinFee,
+        this.serviceFee,
+        this.bridgeCardFee});
+
+  Fee.fromJson(Map<String, dynamic> json) {
+    payoutFee = json['payout_fee'];
+    cashoutFee = json['cashout_fee'];
+    cashinFee = json['cashin_fee'];
+    serviceFee = json['service_fee'];
+    bridgeCardFee = json['bridgeCard_fee'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['payout_fee'] = this.payoutFee;
+    data['cashout_fee'] = this.cashoutFee;
+    data['cashin_fee'] = this.cashinFee;
+    data['service_fee'] = this.serviceFee;
+    data['bridgeCard_fee'] = this.bridgeCardFee;
     return data;
   }
 }

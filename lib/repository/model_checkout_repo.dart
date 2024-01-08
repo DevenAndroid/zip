@@ -13,18 +13,17 @@ import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
 
-
 final details = Get.put(DetailsController());
-Future<ModelCheckout>   checkoutRepo({context,currency,amount,name,key,phoneNumber,email}) async {
+
+Future<ModelCheckout> checkoutRepo(
+    {context, currency, amount, name, key, phoneNumber, email}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
   var map2 = <String, dynamic>{};
 
-
-
   map['currency'] = currency;
-  map['api-key'] =   details.apiKey;
+  map['api-key'] = details.apiKey;
   map['key'] = key;
   // map['paymentMethods'] = "card";
   map['amount'] = amount;
@@ -34,12 +33,6 @@ Future<ModelCheckout>   checkoutRepo({context,currency,amount,name,key,phoneNumb
   map2['email'] = email;
   map2['phoneNumber'] = phoneNumber;
   map['customer'] = map2;
-
-
-
-
-
-
 
   print(map);
   // try {
@@ -53,15 +46,15 @@ Future<ModelCheckout>   checkoutRepo({context,currency,amount,name,key,phoneNumb
   // http.Response response = await http.post(Uri.parse(ApiUrls.loginUser),
   //     headers: await getAuthHeader(),body: jsonEncode(map) );
 
-  if (response.statusCode == 200 || response.statusCode==201) {
+  if (response.statusCode == 200 || response.statusCode == 201) {
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
     return ModelCheckout.fromJson(jsonDecode(response.body));
-
   } else {
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
-    return ModelCheckout(message: jsonDecode(response.body)["message"],status: false );
+    return ModelCheckout(
+        message: jsonDecode(response.body)["message"], status: false);
   }
   // }  catch (e) {
   //   Helpers.hideLoader(loader);

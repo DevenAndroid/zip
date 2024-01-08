@@ -6,28 +6,24 @@ import '../models/modal_registor.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
-
-
-Future<RegisterModel> registerRepo({password_confirmation,phone,context,bvn,email,password}) async {
+Future<RegisterModel> registerRepo(
+    {password_confirmation, phone, context, bvn, email, password}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
 
   map['phone'] = phone;
 
-    map['bvn'] = bvn;
+  map['bvn'] = bvn;
 
-
-  map['email'] =  email;
+  map['email'] = email;
   map['password_confirmation'] = password_confirmation;
   map['password'] = password;
-
 
   print(map);
   // try {
   http.Response response = await http.post(Uri.parse(ApiUrls.registerUser),
-      headers: await getAuthHeader(),
-      body: jsonEncode(map));
+      headers: await getAuthHeader(), body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
   // http.Response response = await http.post(Uri.parse(ApiUrls.loginUser),
   //     headers: await getAuthHeader(),body: jsonEncode(map) );
@@ -36,14 +32,14 @@ Future<RegisterModel> registerRepo({password_confirmation,phone,context,bvn,emai
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
     return RegisterModel.fromJson(jsonDecode(response.body));
-
   } else {
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
-    return RegisterModel(message: jsonDecode(response.body)["message"], );
+    return RegisterModel(
+      message: jsonDecode(response.body)["message"],
+    );
   }
   // }  catch (e) {
   //   Helpers.hideLoader(loader);
   //   return ModelCommonResponse(message: e.toString(), success: false);
 }
-

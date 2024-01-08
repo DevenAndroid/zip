@@ -12,8 +12,11 @@ import '../models/model_data_paln.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
+
 final details = Get.put(DetailsController());
-Future<ModelBuyInternet> BuyDataPlanRepo({  amount,phone_no,telco,data_code,context}) async {
+
+Future<ModelBuyInternet> BuyDataPlanRepo(
+    {amount, phone_no, telco, data_code, context}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
@@ -22,9 +25,9 @@ Future<ModelBuyInternet> BuyDataPlanRepo({  amount,phone_no,telco,data_code,cont
   map['telco'] = telco;
   map['data_code'] = data_code;
   http.Response response = await http.post(Uri.parse(ApiUrls.purchaseData),
-      headers: { HttpHeaders.contentTypeHeader: 'application/json',
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json',
         HttpHeaders.acceptHeader: 'application/json',
-
       },
       body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
@@ -32,14 +35,13 @@ Future<ModelBuyInternet> BuyDataPlanRepo({  amount,phone_no,telco,data_code,cont
   print(map);
 
   if (response.statusCode == 200) {
-
     Helpers.hideLoader(loader);
-    return ModelBuyInternet.fromJson(jsonDecode(response.body),);
+    return ModelBuyInternet.fromJson(
+      jsonDecode(response.body),
+    );
   } else {
-
     Helpers.hideLoader(loader);
     return ModelBuyInternet(
-        message: jsonDecode(response.body)["message"],success: false
-    );
+        message: jsonDecode(response.body)["message"], success: false);
   }
 }

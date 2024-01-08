@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -7,6 +6,7 @@ import 'package:zip/routers/my_routers.dart';
 
 import '../widgets/common_button.dart';
 import '../widgets/common_colour.dart';
+
 class LoanScreen extends StatefulWidget {
   const LoanScreen({Key? key}) : super(key: key);
 
@@ -17,41 +17,35 @@ class LoanScreen extends StatefulWidget {
 class _LoanScreenState extends State<LoanScreen> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             SingleChildScrollView(
-              child: Stack(children:[ Image.asset('assets/images/banner.png'),
+              child: Stack(children: [
+                Image.asset('assets/images/banner.png'),
                 Positioned(
                   top: 40,
                   left: 15,
                   child: InkWell(
-                    onTap: (){
+                    onTap: () {
                       Get.back();
                     },
                     child: Container(
-                      padding: EdgeInsets.all(6),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.white,
-
-                      ),
-                      child: Icon(Icons.arrow_back)
-                    ),
+                        padding: EdgeInsets.all(6),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
+                        ),
+                        child: Icon(Icons.arrow_back)),
                   ),
                 ),
-
               ]),
             ),
-
-
-
             Padding(
-              padding: const EdgeInsets.only(top: 10,left: 18.0),
+              padding: const EdgeInsets.only(top: 10, left: 18.0),
               child: Text(
                 "Get a loan that treats you right",
                 style: GoogleFonts.poppins(
@@ -60,109 +54,16 @@ class _LoanScreenState extends State<LoanScreen> {
                     fontWeight: FontWeight.w600),
               ),
             ),
-SizedBox(height: 20,),
-            Padding(
-              padding: const EdgeInsets.only(left: 13.0,right: 13),
-              child: Container(
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.grey),
-
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(3),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppTheme.secondaryColor,
-
-                        ),
-                        child:Icon(Icons.check,color: Colors.white,size: 20,)
-                      ),
-                      SizedBox(width: 15,),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 4.0),
-                        child: Text(
-                          "Apply in a few taps",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 17,
-                              fontWeight: FontWeight.w600),
-
-                        ),
-                      )
-
-
-                    ],
-                  ),
-                ),
-
-
-              ),
+            SizedBox(
+              height: 20,
             ),
-            SizedBox(height: 20,),
             Padding(
-              padding: const EdgeInsets.only(left: 13.0,right: 13),
+              padding: const EdgeInsets.only(left: 13.0, right: 13),
               child: Container(
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: Colors.grey),
-
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-
-                      SvgPicture.asset('assets/images/clock.svg',color: AppTheme.secondaryColor,),
-                      // Container(
-                      //   padding: EdgeInsets.all(3),
-                      //   decoration: BoxDecoration(
-                      //     shape: BoxShape.circle,
-                      //     color: AppTheme.secondaryColor,
-                      //
-                      //   ),
-                      //   child:Icon(Icons.clock,color: Colors.white,)
-                      // ),
-                      SizedBox(width: 15,),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 4.0),
-                        child: Text(
-                          "Monday in minutes. if eligible",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 17,
-                              fontWeight: FontWeight.w600),
-
-                        ),
-                      )
-
-
-                    ],
-                  ),
-                ),
-
-
-              ),
-            ),
-            SizedBox(height: 20,),
-            Padding(
-              padding: const EdgeInsets.only(left: 13.0,right: 13),
-              child: Container(
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.grey),
-
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 8.0),
@@ -175,11 +76,109 @@ SizedBox(height: 20,),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: AppTheme.secondaryColor,
-
                           ),
-                          child:Icon(Icons.calendar_month,color: Colors.white,size: 20,)
+                          child: Icon(
+                            Icons.check,
+                            color: Colors.white,
+                            size: 20,
+                          )),
+                      SizedBox(
+                        width: 15,
                       ),
-                      SizedBox(width: 15,),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4.0),
+                        child: Text(
+                          "Apply in a few taps",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 17,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 13.0, right: 13),
+              child: Container(
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.grey),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SvgPicture.asset(
+                        'assets/images/clock.svg',
+                        color: AppTheme.secondaryColor,
+                      ),
+                      // Container(
+                      //   padding: EdgeInsets.all(3),
+                      //   decoration: BoxDecoration(
+                      //     shape: BoxShape.circle,
+                      //     color: AppTheme.secondaryColor,
+                      //
+                      //   ),
+                      //   child:Icon(Icons.clock,color: Colors.white,)
+                      // ),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4.0),
+                        child: Text(
+                          "Monday in minutes. if eligible",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 17,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 13.0, right: 13),
+              child: Container(
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.grey),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                          padding: EdgeInsets.all(3),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppTheme.secondaryColor,
+                          ),
+                          child: Icon(
+                            Icons.calendar_month,
+                            color: Colors.white,
+                            size: 20,
+                          )),
+                      SizedBox(
+                        width: 15,
+                      ),
                       Padding(
                         padding: const EdgeInsets.only(top: 4.0),
                         child: Text(
@@ -188,27 +187,23 @@ SizedBox(height: 20,),
                               color: const Color(0xFF1D1D1D),
                               fontSize: 17,
                               fontWeight: FontWeight.w600),
-
                         ),
                       )
-
-
                     ],
                   ),
                 ),
-
-
               ),
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             Padding(
-              padding: const EdgeInsets.only(left: 13.0,right: 13),
+              padding: const EdgeInsets.only(left: 13.0, right: 13),
               child: Container(
                 padding: EdgeInsets.all(5),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: Colors.grey),
-
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 13.0),
@@ -221,15 +216,18 @@ SizedBox(height: 20,),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: AppTheme.secondaryColor,
-
                         ),
-                        child: Text("\$",
+                        child: Text(
+                          "\$",
                           style: GoogleFonts.poppins(
-                              color:  Colors.white,
+                              color: Colors.white,
                               fontSize: 20,
-                              fontWeight: FontWeight.w500),),
+                              fontWeight: FontWeight.w500),
+                        ),
                       ),
-                      SizedBox(width: 15,),
+                      SizedBox(
+                        width: 15,
+                      ),
                       Padding(
                         padding: const EdgeInsets.only(top: 9.0),
                         child: Text(
@@ -238,41 +236,33 @@ SizedBox(height: 20,),
                               color: const Color(0xFF1D1D1D),
                               fontSize: 17,
                               fontWeight: FontWeight.w600),
-
                         ),
                       ),
-
-
                     ],
                   ),
                 ),
-
-
               ),
             ),
-            SizedBox(height: 20,),
-
-
+            SizedBox(
+              height: 20,
+            ),
             Padding(
-              padding: const EdgeInsets.only(left: 18.0,top: 10),
+              padding: const EdgeInsets.only(left: 18.0, top: 10),
               child: Text(
                 "Our customers say  ",
                 style: GoogleFonts.poppins(
                     color: const Color(0xFF575757),
                     fontSize: 19,
                     fontWeight: FontWeight.w600),
-
               ),
             ),
-
             Padding(
-              padding: const EdgeInsets.only(left: 13.0,right: 13,top: 12),
+              padding: const EdgeInsets.only(left: 13.0, right: 13, top: 12),
               child: Container(
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: Colors.grey),
-
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 8.0),
@@ -286,25 +276,20 @@ SizedBox(height: 20,),
                             color: const Color(0xFF1D1D1D),
                             fontSize: 17,
                             fontWeight: FontWeight.w600),
-
                       ),
-
                     ],
                   ),
                 ),
-
-
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 13.0,right: 13,top: 12),
+              padding: const EdgeInsets.only(left: 13.0, right: 13, top: 12),
               child: Container(
                 padding: EdgeInsets.all(15),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: AppTheme.secondaryColor),
-color: Color(0xFFB2802A).withOpacity(.15)
-                ),
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: AppTheme.secondaryColor),
+                    color: Color(0xFFB2802A).withOpacity(.15)),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 1.0),
                   child: Row(
@@ -320,26 +305,28 @@ color: Color(0xFFB2802A).withOpacity(.15)
                               color: const Color(0xFF1D1D1D),
                               fontSize: 14,
                               fontWeight: FontWeight.w600),
-
                         ),
                       ),
-
                     ],
                   ),
                 ),
-
-
               ),
             ),
-            SizedBox(height: 15,),
+            SizedBox(
+              height: 15,
+            ),
             InkWell(
-                onTap: (){
-Get.toNamed(MyRouters.loanList);
+                onTap: () {
+                  Get.toNamed(MyRouters.loanList);
                   // emailLogin();
                   //
                 },
-                child: CustomOutlineButton(title: "Complete a loan application",)),
-            SizedBox(height: 15,),
+                child: CustomOutlineButton(
+                  title: "Complete a loan application",
+                )),
+            SizedBox(
+              height: 15,
+            ),
           ],
         ),
       ),

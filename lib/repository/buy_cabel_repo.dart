@@ -13,11 +13,18 @@ import '../models/model_data_paln.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
+
 final details = Get.put(DetailsController());
 
-
-
-Future<BuyCabelTvModel> BuyCabelRepo({  amount,key,serviceID,phone,billersCode,variation_code,subscription_type,context}) async {
+Future<BuyCabelTvModel> BuyCabelRepo(
+    {amount,
+    key,
+    serviceID,
+    phone,
+    billersCode,
+    variation_code,
+    subscription_type,
+    context}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
@@ -29,8 +36,7 @@ Future<BuyCabelTvModel> BuyCabelRepo({  amount,key,serviceID,phone,billersCode,v
   map['variation_code'] = variation_code;
   map['subscription_type'] = subscription_type;
   http.Response response = await http.post(Uri.parse(ApiUrls.serviceCommon),
-      headers:await getAuthHeader(),
-      body: jsonEncode(map));
+      headers: await getAuthHeader(), body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
   log("Sign IN DATA${response.statusCode}");
   print(map);
@@ -38,12 +44,13 @@ Future<BuyCabelTvModel> BuyCabelRepo({  amount,key,serviceID,phone,billersCode,v
   if (response.statusCode == 200) {
     Helpers.hideLoader(loader);
 
-    return BuyCabelTvModel.fromJson(jsonDecode(response.body),);
+    return BuyCabelTvModel.fromJson(
+      jsonDecode(response.body),
+    );
   } else {
     Helpers.hideLoader(loader);
 
     return BuyCabelTvModel(
-        message: jsonDecode(response.body)["message"],status: false
-    );
+        message: jsonDecode(response.body)["message"], status: false);
   }
 }
