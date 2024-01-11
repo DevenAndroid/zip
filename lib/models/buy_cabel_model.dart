@@ -33,17 +33,17 @@ class Data {
 
   Data(
       {this.code,
-        this.content,
-        this.responseDescription,
-        this.requestId,
-        this.amount,
-        this.transactionDate,
-        this.purchasedCode});
+      this.content,
+      this.responseDescription,
+      this.requestId,
+      this.amount,
+      this.transactionDate,
+      this.purchasedCode});
 
   Data.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     content =
-    json['content'] != null ? new Content.fromJson(json['content']) : null;
+        json['content'] != null ? new Content.fromJson(json['content']) : null;
     responseDescription = json['response_description'];
     requestId = json['requestId'];
     amount = json['amount'];
@@ -113,24 +113,24 @@ class Transactions {
 
   Transactions(
       {this.status,
-        this.productName,
-        this.uniqueElement,
-        this.unitPrice,
-        this.quantity,
-        this.serviceVerification,
-        this.channel,
-        this.commission,
-        this.totalAmount,
-        this.discount,
-        this.type,
-        this.email,
-        this.phone,
-        this.name,
-        this.convinienceFee,
-        this.amount,
-        this.platform,
-        this.method,
-        this.transactionId});
+      this.productName,
+      this.uniqueElement,
+      this.unitPrice,
+      this.quantity,
+      this.serviceVerification,
+      this.channel,
+      this.commission,
+      this.totalAmount,
+      this.discount,
+      this.type,
+      this.email,
+      this.phone,
+      this.name,
+      this.convinienceFee,
+      this.amount,
+      this.platform,
+      this.method,
+      this.transactionId});
 
   Transactions.fromJson(Map<String, dynamic> json) {
     status = json['status'];

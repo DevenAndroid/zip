@@ -1,5 +1,5 @@
 class ModelGetCardDetails {
-  String? status;
+  dynamic status;
   String? message;
   Data? data;
 

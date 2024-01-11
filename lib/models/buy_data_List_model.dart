@@ -42,16 +42,16 @@ class Data {
 
   Data(
       {this.userId,
-        this.comonId,
-        this.tId,
-        this.amount,
-        this.phone,
-        this.telcos,
-        this.dataplan,
-        this.dataCode,
-        this.transactionAbout,
-        this.userType,
-        this.createdAt});
+      this.comonId,
+      this.tId,
+      this.amount,
+      this.phone,
+      this.telcos,
+      this.dataplan,
+      this.dataCode,
+      this.transactionAbout,
+      this.userType,
+      this.createdAt});
 
   Data.fromJson(Map<String, dynamic> json) {
     userId = json['user_id'];

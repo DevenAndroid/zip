@@ -25,12 +25,14 @@ class CurrentBalanceModel {
 class Data {
   int? currentBalance;
   Fee? fee;
+  int? charges;
 
-  Data({this.currentBalance, this.fee});
+  Data({this.currentBalance, this.fee, this.charges});
 
   Data.fromJson(Map<String, dynamic> json) {
     currentBalance = json['current_balance'];
     fee = json['fee'] != null ? new Fee.fromJson(json['fee']) : null;
+    charges = json['charges'];
   }
 
   Map<String, dynamic> toJson() {
@@ -39,16 +41,17 @@ class Data {
     if (this.fee != null) {
       data['fee'] = this.fee!.toJson();
     }
+    data['charges'] = this.charges;
     return data;
   }
 }
 
 class Fee {
-  int? payoutFee;
-  int? cashoutFee;
-  int? cashinFee;
-  int? serviceFee;
-  int? bridgeCardFee;
+ dynamic payoutFee;
+ dynamic cashoutFee;
+ dynamic cashinFee;
+ dynamic serviceFee;
+ dynamic bridgeCardFee;
 
   Fee(
       {this.payoutFee,

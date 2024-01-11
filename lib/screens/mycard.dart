@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/resourses/api_constant.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/screens/buyservices.dart';
+import 'package:zip/screens/details_pin.dart';
 import 'package:zip/widgets/common_colour.dart';
 
 import '../controller/profile_controller.dart';
@@ -379,28 +380,28 @@ class _MyCardState extends State<MyCard> {
                       const SizedBox(
                         height: 34,
                       ),
-                      Text(
-                        "This card will expire in 7 months",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      const SizedBox(
-                        height: 11,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          controller.contactUpdateCard(context);
-                          // controller1. holder();
-                        },
-                        child: const SizedBox(
-                          width: 200,
-                          child: CustomOutlineButton(
-                            title: "Order a new card",
-                          ),
-                        ),
-                      ),
+                      // Text(
+                      //   "This card will expire in 7 months",
+                      //   style: GoogleFonts.poppins(
+                      //       color: const Color(0xFF1D1D1D),
+                      //       fontSize: 13,
+                      //       fontWeight: FontWeight.w400),
+                      // ),
+                      // const SizedBox(
+                      //   height: 11,
+                      // ),
+                      // InkWell(
+                      //   onTap: () {
+                      //     controller.contactUpdateCard(context);
+                      //     // controller1. holder();
+                      //   },
+                      //   child: const SizedBox(
+                      //     width: 200,
+                      //     child: CustomOutlineButton(
+                      //       title: "Order a new card",
+                      //     ),
+                      //   ),
+                      // ),
                       const SizedBox(
                         height: 17,
                       ),
@@ -451,7 +452,7 @@ class _MyCardState extends State<MyCard> {
                           InkWell(
                             onTap: () {
                               // controller1.getCardDetails();
-                              Get.toNamed(MyRouters.cardDetails);
+                              Get.to(()=>DetailsPinScreen());
                             },
                             child: Container(
                               height: 98,

@@ -1,4 +1,4 @@
-  class ModelBuy {
+class ModelBuy {
   bool? success;
   Data? data;
   String? message;
@@ -23,28 +23,28 @@
 }
 
 class Data {
- dynamic message;
- dynamic amount;
- dynamic netAmount;
- dynamic commission;
- dynamic chargeBack;
- dynamic status;
- dynamic customerReference;
- dynamic reference;
- dynamic businessId;
- dynamic createdAt;
+  dynamic message;
+  dynamic amount;
+  dynamic netAmount;
+  dynamic commission;
+  dynamic chargeBack;
+  dynamic status;
+  dynamic customerReference;
+  dynamic reference;
+  dynamic businessId;
+  dynamic createdAt;
 
   Data(
       {this.message,
-        this.amount,
-        this.netAmount,
-        this.commission,
-        this.chargeBack,
-        this.status,
-        this.customerReference,
-        this.reference,
-        this.businessId,
-        this.createdAt});
+      this.amount,
+      this.netAmount,
+      this.commission,
+      this.chargeBack,
+      this.status,
+      this.customerReference,
+      this.reference,
+      this.businessId,
+      this.createdAt});
 
   Data.fromJson(Map<String, dynamic> json) {
     message = json['message'];

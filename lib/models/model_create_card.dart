@@ -1,5 +1,5 @@
 class ModelCreateCard {
-  String? status;
+  dynamic status;
   String? message;
   Data? data;
 

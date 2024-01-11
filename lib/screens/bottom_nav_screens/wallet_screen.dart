@@ -1,8 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zip/resourses/api_constant.dart';
 
 import '../../controller/profile_controller.dart';
 import '../../controller/update_user.dart';
@@ -31,6 +33,7 @@ class _WalletScreen1State extends State<WalletScreen1> {
     super.initState();
     // controller1. getCardDetails();
     controller1.getCard();
+    controller1.getCurrentBalance();
   }
 
   @override
@@ -641,8 +644,96 @@ class _WalletScreen1State extends State<WalletScreen1> {
                       ),
                     ),
                   ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10),
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      // height: 65,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(color: const Color(0xff1D1D1D))),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              SvgPicture.asset(
+                                "assets/images/1.svg",
+                                height: 45,
+                                width: 44,
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Card Creation Fees ',
+                                    style: GoogleFonts.poppins(
+                                        color: const Color(0xff1D1D1D),
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                  Text(
+                                 "\$"+controller1.currentBalanceModel.value.data!.charges.toString(),
+                                    style: GoogleFonts.poppins(
+                                        color: const Color(0xff1D1D1D),
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w300),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                          SizedBox(height: 10,),
+                          Row(
+                            children: [
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              Image.asset(
+                                "assets/images/nh.png",
+                                height: 45,
+                                width: 44,
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Card Transition Fees',
+                                    style: GoogleFonts.poppins(
+                                        color: const Color(0xff1D1D1D),
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                  Text(
+                                   controller1.currentBalanceModel.value.data!.fee!.bridgeCardFee.toString(),
+                                    style: GoogleFonts.poppins(
+                                        color: const Color(0xff1D1D1D),
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w300),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                   SizedBox(
-                    height: size.height * .25,
+                    height: size.height * .02,
                   ),
                   cyu.isEven
                       ? InkWell(
@@ -653,7 +744,14 @@ class _WalletScreen1State extends State<WalletScreen1> {
                             // Get.toNamed(MyRouters.myCard);
                             //  print( controller1. card.value.data!.cardHolderId.toString());
                             // controller1. card.value.data!.cardHolderId == null ?
-                            controller1.create(context);
+                            if( controller1.currentBalanceModel.value.data!.fee!.bridgeCardFee! <= controller1.currentBalanceModel.value.data!.currentBalance! ){
+
+                              controller1.create(context);
+                            }
+                            else{
+                              showToast("Your wallet balance is below to card creation fees");
+                            }
+
                             // :controller1. create3();
                           },
                           child: CustomOutlineButton(
@@ -665,7 +763,14 @@ class _WalletScreen1State extends State<WalletScreen1> {
                             // Get.toNamed(MyRouters.myCard);
                             // print( controller1. card.value.data!.cardHolderId.toString());
                             // controller1. card.value.data!.cardHolderId == null ?
-                            controller1.create1(context);
+                            if( controller1.currentBalanceModel.value.data!.fee!.bridgeCardFee! <= controller1.currentBalanceModel.value.data!.currentBalance! ){
+
+                              controller1.create1(context);
+                            }
+                            else{
+                              showToast("Your wallet balance is below to card creation fees");
+                            }
+
                             // controller1. holder1() ;
                             // :controller1. create4();
                           },

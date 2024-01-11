@@ -34,6 +34,7 @@ class _DashBoardState extends State<DashBoard> {
     getData();
     getData1();
     profileController.getCard();
+    profileController. getData();
     profileController.getCurrentBalance();
     // getData1();
   }

@@ -200,9 +200,34 @@ class _CardDetailsState extends State<CardDetails> {
                                   ),
                                 ],
                               ),
-                              const SizedBox(
-                                height: 15,
-                              ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'CVV',
+                                  style: GoogleFonts.poppins(
+                                      color: const Color(0xFF1D1D1D),
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                Text(
+                                  controller1.card.value.data!.cvv
+                                      .toString(),
+                                  style: GoogleFonts.poppins(
+                                      color: const Color(0xFF1D1D1D),
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+
                               const SizedBox(
                                 height: 15,
                               ),

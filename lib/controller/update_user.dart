@@ -838,11 +838,7 @@ class registerController extends GetxController {
     // }
     // Get.toNamed(MyRouters.bottomNavbar);
 
-    @override
-    void onInit() {
-      // TODO: implement onInit
-      super.onInit();
-    }
+
   }
 
   loginOtp(context) {
@@ -874,11 +870,9 @@ class registerController extends GetxController {
     // }
     // Get.toNamed(MyRouters.bottomNavbar);
 
-    @override
-    void onInit() {
-      // TODO: implement onInit
-      super.onInit();
-    }
+
+
+
   }
 
   TextEditingController emailController = TextEditingController();

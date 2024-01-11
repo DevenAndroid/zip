@@ -65,6 +65,23 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
       gbpToNgn = usdConvert1.toString();
     });
   }
+  void main() {
+    String originalString = "1234/1235***";
+
+    // Remove first 4 characters
+    String step1 = originalString.substring(4);
+
+    // Find the index of '/' and remove everything before it
+    String step2 = step1.substring(step1.indexOf('/') + 1);
+
+    // Remove the last 3 characters
+    String finalResult = step2.substring(0, step2.length - 3);
+
+    print("Original String: $originalString");
+    print("Processed String: $finalResult");
+  }
+
+
 
   Rx<RxStatus> statusOfAllTransistion = RxStatus.empty().obs;
   Rx<ModelMovementsRateResponse> allConvert = ModelMovementsRateResponse().obs;
@@ -169,6 +186,22 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
                             itemBuilder: (context, index) {
+                              String originalString = allConvert.value.movementInfo![index]
+                                  .currency_rate
+                                  .toString();
+
+                              // Remove first 4 characters
+                              String step1 = originalString.substring(4);
+
+                              // Find the index of '/' and remove everything before it
+                              String step2 = step1.substring(step1.indexOf('/') + 1);
+
+                              // Remove the last 3 characters
+                              String finalResult = step2.substring(0, step2.length - 3);
+
+                              print("Original String: $originalString");
+                              print("Processed String: $finalResult");
+
                               return Column(
                                 children: [
                                   Row(
@@ -226,9 +259,7 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
                                               BorderRadius.circular(15),
                                         ),
                                         child: Text(
-                                          allConvert.value.movementInfo![index]
-                                              .currency_rate
-                                              .toString(),
+                                          finalResult.toString(),
                                           style: GoogleFonts.poppins(
                                               color: const Color(0xFF1D1D1D),
                                               fontSize: 17,

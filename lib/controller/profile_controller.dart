@@ -72,9 +72,7 @@ class ProfileController extends GetxController {
     await getRateRepo().then((value) {
       modelRate.value = value;
       if (value.status == "success") {
-        double resultDivide =
-            double.parse(modelRate.value.data!.nGNUSD.toString()) /
-                double.parse("100");
+        double resultDivide = double.parse(modelRate.value.data!.nGNUSD.toString()) / double.parse("100");
         divideText = resultDivide.toStringAsPrecision(4);
         statusOfRate.value = RxStatus.success();
         showToast(value.message.toString());
@@ -122,8 +120,8 @@ class ProfileController extends GetxController {
   Rx<ModelFundCard> addFundCard = ModelFundCard().obs;
   Rx<RxStatus> statusOfFund = RxStatus.empty().obs;
 
-  Future addFund(context) async {
-    await addFundRepo(
+  addFund(context) {
+    addFundRepo(
       card_id: card.value.data!.cardId.toString(),
       currency: "USD",
       amount: multiplyText.toString(),
@@ -380,6 +378,7 @@ class ProfileController extends GetxController {
       // Get.to(()=>CardSuccessScreen());
 
       if (value.status == "success") {
+
         cardId.value = value.data!.cardId.toString();
         log("CardId${cardId.value}");
         statusOfCreate.value = RxStatus.success();
@@ -801,10 +800,8 @@ class ProfileController extends GetxController {
         // Get.toNamed(MyRouters.cardDetails);
 
         cardBalance.value = value;
-        double resultFund =
-            double.parse(cardBalance.value.data!.balance.toString()) /
-                double.parse("100").round();
-        fundText = resultFund.toInt().toString();
+        double resultFund = double.parse(cardBalance.value.data!.balance.toString()) / double.parse("100").round();
+        fundText = resultFund.toDouble().toString();
         showToast(value.message.toString());
 
         // saveCardDetails();

@@ -30,16 +30,16 @@ class DetailsController extends GetxController {
   Rx<ModelKey> appKeyModel = ModelKey().obs;
   Rx<RxStatus> statusOfKey = RxStatus.empty().obs;
 
-  //String businessID = "64529bd2bfdf28e7c18aa9da";
-  String businessID = "645f9404bc81847c40e448a0";
+  String businessID = "64529bd2bfdf28e7c18aa9da";
+  // String businessID = "645f9404bc81847c40e448a0";
   String publicKey = "pk_NjQ1Zjk0MDRiYzgxODQ3YzQwZTQ0OGEwOjoxOTg1OTI=";
   String secretKey = "16GH53GI9AzB17ov5QCgk1kw9m2uIGf3";
 
   //////////api keys
 
-  String apiKey = "16GH53GI9AzB17ov5QCgk1kw9m2uIGf3";
+  // String apiKey = "16GH53GI9AzB17ov5QCgk1kw9m2uIGf3";
 
-  //String apiKey=    "m98zn3Y70MXGu1VaZNhYOZO7CbULj6uU";
+  String apiKey=    "m98zn3Y70MXGu1VaZNhYOZO7CbULj6uU";
 
   //////////
   String Authorization = "Token token=OYZdKwC9r8hwCb7yUXu2BA";
@@ -50,13 +50,13 @@ class DetailsController extends GetxController {
       appKeyModel.value = value;
       if (value.status == true) {
         // businessID = appKeyModel.value.data!.businessId.toString();
-        //   businessID = "64529bd2bfdf28e7c18aa9da";
-        businessID = "645f9404bc81847c40e448a0";
+         businessID = "64529bd2bfdf28e7c18aa9da";
+         //  businessID = "645f9404bc81847c40e448a0";
         publicKey = "pk_NjQ1Zjk0MDRiYzgxODQ3YzQwZTQ0OGEwOjoxOTg1OTI=";
         secretKey = "16GH53GI9AzB17ov5QCgk1kw9m2uIGf3";
         //////////api keys
-        apiKey = "16GH53GI9AzB17ov5QCgk1kw9m2uIGf3";
-        //  apiKey=    "m98zn3Y70MXGu1VaZNhYOZO7CbULj6uU";
+        // apiKey = "16GH53GI9AzB17ov5QCgk1kw9m2uIGf3";
+         apiKey=    "m98zn3Y70MXGu1VaZNhYOZO7CbULj6uU";
         //////////
         // testToken  = "Bearer at_test_a1f95e5af450d1d490e4b3a80ee50d44a0c058632a514fabf123cd211f1daf7e7bd09da169ee060746b95de5484018707c83f3327e5d4131eef112969af2fa1a2d1e9f9f932dbbb8ceef7e6ca3af1a0af1157188f3c2d05d68623bfed1e085fe907237d85d403d41c97334667cf3d656e7e4bc874565dafe466f4d1f109bb2dbaca43b1eb1de8cc38849c0d96d936d66602cb24474bd43a9ff4db139b82faadd6523d5137f72b5dc0637225b665016c436e8b4a3b0548aade184bd2cc2ef19990c4965c13ef7cdb0058202aa1ee85aa87faec1776853b5c0c880d911425fe075ef5c35be6e683ea58c186f48278ae430c038432092b4c12f7755c52aad7b81b1";
         statusOfKey.value = RxStatus.success();
