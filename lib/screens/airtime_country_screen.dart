@@ -34,19 +34,6 @@ class _BuyAirtimeCountryScreenState extends State<BuyAirtimeCountryScreen> {
   Rx<AirtimeCountryModel> telcos = AirtimeCountryModel().obs;
   final profileController = Get.put(ProfileController());
   var service = Get.arguments[0];
-
-  // getTelcoList() {
-  //   commonServiceRepo(
-  //       key: "services"
-  //   ).then((value) {
-  //     log("response.body.....    ${value}");
-  //     telcos.value = value;
-  //
-  //     statusOftelcos.value = RxStatus.success();
-  //   }
-  //     // showToast(value.message.toString());
-  //   );
-  // }
   getTelcoList() {
     commonCountryRepo(
       key: "airtime-countries",
@@ -183,22 +170,7 @@ class _BuyAirtimeCountryScreenState extends State<BuyAirtimeCountryScreen> {
                                               ),
                                             ),
 
-                                            // InkWell(
-                                            //     onTap: (){
-                                            //       // Get.toNamed(MyRouters.dataPlanScreen,arguments: [biller.value.data![index].name.toString(),]);
-                                            //     },
-                                            //     child: Container(
-                                            //         padding: EdgeInsets.symmetric(vertical: 8,horizontal: 10),
-                                            //         decoration: BoxDecoration(
-                                            //           borderRadius: BorderRadius.circular(7),
-                                            //           color: AppTheme.secondaryColor,
-                                            //         ),
-                                            //
-                                            //         child: Text("See Plan",
-                                            //           style: GoogleFonts.poppins(
-                                            //               color:  Colors.white,
-                                            //               fontSize: 12,
-                                            //               fontWeight: FontWeight.w500),))),
+
                                           ],
                                         )
                                       ],

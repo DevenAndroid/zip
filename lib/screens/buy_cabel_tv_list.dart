@@ -27,21 +27,6 @@ class _BuyCabelTvListState extends State<BuyCabelTvList> {
   int currentDrawer = 0;
   Rx<RxStatus> statusOfBuyDataList = RxStatus.empty().obs;
   Rx<BuyCavelTvList> buyCableList = BuyCavelTvList().obs;
-
-  // getBuyCableList() {
-  //   buyCabelTvListRepo().then((value) {
-  //     log("response.body.....    ${value}");
-  //     buyCableList.value = value;
-  //     if (value.status == true) {
-  //       statusOfBuyDataList.value = RxStatus.success();
-  //     } else {
-  //       statusOfBuyDataList.value = RxStatus.error();
-  //     }
-  //   }
-  //     // showToast(value.message.toString());
-  //   );
-  // }
-
   @override
   void initState() {
     // TODO: implement initState

@@ -31,10 +31,6 @@ class EmailScreen extends StatefulWidget {
 }
 
 class _EmailScreenState extends State<EmailScreen> {
-  // var initStateBlank = Get.arguments[0];
-  // Rx<RxStatus> statusOfLogin = RxStatus.empty().obs;
-  //
-  // Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
   Rx<RxStatus> statusOfemailregister = RxStatus.empty().obs;
   final numbercontroller = Get.put(numberController());
   final Controller = Get.put(registerController());

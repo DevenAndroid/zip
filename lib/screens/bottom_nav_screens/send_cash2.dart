@@ -75,7 +75,6 @@ class _SendCash2State extends State<SendCash2> {
           leading: InkWell(
             onTap: () {
               Get.back();
-              // Get.toNamed(MyRouters.sendCashReciptant);
             },
             child: const Icon(
               Icons.arrow_back_rounded, color: Colors.black,
@@ -120,7 +119,6 @@ class _SendCash2State extends State<SendCash2> {
                           payOutcontroller.accountNo.text.toString().trim(),
                           payOutcontroller.accountName.text.toString().trim()
                         ]);
-                        // payOutcontroller.CreateBenificery();
                       }
                     },
                     child: const CustomOutlineButton(
@@ -217,13 +215,6 @@ class _SendCash2State extends State<SendCash2> {
                                 errorText: '')
                           ]),
                           controller: payOutcontroller.accountNo,
-
-                          // suffixIcon: InkWell(
-                          //     onTap: (){
-                          //       resolveData();
-                          //       },
-                          //
-                          //     child: Icon(Icons.arrow_forward)),
                           obSecure: false,
                           hintText: "",
                           labelText: "Account Number",

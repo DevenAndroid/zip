@@ -35,19 +35,6 @@ class _BuyAirtimeProductScreenState extends State<BuyAirtimeProductScreen> {
   Rx<RxStatus> statusOftelcos = RxStatus.empty().obs;
   Rx<AirtimeProductModel> telcos = AirtimeProductModel().obs;
   final profileController = Get.put(ProfileController());
-
-  // getTelcoList() {
-  //   commonServiceRepo(
-  //       key: "services"
-  //   ).then((value) {
-  //     log("response.body.....    ${value}");
-  //     telcos.value = value;
-  //
-  //     statusOftelcos.value = RxStatus.success();
-  //   }
-  //     // showToast(value.message.toString());
-  //   );
-  // }
   var code = Get.arguments[0];
   var service = Get.arguments[1];
 
@@ -123,18 +110,6 @@ class _BuyAirtimeProductScreenState extends State<BuyAirtimeProductScreen> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            // ClipOval(
-                                            //   child: CachedNetworkImage(
-                                            //     width: 40,
-                                            //     height: 40,
-                                            //     fit: BoxFit.cover,
-                                            //     imageUrl: telcos.value.data!.content![index].flag.toString(),
-                                            //     placeholder: (context, url) =>
-                                            //     const SizedBox(),
-                                            //     errorWidget: (context, url, error) =>
-                                            //     const SizedBox(),
-                                            //   ),
-                                            // ),
                                             SizedBox(
                                               width: 20,
                                             ),
@@ -175,23 +150,6 @@ class _BuyAirtimeProductScreenState extends State<BuyAirtimeProductScreen> {
                                                 ),
                                               ),
                                             ),
-
-                                            // InkWell(
-                                            //     onTap: (){
-                                            //       // Get.toNamed(MyRouters.dataPlanScreen,arguments: [biller.value.data![index].name.toString(),]);
-                                            //     },
-                                            //     child: Container(
-                                            //         padding: EdgeInsets.symmetric(vertical: 8,horizontal: 10),
-                                            //         decoration: BoxDecoration(
-                                            //           borderRadius: BorderRadius.circular(7),
-                                            //           color: AppTheme.secondaryColor,
-                                            //         ),
-                                            //
-                                            //         child: Text("See Plan",
-                                            //           style: GoogleFonts.poppins(
-                                            //               color:  Colors.white,
-                                            //               fontSize: 12,
-                                            //               fontWeight: FontWeight.w500),))),
                                           ],
                                         )
                                       ],

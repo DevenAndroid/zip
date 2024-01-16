@@ -61,17 +61,7 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
     });
   }
 
-  // void convertUsd() async {
-  //   Currency myCurrency = await CurrencyConverter.getMyCurrency();
-  //   var usdConvert = await CurrencyConverter.convert(
-  //     from: Currency.ngn,
-  //     to: Currency.usd,
-  //     amount: 1,
-  //   );
-  //   setState(() {
-  //     usdToNgn = usdConvert.toString();
-  //   });
-  // }
+
 
   Future Conversions() async {
     await conversionRepo(
@@ -196,14 +186,6 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
                                     ),
                                   )
 
-                                  // CountryCodePicker(
-                                  //   onChanged: print,
-                                  //   initialSelection: 'IT',
-                                  //   favorite: ['+39', 'FR'],
-                                  //   showCountryOnly: false,
-                                  //   showOnlyCountryWhenClosed: true,
-                                  //   alignLeft: false,
-                                  // ),
                                   ),
                               const SizedBox(
                                 width: 20,
@@ -522,14 +504,6 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
                                     ),
                                   ),
                                 ),
-                                // CountryCodePicker(
-                                //   onChanged: print,
-                                //   initialSelection: 'IT',
-                                //   favorite: ['+39', 'FR'],
-                                //   showCountryOnly: false,
-                                //   showOnlyCountryWhenClosed: true,
-                                //   alignLeft: false,
-                                // ),
                               ),
                               const SizedBox(
                                 width: 20,
@@ -555,24 +529,6 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
                                     decorationThickness: 0,
                                     fontWeight: FontWeight.w600),
                               ),
-                              // SizedBox(
-                              //   width: 120,
-                              //   child: TextFormField(
-                              //       decoration: const InputDecoration(
-                              //         hintText: "You Get            0",
-                              //         border: InputBorder.none,
-                              //         focusedBorder: InputBorder.none,
-                              //         enabledBorder: InputBorder.none,
-                              //         errorBorder: InputBorder.none,
-                              //         disabledBorder: InputBorder.none,
-                              //         hintStyle: TextStyle(
-                              //             color: Color(0xFF1D1D1D),
-                              //             fontSize: 16,
-                              //             decorationColor: Colors.transparent,
-                              //             decorationThickness: 0,
-                              //             fontWeight: FontWeight.w600),
-                              //       )),
-                              // ),
                             ],
                           ),
                         ),

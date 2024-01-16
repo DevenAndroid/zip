@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/controller/update_user.dart';
 import 'package:zip/screens/card_sucess.dart';
 
-import '../models/current_balance_repo.dart';
+import '../models/current_balance_model.dart';
 import '../models/fund_issuing_wallet.dart';
 import '../models/get_card_balance_model.dart';
 import '../models/model_conversion.dart';

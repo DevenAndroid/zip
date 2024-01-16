@@ -5,19 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:zip/resourses/api_constant.dart';
 import 'package:zip/routers/my_routers.dart';
-import 'package:zip/screens/buyservices.dart';
 import 'package:zip/screens/details_pin.dart';
 import 'package:zip/widgets/common_colour.dart';
 
 import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
-import '../models/model_freeze_card.dart';
-import '../repository/freeze_card_repo.dart';
-import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
-import '../widgets/common_error_widget.dart';
 
 class MyCard extends StatefulWidget {
   @override
@@ -57,7 +51,7 @@ class _MyCardState extends State<MyCard> {
             onTap: () {
               // Get.toNamed(MyRouters.walletScreen1);
             },
-            child: SizedBox()),
+            child: const SizedBox()),
       ),
       body: RefreshIndicator(
         color: Colors.white,
@@ -129,118 +123,118 @@ class _MyCardState extends State<MyCard> {
                                   ),
                                   Row(
                                     children: [
-                                      CircleAvatar(
+                                      const CircleAvatar(
                                         maxRadius: 4,
                                         backgroundColor: Colors.white,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 3,
                                       ),
-                                      CircleAvatar(
+                                      const CircleAvatar(
                                         maxRadius: 4,
                                         backgroundColor: Colors.white,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 3,
                                       ),
-                                      CircleAvatar(
+                                      const CircleAvatar(
                                         maxRadius: 4,
                                         backgroundColor: Colors.white,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 3,
                                       ),
-                                      CircleAvatar(
+                                      const CircleAvatar(
                                         maxRadius: 4,
                                         backgroundColor: Colors.white,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 8,
                                       ),
-                                      CircleAvatar(
+                                      const CircleAvatar(
                                         maxRadius: 4,
                                         backgroundColor: Colors.white,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 3,
                                       ),
-                                      CircleAvatar(
+                                      const CircleAvatar(
                                         maxRadius: 4,
                                         backgroundColor: Colors.white,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 3,
                                       ),
-                                      CircleAvatar(
+                                      const CircleAvatar(
                                         maxRadius: 4,
                                         backgroundColor: Colors.white,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 3,
                                       ),
-                                      CircleAvatar(
+                                      const CircleAvatar(
                                         maxRadius: 4,
                                         backgroundColor: Colors.white,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 8,
                                       ),
-                                      CircleAvatar(
+                                      const CircleAvatar(
                                         maxRadius: 4,
                                         backgroundColor: Colors.white,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 3,
                                       ),
-                                      CircleAvatar(
+                                      const CircleAvatar(
                                         maxRadius: 4,
                                         backgroundColor: Colors.white,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 3,
                                       ),
-                                      CircleAvatar(
+                                      const CircleAvatar(
                                         maxRadius: 4,
                                         backgroundColor: Colors.white,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 3,
                                       ),
-                                      CircleAvatar(
+                                      const CircleAvatar(
                                         maxRadius: 4,
                                         backgroundColor: Colors.white,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 8,
                                       ),
                                       if (controller1.card.value.data ==
                                           null) ...[
-                                        CircleAvatar(
+                                        const CircleAvatar(
                                           maxRadius: 4,
                                           backgroundColor: Colors.white,
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 3,
                                         ),
-                                        CircleAvatar(
+                                        const CircleAvatar(
                                           maxRadius: 4,
                                           backgroundColor: Colors.white,
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 3,
                                         ),
-                                        CircleAvatar(
+                                        const CircleAvatar(
                                           maxRadius: 4,
                                           backgroundColor: Colors.white,
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 3,
                                         ),
-                                        CircleAvatar(
+                                        const CircleAvatar(
                                           maxRadius: 4,
                                           backgroundColor: Colors.white,
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 8,
                                         ),
                                       ] else
@@ -452,7 +446,7 @@ class _MyCardState extends State<MyCard> {
                           InkWell(
                             onTap: () {
                               // controller1.getCardDetails();
-                              Get.to(()=>DetailsPinScreen());
+                              Get.to(()=>const DetailsPinScreen());
                             },
                             child: Container(
                               height: 98,
@@ -684,7 +678,7 @@ class _MyCardState extends State<MyCard> {
                     ],
                   ))
               : controller1.statusOfCard.value.isError
-                  ? Center(child: Text("Please contact customer support"))
+                  ? const Center(child: Text("Please contact customer support"))
                   : const Center(
                       child: CircularProgressIndicator(),
                     );

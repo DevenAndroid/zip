@@ -66,6 +66,15 @@ class _DashBoardState extends State<DashBoard> {
 
   @override
   Widget build(BuildContext context) {
+    String originalString =  profileController
+        .currentBalanceModel
+        .value
+        .data!
+        .currentBalance!
+        .toStringAsFixed(2);
+    double number = double.parse(originalString);
+
+    String formattedString = NumberFormat("#,###.##").format(number);
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Obx(() {
@@ -167,12 +176,7 @@ class _DashBoardState extends State<DashBoard> {
                                                     ),
                                                     FittedBox(
                                                       child: Text(
-                                                        profileController
-                                                            .currentBalanceModel
-                                                            .value
-                                                            .data!
-                                                            .currentBalance
-                                                            .toString(),
+                                                       formattedString,
                                                         style:
                                                             GoogleFonts.poppins(
                                                                 color: Colors

@@ -32,32 +32,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final details = Get.put(DetailsController());
 
-  /* Login() {
-    if (formKey4.currentState!.validate()) {
-      loginUserRepo(
-
-          name: Get.arguments[0],
-          context: context,
-          phone: mobileNoController.text.trim(),
-          email: "user@gmail.com"
-      ).then((value) {
-        login.value = value;
-        Get.toNamed(MyRouters.mobileOtpScreen,
-            arguments: [value.data![0].reference.toString()]);
 
 
-        showToast(value.message.toString());
-        showToast(value.data![0].otp.toString());
-      });
-    }
-  }*/
 
-// @override
-//   void initState() {
-//     // TODO: implement initState
-//     super.initState();
-//    var userName=  Get.arguments[0];
-//   }
   final formKeyNumber = GlobalKey<FormState>();
 
   @override

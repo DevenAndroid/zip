@@ -95,26 +95,7 @@ class _TransactionsHistoryState extends State<TransactionsHistory> {
                 fontSize: 20,
                 fontWeight: FontWeight.w500),
           ),
-          // actions: [
-          //   Padding(
-          //     padding: const EdgeInsets.only(right: 8.0),
-          //     child: GestureDetector(
-          //       onTap: () {
-          //         Get.toNamed(MyRouters.fAQScreens);
-          //       },
-          //       child: Container(
-          //         decoration: BoxDecoration(
-          //             shape: BoxShape.circle,
-          //             border:
-          //                 Border.all(color: AppTheme.primaryColor, width: 2)),
-          //         child: Icon(
-          //           Icons.question_mark_rounded,
-          //           color: Colors.black,
-          //         ),
-          //       ),
-          //     ),
-          //   )
-          // ],
+
           centerTitle: true,
         ),
         body: Theme(
@@ -352,23 +333,35 @@ class _TransactionsHistoryState extends State<TransactionsHistory> {
                                                         CrossAxisAlignment
                                                             .center,
                                                     children: [
+                                                      allTransistion.value.data?[index]?.currency == "USD" ?
                                                       Text(
-                                                        "NGN " +
-                                                            allTransistion
-                                                                .value
-                                                                .data![index]
-                                                                .amount
-                                                                .toString(),
-                                                        style:
-                                                            GoogleFonts.poppins(
-                                                                color: AppTheme
-                                                                    .primaryColor,
-                                                                fontSize: 16,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
+                                                        '\$${allTransistion.value.data?[index]?.amount}',
+                                                        style: GoogleFonts.poppins(
+                                                          color: AppTheme.primaryColor,
+                                                          fontSize: 16,
+                                                          fontWeight: FontWeight.w600,
+                                                        ),
+                                                      ):
+                                                      Row(
+                                                        mainAxisAlignment: MainAxisAlignment.start,
+                                                        children: [
+                                                          Image.network(
+                                                            "https://cdn-icons-png.flaticon.com/512/32/32974.png",
+                                                            color: Colors.black,
+                                                            width: 14,
+                                                            height: 14,
+                                                          ),
+                                                          Text(
+                                                            allTransistion.value.data![index]!.amount.toString(),
+                                                            style: GoogleFonts.poppins(
+                                                              color: AppTheme.primaryColor,
+                                                              fontSize: 16,
+                                                              fontWeight: FontWeight.w600,
+                                                            ),
+                                                          )],
                                                       ),
-                                                      Text(
+
+    Text(
                                                         allTransistion
                                                             .value
                                                             .data![index]
@@ -505,21 +498,32 @@ class _TransactionsHistoryState extends State<TransactionsHistory> {
                                                         CrossAxisAlignment
                                                             .center,
                                                     children: [
+                                                      allTransistion.value.data?[index]?.currency == "USD" ?
                                                       Text(
-                                                        "NGN " +
-                                                            allTransistion
-                                                                .value
-                                                                .data![index]
-                                                                .amount
-                                                                .toString(),
-                                                        style:
-                                                            GoogleFonts.poppins(
-                                                                color: AppTheme
-                                                                    .primaryColor,
-                                                                fontSize: 16,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
+                                                        '\$${allTransistion.value.data?[index]?.amount}',
+                                                        style: GoogleFonts.poppins(
+                                                          color: AppTheme.primaryColor,
+                                                          fontSize: 16,
+                                                          fontWeight: FontWeight.w600,
+                                                        ),
+                                                      ):
+                                                      Row(
+                                                        mainAxisAlignment: MainAxisAlignment.start,
+                                                        children: [
+                                                          Image.network(
+                                                            "https://cdn-icons-png.flaticon.com/512/32/32974.png",
+                                                            color: Colors.black,
+                                                            width: 14,
+                                                            height: 14,
+                                                          ),
+                                                          Text(
+                                                            allTransistion.value.data![index]!.amount.toString(),
+                                                            style: GoogleFonts.poppins(
+                                                              color: AppTheme.primaryColor,
+                                                              fontSize: 16,
+                                                              fontWeight: FontWeight.w600,
+                                                            ),
+                                                          )],
                                                       ),
                                                       Text(
                                                         allTransistion
@@ -658,22 +662,35 @@ class _TransactionsHistoryState extends State<TransactionsHistory> {
                                                         CrossAxisAlignment
                                                             .center,
                                                     children: [
+                                                      allTransistion.value.data?[index]?.currency == "USD" ?
                                                       Text(
-                                                        "NGN " +
-                                                            allTransistion
-                                                                .value
-                                                                .data![index]
-                                                                .amount
-                                                                .toString(),
-                                                        style:
-                                                            GoogleFonts.poppins(
-                                                                color: AppTheme
-                                                                    .primaryColor,
-                                                                fontSize: 16,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                      ),
+                                                         '\$${allTransistion.value.data?[index]?.amount}',
+                                                        style: GoogleFonts.poppins(
+                                                          color: AppTheme.primaryColor,
+                                                          fontSize: 16,
+                                                          fontWeight: FontWeight.w600,
+                                                        ),
+                                                      ):
+                                                      Row(
+                                                        mainAxisAlignment: MainAxisAlignment.start,
+                                                        children: [
+                                                          Image.network(
+                                                            "https://cdn-icons-png.flaticon.com/512/32/32974.png",
+                                                            color: Colors.black,
+                                                            width: 14,
+                                                            height: 14,
+                                                          ),
+                                                          Text(
+                                                            allTransistion.value.data![index]!.amount.toString(),
+                                                            style: GoogleFonts.poppins(
+                                                              color: AppTheme.primaryColor,
+                                                              fontSize: 16,
+                                                              fontWeight: FontWeight.w600,
+                                                            ),
+                                                          )],
+                                                      )
+
+                                                      ,
                                                       Text(
                                                         allTransistion
                                                             .value

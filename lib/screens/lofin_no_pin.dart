@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -14,12 +12,7 @@ import 'package:zip/widgets/common_colour.dart';
 import '../controller/number_controller.dart';
 import '../controller/update_user.dart';
 import '../models/model_security_pin.dart';
-import '../models/model_setting.dart';
-import '../models/model_verify_africa.dart';
-import '../models/verify_africa.dart';
 import '../repository/security_pin_repo].dart';
-import '../repository/setting_repo.dart';
-import '../repository/verify_africa_b.dart';
 import '../resourses/api_constant.dart';
 
 import '../controller/update_user.dart';
@@ -59,20 +52,12 @@ class _LoginNoPinScreenState extends State<LoginNoPinScreen> {
       } else {
         statusOfSucess.value = RxStatus.error();
         showToast(value.message.toString());
-        // count.value++;
-        // if (count.value == 3) {
-        //   // details.LoginMoPin(context);
-        // }
+
       }
     }
             // showToast(value.message.toString());
 
             );
-
-    // if(value.status=="success"){
-    //   statusOfChooseBank.value.isSuccess;
-    // }
-    // Get.toNamed(MyRouters.bottomNavbar);
   }
 
   @override

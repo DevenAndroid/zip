@@ -44,10 +44,6 @@ class _ContuctUsScreenState extends State<ContuctUsScreen> {
     });
   }
 
-  // if(value.status=="success"){
-  //   statusOfChooseBank.value.isSuccess;
-  // }
-  // Get.toNamed(MyRouters.bottomNavbar);
 
   Rx<RxStatus> statusOfGet = RxStatus.empty().obs;
   Rx<ModelGetSupportSystem> getSupportSystem = ModelGetSupportSystem().obs;
@@ -213,30 +209,6 @@ class _ContuctUsScreenState extends State<ContuctUsScreen> {
                 ),
                 SizedBox(height: 22),
                 CommonTextfield(
-                  // keyboardType:
-                  // const TextInputType.numberWithOptions(
-                  //     decimal: true),
-                  // inputFormatters: [
-                  //   LengthLimitingTextInputFormatter(8),
-                  //   FilteringTextInputFormatter.allow(
-                  //       RegExp('[0-9]+')),
-                  // ],
-                  // onChanged: (value) =>
-                  // doubleVar = double.parse(value),
-                  // validator: MultiValidator([
-                  //   RequiredValidator(
-                  //       errorText:
-                  //       'Please enter your  number '),
-                  //   MinLengthValidator(1,
-                  //       errorText:
-                  //       'Please enter minumum  8 digit number'),
-                  //   MaxLengthValidator(8,
-                  //       errorText:
-                  //       'Please enter 8 digit number'),
-                  //   PatternValidator(
-                  //       r'(^(?:[+0]9)?[0-9]{10,12}$)',
-                  //       errorText: '')
-                  // ]),
                   controller: dricptionController,
                   obSecure: false,
                   isMulti: true,

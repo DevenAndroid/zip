@@ -355,7 +355,7 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                     ),
                                   ])),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         if (currentDrawer == 0)
@@ -406,7 +406,7 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                                                             .w600),
                                                               ),
                                                             )
-                                                          : SizedBox(
+                                                          : const SizedBox(
                                                               height: 10,
                                                             ),
                                                       InkWell(
@@ -443,7 +443,7 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                                         },
                                                         child: Container(
                                                           padding:
-                                                              EdgeInsets.all(
+                                                              const EdgeInsets.all(
                                                                   10),
                                                           decoration: BoxDecoration(
                                                               borderRadius:
@@ -558,7 +558,7 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                                           ),
                                                         ),
                                                       ),
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         height: 10,
                                                       )
                                                     ],
@@ -612,7 +612,7 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                                         CrossAxisAlignment
                                                             .start,
                                                     children: [
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         height: 10,
                                                       ),
                                                       InkWell(
@@ -655,7 +655,7 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                                         },
                                                         child: Container(
                                                           padding:
-                                                              EdgeInsets.all(
+                                                              const EdgeInsets.all(
                                                                   10),
                                                           decoration: BoxDecoration(
                                                               borderRadius:
@@ -689,7 +689,7 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                                                       children: [
                                                                         Image.asset(
                                                                             "assets/images/meter.png"),
-                                                                        SizedBox(
+                                                                        const SizedBox(
                                                                           width:
                                                                               6,
                                                                         ),
@@ -785,7 +785,7 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                                           ),
                                                         ),
                                                       ),
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         height: 10,
                                                       )
                                                     ],
@@ -838,7 +838,7 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                                         CrossAxisAlignment
                                                             .start,
                                                     children: [
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         height: 10,
                                                       ),
                                                       InkWell(
@@ -886,7 +886,7 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                                         },
                                                         child: Container(
                                                           padding:
-                                                              EdgeInsets.all(
+                                                              const EdgeInsets.all(
                                                                   10),
                                                           decoration: BoxDecoration(
                                                               borderRadius:
@@ -1031,7 +1031,7 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                                           ),
                                                         ),
                                                       ),
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         height: 10,
                                                       )
                                                     ],
@@ -1083,7 +1083,7 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                                         CrossAxisAlignment
                                                             .start,
                                                     children: [
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         height: 10,
                                                       ),
                                                       InkWell(
@@ -1132,7 +1132,7 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                                         },
                                                         child: Container(
                                                           padding:
-                                                              EdgeInsets.all(
+                                                              const EdgeInsets.all(
                                                                   10),
                                                           decoration: BoxDecoration(
                                                               borderRadius:
@@ -1277,7 +1277,7 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                                           ),
                                                         ),
                                                       ),
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         height: 10,
                                                       )
                                                     ],

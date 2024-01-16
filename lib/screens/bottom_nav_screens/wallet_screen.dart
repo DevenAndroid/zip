@@ -31,7 +31,6 @@ class _WalletScreen1State extends State<WalletScreen1> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    // controller1. getCardDetails();
     controller1.getCard();
     controller1.getCurrentBalance();
   }
@@ -51,15 +50,6 @@ class _WalletScreen1State extends State<WalletScreen1> {
                 fontWeight: FontWeight.w500),
           ),
           centerTitle: true,
-          // leading: InkWell(
-          //   onTap: (){
-          //     Get.toNamed(MyRouters.bottomNavbar);
-          //   },
-          //   child: const Icon(
-          //     Icons.arrow_back_rounded,
-          //     color: AppTheme.primaryColor,
-          //   ),
-          // ),
         ),
         backgroundColor: const Color(0xFFFFFFFF),
         body: RefreshIndicator(
@@ -682,7 +672,10 @@ class _WalletScreen1State extends State<WalletScreen1> {
                                         fontWeight: FontWeight.w400),
                                   ),
                                   Text(
-                                 "\$"+controller1.currentBalanceModel.value.data!.charges.toString(),
+                                    "\$" +
+                                        controller1.currentBalanceModel.value
+                                            .data!.charges
+                                            .toString(),
                                     style: GoogleFonts.poppins(
                                         color: const Color(0xff1D1D1D),
                                         fontSize: 10,
@@ -692,7 +685,9 @@ class _WalletScreen1State extends State<WalletScreen1> {
                               )
                             ],
                           ),
-                          SizedBox(height: 10,),
+                          SizedBox(
+                            height: 10,
+                          ),
                           Row(
                             children: [
                               const SizedBox(
@@ -718,7 +713,9 @@ class _WalletScreen1State extends State<WalletScreen1> {
                                         fontWeight: FontWeight.w400),
                                   ),
                                   Text(
-                                   controller1.currentBalanceModel.value.data!.fee!.bridgeCardFee.toString(),
+                                    controller1.currentBalanceModel.value.data!
+                                        .fee!.bridgeCardFee
+                                        .toString(),
                                     style: GoogleFonts.poppins(
                                         color: const Color(0xff1D1D1D),
                                         fontSize: 10,
@@ -739,17 +736,15 @@ class _WalletScreen1State extends State<WalletScreen1> {
                       ? InkWell(
                           onTap: () {
                             print("object");
-                            // controller1. getCardDetails();
-                            //
-                            // Get.toNamed(MyRouters.myCard);
-                            //  print( controller1. card.value.data!.cardHolderId.toString());
-                            // controller1. card.value.data!.cardHolderId == null ?
-                            if( controller1.currentBalanceModel.value.data!.fee!.bridgeCardFee! <= controller1.currentBalanceModel.value.data!.currentBalance! ){
 
+                            if (controller1.currentBalanceModel.value.data!.fee!
+                                    .bridgeCardFee! <=
+                                controller1.currentBalanceModel.value.data!
+                                    .currentBalance!) {
                               controller1.create(context);
-                            }
-                            else{
-                              showToast("Your wallet balance is below to card creation fees");
+                            } else {
+                              showToast(
+                                  "Your wallet balance is below to card creation fees");
                             }
 
                             // :controller1. create3();
@@ -760,19 +755,15 @@ class _WalletScreen1State extends State<WalletScreen1> {
                         )
                       : InkWell(
                           onTap: () {
-                            // Get.toNamed(MyRouters.myCard);
-                            // print( controller1. card.value.data!.cardHolderId.toString());
-                            // controller1. card.value.data!.cardHolderId == null ?
-                            if( controller1.currentBalanceModel.value.data!.fee!.bridgeCardFee! <= controller1.currentBalanceModel.value.data!.currentBalance! ){
-
+                            if (controller1.currentBalanceModel.value.data!.fee!
+                                    .bridgeCardFee! <=
+                                controller1.currentBalanceModel.value.data!
+                                    .currentBalance!) {
                               controller1.create1(context);
+                            } else {
+                              showToast(
+                                  "Your wallet balance is below to card creation fees");
                             }
-                            else{
-                              showToast("Your wallet balance is below to card creation fees");
-                            }
-
-                            // controller1. holder1() ;
-                            // :controller1. create4();
                           },
                           child: CustomOutlineButton(
                             title: "Create a Master Card",

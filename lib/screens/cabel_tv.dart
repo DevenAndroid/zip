@@ -84,8 +84,6 @@ class _CabelScreenState extends State<CabelScreen> {
   }
 
   getProviderList() {
-    print(initStateBlank);
-    print(initStateBlank1);
     BuyCabelRepo(
             amount: initStateBlank1,
             serviceID: initStateBlank2,

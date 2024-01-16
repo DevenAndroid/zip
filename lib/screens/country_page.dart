@@ -86,10 +86,6 @@ class _CountryScreenState extends State<CountryScreen> {
                       obSecure: false,
                       labelText: " Nationality Country",
                       hintText: '',
-                      //   prefix:    Padding(
-                      //   padding: const EdgeInsets.only(left: 12.0),
-                      //   child: SvgPicture.asset('assets/images/address.svg',width: 20,height: 10,),
-                      // ),
                     ),
                     SizedBox(
                       height: 15,
@@ -112,11 +108,6 @@ class _CountryScreenState extends State<CountryScreen> {
                       obSecure: false,
                       labelText: " Country of Birth",
                       hintText: ' ',
-                      //   prefix:    Padding(
-                      //
-                      //   padding: const EdgeInsets.only(left: 12.0),
-                      //   child: SvgPicture.asset('assets/images/address.svg',width: 20,height: 10,),
-                      // ),
                     ),
                     SizedBox(
                       height: 15,

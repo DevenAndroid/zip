@@ -10,10 +10,8 @@ import 'package:zip/widgets/common_colour.dart';
 
 import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
-import '../models/model_beneficary_list.dart';
 import '../models/model_create_payout.dart';
 import '../models/model_favorite_benificery.dart';
-import '../models/model_get_binificery.dart';
 import '../models/save_transastion_model.dart';
 import '../repository/payout_repo.dart';
 import '../repository/save_buy_plan_repo.dart';
@@ -201,7 +199,7 @@ class _FavourateBalanceState extends State<FavourateBalance> {
                       fontWeight: FontWeight.w500),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 6,
               ),
               Padding(
@@ -235,7 +233,7 @@ class _FavourateBalanceState extends State<FavourateBalance> {
                       fontWeight: FontWeight.w500),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 6,
               ),
               Padding(
@@ -260,7 +258,7 @@ class _FavourateBalanceState extends State<FavourateBalance> {
                       fontWeight: FontWeight.w500),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 6,
               ),
               Padding(
@@ -288,7 +286,7 @@ class _FavourateBalanceState extends State<FavourateBalance> {
                       fontWeight: FontWeight.w500),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 6,
               ),
               Padding(
@@ -314,7 +312,7 @@ class _FavourateBalanceState extends State<FavourateBalance> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               )
             ],

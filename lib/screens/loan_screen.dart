@@ -34,12 +34,12 @@ class _LoanScreenState extends State<LoanScreen> {
                       Get.back();
                     },
                     child: Container(
-                        padding: EdgeInsets.all(6),
-                        decoration: BoxDecoration(
+                        padding: const EdgeInsets.all(6),
+                        decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           color: Colors.white,
                         ),
-                        child: Icon(Icons.arrow_back)),
+                        child: const Icon(Icons.arrow_back)),
                   ),
                 ),
               ]),
@@ -54,13 +54,13 @@ class _LoanScreenState extends State<LoanScreen> {
                     fontWeight: FontWeight.w600),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 13.0, right: 13),
               child: Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: Colors.grey),
@@ -72,17 +72,17 @@ class _LoanScreenState extends State<LoanScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                          padding: EdgeInsets.all(3),
-                          decoration: BoxDecoration(
+                          padding: const EdgeInsets.all(3),
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: AppTheme.secondaryColor,
                           ),
-                          child: Icon(
+                          child: const Icon(
                             Icons.check,
                             color: Colors.white,
                             size: 20,
                           )),
-                      SizedBox(
+                      const SizedBox(
                         width: 15,
                       ),
                       Padding(
@@ -100,13 +100,13 @@ class _LoanScreenState extends State<LoanScreen> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 13.0, right: 13),
               child: Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: Colors.grey),
@@ -130,7 +130,7 @@ class _LoanScreenState extends State<LoanScreen> {
                       //   ),
                       //   child:Icon(Icons.clock,color: Colors.white,)
                       // ),
-                      SizedBox(
+                      const SizedBox(
                         width: 15,
                       ),
                       Padding(
@@ -148,13 +148,13 @@ class _LoanScreenState extends State<LoanScreen> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 13.0, right: 13),
               child: Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: Colors.grey),
@@ -166,17 +166,17 @@ class _LoanScreenState extends State<LoanScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                          padding: EdgeInsets.all(3),
-                          decoration: BoxDecoration(
+                          padding: const EdgeInsets.all(3),
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: AppTheme.secondaryColor,
                           ),
-                          child: Icon(
+                          child: const Icon(
                             Icons.calendar_month,
                             color: Colors.white,
                             size: 20,
                           )),
-                      SizedBox(
+                      const SizedBox(
                         width: 15,
                       ),
                       Padding(
@@ -194,13 +194,13 @@ class _LoanScreenState extends State<LoanScreen> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 13.0, right: 13),
               child: Container(
-                padding: EdgeInsets.all(5),
+                padding: const EdgeInsets.all(5),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: Colors.grey),
@@ -212,8 +212,8 @@ class _LoanScreenState extends State<LoanScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        padding: EdgeInsets.all(8),
-                        decoration: BoxDecoration(
+                        padding: const EdgeInsets.all(8),
+                        decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           color: AppTheme.secondaryColor,
                         ),
@@ -225,7 +225,7 @@ class _LoanScreenState extends State<LoanScreen> {
                               fontWeight: FontWeight.w500),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 15,
                       ),
                       Padding(
@@ -243,7 +243,7 @@ class _LoanScreenState extends State<LoanScreen> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Padding(
@@ -259,7 +259,7 @@ class _LoanScreenState extends State<LoanScreen> {
             Padding(
               padding: const EdgeInsets.only(left: 13.0, right: 13, top: 12),
               child: Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: Colors.grey),
@@ -285,11 +285,11 @@ class _LoanScreenState extends State<LoanScreen> {
             Padding(
               padding: const EdgeInsets.only(left: 13.0, right: 13, top: 12),
               child: Container(
-                padding: EdgeInsets.all(15),
+                padding: const EdgeInsets.all(15),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(color: AppTheme.secondaryColor),
-                    color: Color(0xFFB2802A).withOpacity(.15)),
+                    color: const Color(0xFFB2802A).withOpacity(.15)),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 1.0),
                   child: Row(
@@ -312,7 +312,7 @@ class _LoanScreenState extends State<LoanScreen> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             InkWell(
@@ -321,10 +321,10 @@ class _LoanScreenState extends State<LoanScreen> {
                   // emailLogin();
                   //
                 },
-                child: CustomOutlineButton(
+                child: const CustomOutlineButton(
                   title: "Complete a loan application",
                 )),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
           ],

@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,11 +7,7 @@ import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
 import '../controller/payout_controller.dart';
-import '../models/model_beneficary_list.dart';
 import '../models/model_favorite_benificery.dart';
-import '../models/model_get_binificery.dart';
-import '../models/modelbenificerylist.dart';
-import '../repository/benificery_list _repo.dart';
 import '../widgets/circular_progressindicator.dart';
 import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
@@ -92,7 +87,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                   Expanded(
                       child: InkWell(
                     onTap: () {},
-                    child: CustomOutlineButton(
+                    child: const CustomOutlineButton(
                       title: "Favorites +",
                       backgroundColor: Colors.white,
                       textColor: AppTheme.buttonColor,
@@ -123,13 +118,13 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                       onTap: () {
                         setState(() {});
                       },
-                      child: Icon(Icons.search)),
+                      child: const Icon(Icons.search)),
                   onChanged: (gt) {
                     setState(() {});
                   },
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Obx(() {

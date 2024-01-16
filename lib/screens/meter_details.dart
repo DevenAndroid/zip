@@ -60,7 +60,7 @@ class _MeterDetailsState extends State<MeterDetails> {
               Get.toNamed(MyRouters.successRechargeScreen);
               // payOutcontroller.save(context);
             },
-            child: CustomOutlineButton(
+            child: const CustomOutlineButton(
               title: "Continue",
             ),
           ),
@@ -85,7 +85,7 @@ class _MeterDetailsState extends State<MeterDetails> {
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Text(
@@ -95,7 +95,7 @@ class _MeterDetailsState extends State<MeterDetails> {
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Text(
@@ -105,7 +105,7 @@ class _MeterDetailsState extends State<MeterDetails> {
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Text(
@@ -115,7 +115,7 @@ class _MeterDetailsState extends State<MeterDetails> {
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Text(
@@ -125,7 +125,7 @@ class _MeterDetailsState extends State<MeterDetails> {
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Text(
@@ -150,7 +150,7 @@ class _MeterDetailsState extends State<MeterDetails> {
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Text(
@@ -161,7 +161,7 @@ class _MeterDetailsState extends State<MeterDetails> {
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Text(
@@ -171,7 +171,7 @@ class _MeterDetailsState extends State<MeterDetails> {
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Text(
@@ -181,7 +181,7 @@ class _MeterDetailsState extends State<MeterDetails> {
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Text(
@@ -191,7 +191,7 @@ class _MeterDetailsState extends State<MeterDetails> {
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Text(

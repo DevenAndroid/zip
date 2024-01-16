@@ -13,10 +13,8 @@ import 'package:zip/widgets/common_textfield.dart';
 
 import '../controller/number_controller.dart';
 import '../models/model_userverify_otp.dart';
-import '../models/model_verify_otp.dart';
 import '../models/registor_model.dart';
 import '../repository/userverify_otp_Repo.dart';
-import '../repository/verify_otp_repo.dart';
 import '../resourses/api_constant.dart';
 
 class MobileOtpScreen extends StatefulWidget {
@@ -40,55 +38,7 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
   var initStateBlank = Get.arguments;
   final formKey1 = GlobalKey<FormState>();
 
-  // VerifyOtp() {
-  //   if (formKey1.currentState!.validate()) {
-  //     verifyOtpRepo(
-  //       refrence: "/${ Get.arguments[0]}/validate",
-  //       otp: mobileOtpController.text.trim(),
-  //       context: context,
-  //
-  //     ).then((value) {
-  //       verifyOtp.value = value;
-  //       if (value.status == "success") {
-  //         setState(() {
-  //           Get.toNamed(MyRouters.bottomNavbar);
-  //           statusOfVerify.value = RxStatus.success();
-  //         });
-  //
-  //
-  //         showToast(value.message.toString());
-  //       } else {
-  //         statusOfVerify.value = RxStatus.error();
-  //         showToast(value.message.toString());
-  //       }
-  //     });
-  //   }
-  // }
 
-  // VerifyOtp() {
-  //   if (formKey1.currentState!.validate()) {
-  //     verifyOtpRepo(
-  //       refrence: "/${ Get.arguments[0]}/validate",
-  //       otp: mobileOtpController.text.trim(),
-  //       context: context,
-  //
-  //     ).then((value) {
-  //       verifyOtp.value = value;
-  //       if (value.status == "success") {
-  //         setState(() {
-  //           Get.toNamed(MyRouters.bottomNavbar);
-  //           statusOfVerify.value = RxStatus.success();
-  //         });
-  //
-  //
-  //         showToast(value.message.toString());
-  //       } else {
-  //         statusOfVerify.value = RxStatus.error();
-  //         showToast(value.message.toString());
-  //       }
-  //     });
-  //   }
-  // }
   verifyOtpRepo() {
     if (formKey1.currentState!.validate()) {
       userVerifyOtpRepo(
@@ -188,10 +138,10 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
                       obSecure: false,
                       hintText: "000-000",
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     InkWell(
@@ -206,10 +156,10 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
                           // VerifyOtp();
                           //  Get.toNamed(MyRouters.profileScreen);
                         },
-                        child: CustomOutlineButton(
+                        child: const CustomOutlineButton(
                           title: "Tap to Verify ",
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     Padding(

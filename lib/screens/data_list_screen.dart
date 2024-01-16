@@ -26,20 +26,6 @@ class _BuyDataListState extends State<BuyDataList> {
   Rx<RxStatus> statusOfBuyDataList = RxStatus.empty().obs;
   Rx<BuyDataListModel> buyDataList = BuyDataListModel().obs;
 
-  // getBuyDataList() {
-  //   buyDataListRepo().then((value) {
-  //     log("response.body.....    ${value}");
-  //     buyDataList.value = value;
-  //     if (value.status == true) {
-  //       statusOfBuyDataList.value = RxStatus.success();
-  //     } else {
-  //       statusOfBuyDataList.value = RxStatus.error();
-  //     }
-  //   }
-  //     // showToast(value.message.toString());
-  //   );
-  // }
-
   @override
   void initState() {
     // TODO: implement initState
@@ -273,7 +259,7 @@ class _BuyDataListState extends State<BuyDataList> {
                                   ),
                                 ])),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Obx(() {
@@ -305,7 +291,7 @@ class _BuyDataListState extends State<BuyDataList> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  SizedBox(
+                                                  const SizedBox(
                                                     height: 10,
                                                   ),
                                                   InkWell(
@@ -347,7 +333,7 @@ class _BuyDataListState extends State<BuyDataList> {
                                                     },
                                                     child: Container(
                                                       padding:
-                                                          EdgeInsets.all(10),
+                                                          const EdgeInsets.all(10),
                                                       decoration: BoxDecoration(
                                                           borderRadius:
                                                               BorderRadius
@@ -502,7 +488,7 @@ class _BuyDataListState extends State<BuyDataList> {
                                                       ),
                                                     ),
                                                   ),
-                                                  SizedBox(
+                                                  const SizedBox(
                                                     height: 10,
                                                   )
                                                 ],

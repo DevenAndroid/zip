@@ -10,8 +10,6 @@ import 'package:zip/screens/bottomnav_bar.dart';
 import 'package:zip/screens/change_zip_pin.dart';
 import 'package:zip/screens/confirm_bank.dart';
 import 'package:zip/screens/country_page.dart';
-
-import 'package:zip/screens/enterMobileno.dart';
 import 'package:zip/screens/enter_email.dart';
 import 'package:zip/screens/exchange_screen.dart';
 import 'package:zip/screens/faq_screen.dart';
@@ -85,7 +83,6 @@ import '../screens/card_details_screen.dart';
 import '../screens/card_sucess.dart';
 import '../screens/choose_bank_2.dart';
 import '../screens/contact_us_screen.dart';
-import '../screens/create_account.dart';
 import '../screens/create_benificery_screen.dart';
 import '../screens/currenty.dart';
 import '../screens/data_list_screen.dart';

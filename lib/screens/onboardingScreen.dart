@@ -25,7 +25,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color(0xFFFFFFFF),
+      backgroundColor: const Color(0xFFFFFFFF),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,10 +129,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 onTap: () {
                   Get.toNamed(MyRouters.enterEmailScreen);
                 },
-                child: CustomOutlineButton(
+                child: const CustomOutlineButton(
                   title: "Open free account",
                 )),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             InkWell(

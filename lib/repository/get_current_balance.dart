@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
-import '../models/current_balance_repo.dart';
+import '../models/current_balance_model.dart';
 import '../models/model_beneficary_list.dart';
 import '../models/model_get_transfre_limit.dart';
 import '../resourses/api_constant.dart';

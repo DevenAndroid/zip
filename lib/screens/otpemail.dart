@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -15,11 +14,8 @@ import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
 import '../models/model_userverify_otp.dart';
-import '../models/model_verify_otp.dart';
 import '../models/registor_model.dart';
-import '../repository/mobile_no_otp_repo.dart';
 import '../repository/userverify_otp_Repo.dart';
-import '../repository/verify_otp_repo.dart';
 import '../resourses/api_constant.dart';
 
 class EmailOtpScreen extends StatefulWidget {
@@ -169,7 +165,7 @@ class _EmailOtpScreenState extends State<EmailOtpScreen> {
                       obSecure: false,
                       hintText: "000-000",
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     InkWell(
@@ -177,10 +173,10 @@ class _EmailOtpScreenState extends State<EmailOtpScreen> {
                           verifyOtpRepo();
                           // Get.toNamed(MyRouters.otpEmailScreen);
                         },
-                        child: CustomOutlineButton(
+                        child: const CustomOutlineButton(
                           title: "Tap to Verify",
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     Padding(

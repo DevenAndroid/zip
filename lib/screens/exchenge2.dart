@@ -240,15 +240,6 @@ class _ExchangeMoney2State extends State<ExchangeMoney2> {
                                     ),
                                   ),
                                 ),
-
-                                // CountryCodePicker(
-                                //   onChanged: print,
-                                //   initialSelection: 'IT',
-                                //   favorite: ['+39', 'FR'],
-                                //   showCountryOnly: false,
-                                //   showOnlyCountryWhenClosed: true,
-                                //   alignLeft: false,
-                                // ),
                               ),
                               const SizedBox(
                                 width: 20,
@@ -586,24 +577,6 @@ class _ExchangeMoney2State extends State<ExchangeMoney2> {
                                     decorationThickness: 0,
                                     fontWeight: FontWeight.w600),
                               ),
-                              // SizedBox(
-                              //   width: 120,
-                              //   child: TextFormField(
-                              //       decoration: const InputDecoration(
-                              //         hintText: "You Get            0",
-                              //         border: InputBorder.none,
-                              //         focusedBorder: InputBorder.none,
-                              //         enabledBorder: InputBorder.none,
-                              //         errorBorder: InputBorder.none,
-                              //         disabledBorder: InputBorder.none,
-                              //         hintStyle: TextStyle(
-                              //             color: Color(0xFF1D1D1D),
-                              //             fontSize: 16,
-                              //             decorationColor: Colors.transparent,
-                              //             decorationThickness: 0,
-                              //             fontWeight: FontWeight.w600),
-                              //       )),
-                              // ),
                             ],
                           ),
                         ),

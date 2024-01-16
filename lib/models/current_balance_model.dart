@@ -23,9 +23,9 @@ class CurrentBalanceModel {
 }
 
 class Data {
-  int? currentBalance;
+  dynamic currentBalance;
   Fee? fee;
-  int? charges;
+  dynamic charges;
 
   Data({this.currentBalance, this.fee, this.charges});
 
@@ -47,11 +47,11 @@ class Data {
 }
 
 class Fee {
- dynamic payoutFee;
- dynamic cashoutFee;
- dynamic cashinFee;
- dynamic serviceFee;
- dynamic bridgeCardFee;
+  dynamic payoutFee;
+  dynamic cashoutFee;
+  dynamic cashinFee;
+  dynamic serviceFee;
+  dynamic bridgeCardFee;
 
   Fee(
       {this.payoutFee,

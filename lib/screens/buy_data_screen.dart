@@ -7,9 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 
 import '../controller/profile_controller.dart';
-import '../models/model_fetch_telcos.dart';
 import '../models/service_common_model.dart';
-import '../repository/fetch_telcos_repo.dart';
 import '../repository/service_common_repo.dart';
 import '../widgets/circular_progressindicator.dart';
 import '../widgets/common_button.dart';

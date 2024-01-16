@@ -88,10 +88,6 @@ class _LoginPinScreenState extends State<LoginPinScreen> {
 
             );
 
-    // if(value.status=="success"){
-    //   statusOfChooseBank.value.isSuccess;
-    // }
-    // Get.toNamed(MyRouters.bottomNavbar);
   }
 
   @override

@@ -49,18 +49,6 @@ class _AddAPayerState extends State<AddAPayer> {
               fontWeight: FontWeight.w500),
         ),
         centerTitle: true,
-        // actions: [
-        //   Padding(
-        //     padding: const EdgeInsets.only(right: 20,top: 20),
-        //     child: Text(
-        //       "Cancel",
-        //       style: GoogleFonts.poppins(
-        //           color: const Color(0xFFF0D75F),
-        //           fontSize: 11,
-        //           fontWeight: FontWeight.w400),
-        //     ),
-        //   )
-        // ],
       ),
       body: SingleChildScrollView(
         child: Form(
@@ -111,55 +99,6 @@ class _AddAPayerState extends State<AddAPayer> {
                   readOnly: true,
                 ),
               ),
-              // Padding(
-              //   padding: const EdgeInsets.only(left: 12, right: 12),
-              //   child: DecoratedBox(
-              //       decoration: BoxDecoration(
-              //         color: Colors.white,
-              //         border: Border.all(color: Colors.black, width: 1),
-              //         borderRadius: BorderRadius.circular(15),
-              //       ),
-              //       child: Padding(
-              //           padding: const EdgeInsets.only(left: 15, right: 30),
-              //           child: DropdownButton(
-              //             value: "United Kingdom",
-              //             items: [
-              //               DropdownMenuItem(
-              //                 child: Row(
-              //                   children: [
-              //                     Image.asset('assets/images/nigeria.png',height: 30,),
-              //                     const SizedBox(width: 10,),
-              //                     Text(
-              //                       "Nigeria",
-              //                       style: GoogleFonts.poppins(
-              //                           color: const Color(0xFF1D1D1D),
-              //                           fontSize: 15,
-              //                           fontWeight: FontWeight.w300),
-              //                     ),
-              //                   ],
-              //                 ),
-              //                 value: "United Kingdom",
-              //               ),
-              //             /*  const DropdownMenuItem(
-              //                   child: Text("Canada"), value: "Canada"),*/
-              //               // const DropdownMenuItem(
-              //               //   child: Text("Russia"),
-              //               //   value: "Russia",
-              //               // )
-              //             ],
-              //             onChanged: (value) {},
-              //             icon: const Padding(
-              //                 padding: EdgeInsets.only(left: 20),
-              //                 child: Icon(Icons.keyboard_arrow_down_outlined)),
-              //             iconEnabledColor: Colors.black, //Icon color
-              //             style: const TextStyle(
-              //                 color: Colors.black,
-              //                 fontSize: 20),
-              //             dropdownColor: Colors.white,
-              //             underline: Container(),
-              //             isExpanded: true,
-              //           ))),
-              // ),
               const SizedBox(
                 height: 20,
               ),

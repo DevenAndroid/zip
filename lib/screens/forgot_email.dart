@@ -1,25 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:zip/routers/my_routers.dart';
-import 'package:zip/screens/forgot_otp.dart';
-import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
-import '../models/login_model.dart';
-import '../models/model_userverify_otp.dart';
-import '../models/model_verify_otp.dart';
-import '../models/registor_model.dart';
-import '../repository/login_repo.dart';
-import '../repository/mobile_no_otp_repo.dart';
-import '../repository/userverify_otp_Repo.dart';
-import '../repository/verify_otp_repo.dart';
-import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 
 class ForgotEmailScreen extends StatefulWidget {
@@ -30,60 +16,6 @@ class ForgotEmailScreen extends StatefulWidget {
 }
 
 class _ForgotEmailScreenState extends State<ForgotEmailScreen> {
-  // Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
-  // Rx<RxStatus> statusOfuserVerifyOtp = RxStatus.empty().obs;
-  //
-  // Rx<UserVerifyOtpModel> userVerifyOtp = UserVerifyOtpModel().obs;
-  //
-  // var initStateBlank = Get.arguments[0];
-  // VerifyOtp() {
-  //   if (formKey2.currentState!.validate()) {
-  //     verifyOtpRepo(
-  //       refrence: "/${ Get.arguments[0]}/validate",
-  //       otp: emailOtpController.text.trim(),
-  //       context: context,
-  //
-  //     ).then((value) {
-  //       verifyOtp.value = value;
-  //       if (value.status == "success") {
-  //         setState(() {
-  //           Get.toNamed(MyRouters.bottomNavbar);
-  //           statusOfVerify.value = RxStatus.success();
-  //         });
-  //
-  //
-  //         showToast(value.message.toString());
-  //       } else {
-  //         statusOfVerify.value = RxStatus.error();
-  //         showToast(value.message.toString());
-  //       }
-  //     });
-  //   }
-  // }
-  // verifyOtpRepo() {
-  //   if (formKey2.currentState!.validate()) {
-  //     userVerifyOtpRepo(
-  //       phone_email: initStateBlank,
-  //       otp: emailOtpController.text.trim(),
-  //       context: context,
-  //
-  //     ).then((value) {
-  //       userVerifyOtp.value = value;
-  //       if (value.status == "success") {
-  //         setState(() {
-  //           Get.toNamed(MyRouters.bottomNavbar);
-  //           statusOfuserVerifyOtp.value = RxStatus.success();
-  //         });
-  //
-  //
-  //         showToast(value.message.toString());
-  //       } else {
-  //         statusOfuserVerifyOtp.value = RxStatus.error();
-  //         showToast(value.message.toString());
-  //       }
-  //     });
-  //   }
-  // }
   final formKeylogin = GlobalKey<FormState>();
   var obscureText1 = true;
   final details = Get.put(DetailsController());
@@ -153,38 +85,12 @@ class _ForgotEmailScreenState extends State<ForgotEmailScreen> {
                     hintText: "pkp@gmail.com",
                     labelText: "Email",
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
 
-                  // CommonTextfield(
-                  //   suffixIcon: GestureDetector(
-                  //       onTap: () {
-                  //         setState(() {
-                  //           obscureText1 =
-                  //           !obscureText1;
-                  //         });
-                  //       },
-                  //       child: obscureText1
-                  //           ? const Icon(
-                  //         Icons.visibility_off,
-                  //         color: Color(0xFF8487A1),
-                  //       )
-                  //           : const Icon(
-                  //           Icons.visibility,
-                  //           color: Color(
-                  //               0xFF8487A1))),
-                  //
-                  //   validator: MultiValidator([
-                  //     RequiredValidator(
-                  //         errorText: 'Please enter your password'),
-                  //     MinLengthValidator(8,
-                  //         errorText: 'Password must be at least 8 characters, with 1 special character & 1 numerical'),
-                  //     PatternValidator(
-                  //         r"(?=.*\W)(?=.*?[#?!@$%^&*-])(?=.*[0-9])",
-                  //         errorText: "Password must be at least with 1 special character & 1 numerical"),
-                  //   ]),controller: details.passwordController,obSecure: obscureText1, labelText: "Password", hintText: 'Password',),
-                  SizedBox(
+
+                  const SizedBox(
                     height: 15,
                   ),
 
@@ -197,27 +103,15 @@ class _ForgotEmailScreenState extends State<ForgotEmailScreen> {
                         if (formKeylogin.currentState!.validate()) {
                           details.forgot(context);
                         }
-                        // emailRegister();
-                        // emailLogin();
-                        //
-                        // Get.to(()=>ForgotScreenOtp());
+
                       },
-                      child: CustomOutlineButton(
+                      child: const CustomOutlineButton(
                         title: "Next",
                       )),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
-                  // InkWell(
-                  //   onTap: (){
-                  //     if (formKeylogin.currentState!.validate()) {
-                  //       Get.toNamed(MyRouters.loginScreen);
-                  //     }
-                  //   },
-                  //   child: CustomOutlineBoder(title: "Use Mobile Number", backgroundColor: Colors.white,textColor: AppTheme.buttonColor,onPressed: (){
-                  //     Get.toNamed(MyRouters.loginScreen);
-                  //   },),
-                  // ),
+
                 ]),
           ),
         )));

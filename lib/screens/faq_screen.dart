@@ -66,17 +66,6 @@ class _FAQScreenState extends State<FAQScreen> {
                 fontSize: 20,
                 fontWeight: FontWeight.w500),
           ),
-          // actions: [
-          // Padding(
-          // padding: const EdgeInsets.only(right: 8.0),
-          // child: InkWell(
-          // onTap: (){
-          // // Get.toNamed(MyRouters.fAQScreens);
-          // },
-          // child: Icon(Icons.search,color: Colors.black,),
-          // ),
-          // )
-          // ],
           centerTitle: true,
         ),
         body: SingleChildScrollView(

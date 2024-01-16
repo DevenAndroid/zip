@@ -76,7 +76,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 8,
                           ),
                           bottomController.pageIndex.value == 0
@@ -87,18 +87,18 @@ class _BottomNavbarState extends State<BottomNavbar> {
                               : SvgPicture.asset(
                                   'assets/images/home.svg',
                                 ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           bottomController.pageIndex.value == 0
-                              ? Text(
+                              ? const Text(
                                   " Home",
                                   style: TextStyle(
                                       color: AppTheme.secondaryColor,
                                       fontSize: 15,
                                       fontWeight: FontWeight.w400),
                                 )
-                              : Text(
+                              : const Text(
                                   " Home",
                                   style: TextStyle(
                                       color: AppTheme.primaryColor,
@@ -117,7 +117,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
                       },
                       child: Column(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 8,
                           ),
                           bottomController.pageIndex.value == 1
@@ -129,18 +129,18 @@ class _BottomNavbarState extends State<BottomNavbar> {
                                   'assets/images/transistion.svg',
                                   color: Colors.black,
                                 ),
-                          SizedBox(
+                          const SizedBox(
                             height: 8,
                           ),
                           bottomController.pageIndex.value == 1
-                              ? Text(
+                              ? const Text(
                                   "Transactions",
                                   style: TextStyle(
                                       color: AppTheme.secondaryColor,
                                       fontSize: 15,
                                       fontWeight: FontWeight.w400),
                                 )
-                              : Text(
+                              : const Text(
                                   "Transactions",
                                   style: TextStyle(
                                       color: AppTheme.primaryColor,
@@ -161,7 +161,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
                         },
                         child: Column(
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               height: 8,
                             ),
                             bottomController.pageIndex.value == 2
@@ -172,18 +172,18 @@ class _BottomNavbarState extends State<BottomNavbar> {
                                 : SvgPicture.asset(
                                     'assets/images/card.svg',
                                   ),
-                            SizedBox(
+                            const SizedBox(
                               height: 5,
                             ),
                             bottomController.pageIndex.value == 2
-                                ? Text(
+                                ? const Text(
                                     "Cards",
                                     style: TextStyle(
                                         color: AppTheme.secondaryColor,
                                         fontSize: 15,
                                         fontWeight: FontWeight.w400),
                                   )
-                                : Text(
+                                : const Text(
                                     "Cards",
                                     style: TextStyle(
                                         color: AppTheme.primaryColor,
@@ -197,13 +197,13 @@ class _BottomNavbarState extends State<BottomNavbar> {
                   ),
                   Flexible(
                     child: MaterialButton(
-                      padding: EdgeInsets.only(bottom: 10),
+                      padding: const EdgeInsets.only(bottom: 10),
                       onPressed: () {
                         bottomController.updateIndexValue(3);
                       },
                       child: Column(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 8,
                           ),
                           bottomController.pageIndex.value == 3
@@ -214,18 +214,18 @@ class _BottomNavbarState extends State<BottomNavbar> {
                               : SvgPicture.asset(
                                   'assets/images/profile.svg',
                                 ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           bottomController.pageIndex.value == 3
-                              ? Text(
+                              ? const Text(
                                   "Account",
                                   style: TextStyle(
                                       color: AppTheme.secondaryColor,
                                       fontSize: 15,
                                       fontWeight: FontWeight.w400),
                                 )
-                              : Text(
+                              : const Text(
                                   "Account",
                                   style: TextStyle(
                                       color: AppTheme.primaryColor,

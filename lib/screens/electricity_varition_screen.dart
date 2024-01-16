@@ -1,22 +1,14 @@
 import 'dart:developer';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 
 import '../controller/update_user.dart';
-import '../models/buy_electricity_model.dart';
 import '../models/electricity_variation_model.dart';
-import '../models/mode_biller.dart';
-import '../models/model_fetch_telcos.dart';
-import '../repository/buy_electricity_repo.dart';
 import '../repository/electricity_variation_repo.dart';
-import '../repository/fetch_telcos_repo.dart';
-import '../repository/list_biller_repo.dart';
 import '../widgets/circular_progressindicator.dart';
-import '../widgets/common_button.dart';
 import '../widgets/common_colour.dart';
 import '../widgets/common_error_widget.dart';
 
@@ -107,7 +99,7 @@ class _ElectricityVariationScreenState
                                     child: Column(
                                       children: [
                                         Container(
-                                          padding: EdgeInsets.all(8),
+                                          padding: const EdgeInsets.all(8),
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(10),
@@ -134,7 +126,7 @@ class _ElectricityVariationScreenState
                                                           fontWeight:
                                                               FontWeight.w500),
                                                     ),
-                                                    SizedBox(
+                                                    const SizedBox(
                                                       width: 10,
                                                     ),
                                                     Expanded(
@@ -157,7 +149,7 @@ class _ElectricityVariationScreenState
                                                     ),
                                                   ],
                                                 ),
-                                                SizedBox(
+                                                const SizedBox(
                                                   height: 10,
                                                 ),
                                                 Row(
@@ -191,7 +183,7 @@ class _ElectricityVariationScreenState
                                                     ),
                                                   ],
                                                 ),
-                                                SizedBox(
+                                                const SizedBox(
                                                   height: 10,
                                                 ),
                                                 Row(
@@ -225,7 +217,7 @@ class _ElectricityVariationScreenState
                                                     ),
                                                   ],
                                                 ),
-                                                SizedBox(
+                                                const SizedBox(
                                                   height: 10,
                                                 ),
                                                 Row(
@@ -259,7 +251,7 @@ class _ElectricityVariationScreenState
                                                     ),
                                                   ],
                                                 ),
-                                                SizedBox(
+                                                const SizedBox(
                                                   height: 15,
                                                 ),
                                                 Row(
@@ -295,21 +287,10 @@ class _ElectricityVariationScreenState
                                                             MyRouters
                                                                 .meterVerifyScreen,
                                                           );
-                                                          // Get.toNamed(MyRouters.purchaseDataScreen,arguments: [dataPlan.value.data!.content!.varations![index].variationAmount.toString(),dataPlan.value.data!.content!.varations![index].variationCode.toString(),serviceid.toString(),]);
 
-                                                          // if(dataPlan.value.data!.content![index].minimiumAmount < profileController
-                                                          //     .currentBalanceModel
-                                                          //     .value
-                                                          //     .data){
-                                                          //   Get.toNamed(MyRouters.purchaseDataScreen,arguments: [initStateBlank,dataPlan.value.data!.content![index].minimiumAmount.toString(),dataPlan.value.data!.content![index].name.toString(),dataPlan.value.data!.content![index].productType.toString(),]);
-                                                          //
-                                                          // }
-                                                          // else{
-                                                          //   showToast("inefficient balance");
-                                                          // }
                                                         },
                                                         child: Container(
-                                                            padding: EdgeInsets
+                                                            padding: const EdgeInsets
                                                                 .symmetric(
                                                                     vertical: 8,
                                                                     horizontal:

@@ -46,9 +46,6 @@ class _BuyAirtimeScreenState extends State<BuyAirtimeScreen> {
 
   Rx<RxStatus> statusOfProviders = RxStatus.empty().obs;
 
-  // TextEditingController phoneController = TextEditingController();
-  // TextEditingController amountController = TextEditingController();
-
   TextEditingController descriptionController = TextEditingController();
   Rx<ModelBuy> purchaseData = ModelBuy().obs;
 
@@ -160,11 +157,6 @@ class _BuyAirtimeScreenState extends State<BuyAirtimeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CommonTextfield(
-                      // onTap: () {
-                      //   // Get.toNamed(MyRouters.buyAirtimecreen);
-                      // },
-                      // suffixIcon: Icon(Icons.keyboard_arrow_down),
-
                       readOnly: true,
                       obSecure: false,
                       hintText: initStateBlank2,
@@ -195,18 +187,6 @@ class _BuyAirtimeScreenState extends State<BuyAirtimeScreen> {
                       onChanged: (value) => doubleVar = double.parse(value),
                       validator: RequiredValidator(
                           errorText: "please enter your phone no "),
-
-                      // validator: MultiValidator([
-                      //   RequiredValidator(
-                      //       errorText: 'Please enter your meter number '),
-                      //   MinLengthValidator(10,
-                      //       errorText: 'Please enter minumum  10  number'),
-                      //   MaxLengthValidator(12,
-                      //       errorText: 'Please enter 12  number'),
-                      //   PatternValidator(r'(^(?:[+0]9)?[0-9]{10,12}$)',
-                      //       errorText: '')
-                      // ]),
-
                       obSecure: false,
                       readOnly: true,
                       hintText: initStateBlank3,

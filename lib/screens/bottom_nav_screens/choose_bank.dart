@@ -26,7 +26,6 @@ class _ChooseBankState extends State<ChooseBank> {
 
   ChooseBankApi() {
     chooseBankRepo(
-            // country: "NG", currency: "NGN"
             )
         .then((value) {
       chooseBank.value = value;
@@ -37,7 +36,7 @@ class _ChooseBankState extends State<ChooseBank> {
         statusOfChooseBank.value = RxStatus.error();
       }
 
-      // showToast(value.message.toString());
+
     });
   }
 

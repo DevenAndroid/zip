@@ -8,9 +8,6 @@ import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
 import '../models/buy_electricity_list_model.dart';
-import '../models/model_send_tranbsistion.dart';
-import '../repository/get_electricity_list_repo.dart';
-import '../repository/get_send_transistion_repo.dart';
 import '../widgets/circular_progressindicator.dart';
 import '../widgets/common_error_widget.dart';
 
@@ -26,20 +23,6 @@ class _BuyElectricityListState extends State<BuyElectricityList> {
   Rx<RxStatus> statusOfelEctricityTransistion = RxStatus.empty().obs;
   Rx<BuyElectricityListModel> electricityTransistion =
       BuyElectricityListModel().obs;
-
-  // getSentTransitionList() {
-  //   buyElectricityListRepo().then((value) {
-  //     log("response.body.....    ${value}");
-  //     electricityTransistion.value = value;
-  //     if (value.status == true) {
-  //       statusOfelEctricityTransistion.value = RxStatus.success();
-  //     } else {
-  //       statusOfelEctricityTransistion.value = RxStatus.error();
-  //     }
-  //   }
-  //     // showToast(value.message.toString());
-  //   );
-  // }
 
   @override
   void initState() {

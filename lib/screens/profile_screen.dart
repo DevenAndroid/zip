@@ -40,6 +40,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String originalString =  profileController
+        .currentBalanceModel
+        .value
+        .data!
+        .currentBalance!
+        .toStringAsFixed(2);
+    double number = double.parse(originalString);
+
+    String formattedString = NumberFormat("#,###.##").format(number);
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -202,9 +211,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             height: 15,
                           ),
                           Text(
-                            profileController
-                                .currentBalanceModel.value.data!.currentBalance
-                                .toString(),
+                            formattedString,
                             style: GoogleFonts.poppins(
                                 color: const Color(0xFF1D1D1D),
                                 fontSize: 20,

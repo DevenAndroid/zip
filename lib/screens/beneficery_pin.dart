@@ -112,10 +112,6 @@ class _BeneficeryPinState extends State<BeneficeryPin> {
       }
     });
 
-    // if(value.status=="success"){
-    //   statusOfChooseBank.value.isSuccess;
-    // }
-    // Get.toNamed(MyRouters.bottomNavbar);
   }
 
   getCheckValue() async {

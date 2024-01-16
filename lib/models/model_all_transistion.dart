@@ -34,6 +34,7 @@ class Data {
   dynamic comonId;
   dynamic tId;
   dynamic amount;
+  dynamic currency;
   dynamic transactionAbout;
   dynamic userType;
   dynamic createdAt;
@@ -45,6 +46,7 @@ class Data {
         this.comonId,
         this.tId,
         this.amount,
+        this.currency,
         this.transactionAbout,
         this.userType,
         this.createdAt});
@@ -56,6 +58,7 @@ class Data {
     comonId = json['comon_id'];
     tId = json['t_id'];
     amount = json['amount'];
+    currency = json['currency'];
     transactionAbout = json['transaction_about'];
     userType = json['user_type'];
     createdAt = json['created_at'];
@@ -69,6 +72,7 @@ class Data {
     data['comon_id'] = this.comonId;
     data['t_id'] = this.tId;
     data['amount'] = this.amount;
+    data['currency'] = this.currency;
     data['transaction_about'] = this.transactionAbout;
     data['user_type'] = this.userType;
     data['created_at'] = this.createdAt;

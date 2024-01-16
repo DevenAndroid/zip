@@ -208,7 +208,7 @@ key: "pay"
                 labelText: "Phone Number",
               ),
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: Text(

@@ -51,32 +51,6 @@ class _DetailsPinScreenState extends State<DetailsPinScreen> {
   Rx<RxStatus> statusOfSave = RxStatus.empty().obs;
   Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
 
-  // saveList() async {
-  //   SharedPreferences pref = await SharedPreferences.getInstance();
-  //   var uniqueIdentifier = pref.getString("uniqueIdentifier");
-  //   saveTransastionRepo(
-  //       user_id: profileController.modal.value.data!.user!.id.toString(),
-  //       amount: controller.amountController1.text.trim(),
-  //       about: "Buy Airtime",
-  //       // complete_response: purchaseData.value.data!.toJson(),
-  //       context: context,
-  //       description:
-  //       controller.fetchAccount.value.data!.accountNumber.toString() +
-  //           DateTime.now().millisecondsSinceEpoch.toString(),
-  //       type: "dr")
-  //       .then((value) {
-  //     log("response.body.....    ${value}");
-  //     save.value = value;
-  //     if (value.status == true) {
-  //       statusOfSave.value = RxStatus.success();
-  //       Get.toNamed(MyRouters.successRechargeScreen);
-  //     } else {
-  //       statusOfSave.value = RxStatus.error();
-  //     }
-  //   }
-  //     // showToast(value.message.toString());
-  //   );
-  // }
   Future verify() async {
     await securityPinRepo(
         context: context, pin: otpcontroller.text.trim())
@@ -96,24 +70,6 @@ class _DetailsPinScreenState extends State<DetailsPinScreen> {
       // showToast(value.message.toString());
     );
   }
-  // verify() {
-  //   securityPinRepo(context: context, pin: otpcontroller.text.trim())
-  //       .then((value) {
-  //     modelVerifySecurity.value = value;
-  //
-  //     statusOfSucess.value = RxStatus.success();
-  //     showToast(value.message.toString());
-  //     })
-  //      else {
-  //       statusOfSucess.value = RxStatus.error();
-  //       showToast(value.message.toString());
-  //     }
-  //   });
-
-    // if(value.status=="success"){
-    //   statusOfChooseBank.value.isSuccess;
-    // }
-    // Get.toNamed(MyRouters.bottomNavbar);
 
 
   getCheckValue() async {

@@ -26,7 +26,6 @@ class _ChooseBank1State extends State<ChooseBank1> {
 
   ChooseBankApi() {
     chooseBankRepo(
-            // country: "NG", currency: "NGN"
             )
         .then((value) {
       chooseBank.value = value;

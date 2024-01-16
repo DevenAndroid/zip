@@ -7,12 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 
 import '../controller/profile_controller.dart';
-import '../controller/update_user.dart';
-import '../models/mode_biller.dart';
-import '../models/model_fetch_telcos.dart';
 import '../models/service_common_model.dart';
-import '../repository/fetch_telcos_repo.dart';
-import '../repository/list_biller_repo.dart';
 import '../repository/service_common_repo.dart';
 import '../widgets/circular_progressindicator.dart';
 import '../widgets/common_button.dart';
@@ -30,19 +25,6 @@ class _BuyAirtimecreenState extends State<BuyAirtimecreen> {
   Rx<RxStatus> statusOftelcos = RxStatus.empty().obs;
   Rx<ServiceCommonModel> telcos = ServiceCommonModel().obs;
   final profileController = Get.put(ProfileController());
-
-  // getTelcoList() {
-  //   commonServiceRepo(
-  //       key: "services"
-  //   ).then((value) {
-  //     log("response.body.....    ${value}");
-  //     telcos.value = value;
-  //
-  //     statusOftelcos.value = RxStatus.success();
-  //   }
-  //     // showToast(value.message.toString());
-  //   );
-  // }
   getTelcoList() {
     commonServiceRepo(key: "services", identifier: "airtime ").then((value) {
       log("response.body.....    ${value}");

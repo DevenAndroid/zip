@@ -241,7 +241,6 @@ class _CardDetailsState extends State<CardDetails> {
                               },
                             )
                           : const Center(child: CommonProgressIndicator());
-                  ;
                 }))));
   }
 }

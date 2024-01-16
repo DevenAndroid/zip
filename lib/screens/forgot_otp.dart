@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:zip/routers/my_routers.dart';
 import 'package:zip/screens/forgot_change_pass.dart';
 import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
@@ -17,12 +15,9 @@ import 'package:zip/widgets/common_textfield.dart';
 
 import '../models/Forgot_email_model.dart';
 import '../models/model_userverify_otp.dart';
-import '../models/model_verify_otp.dart';
 import '../models/registor_model.dart';
 import '../repository/forgot_email_repo.dart';
-import '../repository/mobile_no_otp_repo.dart';
 import '../repository/userverify_otp_Repo.dart';
-import '../repository/verify_otp_repo.dart';
 import '../resourses/api_constant.dart';
 
 class ForgotScreenOtp extends StatefulWidget {

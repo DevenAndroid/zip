@@ -78,7 +78,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
           onTap: () {
             Get.back();
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_rounded,
             color: AppTheme.primaryColor,
           ),
@@ -139,7 +139,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                     thickness: 1,
                     color: Color(0x1A000000),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 12,
                   ),
                   Row(
@@ -192,7 +192,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   ),
                 ],
               )
-            : Center(
+            : const Center(
                 child: CircularProgressIndicator(),
               );
       }),

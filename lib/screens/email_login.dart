@@ -10,16 +10,6 @@ import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
-
-import '../models/login_model.dart';
-import '../models/model_userverify_otp.dart';
-import '../models/model_verify_otp.dart';
-import '../models/registor_model.dart';
-import '../repository/login_repo.dart';
-import '../repository/mobile_no_otp_repo.dart';
-import '../repository/userverify_otp_Repo.dart';
-import '../repository/verify_otp_repo.dart';
-import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 
 class EmailLoginScreen extends StatefulWidget {
@@ -30,60 +20,7 @@ class EmailLoginScreen extends StatefulWidget {
 }
 
 class _EmailLoginScreenState extends State<EmailLoginScreen> {
-  // Rx<ModelCommonResponse> login = ModelCommonResponse().obs;
-  // Rx<RxStatus> statusOfuserVerifyOtp = RxStatus.empty().obs;
-  //
-  // Rx<UserVerifyOtpModel> userVerifyOtp = UserVerifyOtpModel().obs;
-  //
-  // var initStateBlank = Get.arguments[0];
-  // VerifyOtp() {
-  //   if (formKey2.currentState!.validate()) {
-  //     verifyOtpRepo(
-  //       refrence: "/${ Get.arguments[0]}/validate",
-  //       otp: emailOtpController.text.trim(),
-  //       context: context,
-  //
-  //     ).then((value) {
-  //       verifyOtp.value = value;
-  //       if (value.status == "success") {
-  //         setState(() {
-  //           Get.toNamed(MyRouters.bottomNavbar);
-  //           statusOfVerify.value = RxStatus.success();
-  //         });
-  //
-  //
-  //         showToast(value.message.toString());
-  //       } else {
-  //         statusOfVerify.value = RxStatus.error();
-  //         showToast(value.message.toString());
-  //       }
-  //     });
-  //   }
-  // }
-  // verifyOtpRepo() {
-  //   if (formKey2.currentState!.validate()) {
-  //     userVerifyOtpRepo(
-  //       phone_email: initStateBlank,
-  //       otp: emailOtpController.text.trim(),
-  //       context: context,
-  //
-  //     ).then((value) {
-  //       userVerifyOtp.value = value;
-  //       if (value.status == "success") {
-  //         setState(() {
-  //           Get.toNamed(MyRouters.bottomNavbar);
-  //           statusOfuserVerifyOtp.value = RxStatus.success();
-  //         });
-  //
-  //
-  //         showToast(value.message.toString());
-  //       } else {
-  //         statusOfuserVerifyOtp.value = RxStatus.error();
-  //         showToast(value.message.toString());
-  //       }
-  //     });
-  //   }
-  // }
+
   final formKeylogin = GlobalKey<FormState>();
   var obscureText1 = true;
   final details = Get.put(DetailsController());

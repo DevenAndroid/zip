@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,21 +5,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 
 import '../controller/profile_controller.dart';
-import '../models/model_data_paln.dart';
-import '../models/model_fetch_telcos.dart';
-import '../models/save_transastion_model.dart';
-import '../models/service_common_model.dart';
 import '../models/service_variation_model.dart';
-import '../repository/data_plan_repo.dart';
-import '../repository/fetch_telcos_repo.dart';
-import '../repository/save_buy_plan_repo.dart';
-import '../repository/service_common_repo.dart';
 import '../repository/service_variation_repo.dart';
-import '../resourses/api_constant.dart';
 import '../widgets/circular_progressindicator.dart';
-import '../widgets/common_button.dart';
 import '../widgets/common_colour.dart';
-import '../widgets/common_error_widget.dart';
 
 class InterNetPlanScreen extends StatefulWidget {
   const InterNetPlanScreen({Key? key}) : super(key: key);
@@ -37,19 +25,6 @@ class _InterNetPlanScreenState extends State<InterNetPlanScreen> {
 
   Rx<ServiceVariationModel> dataPlan = ServiceVariationModel().obs;
 
-  // final profileController = Get.put(ProfileController());
-  // getTelcoList() {
-  //   commonServiceRepo(
-  //       key: "services"
-  //   ).then((value) {
-  //     log("response.body.....    ${value}");
-  //     telcos.value = value;
-  //
-  //     statusOftelcos.value = RxStatus.success();
-  //   }
-  //     // showToast(value.message.toString());
-  //   );
-  // }
   getTelcoList() {
     commonVariationRepo(key: "variations", serviceID: serviceid.toString())
         .then((value) {
@@ -108,152 +83,6 @@ class _InterNetPlanScreenState extends State<InterNetPlanScreen> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Obx(() {
-                            //   return  statusOfPlan.value.isSuccess ?
-                            //   ListView.builder(
-                            //       physics: const NeverScrollableScrollPhysics(),
-                            //       itemCount:dataPlan.value.data!.content!.length,
-                            //       shrinkWrap: true,
-                            //       itemBuilder: (context, index) {
-                            //         return Column(
-                            //           children: [
-                            //
-                            //             Container(
-                            //               padding: EdgeInsets.all(8),
-                            //               decoration: BoxDecoration(
-                            //                   borderRadius: BorderRadius.circular(10),
-                            //                   border: Border.all(color: AppTheme.primaryColor)
-                            //               ),
-                            //               child: Padding(
-                            //                 padding: const EdgeInsets.all(12.0),
-                            //                 child: Column(
-                            //                   children: [
-                            //                     Row(
-                            //                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            //                       children: [
-                            //                         Text("Plan",
-                            //                           style: GoogleFonts.poppins(
-                            //                               color: const Color(0xFF1D1D1D),
-                            //                               fontSize: 16,
-                            //                               fontWeight: FontWeight.w500),),
-                            //                         Text(dataPlan.value.data!.content![index].name.toString(),
-                            //                           style: GoogleFonts.poppins(
-                            //                               color: const Color(0xFF1D1D1D),
-                            //                               fontSize: 15,
-                            //                               fontWeight: FontWeight.w500),),
-                            //
-                            //
-                            //                       ],
-                            //                     ),
-                            //                     SizedBox(height: 10,),
-                            //                     Row(
-                            //                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            //                       children: [
-                            //                         Text("Price",
-                            //                           style: GoogleFonts.poppins(
-                            //                               color: const Color(0xFF1D1D1D),
-                            //                               fontSize: 15,
-                            //                               fontWeight: FontWeight.w500),),
-                            //                         Text(dataPlan.value.data!.content![index].maximumAmount.toString(),
-                            //                           style: GoogleFonts.poppins(
-                            //                               color: const Color(0xFF1D1D1D),
-                            //                               fontSize: 16,
-                            //                               fontWeight: FontWeight.w500),),
-                            //
-                            //
-                            //                       ],
-                            //                     ),
-                            //                     SizedBox(height: 10,),
-                            //                     Row(
-                            //                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            //                       children: [
-                            //                         Text("Validity",
-                            //                           style: GoogleFonts.poppins(
-                            //                               color: const Color(0xFF1D1D1D),
-                            //                               fontSize: 16,
-                            //                               fontWeight: FontWeight.w500),),
-                            //                         Text(dataPlan.value.data!.content![index].convinienceFee.toString(),
-                            //                           style: GoogleFonts.poppins(
-                            //                               color: const Color(0xFF1D1D1D),
-                            //                               fontSize: 15,
-                            //                               fontWeight: FontWeight.w500),),
-                            //
-                            //
-                            //                       ],
-                            //                     ),
-                            //                     SizedBox(height: 10,),
-                            //                     Row(
-                            //                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            //                       children: [
-                            //                         Text("Data Code",
-                            //                           style: GoogleFonts.poppins(
-                            //                               color: const Color(0xFF1D1D1D),
-                            //                               fontSize: 15,
-                            //                               fontWeight: FontWeight.w500),),
-                            //                         Text(dataPlan.value.data!.content![index].productType.toString(),
-                            //                           style: GoogleFonts.poppins(
-                            //                               color: const Color(0xFF1D1D1D),
-                            //                               fontSize: 16,
-                            //                               fontWeight: FontWeight.w500),),
-                            //
-                            //
-                            //                       ],
-                            //                     ),
-                            //                     SizedBox(height: 15,),
-                            //                     Row(
-                            //                       mainAxisAlignment: MainAxisAlignment.end,
-                            //                       children: [
-                            //                         InkWell(
-                            //                             onTap: (){
-                            //                               Get.toNamed(MyRouters.purchaseDataScreen,arguments: [dataPlan.value.data!.content![index].minimiumAmount.toString(),dataPlan.value.data!.content![index].name.toString(),dataPlan.value.data!.content![index].productType.toString(),]);
-                            //
-                            //                               // if(dataPlan.value.data!.content![index].minimiumAmount < profileController
-                            //                               //     .currentBalanceModel
-                            //                               //     .value
-                            //                               //     .data){
-                            //                               //   Get.toNamed(MyRouters.purchaseDataScreen,arguments: [initStateBlank,dataPlan.value.data!.content![index].minimiumAmount.toString(),dataPlan.value.data!.content![index].name.toString(),dataPlan.value.data!.content![index].productType.toString(),]);
-                            //                               //
-                            //                               // }
-                            //                               // else{
-                            //                               //   showToast("inefficient balance");
-                            //                               // }
-                            //
-                            //
-                            //                              },
-                            //                             child: Container(
-                            //                                 padding: EdgeInsets.symmetric(vertical: 8,horizontal: 10),
-                            //                                 decoration: BoxDecoration(
-                            //                                   borderRadius: BorderRadius.circular(7),
-                            //                                   color: AppTheme.secondaryColor,
-                            //                                 ),
-                            //
-                            //                                 child: Text("Buy Plan ",
-                            //                                   style: GoogleFonts.poppins(
-                            //                                       color:  Colors.white,
-                            //                                       fontSize: 12,
-                            //                                       fontWeight: FontWeight.w500),))),
-                            //                       ],
-                            //                     ),
-                            //
-                            //
-                            //                   ],
-                            //                 ),
-                            //               ),
-                            //             ),
-                            //             SizedBox(height: 15,),
-                            //           ],
-                            //           );
-                            //       }):  statusOfPlan.value.isError
-                            //       ? CommonErrorWidget(
-                            //     errorText:
-                            //     dataPlan.value.message.toString(),
-                            //     onTap: () {
-                            //       // print("data"+dataPlan.value.data!.content!.first.productType.toString());
-                            //       getTelcoList();
-                            //     },
-                            //   )
-                            //       : const CommonProgressIndicator();
-                            // })
                             ListView.builder(
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemCount: dataPlan

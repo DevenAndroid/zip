@@ -8,13 +8,8 @@ import 'package:zip/routers/my_routers.dart';
 
 import '../controller/update_user.dart';
 import '../models/buy_electricity_model.dart';
-import '../models/mode_biller.dart';
-import '../models/model_fetch_telcos.dart';
 import '../repository/buy_electricity_repo.dart';
-import '../repository/fetch_telcos_repo.dart';
-import '../repository/list_biller_repo.dart';
 import '../widgets/circular_progressindicator.dart';
-import '../widgets/common_button.dart';
 import '../widgets/common_colour.dart';
 import '../widgets/common_error_widget.dart';
 

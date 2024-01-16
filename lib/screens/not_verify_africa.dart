@@ -51,13 +51,13 @@ class _NotVerifyAfricaScreenState extends State<NotVerifyAfricaScreen> {
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
-          leading: SizedBox(),
+          leading: const SizedBox(),
           actions: [
             InkWell(
                 onTap: () {
                   signOut();
                 },
-                child: Icon(Icons.exit_to_app))
+                child: const Icon(Icons.exit_to_app))
           ],
           centerTitle: true,
           title: Text(
