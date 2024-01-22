@@ -65,7 +65,7 @@ class _TelcosScreenState extends State<TelcosScreen> {
     var uniqueIdentifier = pref.getString("uniqueIdentifier");
     saveTransastionRepo(
             user_id: profileController.modal.value.data!.user!.id.toString(),
-            amount: registorController.amountController1.text.trim(),
+            amount: registorController.result.toString(),
             about: "Buy Airtime",
             // complete_response: purchaseData.value.data!.toJson(),
             context: context,
@@ -100,7 +100,7 @@ class _TelcosScreenState extends State<TelcosScreen> {
     } else {
       airtimeRepo(
               key: "pay",
-              amount: registorController.amountController1.text.trim(),
+              amount:registorController.result.toString(),
               phone: registorController.phoneController1.text.trim(),
               serviceID: profileController.serviceController.text.trim()
 
@@ -112,7 +112,8 @@ class _TelcosScreenState extends State<TelcosScreen> {
         log("response.body.....    ${value}");
         purchaseData.value = value;
         if (value.status == true) {
-          saveList();
+          // saveList();
+          Get.toNamed(MyRouters.successRechargeScreen);
           statusOfProviders.value = RxStatus.success();
           showToast(value.message.toString());
           print(
@@ -254,7 +255,9 @@ class _TelcosScreenState extends State<TelcosScreen> {
                       inputFormatters: [
                         FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
                       ],
-                      onChanged: (value) => doubleVar = double.parse(value),
+                      onChanged: (value) {
+                        _addNumbers();
+                      },
                       validator: MultiValidator([
                         RangeValidator(
                             min: 0,
@@ -267,6 +270,7 @@ class _TelcosScreenState extends State<TelcosScreen> {
                             errorText: 'Please enter your amount'),
                       ]),
                       controller: registorController.amountController1,
+
                       obSecure: false,
                       hintText: "0",
                       labelText: "Amount",
@@ -286,5 +290,33 @@ class _TelcosScreenState extends State<TelcosScreen> {
                     ),
                   ])),
         )));
+  }
+  void _addNumbers() {
+    // Get the input values as strings
+    String firstNumberString = registorController.amountController1.text;
+    String secondNumberString =   profileController
+        .currentBalanceModel.value.data!.fee!.serviceFee
+        .toString();
+
+    // Check if both inputs are not empty
+    if (firstNumberString.isNotEmpty && secondNumberString.isNotEmpty) {
+      // Convert strings to integers
+      int firstNumber = int.parse(firstNumberString);
+      int secondNumber = int.parse(secondNumberString);
+
+      // Perform addition
+      int sum = firstNumber + secondNumber;
+
+      // Convert the result back to a string and update the UI
+      setState(() {
+        registorController.result = sum.toString();
+        print(registorController.result.toString());
+      });
+    } else {
+      // Handle the case when one or both of the inputs are empty
+      setState(() {
+        registorController.result = 'Please enter valid numbers';
+      });
+    }
   }
 }

@@ -30,6 +30,7 @@ import '../models/model_verif_account.dart';
 import '../models/request_money_mail_model.dart';
 import '../models/save_freshwork_id_model.dart';
 import '../models/save_transastion_model.dart';
+import '../models/setting_modal.dart';
 import '../models/update_contact_model.dart';
 import '../models/verify_africa.dart';
 import '../repository/africaLive_repo.dart';
@@ -46,6 +47,7 @@ import '../repository/request_money_mail_repo.dart';
 import '../repository/save_buy_plan_repo.dart';
 import '../repository/save_freshwork_repo.dart';
 import '../repository/save_image_repo.dart';
+import '../repository/setting_repo.dart';
 import '../repository/update_address_repo.dart';
 import '../repository/update_contact_repo.dart';
 import '../repository/update_profile_repo.dart';
@@ -61,6 +63,20 @@ import 'number_controller.dart';
 
 class registerController extends GetxController {
   ////meter details
+  String result = '';
+  String result1 = '';
+  String result2 = '';
+  String result3 = '';
+  bool isValue = false;
+  Rx<SettingModal> modalGetSetting = SettingModal().obs;
+  getSetting() {
+    settingRepo().then((value) {
+      modalGetSetting.value = value;
+      if (value.status == true) {
+        print(value.message.toString());
+      }
+    });
+  }
 
   TextEditingController CustomerNameController = TextEditingController();
   TextEditingController CustomerNumberController = TextEditingController();

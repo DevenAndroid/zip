@@ -230,6 +230,9 @@ class ProfileController extends GetxController {
             modal.value.data!.user!.address!.state.toString();
         statusOfProfile.value = RxStatus.success();
 
+
+
+
         // holder();
       } else {
         statusOfProfile.value = RxStatus.error();

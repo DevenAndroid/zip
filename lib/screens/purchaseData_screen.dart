@@ -60,7 +60,7 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
   saveList() {
     saveTransastionRepo(
             user_id: profileController.modal.value.data!.user!.id.toString(),
-            amount: initStateBlank,
+            amount:registorController.result3.toString() ,
             about: "Buy Internet",
             // complete_response: purchaseData.value.data!.toJson(),
             context: context,
@@ -91,7 +91,7 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
 
     commonBuyRepo(
       phone: profileController.phoneController.text.trim(),
-      amount: initStateBlank,
+      amount: registorController.result3.toString() ,
       key: "pay",
       billersCode: "08011111111",
       serviceID: initStateBlank2,
@@ -100,7 +100,8 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
       log("response.body.....    ${value}");
       purchaseInternet.value = value;
       if (value.status == true) {
-        saveList();
+        // saveList();
+        Get.toNamed(MyRouters.successRechargeScreen);
         statusOfProviders.value = RxStatus.success();
         showToast(value.message.toString());
         // print(  registorController.fetchAccount.value.data!.accountNumber.toString()+DateTime.now().millisecondsSinceEpoch.toString(),);
@@ -222,6 +223,9 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
               child: CommonTextfield(
                 controller: profileController.descriptionController,
                 obSecure: false,
+                onChanged: (value){
+                  _addNumbers();
+                },
                 hintText: "Recharge",
                 labelText: "Description",
               ),
@@ -250,5 +254,33 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
         ),
       ),
     );
+  }
+  void _addNumbers() {
+    // Get the input values as strings
+    String firstNumberString = initStateBlank;
+    String secondNumberString =   profileController
+        .currentBalanceModel.value.data!.fee!.serviceFee
+        .toString();
+
+    // Check if both inputs are not empty
+    if (firstNumberString.isNotEmpty && secondNumberString.isNotEmpty) {
+      // Convert strings to integers
+      int firstNumber = int.parse(firstNumberString);
+      int secondNumber = int.parse(secondNumberString);
+
+      // Perform addition
+      int sum = firstNumber + secondNumber;
+
+      // Convert the result back to a string and update the UI
+      setState(() {
+        registorController.result3 = sum.toString();
+        print(registorController.result3.toString());
+      });
+    } else {
+      // Handle the case when one or both of the inputs are empty
+      setState(() {
+        registorController.result2 = 'Please enter valid numbers';
+      });
+    }
   }
 }

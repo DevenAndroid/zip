@@ -737,10 +737,10 @@ class _WalletScreen1State extends State<WalletScreen1> {
                           onTap: () {
                             print("object");
 
-                            if (controller1.currentBalanceModel.value.data!.fee!
-                                    .bridgeCardFee! <=
-                                controller1.currentBalanceModel.value.data!
-                                    .currentBalance!) {
+                            if (controller1.currentBalanceModel.value.data!
+                                .currentBalance! >
+                                controller1.currentBalanceModel.value.data!.fee!
+                                    .bridgeCardFee!) {
                               controller1.create(context);
                             } else {
                               showToast(

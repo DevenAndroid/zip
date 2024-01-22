@@ -33,6 +33,7 @@ import '../repository/verify_meter_repo.dart';
 import '../resourses/api_constant.dart';
 
 import '../controller/update_user.dart';
+import 'meter_details.dart';
 
 class PurchaseRechargePin extends StatefulWidget {
   const PurchaseRechargePin({Key? key}) : super(key: key);
@@ -61,7 +62,7 @@ class _PurchaseRechargePinState extends State<PurchaseRechargePin> {
   saveList() {
     saveTransastionRepo(
             user_id: profileController.modal.value.data!.user!.id.toString(),
-            amount: controller.amount.text.trim(),
+            amount: controller.result1.toString(),
             about: "Buy Electricity",
             // complete_response: purchaseData.value.data!.toJson(),
             context: context,
@@ -83,26 +84,52 @@ class _PurchaseRechargePinState extends State<PurchaseRechargePin> {
   buyEnergy() {
     BuyEnergyPlanRepo(
       billersCode: controller.meterNo.text.toString(),
-      variation_code: controller.provider.text.trim(),
-      serviceID: controller.idController1.text,
+      variation_code: controller.provider1.text.trim(),
+      serviceID: controller.idController1.text.toString(),
       key: "pay",
-      amount: controller.amount,
-      phone: controller.mobileNO,
+      amount:controller.result1.toString(),
+      phone: controller.mobileNO.text.toString(),
       context: context,
     ).then((value) {
       Energy.value = value;
       if (value.status == true) {
-        // payOutcontroller.accountName.text = (value.data!.accountName??"").toString();
+        controller.productNameController.text =
+            Energy.value.data!.content!.transactions!.productName.toString();
         statusOfBuyEnergy.value = RxStatus.success();
-        saveList();
-        Get.toNamed(MyRouters.successRechargeScreen);
+        // saveList();
+        Get.to(() => MeterDetails());
         showToast(value.message.toString());
       } else {
         showToast(value.message.toString());
       }
     }
-        // showToast(value.message.toString());
-        );
+      // showToast(value.message.toString());
+    );
+  }
+  meter() {
+    verifyMeterRepo(
+        billersCode: controller.meterNo.text.toString(),
+        type: controller.provider1.text.trim(),
+        serviceID: controller.idController1.text,
+        key: "merchant-verify")
+        .then((value) {
+      verifyMeter.value = value;
+      if (value.status == true) {
+        controller.CustomerNameController.text =
+            verifyMeter.value.data!.content!.customerName.toString();
+        controller.CustomerNumberController.text =
+            verifyMeter.value.data!.content!.customerNumber.toString();
+        buyEnergy();
+        // payOutcontroller.accountName.text = (value.data!.accountName??"").toString();
+        statusOfResolve.value = RxStatus.success();
+
+        showToast(value.message.toString());
+      } else {
+        showToast(value.message.toString());
+      }
+    }
+      // showToast(value.message.toString());
+    );
   }
 
   verify() {
@@ -118,7 +145,7 @@ class _PurchaseRechargePinState extends State<PurchaseRechargePin> {
             .then((value) {
           verifyMeter.value = value;
           if (value.status == true) {
-            buyEnergy();
+            meter();
             // payOutcontroller.accountName.text = (value.data!.accountName??"").toString();
             statusOfResolve.value = RxStatus.success();
 

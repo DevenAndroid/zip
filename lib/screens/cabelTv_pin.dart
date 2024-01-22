@@ -71,7 +71,7 @@ class _CabelTvPinState extends State<CabelTvPin> {
   saveList() {
     saveTransastionRepo(
             user_id: profileController.modal.value.data!.user!.id.toString(),
-            amount: initStateBlank,
+            amount: registorController.result2.toString(),
             about: "Buy Cabel Tv",
             // complete_response: purchaseData.value.data!.toJson(),
             context: context,
@@ -97,19 +97,21 @@ class _CabelTvPinState extends State<CabelTvPin> {
     print(initStateBlank);
     print(initStateBlank1);
     BuyCabelRepo(
-            amount: initStateBlank,
-            context: context,
-            subscription_type: initStateBlank1,
-            variation_code: initStateBlank2,
-            serviceID: initStateBlank3,
-            billersCode: profileController.phone2Controller.text.trim(),
-            phone: profileController.modal.value.data!.user!.phone.toString(),
-            key: "pay")
-        .then((value) {
+        amount:registorController.result2.toString(),
+        phone: profileController.modal.value.data!.user!.phone.toString(),
+        variation_code:   initStateBlank1,
+        serviceID:initStateBlank2,
+        context: context,
+        billersCode: profileController.phone2Controller.text.trim(),
+        key: "pay"
+
+
+    ).then((value) {
       log("response.body.....    ${value}");
       buyCabelTv.value = value;
       if (value.status == true) {
-        saveList();
+        // saveList();
+        Get.toNamed(MyRouters.successRechargeScreen);
         statusOfProviders.value = RxStatus.success();
         showToast(value.message.toString());
         // print(  registorController.fetchAccount.value.data!.accountNumber.toString()+DateTime.now().millisecondsSinceEpoch.toString(),);
@@ -118,8 +120,8 @@ class _CabelTvPinState extends State<CabelTvPin> {
         showToast(value.message.toString());
       }
     }
-            // showToast(value.message.toString());
-            );
+      // showToast(value.message.toString());
+    );
   }
 
   verify() {

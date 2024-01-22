@@ -16,11 +16,13 @@ import '../controller/number_controller.dart';
 import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
 import '../models/buy_plan_model.dart';
+import '../models/model_airtime.dart';
 import '../models/model_security_pin.dart';
 import '../models/model_setting.dart';
 import '../models/model_verify_africa.dart';
 import '../models/save_transastion_model.dart';
 import '../models/verify_africa.dart';
+import '../repository/airtime_repo.dart';
 import '../repository/repo_buy_plan.dart';
 import '../repository/save_buy_plan_repo.dart';
 import '../repository/security_pin_repo].dart';
@@ -50,13 +52,13 @@ class _SucessRechargePinState extends State<SucessRechargePin> {
   Rx<ModelBuy> purchaseData = ModelBuy().obs;
   Rx<RxStatus> statusOfSave = RxStatus.empty().obs;
   Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
-
+  Rx<AirtimeModel> purchaseData1 = AirtimeModel().obs;
   saveList() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var uniqueIdentifier = pref.getString("uniqueIdentifier");
     saveTransastionRepo(
             user_id: profileController.modal.value.data!.user!.id.toString(),
-            amount: controller.amountController1.text.trim(),
+            amount: controller.result.toString(),
             about: "Buy Airtime",
             // complete_response: purchaseData.value.data!.toJson(),
             context: context,
@@ -83,22 +85,27 @@ class _SucessRechargePinState extends State<SucessRechargePin> {
         .then((value) {
       modelVerifySecurity.value = value;
       if (value.status == true) {
-        BuyPlanRepo(
-          telco: profileController.airtimeController.text.trim(),
-          amount: controller.amountController1.text.trim(),
-          phone_no: controller.phoneController1.text.trim(),
-          reference:
-              controller.fetchAccount.value.data!.accountNumber.toString() +
-                  DateTime.now().millisecondsSinceEpoch.toString(),
-        ).then((value) {
+        airtimeRepo(
+            key: "pay",
+            amount:  controller.result.toString(),
+            phone: controller.phoneController1.text.trim(),
+            serviceID: profileController.serviceController.text.trim()
+
+          // reference:
+          //     registorController.fetchAccount.value.data!.accountNumber.toString() +
+          //         DateTime.now().millisecondsSinceEpoch.toString(),
+        )
+            .then((value) {
           log("response.body.....    ${value}");
-          purchaseData.value = value;
-          if (value.success == true) {
-            saveList();
+          purchaseData1.value = value;
+          if (value.status == true) {
+            // saveList();
+            Get.toNamed(MyRouters.successRechargeScreen);
             statusOfProviders.value = RxStatus.success();
             showToast(value.message.toString());
             print(
-              controller.fetchAccount.value.data!.accountNumber.toString() +
+              controller.fetchAccount.value.data!.accountNumber
+                  .toString() +
                   DateTime.now().millisecondsSinceEpoch.toString(),
             );
           } else {
@@ -106,8 +113,8 @@ class _SucessRechargePinState extends State<SucessRechargePin> {
             showToast(value.message.toString());
           }
         }
-            // showToast(value.message.toString());
-            );
+          // showToast(value.message.toString());
+        );
         statusOfSucess.value = RxStatus.success();
         showToast(value.message.toString());
       } else {

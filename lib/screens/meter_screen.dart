@@ -114,7 +114,7 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
       variation_code: controller.provider1.text.trim(),
       serviceID: controller.idController1.text.toString(),
       key: "pay",
-      amount: controller.amount.text.toString(),
+      amount: controller.result1.toString(),
       phone: controller.mobileNO.text.toString(),
       context: context,
     ).then((value) {
@@ -123,7 +123,7 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
         controller.productNameController.text =
             Energy.value.data!.content!.transactions!.productName.toString();
         statusOfBuyEnergy.value = RxStatus.success();
-        saveList();
+        // saveList();
         Get.to(() => MeterDetails());
         showToast(value.message.toString());
       } else {
@@ -314,7 +314,10 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
                         LengthLimitingTextInputFormatter(10),
                         FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
                       ],
-                      onChanged: (value) => doubleVar = double.parse(value),
+                      onChanged: (value) {
+    addition();
+    },
+
                       validator: MultiValidator([
                         RangeValidator(
                             min: 0,
@@ -373,5 +376,33 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
                     ),
                   ])),
         )));
+  }
+  void addition() {
+    // Get the input values as strings
+    String firstNumberString = controller.amount.text;
+    String secondNumberString =   profileController
+        .currentBalanceModel.value.data!.fee!.serviceFee
+        .toString();
+
+    // Check if both inputs are not empty
+    if (firstNumberString.isNotEmpty && secondNumberString.isNotEmpty) {
+      // Convert strings to integers
+      int firstNumber = int.parse(firstNumberString);
+      int secondNumber = int.parse(secondNumberString);
+
+      // Perform addition
+      int sum = firstNumber + secondNumber;
+
+      // Convert the result back to a string and update the UI
+      setState(() {
+        registorController.result1 = sum.toString();
+        print(registorController.result1.toString());
+      });
+    } else {
+      // Handle the case when one or both of the inputs are empty
+      setState(() {
+        registorController.result = 'Please enter valid numbers';
+      });
+    }
   }
 }

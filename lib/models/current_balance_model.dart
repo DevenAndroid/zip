@@ -26,13 +26,16 @@ class Data {
   dynamic currentBalance;
   Fee? fee;
   dynamic charges;
+  Setting? setting;
 
-  Data({this.currentBalance, this.fee, this.charges});
+  Data({this.currentBalance, this.fee, this.charges, this.setting});
 
   Data.fromJson(Map<String, dynamic> json) {
     currentBalance = json['current_balance'];
     fee = json['fee'] != null ? new Fee.fromJson(json['fee']) : null;
     charges = json['charges'];
+    setting =
+    json['setting'] != null ? new Setting.fromJson(json['setting']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -42,6 +45,9 @@ class Data {
       data['fee'] = this.fee!.toJson();
     }
     data['charges'] = this.charges;
+    if (this.setting != null) {
+      data['setting'] = this.setting!.toJson();
+    }
     return data;
   }
 }
@@ -75,6 +81,35 @@ class Fee {
     data['cashin_fee'] = this.cashinFee;
     data['service_fee'] = this.serviceFee;
     data['bridgeCard_fee'] = this.bridgeCardFee;
+    return data;
+  }
+}
+
+class Setting {
+  bool? hideBalance;
+  bool? enableSecurityLock;
+  bool? transactionPin;
+  bool? enableFingerprints;
+
+  Setting(
+      {this.hideBalance,
+        this.enableSecurityLock,
+        this.transactionPin,
+        this.enableFingerprints});
+
+  Setting.fromJson(Map<String, dynamic> json) {
+    hideBalance = json['hide_balance'];
+    enableSecurityLock = json['enable_security_lock'];
+    transactionPin = json['transaction_pin'];
+    enableFingerprints = json['enable_fingerprints'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['hide_balance'] = this.hideBalance;
+    data['enable_security_lock'] = this.enableSecurityLock;
+    data['transaction_pin'] = this.transactionPin;
+    data['enable_fingerprints'] = this.enableFingerprints;
     return data;
   }
 }

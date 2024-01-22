@@ -16,9 +16,11 @@ import '../controller/update_user.dart';
 import '../models/model_buy_interNet.dart';
 import '../models/model_security_pin.dart';
 import '../models/save_transastion_model.dart';
+import '../models/service_buy_model.dart';
 import '../repository/buy_dataplan_repo.dart';
 import '../repository/save_buy_plan_repo.dart';
 import '../repository/security_pin_repo].dart';
+import '../repository/service_buy_repo.dart';
 import '../resourses/api_constant.dart';
 
 import '../controller/update_user.dart';
@@ -52,7 +54,7 @@ class _DataPurchasePinState extends State<DataPurchasePin> {
 
   Rx<RxStatus> statusOfProviders = RxStatus.empty().obs;
 
-  Rx<ModelBuyInternet> purchaseInternet = ModelBuyInternet().obs;
+  // Rx<ModelBuyInternet> purchaseInternet = ModelBuyInternet().obs;
 
   Rx<RxStatus> statusOfSave = RxStatus.empty().obs;
   Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
@@ -60,7 +62,7 @@ class _DataPurchasePinState extends State<DataPurchasePin> {
   saveList() {
     saveTransastionRepo(
             user_id: profileController.modal.value.data!.user!.id.toString(),
-            amount: initStateBlank1,
+            amount:registorController.result3.toString() ,
             about: "Buy Internet",
             // complete_response: purchaseData.value.data!.toJson(),
             context: context,
@@ -83,24 +85,25 @@ class _DataPurchasePinState extends State<DataPurchasePin> {
             // showToast(value.message.toString());
             );
   }
-
+  Rx<ServiceBuyModel> purchaseInternet = ServiceBuyModel().obs;
   getInterNet() {
     print(initStateBlank);
     print(initStateBlank1);
     print(initStateBlank2);
-    print(initStateBlank3);
 
-    BuyDataPlanRepo(
-            telco: initStateBlank,
-            amount: initStateBlank1,
-            phone_no: profileController.phoneController.text.trim(),
-            data_code: initStateBlank3,
-            context: context)
-        .then((value) {
+    commonBuyRepo(
+      phone: profileController.phoneController.text.trim(),
+      amount: registorController.result3.toString() ,
+      key: "pay",
+      billersCode: "08011111111",
+      serviceID: initStateBlank2,
+      variation_code: initStateBlank1,
+    ).then((value) {
       log("response.body.....    ${value}");
       purchaseInternet.value = value;
-      if (value.success == true) {
-        saveList();
+      if (value.status == true) {
+        // saveList();
+        Get.toNamed(MyRouters.successRechargeScreen);
         statusOfProviders.value = RxStatus.success();
         showToast(value.message.toString());
         // print(  registorController.fetchAccount.value.data!.accountNumber.toString()+DateTime.now().millisecondsSinceEpoch.toString(),);
@@ -109,8 +112,8 @@ class _DataPurchasePinState extends State<DataPurchasePin> {
         showToast(value.message.toString());
       }
     }
-            // showToast(value.message.toString());
-            );
+      // showToast(value.message.toString());
+    );
   }
 
   TextEditingController otpcontroller = TextEditingController();

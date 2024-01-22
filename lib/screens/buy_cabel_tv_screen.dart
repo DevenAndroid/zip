@@ -56,7 +56,7 @@ class _PurchaseCabelScreenState extends State<PurchaseCabelScreen> {
   saveList() {
     saveTransastionRepo(
         user_id: profileController.modal.value.data!.user!.id.toString(),
-        amount:initStateBlank,
+        amount:registorController.result2.toString(),
         about: "Buy Cable Tv",
         // complete_response: purchaseData.value.data!.toJson(),
         context: context,
@@ -85,7 +85,7 @@ class _PurchaseCabelScreenState extends State<PurchaseCabelScreen> {
     print(initStateBlank);
     print(initStateBlank1);
     BuyCabelRepo(
-     amount: initStateBlank,
+     amount: registorController.result2.toString(),
      phone: profileController.modal.value.data!.user!.phone.toString(),
      variation_code:   initStateBlank1,
       serviceID:initStateBlank2,
@@ -98,7 +98,8 @@ key: "pay"
       log("response.body.....    ${value}");
       buyCabelTv.value = value;
       if (value.status == true) {
-        saveList();
+        Get.toNamed(MyRouters.successRechargeScreen);
+        // saveList();
         statusOfProviders.value = RxStatus.success();
         showToast(value.message.toString());
         // print(  registorController.fetchAccount.value.data!.accountNumber.toString()+DateTime.now().millisecondsSinceEpoch.toString(),);
@@ -226,6 +227,9 @@ key: "pay"
             Padding(
               padding: const EdgeInsets.only(left: 6, right: 6),
               child: CommonTextfield(
+                onChanged: (value){
+                  _addNumbers();
+                },
                 controller: profileController.description2Controller,
                 obSecure: false,
                 hintText: "Recharge",
@@ -255,5 +259,33 @@ key: "pay"
         ),
       ),
     );
+  }
+  void _addNumbers() {
+    // Get the input values as strings
+    String firstNumberString = initStateBlank;
+    String secondNumberString =   profileController
+        .currentBalanceModel.value.data!.fee!.serviceFee
+        .toString();
+
+    // Check if both inputs are not empty
+    if (firstNumberString.isNotEmpty && secondNumberString.isNotEmpty) {
+      // Convert strings to integers
+      int firstNumber = int.parse(firstNumberString);
+      int secondNumber = int.parse(secondNumberString);
+
+      // Perform addition
+      int sum = firstNumber + secondNumber;
+
+      // Convert the result back to a string and update the UI
+      setState(() {
+        registorController.result2 = sum.toString();
+        print(registorController.result2.toString());
+      });
+    } else {
+      // Handle the case when one or both of the inputs are empty
+      setState(() {
+        registorController.result2 = 'Please enter valid numbers';
+      });
+    }
   }
 }

@@ -30,9 +30,9 @@ class _NotVerifyAfricaScreenState extends State<NotVerifyAfricaScreen> {
       signout.value = value;
       if (value.status == true) {
         statusOfsignout.value = RxStatus.success();
-        SharedPreferences pref = await SharedPreferences.getInstance();
+       SharedPreferences pref = await SharedPreferences.getInstance();
         Get.offAllNamed(MyRouters.onBoardingScreen);
-        pref.clear();
+  pref.clear();
         showToast(value.message.toString());
       } else {
         statusOfsignout.value = RxStatus.error();

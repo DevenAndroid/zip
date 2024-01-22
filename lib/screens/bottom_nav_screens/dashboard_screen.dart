@@ -14,7 +14,7 @@ import '../../controller/update_user.dart';
 import '../../repository/myprofile_repo.dart';
 import '../../resourses/api_constant.dart';
 
-bool isValue = false;
+
 
 class DashBoard extends StatefulWidget {
   const DashBoard({Key? key}) : super(key: key);
@@ -31,15 +31,17 @@ class _DashBoardState extends State<DashBoard> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getData();
     getData1();
+    profileController.getCurrentBalance();
+    RegisterController.getSetting();
+    getData();
     profileController.getCard();
     profileController. getData();
-    profileController.getCurrentBalance();
     // getData1();
   }
 
   getData() {
+
     myProfileRepo().then((value) {
       profileController.modal.value = value;
       if (value.status == true) {
@@ -55,26 +57,18 @@ class _DashBoardState extends State<DashBoard> {
   getData1() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     if (pref.getBool('HideBalance') == true) {
-      isValue = true;
+      registorController.isValue = true;
     } else {
-      isValue = false;
+      registorController.isValue = false;
     }
   }
-
   final formKeyVerify = GlobalKey<FormState>();
   final registorController = Get.put(registerController());
 
   @override
   Widget build(BuildContext context) {
-    String originalString =  profileController
-        .currentBalanceModel
-        .value
-        .data!
-        .currentBalance!
-        .toStringAsFixed(2);
-    double number = double.parse(originalString);
 
-    String formattedString = NumberFormat("#,###.##").format(number);
+
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Obx(() {
@@ -165,7 +159,7 @@ class _DashBoardState extends State<DashBoard> {
                                             Get.toNamed(
                                                 MyRouters.accountsInBank);
                                           },
-                                          child: isValue != true
+                                          child: profileController.currentBalanceModel.value.data!.setting!.hideBalance! != true
                                               ? Row(
                                                   children: [
                                                     Image.network(
@@ -176,7 +170,13 @@ class _DashBoardState extends State<DashBoard> {
                                                     ),
                                                     FittedBox(
                                                       child: Text(
-                                                       formattedString,
+                                                          // profileController
+                                                          //     .currentBalanceModel
+                                                          //     .value
+                                                          //     .data!
+                                                          //     .currentBalance!
+                                                          //     .toStringAsFixed(2),
+                                                          NumberFormat('#,##0.00').format(profileController.currentBalanceModel.value.data!.currentBalance!),
                                                         style:
                                                             GoogleFonts.poppins(
                                                                 color: Colors
