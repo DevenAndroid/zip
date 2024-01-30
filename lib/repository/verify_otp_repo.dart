@@ -1,11 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/model_verify_otp.dart';
-import '../models/registor_model.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 

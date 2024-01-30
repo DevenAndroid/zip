@@ -40,7 +40,7 @@ class _PayNowBalanceState extends State<PayNowBalance> {
   Future CreatePayout() async {
     if (formKey4.currentState!.validate()) {
       payoutRepo(
-              amount: RegistorController.amount1Controller.text.trim(),
+              amount: RegistorController.result4.toString(),
               context: context,
               key: "payouts",
               bank_code: RegistorController.idController1.text.trim(),
@@ -214,9 +214,8 @@ class _PayNowBalanceState extends State<PayNowBalance> {
                         padding: const EdgeInsets.only(left: 15, right: 6),
                         child: Text(
                           "Amount FEE " +
-                              profileController
-                                  .currentBalanceModel.value.data!.fee
-                                  .toString(),
+                              profileController.currentBalanceModel.value.data!
+                                  .fee!.payoutFee.toString(),
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
                               fontSize: 15,
@@ -233,7 +232,9 @@ class _PayNowBalanceState extends State<PayNowBalance> {
                           // LengthLimitingTextInputFormatter(8),
                           FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
                         ],
-                        onChanged: (value) => doubleVar = double.parse(value),
+                        onChanged: (value) {
+                          _addNumbers();
+                        },
                         validator: (value) {
                           if (value!.trim().isEmpty) {
                             return "Please enter amount";
@@ -360,5 +361,34 @@ class _PayNowBalanceState extends State<PayNowBalance> {
               );
       }),
     );
+  }
+  void _addNumbers()
+  {
+    // Get the input values as strings
+    String firstNumberString = RegistorController.amount1Controller.text;
+    String secondNumberString =   profileController
+        .currentBalanceModel.value.data!.fee!.cashoutFee
+        .toString();
+
+    // Check if both inputs are not empty
+    if (firstNumberString.isNotEmpty && secondNumberString.isNotEmpty) {
+      // Convert strings to integers
+      int firstNumber = int.parse(firstNumberString);
+      int secondNumber = int.parse(secondNumberString);
+
+      // Perform addition
+      int sum = firstNumber + secondNumber;
+
+      // Convert the result back to a string and update the UI
+      setState(() {
+        RegistorController.result4 = sum.toString();
+        print(RegistorController.result4.toString());
+      });
+    } else {
+      // Handle the case when one or both of the inputs are empty
+      setState(() {
+        RegistorController.result4 = 'Please enter valid numbers';
+      });
+    }
   }
 }

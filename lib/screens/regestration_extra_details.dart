@@ -3,15 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
 import '../controller/update_user.dart';
-import '../models/model_update_address.dart';
-import '../repository/update_address_repo.dart';
-import '../resourses/api_constant.dart';
 
 class ExtraDetailsScreen extends StatefulWidget {
   const ExtraDetailsScreen({Key? key}) : super(key: key);

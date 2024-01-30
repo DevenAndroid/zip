@@ -231,7 +231,7 @@ class _PurchaseRechargePinState extends State<PurchaseRechargePin> {
                       child: InkWell(
                         onTap: () {},
                         child: Text(
-                          "Create your unique 4-digits pin!",
+                          "Enter your unique 4-digits pin for transition",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
                               fontSize: 22,

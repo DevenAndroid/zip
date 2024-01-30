@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -8,9 +6,6 @@ import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
 import '../models/buy_data_List_model.dart';
-import '../models/model_recieve_transistion.dart';
-import '../repository/get_data_list_repo.dart';
-import '../repository/get_recived_transistion_repo.dart';
 import '../widgets/circular_progressindicator.dart';
 import '../widgets/common_error_widget.dart';
 
@@ -39,6 +34,14 @@ class _BuyDataListState extends State<BuyDataList> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          toolbarHeight: 80,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(4.0),
+            child: Container(
+              color: Colors.grey.shade300,
+              height: 1.0,
+            ),
+          ),
           backgroundColor: Colors.white,
           elevation: 0,
           leading: InkWell(
@@ -333,7 +336,8 @@ class _BuyDataListState extends State<BuyDataList> {
                                                     },
                                                     child: Container(
                                                       padding:
-                                                          const EdgeInsets.all(10),
+                                                          const EdgeInsets.all(
+                                                              10),
                                                       decoration: BoxDecoration(
                                                           borderRadius:
                                                               BorderRadius
@@ -394,13 +398,7 @@ class _BuyDataListState extends State<BuyDataList> {
                                                                               .w500),
                                                                 ),
                                                                 Text(
-                                                                  "Plan:- " +
-                                                                      buyDataList
-                                                                          .value
-                                                                          .data![
-                                                                              index]
-                                                                          .dataplan
-                                                                          .toString(),
+                                                                  "Plan:- ${buyDataList.value.data![index].dataplan}",
                                                                   style: GoogleFonts.poppins(
                                                                       color: Colors
                                                                           .grey,
@@ -465,13 +463,7 @@ class _BuyDataListState extends State<BuyDataList> {
                                                                   ],
                                                                 ),
                                                                 Text(
-                                                                  "Code:- " +
-                                                                      buyDataList
-                                                                          .value
-                                                                          .data![
-                                                                              index]
-                                                                          .dataCode
-                                                                          .toString(),
+                                                                  "Code:- ${buyDataList.value.data![index].dataCode}",
                                                                   style: GoogleFonts.poppins(
                                                                       color: Colors
                                                                           .grey,

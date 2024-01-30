@@ -164,7 +164,6 @@ Future getAuthHeader() async {
       HttpHeaders.authorizationHeader:
           'Bearer ${pref.getString("cookie")!.toString().replaceAll('\"', '')}',
   };
-  print(gg);
   return gg;
 }
 
@@ -179,7 +178,6 @@ Future getAuthHeaderApi() async {
     // if(pref.getString("cookie") != null)
     //   HttpHeaders.authorizationHeader: 'Bearer ${pref.getString("cookie")!.toString().replaceAll('\"', '')}',
   };
-  print(gg);
   return gg;
 }
 

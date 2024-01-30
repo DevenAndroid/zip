@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,11 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 
 import '../models/model_cabel_list.dart';
-import '../models/model_fetch_telcos.dart';
-import '../repository/fetch_telcos_repo.dart';
 import '../repository/get_cabet_tv_repo.dart';
 import '../widgets/circular_progressindicator.dart';
-import '../widgets/common_button.dart';
 import '../widgets/common_colour.dart';
 import '../widgets/common_error_widget.dart';
 
@@ -56,6 +51,14 @@ class _CabelTvScreenState extends State<CabelTvScreen> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          toolbarHeight: 80,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(4.0),
+            child: Container(
+              color: Colors.grey.shade300,
+              height: 1.0,
+            ),
+          ),
           backgroundColor: Colors.white,
           elevation: 0,
           leading: InkWell(
@@ -68,7 +71,7 @@ class _CabelTvScreenState extends State<CabelTvScreen> {
             ),
           ),
           title: Text(
-            "Cabel Tv Providers",
+            "Cable TV Providers",
             style: GoogleFonts.poppins(
                 color: const Color(0xFF1D1D1D),
                 fontSize: 20,
@@ -114,7 +117,7 @@ class _CabelTvScreenState extends State<CabelTvScreen> {
                                                         const SizedBox(),
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 20,
                                             ),
                                             Expanded(
@@ -144,27 +147,27 @@ class _CabelTvScreenState extends State<CabelTvScreen> {
                                                       ]);
                                                 },
                                                 child: Container(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            vertical: 8,
-                                                            horizontal: 10),
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
+                                                        vertical: 8,
+                                                        horizontal: 10),
                                                     decoration: BoxDecoration(
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               7),
-                                                      color: AppTheme
-                                                          .secondaryColor,
+                                                      color: const Color(
+                                                          0xFFEDCA2F),
                                                     ),
                                                     child: Text(
-                                                      "See Plan",
+                                                      "See Plan ",
                                                       style:
                                                           GoogleFonts.poppins(
                                                               color:
-                                                                  Colors.white,
+                                                                  Colors.black,
                                                               fontSize: 12,
                                                               fontWeight:
                                                                   FontWeight
-                                                                      .w500),
+                                                                      .w600),
                                                     ))),
                                           ],
                                         )

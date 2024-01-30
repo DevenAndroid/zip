@@ -3,13 +3,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
-import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
 import '../../controller/update_user.dart';
 import '../../models/model_choose_bank.dart';
 import '../../repository/choose_bank_repo.dart';
-import '../../resourses/api_constant.dart';
 import '../../widgets/common_error_widget.dart';
 
 class ChooseBank extends StatefulWidget {
@@ -25,9 +23,7 @@ class _ChooseBankState extends State<ChooseBank> {
   Rx<ChooseBankList> chooseBank = ChooseBankList().obs;
 
   ChooseBankApi() {
-    chooseBankRepo(
-            )
-        .then((value) {
+    chooseBankRepo().then((value) {
       chooseBank.value = value;
 
       if (value.success == true) {
@@ -35,8 +31,6 @@ class _ChooseBankState extends State<ChooseBank> {
       } else {
         statusOfChooseBank.value = RxStatus.error();
       }
-
-
     });
   }
 
@@ -56,6 +50,14 @@ class _ChooseBankState extends State<ChooseBank> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          toolbarHeight: 80,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(4.0),
+            child: Container(
+              color: Colors.grey.shade300,
+              height: 1.0,
+            ),
+          ),
           elevation: 0,
           backgroundColor: Colors.white,
           leading: InkWell(
@@ -153,12 +155,39 @@ class _ChooseBankState extends State<ChooseBank> {
                                                   item.code.toString()
                                                 ]);
                                           },
-                                          child: Text(
-                                            item.name.toString().toUpperCase(),
-                                            style: GoogleFonts.poppins(
-                                                color: const Color(0xFF1D1D1D),
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w500),
+                                          child: Row(
+                                            children: [
+                                              CircleAvatar(
+                                                backgroundColor: Colors.black,
+                                                maxRadius: 25,
+                                                child: Text(
+                                                  item.name!
+                                                      .toString()
+                                                      .substring(0, 1),
+                                                  style: const TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 13,
+                                              ),
+                                              Expanded(
+                                                child: Text(
+                                                  item.name
+                                                      .toString()
+                                                      .toUpperCase(),
+                                                  style: GoogleFonts.poppins(
+                                                      color: const Color(
+                                                          0xFF1D1D1D),
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                         const SizedBox(

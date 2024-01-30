@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -23,15 +23,14 @@ class WithdrawlCash extends StatefulWidget {
 
 class _WithdrawlCashState extends State<WithdrawlCash> {
   final profileController = Get.put(ProfileController());
+  final controller = Get.put(registerController());
+  final payOutcontroller = Get.put(PayoutController());
 
   Future CreatePayout() async {
-    final controller = Get.put(registerController());
-    final payOutcontroller = Get.put(PayoutController());
-
     Rx<RxStatus> statusOfpayout = RxStatus.empty().obs;
     Rx<ModelPayout> payout = ModelPayout().obs;
     payoutRepo(
-            amount: profileController.amountController.text.toString().trim(),
+            amount: profileController.result5.toString().trim(),
             context: context,
             bank_code: controller.idController1.text.toString(),
             user_id:
@@ -75,6 +74,13 @@ class _WithdrawlCashState extends State<WithdrawlCash> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(4.0),
+          child: Container(
+            color: Colors.grey.shade300,
+            height: 1.0,
+          ),
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
@@ -89,22 +95,22 @@ class _WithdrawlCashState extends State<WithdrawlCash> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 48,
             ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(30),
-              child: Image.asset(
-                'assets/images/right.png',
-                height: 121,
+            Center(
+              child: SvgPicture.asset(
+                'assets/images/verify.svg',
+                height: 90,
+                width: 90,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
 
             Text(
-              "You requested \$ ${profileController.amountController.text.trim()}",
+              "You requested \$ ${profileController.result5.trim()}",
               style: GoogleFonts.poppins(
                   color: const Color(0xFF1D1D1D),
                   fontSize: 18,
@@ -120,17 +126,22 @@ class _WithdrawlCashState extends State<WithdrawlCash> {
             SizedBox(
               height: size.height * .4,
             ),
-            InkWell(
-              onTap: () async {
-                SharedPreferences pref = await SharedPreferences.getInstance();
-                if (pref.getBool('TransistionPin') == true) {
-                  Get.toNamed(MyRouters.securityOtpScreen1);
-                } else {
-                  CreatePayout();
-                }
-              },
-              child: const CustomOutlineButton(
-                title: "Continue",
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: InkWell(
+                onTap: () async {
+                  SharedPreferences pref =
+                      await SharedPreferences.getInstance();
+                  if (pref.getBool('TransistionPin') == true) {
+                    Get.toNamed(MyRouters.securityOtpScreen1);
+                  } else {
+                    // print(payOutcontroller.accountNo.text.trim().toString());
+                    CreatePayout();
+                  }
+                },
+                child: const CustomOutlineButton(
+                  title: "Continue",
+                ),
               ),
             ),
           ],

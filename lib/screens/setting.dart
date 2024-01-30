@@ -6,7 +6,6 @@ import 'package:local_auth/local_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/repository/setting_repo.dart';
 import 'package:zip/repository/updatesetting_repo.dart';
-import 'package:zip/screens/transfer_limit.dart';
 import 'package:zip/widgets/common_colour.dart';
 
 import '../models/delete_model.dart';
@@ -32,9 +31,7 @@ class _SettingState extends State<Setting> {
   getData() {
     settingRepo().then((value) {
       modalGetSetting.value = value;
-      if (value.status == true) {
-        print(value.message.toString());
-      }
+      if (value.status == true) {}
     });
   }
 
@@ -138,7 +135,6 @@ class _SettingState extends State<Setting> {
                 sensitiveTransaction: true));
       } catch (e) {
         // Handle any exceptions that occur during the authentication process.
-        print(e);
       }
 
       if (authenticated) {
@@ -194,13 +190,12 @@ class _SettingState extends State<Setting> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF3F0F7),
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
         title: InkWell(
-          onTap: () {
-            print(modalGetSetting.value.data!.enableFingerprints);
-          },
+          onTap: () {},
           child: Text(
             "Settings",
             style: GoogleFonts.poppins(
@@ -227,7 +222,7 @@ class _SettingState extends State<Setting> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 29, top: 33),
+                      padding: const EdgeInsets.only(left: 18, top: 29),
                       child: Text(
                         "Notifications",
                         style: GoogleFonts.poppins(
@@ -236,513 +231,525 @@ class _SettingState extends State<Setting> {
                             fontWeight: FontWeight.w500),
                       ),
                     ),
-                    const SizedBox(
-                      height: 35,
-                    ),
                     InkWell(
                       onTap: () {
                         Get.toNamed(MyRouters.notificationScreen);
                       },
-                      child: Row(
-                        children: [
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          InkWell(
-                            onTap: () async {
-                              print("object");
-
-                              //   SharedPreferences pref = await SharedPreferences.getInstance();
-                              // print(pref.getString("cookie")!.toString().replaceAll('\"', ''));
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: 60,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  offset: Offset(
+                                    0.5,
+                                    0.5,
+                                  ), //Offset
+                                  blurRadius: 0.5,
+                                  spreadRadius: 0.0,
+                                ), //BoxShadow
+                              ]),
+                          child: InkWell(
+                            onTap: () {
+                              Get.toNamed(MyRouters.notificationScreen);
                             },
-                            child: Text(
-                              "Notification Settings ",
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w400),
+                            child: Row(
+                              children: [
+                                const SizedBox(
+                                  width: 20,
+                                ),
+                                InkWell(
+                                  onTap: () async {
+                                    //   SharedPreferences pref = await SharedPreferences.getInstance();
+                                    // print(pref.getString("cookie")!.toString().replaceAll('\"', ''));
+                                  },
+                                  child: Text(
+                                    "Notification Settings ",
+                                    style: GoogleFonts.poppins(
+                                        color: const Color(0xFF1D1D1D),
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                                const Spacer(),
+                                const Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 15,
+                                ),
+                                const SizedBox(
+                                  width: 20,
+                                ),
+                              ],
                             ),
                           ),
-                          const Spacer(),
-                          const Icon(
-                            Icons.arrow_forward_ios,
-                            size: 15,
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                        ],
+                        ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    const Divider(
-                      thickness: 5,
-                      color: Color(0x1A000000),
-                    ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 29, top: 11),
+                      padding: const EdgeInsets.only(left: 18, top: 11),
                       child: Text(
                         "Privacy & Settings",
                         style: GoogleFonts.poppins(
                             color: const Color(0xFF1D1D1D),
-                            fontSize: 17,
+                            fontSize: 15,
                             fontWeight: FontWeight.w500),
                       ),
                     ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Row(
-                      children: [
-                        const SizedBox(
-                          width: 30,
-                        ),
-                        Column(
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black26,
+                                offset: Offset(
+                                  0.5,
+                                  0.5,
+                                ), //Offset
+                                blurRadius: 0.5,
+                                spreadRadius: 0.0,
+                              ), //BoxShadow
+                            ]),
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text(
-                              "Manage Devices",
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w400),
+                            const SizedBox(
+                              height: 12,
                             ),
-                            Text(
-                              "Control which devices have access to your account",
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 9,
-                                  fontWeight: FontWeight.w300),
+                            Row(
+                              children: [
+                                const SizedBox(
+                                  width: 30,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Hide Balance",
+                                      style: GoogleFonts.poppins(
+                                          color: const Color(0xFF1D1D1D),
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                    Text(
+                                      "Hide your balance on the home screen",
+                                      style: GoogleFonts.poppins(
+                                          color: const Color(0xFF1D1D1D),
+                                          fontSize: 9,
+                                          fontWeight: FontWeight.w300),
+                                    ),
+                                  ],
+                                ),
+                                const Spacer(),
+                                CupertinoSwitch(
+                                  value:
+                                      modalGetSetting.value.data!.hideBalance!,
+                                  activeColor: const Color(0xffF0D75F),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      modalGetSetting.value.data!.hideBalance =
+                                          value;
+                                      updateSetting();
+                                    });
+                                  },
+                                ),
+                                const SizedBox(
+                                  width: 20,
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        const Spacer(),
-                        const Icon(
-                          Icons.arrow_forward_ios,
-                          size: 15,
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    const Divider(
-                      thickness: 1,
-                      color: Color(0x1A000000),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Row(
-                      children: [
-                        const SizedBox(
-                          width: 30,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Hide Balance",
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w400),
+                            const SizedBox(
+                              height: 12,
                             ),
-                            Text(
-                              "Hide your balance on the home screen",
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 9,
-                                  fontWeight: FontWeight.w300),
+                            const Divider(
+                              thickness: 1,
+                              color: Color(0x1A000000),
                             ),
-                          ],
-                        ),
-                        const Spacer(),
-                        CupertinoSwitch(
-                          value: modalGetSetting.value.data!.hideBalance!,
-                          activeColor: const Color(0xffF0D75F),
-                          onChanged: (value) {
-                            setState(() {
-                              modalGetSetting.value.data!.hideBalance = value;
-                              updateSetting();
-                            });
-                          },
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    const Divider(
-                      thickness: 1,
-                      color: Color(0x1A000000),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Row(
-                      children: [
-                        const SizedBox(
-                          width: 30,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            InkWell(
-                              onTap: () async {
-                                SharedPreferences pref =
-                                    await SharedPreferences.getInstance();
-                                print(pref.getBool("Enabel"));
-                              },
-                              child: Text(
-                                "Enable Security Lock",
-                                style: GoogleFonts.poppins(
-                                    color: const Color(0xFF1D1D1D),
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w400),
-                              ),
+                            const SizedBox(
+                              height: 12,
                             ),
-                            Text(
-                              "Will require your PIN when you close the app",
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 9,
-                                  fontWeight: FontWeight.w300),
+                            Row(
+                              children: [
+                                const SizedBox(
+                                  width: 30,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    InkWell(
+                                      onTap: () async {
+                                        SharedPreferences pref =
+                                            await SharedPreferences
+                                                .getInstance();
+                                      },
+                                      child: Text(
+                                        "Enable Security Lock",
+                                        style: GoogleFonts.poppins(
+                                            color: const Color(0xFF1D1D1D),
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    ),
+                                    Text(
+                                      "Will require your PIN when you close the app",
+                                      style: GoogleFonts.poppins(
+                                          color: const Color(0xFF1D1D1D),
+                                          fontSize: 9,
+                                          fontWeight: FontWeight.w300),
+                                    ),
+                                  ],
+                                ),
+                                const Spacer(),
+                                CupertinoSwitch(
+                                  value: modalGetSetting
+                                      .value.data!.enableSecurityLock!,
+                                  activeColor: const Color(0xffF0D75F),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      modalGetSetting.value.data!
+                                          .enableSecurityLock = value;
+                                      updateSetting();
+                                      SetValues(value);
+                                    });
+                                  },
+                                ),
+                                const SizedBox(
+                                  width: 20,
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        const Spacer(),
-                        CupertinoSwitch(
-                          value:
-                              modalGetSetting.value.data!.enableSecurityLock!,
-                          activeColor: const Color(0xffF0D75F),
-                          onChanged: (value) {
-                            setState(() {
-                              modalGetSetting.value.data!.enableSecurityLock =
-                                  value;
-                              updateSetting();
-                              SetValues(value);
-                            });
-                          },
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    const Divider(
-                      thickness: 1,
-                      color: Color(0x1A000000),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Row(
-                      children: [
-                        const SizedBox(
-                          width: 30,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            InkWell(
-                              onTap: () async {
-                                SharedPreferences pref =
-                                    await SharedPreferences.getInstance();
-                                print(pref.getBool("TransistionPin"));
-                              },
-                              child: Text(
-                                "Transaction PIN",
-                                style: GoogleFonts.poppins(
-                                    color: const Color(0xFF1D1D1D),
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w400),
-                              ),
+                            const SizedBox(
+                              height: 12,
                             ),
-                            Text(
-                              "Will require your PIN before each transaction",
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 9,
-                                  fontWeight: FontWeight.w300),
+                            const Divider(
+                              thickness: 1,
+                              color: Color(0x1A000000),
                             ),
-                          ],
-                        ),
-                        const Spacer(),
-                        CupertinoSwitch(
-                          value: modalGetSetting.value.data!.transactionPin!,
-                          activeColor: const Color(0xffF0D75F),
-                          onChanged: (value) {
-                            setState(() {
-                              modalGetSetting.value.data!.transactionPin =
-                                  value;
-                              updateSetting();
-                              // transistionPin(value);
-                            });
-                          },
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    const Divider(
-                      thickness: 1,
-                      color: Color(0x1A000000),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Row(
-                      children: [
-                        const SizedBox(
-                          width: 30,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Enable Fingerprints",
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w400),
+                            const SizedBox(
+                              height: 12,
+                            ),
+                            Row(
+                              children: [
+                                const SizedBox(
+                                  width: 30,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    InkWell(
+                                      onTap: () async {
+                                        SharedPreferences pref =
+                                            await SharedPreferences
+                                                .getInstance();
+                                      },
+                                      child: Text(
+                                        "Transaction PIN",
+                                        style: GoogleFonts.poppins(
+                                            color: const Color(0xFF1D1D1D),
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    ),
+                                    Text(
+                                      "Will require your PIN before each transaction",
+                                      style: GoogleFonts.poppins(
+                                          color: const Color(0xFF1D1D1D),
+                                          fontSize: 9,
+                                          fontWeight: FontWeight.w300),
+                                    ),
+                                  ],
+                                ),
+                                const Spacer(),
+                                CupertinoSwitch(
+                                  value: modalGetSetting
+                                      .value.data!.transactionPin!,
+                                  activeColor: const Color(0xffF0D75F),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      modalGetSetting
+                                          .value.data!.transactionPin = value;
+                                      updateSetting();
+                                      // transistionPin(value);
+                                    });
+                                  },
+                                ),
+                                const SizedBox(
+                                  width: 20,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 12,
+                            ),
+                            const Divider(
+                              thickness: 1,
+                              color: Color(0x1A000000),
+                            ),
+                            const SizedBox(
+                              height: 12,
+                            ),
+                            Row(
+                              children: [
+                                const SizedBox(
+                                  width: 30,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Enable Fingerprints",
+                                      style: GoogleFonts.poppins(
+                                          color: const Color(0xFF1D1D1D),
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        authenticate();
+                                      },
+                                      child: Text(
+                                        "Control which devices have access to your account",
+                                        style: GoogleFonts.poppins(
+                                            color: const Color(0xFF1D1D1D),
+                                            fontSize: 9,
+                                            fontWeight: FontWeight.w300),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const Spacer(),
+                                CupertinoSwitch(
+                                  value: modalGetSetting
+                                      .value.data!.enableFingerprints!,
+                                  activeColor: const Color(0xffF0D75F),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      modalGetSetting.value.data!
+                                          .enableFingerprints = value;
+                                      updateSetting();
+                                      fingerPrint(value);
+                                    });
+                                  },
+                                ),
+                                const SizedBox(
+                                  width: 20,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 12,
+                            ),
+                            const Divider(
+                              thickness: 1,
+                              color: Color(0x1A000000),
+                            ),
+                            const SizedBox(
+                              height: 12,
                             ),
                             InkWell(
                               onTap: () {
-                                authenticate();
+                                Get.toNamed(MyRouters.sendOtpForPinScreen);
                               },
-                              child: Text(
-                                "Control which devices have access to your account",
-                                style: GoogleFonts.poppins(
-                                    color: const Color(0xFF1D1D1D),
-                                    fontSize: 9,
-                                    fontWeight: FontWeight.w300),
+                              child: Row(
+                                children: [
+                                  const SizedBox(
+                                    width: 30,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Change ZIP PIN",
+                                        style: GoogleFonts.poppins(
+                                            color: const Color(0xFF1D1D1D),
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                      Text(
+                                        "Change your ZIP PIN and set new one",
+                                        style: GoogleFonts.poppins(
+                                            color: const Color(0xFF1D1D1D),
+                                            fontSize: 9,
+                                            fontWeight: FontWeight.w300),
+                                      ),
+                                    ],
+                                  ),
+                                  const Spacer(),
+                                  const Icon(
+                                    Icons.arrow_forward_ios,
+                                    size: 15,
+                                  ),
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
+                                ],
                               ),
+                            ),
+                            const SizedBox(
+                              height: 12,
                             ),
                           ],
                         ),
-                        const Spacer(),
-                        CupertinoSwitch(
-                          value:
-                              modalGetSetting.value.data!.enableFingerprints!,
-                          activeColor: const Color(0xffF0D75F),
-                          onChanged: (value) {
-                            setState(() {
-                              modalGetSetting.value.data!.enableFingerprints =
-                                  value;
-                              updateSetting();
-                              fingerPrint(value);
-                            });
-                          },
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    const Divider(
-                      thickness: 1,
-                      color: Color(0x1A000000),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Get.toNamed(MyRouters.sendOtpForPinScreen);
-                      },
-                      child: Row(
-                        children: [
-                          const SizedBox(
-                            width: 30,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Change ZIP PIN",
-                                style: GoogleFonts.poppins(
-                                    color: const Color(0xFF1D1D1D),
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                              Text(
-                                "Change your ZIP PIN and set new one",
-                                style: GoogleFonts.poppins(
-                                    color: const Color(0xFF1D1D1D),
-                                    fontSize: 9,
-                                    fontWeight: FontWeight.w300),
-                              ),
-                            ],
-                          ),
-                          const Spacer(),
-                          const Icon(
-                            Icons.arrow_forward_ios,
-                            size: 15,
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                        ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    const Divider(
-                      thickness: 5,
-                      color: Color(0x1A000000),
-                    ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 29, top: 11),
+                      padding: const EdgeInsets.only(left: 18, top: 11),
                       child: Text(
                         "Feedback",
                         style: GoogleFonts.poppins(
                             color: const Color(0xFF1D1D1D),
-                            fontSize: 17,
+                            fontSize: 15,
                             fontWeight: FontWeight.w500),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Row(
-                      children: [
-                        const SizedBox(
-                          width: 30,
-                        ),
-                        Text(
-                          "Rate the App",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 13,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        const Spacer(),
-                        const Icon(
-                          Icons.arrow_forward_ios,
-                          size: 15,
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    const Divider(
-                      thickness: 5,
-                      color: Color(0x1A000000),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 29, top: 11),
-                      child: Text(
-                        "Support",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 17,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 12,
                     ),
                     InkWell(
                       onTap: () {
-                        Get.toNamed(MyRouters.supportScreen);
+                        // Get.toNamed(MyRouters.notificationScreen);
                       },
-                      child: Row(
-                        children: [
-                          const SizedBox(
-                            width: 30,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: 60,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  offset: Offset(
+                                    0.5,
+                                    0.5,
+                                  ), //Offset
+                                  blurRadius: 0.5,
+                                  spreadRadius: 0.0,
+                                ), //BoxShadow
+                              ]),
+                          child: Row(
+                            children: [
+                              const SizedBox(
+                                width: 30,
+                              ),
+                              Text(
+                                "Rate the App",
+                                style: GoogleFonts.poppins(
+                                    color: const Color(0xFF1D1D1D),
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                              const Spacer(),
+                              const Icon(
+                                Icons.arrow_forward_ios,
+                                size: 15,
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                            ],
                           ),
-                          Text(
-                            "Support",
-                            style: GoogleFonts.poppins(
-                                color: const Color(0xFF1D1D1D),
-                                fontSize: 13,
-                                fontWeight: FontWeight.w400),
-                          ),
-                          const Spacer(),
-                          const Icon(
-                            Icons.arrow_forward_ios,
-                            size: 15,
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    const Divider(
-                      thickness: 5,
-                      color: Color(0x1A000000),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 29),
-                      child: InkWell(
-                        onTap: () {
-                          signOut();
-                        },
-                        child: Text(
-                          "Sign Out",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFFF0D75F),
-                              fontSize: 17,
-                              fontWeight: FontWeight.w500),
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 12,
-                    ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 29),
-                      child: InkWell(
-                        onTap: () {
-                          deleteAccount();
-                        },
-                        child: Text(
-                          "Delete Account",
-                          style: GoogleFonts.poppins(
-                              color: Colors.red,
-                              fontSize: 17,
-                              fontWeight: FontWeight.w500),
-                        ),
+                      padding: const EdgeInsets.only(left: 18, top: 11),
+                      child: Text(
+                        "Exit",
+                        style: GoogleFonts.poppins(
+                            color: const Color(0xFF1D1D1D),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500),
                       ),
                     ),
+                    Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: 60,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  offset: Offset(
+                                    0.5,
+                                    0.5,
+                                  ), //Offset
+                                  blurRadius: 0.5,
+                                  spreadRadius: 0.0,
+                                ), //BoxShadow
+                              ]),
+                          child: Row(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  signOut();
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 18.0),
+                                  child: Text(
+                                    "Sign Out",
+                                    style: GoogleFonts.poppins(
+                                        color: const Color(0xFFF0D75F),
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )),
+                    Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: 60,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  offset: Offset(
+                                    0.5,
+                                    0.5,
+                                  ), //Offset
+                                  blurRadius: 0.5,
+                                  spreadRadius: 0.0,
+                                ), //BoxShadow
+                              ]),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 29),
+                            child: InkWell(
+                              onTap: () {
+                                deleteAccount();
+                              },
+                              child: Row(
+                                children: [
+                                  Text(
+                                    "Delete Account",
+                                    style: GoogleFonts.poppins(
+                                        color: Colors.red,
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        )),
                     const SizedBox(
                       height: 30,
                     ),
                   ],
                 ),
               )
-            : Center(
+            : const Center(
                 child: CircularProgressIndicator(),
               );
       }),
@@ -754,12 +761,10 @@ class _SettingState extends State<Setting> {
       setState(() {
         isSwitched = true;
       });
-      print('Switch Button is ON');
     } else {
       setState(() {
         isSwitched = false;
       });
-      print('Switch Button is OFF');
     }
   }
 }

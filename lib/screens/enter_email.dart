@@ -1,12 +1,10 @@
-import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:zip/routers/my_routers.dart';
-import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
@@ -16,10 +14,8 @@ import '../controller/update_user.dart';
 import '../models/modal_registor.dart';
 import '../models/model_detail_africa.dart';
 import '../models/model_save_africa_details.dart';
-import '../models/registor_model.dart';
 import '../repository/africa_save_repo.dart';
 import '../repository/live_deails_africa_repo.dart';
-import '../repository/mobile_no_otp_repo.dart';
 import '../repository/registor_repo.dart';
 import '../resourses/api_constant.dart';
 
@@ -137,8 +133,6 @@ class _EmailScreenState extends State<EmailScreen> {
         emailregister.value = value;
         // Controller. userId1=emailregister.value.data!.user!.id.toString();
         if (value.status == true) {
-          print("Users::::::::::::" + Controller.userId1);
-
           statusOfemailregister.value = RxStatus.success();
           Controller.userId1 = emailregister.value.data!.user!.id.toString();
           showToast(value.data!.otp.toString());
@@ -185,6 +179,7 @@ class _EmailScreenState extends State<EmailScreen> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          toolbarHeight: 80,
           backgroundColor: Colors.white,
           elevation: 0,
           leading: InkWell(
@@ -209,9 +204,7 @@ class _EmailScreenState extends State<EmailScreen> {
                   Padding(
                     padding: const EdgeInsets.only(left: 10.0, right: 10),
                     child: InkWell(
-                      onTap: () {
-                        print("hgdfhhh" + Controller.avtar.toString());
-                      },
+                      onTap: () {},
                       child: Text(
                         "Enter your email & Mobile No to continue ",
                         style: GoogleFonts.poppins(
@@ -277,81 +270,61 @@ class _EmailScreenState extends State<EmailScreen> {
                     hintText: "pkp@gmail.com",
                     labelText: "Email",
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0, right: 10),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: AppTheme.primaryColor, width: 1.3),
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Row(
-                        children: [
-                          const CountryCodePicker(
-                            onChanged: print,
-                            initialSelection: 'NG',
-                            favorite: ['+234', 'NG'],
-                            showCountryOnly: false,
-                            showOnlyCountryWhenClosed: false,
-                            alignLeft: false,
-                          ),
-                          const SizedBox(
-                            height: 30,
-                            child: VerticalDivider(
-                              thickness: 1,
-                              color: Colors.grey,
+
+                  CommonTextfield(
+                    prefix: Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: SizedBox(
+                        width: 125,
+                        child: Row(
+                          children: [
+                            SvgPicture.asset("assets/images/nigeria.svg"),
+                            const Icon(Icons.arrow_drop_down_outlined),
+                            const SizedBox(
+                              height: 30,
+                              child: VerticalDivider(
+                                thickness: 1,
+                                color: Colors.grey,
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            width: 120,
-                            child: TextFormField(
-                                keyboardType:
-                                    const TextInputType.numberWithOptions(
-                                        decimal: true),
-                                inputFormatters: [
-                                  LengthLimitingTextInputFormatter(12),
-                                  FilteringTextInputFormatter.allow(
-                                      RegExp('[0-9]+')),
-                                ],
-                                onChanged: (value) =>
-                                    doubleVar = double.parse(value),
-                                validator: MultiValidator([
-                                  RequiredValidator(
-                                      errorText:
-                                          'Please enter your contact number '),
-                                  MinLengthValidator(10,
-                                      errorText:
-                                          'Please enter minumum  10 digit number'),
-                                  MaxLengthValidator(12,
-                                      errorText:
-                                          'Please enter 12 digit number'),
-                                  PatternValidator(
-                                      r'(^(?:[+0]9)?[0-9]{10,12}$)',
-                                      errorText: '')
-                                ]),
-                                controller: Controller.mobileNoController,
-                                decoration: const InputDecoration(
-                                  hintText: "XXXXXXXXXX",
-                                  border: InputBorder.none,
-                                  focusedBorder: InputBorder.none,
-                                  enabledBorder: InputBorder.none,
-                                  errorBorder: InputBorder.none,
-                                  disabledBorder: InputBorder.none,
-                                  hintStyle: TextStyle(
-                                      color: Color(0xFF1D1D1D),
-                                      fontSize: 16,
-                                      decorationColor: Colors.transparent,
-                                      decorationThickness: 0,
-                                      fontWeight: FontWeight.w600),
-                                )),
-                          ),
-                        ],
+                            Text(
+                              "+234",
+                              style: GoogleFonts.poppins(
+                                  color: const Color(0xFF1D1D1D),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
+                    keyboardType:
+                        const TextInputType.numberWithOptions(decimal: true),
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(12),
+                      FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                    ],
+                    onChanged: (value) {},
+                    validator: MultiValidator([
+                      RequiredValidator(
+                          errorText: 'Please enter your contact number '),
+                      MinLengthValidator(10,
+                          errorText: 'Please enter minumum 10 digit number'),
+                      MaxLengthValidator(12,
+                          errorText: 'Please enter 12 digit number'),
+                      PatternValidator(r'(^(?:[+0]9)?[0-9]{10,12}$)',
+                          errorText: '')
+                    ]),
+                    controller: Controller.mobileNoController,
+                    obSecure: false,
+                    labelText: "Phone number",
+                    hintText: 'Phone number',
                   ),
-                  SizedBox(
+
+                  const SizedBox(
                     height: 15,
                   ),
                   CommonTextfield(
@@ -377,7 +350,7 @@ class _EmailScreenState extends State<EmailScreen> {
                     labelText: "BVN Number",
                     hintText: 'BVN Number',
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   CommonTextfield(
@@ -410,7 +383,7 @@ class _EmailScreenState extends State<EmailScreen> {
                     labelText: "Password",
                     hintText: 'Password',
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   CommonTextfield(
@@ -441,7 +414,7 @@ class _EmailScreenState extends State<EmailScreen> {
                     labelText: "Confirm Password",
                     hintText: 'Confirm Password',
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 25,
                   ),
                   Padding(
@@ -475,10 +448,10 @@ class _EmailScreenState extends State<EmailScreen> {
                         emailRegister();
                         //
                       },
-                      child: CustomOutlineButton(
+                      child: const CustomOutlineButton(
                         title: "Next",
                       )),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   // InkWell(

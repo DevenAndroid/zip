@@ -1,5 +1,3 @@
-import 'package:country_code_picker/country_code_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -36,18 +34,18 @@ class _BuyServicesState extends State<BuyServices> {
           onTap: () {
             Get.back();
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_rounded,
             color: AppTheme.primaryColor,
           ),
         ),
       ),
       body: SingleChildScrollView(
-        physics: AlwaysScrollableScrollPhysics(),
+        physics: const AlwaysScrollableScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Text(
@@ -57,7 +55,7 @@ class _BuyServicesState extends State<BuyServices> {
                   fontSize: 13,
                   fontWeight: FontWeight.w500),
             ),
-            SizedBox(
+            const SizedBox(
               height: 44,
             ),
             Padding(
@@ -75,7 +73,7 @@ class _BuyServicesState extends State<BuyServices> {
                 labelText: "Country",
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 27,
             ),
             Padding(
@@ -91,16 +89,16 @@ class _BuyServicesState extends State<BuyServices> {
             ),
             InkWell(
               onTap: () {},
-              child: CustomOutlineButton(
+              child: const CustomOutlineButton(
                 title: "Contacts",
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             InkWell(
               onTap: () {
-                Get.to(PayBillsServices());
+                Get.to(const PayBillsServices());
               },
               child: CustomOutlineBoder(
                 title: "Next",

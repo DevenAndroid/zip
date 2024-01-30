@@ -18,285 +18,256 @@ class _LoanScreenState extends State<LoanScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF3F0F7),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SingleChildScrollView(
-              child: Stack(children: [
-                Image.asset('assets/images/banner.png'),
-                Positioned(
-                  top: 40,
-                  left: 15,
-                  child: InkWell(
-                    onTap: () {
-                      Get.back();
-                    },
-                    child: Container(
-                        padding: const EdgeInsets.all(6),
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.white,
-                        ),
-                        child: const Icon(Icons.arrow_back)),
-                  ),
-                ),
-              ]),
+            const SizedBox(
+              height: 30,
+            ),
+            InkWell(
+              onTap: () {
+                Get.back();
+              },
+              child: const Padding(
+                padding: EdgeInsets.only(top: 15, left: 12.0),
+                child: Icon(Icons.arrow_back),
+              ),
+            ),
+            const SizedBox(
+              height: 15,
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 10, left: 18.0),
+              padding: const EdgeInsets.only(top: 10, left: 19.0),
               child: Text(
                 "Get a loan that treats you right",
                 style: GoogleFonts.poppins(
                     color: const Color(0xFF1D1D1D),
-                    fontSize: 19,
-                    fontWeight: FontWeight.w600),
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500),
               ),
             ),
             const SizedBox(
               height: 20,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 13.0, right: 13),
-              child: Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.grey),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                          padding: const EdgeInsets.all(3),
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppTheme.secondaryColor,
-                          ),
-                          child: const Icon(
-                            Icons.check,
-                            color: Colors.white,
-                            size: 20,
-                          )),
-                      const SizedBox(
-                        width: 15,
+              padding: const EdgeInsets.only(left: 25.0, right: 13),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SvgPicture.asset("assets/images/right.svg"),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 4.0),
+                      child: Text(
+                        "Apply in a few taps",
+                        style: GoogleFonts.poppins(
+                            color: const Color(0xFF1D1D1D),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 4.0),
-                        child: Text(
-                          "Apply in a few taps",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 17,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      )
-                    ],
+                    )
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 25,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 25.0, right: 13),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SvgPicture.asset(
+                      'assets/images/watch.svg',
+                    ),
+                    // Container(
+                    //   padding: EdgeInsets.all(3),
+                    //   decoration: BoxDecoration(
+                    //     shape: BoxShape.circle,
+                    //     color: AppTheme.secondaryColor,
+                    //
+                    //   ),
+                    //   child:Icon(Icons.clock,color: Colors.white,)
+                    // ),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 4.0),
+                      child: Text(
+                        "Monday in minutes. if eligible",
+                        style: GoogleFonts.poppins(
+                            color: const Color(0xFF1D1D1D),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 25,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 25.0, right: 13),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SvgPicture.asset(
+                      'assets/images/calender.svg',
+                    ),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 4.0),
+                      child: Text(
+                        "Flexible payment terms",
+                        style: GoogleFonts.poppins(
+                            color: const Color(0xFF1D1D1D),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 25,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 25.0, right: 13),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SvgPicture.asset(
+                    'assets/images/dollar.svg',
                   ),
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 13.0, right: 13),
-              child: Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.grey),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SvgPicture.asset(
-                        'assets/images/clock.svg',
-                        color: AppTheme.secondaryColor,
-                      ),
-                      // Container(
-                      //   padding: EdgeInsets.all(3),
-                      //   decoration: BoxDecoration(
-                      //     shape: BoxShape.circle,
-                      //     color: AppTheme.secondaryColor,
-                      //
-                      //   ),
-                      //   child:Icon(Icons.clock,color: Colors.white,)
-                      // ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 4.0),
-                        child: Text(
-                          "Monday in minutes. if eligible",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 17,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      )
-                    ],
+                  const SizedBox(
+                    width: 15,
                   ),
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 13.0, right: 13),
-              child: Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.grey),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                          padding: const EdgeInsets.all(3),
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppTheme.secondaryColor,
-                          ),
-                          child: const Icon(
-                            Icons.calendar_month,
-                            color: Colors.white,
-                            size: 20,
-                          )),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 4.0),
-                        child: Text(
-                          "Flexible payment terms",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 17,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      )
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.only(top: 9.0),
+                    child: Text(
+                      "Pay extra and early fee-free",
+                      style: GoogleFonts.poppins(
+                          color: const Color(0xFF1D1D1D),
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500),
+                    ),
                   ),
-                ),
+                ],
               ),
             ),
             const SizedBox(
               height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 13.0, right: 13),
-              child: Container(
-                padding: const EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.grey),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 13.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppTheme.secondaryColor,
-                        ),
-                        child: Text(
-                          "\$",
-                          style: GoogleFonts.poppins(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 9.0),
-                        child: Text(
-                          "Pay extra and early. fee-free",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 17,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 18.0, top: 10),
-              child: Text(
-                "Our customers say  ",
-                style: GoogleFonts.poppins(
-                    color: const Color(0xFF575757),
-                    fontSize: 19,
-                    fontWeight: FontWeight.w600),
-              ),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 13.0, right: 13, top: 12),
               child: Container(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(13),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.grey),
-                ),
+                    color: const Color(0xFFFAFAFA),
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black26,
+                        offset: Offset(
+                          0.5,
+                          0.5,
+                        ), //Offset
+                        blurRadius: 0.5,
+                        spreadRadius: 0.0,
+                      ), //BoxShadow
+                    ]),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 8.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      const SizedBox(
+                        height: 10,
+                      ),
                       Text(
-                        "I used my Zip loan to consolidate my other loans and streamline my finances. I,ve reduced my monthly outgoing bills which have given me a new way of",
+                        "Our customers say:",
+                        style: GoogleFonts.poppins(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        "“I used my Zip loan to consolidate my other loans and streamline my finances. I’ve reduced my monthly outgoing bills which have given more flexibility.”",
                         style: GoogleFonts.poppins(
                             color: const Color(0xFF1D1D1D),
-                            fontSize: 17,
-                            fontWeight: FontWeight.w600),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300),
                       ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        children: [
+                          Image.asset("assets/images/ayo.png"),
+                          Text(
+                            "  Adedayo  Oguntope ",
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF777777),
+                                fontSize: 14,
+                                fontWeight: FontWeight.w300),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                        ],
+                      )
                     ],
                   ),
                 ),
               ),
+            ),
+            const SizedBox(
+              height: 25,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 13.0, right: 13, top: 12),
               child: Container(
                 padding: const EdgeInsets.all(15),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: AppTheme.secondaryColor),
-                    color: const Color(0xFFB2802A).withOpacity(.15)),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: AppTheme.secondaryColor),
+                ),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 1.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SvgPicture.asset("assets/images/lock3.svg"),
+                      Image.asset(
+                        "assets/images/lck.png",
+                        color: Colors.black,
+                      ),
                       Padding(
                         padding: const EdgeInsets.only(top: 4.0),
                         child: Text(
@@ -304,7 +275,7 @@ class _LoanScreenState extends State<LoanScreen> {
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
                               fontSize: 14,
-                              fontWeight: FontWeight.w600),
+                              fontWeight: FontWeight.w500),
                         ),
                       ),
                     ],
@@ -313,17 +284,20 @@ class _LoanScreenState extends State<LoanScreen> {
               ),
             ),
             const SizedBox(
-              height: 15,
+              height: 25,
             ),
-            InkWell(
-                onTap: () {
-                  Get.toNamed(MyRouters.loanList);
-                  // emailLogin();
-                  //
-                },
-                child: const CustomOutlineButton(
-                  title: "Complete a loan application",
-                )),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8),
+              child: InkWell(
+                  onTap: () {
+                    Get.toNamed(MyRouters.loanList);
+                    // emailLogin();
+                    //
+                  },
+                  child: const CustomOutlineButton(
+                    title: "Complete a loan application",
+                  )),
+            ),
             const SizedBox(
               height: 15,
             ),

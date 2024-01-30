@@ -11,21 +11,13 @@ import 'package:zip/routers/my_routers.dart';
 
 import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
-import '../models/buy_plan_model.dart';
 import '../models/model_airtime.dart';
-import '../models/model_fetch_telcos.dart';
 import '../models/save_transastion_model.dart';
-import '../models/service_common_model.dart';
 import '../repository/airtime_repo.dart';
-import '../repository/fetch_telcos_repo.dart';
-import '../repository/repo_buy_plan.dart';
 import '../repository/save_buy_plan_repo.dart';
-import '../repository/service_common_repo.dart';
 import '../resourses/api_constant.dart';
-import '../widgets/circular_progressindicator.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_colour.dart';
-import '../widgets/common_error_widget.dart';
 import '../widgets/common_textfield.dart';
 
 class TelcosScreen extends StatefulWidget {
@@ -77,7 +69,7 @@ class _TelcosScreenState extends State<TelcosScreen> {
                 DateTime.now().millisecondsSinceEpoch.toString(),
             type: "dr")
         .then((value) {
-      log("response.body.....    ${value}");
+      log("response.body.....    $value");
       save.value = value;
       if (value.status == true) {
         statusOfSave.value = RxStatus.success();
@@ -99,17 +91,17 @@ class _TelcosScreenState extends State<TelcosScreen> {
       Get.toNamed(MyRouters.sucessRechargePin);
     } else {
       airtimeRepo(
-              key: "pay",
-              amount:registorController.result.toString(),
-              phone: registorController.phoneController1.text.trim(),
-              serviceID: profileController.serviceController.text.trim()
-
-              // reference:
-              //     registorController.fetchAccount.value.data!.accountNumber.toString() +
-              //         DateTime.now().millisecondsSinceEpoch.toString(),
-              )
-          .then((value) {
-        log("response.body.....    ${value}");
+        key: "pay",
+        context: context,
+        amount: registorController.amountController1.text.toString(),
+        phone: registorController.phoneController1.text.trim(),
+        serviceID: profileController.serviceController.text.trim(),
+        telcos: profileController.airtimeController.text.trim(),
+        // reference:
+        //     registorController.fetchAccount.value.data!.accountNumber.toString() +
+        //         DateTime.now().millisecondsSinceEpoch.toString(),
+      ).then((value) {
+        log("response.body.....    $value");
         purchaseData.value = value;
         if (value.status == true) {
           // saveList();
@@ -126,8 +118,8 @@ class _TelcosScreenState extends State<TelcosScreen> {
           showToast(value.message.toString());
         }
       }
-              // showToast(value.message.toString());
-              );
+          // showToast(value.message.toString());
+          );
     }
   }
 
@@ -138,6 +130,13 @@ class _TelcosScreenState extends State<TelcosScreen> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(4.0),
+            child: Container(
+              color: Colors.grey.shade300,
+              height: 1.0,
+            ),
+          ),
           backgroundColor: Colors.white,
           elevation: 0,
           leading: InkWell(
@@ -221,7 +220,7 @@ class _TelcosScreenState extends State<TelcosScreen> {
                       height: 20,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 20,right: 20),
+                      padding: const EdgeInsets.only(left: 20, right: 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -232,12 +231,8 @@ class _TelcosScreenState extends State<TelcosScreen> {
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500),
                           ),
-
                           Text(
-                            "FEE : " +
-                                profileController
-                                    .currentBalanceModel.value.data!.fee!.serviceFee
-                                    .toString(),
+                            "FEE : ${profileController.currentBalanceModel.value.data!.fee!.serviceFee}",
                             style: GoogleFonts.poppins(
                                 color: const Color(0xFF1D1D1D),
                                 fontSize: 15,
@@ -256,7 +251,7 @@ class _TelcosScreenState extends State<TelcosScreen> {
                         FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
                       ],
                       onChanged: (value) {
-                        _addNumbers();
+                        // _addNumbers();
                       },
                       validator: MultiValidator([
                         RangeValidator(
@@ -270,7 +265,6 @@ class _TelcosScreenState extends State<TelcosScreen> {
                             errorText: 'Please enter your amount'),
                       ]),
                       controller: registorController.amountController1,
-
                       obSecure: false,
                       hintText: "0",
                       labelText: "Amount",
@@ -291,10 +285,11 @@ class _TelcosScreenState extends State<TelcosScreen> {
                   ])),
         )));
   }
+
   void _addNumbers() {
     // Get the input values as strings
     String firstNumberString = registorController.amountController1.text;
-    String secondNumberString =   profileController
+    String secondNumberString = profileController
         .currentBalanceModel.value.data!.fee!.serviceFee
         .toString();
 

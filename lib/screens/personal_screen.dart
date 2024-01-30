@@ -17,7 +17,7 @@ class _PersonalScreenState extends State<PersonalScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-        backgroundColor: const Color(0xFFFFFFFF),
+        backgroundColor: Color(0xFFF3F0F7),
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
@@ -56,10 +56,20 @@ class _PersonalScreenState extends State<PersonalScreen> {
                         child: Container(
                           padding: EdgeInsets.all(15),
                           decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
+
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  offset: Offset(
+                                    0.5,
+                                    0.5,
+                                  ), //Offset
+                                  blurRadius: 0.5,
+                                  spreadRadius: 0.0,
+                                ), //BoxShadow
+                              ]),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -91,10 +101,20 @@ class _PersonalScreenState extends State<PersonalScreen> {
                         child: Container(
                           padding: EdgeInsets.all(15),
                           decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.grey),
-                          ),
+
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  offset: Offset(
+                                    0.5,
+                                    0.5,
+                                  ), //Offset
+                                  blurRadius: 0.5,
+                                  spreadRadius: 0.0,
+                                ), //BoxShadow
+                              ]),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -126,10 +146,20 @@ class _PersonalScreenState extends State<PersonalScreen> {
                         child: Container(
                           padding: EdgeInsets.all(15),
                           decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.grey),
-                          ),
+
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  offset: Offset(
+                                    0.5,
+                                    0.5,
+                                  ), //Offset
+                                  blurRadius: 0.5,
+                                  spreadRadius: 0.0,
+                                ), //BoxShadow
+                              ]),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [

@@ -15,11 +15,16 @@ import '../resourses/details.dart';
 import '../resourses/helper.dart';
 
 Future<ServiceBuyModel> commonBuyRepo(
-    {key, serviceID, variation_code, billersCode, amount, phone}) async {
+    {key, serviceID, variation_code, telcos,data_code,billersCode, amount, phone,context}) async {
+  OverlayEntry loader = Helpers.overlayLoader(context);
+  Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
   map['key'] = key;
   map['serviceID'] = serviceID;
   map['variation_code'] = variation_code;
+  map['telcos'] = telcos;
+  map['data_code'] = data_code;
+
   map['amount'] = amount;
   map['billersCode'] = billersCode;
   map['phone'] = phone;
@@ -30,9 +35,11 @@ Future<ServiceBuyModel> commonBuyRepo(
   print(map);
 
   if (response.statusCode == 200) {
+    Helpers.hideLoader(loader);
     // print(jsonDecode(response.body));
     return ServiceBuyModel.fromJson(jsonDecode(response.body));
   } else {
+    Helpers.hideLoader(loader);
     // print(jsonDecode(response.body));
     return ServiceBuyModel(
       message: jsonDecode(response.body)["message"],

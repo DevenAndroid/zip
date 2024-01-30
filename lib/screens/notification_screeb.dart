@@ -63,6 +63,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFF3F0F7),
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -86,112 +87,144 @@ class _NotificationScreenState extends State<NotificationScreen> {
       ),
       body: Obx(() {
         return modalGetSetting.value.status == true
-            ? Column(
-                children: [
-                  const SizedBox(
-                    height: 12,
+            ?
+
+
+        Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 18, top: 11,bottom: 10),
+                  child: Text(
+                    "Notification Setting",
+                    style: GoogleFonts.poppins(
+                        color: const Color(0xFF1D1D1D),
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500),
                   ),
-                  Row(
-                    children: [
-                      const SizedBox(
-                        width: 30,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Push notification",
-                            style: GoogleFonts.poppins(
-                                color: const Color(0xFF1D1D1D),
-                                fontSize: 13,
-                                fontWeight: FontWeight.w400),
-                          ),
-                          Text(
-                            "Allow Push notification",
-                            style: GoogleFonts.poppins(
-                                color: const Color(0xFF1D1D1D),
-                                fontSize: 9,
-                                fontWeight: FontWeight.w300),
-                          ),
-                        ],
-                      ),
-                      const Spacer(),
-                      CupertinoSwitch(
-                        value: modalGetSetting.value.data!.pushNotification!,
-                        activeColor: const Color(0xffF0D75F),
-                        onChanged: (value) {
-                          setState(() {
-                            modalGetSetting.value.data!.pushNotification =
-                                value;
-                            updateNotificationSetting();
-                          });
-                        },
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  const Divider(
-                    thickness: 1,
-                    color: Color(0x1A000000),
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  Row(
-                    children: [
-                      const SizedBox(
-                        width: 30,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Email notification",
-                            style: GoogleFonts.poppins(
-                                color: const Color(0xFF1D1D1D),
-                                fontSize: 13,
-                                fontWeight: FontWeight.w400),
-                          ),
-                          Text(
-                            "Allow Email notification",
-                            style: GoogleFonts.poppins(
-                                color: const Color(0xFF1D1D1D),
-                                fontSize: 9,
-                                fontWeight: FontWeight.w300),
-                          ),
-                        ],
-                      ),
-                      const Spacer(),
-                      CupertinoSwitch(
-                        value: modalGetSetting.value.data!.emailNotification!,
-                        activeColor: const Color(0xffF0D75F),
-                        onChanged: (value) {
-                          setState(() {
-                            modalGetSetting.value.data!.emailNotification =
-                                value;
-                            updateNotificationSetting();
-                          });
-                        },
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  const Divider(
-                    thickness: 1,
-                    color: Color(0x1A000000),
-                  ),
-                ],
-              )
+                ),
+                Container(
+                  height: 160,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(
+                            0.5,
+                            0.5,
+                          ), //Offset
+                          blurRadius: 0.5,
+                          spreadRadius: 0.0,
+                        ), //BoxShadow
+                      ]),
+                          child: Column(
+                      children: [
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        Row(
+                          children: [
+                            const SizedBox(
+                              width: 30,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Push notification",
+                                  style: GoogleFonts.poppins(
+                                      color: const Color(0xFF1D1D1D),
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                Text(
+                                  "Allow Push notification",
+                                  style: GoogleFonts.poppins(
+                                      color: const Color(0xFF1D1D1D),
+                                      fontSize: 9,
+                                      fontWeight: FontWeight.w300),
+                                ),
+                              ],
+                            ),
+                            const Spacer(),
+                            CupertinoSwitch(
+                              value: modalGetSetting.value.data!.pushNotification!,
+                              activeColor: const Color(0xffF0D75F),
+                              onChanged: (value) {
+                                setState(() {
+                                  modalGetSetting.value.data!.pushNotification =
+                                      value;
+                                  updateNotificationSetting();
+                                });
+                              },
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        const Divider(
+                          thickness: 1,
+                          color: Color(0x1A000000),
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        Row(
+                          children: [
+                            const SizedBox(
+                              width: 30,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Email notification",
+                                  style: GoogleFonts.poppins(
+                                      color: const Color(0xFF1D1D1D),
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                Text(
+                                  "Allow Email notification",
+                                  style: GoogleFonts.poppins(
+                                      color: const Color(0xFF1D1D1D),
+                                      fontSize: 9,
+                                      fontWeight: FontWeight.w300),
+                                ),
+                              ],
+                            ),
+                            const Spacer(),
+                            CupertinoSwitch(
+                              value: modalGetSetting.value.data!.emailNotification!,
+                              activeColor: const Color(0xffF0D75F),
+                              onChanged: (value) {
+                                setState(() {
+                                  modalGetSetting.value.data!.emailNotification =
+                                      value;
+                                  updateNotificationSetting();
+                                });
+                              },
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                          ],
+                        ),
+
+                      ],
+                    ),
+                        ),
+              ],
+            ))
             : const Center(
                 child: CircularProgressIndicator(),
               );

@@ -1,8 +1,6 @@
-import 'package:country_code_picker/country_code_picker.dart';
 import 'package:currency_converter/currency.dart';
 import 'package:currency_converter/currency_converter.dart';
 import 'package:dotted_line/dotted_line.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -47,8 +45,6 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
     var convert = Currency.values.firstWhere((element) =>
         element.name.toString().toLowerCase() ==
         dropdownvalue2.toString().toLowerCase());
-    print(Get.arguments[0]);
-    print(convert);
     // Currency myCurrency = await CurrencyConverter.getMyCurrency();
     var usdConvert = await CurrencyConverter.convert(
       from: myCurrency,
@@ -60,8 +56,6 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
       usdToNgn = usdConvert.toString();
     });
   }
-
-
 
   Future Conversions() async {
     await conversionRepo(
@@ -184,9 +178,7 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
                                           fontSize: 18,
                                           fontWeight: FontWeight.w600),
                                     ),
-                                  )
-
-                                  ),
+                                  )),
                               const SizedBox(
                                 width: 20,
                               ),
@@ -256,12 +248,13 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
                                     Container(
                                       padding: const EdgeInsets.all(6),
                                       decoration: const BoxDecoration(
-                                        color: Color(0xFFF0D75F),
+                                        color: Colors.black,
                                         shape: BoxShape.circle,
                                       ),
                                       child: const Icon(
                                         Icons.clear,
                                         size: 18,
+                                        color: Colors.white,
                                       ),
                                     ),
                                     const SizedBox(
@@ -320,14 +313,14 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
                                     Container(
                                       padding: const EdgeInsets.all(8),
                                       decoration: const BoxDecoration(
-                                        color: Color(0xFFF0D75F),
+                                        color: Colors.black,
                                         shape: BoxShape.circle,
                                       ),
                                       child: Center(
                                         child: Text(
                                           "-",
                                           style: GoogleFonts.poppins(
-                                              color: const Color(0xFF1D1D1D),
+                                              color: Colors.white,
                                               fontSize: 35,
                                               fontWeight: FontWeight.w300),
                                         ),
@@ -382,11 +375,12 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
                                     Container(
                                         padding: const EdgeInsets.all(8),
                                         decoration: const BoxDecoration(
-                                          color: Color(0xFFF0D75F),
+                                          color: Colors.black,
                                           shape: BoxShape.circle,
                                         ),
                                         child: SvgPicture.asset(
                                           "assets/images/Vector.svg",
+                                          color: Colors.white,
                                           height: 20,
                                         )),
                                     const SizedBox(
@@ -497,7 +491,6 @@ class _ExchangeMoneyState extends State<ExchangeMoney> {
                                       onChanged: (String? value) {
                                         setState(() {
                                           dropdownvalue2 = value!;
-                                          print(dropdownvalue2.toString());
                                           convertUsd();
                                         });
                                       },

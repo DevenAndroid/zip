@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
@@ -11,19 +8,10 @@ import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 
-import '../controller/number_controller.dart';
 import '../controller/profile_controller.dart';
-import '../controller/update_user.dart';
 import '../models/model_security_pin.dart';
-import '../models/model_setting.dart';
-import '../models/model_verify_africa.dart';
-import '../models/verify_africa.dart';
 import '../repository/security_pin_repo].dart';
-import '../repository/setting_repo.dart';
-import '../repository/verify_africa_b.dart';
 import '../resourses/api_constant.dart';
-
-import '../controller/update_user.dart';
 
 class SecurityOtpScreen1 extends StatefulWidget {
   const SecurityOtpScreen1({Key? key}) : super(key: key);

@@ -74,7 +74,7 @@ class _SelectMethodState extends State<SelectMethod> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       GestureDetector(
@@ -84,16 +84,16 @@ class _SelectMethodState extends State<SelectMethod> {
                         child: Row(
                           children: [
                             Container(
-                              padding: EdgeInsets.all(8),
+                              padding: const EdgeInsets.all(8),
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(10)),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.add,
                                 size: 30,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 13,
                             ),
                             Text(
@@ -103,12 +103,12 @@ class _SelectMethodState extends State<SelectMethod> {
                                   fontSize: 17,
                                   fontWeight: FontWeight.w500),
                             ),
-                            Spacer(),
-                            Icon(Icons.keyboard_arrow_right_rounded)
+                            const Spacer(),
+                            const Icon(Icons.keyboard_arrow_right_rounded)
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       Obx(() {
@@ -129,7 +129,8 @@ class _SelectMethodState extends State<SelectMethod> {
                                           child: Row(
                                             children: [
                                               Container(
-                                                  padding: EdgeInsets.all(8),
+                                                  padding:
+                                                      const EdgeInsets.all(8),
                                                   decoration: BoxDecoration(
                                                       color: Colors.white,
                                                       borderRadius:
@@ -137,7 +138,7 @@ class _SelectMethodState extends State<SelectMethod> {
                                                               10)),
                                                   child: SvgPicture.asset(
                                                       'assets/images/bank.svg')),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 15,
                                               ),
                                               Column(
@@ -169,13 +170,13 @@ class _SelectMethodState extends State<SelectMethod> {
                                                   ),
                                                 ],
                                               ),
-                                              Spacer(),
-                                              Icon(Icons
+                                              const Spacer(),
+                                              const Icon(Icons
                                                   .keyboard_arrow_right_rounded)
                                             ],
                                           ),
                                         ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 10,
                                       ),
                                     ],

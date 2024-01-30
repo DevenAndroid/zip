@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
-import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
@@ -60,7 +58,7 @@ class _CountryScreenState extends State<CountryScreen> {
                             fontWeight: FontWeight.w500),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Padding(
@@ -73,7 +71,7 @@ class _CountryScreenState extends State<CountryScreen> {
                             fontWeight: FontWeight.w400),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
                     CommonTextfield(
@@ -81,13 +79,12 @@ class _CountryScreenState extends State<CountryScreen> {
                         RequiredValidator(
                             errorText: 'Enter Nationality Country')
                       ]),
-
                       controller: registorController.nationalController,
                       obSecure: false,
                       labelText: " Nationality Country",
                       hintText: '',
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     CommonTextfield(
@@ -98,7 +95,7 @@ class _CountryScreenState extends State<CountryScreen> {
                       labelText: "City",
                       hintText: '',
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     CommonTextfield(
@@ -109,7 +106,7 @@ class _CountryScreenState extends State<CountryScreen> {
                       labelText: " Country of Birth",
                       hintText: ' ',
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     Padding(
@@ -122,7 +119,7 @@ class _CountryScreenState extends State<CountryScreen> {
                             fontWeight: FontWeight.w500),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Padding(
@@ -134,7 +131,6 @@ class _CountryScreenState extends State<CountryScreen> {
                             children: [
                               InkWell(
                                 onTap: () {
-                                  print(registorController.genderType.value);
                                   registorController.genderType.value = "male";
                                   setState(() {});
                                 },
@@ -169,7 +165,6 @@ class _CountryScreenState extends State<CountryScreen> {
                             children: [
                               InkWell(
                                 onTap: () {
-                                  print(registorController.genderType.value);
                                   registorController.genderType.value =
                                       "female";
                                   setState(() {});
@@ -214,10 +209,10 @@ class _CountryScreenState extends State<CountryScreen> {
                             Get.toNamed(MyRouters.verifyAfricaScreen);
                           }
                         },
-                        child: CustomOutlineButton(
+                        child: const CustomOutlineButton(
                           title: "Next",
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                   ])),

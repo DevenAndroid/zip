@@ -10,7 +10,6 @@ import '../controller/profile_controller.dart';
 import '../models/service_common_model.dart';
 import '../repository/service_common_repo.dart';
 import '../widgets/circular_progressindicator.dart';
-import '../widgets/common_button.dart';
 import '../widgets/common_colour.dart';
 import '../widgets/common_error_widget.dart';
 
@@ -52,6 +51,14 @@ class _BuyAirtimecreenState extends State<BuyAirtimecreen> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          toolbarHeight: 80,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(4.0),
+            child: Container(
+              color: Colors.grey.shade300,
+              height: 1.0,
+            ),
+          ),
           backgroundColor: Colors.white,
           elevation: 0,
           leading: InkWell(
@@ -109,7 +116,7 @@ class _BuyAirtimecreenState extends State<BuyAirtimecreen> {
                                                         const SizedBox(),
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 20,
                                             ),
                                             Expanded(
@@ -229,27 +236,27 @@ class _BuyAirtimecreenState extends State<BuyAirtimecreen> {
                                                   // Get.toNamed(MyRouters.dataPlanScreen,arguments: [biller.value.data![index].name.toString(),]);
                                                 },
                                                 child: Container(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            vertical: 8,
-                                                            horizontal: 10),
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
+                                                        vertical: 8,
+                                                        horizontal: 10),
                                                     decoration: BoxDecoration(
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               7),
-                                                      color: AppTheme
-                                                          .secondaryColor,
+                                                      color: const Color(
+                                                          0xFFEDCA2F),
                                                     ),
                                                     child: Text(
                                                       "See Plan",
                                                       style:
                                                           GoogleFonts.poppins(
                                                               color:
-                                                                  Colors.white,
+                                                                  Colors.black,
                                                               fontSize: 12,
                                                               fontWeight:
                                                                   FontWeight
-                                                                      .w500),
+                                                                      .w600),
                                                     ))),
                                           ],
                                         )

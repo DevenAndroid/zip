@@ -7,9 +7,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:zip/routers/my_routers.dart';
-import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
-import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
 import '../../controller/payout_controller.dart';
@@ -142,7 +140,7 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
                   onTap: () {
                     payOutcontroller.save(context);
                   },
-                  child: CustomOutlineButton(
+                  child: const CustomOutlineButton(
                     title: "Continue",
                   ),
                 ),
@@ -153,7 +151,7 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
                   onTap: () {
                     Get.toNamed(MyRouters.withdrawlCash);
                   },
-                  child: CustomOutlineButton(
+                  child: const CustomOutlineButton(
                     title: "Continue",
                   ),
                 ),
@@ -170,7 +168,7 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
                         child: Row(
                           children: [
                             SvgPicture.asset('assets/images/mark.svg'),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             Column(
@@ -199,21 +197,21 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       CommonTextfield(
                         onTap: () {
                           Get.toNamed(MyRouters.chooseBank1);
                         },
-                        suffixIcon: Icon(Icons.keyboard_arrow_down),
+                        suffixIcon: const Icon(Icons.keyboard_arrow_down),
                         controller: controller.bankController1,
                         readOnly: true,
                         obSecure: false,
                         hintText: "",
                         labelText: "Select Bank",
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       CommonTextfield(
@@ -250,7 +248,7 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
                         hintText: "",
                         labelText: "Account Number",
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       CommonTextfield(
@@ -260,7 +258,7 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
                         hintText: "",
                         labelText: "Account Name",
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Padding(
@@ -284,7 +282,7 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
                               child: CupertinoSwitch(
                                 thumbColor: Colors.black,
                                 value: profileController.isSwitched,
-                                activeColor: Color(0xffF0D75F),
+                                activeColor: const Color(0xffF0D75F),
                                 onChanged: (value) {
                                   setState(() {
                                     profileController.isSwitched = value;
@@ -299,7 +297,7 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
                       SizedBox(
                         height: size.height * .4,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                     ]))));

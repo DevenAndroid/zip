@@ -41,17 +41,17 @@ class _Success3ScreenState extends State<Success3Screen> {
                               fontWeight: FontWeight.w500),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 45,
                       ),
                       Center(
-                        child: Image.asset(
-                          'assets/images/tick.png',
+                        child: SvgPicture.asset(
+                          'assets/images/verify.svg',
                           height: 90,
                           width: 90,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 25,
                       ),
                       Center(
@@ -70,7 +70,7 @@ class _Success3ScreenState extends State<Success3Screen> {
                           onTap: () {
                             Get.toNamed(MyRouters.bottomNavbar);
                           },
-                          child: CustomOutlineButton(
+                          child: const CustomOutlineButton(
                             title: "Done",
                           )),
                     ]))));

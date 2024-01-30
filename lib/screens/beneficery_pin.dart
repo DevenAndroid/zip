@@ -1,6 +1,4 @@
-import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -12,30 +10,15 @@ import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 
-import '../controller/number_controller.dart';
 import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
-import '../models/buy_energy_model.dart';
-import '../models/buy_plan_model.dart';
 import '../models/model_beneficary_list.dart';
 import '../models/model_create_payout.dart';
 import '../models/model_security_pin.dart';
-import '../models/model_setting.dart';
-import '../models/model_verify_africa.dart';
-import '../models/model_veryfy_meter.dart';
 import '../models/save_transastion_model.dart';
-import '../models/verify_africa.dart';
-import '../repository/buy_energy_repo.dart';
-import '../repository/payout_repo.dart';
-import '../repository/repo_buy_plan.dart';
 import '../repository/save_buy_plan_repo.dart';
 import '../repository/security_pin_repo].dart';
-import '../repository/setting_repo.dart';
-import '../repository/verify_africa_b.dart';
-import '../repository/verify_meter_repo.dart';
 import '../resourses/api_constant.dart';
-
-import '../controller/update_user.dart';
 
 class BeneficeryPin extends StatefulWidget {
   const BeneficeryPin({Key? key}) : super(key: key);
@@ -111,7 +94,6 @@ class _BeneficeryPinState extends State<BeneficeryPin> {
         showToast(value.message.toString());
       }
     });
-
   }
 
   getCheckValue() async {
@@ -141,6 +123,14 @@ class _BeneficeryPinState extends State<BeneficeryPin> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          toolbarHeight: 80,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(4.0),
+            child: Container(
+              color: Colors.grey.shade300,
+              height: 1.0,
+            ),
+          ),
           backgroundColor: Colors.white,
           elevation: 0,
           centerTitle: true,
@@ -166,7 +156,7 @@ class _BeneficeryPinState extends State<BeneficeryPin> {
                       child: InkWell(
                         onTap: () {},
                         child: Text(
-                          "Create your unique 4-digits pin!",
+                          "Enter your unique 4-digits pin for transition",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
                               fontSize: 22,

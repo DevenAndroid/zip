@@ -50,13 +50,13 @@ class _AddressScreenState extends State<AddressScreen> {
                               fontWeight: FontWeight.w500),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 40,
                       ),
                       CommonTextfield(
                         obSecure: false,
                         hintText: "Start typing your address",
-                        prefix: Icon(Icons.search),
+                        prefix: const Icon(Icons.search),
                         suffixIcon: Padding(
                           padding: const EdgeInsets.only(right: 9.0),
                           child: SvgPicture.asset(
@@ -83,7 +83,7 @@ class _AddressScreenState extends State<AddressScreen> {
                           onTap: () {
                             Get.toNamed(MyRouters.extraDetailsScreen);
                           },
-                          child: CustomOutlineButton(
+                          child: const CustomOutlineButton(
                             title: "Use my phone location instead",
                           )),
                     ]))));

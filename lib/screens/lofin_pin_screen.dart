@@ -154,12 +154,13 @@ class _LoginPinScreenState extends State<LoginPinScreen> {
                       height: 40,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 25.0, right: 25),
+                      padding: const EdgeInsets.only(left: 45.0, right: 45),
                       child: Center(
                         child: Pinput(
                           validator: MultiValidator([
                             RequiredValidator(errorText: 'Enter 4 Digit Pin')
                           ]),
+
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           controller: loginPincontroller,
                           keyboardType: TextInputType.number,

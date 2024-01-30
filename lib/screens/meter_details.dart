@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
 import '../routers/my_routers.dart';
-import '../widgets/circular_progressindicator.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_colour.dart';
-import '../widgets/common_error_widget.dart';
 
 class MeterDetails extends StatefulWidget {
   const MeterDetails({super.key});

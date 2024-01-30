@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/controller/profile_controller.dart';
 import 'package:zip/controller/update_user.dart';
@@ -10,17 +9,12 @@ import 'package:zip/routers/my_routers.dart';
 
 import '../models/create_benificiary.dart';
 import '../models/model_beneficary_list.dart';
-import '../models/model_create_payout.dart';
 import '../models/model_favorite_benificery.dart';
-import '../models/model_get_binificery.dart';
 import '../models/model_save_bank_detilks.dart';
 import '../models/save_benificary_model.dart';
-import '../repository/benificery_list _repo.dart';
 import '../repository/create_b_repo.dart';
-import '../repository/create_benifiary_repo.dart';
 import '../repository/favurite_benificery_repo.dart';
 import '../repository/get_beneficery_list_repo.dart';
-import '../repository/payout_repo.dart';
 import '../repository/save_bank_details_repo.dart';
 import '../repository/save_benificiary_repo.dart';
 import '../resourses/api_constant.dart';

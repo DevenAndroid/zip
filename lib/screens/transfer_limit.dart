@@ -1,11 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:zip/routers/my_routers.dart';
-import 'package:zip/screens/request_payment.dart';
 import 'package:zip/widgets/common_colour.dart';
 
 import '../models/model_get_transfre_limit.dart';
@@ -13,7 +9,6 @@ import '../models/set_transfre_limit_model.dart';
 import '../repository/get_transferlimit_repo.dart';
 import '../repository/set_transfrelimit_repo.dart';
 import '../resourses/api_constant.dart';
-import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_textfield.dart';
 
@@ -93,7 +88,7 @@ class _TransferLimitState extends State<TransferLimit> {
             onTap: () {
               Get.back();
             },
-            child: Icon(
+            child: const Icon(
               Icons.arrow_back_rounded,
               color: AppTheme.primaryColor,
             ),
@@ -109,7 +104,7 @@ class _TransferLimitState extends State<TransferLimit> {
                   child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(21),
-                          color: Color(0xffFAFAFA)),
+                          color: const Color(0xffFAFAFA)),
                       child: Column(
                         children: [
                           Image.asset(
@@ -190,7 +185,7 @@ class _TransferLimitState extends State<TransferLimit> {
                 //     labelText: "Card number",
                 //   ),
                 // ),
-                SizedBox(
+                const SizedBox(
                   height: 18,
                 ),
                 Padding(
@@ -205,7 +200,7 @@ class _TransferLimitState extends State<TransferLimit> {
                     onChanged: (value) => doubleVar = double.parse(value),
                     obSecure: false,
                     controller: pinController,
-                    suffixIcon: Icon(Icons.remove_red_eye),
+                    suffixIcon: const Icon(Icons.remove_red_eye),
                     hintText: "....",
                     labelText: "Card PIN",
                   ),
@@ -236,7 +231,7 @@ class _TransferLimitState extends State<TransferLimit> {
                   onTap: () {
                     setTransfer();
                   },
-                  child: CustomOutlineButton(
+                  child: const CustomOutlineButton(
                     title: "Done  ",
                   ),
                 ),

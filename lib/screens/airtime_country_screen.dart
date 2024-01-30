@@ -7,17 +7,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 
 import '../controller/profile_controller.dart';
-import '../controller/update_user.dart';
 import '../models/airtime_country_model.dart';
-import '../models/mode_biller.dart';
-import '../models/model_fetch_telcos.dart';
-import '../models/service_common_model.dart';
 import '../repository/airtime_country_repo.dart';
-import '../repository/fetch_telcos_repo.dart';
-import '../repository/list_biller_repo.dart';
-import '../repository/service_common_repo.dart';
 import '../widgets/circular_progressindicator.dart';
-import '../widgets/common_button.dart';
 import '../widgets/common_colour.dart';
 import '../widgets/common_error_widget.dart';
 
@@ -34,6 +26,7 @@ class _BuyAirtimeCountryScreenState extends State<BuyAirtimeCountryScreen> {
   Rx<AirtimeCountryModel> telcos = AirtimeCountryModel().obs;
   final profileController = Get.put(ProfileController());
   var service = Get.arguments[0];
+
   getTelcoList() {
     commonCountryRepo(
       key: "airtime-countries",
@@ -169,8 +162,6 @@ class _BuyAirtimeCountryScreenState extends State<BuyAirtimeCountryScreen> {
                                                 ),
                                               ),
                                             ),
-
-
                                           ],
                                         )
                                       ],

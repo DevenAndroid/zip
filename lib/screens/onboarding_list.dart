@@ -10,7 +10,7 @@ class OnBoarding {
 List<OnBoarding> page1 = [
   OnBoarding(
       title:
-          "Welcome to ZIP                                                     ",
+          "Welcome to ZIP ",
       img: "assets/images/logo.png",
       description: "Introducing a new way to manage your finances."),
   OnBoarding(

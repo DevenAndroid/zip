@@ -8,7 +8,6 @@ import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
 import '../controller/profile_controller.dart';
-import '../controller/update_user.dart';
 
 class SendYourBalanceScreen extends StatefulWidget {
   const SendYourBalanceScreen({Key? key}) : super(key: key);
@@ -27,6 +26,13 @@ class _SendYourBalanceScreenState extends State<SendYourBalanceScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFFFFFFF),
       appBar: AppBar(
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(4.0),
+          child: Container(
+            color: Colors.grey.shade300,
+            height: 1.0,
+          ),
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
         leading: InkWell(
@@ -95,7 +101,6 @@ class _SendYourBalanceScreenState extends State<SendYourBalanceScreen> {
                                 ],
                               ),
                             ),
-
                             const SizedBox(
                               height: 20,
                             ),
@@ -107,7 +112,7 @@ class _SendYourBalanceScreenState extends State<SendYourBalanceScreen> {
                                       decoration: BoxDecoration(
                                         border: Border.all(
                                             color: Colors.black, width: 2),
-                                        borderRadius: BorderRadius.all(
+                                        borderRadius: const BorderRadius.all(
                                             Radius.circular(100)),
                                         color: Colors.white,
                                       ),
@@ -162,8 +167,8 @@ class _SendYourBalanceScreenState extends State<SendYourBalanceScreen> {
                               alignment: Alignment.centerRight,
                               child: Text(
                                 "FEE : " +
-                                    profileController
-                                        .currentBalanceModel.value.data!.fee!.payoutFee
+                                    profileController.currentBalanceModel.value
+                                        .data!.fee!.payoutFee
                                         .toString(),
                                 style: GoogleFonts.poppins(
                                     color: const Color(0xFF1D1D1D),

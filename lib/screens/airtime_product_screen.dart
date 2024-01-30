@@ -1,25 +1,14 @@
 import 'dart:developer';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 
 import '../controller/profile_controller.dart';
-import '../controller/update_user.dart';
-import '../models/airtime_country_model.dart';
-import '../models/mode_biller.dart';
-import '../models/model_fetch_telcos.dart';
 import '../models/model_product_airtime.dart';
-import '../models/service_common_model.dart';
-import '../repository/airtime_country_repo.dart';
-import '../repository/fetch_telcos_repo.dart';
-import '../repository/list_biller_repo.dart';
 import '../repository/product_airtime_repo.dart';
-import '../repository/service_common_repo.dart';
 import '../widgets/circular_progressindicator.dart';
-import '../widgets/common_button.dart';
 import '../widgets/common_colour.dart';
 import '../widgets/common_error_widget.dart';
 
@@ -68,6 +57,14 @@ class _BuyAirtimeProductScreenState extends State<BuyAirtimeProductScreen> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          toolbarHeight: 80,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(4.0),
+            child: Container(
+              color: Colors.grey.shade300,
+              height: 1.0,
+            ),
+          ),
           backgroundColor: Colors.white,
           elevation: 0,
           leading: InkWell(

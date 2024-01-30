@@ -1,7 +1,3 @@
-import 'dart:convert';
-import 'dart:developer';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
@@ -12,23 +8,13 @@ import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 
-import '../controller/number_controller.dart';
 import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
 import '../models/buy_plan_model.dart';
 import '../models/model_security_pin.dart';
-import '../models/model_setting.dart';
-import '../models/model_verify_africa.dart';
 import '../models/save_transastion_model.dart';
-import '../models/verify_africa.dart';
-import '../repository/repo_buy_plan.dart';
-import '../repository/save_buy_plan_repo.dart';
 import '../repository/security_pin_repo].dart';
-import '../repository/setting_repo.dart';
-import '../repository/verify_africa_b.dart';
 import '../resourses/api_constant.dart';
-
-import '../controller/update_user.dart';
 
 class DetailsPinScreen extends StatefulWidget {
   const DetailsPinScreen({Key? key}) : super(key: key);
@@ -52,12 +38,10 @@ class _DetailsPinScreenState extends State<DetailsPinScreen> {
   Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
 
   Future verify() async {
-    await securityPinRepo(
-        context: context, pin: otpcontroller.text.trim())
+    await securityPinRepo(context: context, pin: otpcontroller.text.trim())
         .then((value) {
       modelVerifySecurity.value = value;
       if (value.status == true) {
-
         statusOfSucess.value = RxStatus.success();
         Get.toNamed(MyRouters.cardDetails);
 
@@ -67,10 +51,9 @@ class _DetailsPinScreenState extends State<DetailsPinScreen> {
         showToast(value.message.toString());
       }
     }
-      // showToast(value.message.toString());
-    );
+            // showToast(value.message.toString());
+            );
   }
-
 
   getCheckValue() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
@@ -108,6 +91,14 @@ class _DetailsPinScreenState extends State<DetailsPinScreen> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          toolbarHeight: 80,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(4.0),
+            child: Container(
+              color: Colors.grey.shade300,
+              height: 1.0,
+            ),
+          ),
           backgroundColor: Colors.white,
           elevation: 0,
           centerTitle: true,
@@ -121,76 +112,76 @@ class _DetailsPinScreenState extends State<DetailsPinScreen> {
         ),
         body: SingleChildScrollView(
             child: Form(
-              key: formKeypin,
-              child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10.0, right: 10),
-                          child: InkWell(
-                            onTap: () {},
-                            child: Text(
-                              "Enter your unique 4-digits pin!",
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          ),
+          key: formKeypin,
+          child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0, right: 10),
+                      child: InkWell(
+                        onTap: () {},
+                        child: Text(
+                          "Enter your unique 4-digits pin!",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 22,
+                              fontWeight: FontWeight.w500),
                         ),
-                        const SizedBox(
-                          height: 10,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0, right: 10),
+                      child: Text(
+                        "Enter your pin to see card details",
+                        style: GoogleFonts.poppins(
+                            color: const Color(0xFF1D1D1D),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 25.0, right: 25),
+                      child: Center(
+                        child: Pinput(
+                          validator: MultiValidator([
+                            RequiredValidator(errorText: 'Enter 4 Digit Pin')
+                          ]),
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          controller: otpcontroller,
+                          keyboardType: TextInputType.number,
+                          length: 4,
+                          defaultPinTheme: defaultPinTheme,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10.0, right: 10),
-                          child: Text(
-                            "Enter your pin to see card details",
-                            style: GoogleFonts.poppins(
-                                color: const Color(0xFF1D1D1D),
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 40,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 25.0, right: 25),
-                          child: Center(
-                            child: Pinput(
-                              validator: MultiValidator([
-                                RequiredValidator(errorText: 'Enter 4 Digit Pin')
-                              ]),
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              controller: otpcontroller,
-                              keyboardType: TextInputType.number,
-                              length: 4,
-                              defaultPinTheme: defaultPinTheme,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: size.height * .5,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            if (formKeypin.currentState!.validate()) {
-                              verify();
-                            }
-                          },
-                          child: CustomOutlineBoder(
-                            title: "Next",
-                            backgroundColor: Colors.white,
-                            textColor: AppTheme.buttonColor,
-                            onPressed: () {
-                              Get.toNamed(MyRouters.otpScreen);
-                            },
-                          ),
-                        )
-                      ])),
-            )));
+                      ),
+                    ),
+                    SizedBox(
+                      height: size.height * .5,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        if (formKeypin.currentState!.validate()) {
+                          verify();
+                        }
+                      },
+                      child: CustomOutlineBoder(
+                        title: "Next",
+                        backgroundColor: Colors.white,
+                        textColor: AppTheme.buttonColor,
+                        onPressed: () {
+                          Get.toNamed(MyRouters.otpScreen);
+                        },
+                      ),
+                    )
+                  ])),
+        )));
   }
 }

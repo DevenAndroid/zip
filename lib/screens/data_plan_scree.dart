@@ -6,13 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 
 import '../models/model_data_paln.dart';
-import '../models/model_fetch_telcos.dart';
-import '../models/save_transastion_model.dart';
 import '../repository/data_plan_repo.dart';
-import '../repository/fetch_telcos_repo.dart';
-import '../repository/save_buy_plan_repo.dart';
 import '../widgets/circular_progressindicator.dart';
-import '../widgets/common_button.dart';
 import '../widgets/common_colour.dart';
 import '../widgets/common_error_widget.dart';
 
@@ -92,7 +87,7 @@ class _DataPlanScreenState extends State<DataPlanScreen> {
                                   return Column(
                                     children: [
                                       Container(
-                                        padding: EdgeInsets.all(8),
+                                        padding: const EdgeInsets.all(8),
                                         decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(10),
@@ -129,7 +124,7 @@ class _DataPlanScreenState extends State<DataPlanScreen> {
                                                   ),
                                                 ],
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 height: 10,
                                               ),
                                               Row(
@@ -159,7 +154,7 @@ class _DataPlanScreenState extends State<DataPlanScreen> {
                                                   ),
                                                 ],
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 height: 10,
                                               ),
                                               Row(
@@ -189,7 +184,7 @@ class _DataPlanScreenState extends State<DataPlanScreen> {
                                                   ),
                                                 ],
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 height: 15,
                                               ),
                                               Row(
@@ -216,8 +211,9 @@ class _DataPlanScreenState extends State<DataPlanScreen> {
                                                             ]);
                                                       },
                                                       child: Container(
-                                                          padding: EdgeInsets
-                                                              .symmetric(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .symmetric(
                                                                   vertical: 8,
                                                                   horizontal:
                                                                       10),
@@ -248,7 +244,7 @@ class _DataPlanScreenState extends State<DataPlanScreen> {
                                           ),
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 15,
                                       ),
                                     ],

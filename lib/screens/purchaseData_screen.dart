@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -13,16 +12,11 @@ import 'package:zip/widgets/common_colour.dart';
 
 import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
-import '../models/buy_plan_model.dart';
-import '../models/model_buy_interNet.dart';
 import '../models/save_transastion_model.dart';
 import '../models/service_buy_model.dart';
-import '../repository/buy_dataplan_repo.dart';
-import '../repository/repo_buy_plan.dart';
 import '../repository/save_buy_plan_repo.dart';
 import '../repository/service_buy_repo.dart';
 import '../resourses/api_constant.dart';
-import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_textfield.dart';
 
@@ -44,12 +38,14 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
       registorController.fetchVritualAccount();
     });
+    profileController.amount.text = initStateBlank.toString();
     profileController.getCurrentBalance();
   }
 
   Rx<RxStatus> statusOfProviders = RxStatus.empty().obs;
 
   Rx<ServiceBuyModel> purchaseInternet = ServiceBuyModel().obs;
+
   var initStateBlank = Get.arguments[0];
   var initStateBlank1 = Get.arguments[1];
   var initStateBlank2 = Get.arguments[2];
@@ -60,7 +56,7 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
   saveList() {
     saveTransastionRepo(
             user_id: profileController.modal.value.data!.user!.id.toString(),
-            amount:registorController.result3.toString() ,
+            amount: registorController.result3.toString(),
             about: "Buy Internet",
             // complete_response: purchaseData.value.data!.toJson(),
             context: context,
@@ -71,7 +67,7 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
             phone: profileController.phoneController.text.trim(),
             dataplan: initStateBlank2.toString())
         .then((value) {
-      log("response.body.....    ${value}");
+      log("response.body.....    $value");
       save.value = value;
       if (value.status == true) {
         statusOfSave.value = RxStatus.success();
@@ -85,19 +81,18 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
   }
 
   getInterNet() {
-    print(initStateBlank);
-    print(initStateBlank1);
-    print(initStateBlank2);
-
     commonBuyRepo(
+      context: context,
       phone: profileController.phoneController.text.trim(),
-      amount: registorController.result3.toString() ,
+      amount: initStateBlank.toString(),
+      data_code: initStateBlank1.toString(),
+      telcos: initStateBlank2.toString(),
       key: "pay",
       billersCode: "08011111111",
       serviceID: initStateBlank2,
       variation_code: initStateBlank1,
     ).then((value) {
-      log("response.body.....    ${value}");
+      log("response.body.....    $value");
       purchaseInternet.value = value;
       if (value.status == true) {
         // saveList();
@@ -149,7 +144,7 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
               height: 20,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20,right: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -160,7 +155,6 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
                         fontSize: 15,
                         fontWeight: FontWeight.w500),
                   ),
-
                   Text(
                     "FEE : " +
                         profileController
@@ -186,7 +180,9 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
                   LengthLimitingTextInputFormatter(11),
                   FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
                 ],
-                onChanged: (value) => doubleVar = double.parse(value),
+                onChanged: (value) {
+                  // _addNumbers();
+                },
                 validator: MultiValidator([
                   RequiredValidator(
                       errorText: 'Please enter your contact number '),
@@ -202,7 +198,7 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
                 labelText: "Phone Number",
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Padding(
@@ -223,8 +219,8 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
               child: CommonTextfield(
                 controller: profileController.descriptionController,
                 obSecure: false,
-                onChanged: (value){
-                  _addNumbers();
+                onChanged: (value) {
+                  // _addNumbers();
                 },
                 hintText: "Recharge",
                 labelText: "Description",
@@ -237,12 +233,14 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
               onTap: () async {
                 SharedPreferences pref = await SharedPreferences.getInstance();
                 if (pref.getBool('TransistionPin') == true) {
+                  // _addNumbers();
                   Get.toNamed(MyRouters.dataPurchasePin, arguments: [
                     initStateBlank,
                     initStateBlank1,
                     initStateBlank2
                   ]);
                 } else {
+                  // _addNumbers();
                   getInterNet();
                 }
               },
@@ -255,32 +253,32 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
       ),
     );
   }
-  void _addNumbers() {
-    // Get the input values as strings
-    String firstNumberString = initStateBlank;
-    String secondNumberString =   profileController
-        .currentBalanceModel.value.data!.fee!.serviceFee
-        .toString();
-
-    // Check if both inputs are not empty
-    if (firstNumberString.isNotEmpty && secondNumberString.isNotEmpty) {
-      // Convert strings to integers
-      int firstNumber = int.parse(firstNumberString);
-      int secondNumber = int.parse(secondNumberString);
-
-      // Perform addition
-      int sum = firstNumber + secondNumber;
-
-      // Convert the result back to a string and update the UI
-      setState(() {
-        registorController.result3 = sum.toString();
-        print(registorController.result3.toString());
-      });
-    } else {
-      // Handle the case when one or both of the inputs are empty
-      setState(() {
-        registorController.result2 = 'Please enter valid numbers';
-      });
-    }
-  }
+  // void _addNumbers() {
+  //   // Get the input values as strings
+  //   String firstNumberString = profileController.amount.text.toString();
+  //   String secondNumberString =   profileController
+  //       .currentBalanceModel.value.data!.fee!.serviceFee
+  //       .toString();
+  //
+  //   // Check if both inputs are not empty
+  //   if (firstNumberString.isNotEmpty && secondNumberString.isNotEmpty) {
+  //     // Convert strings to integers
+  //     int firstNumber = int.parse(firstNumberString);
+  //     int secondNumber = int.parse(secondNumberString);
+  //
+  //     // Perform addition
+  //     int sum = firstNumber + secondNumber;
+  //     print(registorController.result3.toString());
+  //     // Convert the result back to a string and update the UI
+  //     setState(() {
+  //       registorController.result3 = sum.toString();
+  //       print(registorController.result3.toString());
+  //     });
+  //   } else {
+  //     // Handle the case when one or both of the inputs are empty
+  //     setState(() {
+  //       registorController.result2 = 'Please enter valid numbers';
+  //     });
+  //   }
+  // }
 }

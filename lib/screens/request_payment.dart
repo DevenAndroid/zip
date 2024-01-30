@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/screens/addapayer.dart';
 import 'package:zip/widgets/common_colour.dart';
@@ -36,7 +35,7 @@ class _RequestPaymentState extends State<RequestPayment> {
           onTap: () {
             Get.back();
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_rounded,
             color: AppTheme.primaryColor,
           ),
@@ -46,16 +45,16 @@ class _RequestPaymentState extends State<RequestPayment> {
             padding: const EdgeInsets.only(right: 20, top: 20, bottom: 10),
             child: InkWell(
               onTap: () {
-                Get.to(AddAPayer());
+                Get.to(const AddAPayer());
               },
               child: Container(
                 height: 25,
                 width: 27,
                 decoration: BoxDecoration(
-                    color: Color(0x1a1d1d1d),
+                    color: const Color(0x1a1d1d1d),
                     borderRadius: BorderRadius.circular(5)),
-                child: Padding(
-                  padding: const EdgeInsets.all(1.0),
+                child: const Padding(
+                  padding: EdgeInsets.all(1.0),
                   child: Icon(Icons.add),
                 ),
               ),
@@ -70,7 +69,7 @@ class _RequestPaymentState extends State<RequestPayment> {
               padding: const EdgeInsets.only(
                   left: 29, right: 29, bottom: 35, top: 36),
               child: CommonTextfield(
-                prefix: Icon(Icons.search),
+                prefix: const Icon(Icons.search),
                 obSecure: false,
                 hintText: "Search by name or amount",
                 labelText: "",
@@ -78,7 +77,7 @@ class _RequestPaymentState extends State<RequestPayment> {
             ),
             Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 30,
                 ),
                 Column(
@@ -93,10 +92,10 @@ class _RequestPaymentState extends State<RequestPayment> {
                     ),
                   ],
                 ),
-                Spacer(),
+                const Spacer(),
                 CupertinoSwitch(
                   value: isSwitched,
-                  activeColor: Color(0xffF0D75F),
+                  activeColor: const Color(0xffF0D75F),
                   onChanged: (value) {
                     setState(() {
                       isSwitched = value;
@@ -104,18 +103,18 @@ class _RequestPaymentState extends State<RequestPayment> {
                     });
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             Container(
               height: 29,
               width: Get.width,
-              color: Color(0x4fd9d9d9),
+              color: const Color(0x4fd9d9d9),
               child: Center(
                 child: Text(
                   "24 Mar 2023",
@@ -161,7 +160,7 @@ class _RequestPaymentState extends State<RequestPayment> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 11,
             ),
             Padding(

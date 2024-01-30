@@ -18,6 +18,13 @@ class _TransastionScreenState extends State<TransastionScreen> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(4.0),
+            child: Container(
+              color: Colors.grey.shade300,
+              height: 1.0,
+            ),
+          ),
           backgroundColor: Colors.white,
           elevation: 0,
           leading: InkWell(
@@ -38,9 +45,9 @@ class _TransastionScreenState extends State<TransastionScreen> {
           ),
           centerTitle: true,
         ),
-        body: SingleChildScrollView(
+        body: const SingleChildScrollView(
             child: Padding(
-                padding: const EdgeInsets.all(12.0),
+                padding: EdgeInsets.all(12.0),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,

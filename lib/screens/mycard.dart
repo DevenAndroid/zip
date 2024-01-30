@@ -1,6 +1,4 @@
-import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -11,6 +9,7 @@ import 'package:zip/widgets/common_colour.dart';
 
 import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
+import '../resourses/api_constant.dart';
 import '../widgets/common_button.dart';
 
 class MyCard extends StatefulWidget {
@@ -21,7 +20,7 @@ class MyCard extends StatefulWidget {
 class _MyCardState extends State<MyCard> {
   final controller1 = Get.put(ProfileController());
   final controller = Get.put(registerController());
-
+  CarouselController carouselController = CarouselController();
   @override
   void initState() {
     // TODO: implement initState
@@ -33,6 +32,7 @@ class _MyCardState extends State<MyCard> {
     // controller1.getBalance();
   }
 
+  int cyu = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,6 +96,7 @@ class _MyCardState extends State<MyCard> {
                         height: 22,
                       ),
                       CarouselSlider(
+                        carouselController: carouselController,
                         items: [
                           Card(
                             elevation: 3.0,
@@ -333,19 +334,250 @@ class _MyCardState extends State<MyCard> {
                                         ),
                                         Stack(
                                           children: [
-                                            Image.asset(
-                                              "assets/images/round2.png",
-                                              height: 30,
-                                              width: 30,
+                                            Image.network(
+                                              "https://cdn.freebiesupply.com/logos/large/2x/visa-logo-png-transparent.png",
+                                              height: 40,
+                                              width: 55,
                                             ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 15.0),
-                                              child: Image.asset(
-                                                "assets/images/round1.png",
-                                                height: 30,
-                                                width: 30,
-                                              ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Card(
+                            elevation: 4.0,
+                            color: Colors.black,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(14),
+                            ),
+                            child: Container(
+                              height: 180,
+                              padding: const EdgeInsets.only(
+                                  left: 18.0, right: 15, bottom: 22.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 18, top: 17),
+                                    child: Image.asset(
+                                      "assets/images/walletlogo.png",
+                                      height: 45,
+                                      width: 44,
+                                    ),
+                                  ),
+                                  Row(
+                                    children: [
+                                      const CircleAvatar(
+                                        maxRadius: 4,
+                                        backgroundColor: Colors.white,
+                                      ),
+                                      const SizedBox(
+                                        width: 3,
+                                      ),
+                                      const CircleAvatar(
+                                        maxRadius: 4,
+                                        backgroundColor: Colors.white,
+                                      ),
+                                      const SizedBox(
+                                        width: 3,
+                                      ),
+                                      const CircleAvatar(
+                                        maxRadius: 4,
+                                        backgroundColor: Colors.white,
+                                      ),
+                                      const SizedBox(
+                                        width: 3,
+                                      ),
+                                      const CircleAvatar(
+                                        maxRadius: 4,
+                                        backgroundColor: Colors.white,
+                                      ),
+                                      const SizedBox(
+                                        width: 8,
+                                      ),
+                                      const CircleAvatar(
+                                        maxRadius: 4,
+                                        backgroundColor: Colors.white,
+                                      ),
+                                      const SizedBox(
+                                        width: 3,
+                                      ),
+                                      const CircleAvatar(
+                                        maxRadius: 4,
+                                        backgroundColor: Colors.white,
+                                      ),
+                                      const SizedBox(
+                                        width: 3,
+                                      ),
+                                      const CircleAvatar(
+                                        maxRadius: 4,
+                                        backgroundColor: Colors.white,
+                                      ),
+                                      const SizedBox(
+                                        width: 3,
+                                      ),
+                                      const CircleAvatar(
+                                        maxRadius: 4,
+                                        backgroundColor: Colors.white,
+                                      ),
+                                      const SizedBox(
+                                        width: 8,
+                                      ),
+                                      const CircleAvatar(
+                                        maxRadius: 4,
+                                        backgroundColor: Colors.white,
+                                      ),
+                                      const SizedBox(
+                                        width: 3,
+                                      ),
+                                      const CircleAvatar(
+                                        maxRadius: 4,
+                                        backgroundColor: Colors.white,
+                                      ),
+                                      const SizedBox(
+                                        width: 3,
+                                      ),
+                                      const CircleAvatar(
+                                        maxRadius: 4,
+                                        backgroundColor: Colors.white,
+                                      ),
+                                      const SizedBox(
+                                        width: 3,
+                                      ),
+                                      const CircleAvatar(
+                                        maxRadius: 4,
+                                        backgroundColor: Colors.white,
+                                      ),
+                                      const SizedBox(
+                                        width: 8,
+                                      ),
+                                      if (controller1.card.value.data ==
+                                          null) ...[
+                                        const CircleAvatar(
+                                          maxRadius: 4,
+                                          backgroundColor: Colors.white,
+                                        ),
+                                        const SizedBox(
+                                          width: 3,
+                                        ),
+                                        const CircleAvatar(
+                                          maxRadius: 4,
+                                          backgroundColor: Colors.white,
+                                        ),
+                                        const SizedBox(
+                                          width: 3,
+                                        ),
+                                        const CircleAvatar(
+                                          maxRadius: 4,
+                                          backgroundColor: Colors.white,
+                                        ),
+                                        const SizedBox(
+                                          width: 3,
+                                        ),
+                                        const CircleAvatar(
+                                          maxRadius: 4,
+                                          backgroundColor: Colors.white,
+                                        ),
+                                        const SizedBox(
+                                          width: 8,
+                                        ),
+                                      ] else
+                                        Text(
+                                          "1234",
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.white,
+                                              fontSize: 14,
+                                              letterSpacing: 2,
+                                              fontWeight: FontWeight.w600),
+                                        )
+                                    ],
+                                  ),
+                                  FittedBox(
+                                    child: Row(
+                                      children: [
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Text(
+                                              'Card Holder Name',
+                                              style: GoogleFonts.poppins(
+                                                  color: Colors.white,
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                            if (controller1.card.value.data ==
+                                                null)
+                                              Text(
+                                                '--',
+                                                style: GoogleFonts.poppins(
+                                                    color: Colors.white,
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              )
+                                            else
+                                              Text(
+                                                "----",
+                                                style: GoogleFonts.poppins(
+                                                    color: Colors.white,
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              )
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Text(
+                                              'Expiry date',
+                                              style: GoogleFonts.poppins(
+                                                  color: Colors.white,
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                            if (controller1.card.value.data ==
+                                                null)
+                                              Text(
+                                                '--/--',
+                                                style: GoogleFonts.poppins(
+                                                    color: Colors.white,
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              )
+                                            else
+                                              Text(
+                                                "--/--",
+                                                style: GoogleFonts.poppins(
+                                                    color: Colors.white,
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              )
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Stack(
+                                          children: [
+                                            Image.network(
+                                              "https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-transparent-png-stickpng-10.png",
+                                              height: 40,
+                                              width: 55,
                                             ),
                                           ],
                                         ),
@@ -364,6 +596,11 @@ class _MyCardState extends State<MyCard> {
                           enlargeCenterPage: true,
                           autoPlay: false,
                           aspectRatio: 16 / 9,
+                          onPageChanged:
+                              (int index, CarouselPageChangedReason reason) {
+                            cyu = index;
+                            setState(() {});
+                          },
                           autoPlayCurve: Curves.fastOutSlowIn,
                           enableInfiniteScroll: true,
                           autoPlayAnimationDuration:
@@ -396,285 +633,344 @@ class _MyCardState extends State<MyCard> {
                       //     ),
                       //   ),
                       // ),
-                      const SizedBox(
-                        height: 17,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              // Get.toNamed(MyRouters.addFundScreen);
-                              Get.toNamed(MyRouters.addFundExchange);
-                            },
-                            child: Container(
-                              height: 98,
-                              width: 98,
-                              decoration: BoxDecoration(
-                                  color: const Color(0xFFFAFAFA),
-                                  borderRadius: BorderRadius.circular(10),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      color: Colors.black26,
-                                      offset: Offset(
-                                        0.5,
-                                        0.5,
-                                      ), //Offset
-                                      blurRadius: 0.5,
-                                      spreadRadius: 0.0,
-                                    ), //BoxShadow
-                                  ]),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  const Icon(
-                                    Icons.add,
-                                    size: 40,
-                                  ),
-                                  Text(
-                                    "Add Money",
-                                    style: GoogleFonts.poppins(
-                                        color: const Color(0xFF2E2E2E),
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              // controller1.getCardDetails();
-                              Get.to(()=>const DetailsPinScreen());
-                            },
-                            child: Container(
-                              height: 98,
-                              width: 98,
-                              decoration: BoxDecoration(
-                                  color: const Color(0xFFFAFAFA),
-                                  borderRadius: BorderRadius.circular(10),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      color: Colors.black26,
-                                      offset: Offset(
-                                        0.5,
-                                        0.5,
-                                      ), //Offset
-                                      blurRadius: 0.5,
-                                      spreadRadius: 0.0,
-                                    ), //BoxShadow
-                                  ]),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  const Icon(
-                                    Icons.credit_card,
-                                    size: 40,
-                                  ),
-                                  Text(
-                                    "Card Details",
-                                    style: GoogleFonts.poppins(
-                                        color: const Color(0xFF2E2E2E),
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          controller1.cardUnFreeze.value.status == "success"
-                              ? InkWell(
+
+                      cyu.isEven
+                          ? Column(
+                              children: [
+                                const SizedBox(
+                                  height: 17,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        // Get.toNamed(MyRouters.addFundScreen);
+                                        Get.toNamed(MyRouters.addFundExchange);
+                                      },
+                                      child: Container(
+                                        height: 98,
+                                        width: 98,
+                                        decoration: BoxDecoration(
+                                            color: const Color(0xFFFAFAFA),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                color: Colors.black26,
+                                                offset: Offset(
+                                                  0.5,
+                                                  0.5,
+                                                ), //Offset
+                                                blurRadius: 0.5,
+                                                spreadRadius: 0.0,
+                                              ), //BoxShadow
+                                            ]),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            const Icon(
+                                              Icons.add,
+                                              size: 40,
+                                            ),
+                                            Text(
+                                              "Add Money",
+                                              style: GoogleFonts.poppins(
+                                                  color:
+                                                      const Color(0xFF2E2E2E),
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        // controller1.getCardDetails();
+                                        Get.to(() => const DetailsPinScreen());
+                                      },
+                                      child: Container(
+                                        height: 98,
+                                        width: 98,
+                                        decoration: BoxDecoration(
+                                            color: const Color(0xFFFAFAFA),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                color: Colors.black26,
+                                                offset: Offset(
+                                                  0.5,
+                                                  0.5,
+                                                ), //Offset
+                                                blurRadius: 0.5,
+                                                spreadRadius: 0.0,
+                                              ), //BoxShadow
+                                            ]),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            const Icon(
+                                              Icons.credit_card,
+                                              size: 40,
+                                            ),
+                                            Text(
+                                              "Card Details",
+                                              style: GoogleFonts.poppins(
+                                                  color:
+                                                      const Color(0xFF2E2E2E),
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    controller1.cardUnFreeze.value.status ==
+                                            "success"
+                                        ? InkWell(
+                                            onTap: () {
+                                              showDialogueDelete();
+                                            },
+                                            child: Container(
+                                              height: 98,
+                                              width: 98,
+                                              decoration: BoxDecoration(
+                                                  color:
+                                                      const Color(0xFFFAFAFA),
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  boxShadow: const [
+                                                    BoxShadow(
+                                                      color: Colors.black26,
+                                                      offset: Offset(
+                                                        0.5,
+                                                        0.5,
+                                                      ), //Offset
+                                                      blurRadius: 0.5,
+                                                      spreadRadius: 0.0,
+                                                    ), //BoxShadow
+                                                  ]),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  const Icon(
+                                                    Icons.ac_unit,
+                                                    size: 40,
+                                                  ),
+                                                  Text(
+                                                    "Freeze card",
+                                                    style: GoogleFonts.poppins(
+                                                        color: const Color(
+                                                            0xFF2E2E2E),
+                                                        fontSize: 10,
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          )
+                                        : controller1.cardFreeze.value.status ==
+                                                "success"
+                                            ? InkWell(
+                                                onTap: () {
+                                                  showDialogueDelete1();
+                                                },
+                                                child: Container(
+                                                  height: 98,
+                                                  width: 98,
+                                                  decoration: BoxDecoration(
+                                                      color: const Color(
+                                                          0xFFFAFAFA),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      boxShadow: const [
+                                                        BoxShadow(
+                                                          color: Colors.black26,
+                                                          offset: Offset(
+                                                            0.5,
+                                                            0.5,
+                                                          ), //Offset
+                                                          blurRadius: 0.5,
+                                                          spreadRadius: 0.0,
+                                                        ), //BoxShadow
+                                                      ]),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      const Icon(
+                                                        Icons.ac_unit,
+                                                        size: 40,
+                                                      ),
+                                                      Text(
+                                                        "Unfreez card",
+                                                        style: GoogleFonts.poppins(
+                                                            color: const Color(
+                                                                0xFF2E2E2E),
+                                                            fontSize: 10,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w400),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              )
+                                            : InkWell(
+                                                onTap: () {
+                                                  showDialogueDelete();
+                                                },
+                                                child: Container(
+                                                  height: 98,
+                                                  width: 98,
+                                                  decoration: BoxDecoration(
+                                                      color: const Color(
+                                                          0xFFFAFAFA),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      boxShadow: const [
+                                                        BoxShadow(
+                                                          color: Colors.black26,
+                                                          offset: Offset(
+                                                            0.5,
+                                                            0.5,
+                                                          ), //Offset
+                                                          blurRadius: 0.5,
+                                                          spreadRadius: 0.0,
+                                                        ), //BoxShadow
+                                                      ]),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      const Icon(
+                                                        Icons.ac_unit,
+                                                        size: 40,
+                                                      ),
+                                                      Text(
+                                                        "Freeze card",
+                                                        style: GoogleFonts.poppins(
+                                                            color: const Color(
+                                                                0xFF2E2E2E),
+                                                            fontSize: 10,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w400),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              )
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 48,
+                                ),
+                                Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 18.0, right: 18),
+                                    child: InkWell(
+                                      onTap: () {
+                                        // Get.toNamed(MyRouters.buyServices);
+                                      },
+                                      child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        height: 49,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            border: Border.all(
+                                                color: AppTheme.buttonColor,
+                                                width: 1.3)),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "Add to ",
+                                              style: GoogleFonts.poppins(
+                                                  color: AppTheme.buttonColor,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w700),
+                                            ),
+                                            SvgPicture.asset(
+                                                'assets/images/google.svg'),
+                                            Text(
+                                              " Pay",
+                                              style: GoogleFonts.poppins(
+                                                  color: AppTheme.buttonColor,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w700),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    )),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                InkWell(
                                   onTap: () {
-                                    showDialogueDelete();
+                                    showDialogueDelete2();
+                                    // controller.contactUpdateCard(context);
+                                    // controller1. holder();
                                   },
-                                  child: Container(
-                                    height: 98,
-                                    width: 98,
-                                    decoration: BoxDecoration(
-                                        color: const Color(0xFFFAFAFA),
-                                        borderRadius: BorderRadius.circular(10),
-                                        boxShadow: const [
-                                          BoxShadow(
-                                            color: Colors.black26,
-                                            offset: Offset(
-                                              0.5,
-                                              0.5,
-                                            ), //Offset
-                                            blurRadius: 0.5,
-                                            spreadRadius: 0.0,
-                                          ), //BoxShadow
-                                        ]),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        const Icon(
-                                          Icons.ac_unit,
-                                          size: 40,
-                                        ),
-                                        Text(
-                                          "Freeze card",
-                                          style: GoogleFonts.poppins(
-                                              color: const Color(0xFF2E2E2E),
-                                              fontSize: 10,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                      ],
+                                  child: const SizedBox(
+                                    width: 200,
+                                    child: CustomOutlineButton(
+                                      title: "Delete card ",
                                     ),
                                   ),
-                                )
-                              : controller1.cardFreeze.value.status == "success"
-                                  ? InkWell(
-                                      onTap: () {
-                                        showDialogueDelete1();
-                                      },
-                                      child: Container(
-                                        height: 98,
-                                        width: 98,
-                                        decoration: BoxDecoration(
-                                            color: const Color(0xFFFAFAFA),
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            boxShadow: const [
-                                              BoxShadow(
-                                                color: Colors.black26,
-                                                offset: Offset(
-                                                  0.5,
-                                                  0.5,
-                                                ), //Offset
-                                                blurRadius: 0.5,
-                                                spreadRadius: 0.0,
-                                              ), //BoxShadow
-                                            ]),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            const Icon(
-                                              Icons.ac_unit,
-                                              size: 40,
-                                            ),
-                                            Text(
-                                              "Unfreez card",
-                                              style: GoogleFonts.poppins(
-                                                  color:
-                                                      const Color(0xFF2E2E2E),
-                                                  fontSize: 10,
-                                                  fontWeight: FontWeight.w400),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    )
-                                  : InkWell(
-                                      onTap: () {
-                                        showDialogueDelete();
-                                      },
-                                      child: Container(
-                                        height: 98,
-                                        width: 98,
-                                        decoration: BoxDecoration(
-                                            color: const Color(0xFFFAFAFA),
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            boxShadow: const [
-                                              BoxShadow(
-                                                color: Colors.black26,
-                                                offset: Offset(
-                                                  0.5,
-                                                  0.5,
-                                                ), //Offset
-                                                blurRadius: 0.5,
-                                                spreadRadius: 0.0,
-                                              ), //BoxShadow
-                                            ]),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            const Icon(
-                                              Icons.ac_unit,
-                                              size: 40,
-                                            ),
-                                            Text(
-                                              "Freeze card",
-                                              style: GoogleFonts.poppins(
-                                                  color:
-                                                      const Color(0xFF2E2E2E),
-                                                  fontSize: 10,
-                                                  fontWeight: FontWeight.w400),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 48,
-                      ),
-                      Padding(
-                          padding: const EdgeInsets.only(left: 18.0, right: 18),
-                          child: InkWell(
-                            onTap: () {
-                              // Get.toNamed(MyRouters.buyServices);
-                            },
-                            child: Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: 49,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                      color: AppTheme.buttonColor, width: 1.3)),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "Add to ",
-                                    style: GoogleFonts.poppins(
-                                        color: AppTheme.buttonColor,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                  SvgPicture.asset('assets/images/google.svg'),
-                                  Text(
-                                    " Pay",
-                                    style: GoogleFonts.poppins(
-                                        color: AppTheme.buttonColor,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                ],
+                                ),
+                                const SizedBox(
+                                  height: 100,
+                                ),
+                              ],
+                            )
+                          : Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 10.0, right: 10, top: 50),
+                              child: InkWell(
+                                onTap: () {
+                                  if (controller1.currentBalanceModel.value
+                                          .data!.fee!.bridgeCardFee! <=
+                                      controller1.currentBalanceModel.value
+                                          .data!.currentBalance!) {
+                                    controller1.create1(context);
+                                  } else {
+                                    showToast(
+                                        "Your wallet balance is below to card creation fees");
+                                  }
+                                },
+                                child: CustomOutlineButton(
+                                  title: "Create a Master Card",
+                                ),
                               ),
                             ),
-                          )),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          showDialogueDelete2();
-                          // controller.contactUpdateCard(context);
-                          // controller1. holder();
-                        },
-                        child: const SizedBox(
-                          width: 200,
-                          child: CustomOutlineButton(
-                            title: "Delete card ",
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 100,
-                      ),
                     ],
                   ))
               : controller1.statusOfCard.value.isError

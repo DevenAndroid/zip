@@ -31,7 +31,7 @@ class _RequestApaymentConfirmState extends State<RequestApaymentConfirm> {
           onTap: () {
             Get.back();
           },
-          child: Icon(Icons.arrow_back),
+          child: const Icon(Icons.arrow_back),
         ),
         centerTitle: true,
         actions: [
@@ -51,7 +51,7 @@ class _RequestApaymentConfirmState extends State<RequestApaymentConfirm> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 37),
+            const SizedBox(height: 37),
             Padding(
               padding: const EdgeInsets.only(left: 35),
               child: Text(
@@ -62,7 +62,7 @@ class _RequestApaymentConfirmState extends State<RequestApaymentConfirm> {
                     fontWeight: FontWeight.w400),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 4,
             ),
             Padding(
@@ -82,7 +82,7 @@ class _RequestApaymentConfirmState extends State<RequestApaymentConfirm> {
               onTap: () {
                 Get.toNamed(MyRouters.paymentLink);
               },
-              child: CustomOutlineButton(
+              child: const CustomOutlineButton(
                 title: "Confirm",
               ),
             ),

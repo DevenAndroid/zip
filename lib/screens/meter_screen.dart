@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -10,15 +9,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/screens/meter_details.dart';
-import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
-import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
 import '../../controller/payout_controller.dart';
 import '../../controller/update_user.dart';
-import '../../models/model_account_resolve.dart';
-import '../../repository/bank_resolve_repo.dart';
 import '../../resourses/api_constant.dart';
 import '../controller/profile_controller.dart';
 import '../models/buy_energy_model.dart';
@@ -113,8 +108,9 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
       billersCode: controller.meterNo.text.toString(),
       variation_code: controller.provider1.text.trim(),
       serviceID: controller.idController1.text.toString(),
+      telcos: controller.provider.text.trim(),
       key: "pay",
-      amount: controller.result1.toString(),
+      amount: controller.amount.text.trim(),
       phone: controller.mobileNO.text.toString(),
       context: context,
     ).then((value) {
@@ -124,7 +120,7 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
             Energy.value.data!.content!.transactions!.productName.toString();
         statusOfBuyEnergy.value = RxStatus.success();
         // saveList();
-        Get.to(() => MeterDetails());
+        Get.to(() => const MeterDetails());
         showToast(value.message.toString());
       } else {
         showToast(value.message.toString());
@@ -140,7 +136,7 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    profileController.  getCurrentBalance();
+    profileController.getCurrentBalance();
   }
 
   @override
@@ -177,7 +173,7 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
               verifyMeterData();
               // payOutcontroller.save(context);
             },
-            child: CustomOutlineButton(
+            child: const CustomOutlineButton(
               title: "Continue",
             ),
           ),
@@ -196,7 +192,7 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
                       child: Row(
                         children: [
                           SvgPicture.asset('assets/images/mark.svg'),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Column(
@@ -222,11 +218,11 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
                               ),
                             ],
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Text(
                             "FEE : " +
-                                profileController
-                                    .currentBalanceModel.value.data!.fee!.serviceFee
+                                profileController.currentBalanceModel.value
+                                    .data!.fee!.serviceFee
                                     .toString(),
                             style: GoogleFonts.poppins(
                                 color: const Color(0xFF1D1D1D),
@@ -236,21 +232,21 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     CommonTextfield(
                       onTap: () {
                         Get.toNamed(MyRouters.billerScreen);
                       },
-                      suffixIcon: Icon(Icons.keyboard_arrow_down),
+                      suffixIcon: const Icon(Icons.keyboard_arrow_down),
                       controller: controller.provider,
                       readOnly: true,
                       obSecure: false,
                       hintText: "",
                       labelText: "Select Provider",
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     CommonTextfield(
@@ -276,7 +272,7 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
                       hintText: "",
                       labelText: "Meter Number",
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     CommonTextfield(
@@ -304,7 +300,7 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
                       hintText: "",
                       labelText: "Mobile No",
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     CommonTextfield(
@@ -315,9 +311,38 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
                         FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
                       ],
                       onChanged: (value) {
-    addition();
-    },
+                        String firstNumberString =
+                            controller.amount.text.toString();
+                        String secondNumberString = profileController
+                            .currentBalanceModel.value.data!.fee!.serviceFee
+                            .toString();
 
+                        // Check if both inputs are not empty
+                        if (firstNumberString.isNotEmpty &&
+                            secondNumberString.isNotEmpty) {
+                          // Convert strings to integers
+                          // int firstNumber = int.parse(firstNumberString);
+                          // int secondNumber = int.parse(secondNumberString);
+                          double firstNumber = double.parse(firstNumberString);
+                          double secondNumber =
+                              double.parse(secondNumberString);
+                          // Perform addition
+                          double sum = firstNumber + secondNumber;
+                          // int sum = firstNumber + secondNumber;
+                          print(controller.result1.toString());
+                          // Convert the result back to a string and update the UI
+                          setState(() {
+                            controller.result1 = sum.toString();
+                            print(controller.result1.toString());
+                          });
+                        } else {
+                          // Handle the case when one or both of the inputs are empty
+                          setState(() {
+                            controller.result1 = 'Please enter valid numbers';
+                          });
+                        }
+                        // addition();
+                      },
                       validator: MultiValidator([
                         RangeValidator(
                             min: 0,
@@ -334,7 +359,7 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
                       hintText: "",
                       labelText: "Amount",
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     // Padding(
@@ -371,38 +396,38 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
                     //   ),
                     // ),
 
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                   ])),
         )));
   }
-  void addition() {
-    // Get the input values as strings
-    String firstNumberString = controller.amount.text;
-    String secondNumberString =   profileController
-        .currentBalanceModel.value.data!.fee!.serviceFee
-        .toString();
-
-    // Check if both inputs are not empty
-    if (firstNumberString.isNotEmpty && secondNumberString.isNotEmpty) {
-      // Convert strings to integers
-      int firstNumber = int.parse(firstNumberString);
-      int secondNumber = int.parse(secondNumberString);
-
-      // Perform addition
-      int sum = firstNumber + secondNumber;
-
-      // Convert the result back to a string and update the UI
-      setState(() {
-        registorController.result1 = sum.toString();
-        print(registorController.result1.toString());
-      });
-    } else {
-      // Handle the case when one or both of the inputs are empty
-      setState(() {
-        registorController.result = 'Please enter valid numbers';
-      });
-    }
-  }
+  // void addition() {
+  //   // Get the input values as strings
+  //   String firstNumberString = controller.amount.text;
+  //   String secondNumberString =   profileController
+  //       .currentBalanceModel.value.data!.fee!.serviceFee
+  //       .toString();
+  //
+  //   // Check if both inputs are not empty
+  //   if (firstNumberString.isNotEmpty && secondNumberString.isNotEmpty) {
+  //     // Convert strings to integers
+  //     int firstNumber = int.parse(firstNumberString);
+  //     int secondNumber = int.parse(secondNumberString);
+  //
+  //     // Perform addition
+  //     int sum = firstNumber + secondNumber;
+  //
+  //     // Convert the result back to a string and update the UI
+  //     setState(() {
+  //       registorController.result1 = sum.toString();
+  //       print(registorController.result1.toString());
+  //     });
+  //   } else {
+  //     // Handle the case when one or both of the inputs are empty
+  //     setState(() {
+  //       registorController.result = 'Please enter valid numbers';
+  //     });
+  //   }
+  // }
 }

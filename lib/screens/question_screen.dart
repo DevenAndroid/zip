@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,7 @@ import '../controller/loan_controller.dart';
 import '../controller/update_user.dart';
 import '../routers/my_routers.dart';
 import '../widgets/common_button.dart';
+import '../widgets/common_textfield.dart';
 
 class QuestionsScreen extends StatefulWidget {
   const QuestionsScreen({Key? key}) : super(key: key);
@@ -109,7 +111,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: const Color(0xFFF3F0F7),
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
@@ -164,64 +166,85 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                       Text(
                         'Residential status',
                         style: GoogleFonts.poppins(
-                            color: const Color(0xFF5A5656),
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16),
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 12,
                       ),
-                      DropdownButtonHideUnderline(
-                        child: DropdownButtonFormField(
-                          validator: MultiValidator([
-                            RequiredValidator(
-                                errorText: 'Please select your channel'),
-                          ]),
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF585757),
-                              fontWeight: FontWeight.w400,
-                              fontSize: 16),
-                          decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.all(10),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                10,
+                      Container(
+                        height: 63,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black26,
+                                offset: Offset(
+                                  0.1,
+                                  0.1,
+                                ), //Offset
+                                blurRadius: 0.0,
+                                spreadRadius: 0.0,
+                              ), //BoxShadow
+                            ]),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButtonFormField(
+                            padding: const EdgeInsets.all(10),
+                            validator: MultiValidator([
+                              RequiredValidator(
+                                  errorText: 'Please select your channel'),
+                            ]),
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF585757),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 16),
+                            decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.all(10),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(
+                                  10,
+                                ),
+                                borderSide: const BorderSide(
+                                    color: Colors.white, width: 1.5),
                               ),
-                              borderSide: const BorderSide(
-                                  color: Color(0xFFB7B7B7), width: 1.5),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                10,
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(
+                                  10,
+                                ),
+                                borderSide: const BorderSide(
+                                    color: Colors.white, width: 1.5),
                               ),
-                              borderSide: const BorderSide(
-                                  color: Color(0xFFB7B7B7), width: 1.5),
-                            ),
-                            disabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                10,
+                              disabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(
+                                  10,
+                                ),
+                                borderSide: const BorderSide(
+                                    color: Colors.white, width: 1.5),
                               ),
-                              borderSide: const BorderSide(
-                                  color: Color(0xFFB7B7B7), width: 1.5),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                10,
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(
+                                  10,
+                                ),
+                                borderSide: const BorderSide(
+                                    color: Colors.white, width: 1.5),
                               ),
-                              borderSide: const BorderSide(
-                                  color: Color(0xFFB7B7B7), width: 1.5),
                             ),
+                            hint: const Text("Home Owner"),
+                            icon: const Icon(
+                              Icons.keyboard_arrow_down,
+                              color: Colors.black,
+                            ),
+                            isExpanded: true,
+                            value: loanController.selectedValuem,
+                            items: dropdownItemsm,
+                            onChanged: (String? value) {
+                              setState(() {
+                                loanController.selectedValuem = value!;
+                              });
+                            },
                           ),
-                          hint: const Text("Home Owner"),
-                          icon: const Icon(Icons.keyboard_arrow_down),
-                          isExpanded: true,
-                          value: loanController.selectedValuem,
-                          items: dropdownItemsm,
-                          onChanged: (String? value) {
-                            setState(() {
-                              loanController.selectedValuem = value!;
-                            });
-                          },
                         ),
                       ),
                       const SizedBox(
@@ -230,64 +253,82 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                       Text(
                         'Employed status',
                         style: GoogleFonts.poppins(
-                            color: const Color(0xFF5A5656),
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16),
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 12,
                       ),
-                      DropdownButtonHideUnderline(
-                        child: DropdownButtonFormField(
-                          validator: MultiValidator([
-                            RequiredValidator(
-                                errorText: 'Please select your channel'),
-                          ]),
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF585757),
-                              fontWeight: FontWeight.w400,
-                              fontSize: 16),
-                          decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.all(10),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                10,
+                      Container(
+                        height: 63,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black26,
+                                offset: Offset(
+                                  0.1,
+                                  0.1,
+                                ), //Offset
+                                blurRadius: 0.0,
+                                spreadRadius: 0.0,
+                              ), //BoxShadow
+                            ]),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButtonFormField(
+                            padding: const EdgeInsets.all(10),
+                            validator: MultiValidator([
+                              RequiredValidator(
+                                  errorText: 'Please select your channel'),
+                            ]),
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF585757),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 16),
+                            decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.all(10),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(
+                                  10,
+                                ),
+                                borderSide: const BorderSide(
+                                    color: Colors.white, width: 1.5),
                               ),
-                              borderSide: const BorderSide(
-                                  color: Color(0xFFB7B7B7), width: 1.5),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                10,
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(
+                                  10,
+                                ),
+                                borderSide: const BorderSide(
+                                    color: Colors.white, width: 1.5),
                               ),
-                              borderSide: const BorderSide(
-                                  color: Color(0xFFB7B7B7), width: 1.5),
-                            ),
-                            disabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                10,
+                              disabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(
+                                  10,
+                                ),
+                                borderSide: const BorderSide(
+                                    color: Colors.white, width: 1.5),
                               ),
-                              borderSide: const BorderSide(
-                                  color: Color(0xFFB7B7B7), width: 1.5),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                10,
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(
+                                  10,
+                                ),
+                                borderSide: const BorderSide(
+                                    color: Colors.white, width: 1.5),
                               ),
-                              borderSide: const BorderSide(
-                                  color: Color(0xFFB7B7B7), width: 1.5),
                             ),
+                            hint: const Text(""),
+                            icon: const Icon(Icons.keyboard_arrow_down),
+                            isExpanded: true,
+                            value: loanController.dropdownvalue,
+                            items: dropdownItemsm1,
+                            onChanged: (String? value) {
+                              setState(() {
+                                loanController.dropdownvalue = value!;
+                              });
+                            },
                           ),
-                          hint: const Text(""),
-                          icon: const Icon(Icons.keyboard_arrow_down),
-                          isExpanded: true,
-                          value: loanController.dropdownvalue,
-                          items: dropdownItemsm1,
-                          onChanged: (String? value) {
-                            setState(() {
-                              loanController.dropdownvalue = value!;
-                            });
-                          },
                         ),
                       ),
                       const SizedBox(
@@ -296,130 +337,169 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                       Text(
                         'Monthly income',
                         style: GoogleFonts.poppins(
-                            color: const Color(0xFF5A5656),
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16),
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 12,
                       ),
-                      DropdownButtonHideUnderline(
-                        child: DropdownButtonFormField(
-                          validator: MultiValidator([
-                            RequiredValidator(
-                                errorText: 'Please select your channel'),
-                          ]),
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF585757),
-                              fontWeight: FontWeight.w400,
-                              fontSize: 16),
-                          decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.all(10),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                10,
-                              ),
-                              borderSide: const BorderSide(
-                                  color: Color(0xFFB7B7B7), width: 1.5),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                10,
-                              ),
-                              borderSide: const BorderSide(
-                                  color: Color(0xFFB7B7B7), width: 1.5),
-                            ),
-                            disabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                10,
-                              ),
-                              borderSide: const BorderSide(
-                                  color: Color(0xFFB7B7B7), width: 1.5),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                10,
-                              ),
-                              borderSide: const BorderSide(
-                                  color: Color(0xFFB7B7B7), width: 1.5),
-                            ),
-                          ),
-                          hint: const Text(""),
-                          icon: const Icon(Icons.keyboard_arrow_down),
-                          isExpanded: true,
-                          value: loanController.selectedValuem1,
-                          items: dropdownItemsm2,
-                          onChanged: (String? value) {
-                            setState(() {
-                              loanController.selectedValuem1 = value!;
-                            });
-                          },
-                        ),
+                      CommonTextfield(
+                        keyboardType: const TextInputType.numberWithOptions(
+                            decimal: true),
+                        inputFormatters: [
+                          // LengthLimitingTextInputFormatter(8),
+                          FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                        ],
+                        onChanged: (value) {},
+                        validator: (value) {
+                          if (value!.trim().isEmpty) {
+                            return "Please enter amount";
+                          }
+                          if (double.tryParse(value.trim()) == null) {
+                            return "Enter valid amount";
+                          }
+                          return null;
+                        },
+                        controller: loanController.monthelyController,
+                        obSecure: false,
+                        hintText: "Enter Monthly income",
                       ),
+                      // DropdownButtonHideUnderline(
+                      //   child: DropdownButtonFormField(
+                      //     validator: MultiValidator([
+                      //       RequiredValidator(
+                      //           errorText: 'Please select your channel'),
+                      //     ]),
+                      //     style: GoogleFonts.poppins(
+                      //         color: const Color(0xFF585757),
+                      //         fontWeight: FontWeight.w400,
+                      //         fontSize: 16),
+                      //     decoration: InputDecoration(
+                      //       contentPadding: const EdgeInsets.all(10),
+                      //       border: OutlineInputBorder(
+                      //         borderRadius: BorderRadius.circular(
+                      //           10,
+                      //         ),
+                      //         borderSide: const BorderSide(
+                      //             color: Color(0xFFB7B7B7), width: 1.5),
+                      //       ),
+                      //       enabledBorder: OutlineInputBorder(
+                      //         borderRadius: BorderRadius.circular(
+                      //           10,
+                      //         ),
+                      //         borderSide: const BorderSide(
+                      //             color: Color(0xFFB7B7B7), width: 1.5),
+                      //       ),
+                      //       disabledBorder: OutlineInputBorder(
+                      //         borderRadius: BorderRadius.circular(
+                      //           10,
+                      //         ),
+                      //         borderSide: const BorderSide(
+                      //             color: Color(0xFFB7B7B7), width: 1.5),
+                      //       ),
+                      //       focusedBorder: OutlineInputBorder(
+                      //         borderRadius: BorderRadius.circular(
+                      //           10,
+                      //         ),
+                      //         borderSide: const BorderSide(
+                      //             color: Color(0xFFB7B7B7), width: 1.5),
+                      //       ),
+                      //     ),
+                      //     hint: const Text(""),
+                      //     icon: const Icon(Icons.keyboard_arrow_down),
+                      //     isExpanded: true,
+                      //     value: loanController.selectedValuem1,
+                      //     items: dropdownItemsm2,
+                      //     onChanged: (String? value) {
+                      //       setState(() {
+                      //         loanController.selectedValuem1 = value!;
+                      //       });
+                      //     },
+                      //   ),
+                      // ),
                       const SizedBox(
                         height: 20,
                       ),
                       Text(
                         'Duration of loan (in months)',
                         style: GoogleFonts.poppins(
-                            color: const Color(0xFF5A5656),
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16),
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 12,
                       ),
-                      DropdownButtonHideUnderline(
-                        child: DropdownButtonFormField(
-                          validator: MultiValidator([
-                            RequiredValidator(
-                                errorText: 'Please select your channel'),
-                          ]),
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF585757),
-                              fontWeight: FontWeight.w400,
-                              fontSize: 16),
-                          decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.all(10),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                10,
+                      Container(
+                        height: 63,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black26,
+                                offset: Offset(
+                                  0.1,
+                                  0.1,
+                                ), //Offset
+                                blurRadius: 0.0,
+                                spreadRadius: 0.0,
+                              ), //BoxShadow
+                            ]),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButtonFormField(
+                            padding: const EdgeInsets.all(10),
+                            validator: MultiValidator([
+                              RequiredValidator(
+                                  errorText: 'Please select your channel'),
+                            ]),
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF585757),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 16),
+                            decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.all(10),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(
+                                  10,
+                                ),
+                                borderSide: const BorderSide(
+                                    color: Colors.white, width: 1.5),
                               ),
-                              borderSide: const BorderSide(
-                                  color: Color(0xFFB7B7B7), width: 1.5),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                10,
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(
+                                  10,
+                                ),
+                                borderSide: const BorderSide(
+                                    color: Colors.white, width: 1.5),
                               ),
-                              borderSide: const BorderSide(
-                                  color: Color(0xFFB7B7B7), width: 1.5),
-                            ),
-                            disabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                10,
+                              disabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(
+                                  10,
+                                ),
+                                borderSide: const BorderSide(
+                                    color: Colors.white, width: 1.5),
                               ),
-                              borderSide: const BorderSide(
-                                  color: Color(0xFFB7B7B7), width: 1.5),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                10,
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(
+                                  10,
+                                ),
+                                borderSide: const BorderSide(
+                                    color: Colors.white, width: 1.5),
                               ),
-                              borderSide: const BorderSide(
-                                  color: Color(0xFFB7B7B7), width: 1.5),
                             ),
+                            hint: const Text(""),
+                            icon: const Icon(Icons.keyboard_arrow_down),
+                            isExpanded: true,
+                            value: loanController.selectedValuem2,
+                            items: dropdownItemsm3,
+                            onChanged: (String? value) {
+                              setState(() {
+                                loanController.selectedValuem2 = value!;
+                              });
+                            },
                           ),
-                          hint: const Text(""),
-                          icon: const Icon(Icons.keyboard_arrow_down),
-                          isExpanded: true,
-                          value: loanController.selectedValuem2,
-                          items: dropdownItemsm3,
-                          onChanged: (String? value) {
-                            setState(() {
-                              loanController.selectedValuem2 = value!;
-                            });
-                          },
                         ),
                       ),
                       const SizedBox(
@@ -428,130 +508,170 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                       Text(
                         'Desired Amount ',
                         style: GoogleFonts.poppins(
-                            color: const Color(0xFF5A5656),
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16),
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 12,
                       ),
-                      DropdownButtonHideUnderline(
-                        child: DropdownButtonFormField(
-                          validator: MultiValidator([
-                            RequiredValidator(
-                                errorText: 'Please select your channel'),
-                          ]),
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF585757),
-                              fontWeight: FontWeight.w400,
-                              fontSize: 16),
-                          decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.all(10),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                10,
-                              ),
-                              borderSide: const BorderSide(
-                                  color: Color(0xFFB7B7B7), width: 1.5),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                10,
-                              ),
-                              borderSide: const BorderSide(
-                                  color: Color(0xFFB7B7B7), width: 1.5),
-                            ),
-                            disabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                10,
-                              ),
-                              borderSide: const BorderSide(
-                                  color: Color(0xFFB7B7B7), width: 1.5),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                10,
-                              ),
-                              borderSide: const BorderSide(
-                                  color: Color(0xFFB7B7B7), width: 1.5),
-                            ),
-                          ),
-                          hint: const Text(""),
-                          icon: const Icon(Icons.keyboard_arrow_down),
-                          isExpanded: true,
-                          value: loanController.selectedValuem3,
-                          items: dropdownItemsm4,
-                          onChanged: (String? value) {
-                            setState(() {
-                              loanController.selectedValuem3 = value!;
-                            });
-                          },
-                        ),
+                      CommonTextfield(
+                        keyboardType: const TextInputType.numberWithOptions(
+                            decimal: true),
+                        inputFormatters: [
+                          // LengthLimitingTextInputFormatter(8),
+                          FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                        ],
+                        onChanged: (value) {},
+                        validator: (value) {
+                          if (value!.trim().isEmpty) {
+                            return "Please enter amount";
+                          }
+                          if (double.tryParse(value.trim()) == null) {
+                            return "Enter valid amount";
+                          }
+                          return null;
+                        },
+                        controller: loanController.desiredController,
+                        obSecure: false,
+                        hintText: "Enter  Desired amount",
                       ),
+                      // DropdownButtonHideUnderline(
+                      //   child: DropdownButtonFormField(
+                      //     validator: MultiValidator([
+                      //       RequiredValidator(
+                      //           errorText: 'Please select your channel'),
+                      //     ]),
+                      //     style: GoogleFonts.poppins(
+                      //         color: const Color(0xFF585757),
+                      //         fontWeight: FontWeight.w400,
+                      //         fontSize: 16),
+                      //     decoration: InputDecoration(
+                      //       contentPadding: const EdgeInsets.all(10),
+                      //       border: OutlineInputBorder(
+                      //         borderRadius: BorderRadius.circular(
+                      //           10,
+                      //         ),
+                      //         borderSide: const BorderSide(
+                      //             color: Color(0xFFB7B7B7), width: 1.5),
+                      //       ),
+                      //       enabledBorder: OutlineInputBorder(
+                      //         borderRadius: BorderRadius.circular(
+                      //           10,
+                      //         ),
+                      //         borderSide: const BorderSide(
+                      //             color: Color(0xFFB7B7B7), width: 1.5),
+                      //       ),
+                      //       disabledBorder: OutlineInputBorder(
+                      //         borderRadius: BorderRadius.circular(
+                      //           10,
+                      //         ),
+                      //         borderSide: const BorderSide(
+                      //             color: Color(0xFFB7B7B7), width: 1.5),
+                      //       ),
+                      //       focusedBorder: OutlineInputBorder(
+                      //         borderRadius: BorderRadius.circular(
+                      //           10,
+                      //         ),
+                      //         borderSide: const BorderSide(
+                      //             color: Color(0xFFB7B7B7), width: 1.5),
+                      //       ),
+                      //     ),
+                      //     hint: const Text(""),
+                      //     icon: const Icon(Icons.keyboard_arrow_down),
+                      //     isExpanded: true,
+                      //     value: loanController.selectedValuem3,
+                      //     items: dropdownItemsm4,
+                      //     onChanged: (String? value) {
+                      //       setState(() {
+                      //         loanController.selectedValuem3 = value!;
+                      //       });
+                      //     },
+                      //   ),
+                      // ),
                       const SizedBox(
                         height: 20,
                       ),
                       Text(
                         'Is your income likely to change in the next 6 - 12 months',
                         style: GoogleFonts.poppins(
-                            color: const Color(0xFF5A5656),
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16),
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 12,
                       ),
-                      DropdownButtonHideUnderline(
-                        child: DropdownButtonFormField(
-                          validator: MultiValidator([
-                            RequiredValidator(
-                                errorText: 'Please select your channel'),
-                          ]),
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF585757),
-                              fontWeight: FontWeight.w400,
-                              fontSize: 16),
-                          decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.all(10),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                10,
+                      Container(
+                        height: 63,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black26,
+                                offset: Offset(
+                                  0.1,
+                                  0.1,
+                                ), //Offset
+                                blurRadius: 0.0,
+                                spreadRadius: 0.0,
+                              ), //BoxShadow
+                            ]),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButtonFormField(
+                            padding: const EdgeInsets.all(10),
+                            validator: MultiValidator([
+                              RequiredValidator(
+                                  errorText: 'Please select your channel'),
+                            ]),
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF585757),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 16),
+                            // padding:  const EdgeInsets.symmetric( vertical: 20),
+                            decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.all(12),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(
+                                  10,
+                                ),
+                                borderSide: const BorderSide(
+                                    color: Colors.white, width: 1.5),
                               ),
-                              borderSide: const BorderSide(
-                                  color: Color(0xFFB7B7B7), width: 1.5),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                10,
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(
+                                  10,
+                                ),
+                                borderSide: const BorderSide(
+                                    color: Colors.white, width: 1.5),
                               ),
-                              borderSide: const BorderSide(
-                                  color: Color(0xFFB7B7B7), width: 1.5),
-                            ),
-                            disabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                10,
+                              disabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(
+                                  10,
+                                ),
+                                borderSide: const BorderSide(
+                                    color: Colors.white, width: 1.5),
                               ),
-                              borderSide: const BorderSide(
-                                  color: Color(0xFFB7B7B7), width: 1.5),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                10,
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(
+                                  10,
+                                ),
+                                borderSide: const BorderSide(
+                                    color: Colors.white, width: 1.5),
                               ),
-                              borderSide: const BorderSide(
-                                  color: Color(0xFFB7B7B7), width: 1.5),
                             ),
+                            hint: const Text(""),
+                            icon: const Icon(Icons.keyboard_arrow_down),
+                            isExpanded: true,
+                            value: loanController.selectedValuem4,
+                            items: dropdownItemsm5,
+                            onChanged: (String? value) {
+                              setState(() {
+                                loanController.selectedValuem4 = value!;
+                              });
+                            },
                           ),
-                          hint: const Text(""),
-                          icon: const Icon(Icons.keyboard_arrow_down),
-                          isExpanded: true,
-                          value: loanController.selectedValuem4,
-                          items: dropdownItemsm5,
-                          onChanged: (String? value) {
-                            setState(() {
-                              loanController.selectedValuem4 = value!;
-                            });
-                          },
                         ),
                       ),
                       const SizedBox(
@@ -713,7 +833,9 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                       //         ]
                       //     )),
                       // const SizedBox(height: 15,),
-
+                      const SizedBox(
+                        height: 15,
+                      ),
                       Row(children: [
                         InkWell(
                           onTap: () {
@@ -722,7 +844,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                           child: Text(
                             "Learn about how we use your data",
                             style: GoogleFonts.poppins(
-                                color: const Color(0xFFB2802A),
+                                color: Colors.black,
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500),
                           ),
@@ -731,15 +853,13 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                       ]),
 
                       const SizedBox(
-                        height: 15,
+                        height: 10,
                       ),
                       Container(
                         padding: const EdgeInsets.all(15),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                                color: Color(0xFFB2802A).withOpacity(0.20)),
-                            color: const Color(0xFFB2802A).withOpacity(.15)),
+                            color: const Color(0xFFEDCB2F)),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 2.0),
                           child: Row(
@@ -747,8 +867,10 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Center(
-                                child:
-                                    SvgPicture.asset("assets/images/lock3.svg"),
+                                child: SvgPicture.asset(
+                                  "assets/images/lock3.svg",
+                                  color: Colors.black,
+                                ),
                               ),
                               const SizedBox(
                                 width: 15,
@@ -759,7 +881,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                                   style: GoogleFonts.poppins(
                                       color: const Color(0xFF1D1D1D),
                                       fontSize: 14,
-                                      fontWeight: FontWeight.w600),
+                                      fontWeight: FontWeight.w400),
                                 ),
                               ),
                             ],

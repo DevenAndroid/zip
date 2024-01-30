@@ -11,9 +11,7 @@ import '../models/airtimeTransistionModel.dart';
 import '../models/buy_data_List_model.dart';
 import '../models/buy_electricity_list_model.dart';
 import '../models/cabel_tv_list_model.dart';
-import '../models/model_all_transistion.dart';
 import '../repository/get_airtime_list_repo.dart';
-import '../repository/get_all_transistion_repo.dart';
 import '../repository/get_cabel_tv_repo.dart';
 import '../repository/get_data_list_repo.dart';
 import '../repository/get_electricity_list_repo.dart';
@@ -44,7 +42,7 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
 
   getAllTransitionList() {
     buyAirtimeListRepo().then((value) {
-      log("response.body.....    ${value}");
+      log("response.body.....    $value");
       airtimeTransistion.value = value;
       if (value.status == true) {
         statusOfAirtimeTransistion.value = RxStatus.success();
@@ -58,7 +56,7 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
 
   getSentTransitionList() {
     buyElectricityListRepo().then((value) {
-      log("response.body.....    ${value}");
+      log("response.body.....    $value");
       electricityTransistion.value = value;
       if (value.status == true) {
         statusOfelEctricityTransistion.value = RxStatus.success();
@@ -72,7 +70,7 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
 
   getBuyDataList() {
     buyDataListRepo().then((value) {
-      log("response.body.....    ${value}");
+      log("response.body.....    $value");
       buyDataList.value = value;
       if (value.status == true) {
         statusOfBuyDataList1.value = RxStatus.success();
@@ -86,7 +84,7 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
 
   getBuyCableList() {
     buyCabelTvListRepo().then((value) {
-      log("response.body.....    ${value}");
+      log("response.body.....    $value");
       buyCableList.value = value;
       if (value.status == true) {
         statusOfBuyDataList.value = RxStatus.success();
@@ -443,8 +441,8 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                                         },
                                                         child: Container(
                                                           padding:
-                                                              const EdgeInsets.all(
-                                                                  10),
+                                                              const EdgeInsets
+                                                                  .all(10),
                                                           decoration: BoxDecoration(
                                                               borderRadius:
                                                                   BorderRadius
@@ -655,8 +653,8 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                                         },
                                                         child: Container(
                                                           padding:
-                                                              const EdgeInsets.all(
-                                                                  10),
+                                                              const EdgeInsets
+                                                                  .all(10),
                                                           decoration: BoxDecoration(
                                                               borderRadius:
                                                                   BorderRadius
@@ -886,8 +884,8 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                                         },
                                                         child: Container(
                                                           padding:
-                                                              const EdgeInsets.all(
-                                                                  10),
+                                                              const EdgeInsets
+                                                                  .all(10),
                                                           decoration: BoxDecoration(
                                                               borderRadius:
                                                                   BorderRadius
@@ -947,12 +945,7 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                                                               FontWeight.w500),
                                                                     ),
                                                                     Text(
-                                                                      "Plan:- " +
-                                                                          buyDataList
-                                                                              .value
-                                                                              .data![index]
-                                                                              .dataplan
-                                                                              .toString(),
+                                                                      "Plan:- ${buyDataList.value.data![index].dataplan}",
                                                                       style: GoogleFonts.poppins(
                                                                           color: Colors
                                                                               .grey,
@@ -1010,12 +1003,7 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                                                       ],
                                                                     ),
                                                                     Text(
-                                                                      "Code:- " +
-                                                                          buyDataList
-                                                                              .value
-                                                                              .data![index]
-                                                                              .dataCode
-                                                                              .toString(),
+                                                                      "Code:- ${buyDataList.value.data![index].dataCode}",
                                                                       style: GoogleFonts.poppins(
                                                                           color: Colors
                                                                               .grey,
@@ -1132,8 +1120,8 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                                         },
                                                         child: Container(
                                                           padding:
-                                                              const EdgeInsets.all(
-                                                                  10),
+                                                              const EdgeInsets
+                                                                  .all(10),
                                                           decoration: BoxDecoration(
                                                               borderRadius:
                                                                   BorderRadius
@@ -1193,12 +1181,7 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                                                               FontWeight.w500),
                                                                     ),
                                                                     Text(
-                                                                      "Plan:- " +
-                                                                          buyCableList
-                                                                              .value
-                                                                              .data![index]
-                                                                              .dataplan
-                                                                              .toString(),
+                                                                      "Plan:- ${buyCableList.value.data![index].dataplan}",
                                                                       style: GoogleFonts.poppins(
                                                                           color: Colors
                                                                               .grey,
@@ -1256,12 +1239,7 @@ class _BuyAirtimeListState extends State<BuyAirtimeList> {
                                                                       ],
                                                                     ),
                                                                     Text(
-                                                                      "Code:- " +
-                                                                          buyCableList
-                                                                              .value
-                                                                              .data![index]
-                                                                              .dataCode
-                                                                              .toString(),
+                                                                      "Code:- ${buyCableList.value.data![index].dataCode}",
                                                                       style: GoogleFonts.poppins(
                                                                           color: Colors
                                                                               .grey,

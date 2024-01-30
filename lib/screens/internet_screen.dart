@@ -1,10 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 
 import '../controller/profile_controller.dart';
+import '../controller/update_user.dart';
 import '../models/service_variation_model.dart';
 import '../repository/service_variation_repo.dart';
 import '../widgets/circular_progressindicator.dart';
@@ -24,7 +24,7 @@ class _InterNetPlanScreenState extends State<InterNetPlanScreen> {
   var serviceid = Get.arguments[0];
 
   Rx<ServiceVariationModel> dataPlan = ServiceVariationModel().obs;
-
+  final registorController = Get.put(registerController());
   getTelcoList() {
     commonVariationRepo(key: "variations", serviceID: serviceid.toString())
         .then((value) {
@@ -55,6 +55,13 @@ class _InterNetPlanScreenState extends State<InterNetPlanScreen> {
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
           backgroundColor: Colors.white,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(4.0),
+            child: Container(
+              color: Colors.grey.shade300,
+              height: 1.0,
+            ),
+          ),
           elevation: 0,
           leading: InkWell(
             onTap: () {
@@ -92,7 +99,7 @@ class _InterNetPlanScreenState extends State<InterNetPlanScreen> {
                                   return Column(
                                     children: [
                                       Container(
-                                        padding: EdgeInsets.all(8),
+                                        padding: const EdgeInsets.all(8),
                                         decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(10),
@@ -118,7 +125,7 @@ class _InterNetPlanScreenState extends State<InterNetPlanScreen> {
                                                         fontWeight:
                                                             FontWeight.w500),
                                                   ),
-                                                  SizedBox(
+                                                  const SizedBox(
                                                     width: 10,
                                                   ),
                                                   Expanded(
@@ -140,7 +147,7 @@ class _InterNetPlanScreenState extends State<InterNetPlanScreen> {
                                                   ),
                                                 ],
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 height: 10,
                                               ),
                                               Row(
@@ -174,83 +181,138 @@ class _InterNetPlanScreenState extends State<InterNetPlanScreen> {
                                                   ),
                                                 ],
                                               ),
-                                              SizedBox(
-                                                height: 10,
-                                              ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    "Validity",
-                                                    style: GoogleFonts.poppins(
-                                                        color: const Color(
-                                                            0xFF1D1D1D),
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.w500),
-                                                  ),
-                                                  Text(
-                                                    dataPlan
-                                                        .value
-                                                        .data!
-                                                        .content!
-                                                        .varations![index]
-                                                        .fixedPrice
-                                                        .toString(),
-                                                    style: GoogleFonts.poppins(
-                                                        color: const Color(
-                                                            0xFF1D1D1D),
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.w500),
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(
-                                                height: 10,
-                                              ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    "Data Code",
-                                                    style: GoogleFonts.poppins(
-                                                        color: const Color(
-                                                            0xFF1D1D1D),
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.w500),
-                                                  ),
-                                                  Text(
-                                                    dataPlan
-                                                        .value
-                                                        .data!
-                                                        .content!
-                                                        .varations![index]
-                                                        .variationCode
-                                                        .toString(),
-                                                    style: GoogleFonts.poppins(
-                                                        color: const Color(
-                                                            0xFF1D1D1D),
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.w500),
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(
+                                              // SizedBox(
+                                              //   height: 10,
+                                              // ),
+                                              // Row(
+                                              //   mainAxisAlignment:
+                                              //       MainAxisAlignment
+                                              //           .spaceBetween,
+                                              //   children: [
+                                              //     Text(
+                                              //       "Validity",
+                                              //       style: GoogleFonts.poppins(
+                                              //           color: const Color(
+                                              //               0xFF1D1D1D),
+                                              //           fontSize: 16,
+                                              //           fontWeight:
+                                              //               FontWeight.w500),
+                                              //     ),
+                                              //     Text(
+                                              //       dataPlan
+                                              //           .value
+                                              //           .data!
+                                              //           .content!
+                                              //           .varations![index]
+                                              //           .fixedPrice
+                                              //           .toString(),
+                                              //       style: GoogleFonts.poppins(
+                                              //           color: const Color(
+                                              //               0xFF1D1D1D),
+                                              //           fontSize: 15,
+                                              //           fontWeight:
+                                              //               FontWeight.w500),
+                                              //     ),
+                                              //   ],
+                                              // ),
+                                              // SizedBox(
+                                              //   height: 10,
+                                              // ),
+                                              // Row(
+                                              //   mainAxisAlignment:
+                                              //       MainAxisAlignment
+                                              //           .spaceBetween,
+                                              //   children: [
+                                              //     Text(
+                                              //       "Data Code",
+                                              //       style: GoogleFonts.poppins(
+                                              //           color: const Color(
+                                              //               0xFF1D1D1D),
+                                              //           fontSize: 15,
+                                              //           fontWeight:
+                                              //               FontWeight.w500),
+                                              //     ),
+                                              //     Text(
+                                              //       dataPlan
+                                              //           .value
+                                              //           .data!
+                                              //           .content!
+                                              //           .varations![index]
+                                              //           .variationCode
+                                              //           .toString(),
+                                              //       style: GoogleFonts.poppins(
+                                              //           color: const Color(
+                                              //               0xFF1D1D1D),
+                                              //           fontSize: 16,
+                                              //           fontWeight:
+                                              //               FontWeight.w500),
+                                              //     ),
+                                              //   ],
+                                              // ),
+                                              const SizedBox(
                                                 height: 15,
                                               ),
                                               Row(
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment.end,
+                                                    MainAxisAlignment.center,
                                                 children: [
                                                   InkWell(
                                                       onTap: () {
+                                                        // Get the input values as strings
+                                                        String
+                                                            firstNumberString =
+                                                            dataPlan
+                                                                .value
+                                                                .data!
+                                                                .content!
+                                                                .varations![
+                                                                    index]
+                                                                .variationAmount
+                                                                .toString();
+                                                        String
+                                                            secondNumberString =
+                                                            profileController
+                                                                .currentBalanceModel
+                                                                .value
+                                                                .data!
+                                                                .fee!
+                                                                .serviceFee
+                                                                .toString();
+
+                                                        // Check if both inputs are not empty
+                                                        if (firstNumberString
+                                                                .isNotEmpty &&
+                                                            secondNumberString
+                                                                .isNotEmpty) {
+                                                          // Convert strings to integers
+                                                          // int firstNumber = int.parse(firstNumberString);
+                                                          // int secondNumber = int.parse(secondNumberString);
+                                                          double firstNumber =
+                                                              double.parse(
+                                                                  firstNumberString);
+                                                          double secondNumber =
+                                                              double.parse(
+                                                                  secondNumberString);
+                                                          // Perform addition
+                                                          double sum =
+                                                              firstNumber +
+                                                                  secondNumber;
+                                                          // int sum = firstNumber + secondNumber;
+                                                          // Convert the result back to a string and update the UI
+                                                          setState(() {
+                                                            registorController
+                                                                    .result3 =
+                                                                sum.toString();
+                                                          });
+                                                        } else {
+                                                          // Handle the case when one or both of the inputs are empty
+                                                          setState(() {
+                                                            registorController
+                                                                    .result2 =
+                                                                'Please enter valid numbers';
+                                                          });
+                                                        }
+
                                                         Get.toNamed(
                                                             MyRouters
                                                                 .purchaseDataScreen,
@@ -286,47 +348,48 @@ class _InterNetPlanScreenState extends State<InterNetPlanScreen> {
                                                         //   showToast("inefficient balance");
                                                         // }
                                                       },
-                                                      child: Container(
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                                  vertical: 8,
-                                                                  horizontal:
-                                                                      10),
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        7),
-                                                            color: AppTheme
-                                                                .secondaryColor,
-                                                          ),
-                                                          child: Text(
-                                                            "Buy Plan ",
-                                                            style: GoogleFonts
-                                                                .poppins(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    fontSize:
-                                                                        12,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500),
-                                                          ))),
+                                                      child: Center(
+                                                        child: Container(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .symmetric(
+                                                                    vertical: 8,
+                                                                    horizontal:
+                                                                        10),
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          7),
+                                                              color: const Color(
+                                                                  0xFFEDCA2F),
+                                                            ),
+                                                            child: Text(
+                                                              "Buy Plan ",
+                                                              style: GoogleFonts.poppins(
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontSize: 12,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600),
+                                                            )),
+                                                      )),
                                                 ],
                                               ),
                                             ],
                                           ),
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 15,
                                       ),
                                     ],
                                   );
                                 })
                           ])))
-              : CommonProgressIndicator();
+              : const CommonProgressIndicator();
         }));
   }
 }

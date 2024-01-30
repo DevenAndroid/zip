@@ -4,12 +4,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:freshchat_sdk/freshchat_sdk.dart';
 import 'package:freshchat_sdk/freshchat_user.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 import '../resourses/api_constant.dart';
 import '../routers/my_routers.dart';
 import '../widgets/common_colour.dart';
@@ -33,13 +33,11 @@ class _SupportScreenState extends State<SupportScreen> {
 
   void handleFreshchatNotification(Map<String, dynamic> message) async {
     if (await Freshchat.isFreshchatNotification(message)) {
-      print("is Freshchat notification");
       Freshchat.handlePushNotification(message);
     }
   }
 
   Future<dynamic> myBackgroundMessageHandler(RemoteMessage message) async {
-    print("Inside background handler");
     await Firebase.initializeApp();
     handleFreshchatNotification(message.data);
   }
@@ -50,7 +48,6 @@ class _SupportScreenState extends State<SupportScreen> {
   void registerFcmToken() async {
     if (Platform.isAndroid) {
       String? token = await FirebaseMessaging.instance.getToken();
-      print("FCM Token is generated $token");
       Freshchat.setPushRegistrationToken(token!);
     }
   }
@@ -318,19 +315,14 @@ class _SupportScreenState extends State<SupportScreen> {
      */
     var restoreStream = Freshchat.onRestoreIdGenerated;
     var restoreStreamSubsctiption = restoreStream.listen((event) {
-      print("Restore ID Generated: $event");
       notifyRestoreId(event);
     });
 
     var unreadCountStream = Freshchat.onMessageCountUpdate;
-    unreadCountStream.listen((event) {
-      print("Have unread messages: $event");
-    });
+    unreadCountStream.listen((event) {});
 
     var userInteractionStream = Freshchat.onUserInteraction;
-    userInteractionStream.listen((event) {
-      print("User interaction for Freshchat SDK");
-    });
+    userInteractionStream.listen((event) {});
 
     if (Platform.isAndroid) {
       registerFcmToken();
@@ -340,14 +332,12 @@ class _SupportScreenState extends State<SupportScreen> {
       Freshchat.setNotificationConfig(notificationInterceptionEnabled: true);
       var notificationInterceptStream = Freshchat.onNotificationIntercept;
       notificationInterceptStream.listen((event) {
-        print("Freshchat Notification Intercept detected");
         Freshchat.openFreshchatDeeplink(event["url"]);
       });
 
       FirebaseMessaging.onMessage.listen((RemoteMessage message) {
         var data = message.data;
         handleFreshchatNotification(data);
-        print("Notification Content: $data");
       });
       FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
     }
@@ -356,7 +346,7 @@ class _SupportScreenState extends State<SupportScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFF3F0F7),
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -372,7 +362,7 @@ class _SupportScreenState extends State<SupportScreen> {
           onTap: () {
             Get.back();
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_rounded,
             color: AppTheme.primaryColor,
           ),
@@ -382,7 +372,7 @@ class _SupportScreenState extends State<SupportScreen> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Center(
@@ -412,11 +402,11 @@ class _SupportScreenState extends State<SupportScreen> {
                   fontWeight: FontWeight.w500),
               textAlign: TextAlign.center,
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
             Container(
-              padding: EdgeInsets.all(12),
+              padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
@@ -433,7 +423,7 @@ class _SupportScreenState extends State<SupportScreen> {
                   ]),
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   InkWell(
@@ -445,18 +435,18 @@ class _SupportScreenState extends State<SupportScreen> {
                     },
                     child: Row(
                       children: [
-                        Container(
-                          padding: EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: Colors.black12),
-                          child: SvgPicture.asset(
-                            "assets/images/text.svg",
-                            width: 20,
-                            height: 20,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 20,
+                        // Container(
+                        //   padding: EdgeInsets.all(12),
+                        //   decoration: BoxDecoration(
+                        //       shape: BoxShape.circle, color: Colors.black12),
+                        //   child: SvgPicture.asset(
+                        //     "assets/images/text.svg",
+                        //     width: 20,
+                        //     height: 20,
+                        //   ),
+                        // ),
+                        const SizedBox(
+                          width: 10,
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -479,13 +469,20 @@ class _SupportScreenState extends State<SupportScreen> {
                             ),
                           ],
                         ),
-                        Spacer(),
-                        Icon(Icons.arrow_forward_ios_rounded)
+                        const Spacer(),
+                        const Icon(Icons.arrow_forward_ios_rounded)
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 25,
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Divider(
+                    thickness: 1,
+                    color: Colors.grey.shade300,
+                  ),
+                  const SizedBox(
+                    height: 10,
                   ),
                   InkWell(
                     onTap: () {
@@ -493,18 +490,18 @@ class _SupportScreenState extends State<SupportScreen> {
                     },
                     child: Row(
                       children: [
-                        Container(
-                          padding: EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: Colors.black12),
-                          child: SvgPicture.asset(
-                            "assets/images/faq.svg",
-                            width: 20,
-                            height: 20,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 20,
+                        // Container(
+                        //   padding: EdgeInsets.all(12),
+                        //   decoration: BoxDecoration(
+                        //       shape: BoxShape.circle, color: Colors.black12),
+                        //   child: SvgPicture.asset(
+                        //     "assets/images/faq.svg",
+                        //     width: 20,
+                        //     height: 20,
+                        //   ),
+                        // ),
+                        const SizedBox(
+                          width: 10,
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -527,13 +524,20 @@ class _SupportScreenState extends State<SupportScreen> {
                             ),
                           ],
                         ),
-                        Spacer(),
-                        Icon(Icons.arrow_forward_ios_rounded)
+                        const Spacer(),
+                        const Icon(Icons.arrow_forward_ios_rounded)
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 25,
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Divider(
+                    thickness: 1,
+                    color: Colors.grey.shade300,
+                  ),
+                  const SizedBox(
+                    height: 10,
                   ),
                   InkWell(
                     onTap: () async {
@@ -541,7 +545,7 @@ class _SupportScreenState extends State<SupportScreen> {
                           Uri.encodeComponent("customersupport@ziplimited.com");
                       String subject = Uri.encodeComponent("");
                       String body = Uri.encodeComponent("");
-                      print(subject); //output: Hello%20Flutter
+                      //output: Hello%20Flutter
                       Uri mail = Uri.parse(
                           "mailto:$email?subject=$subject&body=$body");
                       if (await launchUrl(mail)) {
@@ -553,18 +557,18 @@ class _SupportScreenState extends State<SupportScreen> {
                     },
                     child: Row(
                       children: [
-                        Container(
-                          padding: EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: Colors.black12),
-                          child: SvgPicture.asset(
-                            "assets/images/email.svg",
-                            width: 20,
-                            height: 20,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 20,
+                        // Container(
+                        //   padding: EdgeInsets.all(12),
+                        //   decoration: BoxDecoration(
+                        //       shape: BoxShape.circle, color: Colors.black12),
+                        //   child: SvgPicture.asset(
+                        //     "assets/images/email.svg",
+                        //     width: 20,
+                        //     height: 20,
+                        //   ),
+                        // ),
+                        const SizedBox(
+                          width: 10,
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -587,18 +591,18 @@ class _SupportScreenState extends State<SupportScreen> {
                             ),
                           ],
                         ),
-                        Spacer(),
-                        Icon(Icons.arrow_forward_ios_rounded)
+                        const Spacer(),
+                        const Icon(Icons.arrow_forward_ios_rounded)
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
           ],

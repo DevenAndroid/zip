@@ -1,23 +1,26 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as htmlParser;
-import 'package:html/dom.dart' as htmlDom;
+import 'package:http/http.dart' as http;
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: ImageScreeen(),
     );
   }
 }
 
 class ImageScreeen extends StatefulWidget {
+  const ImageScreeen({super.key});
+
   @override
   _ImageScreeenState createState() => _ImageScreeenState();
 }
@@ -60,7 +63,7 @@ class _ImageScreeenState extends State<ImageScreeen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Fetch Website Image'),
+        title: const Text('Fetch Website Image'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -69,24 +72,26 @@ class _ImageScreeenState extends State<ImageScreeen> {
           children: [
             TextField(
               controller: _urlController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Enter Website URL',
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: _fetchImage,
-              child: Text('Fetch Image'),
+              child: const Text('Fetch Image'),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             _imageUrl.isNotEmpty
                 ? Container(
                     child: CachedNetworkImage(
                     imageUrl: _imageUrl,
-                    placeholder: (context, url) => CircularProgressIndicator(),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
+                    placeholder: (context, url) =>
+                        const CircularProgressIndicator(),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
                   ))
-                : Text('No image to display'),
+                : const Text('No image to display'),
           ],
         ),
       ),

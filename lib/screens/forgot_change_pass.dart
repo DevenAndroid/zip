@@ -4,11 +4,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../models/forgot_pass_model.dart';
-import '../models/model_update_password.dart';
 import '../repository/forgot_pass_repo.dart';
-import '../repository/update_pass_repo.dart';
 import '../resourses/api_constant.dart';
-import '../routers/my_routers.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_colour.dart';
 import '../widgets/common_textfield.dart';
@@ -36,7 +33,7 @@ class _ForgotChangePasswordState extends State<ForgotChangePassword> {
       updatePass.value = value;
       if (value.status == true) {
         // Get.back();
-        Get.to(() => EmailLoginScreen());
+        Get.to(() => const EmailLoginScreen());
         statusOfUpdatePass.value = RxStatus.success();
         showToast(value.message.toString());
       } else {
@@ -65,6 +62,7 @@ class _ForgotChangePasswordState extends State<ForgotChangePassword> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          toolbarHeight: 80,
           backgroundColor: Colors.white,
           elevation: 0,
           leading: InkWell(
@@ -97,7 +95,7 @@ class _ForgotChangePasswordState extends State<ForgotChangePassword> {
                                   fontWeight: FontWeight.w500),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 60,
                           ),
                           CommonTextfield(
@@ -130,7 +128,7 @@ class _ForgotChangePasswordState extends State<ForgotChangePassword> {
                             labelText: "New Password",
                             hintText: 'New Password',
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 15,
                           ),
                           CommonTextfield(

@@ -6,9 +6,7 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
-import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
-import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
 import '../../controller/payout_controller.dart';
@@ -70,6 +68,14 @@ class _SendCash2State extends State<SendCash2> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          toolbarHeight: 80,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(4.0),
+            child: Container(
+              color: Colors.grey.shade300,
+              height: 1.0,
+            ),
+          ),
           elevation: 0,
           backgroundColor: Colors.white,
           leading: InkWell(
@@ -138,56 +144,62 @@ class _SendCash2State extends State<SendCash2> {
                           onTap: () {
                             Get.toNamed(MyRouters.yourRecipient);
                           },
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                SvgPicture.asset('assets/images/mark.svg'),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Recipient',
-                                      style: GoogleFonts.poppins(
-                                        textStyle: const TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500,
-                                            color: Color(0xFF1D1D1D)),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                children: [
+                                  SvgPicture.asset('assets/images/mark.svg'),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Recipient',
+                                        style: GoogleFonts.poppins(
+                                          textStyle: const TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                              color: Color(0xFF1D1D1D)),
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      'Send to already saved channels',
-                                      style: GoogleFonts.poppins(
-                                        textStyle: const TextStyle(
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.w400,
-                                            color: Colors.grey),
+                                      Text(
+                                        'Send to already saved channels',
+                                        style: GoogleFonts.poppins(
+                                          textStyle: const TextStyle(
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w400,
+                                              color: Colors.grey),
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         CommonTextfield(
                           onTap: () {
                             Get.toNamed(MyRouters.chooseBank);
                           },
-                          suffixIcon: Icon(Icons.keyboard_arrow_down),
+                          suffixIcon: const Icon(Icons.keyboard_arrow_down),
                           controller: controller.bankController,
                           readOnly: true,
                           obSecure: false,
                           hintText: "Select Bank",
                           // labelText: "Select Bank",
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         CommonTextfield(
@@ -219,7 +231,7 @@ class _SendCash2State extends State<SendCash2> {
                           hintText: "",
                           labelText: "Account Number",
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         CommonTextfield(
@@ -231,46 +243,52 @@ class _SendCash2State extends State<SendCash2> {
                           hintText: "",
                           labelText: "Account Name",
                         ),
-                        SizedBox(
-                          height: 20,
+                        const SizedBox(
+                          height: 8,
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Save as Beneficiaries',
-                                style: GoogleFonts.poppins(
-                                  textStyle: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400,
-                                      color: Color(0xFF1D1D1D)),
+                          child: Container(
+                            padding: const EdgeInsets.all(14),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(color: Colors.grey)),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Save recipient details',
+                                  style: GoogleFonts.poppins(
+                                    textStyle: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400,
+                                        color: Color(0xFF1D1D1D)),
+                                  ),
                                 ),
-                              ),
-                              SizedBox(
-                                width: 50,
-                                height: 20,
-                                child: CupertinoSwitch(
-                                  thumbColor: Colors.black,
-                                  value: isSwitched,
-                                  activeColor: Color(0xffF0D75F),
-                                  onChanged: (value) {
-                                    setState(() {
-                                      isSwitched = value;
-                                      print(isSwitched);
-                                    });
-                                  },
+                                SizedBox(
+                                  width: 40,
+                                  height: 16,
+                                  child: CupertinoSwitch(
+                                    thumbColor: Colors.white,
+                                    value: isSwitched,
+                                    activeColor: Colors.black,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        isSwitched = value;
+                                        print(isSwitched);
+                                      });
+                                    },
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                         SizedBox(
                           height: size.height * .4,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 15,
                         ),
                       ]),

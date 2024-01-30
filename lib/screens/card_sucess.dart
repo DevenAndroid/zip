@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:zip/routers/my_routers.dart';
 import 'package:zip/screens/bottomnav_bar.dart';
 import 'package:zip/widgets/common_button.dart';
 
@@ -44,17 +43,17 @@ class _CardSuccessScreenState extends State<CardSuccessScreen> {
                               fontWeight: FontWeight.w500),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 45,
                       ),
                       Center(
-                        child: Image.asset(
-                          'assets/images/tick.png',
+                        child: SvgPicture.asset(
+                          'assets/images/verify.svg',
                           height: 90,
                           width: 90,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 25,
                       ),
                       Center(
@@ -72,10 +71,10 @@ class _CardSuccessScreenState extends State<CardSuccessScreen> {
                       InkWell(
                           onTap: () {
                             //
-                            Get.to(() => BottomNavbar());
+                            Get.to(() => const BottomNavbar());
                             bottomController.pageIndex.value = 0;
                           },
-                          child: CustomOutlineButton(
+                          child: const CustomOutlineButton(
                             title: "Go To Home",
                           )),
                     ]))));

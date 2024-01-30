@@ -5,10 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
 import '../controller/payout_controller.dart';
-import '../models/create_benificiary.dart';
-import '../repository/create_benifiary_repo.dart';
-import '../resourses/api_constant.dart';
-import '../routers/my_routers.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_colour.dart';
 
@@ -35,6 +31,7 @@ class _CreateBenificeryScreenState extends State<CreateBenificeryScreen> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          toolbarHeight: 80,
           backgroundColor: Colors.white,
           elevation: 0,
           title: Text(
@@ -263,7 +260,7 @@ class _CreateBenificeryScreenState extends State<CreateBenificeryScreen> {
                             payoutController.destinationAddressController,
                         obSecure: false,
                         hintText: "Destination Address "),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     InkWell(
@@ -272,10 +269,10 @@ class _CreateBenificeryScreenState extends State<CreateBenificeryScreen> {
                           // emailLogin();
                           //
                         },
-                        child: CustomOutlineButton(
+                        child: const CustomOutlineButton(
                           title: "Create ",
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                   ]),

@@ -20,6 +20,7 @@ Future<ModelBuyEnergy> BuyEnergyPlanRepo(
     amount,
     phone,
     billersCode,
+    telcos,
     variation_code,
     serviceID,
     context}) async {
@@ -27,6 +28,7 @@ Future<ModelBuyEnergy> BuyEnergyPlanRepo(
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
   map['amount'] = amount;
+  map['telcos'] = telcos;
   map['key'] = key;
   map['phone'] = phone;
   map['billersCode'] = billersCode;

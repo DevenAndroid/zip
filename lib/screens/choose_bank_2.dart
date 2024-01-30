@@ -3,13 +3,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
-import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
 import '../../controller/update_user.dart';
 import '../../models/model_choose_bank.dart';
 import '../../repository/choose_bank_repo.dart';
-import '../../resourses/api_constant.dart';
 import '../../widgets/common_error_widget.dart';
 
 class ChooseBank1 extends StatefulWidget {
@@ -25,9 +23,7 @@ class _ChooseBank1State extends State<ChooseBank1> {
   Rx<ChooseBankList> chooseBank = ChooseBankList().obs;
 
   ChooseBankApi() {
-    chooseBankRepo(
-            )
-        .then((value) {
+    chooseBankRepo().then((value) {
       chooseBank.value = value;
 
       if (value.success == true) {
@@ -56,6 +52,14 @@ class _ChooseBank1State extends State<ChooseBank1> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          toolbarHeight: 80,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(4.0),
+            child: Container(
+              color: Colors.grey.shade300,
+              height: 1.0,
+            ),
+          ),
           elevation: 0,
           backgroundColor: Colors.white,
           leading: InkWell(

@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -14,13 +13,10 @@ import 'package:zip/widgets/common_colour.dart';
 import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
 import '../models/buy_cabel_model.dart';
-import '../models/buy_plan_model.dart';
 import '../models/save_transastion_model.dart';
 import '../repository/buy_cabel_repo.dart';
-import '../repository/repo_buy_plan.dart';
 import '../repository/save_buy_plan_repo.dart';
 import '../resourses/api_constant.dart';
-import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_textfield.dart';
 
@@ -70,7 +66,7 @@ class _CabelScreenState extends State<CabelScreen> {
       type: "dr",
       phone: initStateBlank4,
     ).then((value) {
-      log("response.body.....    ${value}");
+      log("response.body.....    $value");
       save.value = value;
       if (value.status == true) {
         statusOfSave.value = RxStatus.success();
@@ -96,7 +92,7 @@ class _CabelScreenState extends State<CabelScreen> {
             // reference: profileController.description2Controller.text.trim(),
             )
         .then((value) {
-      log("response.body.....    ${value}");
+      log("response.body.....    $value");
       buyCabelTv.value = value;
       if (value.status == true) {
         saveList();
@@ -119,6 +115,14 @@ class _CabelScreenState extends State<CabelScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        toolbarHeight: 80,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(4.0),
+          child: Container(
+            color: Colors.grey.shade300,
+            height: 1.0,
+          ),
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(

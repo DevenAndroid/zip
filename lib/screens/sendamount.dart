@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,6 +23,13 @@ class _RequestPaymentContiuneState extends State<RequestPaymentContiune> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(4.0),
+          child: Container(
+            color: Colors.grey.shade300,
+            height: 1.0,
+          ),
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
@@ -35,7 +42,7 @@ class _RequestPaymentContiuneState extends State<RequestPaymentContiune> {
         centerTitle: true,
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 28.0),
+        padding: const EdgeInsets.only(bottom: 28.0, right: 10, left: 10),
         child: InkWell(
           onTap: () async {
             SharedPreferences pref = await SharedPreferences.getInstance();
@@ -45,7 +52,7 @@ class _RequestPaymentContiuneState extends State<RequestPaymentContiune> {
               Get.toNamed(MyRouters.sendSuccessScreen);
             }
           },
-          child: CustomOutlineButton(
+          child: const CustomOutlineButton(
             title: "Continue",
           ),
         ),
@@ -54,17 +61,17 @@ class _RequestPaymentContiuneState extends State<RequestPaymentContiune> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(
+          const SizedBox(
             height: 48,
           ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(30),
-            child: Image.asset(
-              'assets/images/right.png',
-              height: 121,
+          Center(
+            child: SvgPicture.asset(
+              'assets/images/verify.svg',
+              height: 90,
+              width: 90,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 25,
           ),
           Center(

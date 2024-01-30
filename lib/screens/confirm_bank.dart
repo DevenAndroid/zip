@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_button.dart';
-import 'package:zip/widgets/common_colour.dart';
 
 class ConfirmBank extends StatefulWidget {
   const ConfirmBank({Key? key}) : super(key: key);
@@ -38,7 +37,7 @@ class _ConfirmBankState extends State<ConfirmBank> {
                               fontWeight: FontWeight.w500),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 45,
                       ),
                       Center(
@@ -48,7 +47,7 @@ class _ConfirmBankState extends State<ConfirmBank> {
                           width: 75,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 25,
                       ),
                       Center(
@@ -67,7 +66,7 @@ class _ConfirmBankState extends State<ConfirmBank> {
                           onTap: () {
                             Get.toNamed(MyRouters.successScreen);
                           },
-                          child: CustomOutlineButton(
+                          child: const CustomOutlineButton(
                             title: "Confirm",
                           )),
                     ]))));

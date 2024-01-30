@@ -10,14 +10,11 @@ import 'package:zip/widgets/common_colour.dart';
 
 import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
-import '../models/buy_plan_model.dart';
 import '../models/model_buy_interNet.dart';
 import '../models/save_transastion_model.dart';
 import '../repository/buy_dataplan_repo.dart';
-import '../repository/repo_buy_plan.dart';
 import '../repository/save_buy_plan_repo.dart';
 import '../resourses/api_constant.dart';
-import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_textfield.dart';
 
@@ -68,7 +65,7 @@ class _BuyDataState extends State<BuyData> {
       data_code: initStateBlank3,
       telcos: initStateBlank,
     ).then((value) {
-      log("response.body.....    ${value}");
+      log("response.body.....    $value");
       save.value = value;
       if (value.status == true) {
         statusOfSave.value = RxStatus.success();
@@ -82,9 +79,6 @@ class _BuyDataState extends State<BuyData> {
   }
 
   getInterNet() {
-    print(initStateBlank);
-    print(initStateBlank1);
-    print(initStateBlank3);
     if (formKey4.currentState!.validate()) {
       BuyDataPlanRepo(
               telco: initStateBlank,
@@ -93,7 +87,7 @@ class _BuyDataState extends State<BuyData> {
               data_code: initStateBlank3,
               context: context)
           .then((value) {
-        log("response.body.....    ${value}");
+        log("response.body.....    $value");
         purchaseInternet.value = value;
         if (value.success == true) {
           saveList();

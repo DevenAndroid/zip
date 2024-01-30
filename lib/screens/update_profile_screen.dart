@@ -7,7 +7,6 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
@@ -30,6 +29,27 @@ class _UpdateProfileState extends State<UpdateProfile> {
   File image = File("");
 
   final profileController = Get.put(ProfileController());
+  void main() {
+    String phoneNumberWithPrefix =
+        profileController.mobileController.text.toString();
+
+    // Remove the "+234" prefix
+    String phoneNumberWithoutPrefix = removePrefix(phoneNumberWithPrefix);
+
+    print('Original phone number: $phoneNumberWithPrefix');
+    print('Phone number without prefix: $phoneNumberWithoutPrefix');
+  }
+
+  String removePrefix(String phoneNumber) {
+    // Check if the string starts with "+234" and has at least 3 additional characters
+    if (phoneNumber.startsWith('+234') && phoneNumber.length >= 7) {
+      // Remove the first 4 characters (including the "+")
+      return phoneNumber.substring(4);
+    } else {
+      // Return the original string if it doesn't match the expected format
+      return phoneNumber;
+    }
+  }
 
   Future pickImage() async {
     try {
@@ -49,10 +69,16 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     double doubleVar;
     return Scaffold(
       appBar: AppBar(
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(4.0),
+          child: Container(
+            color: Colors.grey.shade300,
+            height: 1.0,
+          ),
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
@@ -152,7 +178,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                 child: CommonTextfield(
                   controller: profileController.fNameController,
                   obSecure: false,
-                  readOnly: true,
+                  readOnly: false,
                   hintText: "Manish",
                   labelText: "First Name",
                 ),
@@ -166,7 +192,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   controller: profileController.lNameController,
                   obSecure: false,
                   hintText: "Manish",
-                  readOnly: true,
+                  readOnly: false,
                   labelText: "Last Name",
                 ),
               ),
@@ -258,18 +284,27 @@ class _UpdateProfileState extends State<UpdateProfile> {
                     LengthLimitingTextInputFormatter(12),
                     FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
                   ],
-                  onChanged: (value) => doubleVar = double.parse(value),
+                  onChanged: (value) {
+                    // Process the input and update the controller's text
+                    String phoneNumberWithoutPrefix = removePrefix(value);
+                    profileController.mobileController.value =
+                        profileController.mobileController.value.copyWith(
+                      text: phoneNumberWithoutPrefix,
+                      selection: TextSelection.collapsed(
+                          offset: phoneNumberWithoutPrefix.length),
+                    );
+                  },
                   validator: MultiValidator([
                     RequiredValidator(
                         errorText: 'Please enter your contact number '),
                     MinLengthValidator(10,
                         errorText: 'Please enter minumum  11 digit number'),
-                    MaxLengthValidator(12,
+                    MaxLengthValidator(15,
                         errorText: 'Please enter 12 digit number'),
                     PatternValidator(r'(^(?:[+0]9)?[0-9]{10,12}$)',
                         errorText: '')
                   ]),
-                  readOnly: true,
+                  readOnly: false,
                   controller: profileController.mobileController,
                   obSecure: false,
                   hintText: "7665096245",
@@ -293,10 +328,9 @@ class _UpdateProfileState extends State<UpdateProfile> {
               const SizedBox(
                 height: 29,
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 20),
+              Center(
                 child: Align(
-                  alignment: Alignment.topRight,
+                  alignment: Alignment.center,
                   child: InkWell(
                     onTap: () {
                       Get.toNamed(MyRouters.updatePassword);
@@ -305,6 +339,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                       "Change Password",
                       style: GoogleFonts.poppins(
                           color: const Color(0xFF1D1D1D),
+                          decoration: TextDecoration.underline,
                           fontSize: 20,
                           fontWeight: FontWeight.w500),
                     ),

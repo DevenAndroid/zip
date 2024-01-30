@@ -1,10 +1,8 @@
 import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/routers/my_routers.dart';
 
 import '../controller/profile_controller.dart';
@@ -68,7 +66,7 @@ class _RequestAPaymentContiuneState extends State<RequestAPaymentContiune> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 48,
             ),
             ClipRRect(
@@ -78,12 +76,11 @@ class _RequestAPaymentContiuneState extends State<RequestAPaymentContiune> {
                 height: 121,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
             Text(
-              "Request Money \$ " +
-                  profileController.amountController.text.trim(),
+              "Request Money \$ ${profileController.amountController.text.trim()}",
               style: GoogleFonts.poppins(
                   color: const Color(0xFF1D1D1D),
                   fontSize: 18,
@@ -103,7 +100,7 @@ class _RequestAPaymentContiuneState extends State<RequestAPaymentContiune> {
               onTap: () async {
                 send();
               },
-              child: CustomOutlineButton(
+              child: const CustomOutlineButton(
                 title: "Continue",
               ),
             ),

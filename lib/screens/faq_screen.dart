@@ -46,8 +46,8 @@ class _FAQScreenState extends State<FAQScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-        backgroundColor: const Color(0xFFFFFFFF),
-        appBar: AppBar(
+        backgroundColor: Color(0xFFF3F0F7),
+        appBar: AppBar(toolbarHeight: 80,
           backgroundColor: Colors.white,
           elevation: 0,
           leading: InkWell(
@@ -91,9 +91,7 @@ class _FAQScreenState extends State<FAQScreen> {
                                         padding: EdgeInsets.all(4),
                                         decoration: BoxDecoration(
                                             color: Colors.white,
-                                            border: Border.all(
-                                                color: AppTheme.primaryColor,
-                                                width: 1),
+
                                             borderRadius:
                                                 BorderRadius.circular(15),
                                             boxShadow: const [
@@ -108,9 +106,9 @@ class _FAQScreenState extends State<FAQScreen> {
                                           child: ExpansionTile(
                                             backgroundColor:
                                                 const Color(0xFFFCFBFA),
-                                            iconColor: const Color(0xFF07B6CA),
+                                            iconColor: Colors.black,
                                             collapsedIconColor:
-                                                const Color(0xFF07B6CA),
+                                            Colors.black,
                                             childrenPadding:
                                                 const EdgeInsets.all(1),
                                             title: Text(

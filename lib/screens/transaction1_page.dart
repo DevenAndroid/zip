@@ -215,7 +215,7 @@ class _TransactionsFirstState extends State<TransactionsFirst> {
                         height: 20,
                       ),
                       SvgPicture.asset('assets/images/graph.svg'),
-                      SizedBox(
+                      const SizedBox(
                         height: 35,
                       ),
                       Text(
@@ -225,7 +225,7 @@ class _TransactionsFirstState extends State<TransactionsFirst> {
                             fontSize: 17,
                             fontWeight: FontWeight.w500),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       Container(
@@ -266,7 +266,7 @@ class _TransactionsFirstState extends State<TransactionsFirst> {
                                             fontSize: 14,
                                             fontWeight: FontWeight.w400),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 5,
                                       ),
                                       Text(
@@ -310,7 +310,7 @@ class _TransactionsFirstState extends State<TransactionsFirst> {
                                             fontSize: 14,
                                             fontWeight: FontWeight.w400),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 5,
                                       ),
                                       Text(
@@ -353,7 +353,7 @@ class _TransactionsFirstState extends State<TransactionsFirst> {
                                             fontSize: 14,
                                             fontWeight: FontWeight.w400),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 5,
                                       ),
                                       Text(
@@ -393,7 +393,7 @@ class _TransactionsFirstState extends State<TransactionsFirst> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 100,
                       )
                     ]))));

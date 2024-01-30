@@ -58,7 +58,7 @@ class _CardLimitScreenState extends State<CardLimitScreen> {
                               width: size.width * .8,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
-                                  color: Color(0xFFF1F1F1)),
+                                  color: const Color(0xFFF1F1F1)),
                               child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -165,11 +165,11 @@ class _CardLimitScreenState extends State<CardLimitScreen> {
                                   ]),
                             )),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Container(
-                        padding: EdgeInsets.all(15),
+                        padding: const EdgeInsets.all(15),
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10),
@@ -194,7 +194,7 @@ class _CardLimitScreenState extends State<CardLimitScreen> {
                                     color: const Color(0xFF1D1D1D),
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500)),
-                            SizedBox(
+                            const SizedBox(
                               height: 15,
                             ),
                             Row(
@@ -212,17 +212,17 @@ class _CardLimitScreenState extends State<CardLimitScreen> {
                                         fontWeight: FontWeight.w500)),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 6,
                             ),
                             ClipRRect(
                               borderRadius: BorderRadius.circular(15),
-                              child: Divider(
+                              child: const Divider(
                                 color: Color(0xFFEBF7EC),
                                 thickness: 5,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 6,
                             ),
                             Row(
@@ -248,11 +248,11 @@ class _CardLimitScreenState extends State<CardLimitScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Container(
-                        padding: EdgeInsets.all(15),
+                        padding: const EdgeInsets.all(15),
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10),
@@ -277,7 +277,7 @@ class _CardLimitScreenState extends State<CardLimitScreen> {
                                     color: const Color(0xFF1D1D1D),
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500)),
-                            SizedBox(
+                            const SizedBox(
                               height: 15,
                             ),
                             Row(
@@ -295,17 +295,17 @@ class _CardLimitScreenState extends State<CardLimitScreen> {
                                         fontWeight: FontWeight.w500)),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 6,
                             ),
                             ClipRRect(
                               borderRadius: BorderRadius.circular(15),
-                              child: Divider(
+                              child: const Divider(
                                 color: Color(0xFFEBF7EC),
                                 thickness: 5,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 6,
                             ),
                             Row(
@@ -331,11 +331,11 @@ class _CardLimitScreenState extends State<CardLimitScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Container(
-                        padding: EdgeInsets.all(15),
+                        padding: const EdgeInsets.all(15),
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10),
@@ -360,7 +360,7 @@ class _CardLimitScreenState extends State<CardLimitScreen> {
                                     color: const Color(0xFF1D1D1D),
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500)),
-                            SizedBox(
+                            const SizedBox(
                               height: 15,
                             ),
                             Row(
@@ -378,17 +378,17 @@ class _CardLimitScreenState extends State<CardLimitScreen> {
                                         fontWeight: FontWeight.w500)),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 6,
                             ),
                             ClipRRect(
                               borderRadius: BorderRadius.circular(15),
-                              child: Divider(
+                              child: const Divider(
                                 color: Color(0xFFEBF7EC),
                                 thickness: 5,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 6,
                             ),
                             Row(

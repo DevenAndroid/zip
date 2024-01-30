@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -54,6 +53,13 @@ class _TagScreenState extends State<TagScreen> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(4.0),
+            child: Container(
+              color: Colors.grey.shade300,
+              height: 1.0,
+            ),
+          ),
           backgroundColor: Colors.white,
           elevation: 0,
           leading: InkWell(
@@ -85,7 +91,7 @@ class _TagScreenState extends State<TagScreen> {
                             fontWeight: FontWeight.w500),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
                     CommonTextfield(
@@ -101,12 +107,12 @@ class _TagScreenState extends State<TagScreen> {
                         suffixIcon: Padding(
                           padding: const EdgeInsets.only(top: 15.0),
                           child: Container(
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(10),
+                                  topRight: const Radius.circular(10),
                                   bottomRight: Radius.circular(10)),
                             ),
-                            child: Text(
+                            child: const Text(
                               "@zip",
                               style: TextStyle(
                                   color: AppTheme.primaryColor,
@@ -137,7 +143,7 @@ class _TagScreenState extends State<TagScreen> {
                           checkZipTag();
                           // Get.toNamed(MyRouters.addressScreen);
                         },
-                        child: CustomOutlineButton(
+                        child: const CustomOutlineButton(
                           title: "Next",
                         )),
                   ])),

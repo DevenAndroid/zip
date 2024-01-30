@@ -14,9 +14,10 @@ import '../resourses/helper.dart';
 final details = Get.put(DetailsController());
 
 Future<ModelVerifyMeterNumber> verifyMeterRepo(
-    {key, type, billersCode, serviceID}) async {
+    {key, type, billersCode,telcos, serviceID}) async {
   var map = <String, dynamic>{};
   map['key'] = key;
+  map['telcos'] = telcos;
   map['type'] = type;
   map['billersCode'] = billersCode;
   map['serviceID'] = serviceID;

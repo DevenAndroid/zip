@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:zip/controller/update_user.dart';
 import 'package:zip/screens/card_sucess.dart';
 
 import '../models/current_balance_model.dart';
@@ -33,18 +32,15 @@ import '../repository/delete_card_repo.dart';
 import '../repository/freeze_card_repo.dart';
 import '../repository/fund_issuing_wallet_repo.dart';
 import '../repository/getBalanceRepo.dart';
-import '../repository/get_all_kay_repo.dart';
 import '../repository/get_card_repo.dart';
 import '../repository/get_current_balance.dart';
 import '../repository/myprofile_repo.dart';
-import '../repository/payout_repo.dart';
 import '../repository/rate_repo.dart';
 import '../repository/save_buy_plan_repo.dart';
 import '../repository/save_card_repo.dart';
 import '../repository/send_mail_repo.dart';
 import '../repository/unfreez_card_repo.dart';
 import '../resourses/api_constant.dart';
-import '../resourses/details.dart';
 import '../routers/my_routers.dart';
 import 'bottomnavbar_controller.dart';
 import 'number_controller.dart';
@@ -59,6 +55,8 @@ class ProfileController extends GetxController {
   String divideText = "0";
   String fundText = "0";
   String multiplyText = "0";
+  String result5 = '';
+  String fxRate = '';
 
   //will print 466
 
@@ -72,8 +70,34 @@ class ProfileController extends GetxController {
     await getRateRepo().then((value) {
       modelRate.value = value;
       if (value.status == "success") {
-        double resultDivide = double.parse(modelRate.value.data!.nGNUSD.toString()) / double.parse("100");
+        double resultDivide =
+            double.parse(modelRate.value.data!.nGNUSD.toString()) /
+                double.parse("100");
         divideText = resultDivide.toStringAsPrecision(4);
+        String firstNumberString = divideText.toString();
+        String secondNumberString =
+            currentBalanceModel.value.data!.fee!.fxRateFee.toString();
+
+        // Check if both inputs are not empty
+        if (firstNumberString.isNotEmpty && secondNumberString.isNotEmpty) {
+          // Convert strings to integers
+          // int firstNumber = int.parse(firstNumberString);
+          // int secondNumber = int.parse(secondNumberString);
+          double firstNumber = double.parse(firstNumberString);
+          double secondNumber = double.parse(secondNumberString);
+          // Perform addition
+          double sum = firstNumber + secondNumber;
+          // int sum = firstNumber + secondNumber;
+          print(fxRate.toString());
+          // Convert the result back to a string and update the UI
+
+          fxRate = sum.toString();
+          print(fxRate.toString());
+        } else {
+          // Handle the case when one or both of the inputs are empty
+          fxRate = 'Please enter valid numbers';
+        }
+
         statusOfRate.value = RxStatus.success();
         showToast(value.message.toString());
       } else {
@@ -175,6 +199,7 @@ class ProfileController extends GetxController {
   TextEditingController description2Controller = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  TextEditingController amount = TextEditingController();
   TextEditingController phone1Controller = TextEditingController();
 
   TextEditingController ziptag1Controller = TextEditingController();
@@ -229,9 +254,6 @@ class ProfileController extends GetxController {
         stateController.text =
             modal.value.data!.user!.address!.state.toString();
         statusOfProfile.value = RxStatus.success();
-
-
-
 
         // holder();
       } else {
@@ -381,7 +403,6 @@ class ProfileController extends GetxController {
       // Get.to(()=>CardSuccessScreen());
 
       if (value.status == "success") {
-
         cardId.value = value.data!.cardId.toString();
         log("CardId${cardId.value}");
         statusOfCreate.value = RxStatus.success();
@@ -803,7 +824,9 @@ class ProfileController extends GetxController {
         // Get.toNamed(MyRouters.cardDetails);
 
         cardBalance.value = value;
-        double resultFund = double.parse(cardBalance.value.data!.balance.toString()) / double.parse("100").round();
+        double resultFund =
+            double.parse(cardBalance.value.data!.balance.toString()) /
+                double.parse("100").round();
         fundText = resultFund.toDouble().toString();
         showToast(value.message.toString());
 

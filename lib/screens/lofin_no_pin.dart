@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
@@ -14,8 +13,6 @@ import '../controller/update_user.dart';
 import '../models/model_security_pin.dart';
 import '../repository/security_pin_repo].dart';
 import '../resourses/api_constant.dart';
-
-import '../controller/update_user.dart';
 import '../resourses/details.dart';
 
 class LoginNoPinScreen extends StatefulWidget {
@@ -52,7 +49,6 @@ class _LoginNoPinScreenState extends State<LoginNoPinScreen> {
       } else {
         statusOfSucess.value = RxStatus.error();
         showToast(value.message.toString());
-
       }
     }
             // showToast(value.message.toString());
@@ -180,7 +176,7 @@ class _LoginNoPinScreenState extends State<LoginNoPinScreen> {
         Get.toNamed(MyRouters.mobileOtpScreen, arguments: [loginDetails]);
       } else {
         // Show error message to the user
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Invalid OTP. Please try again.'),
         ));
       }

@@ -4,10 +4,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../models/PrivicyPolicyModel.dart';
-import '../models/model_unfrrze_card.dart';
 import '../repository/privacyPolicy_repo.dart';
 import '../resourses/api_constant.dart';
-import '../routers/my_routers.dart';
 import '../widgets/circular_progressindicator.dart';
 import '../widgets/common_error_widget.dart';
 

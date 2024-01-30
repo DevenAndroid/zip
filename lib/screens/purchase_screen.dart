@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
@@ -15,7 +14,6 @@ import '../models/save_transastion_model.dart';
 import '../repository/repo_buy_plan.dart';
 import '../repository/save_buy_plan_repo.dart';
 import '../resourses/api_constant.dart';
-import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_textfield.dart';
 
@@ -60,7 +58,7 @@ class _PurchaseScreenState extends State<PurchaseScreen> {
             description: descriptionController.text.trim(),
             type: "dr")
         .then((value) {
-      log("response.body.....    ${value}");
+      log("response.body.....    $value");
       save.value = value;
       if (value.status == true) {
         statusOfSave.value = RxStatus.success();
@@ -74,27 +72,19 @@ class _PurchaseScreenState extends State<PurchaseScreen> {
   }
 
   getProviderList() {
-    print(initStateBlank);
-    print(initStateBlank1);
     BuyPlanRepo(
       telco: initStateBlank,
       amount: initStateBlank1,
       phone_no: registorController.phoneController1.text.trim(),
       reference:
-          registorController.fetchAccount.value.data!.accountNumber.toString() +
-              "_" +
-              DateTime.now().millisecondsSinceEpoch.toString(),
+          "${registorController.fetchAccount.value.data!.accountNumber}_${DateTime.now().millisecondsSinceEpoch}",
     ).then((value) {
-      log("response.body.....    ${value}");
+      log("response.body.....    $value");
       purchaseData.value = value;
       if (value.success == true) {
         saveList();
         statusOfProviders.value = RxStatus.success();
         showToast(value.message.toString());
-        print(
-          registorController.fetchAccount.value.data!.accountNumber.toString() +
-              DateTime.now().millisecondsSinceEpoch.toString(),
-        );
       } else {
         statusOfProviders.value = RxStatus.error();
         showToast(value.message.toString());
@@ -159,7 +149,7 @@ class _PurchaseScreenState extends State<PurchaseScreen> {
                 labelText: "Phone Number",
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Padding(

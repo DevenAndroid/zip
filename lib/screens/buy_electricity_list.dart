@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -37,6 +35,14 @@ class _BuyElectricityListState extends State<BuyElectricityList> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          toolbarHeight: 80,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(4.0),
+            child: Container(
+              color: Colors.grey.shade300,
+              height: 1.0,
+            ),
+          ),
           backgroundColor: Colors.white,
           elevation: 0,
           leading: InkWell(
@@ -256,7 +262,7 @@ class _BuyElectricityListState extends State<BuyElectricityList> {
                                   ),
                                 ])),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Obx(() {
@@ -288,7 +294,7 @@ class _BuyElectricityListState extends State<BuyElectricityList> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  SizedBox(
+                                                  const SizedBox(
                                                     height: 10,
                                                   ),
                                                   InkWell(
@@ -326,7 +332,8 @@ class _BuyElectricityListState extends State<BuyElectricityList> {
                                                     },
                                                     child: Container(
                                                       padding:
-                                                          EdgeInsets.all(10),
+                                                          const EdgeInsets.all(
+                                                              10),
                                                       decoration: BoxDecoration(
                                                           borderRadius:
                                                               BorderRadius
@@ -358,7 +365,7 @@ class _BuyElectricityListState extends State<BuyElectricityList> {
                                                                   children: [
                                                                     Image.asset(
                                                                         "assets/images/meter.png"),
-                                                                    SizedBox(
+                                                                    const SizedBox(
                                                                       width: 6,
                                                                     ),
                                                                     Text(
@@ -465,7 +472,7 @@ class _BuyElectricityListState extends State<BuyElectricityList> {
                                                       ),
                                                     ),
                                                   ),
-                                                  SizedBox(
+                                                  const SizedBox(
                                                     height: 10,
                                                   )
                                                 ],

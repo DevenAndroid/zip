@@ -1,10 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
 import '../controller/profile_controller.dart';
@@ -58,49 +56,22 @@ class _VerifyPaymentLink2State extends State<VerifyPaymentLink2> {
                   child: Form(
                   key: formKey4,
                   child: Padding(
-                      padding: const EdgeInsets.all(18.0),
+                      padding: const EdgeInsets.all(12.0),
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Center(
-                              child: Stack(
-                                children: [
-                                  Center(
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: Colors.black, width: 2),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(100)),
-                                        color: Colors.white,
-                                      ),
-                                      child: ClipOval(
-                                        child: CachedNetworkImage(
-                                          width: 120,
-                                          height: 120,
-                                          fit: BoxFit.cover,
-                                          imageUrl: profileController.modal
-                                              .value.data!.user!.profileImage
-                                              .toString(),
-                                          placeholder: (context, url) =>
-                                              const Icon(
-                                            Icons.person,
-                                            size: 30,
-                                          ),
-                                          errorWidget: (context, url, error) =>
-                                              const Icon(
-                                            Icons.person,
-                                            size: 50,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8.0),
+                              child: Text(
+                                "You can send a payment link to anyone and they can pay you by debit or credit card.",
+                                style: GoogleFonts.poppins(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 15,
                             ),
                             Padding(
@@ -156,6 +127,19 @@ class _VerifyPaymentLink2State extends State<VerifyPaymentLink2> {
                                 controller: register.descriptionController1,
                                 obSecure: false,
                                 hintText: "enter Description "),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8.0),
+                              child: Text(
+                                "You can send a payment link to anyone and they can pay you by debit or credit card.",
+                                style: GoogleFonts.poppins(
+                                    color: Colors.black,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            ),
                             SizedBox(
                               height: MediaQuery.of(context).size.height * .3,
                             ),
@@ -168,7 +152,7 @@ class _VerifyPaymentLink2State extends State<VerifyPaymentLink2> {
                                   // emailLogin();
                                   //
                                 },
-                                child: CustomOutlineButton(
+                                child: const CustomOutlineButton(
                                   title: "Request a Payment ",
                                 )),
                           ])),

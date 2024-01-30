@@ -29,7 +29,13 @@ class _AddAPayerState extends State<AddAPayer> {
     Size size = MediaQuery.of(context).size;
     double doubleVar;
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar(toolbarHeight: 80,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(4.0),
+          child: Container(
+            color: Colors.grey.shade300,
+            height: 1.0,
+          ),),
         backgroundColor: Colors.white,
         elevation: 0,
         leading: InkWell(

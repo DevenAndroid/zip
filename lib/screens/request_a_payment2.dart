@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -38,7 +37,7 @@ class _RequestAPaymentContiune2State extends State<RequestAPaymentContiune2> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 48,
             ),
             ClipRRect(
@@ -48,7 +47,7 @@ class _RequestAPaymentContiune2State extends State<RequestAPaymentContiune2> {
                 height: 121,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
 

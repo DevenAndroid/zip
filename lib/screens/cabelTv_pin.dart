@@ -1,6 +1,4 @@
-import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -13,23 +11,15 @@ import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 
-import '../controller/number_controller.dart';
 import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
 import '../models/buy_cabel_model.dart';
 import '../models/model_security_pin.dart';
-import '../models/model_setting.dart';
-import '../models/model_verify_africa.dart';
 import '../models/save_transastion_model.dart';
-import '../models/verify_africa.dart';
 import '../repository/buy_cabel_repo.dart';
 import '../repository/save_buy_plan_repo.dart';
 import '../repository/security_pin_repo].dart';
-import '../repository/setting_repo.dart';
-import '../repository/verify_africa_b.dart';
 import '../resourses/api_constant.dart';
-
-import '../controller/update_user.dart';
 
 class CabelTvPin extends StatefulWidget {
   const CabelTvPin({Key? key}) : super(key: key);
@@ -78,7 +68,7 @@ class _CabelTvPinState extends State<CabelTvPin> {
             description: profileController.description2Controller.text.trim(),
             type: "dr")
         .then((value) {
-      log("response.body.....    ${value}");
+      log("response.body.....    $value");
       save.value = value;
       if (value.status == true) {
         statusOfSave.value = RxStatus.success();
@@ -94,20 +84,16 @@ class _CabelTvPinState extends State<CabelTvPin> {
   }
 
   getProviderList() {
-    print(initStateBlank);
-    print(initStateBlank1);
     BuyCabelRepo(
-        amount:registorController.result2.toString(),
-        phone: profileController.modal.value.data!.user!.phone.toString(),
-        variation_code:   initStateBlank1,
-        serviceID:initStateBlank2,
-        context: context,
-        billersCode: profileController.phone2Controller.text.trim(),
-        key: "pay"
-
-
-    ).then((value) {
-      log("response.body.....    ${value}");
+            amount: initStateBlank.toString(),
+            phone: profileController.modal.value.data!.user!.phone.toString(),
+            variation_code: initStateBlank1,
+            serviceID: initStateBlank2,
+            context: context,
+            billersCode: profileController.phone2Controller.text.trim(),
+            key: "pay")
+        .then((value) {
+      log("response.body.....    $value");
       buyCabelTv.value = value;
       if (value.status == true) {
         // saveList();
@@ -120,8 +106,8 @@ class _CabelTvPinState extends State<CabelTvPin> {
         showToast(value.message.toString());
       }
     }
-      // showToast(value.message.toString());
-    );
+            // showToast(value.message.toString());
+            );
   }
 
   verify() {
@@ -150,9 +136,6 @@ class _CabelTvPinState extends State<CabelTvPin> {
     pref.getBool(
       'TransistionPin',
     );
-    print(pref.getBool(
-      'TransistionPin',
-    ));
   }
 
   @override
@@ -171,6 +154,14 @@ class _CabelTvPinState extends State<CabelTvPin> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          toolbarHeight: 80,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(4.0),
+            child: Container(
+              color: Colors.grey.shade300,
+              height: 1.0,
+            ),
+          ),
           backgroundColor: Colors.white,
           elevation: 0,
           centerTitle: true,
@@ -196,7 +187,7 @@ class _CabelTvPinState extends State<CabelTvPin> {
                       child: InkWell(
                         onTap: () {},
                         child: Text(
-                          "Create your unique 4-digits pin!",
+                          "Enter your unique 4-digits pin for transition",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
                               fontSize: 22,

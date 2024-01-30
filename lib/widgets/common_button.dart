@@ -22,25 +22,24 @@ class CustomOutlineButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10.0, right: 10),
+      padding: const EdgeInsets.only(left: 3.0, right: 5),
       child: Container(
         width: MediaQuery.of(context).size.width,
         height: 49,
         decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [
-            Color(0xFFF0D75F),
-            Color(0xFFB2802A),
-          ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
-          borderRadius: BorderRadius.circular(15),
+         color: Color(0xFFEDCB2F),
+          borderRadius: BorderRadius.circular(10),
         ),
         child: ElevatedButton(
+
             style: ElevatedButton.styleFrom(
-                side: BorderSide(
-                  color: Colors.transparent,
-                ),
+              backgroundColor: Color(0xFFEDCB2F),
+
                 shape: const RoundedRectangleBorder(
+
                     borderRadius: BorderRadius.all(
-                  Radius.circular(15),
+
+                  Radius.circular(11),
                 )),
                 padding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
                 textStyle: const TextStyle(
@@ -54,7 +53,7 @@ class CustomOutlineButton extends StatelessWidget {
                       child: Text(
                         title,
                         style: GoogleFonts.poppins(
-                            color: Color(0xFFFFFFFF),
+                            color: Colors.black,
                             fontSize: 15,
                             fontWeight: FontWeight.w700),
                       ),
@@ -63,7 +62,7 @@ class CustomOutlineButton extends StatelessWidget {
                 : Text(
                     title,
                     style: GoogleFonts.poppins(
-                        color: Color(0xFFFFFFFF),
+                        color: Colors.black,
                         fontSize: 15,
                         fontWeight: FontWeight.w700),
                   )),

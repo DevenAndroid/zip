@@ -53,18 +53,20 @@ class Data {
 }
 
 class Fee {
-  dynamic payoutFee;
-  dynamic cashoutFee;
-  dynamic cashinFee;
-  dynamic serviceFee;
-  dynamic bridgeCardFee;
+ dynamic payoutFee;
+ dynamic cashoutFee;
+ dynamic cashinFee;
+ dynamic serviceFee;
+ dynamic bridgeCardFee;
+ dynamic fxRateFee;
 
   Fee(
       {this.payoutFee,
         this.cashoutFee,
         this.cashinFee,
         this.serviceFee,
-        this.bridgeCardFee});
+        this.bridgeCardFee,
+        this.fxRateFee});
 
   Fee.fromJson(Map<String, dynamic> json) {
     payoutFee = json['payout_fee'];
@@ -72,6 +74,7 @@ class Fee {
     cashinFee = json['cashin_fee'];
     serviceFee = json['service_fee'];
     bridgeCardFee = json['bridgeCard_fee'];
+    fxRateFee = json['fx-rate_fee'];
   }
 
   Map<String, dynamic> toJson() {
@@ -81,6 +84,7 @@ class Fee {
     data['cashin_fee'] = this.cashinFee;
     data['service_fee'] = this.serviceFee;
     data['bridgeCard_fee'] = this.bridgeCardFee;
+    data['fx-rate_fee'] = this.fxRateFee;
     return data;
   }
 }
@@ -90,18 +94,24 @@ class Setting {
   bool? enableSecurityLock;
   bool? transactionPin;
   bool? enableFingerprints;
+  bool? pushNotification;
+  bool? emailNotification;
 
   Setting(
       {this.hideBalance,
         this.enableSecurityLock,
         this.transactionPin,
-        this.enableFingerprints});
+        this.enableFingerprints,
+        this.pushNotification,
+        this.emailNotification});
 
   Setting.fromJson(Map<String, dynamic> json) {
     hideBalance = json['hide_balance'];
     enableSecurityLock = json['enable_security_lock'];
     transactionPin = json['transaction_pin'];
     enableFingerprints = json['enable_fingerprints'];
+    pushNotification = json['push_notification'];
+    emailNotification = json['email_notification'];
   }
 
   Map<String, dynamic> toJson() {
@@ -110,6 +120,8 @@ class Setting {
     data['enable_security_lock'] = this.enableSecurityLock;
     data['transaction_pin'] = this.transactionPin;
     data['enable_fingerprints'] = this.enableFingerprints;
+    data['push_notification'] = this.pushNotification;
+    data['email_notification'] = this.emailNotification;
     return data;
   }
 }

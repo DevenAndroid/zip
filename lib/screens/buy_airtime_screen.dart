@@ -12,16 +12,12 @@ import 'package:zip/routers/my_routers.dart';
 import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
 import '../models/buy_plan_model.dart';
-import '../models/model_fetch_telcos.dart';
 import '../models/save_transastion_model.dart';
-import '../repository/fetch_telcos_repo.dart';
 import '../repository/repo_buy_plan.dart';
 import '../repository/save_buy_plan_repo.dart';
 import '../resourses/api_constant.dart';
-import '../widgets/circular_progressindicator.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_colour.dart';
-import '../widgets/common_error_widget.dart';
 import '../widgets/common_textfield.dart';
 
 class BuyAirtimeScreen extends StatefulWidget {
@@ -70,7 +66,7 @@ class _BuyAirtimeScreenState extends State<BuyAirtimeScreen> {
             phone: initStateBlank3,
             type: "dr")
         .then((value) {
-      log("response.body.....    ${value}");
+      log("response.body.....    $value");
       save.value = value;
       if (value.status == true) {
         statusOfSave.value = RxStatus.success();
@@ -99,7 +95,7 @@ class _BuyAirtimeScreenState extends State<BuyAirtimeScreen> {
                 .toString() +
             DateTime.now().millisecondsSinceEpoch.toString(),
       ).then((value) {
-        log("response.body.....    ${value}");
+        log("response.body.....    $value");
         purchaseData.value = value;
         if (value.success == true) {
           saveList();
@@ -127,6 +123,14 @@ class _BuyAirtimeScreenState extends State<BuyAirtimeScreen> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          toolbarHeight: 80,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(4.0),
+            child: Container(
+              color: Colors.grey.shade300,
+              height: 1.0,
+            ),
+          ),
           backgroundColor: Colors.white,
           elevation: 0,
           leading: InkWell(
@@ -191,7 +195,7 @@ class _BuyAirtimeScreenState extends State<BuyAirtimeScreen> {
                       readOnly: true,
                       hintText: initStateBlank3,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Padding(

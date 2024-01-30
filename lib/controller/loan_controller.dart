@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../models/model_apply_loan.dart';
@@ -14,18 +15,19 @@ class LoanController extends GetxController {
   String selectedValuem2 = "1 month to 6 month";
   String selectedValuem3 = "0 Naira to 1 Naira";
   String selectedValuem4 = "Yes";
-
+  TextEditingController monthelyController = TextEditingController();
+  TextEditingController desiredController = TextEditingController();
   Rx<RxStatus> statusOfLoan = RxStatus.empty().obs;
   Rx<ModelApplyLoan> modelLoan = ModelApplyLoan().obs;
 
   loan(context) {
     loanRepo(
-      desired_amount: selectedValuem3,
+      desired_amount: desiredController.text.toString(),
       duration_of_loan: selectedValuem2,
       employed_status: dropdownvalue,
       increament: selectedValuem4 == "yes" ? 1 : 0,
       loan_purpose: selectedValue,
-      monthly_income: selectedValuem1,
+      monthly_income: monthelyController.text.toString(),
       residential_status: selectedValuem,
       context: context,
     ).then((value) {

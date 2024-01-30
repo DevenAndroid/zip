@@ -92,7 +92,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                                   fontWeight: FontWeight.w500),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 60,
                           ),
                           CommonTextfield(
@@ -125,7 +125,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                             labelText: "Password",
                             hintText: 'Password',
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 15,
                           ),
                           CommonTextfield(
@@ -158,7 +158,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                             labelText: "New Password",
                             hintText: 'New Password',
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 15,
                           ),
                           CommonTextfield(

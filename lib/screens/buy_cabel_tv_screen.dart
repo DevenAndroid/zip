@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -11,17 +10,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
-
 import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
 import '../models/buy_cabel_model.dart';
-import '../models/buy_plan_model.dart';
 import '../models/save_transastion_model.dart';
 import '../repository/buy_cabel_repo.dart';
-import '../repository/repo_buy_plan.dart';
 import '../repository/save_buy_plan_repo.dart';
 import '../resourses/api_constant.dart';
-import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_textfield.dart';
 
@@ -40,62 +35,62 @@ class _PurchaseCabelScreenState extends State<PurchaseCabelScreen> {
     // TODO: implement initState
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-      registorController.fetchVritualAccount();});
+      registorController.fetchVritualAccount();
+    });
     profileController.getCurrentBalance();
   }
-  Rx<RxStatus> statusOfProviders= RxStatus.empty().obs;
+
+  Rx<RxStatus> statusOfProviders = RxStatus.empty().obs;
 
   Rx<BuyCabelTvModel> buyCabelTv = BuyCabelTvModel().obs;
   var initStateBlank = Get.arguments[0];
   var initStateBlank1 = Get.arguments[1];
   var initStateBlank2 = Get.arguments[2];
   // var initStateBlank3 = Get.arguments[3];
-  Rx<RxStatus> statusOfSave= RxStatus.empty().obs;
+  Rx<RxStatus> statusOfSave = RxStatus.empty().obs;
   Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
 
   saveList() {
     saveTransastionRepo(
-        user_id: profileController.modal.value.data!.user!.id.toString(),
-        amount:registorController.result2.toString(),
-        about: "Buy Cable Tv",
-        // complete_response: purchaseData.value.data!.toJson(),
-        context: context,
-        description:profileController.description2Controller.text.trim(),
-        telcos: initStateBlank1,
-       data_code: initStateBlank1,
-        dataplan:initStateBlank1,
-        type: "dr",
+      user_id: profileController.modal.value.data!.user!.id.toString(),
+      amount: registorController.result2.toString(),
+      about: "Buy Cable Tv",
+      // complete_response: purchaseData.value.data!.toJson(),
+      context: context,
+      description: profileController.description2Controller.text.trim(),
+      telcos: initStateBlank1,
+      data_code: initStateBlank1,
+      dataplan: initStateBlank1,
+      type: "dr",
       phone: profileController.phone2Controller.text.trim(),
       // send_type: "Buy Cabel Tv"
     ).then((value) {
-      log("response.body.....    ${value}");
+      log("response.body.....    $value");
       save.value = value;
       if (value.status == true) {
         statusOfSave.value = RxStatus.success();
         Get.toNamed(MyRouters.successRechargeScreen);
-
       } else {
         statusOfSave.value = RxStatus.error();
       }
     }
-      // showToast(value.message.toString());
-    );
+        // showToast(value.message.toString());
+        );
   }
+
   getProviderList() {
-    print(initStateBlank);
-    print(initStateBlank1);
     BuyCabelRepo(
-     amount: registorController.result2.toString(),
-     phone: profileController.modal.value.data!.user!.phone.toString(),
-     variation_code:   initStateBlank1,
-      serviceID:initStateBlank2,
-      context: context,
-      billersCode: profileController.phone2Controller.text.trim(),
-key: "pay"
-
-
-    ).then((value) {
-      log("response.body.....    ${value}");
+            amount: initStateBlank.toString(),
+            phone: profileController.modal.value.data!.user!.phone.toString(),
+            variation_code: initStateBlank1,
+            telcos: initStateBlank1,
+            data_code: initStateBlank1,
+            serviceID: initStateBlank2,
+            context: context,
+            billersCode: profileController.phone2Controller.text.trim(),
+            key: "pay")
+        .then((value) {
+      log("response.body.....    $value");
       buyCabelTv.value = value;
       if (value.status == true) {
         Get.toNamed(MyRouters.successRechargeScreen);
@@ -108,18 +103,25 @@ key: "pay"
         showToast(value.message.toString());
       }
     }
-      // showToast(value.message.toString());
-    );
+            // showToast(value.message.toString());
+            );
   }
 
   @override
   Widget build(BuildContext context) {
-
     Size size = MediaQuery.of(context).size;
     double doubleVar;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        toolbarHeight: 80,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(4.0),
+          child: Container(
+            color: Colors.grey.shade300,
+            height: 1.0,
+          ),
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
@@ -131,7 +133,7 @@ key: "pay"
         ),
         centerTitle: true,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Get.back();
           },
           child: const Icon(
@@ -139,7 +141,6 @@ key: "pay"
             color: AppTheme.primaryColor,
           ),
         ),
-
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -180,28 +181,20 @@ key: "pay"
               padding: const EdgeInsets.only(left: 6, right: 6),
               child: CommonTextfield(
                 keyboardType:
-                const TextInputType.numberWithOptions(
-                    decimal: true),
+                    const TextInputType.numberWithOptions(decimal: true),
                 inputFormatters: [
                   LengthLimitingTextInputFormatter(11),
-                  FilteringTextInputFormatter.allow(
-                      RegExp('[0-9]+')),
+                  FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
                 ],
-                onChanged: (value) =>
-                doubleVar = double.parse(value),
+                onChanged: (value) => doubleVar = double.parse(value),
                 validator: MultiValidator([
                   RequiredValidator(
-                      errorText:
-                      'Please enter your card number '),
+                      errorText: 'Please enter your card number '),
                   MinLengthValidator(11,
-                      errorText:
-                      'Please enter minumum  10 card number'),
+                      errorText: 'Please enter minumum  10 card number'),
                   MaxLengthValidator(12,
-                      errorText:
-                      'Please enter 12 card number'),
-                  PatternValidator(
-                      r'(^(?:[+0]9)?[0-9]{10,12}$)',
-                      errorText: '')
+                      errorText: 'Please enter 12 card number'),
+                  PatternValidator(r'(^(?:[+0]9)?[0-9]{10,12}$)', errorText: '')
                 ]),
                 controller: profileController.phone2Controller,
                 obSecure: false,
@@ -209,7 +202,9 @@ key: "pay"
                 labelText: "Phone Number",
               ),
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: Text(
@@ -220,15 +215,14 @@ key: "pay"
                     fontWeight: FontWeight.w500),
               ),
             ),
-
             const SizedBox(
               height: 10,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 6, right: 6),
               child: CommonTextfield(
-                onChanged: (value){
-                  _addNumbers();
+                onChanged: (value) {
+                  // _addNumbers();
                 },
                 controller: profileController.description2Controller,
                 obSecure: false,
@@ -236,7 +230,6 @@ key: "pay"
                 labelText: "Reference",
               ),
             ),
-
             SizedBox(
               height: size.height * .5,
             ),
@@ -244,13 +237,15 @@ key: "pay"
               onTap: () async {
                 SharedPreferences pref = await SharedPreferences.getInstance();
                 if (pref.getBool('TransistionPin') == true) {
-                  Get.toNamed(MyRouters.cabelTvPin,arguments: [initStateBlank,initStateBlank1,initStateBlank2,]);
-                }
-                else{
+                  Get.toNamed(MyRouters.cabelTvPin, arguments: [
+                    initStateBlank,
+                    initStateBlank1,
+                    initStateBlank2,
+                  ]);
+                } else {
                   getProviderList();
                 }
               },
-
               child: const CustomOutlineButton(
                 title: "Continue",
               ),
@@ -260,32 +255,32 @@ key: "pay"
       ),
     );
   }
-  void _addNumbers() {
-    // Get the input values as strings
-    String firstNumberString = initStateBlank;
-    String secondNumberString =   profileController
-        .currentBalanceModel.value.data!.fee!.serviceFee
-        .toString();
-
-    // Check if both inputs are not empty
-    if (firstNumberString.isNotEmpty && secondNumberString.isNotEmpty) {
-      // Convert strings to integers
-      int firstNumber = int.parse(firstNumberString);
-      int secondNumber = int.parse(secondNumberString);
-
-      // Perform addition
-      int sum = firstNumber + secondNumber;
-
-      // Convert the result back to a string and update the UI
-      setState(() {
-        registorController.result2 = sum.toString();
-        print(registorController.result2.toString());
-      });
-    } else {
-      // Handle the case when one or both of the inputs are empty
-      setState(() {
-        registorController.result2 = 'Please enter valid numbers';
-      });
-    }
-  }
+  // void _addNumbers() {
+  //   // Get the input values as strings
+  //   String firstNumberString = initStateBlank;
+  //   String secondNumberString =   profileController
+  //       .currentBalanceModel.value.data!.fee!.serviceFee
+  //       .toString();
+  //
+  //   // Check if both inputs are not empty
+  //   if (firstNumberString.isNotEmpty && secondNumberString.isNotEmpty) {
+  //     // Convert strings to integers
+  //     int firstNumber = int.parse(firstNumberString);
+  //     int secondNumber = int.parse(secondNumberString);
+  //
+  //     // Perform addition
+  //     int sum = firstNumber + secondNumber;
+  //
+  //     // Convert the result back to a string and update the UI
+  //     setState(() {
+  //       registorController.result2 = sum.toString();
+  //       print(registorController.result2.toString());
+  //     });
+  //   } else {
+  //     // Handle the case when one or both of the inputs are empty
+  //     setState(() {
+  //       registorController.result2 = 'Please enter valid numbers';
+  //     });
+  //   }
+  // }
 }

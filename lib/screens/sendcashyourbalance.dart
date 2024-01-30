@@ -26,6 +26,13 @@ class _SendCashYourBalanceState extends State<SendCashYourBalance> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(4.0),
+          child: Container(
+            color: Colors.grey.shade300,
+            height: 1.0,
+          ),
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
@@ -68,7 +75,8 @@ class _SendCashYourBalanceState extends State<SendCashYourBalance> {
         return profileController.currentBalanceModel.value.status == true
             ? SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 15.0, right: 15),
+                  padding:
+                      const EdgeInsets.only(left: 15.0, right: 15, top: 10),
                   child: Form(
                     key: formKey2,
                     child: Column(
@@ -86,9 +94,9 @@ class _SendCashYourBalanceState extends State<SendCashYourBalance> {
                                 height: 15,
                               ),
                               Text(
-                                profileController.currentBalanceModel.value
-                                    .data!.currentBalance
-                                    .toString(),
+                                NumberFormat('#,##0.00').format(
+                                    profileController.currentBalanceModel.value
+                                        .data!.currentBalance!),
                                 style: GoogleFonts.poppins(
                                     color: const Color(0xFF1D1D1D),
                                     fontSize: 20,
@@ -97,7 +105,7 @@ class _SendCashYourBalanceState extends State<SendCashYourBalance> {
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Text(
@@ -116,8 +124,8 @@ class _SendCashYourBalanceState extends State<SendCashYourBalance> {
                             alignment: Alignment.centerRight,
                             child: Text(
                               "FEE : " +
-                                  profileController
-                                      .currentBalanceModel.value.data!.fee!.cashoutFee
+                                  profileController.currentBalanceModel.value
+                                      .data!.fee!.cashoutFee
                                       .toString(),
                               style: GoogleFonts.poppins(
                                   color: const Color(0xFF1D1D1D),
@@ -132,6 +140,9 @@ class _SendCashYourBalanceState extends State<SendCashYourBalance> {
                         CommonTextfield(
                           controller: profileController.amountController,
                           obSecure: false,
+                          onChanged: (value) {
+                            _addNumbers();
+                          },
                           keyboardType: TextInputType.number,
                           inputFormatters: <TextInputFormatter>[
                             FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
@@ -159,13 +170,6 @@ class _SendCashYourBalanceState extends State<SendCashYourBalance> {
                         const SizedBox(
                           height: 20,
                         ),
-                        Text(
-                          "This transaction is free",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400),
-                        ),
                         SizedBox(
                           height: size.height * .5,
                         ),
@@ -179,5 +183,34 @@ class _SendCashYourBalanceState extends State<SendCashYourBalance> {
               );
       }),
     );
+  }
+
+  void _addNumbers() {
+    // Get the input values as strings
+    String firstNumberString = profileController.amountController.text;
+    String secondNumberString = profileController
+        .currentBalanceModel.value.data!.fee!.cashoutFee
+        .toString();
+
+    // Check if both inputs are not empty
+    if (firstNumberString.isNotEmpty && secondNumberString.isNotEmpty) {
+      // Convert strings to integers
+      int firstNumber = int.parse(firstNumberString);
+      int secondNumber = int.parse(secondNumberString);
+
+      // Perform addition
+      int sum = firstNumber + secondNumber;
+
+      // Convert the result back to a string and update the UI
+      setState(() {
+        profileController.result5 = sum.toString();
+        print(profileController.result5.toString());
+      });
+    } else {
+      // Handle the case when one or both of the inputs are empty
+      setState(() {
+        profileController.result5 = 'Please enter valid numbers';
+      });
+    }
   }
 }

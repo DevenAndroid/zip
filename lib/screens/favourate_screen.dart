@@ -34,7 +34,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar(toolbarHeight: 80,
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(

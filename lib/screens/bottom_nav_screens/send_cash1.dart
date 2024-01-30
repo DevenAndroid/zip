@@ -87,7 +87,7 @@ class _SendCash1State extends State<SendCash1> {
                           )),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Padding(
@@ -100,7 +100,8 @@ class _SendCash1State extends State<SendCash1> {
                               borderRadius: BorderRadius.circular(15),
                             ),
                             child: Padding(
-                                padding: EdgeInsets.only(left: 15, right: 30),
+                                padding:
+                                    const EdgeInsets.only(left: 15, right: 30),
                                 child: DropdownButton(
                                   value: "United Kingdom",
                                   items: [
@@ -111,7 +112,7 @@ class _SendCash1State extends State<SendCash1> {
                                             'assets/images/address.svg',
                                             height: 30,
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 10,
                                           ),
                                           Text(
@@ -125,28 +126,28 @@ class _SendCash1State extends State<SendCash1> {
                                       ),
                                       value: "United Kingdom",
                                     ),
-                                    DropdownMenuItem(
+                                    const DropdownMenuItem(
                                         child: Text("Canada"), value: "Canada"),
-                                    DropdownMenuItem(
+                                    const DropdownMenuItem(
                                       child: Text("Russia"),
                                       value: "Russia",
                                     )
                                   ],
                                   onChanged: (value) {},
-                                  icon: Padding(
+                                  icon: const Padding(
                                       padding: EdgeInsets.only(left: 20),
                                       child: Icon(
                                           Icons.keyboard_arrow_down_outlined)),
                                   iconEnabledColor: Colors.black,
                                   //Icon color
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: Colors.black, fontSize: 20),
                                   dropdownColor: Colors.white,
                                   underline: Container(),
                                   isExpanded: true,
                                 ))),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       CommonTextfield(
@@ -154,7 +155,7 @@ class _SendCash1State extends State<SendCash1> {
                         hintText: "",
                         labelText: "Mobile Number",
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Padding(
@@ -185,7 +186,7 @@ class _SendCash1State extends State<SendCash1> {
                                 ),
                               ],
                             ),
-                            Icon(
+                            const Icon(
                               Icons.search,
                               size: 20,
                             )
@@ -195,7 +196,7 @@ class _SendCash1State extends State<SendCash1> {
                       ListView.builder(
                           itemCount: 10,
                           shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -203,8 +204,8 @@ class _SendCash1State extends State<SendCash1> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Container(
-                                    padding: EdgeInsets.all(10),
-                                    decoration: BoxDecoration(
+                                    padding: const EdgeInsets.all(10),
+                                    decoration: const BoxDecoration(
                                       shape: BoxShape.circle,
                                       color: Color(0xFFF0D75F),
                                     ),
@@ -218,7 +219,7 @@ class _SendCash1State extends State<SendCash1> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 15,
                                   ),
                                   Column(

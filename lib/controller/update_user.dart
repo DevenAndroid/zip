@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-import 'package:http/http.dart' as http;
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,7 +15,6 @@ import 'package:zip/controller/profile_controller.dart';
 
 import '../models/africa_verify_model.dart';
 import '../models/create_virtual_account_model.dart';
-import '../models/fetchVirtualAccount_model.dart';
 import '../models/modelAfricaLive.dart';
 import '../models/model_bank_details.dart';
 import '../models/model_checkout.dart';
@@ -50,7 +50,6 @@ import '../repository/save_image_repo.dart';
 import '../repository/setting_repo.dart';
 import '../repository/update_address_repo.dart';
 import '../repository/update_contact_repo.dart';
-import '../repository/update_profile_repo.dart';
 import '../repository/user_update_repo.dart';
 import '../repository/verify_account_reop.dart';
 import '../repository/verify_africa_b.dart';
@@ -67,14 +66,13 @@ class registerController extends GetxController {
   String result1 = '';
   String result2 = '';
   String result3 = '';
+  String result4 = '';
   bool isValue = false;
   Rx<SettingModal> modalGetSetting = SettingModal().obs;
   getSetting() {
     settingRepo().then((value) {
       modalGetSetting.value = value;
-      if (value.status == true) {
-        print(value.message.toString());
-      }
+      if (value.status == true) {}
     });
   }
 
@@ -136,8 +134,6 @@ class registerController extends GetxController {
       } else {
         statusOfLiveImage.value = RxStatus.error();
       }
-
-      print(value.message.toString());
     });
   }
 
@@ -214,8 +210,6 @@ class registerController extends GetxController {
       } else {
         statusOfLiveImage.value = RxStatus.error();
       }
-
-      print(value.message.toString());
     });
   }
 
@@ -227,7 +221,6 @@ class registerController extends GetxController {
       file1: image,
     ).then((value) {
       if (value.status == true) {
-        print(image);
         // accountVritual(context);
         liveImage(context);
       }
@@ -244,7 +237,6 @@ class registerController extends GetxController {
     ).then((value) {
       if (value.status == true) {
         UserImage = value.data.toString();
-        print(image);
         // accountVritual(context);
         holder3(context);
       }
@@ -323,10 +315,6 @@ class registerController extends GetxController {
     ).then((value) {
       africaVerify.value = value;
       if (value.status == true) {
-        print(
-          "aasssddffgghhk" + verificationStatus.toString(),
-        );
-
         statusOfVerify.value = RxStatus.success();
         Get.toNamed(MyRouters.otpScreen);
 
@@ -355,7 +343,6 @@ class registerController extends GetxController {
       africaFace.value = value;
 
       if (value.response!.message == "Match") {
-        print("FACEMATCH-VERIFICATION");
         statusOfMatch.value = RxStatus.success();
 
         accountVritual(context);
@@ -379,7 +366,6 @@ class registerController extends GetxController {
         .then((value) {
       africaFace.value = value;
       if (value.response!.message == "Match") {
-        print("FACEMATCH-VERIFICATION");
         statusOfMatch.value = RxStatus.success();
         accountVritual(context);
         showToast("FACEMATCH-VERIFICATION api hit::::");
@@ -437,7 +423,6 @@ class registerController extends GetxController {
 // print("uniqueIdentifier:::::::::::::::;"+uniqueIdentifier!);
       showToast("Contact api after");
       createContact.value = value;
-      print("email:::::::::" + emailController.text.toString());
       contactIdSave(context);
 
       statusOfContact.value = RxStatus.success();
@@ -462,7 +447,6 @@ class registerController extends GetxController {
 // print("uniqueIdentifier:::::::::::::::;"+uniqueIdentifier!);
       showToast("Contact api after");
       createContact.value = value;
-      print("email:::::::::" + emailController.text.toString());
       contactIdSave2(context);
 
       statusOfContact.value = RxStatus.success();
@@ -486,7 +470,6 @@ class registerController extends GetxController {
     ).then((value) {
       showToast("Contact api after");
       createContact.value = value;
-      print("email:::::::::" + emailController.text.toString());
       contactIdSave1(context);
 
       statusOfContact.value = RxStatus.success();
@@ -544,9 +527,6 @@ class registerController extends GetxController {
       context: context,
     ).then((value) {
       updateContact.value = value;
-      print(
-        "ID:::::::::::::::::" + profileController.saveIdController.text.trim(),
-      );
       loanController.loan(context);
       // Get.toNamed(
       //   MyRouters.birthdayScreen,
@@ -567,9 +547,6 @@ class registerController extends GetxController {
       context: context,
     ).then((value) {
       updateContact.value = value;
-      print(
-        profileController.saveIdController.text.trim(),
-      );
       profileController.holder();
       // Get.toNamed(
       //   MyRouters.birthdayScreen,
@@ -712,7 +689,6 @@ class registerController extends GetxController {
   final numbercontroller = Get.put(numberController());
 
   Future holder() async {
-    print("sdggfrdh");
     await cardHolderRepo(
       // selfie_image:image.toString(),
       email_address: emailController.text.trim(),
@@ -735,7 +711,6 @@ class registerController extends GetxController {
     ).then((value) {
       cardHolder.value = value;
       if (value.status == "success") {
-        print("sdggfrdh");
         statusOfCardHolder.value = RxStatus.success();
 
         showToast(value.message.toString());
@@ -820,8 +795,6 @@ class registerController extends GetxController {
       } else {
         statusOfAfricaDetails.value = RxStatus.error();
       }
-
-      print(value.message.toString());
     });
   }
 
@@ -853,8 +826,6 @@ class registerController extends GetxController {
     //   statusOfChooseBank.value.isSuccess;
     // }
     // Get.toNamed(MyRouters.bottomNavbar);
-
-
   }
 
   loginOtp(context) {
@@ -885,10 +856,6 @@ class registerController extends GetxController {
     //   statusOfChooseBank.value.isSuccess;
     // }
     // Get.toNamed(MyRouters.bottomNavbar);
-
-
-
-
   }
 
   TextEditingController emailController = TextEditingController();
@@ -1050,9 +1017,6 @@ class registerController extends GetxController {
   final profileController = Get.put(ProfileController());
 
   Future saveList(context) async {
-    print(
-      profileController.modal.value.data!.user!.id.toString(),
-    );
     await saveTransastionRepo(
             user_id: profileController.modal.value.data!.user!.id.toString(),
             amount: amountController.text.trim(),
@@ -1200,9 +1164,6 @@ class registerController extends GetxController {
   Rx<RequestMoneyMail> saveMail = RequestMoneyMail().obs;
 
   Future saveEmails() async {
-    print(
-      profileController.modal.value.data!.user!.id.toString(),
-    );
     await requestMailRepo(
             by_requested_id:
                 profileController.modal.value.data!.user!.id.toString(),

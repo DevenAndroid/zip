@@ -1,11 +1,10 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/resourses/api_constant.dart';
 
 import '../controller/update_user.dart';
-import '../routers/my_routers.dart';
-import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_colour.dart';
 
@@ -27,6 +26,13 @@ class _VerifyAfricaScreenState extends State<VerifyAfricaScreen> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(4.0),
+            child: Container(
+              color: Colors.grey.shade300,
+              height: 1.0,
+            ),
+          ),
           backgroundColor: Colors.white,
           elevation: 0,
           leading: InkWell(
@@ -76,71 +82,63 @@ class _VerifyAfricaScreenState extends State<VerifyAfricaScreen> {
                             height: 40,
                           ),
                           Center(
-                            child: Container(
-                              width: 160,
-                              height: 160,
-                              padding: const EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                      color: AppTheme.primaryColor, width: 3)),
-                              child: Center(
-                                child: InkWell(
-                                    onTap: () {
-                                      registorController
-                                          .pickImage()
-                                          .then((value) {
-                                        setState(() {});
-                                      });
-                                    },
+                            child: DottedBorder(
+                              color: Colors.grey,
+                              padding: const EdgeInsets.all(10),
+                              // Color of the dotted border
+                              strokeWidth: 1,
+                              borderPadding: const EdgeInsets.all(2),
+                              dashPattern: const [6, 3, 2, 3],
+                              // Width of the dotted border
+                              borderType: BorderType.Rect,
+                              // RRect for rounded rectangle, Rect for rectangle
+                              radius: const Radius.circular(16),
+                              child: InkWell(
+                                  onTap: () {
+                                    registorController
+                                        .pickImage()
+                                        .then((value) {
+                                      setState(() {});
+                                    });
+                                  },
 
-                                    // child: image.path != ""
-                                    //     ?
-                                    //
-                                    child: ClipOval(
-                                      child: Image.file(
-                                        registorController.image,
-                                        width: 180,
-                                        height: 180,
+                                  // child: image.path != ""
+                                  //     ?
+                                  //
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(16),
+                                    child: Image.file(registorController.image,
+                                        width: 120,
+                                        height: 120,
                                         fit: BoxFit.cover,
                                         errorBuilder: (_, __, ___) =>
-                                            const Icon(
-                                          Icons.person,
-                                          size: 50,
-                                        ),
-                                      ),
-                                    )),
-                              ),
+                                            Image.asset(
+                                                "assets/images/camera.png")),
+                                  )),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 40,
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(6.0),
                             child: Container(
-                              padding: EdgeInsets.all(10),
+                              padding: const EdgeInsets.all(12),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(color: Colors.black)),
+                                  border: Border.all(
+                                      color: Colors.grey.withOpacity(.3))),
                               child: Column(
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8.0),
-                                    child: Image.asset(
-                                      "assets/images/client.jpeg",
-                                      fit: BoxFit.fill,
-                                    ),
-                                  ),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.circle,
                                         color: AppTheme.secondaryColor,
                                         size: 8,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 20,
                                       ),
                                       Text(
@@ -152,18 +150,22 @@ class _VerifyAfricaScreenState extends State<VerifyAfricaScreen> {
                                       ),
                                     ],
                                   ),
-                                  SizedBox(
+                                  Divider(
+                                    thickness: 1,
+                                    color: Colors.grey.withOpacity(.2),
+                                  ),
+                                  const SizedBox(
                                     height: 5,
                                   ),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.circle,
                                         color: AppTheme.secondaryColor,
                                         size: 8,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 20,
                                       ),
                                       Text(
@@ -175,18 +177,22 @@ class _VerifyAfricaScreenState extends State<VerifyAfricaScreen> {
                                       ),
                                     ],
                                   ),
-                                  SizedBox(
+                                  Divider(
+                                    thickness: 1,
+                                    color: Colors.grey.withOpacity(.2),
+                                  ),
+                                  const SizedBox(
                                     height: 5,
                                   ),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.circle,
                                         color: AppTheme.secondaryColor,
                                         size: 8,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 20,
                                       ),
                                       Text(
@@ -198,18 +204,22 @@ class _VerifyAfricaScreenState extends State<VerifyAfricaScreen> {
                                       ),
                                     ],
                                   ),
-                                  SizedBox(
+                                  Divider(
+                                    thickness: 1,
+                                    color: Colors.grey.withOpacity(.2),
+                                  ),
+                                  const SizedBox(
                                     height: 5,
                                   ),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.circle,
                                         color: AppTheme.secondaryColor,
                                         size: 8,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 20,
                                       ),
                                       Text(
@@ -221,18 +231,22 @@ class _VerifyAfricaScreenState extends State<VerifyAfricaScreen> {
                                       ),
                                     ],
                                   ),
-                                  SizedBox(
+                                  Divider(
+                                    thickness: 1,
+                                    color: Colors.grey.withOpacity(.2),
+                                  ),
+                                  const SizedBox(
                                     height: 5,
                                   ),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.circle,
                                         color: AppTheme.secondaryColor,
                                         size: 8,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 20,
                                       ),
                                       Text(
@@ -244,7 +258,11 @@ class _VerifyAfricaScreenState extends State<VerifyAfricaScreen> {
                                       ),
                                     ],
                                   ),
-                                  SizedBox(
+                                  Divider(
+                                    thickness: 1,
+                                    color: Colors.grey.withOpacity(.2),
+                                  ),
+                                  const SizedBox(
                                     height: 5,
                                   ),
                                 ],

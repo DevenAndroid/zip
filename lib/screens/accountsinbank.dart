@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,17 +15,25 @@ class AccountsInBank extends StatefulWidget {
 
 class _AccountsInBankState extends State<AccountsInBank> {
   String _selectedCurrency = 'NGN';
-  String _selectedEur = 'EUR';
-  String _selectedCurrencyUsd = 'USD';
-  String _selectedCurrencyGbp = 'GBP';
+  final String _selectedEur = 'EUR';
+  final String _selectedCurrencyUsd = 'USD';
+  final String _selectedCurrencyGbp = 'GBP';
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 80,
         backgroundColor: Colors.white,
         elevation: 0,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(4.0),
+          child: Container(
+            color: Colors.grey.shade300,
+            height: 1.0,
+          ),
+        ),
         title: Text(
           "Accounts",
           style: GoogleFonts.poppins(
@@ -52,7 +58,7 @@ class _AccountsInBankState extends State<AccountsInBank> {
           child: Container(
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 InkWell(
@@ -68,7 +74,7 @@ class _AccountsInBankState extends State<AccountsInBank> {
                           border: Border.all(color: const Color(0xff1D1D1D))),
                       child: Column(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           ListTile(
@@ -88,7 +94,7 @@ class _AccountsInBankState extends State<AccountsInBank> {
                             trailing: Radio<String>(
                               value: 'NGN',
                               groupValue: _selectedCurrency,
-                              activeColor: AppTheme.secondaryColor,
+                              activeColor: Colors.black,
                               onChanged: (value) {
                                 setState(() {
                                   _selectedCurrency = value!;
@@ -99,7 +105,6 @@ class _AccountsInBankState extends State<AccountsInBank> {
                         ],
                       )),
                 ),
-
                 SizedBox(
                   height: size.height * .65,
                 ),

@@ -4,7 +4,6 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
@@ -37,7 +36,6 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
 
   var initStateBlank = Get.arguments;
   final formKey1 = GlobalKey<FormState>();
-
 
   verifyOtpRepo() {
     if (formKey1.currentState!.validate()) {
@@ -147,11 +145,6 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
                     InkWell(
                         onTap: () {
                           verifyOtpRepo();
-                          print(
-                            numbercontroller.isNumber
-                                ? numbercontroller.number
-                                : numbercontroller.email,
-                          );
 
                           // VerifyOtp();
                           //  Get.toNamed(MyRouters.profileScreen);

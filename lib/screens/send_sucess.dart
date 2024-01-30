@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_button.dart';
 
 import '../controller/profile_controller.dart';
@@ -41,17 +40,17 @@ class _SendSuccessScreenState extends State<SendSuccessScreen> {
                               fontWeight: FontWeight.w500),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 45,
                       ),
                       Center(
-                        child: Image.asset(
-                          'assets/images/tick.png',
+                        child: SvgPicture.asset(
+                          'assets/images/verify.svg',
                           height: 90,
                           width: 90,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 25,
                       ),
                       Center(
@@ -70,7 +69,7 @@ class _SendSuccessScreenState extends State<SendSuccessScreen> {
                           onTap: () {
                             profileController.saveList2(context);
                           },
-                          child: CustomOutlineButton(
+                          child: const CustomOutlineButton(
                             title: "Done",
                           )),
                     ]))));

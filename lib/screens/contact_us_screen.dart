@@ -44,7 +44,6 @@ class _ContuctUsScreenState extends State<ContuctUsScreen> {
     });
   }
 
-
   Rx<RxStatus> statusOfGet = RxStatus.empty().obs;
   Rx<ModelGetSupportSystem> getSupportSystem = ModelGetSupportSystem().obs;
 
@@ -89,7 +88,7 @@ class _ContuctUsScreenState extends State<ContuctUsScreen> {
             onTap: () {
               Get.back();
             },
-            child: Icon(
+            child: const Icon(
               Icons.arrow_back_rounded,
               color: AppTheme.primaryColor,
             ),
@@ -99,7 +98,7 @@ class _ContuctUsScreenState extends State<ContuctUsScreen> {
           child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(children: [
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Center(
@@ -207,7 +206,7 @@ class _ContuctUsScreenState extends State<ContuctUsScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 22),
+                const SizedBox(height: 22),
                 CommonTextfield(
                   controller: dricptionController,
                   obSecure: false,
@@ -223,10 +222,10 @@ class _ContuctUsScreenState extends State<ContuctUsScreen> {
                       updateSupport();
                       // Get.toNamed(MyRouters.mobileOtpScreen);
                     },
-                    child: CustomOutlineButton(
+                    child: const CustomOutlineButton(
                       title: "Send ",
                     )),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
               ])),

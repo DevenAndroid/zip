@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -7,12 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
-import '../models/buy_data_List_model.dart';
 import '../models/cabel_tv_list_model.dart';
-import '../models/model_recieve_transistion.dart';
-import '../repository/get_cabel_tv_repo.dart';
-import '../repository/get_data_list_repo.dart';
-import '../repository/get_recived_transistion_repo.dart';
 import '../widgets/circular_progressindicator.dart';
 import '../widgets/common_error_widget.dart';
 
@@ -260,7 +253,7 @@ class _BuyCabelTvListState extends State<BuyCabelTvList> {
                                   ),
                                 ])),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Obx(() {
@@ -292,7 +285,7 @@ class _BuyCabelTvListState extends State<BuyCabelTvList> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  SizedBox(
+                                                  const SizedBox(
                                                     height: 10,
                                                   ),
                                                   InkWell(
@@ -334,7 +327,8 @@ class _BuyCabelTvListState extends State<BuyCabelTvList> {
                                                     },
                                                     child: Container(
                                                       padding:
-                                                          EdgeInsets.all(10),
+                                                          const EdgeInsets.all(
+                                                              10),
                                                       decoration: BoxDecoration(
                                                           borderRadius:
                                                               BorderRadius
@@ -395,13 +389,7 @@ class _BuyCabelTvListState extends State<BuyCabelTvList> {
                                                                               .w500),
                                                                 ),
                                                                 Text(
-                                                                  "Plan:- " +
-                                                                      buyCableList
-                                                                          .value
-                                                                          .data![
-                                                                              index]
-                                                                          .dataplan
-                                                                          .toString(),
+                                                                  "Plan:- ${buyCableList.value.data![index].dataplan}",
                                                                   style: GoogleFonts.poppins(
                                                                       color: Colors
                                                                           .grey,
@@ -466,13 +454,7 @@ class _BuyCabelTvListState extends State<BuyCabelTvList> {
                                                                   ],
                                                                 ),
                                                                 Text(
-                                                                  "Code:- " +
-                                                                      buyCableList
-                                                                          .value
-                                                                          .data![
-                                                                              index]
-                                                                          .dataCode
-                                                                          .toString(),
+                                                                  "Code:- ${buyCableList.value.data![index].dataCode}",
                                                                   style: GoogleFonts.poppins(
                                                                       color: Colors
                                                                           .grey,
@@ -489,7 +471,7 @@ class _BuyCabelTvListState extends State<BuyCabelTvList> {
                                                       ),
                                                     ),
                                                   ),
-                                                  SizedBox(
+                                                  const SizedBox(
                                                     height: 10,
                                                   )
                                                 ],

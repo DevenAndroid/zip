@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:share_plus/share_plus.dart';
+
 import '../controller/update_user.dart';
 import '../widgets/common_button.dart';
 
@@ -24,14 +23,14 @@ class _SharePaymentLinkState extends State<SharePaymentLink> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(
+          const SizedBox(
             height: 140,
           ),
           Image.asset(
             'assets/images/linkicon.png',
             height: 51,
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Text(
@@ -41,7 +40,7 @@ class _SharePaymentLinkState extends State<SharePaymentLink> {
                 fontSize: 18,
                 fontWeight: FontWeight.w500),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Center(
@@ -71,7 +70,7 @@ class _SharePaymentLinkState extends State<SharePaymentLink> {
             onTap: () {
               register.cashCheckout1(context);
             },
-            child: CustomOutlineButton(
+            child: const CustomOutlineButton(
               title: "Share payment link",
             ),
           ),

@@ -53,7 +53,7 @@ class _SelectableScreenState extends State<SelectableScreen> {
                               fontWeight: FontWeight.w500),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       GestureDetector(
@@ -78,15 +78,14 @@ class _SelectableScreenState extends State<SelectableScreen> {
                                     border: Border.all(
                                         color: AppTheme.buttonColor,
                                         width: 1.3)),
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 9.0, top: 18),
+                            child: const Padding(
+                              padding: EdgeInsets.only(left: 9.0, top: 18),
                               child: Text("Family Support"),
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       GestureDetector(
@@ -111,15 +110,14 @@ class _SelectableScreenState extends State<SelectableScreen> {
                                     border: Border.all(
                                         color: AppTheme.buttonColor,
                                         width: 1.3)),
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 9.0, top: 18),
+                            child: const Padding(
+                              padding: EdgeInsets.only(left: 9.0, top: 18),
                               child: Text("Buy Airtime & Pay Bills"),
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       GestureDetector(
@@ -144,15 +142,14 @@ class _SelectableScreenState extends State<SelectableScreen> {
                                     border: Border.all(
                                         color: AppTheme.buttonColor,
                                         width: 1.3)),
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 9.0, top: 18),
+                            child: const Padding(
+                              padding: EdgeInsets.only(left: 9.0, top: 18),
                               child: Text("Buy Goods & Services"),
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       GestureDetector(
@@ -177,15 +174,14 @@ class _SelectableScreenState extends State<SelectableScreen> {
                                     border: Border.all(
                                         color: AppTheme.buttonColor,
                                         width: 1.3)),
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 9.0, top: 18),
+                            child: const Padding(
+                              padding: EdgeInsets.only(left: 9.0, top: 18),
                               child: Text("My Business"),
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       GestureDetector(
@@ -210,9 +206,8 @@ class _SelectableScreenState extends State<SelectableScreen> {
                                     border: Border.all(
                                         color: AppTheme.buttonColor,
                                         width: 1.3)),
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 9.0, top: 18),
+                            child: const Padding(
+                              padding: EdgeInsets.only(left: 9.0, top: 18),
                               child: Text("Saving & Investing"),
                             ),
                           ),
@@ -230,7 +225,7 @@ class _SelectableScreenState extends State<SelectableScreen> {
                             );
                             Get.toNamed(MyRouters.userScreen);
                           },
-                          child: CustomOutlineButton(
+                          child: const CustomOutlineButton(
                             title: "Next",
                           )),
                     ]))));

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:zip/routers/my_routers.dart';
 
 import '../controller/update_user.dart';
 import '../widgets/circular_progressindicator.dart';
@@ -34,6 +32,14 @@ class _BankDetailsScreenState extends State<BankDetailsScreen> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          toolbarHeight: 80,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(4.0),
+            child: Container(
+              color: Colors.grey.shade300,
+              height: 1.0,
+            ),
+          ),
           backgroundColor: Colors.white,
           elevation: 0,
           title: InkWell(
@@ -65,12 +71,12 @@ class _BankDetailsScreenState extends State<BankDetailsScreen> {
           return registorController.statusOfFetchAccount.value.isSuccess
               ? SingleChildScrollView(
                   child: Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               height: 15,
                             ),
                             Center(
@@ -79,7 +85,7 @@ class _BankDetailsScreenState extends State<BankDetailsScreen> {
                                 height: 120,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 30,
                             ),
                             Text(
@@ -90,30 +96,30 @@ class _BankDetailsScreenState extends State<BankDetailsScreen> {
                                   fontWeight: FontWeight.w500),
                               textAlign: TextAlign.center,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 25,
                             ),
                             Text(
-                              "NAME",
+                              "ACCOUNT NAME",
                               style: GoogleFonts.poppins(
                                   color: const Color(0xFF7D7D7D),
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600),
                               textAlign: TextAlign.center,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Text(
                               "${registorController.fetchAccount.value.data!.kYCInformation!.firstName.toString()}" +
                                   "${registorController.fetchAccount.value.data!.kYCInformation!.lastName.toString()}",
                               style: GoogleFonts.poppins(
-                                  color: const Color(0xFFBA8C31),
+                                  color: Colors.black,
                                   fontSize: 22,
                                   fontWeight: FontWeight.w700),
                               textAlign: TextAlign.center,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 18,
                             ),
                             Text(
@@ -124,7 +130,7 @@ class _BankDetailsScreenState extends State<BankDetailsScreen> {
                                   fontWeight: FontWeight.w600),
                               textAlign: TextAlign.center,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Text(
@@ -132,12 +138,12 @@ class _BankDetailsScreenState extends State<BankDetailsScreen> {
                                   .fetchAccount.value.data!.accountNumber
                                   .toString(),
                               style: GoogleFonts.poppins(
-                                  color: const Color(0xFFBA8C31),
+                                  color: Colors.black,
                                   fontSize: 22,
                                   fontWeight: FontWeight.w700),
                               textAlign: TextAlign.center,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 18,
                             ),
                             Text(
@@ -148,7 +154,7 @@ class _BankDetailsScreenState extends State<BankDetailsScreen> {
                                   fontWeight: FontWeight.w600),
                               textAlign: TextAlign.center,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Text(
@@ -156,18 +162,18 @@ class _BankDetailsScreenState extends State<BankDetailsScreen> {
                                   .accountInformation!.bankName
                                   .toString(),
                               style: GoogleFonts.poppins(
-                                  color: const Color(0xFFBA8C31),
+                                  color: Colors.black,
                                   fontSize: 22,
                                   fontWeight: FontWeight.w700),
                               textAlign: TextAlign.center,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 40,
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
-                                padding: EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(10),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   border: Border.all(color: Colors.grey),
@@ -177,10 +183,10 @@ class _BankDetailsScreenState extends State<BankDetailsScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      padding: EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
+                                      padding: const EdgeInsets.all(10),
+                                      decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
-                                        color: AppTheme.secondaryColor,
+                                        color: Colors.black,
                                       ),
                                       child: Text(
                                         "\$",
@@ -190,7 +196,7 @@ class _BankDetailsScreenState extends State<BankDetailsScreen> {
                                             fontWeight: FontWeight.w500),
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 15,
                                     ),
                                     Padding(
@@ -208,23 +214,23 @@ class _BankDetailsScreenState extends State<BankDetailsScreen> {
                                                 fontSize: 15,
                                                 fontWeight: FontWeight.w500),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 5,
                                           ),
                                           Text(
-                                            "pay your salary into your Manzo account\n and say goodbye to individual transfers.",
+                                            "You can use your ZIP Virtual Bank\nAccount just like any other regular\nbank account.",
                                             style: GoogleFonts.poppins(
                                                 color: const Color(0xFF343434),
                                                 fontSize: 12,
                                                 fontWeight: FontWeight.w500),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 5,
                                           ),
                                           Text(
                                             "Find out more",
                                             style: GoogleFonts.poppins(
-                                                color: const Color(0xFFBA8C31),
+                                                color: Colors.black,
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w600),
                                             textAlign: TextAlign.center,

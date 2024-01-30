@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/resourses/api_constant.dart';
@@ -67,10 +65,10 @@ class _SendOtpForPinState extends State<SendOtpForPin> {
                     Padding(
                       padding: const EdgeInsets.only(left: 10.0, right: 10),
                       child: Text(
-                        "Select Type For chnage your Pin ",
+                        "Please select confirmation method",
                         style: GoogleFonts.poppins(
                             color: const Color(0xFF1D1D1D),
-                            fontSize: 22,
+                            fontSize: 20,
                             fontWeight: FontWeight.w500),
                       ),
                     ),
@@ -78,32 +76,35 @@ class _SendOtpForPinState extends State<SendOtpForPin> {
                       height: 40,
                     ),
                     RadioListTile(
-                      title: Text("Email"),
+                      title: const Text("Email"),
                       value: "email",
                       groupValue: gender,
                       onChanged: (value) {
                         setState(() {
                           gender = value;
-                          print(gender);
                         });
                       },
                     ),
-                    const SizedBox(
-                      height: 20,
+                    const Divider(
+                      thickness: 1,
+                      color: Color(0x1A000000),
                     ),
                     RadioListTile(
-                      title: Text("Phone"),
+                      title: const Text("Phone"),
                       value: "phone",
                       groupValue: gender,
                       onChanged: (value) {
                         setState(() {
                           gender = value;
-                          print(gender);
                         });
                       },
                     ),
+                    const Divider(
+                      thickness: 1,
+                      color: Color(0x1A000000),
+                    ),
                     SizedBox(
-                      height: size.height * .52,
+                      height: size.height * .4,
                     ),
                     InkWell(
                         onTap: () {

@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:zip/routers/my_routers.dart';
 
 import '../controller/update_user.dart';
 import '../widgets/circular_progressindicator.dart';
@@ -48,11 +47,7 @@ class _RequestPayment3State extends State<RequestPayment3> {
           backgroundColor: Colors.white,
           elevation: 0,
           title: InkWell(
-            onTap: () {
-              print(registorController
-                  .fetchAccount.value.data!.kYCInformation!.firstName
-                  .toString());
-            },
+            onTap: () {},
             child: Text(
               "Request Payment",
               style: GoogleFonts.poppins(
@@ -76,21 +71,22 @@ class _RequestPayment3State extends State<RequestPayment3> {
           return registorController.statusOfFetchAccount.value.isSuccess
               ? SingleChildScrollView(
                   child: Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               height: 15,
                             ),
                             Center(
                               child: Image.asset(
                                 'assets/images/zip.png',
+                                color: Colors.black,
                                 height: 120,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 30,
                             ),
                             Text(
@@ -101,7 +97,7 @@ class _RequestPayment3State extends State<RequestPayment3> {
                                   fontWeight: FontWeight.w500),
                               textAlign: TextAlign.center,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 25,
                             ),
                             Text(
@@ -112,19 +108,23 @@ class _RequestPayment3State extends State<RequestPayment3> {
                                   fontWeight: FontWeight.w600),
                               textAlign: TextAlign.center,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Text(
-                              "${registorController.fetchAccount.value.data!.kYCInformation!.firstName.toString()}" +
-                                  "${registorController.fetchAccount.value.data!.kYCInformation!.lastName.toString()}",
+                              registorController.fetchAccount.value.data!
+                                      .kYCInformation!.firstName
+                                      .toString() +
+                                  registorController.fetchAccount.value.data!
+                                      .kYCInformation!.lastName
+                                      .toString(),
                               style: GoogleFonts.poppins(
-                                  color: const Color(0xFFBA8C31),
+                                  color: Colors.black,
                                   fontSize: 22,
                                   fontWeight: FontWeight.w700),
                               textAlign: TextAlign.center,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 18,
                             ),
                             Text(
@@ -135,7 +135,7 @@ class _RequestPayment3State extends State<RequestPayment3> {
                                   fontWeight: FontWeight.w600),
                               textAlign: TextAlign.center,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Text(
@@ -143,12 +143,12 @@ class _RequestPayment3State extends State<RequestPayment3> {
                                   .fetchAccount.value.data!.accountNumber
                                   .toString(),
                               style: GoogleFonts.poppins(
-                                  color: const Color(0xFFBA8C31),
+                                  color: Colors.black,
                                   fontSize: 22,
                                   fontWeight: FontWeight.w700),
                               textAlign: TextAlign.center,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 18,
                             ),
                             Text(
@@ -159,7 +159,7 @@ class _RequestPayment3State extends State<RequestPayment3> {
                                   fontWeight: FontWeight.w600),
                               textAlign: TextAlign.center,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Text(
@@ -167,12 +167,12 @@ class _RequestPayment3State extends State<RequestPayment3> {
                                   .accountInformation!.bankName
                                   .toString(),
                               style: GoogleFonts.poppins(
-                                  color: const Color(0xFFBA8C31),
+                                  color: Colors.black,
                                   fontSize: 22,
                                   fontWeight: FontWeight.w700),
                               textAlign: TextAlign.center,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 18,
                             ),
                             InkWell(
@@ -188,13 +188,13 @@ class _RequestPayment3State extends State<RequestPayment3> {
                                 },
                                 child: SvgPicture.asset(
                                     'assets/images/share.svg')),
-                            SizedBox(
+                            const SizedBox(
                               height: 40,
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
-                                padding: EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(10),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   border: Border.all(color: Colors.grey),
@@ -204,10 +204,10 @@ class _RequestPayment3State extends State<RequestPayment3> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      padding: EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
+                                      padding: const EdgeInsets.all(10),
+                                      decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
-                                        color: AppTheme.secondaryColor,
+                                        color: AppTheme.primaryColor,
                                       ),
                                       child: Text(
                                         "\$",
@@ -217,7 +217,7 @@ class _RequestPayment3State extends State<RequestPayment3> {
                                             fontWeight: FontWeight.w500),
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 15,
                                     ),
                                     Padding(
@@ -235,7 +235,7 @@ class _RequestPayment3State extends State<RequestPayment3> {
                                                 fontSize: 15,
                                                 fontWeight: FontWeight.w500),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 5,
                                           ),
                                           Text(
@@ -245,13 +245,13 @@ class _RequestPayment3State extends State<RequestPayment3> {
                                                 fontSize: 12,
                                                 fontWeight: FontWeight.w500),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 5,
                                           ),
                                           Text(
                                             "Find out more",
                                             style: GoogleFonts.poppins(
-                                                color: const Color(0xFFBA8C31),
+                                                color: Colors.black,
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w600),
                                             textAlign: TextAlign.center,

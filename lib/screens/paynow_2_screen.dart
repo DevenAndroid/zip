@@ -1,23 +1,17 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
 import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
-import '../models/model_beneficary_list.dart';
 import '../models/model_create_payout.dart';
-import '../models/model_get_binificery.dart';
 import '../models/save_transastion_model.dart';
 import '../repository/payout_repo.dart';
-import '../repository/save_buy_plan_repo.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../widgets/common_button.dart';
@@ -220,8 +214,8 @@ class _PayNow2State extends State<PayNow2> {
                         padding: const EdgeInsets.only(left: 15, right: 6),
                         child: Text(
                           "Amount FEE: " +
-                              profileController
-                                  .currentBalanceModel.value.data!.fee!.payoutFee
+                              profileController.currentBalanceModel.value.data!
+                                  .fee!.payoutFee
                                   .toString(),
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
@@ -229,7 +223,7 @@ class _PayNow2State extends State<PayNow2> {
                               fontWeight: FontWeight.w500),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 6,
                       ),
                       CommonTextfield(
@@ -275,7 +269,7 @@ class _PayNow2State extends State<PayNow2> {
                               fontWeight: FontWeight.w500),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 6,
                       ),
                       Padding(
@@ -300,7 +294,7 @@ class _PayNow2State extends State<PayNow2> {
                               fontWeight: FontWeight.w500),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 6,
                       ),
                       Padding(
@@ -328,7 +322,7 @@ class _PayNow2State extends State<PayNow2> {
                               fontWeight: FontWeight.w500),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 6,
                       ),
                       Padding(
@@ -354,14 +348,14 @@ class _PayNow2State extends State<PayNow2> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 30,
                       )
                     ],
                   ),
                 ),
               )
-            : Center(
+            : const Center(
                 child: CircularProgressIndicator(),
               );
       }),

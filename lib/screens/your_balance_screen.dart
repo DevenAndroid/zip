@@ -8,7 +8,6 @@ import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
 import '../controller/profile_controller.dart';
-import '../controller/update_user.dart';
 
 class YourBalanceScreen extends StatefulWidget {
   const YourBalanceScreen({Key? key}) : super(key: key);
@@ -109,7 +108,7 @@ class _YourBalanceScreenState extends State<YourBalanceScreen> {
                                       decoration: BoxDecoration(
                                         border: Border.all(
                                             color: Colors.black, width: 2),
-                                        borderRadius: BorderRadius.all(
+                                        borderRadius: const BorderRadius.all(
                                             Radius.circular(100)),
                                         color: Colors.white,
                                       ),

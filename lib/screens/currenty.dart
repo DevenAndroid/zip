@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:currency_converter/currency.dart';
 import 'package:currency_converter/currency_converter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -43,7 +42,6 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
 
 // call function to convert
   void convertUsd() async {
-    Currency myCurrency = await CurrencyConverter.getMyCurrency();
     var usdConvert = await CurrencyConverter.convert(
       from: Currency.ngn,
       to: Currency.usd,
@@ -55,7 +53,6 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
   }
 
   void convertGbp() async {
-    Currency myCurrency = await CurrencyConverter.getMyCurrency();
     var usdConvert1 = await CurrencyConverter.convert(
       from: Currency.ngn,
       to: Currency.eur,
@@ -65,6 +62,7 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
       gbpToNgn = usdConvert1.toString();
     });
   }
+
   void main() {
     String originalString = "1234/1235***";
 
@@ -76,12 +74,7 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
 
     // Remove the last 3 characters
     String finalResult = step2.substring(0, step2.length - 3);
-
-    print("Original String: $originalString");
-    print("Processed String: $finalResult");
   }
-
-
 
   Rx<RxStatus> statusOfAllTransistion = RxStatus.empty().obs;
   Rx<ModelMovementsRateResponse> allConvert = ModelMovementsRateResponse().obs;
@@ -98,7 +91,6 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
   }
 
   void convertEur() async {
-    Currency myCurrency = await CurrencyConverter.getMyCurrency();
     var usdConvert2 = await CurrencyConverter.convert(
       from: Currency.ngn,
       to: Currency.gbp,
@@ -110,7 +102,6 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
   }
 
   void convertUsd1() async {
-    Currency myCurrency = await CurrencyConverter.getMyCurrency();
     var usdConvert = await CurrencyConverter.convert(
       from: Currency.usd,
       to: Currency.inr,
@@ -122,7 +113,6 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
   }
 
   void convertUsd2() async {
-    Currency myCurrency = await CurrencyConverter.getMyCurrency();
     var usdConvert = await CurrencyConverter.convert(
       from: Currency.usd,
       to: Currency.gbp,
@@ -147,9 +137,17 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xFFFFFFFF),
+        backgroundColor: const Color(0xFFF3F0F7),
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          toolbarHeight: 80,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(4.0),
+            child: Container(
+              color: Colors.grey.shade300,
+              height: 1.0,
+            ),
+          ),
+          backgroundColor: const Color(0xFFF3F0F7),
           elevation: 0,
           leading: InkWell(
             onTap: () {
@@ -162,7 +160,7 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
           ),
           centerTitle: true,
           title: Text(
-            "Check Rates",
+            "Exchange Rates",
             style: GoogleFonts.poppins(
                 color: const Color(0xFF1D1D1D),
                 fontSize: 20,
@@ -171,7 +169,7 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
         ),
         body: SingleChildScrollView(
           child: Container(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(10),
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -186,90 +184,178 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
                             itemBuilder: (context, index) {
-                              String originalString = allConvert.value.movementInfo![index]
-                                  .currency_rate
+                              String originalString = allConvert
+                                  .value.movementInfo![index].currency_rate
                                   .toString();
 
                               // Remove first 4 characters
                               String step1 = originalString.substring(4);
 
                               // Find the index of '/' and remove everything before it
-                              String step2 = step1.substring(step1.indexOf('/') + 1);
+                              String step2 =
+                                  step1.substring(step1.indexOf('/') + 0);
 
                               // Remove the last 3 characters
-                              String finalResult = step2.substring(0, step2.length - 3);
-
-                              print("Original String: $originalString");
-                              print("Processed String: $finalResult");
+                              String finalResult =
+                                  step2.substring(1, step2.length - 3);
 
                               return Column(
                                 children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                        padding: const EdgeInsets.all(13),
-                                        decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: AppTheme.primaryColor,
-                                              width: 1),
-                                          borderRadius:
-                                              BorderRadius.circular(15),
+                                  Container(
+                                    padding: const EdgeInsets.all(8),
+                                    height: 70,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                        boxShadow: const [
+                                          BoxShadow(
+                                            color: Colors.black26,
+                                            offset: Offset(
+                                              0.5,
+                                              0.5,
+                                            ), //Offset
+                                            blurRadius: 0.5,
+                                            spreadRadius: 0.0,
+                                          ), //BoxShadow
+                                        ]),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        if (allConvert
+                                                .value
+                                                .movementInfo![index]
+                                                .currency_name ==
+                                            "EUR")
+                                          Image.asset(
+                                            "assets/images/EUR.png",
+                                            // color: Colors.black,
+                                            width: 35,
+                                            height: 35,
+                                          ),
+                                        if (allConvert
+                                                .value
+                                                .movementInfo![index]
+                                                .currency_name ==
+                                            "GBP")
+                                          Image.asset(
+                                            "assets/images/GBP.png",
+                                            // color: Colors.black,
+                                            width: 35,
+                                            height: 35,
+                                          ),
+                                        if (allConvert
+                                                .value
+                                                .movementInfo![index]
+                                                .currency_name ==
+                                            "USD")
+                                          Image.asset(
+                                            "assets/images/USD.png",
+                                            // color: Colors.black,
+                                            width: 35,
+                                            height: 35,
+                                          ),
+                                        const SizedBox(
+                                          width: 20,
                                         ),
-                                        child: Text(
-                                          "1 " +
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
                                               allConvert
                                                   .value
                                                   .movementInfo![index]
                                                   .currency_name
                                                   .toString(),
-                                          style: GoogleFonts.poppins(
-                                              color: const Color(0xFF1D1D1D),
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.w400),
+                                              style: GoogleFonts.poppins(
+                                                  color:
+                                                      const Color(0xFF1D1D1D),
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                            if (allConvert
+                                                    .value
+                                                    .movementInfo![index]
+                                                    .currency_name ==
+                                                "EUR")
+                                              Text(
+                                                "Euro",
+                                                style: GoogleFonts.poppins(
+                                                    color:
+                                                        const Color(0xFF777777),
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                              ),
+                                            if (allConvert
+                                                    .value
+                                                    .movementInfo![index]
+                                                    .currency_name ==
+                                                "GBP")
+                                              Text(
+                                                "British Pounds ",
+                                                style: GoogleFonts.poppins(
+                                                    color:
+                                                        const Color(0xFF777777),
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                              ),
+                                            if (allConvert
+                                                    .value
+                                                    .movementInfo![index]
+                                                    .currency_name ==
+                                                "USD")
+                                              Text(
+                                                "US Dollar",
+                                                style: GoogleFonts.poppins(
+                                                    color:
+                                                        const Color(0xFF777777),
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                              ),
+                                          ],
                                         ),
-                                      ),
-                                      SvgPicture.asset(
-                                          "assets/images/arrow1.svg"),
-                                      Container(
-                                        padding: const EdgeInsets.all(13),
-                                        decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: AppTheme.primaryColor,
-                                              width: 1),
-                                          borderRadius:
-                                              BorderRadius.circular(15),
+                                        const Spacer(),
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
+                                          children: [
+                                            Text(
+                                              "${finalResult.toString()}.00" +
+                                                  " NGN ",
+                                              style: GoogleFonts.poppins(
+                                                  color:
+                                                      const Color(0xFF1D1D1D),
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                            Text(
+                                              "Naira ",
+                                              style: GoogleFonts.poppins(
+                                                  color:
+                                                      const Color(0xFF777777),
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                          ],
                                         ),
-                                        child: Text(
-                                          "NGN",
-                                          style: GoogleFonts.poppins(
-                                              color: const Color(0xFF1D1D1D),
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.w400),
+                                        Image.asset(
+                                          "assets/images/ng.png",
+                                          width: 45,
+                                          height: 45,
                                         ),
-                                      ),
-                                      Container(
-                                        padding: const EdgeInsets.all(12),
-                                        decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: AppTheme.primaryColor,
-                                              width: 1),
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                        ),
-                                        child: Text(
-                                          finalResult.toString(),
-                                          style: GoogleFonts.poppins(
-                                              color: const Color(0xFF1D1D1D),
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                  SizedBox(
-                                    height: 10,
+                                  const SizedBox(
+                                    height: 20,
                                   )
                                 ],
                               );

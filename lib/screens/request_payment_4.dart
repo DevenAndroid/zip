@@ -146,7 +146,7 @@ class _RequestPayment4State extends State<RequestPayment4> {
                     onTap: () {
                       getSearchList();
                     },
-                    child: Icon(Icons.arrow_forward)),
+                    child: const Icon(Icons.arrow_forward)),
               ),
             ),
             const SizedBox(
@@ -166,7 +166,7 @@ class _RequestPayment4State extends State<RequestPayment4> {
                     onTap: () {
                       getSearchList();
                     },
-                    child: Icon(Icons.arrow_forward)),
+                    child: const Icon(Icons.arrow_forward)),
               ),
             ),
             const SizedBox(
@@ -186,7 +186,7 @@ class _RequestPayment4State extends State<RequestPayment4> {
                     onTap: () {
                       getSearchList();
                     },
-                    child: Icon(Icons.arrow_forward)),
+                    child: const Icon(Icons.arrow_forward)),
               ),
             ),
             const SizedBox(
@@ -201,8 +201,8 @@ class _RequestPayment4State extends State<RequestPayment4> {
                   phoneController.text = "";
                   ziptagController.text = "";
                 },
-                child: CustomOutlineBoder(title: "Clear")),
-            SizedBox(
+                child: const CustomOutlineBoder(title: "Clear")),
+            const SizedBox(
               height: 25,
             ),
             InkWell(

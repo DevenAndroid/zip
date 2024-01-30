@@ -1,11 +1,11 @@
+import 'dart:io';
+
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:freshchat_sdk/freshchat_sdk.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'dart:io';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:freshchat_sdk/freshchat_user.dart';
-import 'package:zip/resourses/api_constant.dart';
 
 class Chat extends StatelessWidget {
   @override
@@ -23,13 +23,11 @@ class Chat extends StatelessWidget {
 
 void handleFreshchatNotification(Map<String, dynamic> message) async {
   if (await Freshchat.isFreshchatNotification(message)) {
-    print("is Freshchat notification");
     Freshchat.handlePushNotification(message);
   }
 }
 
 Future<dynamic> myBackgroundMessageHandler(RemoteMessage message) async {
-  print("Inside background handler");
   await Firebase.initializeApp();
   handleFreshchatNotification(message.data);
 }
@@ -50,13 +48,12 @@ class _MyHomePageState extends State<MyHomePage> {
   void registerFcmToken() async {
     if (Platform.isAndroid) {
       String? token = await FirebaseMessaging.instance.getToken();
-      print("FCM Token is generated $token");
       Freshchat.setPushRegistrationToken(token!);
     }
   }
 
   void restoreUser(BuildContext context) {
-    var externalId, restoreId, obtainedRestoreId;
+    var externalId, restoreId;
     var alert = AlertDialog(
       scrollable: true,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
@@ -318,19 +315,14 @@ class _MyHomePageState extends State<MyHomePage> {
      */
     var restoreStream = Freshchat.onRestoreIdGenerated;
     var restoreStreamSubsctiption = restoreStream.listen((event) {
-      print("Restore ID Generated: $event");
       notifyRestoreId(event);
     });
 
     var unreadCountStream = Freshchat.onMessageCountUpdate;
-    unreadCountStream.listen((event) {
-      print("Have unread messages: $event");
-    });
+    unreadCountStream.listen((event) {});
 
     var userInteractionStream = Freshchat.onUserInteraction;
-    userInteractionStream.listen((event) {
-      print("User interaction for Freshchat SDK");
-    });
+    userInteractionStream.listen((event) {});
 
     if (Platform.isAndroid) {
       registerFcmToken();
@@ -340,14 +332,12 @@ class _MyHomePageState extends State<MyHomePage> {
       Freshchat.setNotificationConfig(notificationInterceptionEnabled: true);
       var notificationInterceptStream = Freshchat.onNotificationIntercept;
       notificationInterceptStream.listen((event) {
-        print("Freshchat Notification Intercept detected");
         Freshchat.openFreshchatDeeplink(event["url"]);
       });
 
       FirebaseMessaging.onMessage.listen((RemoteMessage message) {
         var data = message.data;
         handleFreshchatNotification(data);
-        print("Notification Content: $data");
       });
       FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
     }
@@ -487,7 +477,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       style: Theme.of(context).textTheme.headline5,
                     ),
                   );
-                  break;
               }
             }),
           ),

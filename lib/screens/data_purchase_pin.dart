@@ -13,17 +13,13 @@ import 'package:zip/widgets/common_colour.dart';
 
 import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
-import '../models/model_buy_interNet.dart';
 import '../models/model_security_pin.dart';
 import '../models/save_transastion_model.dart';
 import '../models/service_buy_model.dart';
-import '../repository/buy_dataplan_repo.dart';
 import '../repository/save_buy_plan_repo.dart';
 import '../repository/security_pin_repo].dart';
 import '../repository/service_buy_repo.dart';
 import '../resourses/api_constant.dart';
-
-import '../controller/update_user.dart';
 
 class DataPurchasePin extends StatefulWidget {
   const DataPurchasePin({Key? key}) : super(key: key);
@@ -39,7 +35,7 @@ class _DataPurchasePinState extends State<DataPurchasePin> {
   var initStateBlank = Get.arguments[0];
   var initStateBlank1 = Get.arguments[1];
   var initStateBlank2 = Get.arguments[2];
-  var initStateBlank3 = Get.arguments[3];
+  // var initStateBlank3 = Get.arguments[3];
 
   final registorController = Get.put(registerController());
 
@@ -62,13 +58,13 @@ class _DataPurchasePinState extends State<DataPurchasePin> {
   saveList() {
     saveTransastionRepo(
             user_id: profileController.modal.value.data!.user!.id.toString(),
-            amount:registorController.result3.toString() ,
+            amount: registorController.result3.toString(),
             about: "Buy Internet",
             // complete_response: purchaseData.value.data!.toJson(),
             context: context,
             description: profileController.descriptionController.text.trim(),
             type: "dr",
-            data_code: initStateBlank3.toString(),
+            data_code: initStateBlank1.toString(),
             telcos: initStateBlank.toString(),
             phone: profileController.phoneController.text.trim(),
             dataplan: initStateBlank2.toString())
@@ -85,15 +81,13 @@ class _DataPurchasePinState extends State<DataPurchasePin> {
             // showToast(value.message.toString());
             );
   }
+
   Rx<ServiceBuyModel> purchaseInternet = ServiceBuyModel().obs;
   getInterNet() {
-    print(initStateBlank);
-    print(initStateBlank1);
-    print(initStateBlank2);
-
     commonBuyRepo(
       phone: profileController.phoneController.text.trim(),
-      amount: registorController.result3.toString() ,
+      context: context,
+      amount: initStateBlank.toString(),
       key: "pay",
       billersCode: "08011111111",
       serviceID: initStateBlank2,
@@ -112,8 +106,8 @@ class _DataPurchasePinState extends State<DataPurchasePin> {
         showToast(value.message.toString());
       }
     }
-      // showToast(value.message.toString());
-    );
+        // showToast(value.message.toString());
+        );
   }
 
   TextEditingController otpcontroller = TextEditingController();
@@ -147,9 +141,6 @@ class _DataPurchasePinState extends State<DataPurchasePin> {
     pref.getBool(
       'TransistionPin',
     );
-    print(pref.getBool(
-      'TransistionPin',
-    ));
   }
 
   @override
@@ -168,6 +159,14 @@ class _DataPurchasePinState extends State<DataPurchasePin> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          toolbarHeight: 80,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(4.0),
+            child: Container(
+              color: Colors.grey.shade300,
+              height: 1.0,
+            ),
+          ),
           backgroundColor: Colors.white,
           elevation: 0,
           centerTitle: true,
@@ -193,7 +192,7 @@ class _DataPurchasePinState extends State<DataPurchasePin> {
                       child: InkWell(
                         onTap: () {},
                         child: Text(
-                          "Create your unique 4-digits pin!",
+                          "Enter your unique 4-digits pin for transition",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
                               fontSize: 22,

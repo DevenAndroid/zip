@@ -7,7 +7,7 @@ import 'package:zip/repository/verify_otp_for_pin_repo.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_colour.dart';
-import '../controller/update_user.dart';
+
 import '../models/verify_otp_for_pin_modal.dart';
 import '../resourses/api_constant.dart';
 
@@ -58,6 +58,13 @@ class _VerifyOtpForPinState extends State<VerifyOtpForPin> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(4.0),
+            child: Container(
+              color: Colors.grey.shade300,
+              height: 1.0,
+            ),
+          ),
           backgroundColor: Colors.white,
           elevation: 0,
           leading: InkWell(

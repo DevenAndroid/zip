@@ -118,7 +118,7 @@ class _FavourateBalanceState extends State<FavourateBalance> {
     Size size = MediaQuery.of(context).size;
     double doubleVar;
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar(toolbarHeight: 80,
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(

@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
-import '../models/model_all_transistion.dart';
 import '../models/model_send_tranbsistion.dart';
 import '../repository/get_send_transistion_repo.dart';
 import '../widgets/circular_progressindicator.dart';
@@ -23,7 +22,8 @@ class SentTransactionsHistory extends StatefulWidget {
 class _SentTransactionsHistoryState extends State<SentTransactionsHistory> {
   int currentDrawer = 0;
   Rx<RxStatus> statusOfSendTransistion = RxStatus.empty().obs;
-  Rx<ModelAllTransistion> sendTransistion = ModelAllTransistion().obs;
+  // Rx<ModelAllTransistion> sendTransistion = ModelAllTransistion().obs;
+  Rx<ModelSendTransistion> sendTransistion = ModelSendTransistion().obs;
 
   getSentTransitionList() {
     sendTransistionListGetRepo().then((value) {
@@ -52,6 +52,13 @@ class _SentTransactionsHistoryState extends State<SentTransactionsHistory> {
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(4.0),
+            child: Container(
+              color: Colors.grey.shade300,
+              height: 1.0,
+            ),
+          ),
           backgroundColor: Colors.white,
           elevation: 0,
           leading: InkWell(
@@ -82,7 +89,7 @@ class _SentTransactionsHistoryState extends State<SentTransactionsHistory> {
                       shape: BoxShape.circle,
                       border:
                           Border.all(color: AppTheme.primaryColor, width: 2)),
-                  child: Icon(
+                  child: const Icon(
                     Icons.question_mark_rounded,
                     color: Colors.black,
                   ),
@@ -248,7 +255,7 @@ class _SentTransactionsHistoryState extends State<SentTransactionsHistory> {
                                   ),
                                 ])),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Obx(() {
@@ -266,11 +273,11 @@ class _SentTransactionsHistoryState extends State<SentTransactionsHistory> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 10,
                                         ),
                                         Container(
-                                          padding: EdgeInsets.all(10),
+                                          padding: const EdgeInsets.all(10),
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(10),
@@ -283,8 +290,9 @@ class _SentTransactionsHistoryState extends State<SentTransactionsHistory> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Container(
-                                                padding: EdgeInsets.all(8),
-                                                decoration: BoxDecoration(
+                                                padding:
+                                                    const EdgeInsets.all(8),
+                                                decoration: const BoxDecoration(
                                                     color:
                                                         AppTheme.secondaryColor,
                                                     shape: BoxShape.circle),
@@ -368,7 +376,7 @@ class _SentTransactionsHistoryState extends State<SentTransactionsHistory> {
                                             ],
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 10,
                                         )
                                       ],

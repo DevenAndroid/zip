@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 
+import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
 import '../models/electricity_variation_model.dart';
 import '../repository/electricity_variation_repo.dart';
@@ -26,7 +27,7 @@ class _ElectricityVariationScreenState
   Rx<ElectricityVariationModel> biller = ElectricityVariationModel().obs;
   final controller = Get.put(registerController());
   var service = Get.arguments[0];
-
+  final profileController = Get.put(ProfileController());
   getBillerList() {
     commonElectricityVariationRepo(
       identifier: "electricity-bill",
@@ -59,6 +60,7 @@ class _ElectricityVariationScreenState
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
+          toolbarHeight: 80,
           backgroundColor: Colors.white,
           elevation: 0,
           leading: InkWell(
@@ -256,7 +258,7 @@ class _ElectricityVariationScreenState
                                                 ),
                                                 Row(
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment.end,
+                                                      MainAxisAlignment.center,
                                                   children: [
                                                     InkWell(
                                                         onTap: () {
@@ -287,33 +289,37 @@ class _ElectricityVariationScreenState
                                                             MyRouters
                                                                 .meterVerifyScreen,
                                                           );
-
                                                         },
-                                                        child: Container(
-                                                            padding: const EdgeInsets
-                                                                .symmetric(
-                                                                    vertical: 8,
-                                                                    horizontal:
-                                                                        10),
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          7),
-                                                              color: AppTheme
-                                                                  .secondaryColor,
-                                                            ),
-                                                            child: Text(
-                                                              "Buy Plan ",
-                                                              style: GoogleFonts.poppins(
-                                                                  color: Colors
-                                                                      .white,
-                                                                  fontSize: 12,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500),
-                                                            ))),
+                                                        child: Center(
+                                                          child: Container(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .symmetric(
+                                                                      vertical:
+                                                                          8,
+                                                                      horizontal:
+                                                                          10),
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            7),
+                                                                color: const Color(
+                                                                    0xFFEDCA2F),
+                                                              ),
+                                                              child: Text(
+                                                                "Buy Plan ",
+                                                                style: GoogleFonts.poppins(
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize:
+                                                                        12,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600),
+                                                              )),
+                                                        )),
                                                   ],
                                                 ),
                                               ],

@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -9,15 +8,11 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/routers/my_routers.dart';
-import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
-import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
 import '../../controller/payout_controller.dart';
 import '../../controller/update_user.dart';
-import '../../models/model_account_resolve.dart';
-import '../../repository/bank_resolve_repo.dart';
 import '../../resourses/api_constant.dart';
 import '../controller/profile_controller.dart';
 import '../models/buy_energy_model.dart';
@@ -60,7 +55,7 @@ class _BuyElectricityState extends State<BuyElectricity> {
       telcos: initStateBlank2,
       phone: initStateBlank4,
     ).then((value) {
-      log("response.body.....    ${value}");
+      log("response.body.....    $value");
       save.value = value;
       if (value.status == true) {
         statusOfSave.value = RxStatus.success();
@@ -79,7 +74,6 @@ class _BuyElectricityState extends State<BuyElectricity> {
 
   verifyMeterData() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    var uniqueIdentifier = pref.getString("uniqueIdentifier");
     if (pref.getBool('TransistionPin') == true) {
       Get.toNamed(MyRouters.purchaseRechargePin);
     } else {
@@ -172,7 +166,7 @@ class _BuyElectricityState extends State<BuyElectricity> {
               verifyMeterData();
               // payOutcontroller.save(context);
             },
-            child: CustomOutlineButton(
+            child: const CustomOutlineButton(
               title: "Continue",
             ),
           ),
@@ -189,7 +183,7 @@ class _BuyElectricityState extends State<BuyElectricity> {
                         child: Row(
                           children: [
                             SvgPicture.asset('assets/images/mark.svg'),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             Column(
@@ -218,7 +212,7 @@ class _BuyElectricityState extends State<BuyElectricity> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       CommonTextfield(
@@ -232,7 +226,7 @@ class _BuyElectricityState extends State<BuyElectricity> {
                         hintText: initStateBlank2,
                         // labelText: "Select Provider",
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       CommonTextfield(
@@ -260,7 +254,7 @@ class _BuyElectricityState extends State<BuyElectricity> {
                         hintText: initStateBlank3,
                         // labelText: "Meter Number",
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       CommonTextfield(
@@ -288,7 +282,7 @@ class _BuyElectricityState extends State<BuyElectricity> {
                         hintText: "",
                         // labelText: "Mobile No",
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       CommonTextfield(
@@ -305,7 +299,7 @@ class _BuyElectricityState extends State<BuyElectricity> {
                         hintText: initStateBlank4,
                         labelText: "Amount",
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       // Padding(
@@ -345,7 +339,7 @@ class _BuyElectricityState extends State<BuyElectricity> {
                         height: size.height * .4,
                       ),
 
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                     ]))));

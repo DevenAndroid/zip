@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:zip/routers/my_routers.dart';
-import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
@@ -51,7 +50,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
             onTap: () {
               Get.back();
             },
-            child: Icon(
+            child: const Icon(
               Icons.arrow_back_rounded,
               color: AppTheme.primaryColor,
             ),
@@ -71,7 +70,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                       child: Row(
                         children: [
                           Text(
-                            "Welcome to Zip " + '${firstname} ',
+                            "Welcome to Zip " '${firstname} ',
                             style: GoogleFonts.poppins(
                                 color: const Color(0xFF1D1D1D),
                                 fontSize: 20,
@@ -83,7 +82,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 4,
                     ),
                     Padding(
@@ -96,7 +95,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                             fontWeight: FontWeight.w500),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
                     CommonTextfield(
@@ -106,7 +105,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                           builder: (context, child) {
                             return Theme(
                               data: Theme.of(context).copyWith(
-                                colorScheme: ColorScheme.light(
+                                colorScheme: const ColorScheme.light(
                                     primary: AppTheme.primaryColor,
                                     // header background color
                                     onPrimary: Colors.white,
@@ -133,12 +132,10 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                         );
 
                         if (pickedDate != null) {
-                          print(
-                              pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                          //pickedDate output format => 2021-03-10 00:00:00.000
                           String formattedDate =
                               DateFormat('MM-dd-yyyy').format(pickedDate);
-                          print(
-                              formattedDate); //formatted date output using intl package =>  2021-03-16
+                          //formatted date output using intl package =>  2021-03-16
                           setState(() {
                             registorController.dateOfBirthController.text =
                                 formattedDate; //set output date to TextField value.

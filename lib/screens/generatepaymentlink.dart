@@ -1,17 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
-import 'package:zip/widgets/common_colour.dart';
-import 'package:zip/widgets/common_textfield.dart';
 
 import '../controller/update_user.dart';
 import '../widgets/circular_progressindicator.dart';
-import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_error_widget.dart';
 
@@ -50,7 +44,7 @@ class _GeneratePaymentLinkState extends State<GeneratePaymentLink> {
             onTap: () {
               Get.back();
             },
-            child: Icon(
+            child: const Icon(
               Icons.arrow_back,
               color: Colors.black,
             )),
@@ -66,12 +60,12 @@ class _GeneratePaymentLinkState extends State<GeneratePaymentLink> {
       body: Obx(() {
         return register.statusOfFetchAccount.value.isSuccess
             ? SingleChildScrollView(
-                physics: AlwaysScrollableScrollPhysics(),
+                physics: const AlwaysScrollableScrollPhysics(),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 37,
                     ),
                     Padding(
@@ -84,7 +78,7 @@ class _GeneratePaymentLinkState extends State<GeneratePaymentLink> {
                             fontWeight: FontWeight.w400),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
                     Padding(
@@ -97,7 +91,7 @@ class _GeneratePaymentLinkState extends State<GeneratePaymentLink> {
                             fontWeight: FontWeight.w500),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
                     Padding(
@@ -122,7 +116,7 @@ class _GeneratePaymentLinkState extends State<GeneratePaymentLink> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
                     Padding(
@@ -147,18 +141,17 @@ class _GeneratePaymentLinkState extends State<GeneratePaymentLink> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
-
-                    SizedBox(
+                    const SizedBox(
                       height: 25,
                     ),
-                    Divider(
+                    const Divider(
                       thickness: 1,
                       color: Color(0x1A000000),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
                     Padding(
@@ -171,7 +164,7 @@ class _GeneratePaymentLinkState extends State<GeneratePaymentLink> {
                             fontWeight: FontWeight.w400),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Padding(
@@ -206,12 +199,9 @@ class _GeneratePaymentLinkState extends State<GeneratePaymentLink> {
                             fontWeight: FontWeight.w300),
                       ),
                     ),
-
-
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
-
                     InkWell(
                         onTap: () {
                           // register.cashCheckout(context);
@@ -220,11 +210,10 @@ class _GeneratePaymentLinkState extends State<GeneratePaymentLink> {
                           Get.toNamed(MyRouters.requestAPaymentContiune,
                               arguments: [initStateBlank1, initStateBlank2]);
                         },
-                        child: CustomOutlineButton(
+                        child: const CustomOutlineButton(
                           title: "Request A Payment ",
                         )),
-
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                   ],

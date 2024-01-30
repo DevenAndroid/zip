@@ -41,17 +41,17 @@ class _SuccessRequestScreenState extends State<SuccessRequestScreen> {
                               fontWeight: FontWeight.w500),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 45,
                       ),
                       Center(
-                        child: Image.asset(
-                          'assets/images/tick.png',
+                        child: SvgPicture.asset(
+                          'assets/images/verify.svg',
                           height: 90,
                           width: 90,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 25,
                       ),
                       Center(
@@ -70,7 +70,7 @@ class _SuccessRequestScreenState extends State<SuccessRequestScreen> {
                           onTap: () {
                             Get.offAllNamed(MyRouters.bottomNavbar);
                           },
-                          child: CustomOutlineButton(
+                          child: const CustomOutlineButton(
                             title: "Go To Home ",
                           )),
                     ]))));

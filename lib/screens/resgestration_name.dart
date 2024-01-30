@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -29,8 +28,6 @@ class _UserScreenState extends State<UserScreen> {
     super.initState();
     registorController.molileController.text = numbercontroller.number;
     registorController.emailController.text = numbercontroller.email;
-    print(numbercontroller.number);
-    print(numbercontroller.email);
     registorController.getData();
   }
 
@@ -129,8 +126,18 @@ class _UserScreenState extends State<UserScreen> {
                         controller: registorController.emailController,
                         obSecure: false,
                         hintText: "email"),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0, right: 10),
+                      child: Text(
+                        "Please enter your Full name as it’s shown on your government documents or BVN registration",
+                        style: GoogleFonts.poppins(
+                            color: Colors.grey,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ),
                     SizedBox(
-                      height: size.height * .2,
+                      height: size.height * .18,
                     ),
                     GestureDetector(
                         onTap: () {

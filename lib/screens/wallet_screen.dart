@@ -1,19 +1,9 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:zip/widgets/common_colour.dart';
 
 import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
-import '../models/model_freeze_card.dart';
-import '../repository/freeze_card_repo.dart';
-import '../routers/my_routers.dart';
-import '../widgets/common_boder_button.dart';
-import '../widgets/common_button.dart';
-import '../widgets/common_textfield.dart';
-import 'add_card.dart';
 import 'bottom_nav_screens/wallet_screen.dart';
 import 'mycard.dart';
 
@@ -41,6 +31,8 @@ class _WalletScreenState extends State<WalletScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return controller1.card.value.data == null ? WalletScreen1() : MyCard();
+    return controller1.card.value.data == null
+        ? const WalletScreen1()
+        : MyCard();
   }
 }

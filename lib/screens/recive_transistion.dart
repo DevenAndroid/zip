@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
-import '../models/model_all_transistion.dart';
 import '../models/model_recieve_transistion.dart';
 import '../repository/get_recived_transistion_repo.dart';
 import '../widgets/circular_progressindicator.dart';
@@ -23,7 +22,7 @@ class ReciveTransactionsHistory extends StatefulWidget {
 class _ReciveTransactionsHistoryState extends State<ReciveTransactionsHistory> {
   int currentDrawer = 0;
   Rx<RxStatus> statusOfRecieveTransistion = RxStatus.empty().obs;
-  Rx<ModelAllTransistion> reciveTransistion = ModelAllTransistion().obs;
+  Rx<ModelRecieveTransistion> reciveTransistion = ModelRecieveTransistion().obs;
 
   getRecieveTransitionList() {
     recieveTransistionListGetRepo().then((value) {
@@ -82,7 +81,7 @@ class _ReciveTransactionsHistoryState extends State<ReciveTransactionsHistory> {
                       shape: BoxShape.circle,
                       border:
                           Border.all(color: AppTheme.primaryColor, width: 2)),
-                  child: Icon(
+                  child: const Icon(
                     Icons.question_mark_rounded,
                     color: Colors.black,
                   ),
@@ -248,7 +247,7 @@ class _ReciveTransactionsHistoryState extends State<ReciveTransactionsHistory> {
                                   ),
                                 ])),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Obx(() {
@@ -266,11 +265,11 @@ class _ReciveTransactionsHistoryState extends State<ReciveTransactionsHistory> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 10,
                                         ),
                                         Container(
-                                          padding: EdgeInsets.all(10),
+                                          padding: const EdgeInsets.all(10),
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(10),
@@ -283,8 +282,9 @@ class _ReciveTransactionsHistoryState extends State<ReciveTransactionsHistory> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Container(
-                                                padding: EdgeInsets.all(8),
-                                                decoration: BoxDecoration(
+                                                padding:
+                                                    const EdgeInsets.all(8),
+                                                decoration: const BoxDecoration(
                                                     color:
                                                         AppTheme.secondaryColor,
                                                     shape: BoxShape.circle),
@@ -309,10 +309,7 @@ class _ReciveTransactionsHistoryState extends State<ReciveTransactionsHistory> {
                                                     CrossAxisAlignment.center,
                                                 children: [
                                                   Text(
-                                                    "NGN " +
-                                                        reciveTransistion.value
-                                                            .data![index].amount
-                                                            .toString(),
+                                                    "NGN ${reciveTransistion.value.data![index].amount}",
                                                     style: GoogleFonts.poppins(
                                                         color: AppTheme
                                                             .primaryColor,
@@ -368,7 +365,7 @@ class _ReciveTransactionsHistoryState extends State<ReciveTransactionsHistory> {
                                             ],
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 10,
                                         )
                                       ],

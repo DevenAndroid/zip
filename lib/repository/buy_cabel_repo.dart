@@ -24,11 +24,15 @@ Future<BuyCabelTvModel> BuyCabelRepo(
     billersCode,
     variation_code,
     subscription_type,
+      data_code,
+telcos,
     context}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
   map['amount'] = amount;
+  map['data_code'] = data_code;
+  map['telcos'] = telcos;
   map['key'] = key;
   map['serviceID'] = serviceID;
   map['phone'] = phone;

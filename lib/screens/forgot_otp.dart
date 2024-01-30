@@ -1,4 +1,3 @@
-
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,7 +5,6 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:zip/screens/forgot_change_pass.dart';
 import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
@@ -55,7 +53,7 @@ class _ForgotScreenOtpState extends State<ForgotScreenOtp> {
         userVerifyOtp.value = value;
         if (value.status == true) {
           setState(() {
-            Get.to(() => ForgotChangePassword(),
+            Get.to(() => const ForgotChangePassword(),
                 arguments: [initStateBlank.toString()]);
             statusOfuserVerifyOtp.value = RxStatus.success();
           });
@@ -146,7 +144,7 @@ class _ForgotScreenOtpState extends State<ForgotScreenOtp> {
                       obSecure: false,
                       hintText: "000-000",
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     Align(
@@ -181,17 +179,17 @@ class _ForgotScreenOtpState extends State<ForgotScreenOtp> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     InkWell(
                         onTap: () {
                           verifyOtpRepo();
                         },
-                        child: CustomOutlineButton(
+                        child: const CustomOutlineButton(
                           title: "Tap to Verify",
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     Padding(

@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-
 import 'package:zip/controller/bottomnavbar_controller.dart';
-import 'package:zip/screens/bottom_nav_screens/send_cash1.dart';
 import 'package:zip/screens/bottom_nav_screens/dashboard_screen.dart';
 import 'package:zip/screens/profile_screen.dart';
-import 'package:zip/screens/transaction1_page.dart';
 import 'package:zip/screens/transaction_history.dart';
 import 'package:zip/screens/wallet_screen.dart';
-
 import 'package:zip/widgets/common_colour.dart';
 
 class BottomNavbar extends StatefulWidget {
@@ -69,7 +65,9 @@ class _BottomNavbarState extends State<BottomNavbar> {
                 children: [
                   Flexible(
                     child: MaterialButton(
-                      padding: const EdgeInsets.only(bottom: 10),
+                      hoverColor: Colors.white,
+                      hoverElevation: 0,
+                      padding: const EdgeInsets.only(bottom: 6),
                       onPressed: () {
                         bottomController.updateIndexValue(0);
                       },
@@ -80,12 +78,28 @@ class _BottomNavbarState extends State<BottomNavbar> {
                             height: 8,
                           ),
                           bottomController.pageIndex.value == 0
-                              ? SvgPicture.asset(
-                                  'assets/images/home.svg',
-                                  color: AppTheme.secondaryColor,
+                              ? Container(
+                                  width: 60,
+                                  padding: const EdgeInsets.all(4),
+                                  decoration: BoxDecoration(
+                                      color: const Color(0xFFEDCB2F),
+                                      shape: BoxShape.rectangle,
+                                      borderRadius: BorderRadius.circular(19)),
+                                  child: SvgPicture.asset(
+                                    'assets/images/home.svg',
+                                    color: AppTheme.primaryColor,
+                                  ),
                                 )
-                              : SvgPicture.asset(
-                                  'assets/images/home.svg',
+                              : Container(
+                                  width: 60,
+                                  padding: const EdgeInsets.all(4),
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      shape: BoxShape.rectangle,
+                                      borderRadius: BorderRadius.circular(19)),
+                                  child: SvgPicture.asset(
+                                    'assets/images/home.svg',
+                                  ),
                                 ),
                           const SizedBox(
                             height: 5,
@@ -111,7 +125,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
                   ),
                   Flexible(
                     child: MaterialButton(
-                      padding: const EdgeInsets.only(bottom: 10),
+                      padding: const EdgeInsets.only(bottom: 6),
                       onPressed: () {
                         bottomController.updateIndexValue(1);
                       },
@@ -121,13 +135,28 @@ class _BottomNavbarState extends State<BottomNavbar> {
                             height: 8,
                           ),
                           bottomController.pageIndex.value == 1
-                              ? SvgPicture.asset(
-                                  'assets/images/transistion.svg',
-                                  color: AppTheme.secondaryColor,
+                              ? Container(
+                                  width: 60,
+                                  padding: const EdgeInsets.all(4),
+                                  decoration: BoxDecoration(
+                                      color: const Color(0xFFEDCB2F),
+                                      shape: BoxShape.rectangle,
+                                      borderRadius: BorderRadius.circular(19)),
+                                  child: SvgPicture.asset(
+                                    'assets/images/transistion.svg',
+                                    color: AppTheme.primaryColor,
+                                  ),
                                 )
-                              : SvgPicture.asset(
-                                  'assets/images/transistion.svg',
-                                  color: Colors.black,
+                              : Container(
+                                  width: 60,
+                                  padding: const EdgeInsets.all(4),
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(19)),
+                                  child: SvgPicture.asset(
+                                    'assets/images/transistion.svg',
+                                    color: Colors.black,
+                                  ),
                                 ),
                           const SizedBox(
                             height: 8,
@@ -155,7 +184,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 5.0),
                       child: MaterialButton(
-                        padding: const EdgeInsets.only(bottom: 10),
+                        padding: const EdgeInsets.only(bottom: 6),
                         onPressed: () {
                           bottomController.updateIndexValue(2);
                         },
@@ -165,12 +194,29 @@ class _BottomNavbarState extends State<BottomNavbar> {
                               height: 8,
                             ),
                             bottomController.pageIndex.value == 2
-                                ? SvgPicture.asset(
-                                    'assets/images/card.svg',
-                                    color: AppTheme.secondaryColor,
+                                ? Container(
+                                    width: 60,
+                                    padding: const EdgeInsets.all(4),
+                                    decoration: BoxDecoration(
+                                        color: const Color(0xFFEDCB2F),
+                                        shape: BoxShape.rectangle,
+                                        borderRadius:
+                                            BorderRadius.circular(19)),
+                                    child: SvgPicture.asset(
+                                        'assets/images/card.svg',
+                                        color: Colors.black),
                                   )
-                                : SvgPicture.asset(
-                                    'assets/images/card.svg',
+                                : Container(
+                                    width: 60,
+                                    padding: const EdgeInsets.all(4),
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        shape: BoxShape.rectangle,
+                                        borderRadius:
+                                            BorderRadius.circular(19)),
+                                    child: SvgPicture.asset(
+                                      'assets/images/card.svg',
+                                    ),
                                   ),
                             const SizedBox(
                               height: 5,
@@ -197,7 +243,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
                   ),
                   Flexible(
                     child: MaterialButton(
-                      padding: const EdgeInsets.only(bottom: 10),
+                      padding: const EdgeInsets.only(bottom: 6),
                       onPressed: () {
                         bottomController.updateIndexValue(3);
                       },
@@ -207,12 +253,28 @@ class _BottomNavbarState extends State<BottomNavbar> {
                             height: 8,
                           ),
                           bottomController.pageIndex.value == 3
-                              ? SvgPicture.asset(
-                                  'assets/images/profile.svg',
-                                  color: AppTheme.secondaryColor,
+                              ? Container(
+                                  width: 60,
+                                  padding: const EdgeInsets.all(4),
+                                  decoration: BoxDecoration(
+                                      color: const Color(0xFFEDCB2F),
+                                      shape: BoxShape.rectangle,
+                                      borderRadius: BorderRadius.circular(19)),
+                                  child: SvgPicture.asset(
+                                    'assets/images/profile.svg',
+                                    color: Colors.black,
+                                  ),
                                 )
-                              : SvgPicture.asset(
-                                  'assets/images/profile.svg',
+                              : Container(
+                                  width: 60,
+                                  padding: const EdgeInsets.all(4),
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      shape: BoxShape.rectangle,
+                                      borderRadius: BorderRadius.circular(19)),
+                                  child: SvgPicture.asset(
+                                    'assets/images/profile.svg',
+                                  ),
                                 ),
                           const SizedBox(
                             height: 5,

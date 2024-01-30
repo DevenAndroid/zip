@@ -1,5 +1,4 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -685,7 +684,7 @@ class _WalletScreen1State extends State<WalletScreen1> {
                               )
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Row(
@@ -738,7 +737,7 @@ class _WalletScreen1State extends State<WalletScreen1> {
                             print("object");
 
                             if (controller1.currentBalanceModel.value.data!
-                                .currentBalance! >
+                                    .currentBalance! >
                                 controller1.currentBalanceModel.value.data!.fee!
                                     .bridgeCardFee!) {
                               controller1.create(context);
@@ -749,7 +748,7 @@ class _WalletScreen1State extends State<WalletScreen1> {
 
                             // :controller1. create3();
                           },
-                          child: CustomOutlineButton(
+                          child: const CustomOutlineButton(
                             title: "Create a Visa Card",
                           ),
                         )
@@ -765,7 +764,7 @@ class _WalletScreen1State extends State<WalletScreen1> {
                                   "Your wallet balance is below to card creation fees");
                             }
                           },
-                          child: CustomOutlineButton(
+                          child: const CustomOutlineButton(
                             title: "Create a Master Card",
                           ),
                         ),
