@@ -33,8 +33,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
-    _appBarTitle =
-        'Enter your mobile number\nto continue'; // Set the initial title
+    _appBarTitle = 'Enter your email to continue'; // Set the initial title
     _tabController.addListener(_updateAppBarTitle);
   }
 
@@ -267,7 +266,8 @@ class _EmailLoginScreenState extends State<EmailLoginScreen>
                             decimal: true),
                         inputFormatters: [
                           LengthLimitingTextInputFormatter(12),
-                          FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                          FilteringTextInputFormatter.allow(
+                              RegExp('[0-9]+\\.?[0-9]*')),
                         ],
                         onChanged: (value) {},
                         validator: MultiValidator([

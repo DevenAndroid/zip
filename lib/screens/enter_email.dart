@@ -305,7 +305,8 @@ class _EmailScreenState extends State<EmailScreen> {
                         const TextInputType.numberWithOptions(decimal: true),
                     inputFormatters: [
                       LengthLimitingTextInputFormatter(12),
-                      FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                      FilteringTextInputFormatter.allow(
+                          RegExp('[0-9]+\\.?[0-9]*')),
                     ],
                     onChanged: (value) {},
                     validator: MultiValidator([
@@ -332,7 +333,8 @@ class _EmailScreenState extends State<EmailScreen> {
                         const TextInputType.numberWithOptions(decimal: true),
                     inputFormatters: [
                       LengthLimitingTextInputFormatter(11),
-                      FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                      FilteringTextInputFormatter.allow(
+                          RegExp('[0-9]+\\.?[0-9]*')),
                     ],
                     onChanged: (value) => doubleVar = double.parse(value),
                     validator: MultiValidator([
@@ -415,7 +417,7 @@ class _EmailScreenState extends State<EmailScreen> {
                     hintText: 'Confirm Password',
                   ),
                   const SizedBox(
-                    height: 25,
+                    height: 10,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10.0, right: 10),
@@ -424,17 +426,18 @@ class _EmailScreenState extends State<EmailScreen> {
                       style: GoogleFonts.poppins(
                           color: const Color(0xFF1D1D1D),
                           fontSize: 16,
-                          fontWeight: FontWeight.w500),
+                          fontWeight: FontWeight.w400),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10.0, right: 10),
                     child: Text(
-                      "Terms of Use",
+                      "Term & Conditions",
                       style: GoogleFonts.poppins(
-                          color: const Color(0xFFB5832C),
+                          color: const Color(0xFF1D1D1D),
+                          decoration: TextDecoration.underline,
                           fontSize: 16,
-                          fontWeight: FontWeight.w500),
+                          fontWeight: FontWeight.w400),
                     ),
                   ),
                   SizedBox(

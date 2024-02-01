@@ -1,5 +1,5 @@
 class BuyCabelTvModel {
-  bool? status;
+  dynamic status;
   String? message;
   Data? data;
 
@@ -23,13 +23,13 @@ class BuyCabelTvModel {
 }
 
 class Data {
-  String? code;
+  dynamic code;
   Content? content;
-  String? responseDescription;
-  String? requestId;
-  String? amount;
+  dynamic responseDescription;
+  dynamic requestId;
+  dynamic amount;
   TransactionDate? transactionDate;
-  String? purchasedCode;
+  dynamic purchasedCode;
 
   Data(
       {this.code,
@@ -91,25 +91,25 @@ class Content {
 }
 
 class Transactions {
-  String? status;
-  String? productName;
-  String? uniqueElement;
-  int? unitPrice;
-  int? quantity;
+  dynamic status;
+  dynamic productName;
+  dynamic uniqueElement;
+  dynamic unitPrice;
+  dynamic quantity;
   dynamic serviceVerification;
-  String? channel;
-  int? commission;
-  double? totalAmount;
+  dynamic channel;
+  dynamic commission;
+  dynamic totalAmount;
   dynamic discount;
-  String? type;
-  String? email;
-  String? phone;
+  dynamic type;
+  dynamic email;
+  dynamic phone;
   dynamic name;
-  int? convinienceFee;
-  int? amount;
-  String? platform;
-  String? method;
-  String? transactionId;
+  dynamic convinienceFee;
+  dynamic amount;
+  dynamic platform;
+  dynamic method;
+  dynamic transactionId;
 
   Transactions(
       {this.status,
@@ -180,9 +180,9 @@ class Transactions {
 }
 
 class TransactionDate {
-  String? date;
-  int? timezoneType;
-  String? timezone;
+  dynamic date;
+  dynamic timezoneType;
+  dynamic timezone;
 
   TransactionDate({this.date, this.timezoneType, this.timezone});
 

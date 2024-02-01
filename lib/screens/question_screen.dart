@@ -349,7 +349,8 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                             decimal: true),
                         inputFormatters: [
                           // LengthLimitingTextInputFormatter(8),
-                          FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                          FilteringTextInputFormatter.allow(
+                              RegExp('[0-9]+\\.?[0-9]*')),
                         ],
                         onChanged: (value) {},
                         validator: (value) {
@@ -520,7 +521,8 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                             decimal: true),
                         inputFormatters: [
                           // LengthLimitingTextInputFormatter(8),
-                          FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                          FilteringTextInputFormatter.allow(
+                              RegExp('[0-9]+\\.?[0-9]*')),
                         ],
                         onChanged: (value) {},
                         validator: (value) {

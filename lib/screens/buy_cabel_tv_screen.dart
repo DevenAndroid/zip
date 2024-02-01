@@ -81,18 +81,21 @@ class _PurchaseCabelScreenState extends State<PurchaseCabelScreen> {
   getProviderList() {
     BuyCabelRepo(
             amount: initStateBlank.toString(),
-            phone: profileController.modal.value.data!.user!.phone.toString(),
+            phone: profileController.phone2Controller.text.trim(),
             variation_code: initStateBlank1,
             telcos: initStateBlank1,
             data_code: initStateBlank1,
             serviceID: initStateBlank2,
             context: context,
-            billersCode: profileController.phone2Controller.text.trim(),
+            billersCode: profileController.cardNumberController.text.trim(),
             key: "pay")
         .then((value) {
       log("response.body.....    $value");
       buyCabelTv.value = value;
       if (value.status == true) {
+        profileController.phone2Controller.text == "";
+        profileController.cardNumberController.text == "";
+        profileController.description2Controller.text == "";
         Get.toNamed(MyRouters.successRechargeScreen);
         // saveList();
         statusOfProviders.value = RxStatus.success();
@@ -109,6 +112,7 @@ class _PurchaseCabelScreenState extends State<PurchaseCabelScreen> {
 
   @override
   Widget build(BuildContext context) {
+    log(Get.arguments[3]);
     Size size = MediaQuery.of(context).size;
     double doubleVar;
     return Scaffold(
@@ -184,24 +188,78 @@ class _PurchaseCabelScreenState extends State<PurchaseCabelScreen> {
                     const TextInputType.numberWithOptions(decimal: true),
                 inputFormatters: [
                   LengthLimitingTextInputFormatter(11),
-                  FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                  FilteringTextInputFormatter.allow(RegExp('[0-9]+\\.?[0-9]*')),
                 ],
                 onChanged: (value) => doubleVar = double.parse(value),
                 validator: MultiValidator([
                   RequiredValidator(
-                      errorText: 'Please enter your card number '),
-                  MinLengthValidator(11,
-                      errorText: 'Please enter minumum  10 card number'),
+                      errorText: 'Please enter your phone number '),
+                  MinLengthValidator(10,
+                      errorText: 'Please enter minumum  10 phone number'),
                   MaxLengthValidator(12,
-                      errorText: 'Please enter 12 card number'),
+                      errorText: 'Please enter 12 phone number'),
                   PatternValidator(r'(^(?:[+0]9)?[0-9]{10,12}$)', errorText: '')
                 ]),
                 controller: profileController.phone2Controller,
                 obSecure: false,
-                hintText: "123456789",
-                labelText: "Phone Number",
+                hintText: "Phone Number",
+                // labelText: "Phone Number",
               ),
             ),
+            Get.arguments[3] == "Plan"
+                ? Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Text(
+                          "Smart Card number",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF2E2E2E),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 7,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 6, right: 6),
+                        child: CommonTextfield(
+                          keyboardType: const TextInputType.numberWithOptions(
+                              decimal: true),
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(10),
+                            FilteringTextInputFormatter.allow(
+                                RegExp('[0-9]+\\.?[0-9]*')),
+                          ],
+                          validator: MultiValidator([
+                            RequiredValidator(
+                                errorText: 'Please enter your card number '),
+                            MinLengthValidator(10,
+                                errorText:
+                                    'Please enter minumum  10 card number'),
+                            MaxLengthValidator(12,
+                                errorText: 'Please enter 12 card number'),
+                            PatternValidator(r'(^(?:[+0]9)?[0-9]{10,12}$)',
+                                errorText: '')
+                          ]),
+                          onChanged: (value) {
+                            // _addNumbers();
+                          },
+                          controller: profileController.cardNumberController,
+                          obSecure: false,
+                          hintText: "Card Number",
+                          // labelText: "card number",
+                        ),
+                      ),
+                    ],
+                  )
+                : SizedBox(),
             const SizedBox(
               height: 20,
             ),
@@ -226,12 +284,12 @@ class _PurchaseCabelScreenState extends State<PurchaseCabelScreen> {
                 },
                 controller: profileController.description2Controller,
                 obSecure: false,
-                hintText: "Recharge",
-                labelText: "Reference",
+                hintText: "Reference",
+                // labelText: "Reference",
               ),
             ),
             SizedBox(
-              height: size.height * .5,
+              height: size.height * .3,
             ),
             InkWell(
               onTap: () async {

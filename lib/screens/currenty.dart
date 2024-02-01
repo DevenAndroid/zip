@@ -193,11 +193,11 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
 
                               // Find the index of '/' and remove everything before it
                               String step2 =
-                                  step1.substring(step1.indexOf('/') + 0);
+                                  step1.substring(step1.indexOf('/') + 1);
 
                               // Remove the last 3 characters
                               String finalResult =
-                                  step2.substring(1, step2.length - 3);
+                                  step2.substring(0, step2.length - 3);
 
                               return Column(
                                 children: [

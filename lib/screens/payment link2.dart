@@ -94,13 +94,20 @@ class _VerifyPaymentLink2State extends State<VerifyPaymentLink2> {
                                 inputFormatters: [
                                   LengthLimitingTextInputFormatter(11),
                                   FilteringTextInputFormatter.allow(
-                                      RegExp('[0-9]+')),
+                                      RegExp('[0-9]+\\.?[0-9]*')),
                                 ],
                                 onChanged: (value) =>
                                     doubleVar = double.parse(value),
                                 validator: MultiValidator([
+                                  RangeValidator(
+                                      min: 0,
+                                      max: profileController.currentBalanceModel
+                                          .value.data!.currentBalance!
+                                          .toInt(),
+                                      errorText:
+                                          "Can't add more than${profileController.currentBalanceModel.value.data!.currentBalance}"),
                                   RequiredValidator(
-                                      errorText: 'Please enter your amount '),
+                                      errorText: 'Please enter amount '),
                                 ]),
                                 controller: register.amountController,
                                 obSecure: false,

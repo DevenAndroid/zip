@@ -186,7 +186,8 @@ class _BuyAirtimeScreenState extends State<BuyAirtimeScreen> {
                           const TextInputType.numberWithOptions(decimal: true),
                       inputFormatters: [
                         LengthLimitingTextInputFormatter(11),
-                        FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                        FilteringTextInputFormatter.allow(
+                            RegExp('[0-9]+\\.?[0-9]*')),
                       ],
                       onChanged: (value) => doubleVar = double.parse(value),
                       validator: RequiredValidator(
@@ -215,7 +216,8 @@ class _BuyAirtimeScreenState extends State<BuyAirtimeScreen> {
                       keyboardType:
                           const TextInputType.numberWithOptions(decimal: true),
                       inputFormatters: [
-                        FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                        FilteringTextInputFormatter.allow(
+                            RegExp('[0-9]+\\.?[0-9]*')),
                       ],
                       onChanged: (value) => doubleVar = double.parse(value),
                       validator: MultiValidator([

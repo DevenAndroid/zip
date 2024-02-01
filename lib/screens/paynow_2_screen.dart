@@ -231,7 +231,8 @@ class _PayNow2State extends State<PayNow2> {
                             decimal: true),
                         inputFormatters: [
                           // LengthLimitingTextInputFormatter(8),
-                          FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                          FilteringTextInputFormatter.allow(
+                              RegExp('[0-9]+\\.?[0-9]*')),
                         ],
                         onChanged: (value) => doubleVar = double.parse(value),
                         validator: (value) {

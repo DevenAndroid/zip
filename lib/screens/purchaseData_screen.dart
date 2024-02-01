@@ -178,7 +178,7 @@ class _PurchaseDataScreenState extends State<PurchaseDataScreen> {
                     const TextInputType.numberWithOptions(decimal: true),
                 inputFormatters: [
                   LengthLimitingTextInputFormatter(11),
-                  FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                  FilteringTextInputFormatter.allow(RegExp('[0-9]+\\.?[0-9]*')),
                 ],
                 onChanged: (value) {
                   // _addNumbers();

@@ -197,6 +197,7 @@ class ProfileController extends GetxController {
 
   TextEditingController phone2Controller = TextEditingController();
   TextEditingController description2Controller = TextEditingController();
+  TextEditingController cardNumberController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   TextEditingController amount = TextEditingController();

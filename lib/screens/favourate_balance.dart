@@ -118,7 +118,8 @@ class _FavourateBalanceState extends State<FavourateBalance> {
     Size size = MediaQuery.of(context).size;
     double doubleVar;
     return Scaffold(
-      appBar: AppBar(toolbarHeight: 80,
+      appBar: AppBar(
+        toolbarHeight: 80,
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
@@ -209,7 +210,8 @@ class _FavourateBalanceState extends State<FavourateBalance> {
                       const TextInputType.numberWithOptions(decimal: true),
                   inputFormatters: [
                     // LengthLimitingTextInputFormatter(8),
-                    FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                    FilteringTextInputFormatter.allow(
+                        RegExp('[0-9]+\\.?[0-9]*')),
                   ],
                   onChanged: (value) => doubleVar = double.parse(value),
                   validator: MultiValidator([

@@ -131,7 +131,8 @@ class _ForgotScreenOtpState extends State<ForgotScreenOtp> {
                           const TextInputType.numberWithOptions(decimal: true),
                       inputFormatters: [
                         LengthLimitingTextInputFormatter(6),
-                        FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                        FilteringTextInputFormatter.allow(
+                            RegExp('[0-9]+\\.?[0-9]*')),
                       ],
                       onChanged: (value) => doubleVar = double.parse(value),
                       validator: MultiValidator([

@@ -76,17 +76,17 @@ class _SucessRechargePinState extends State<SucessRechargePin> {
       modelVerifySecurity.value = value;
       if (value.status == true) {
         airtimeRepo(
-                context: context,
-                key: "pay",
-                amount: controller.amountController1.text.toString(),
-                phone: controller.phoneController1.text.trim(),
-                serviceID: profileController.serviceController.text.trim()
+          context: context,
+          key: "pay",
+          amount: controller.amountController1.text.toString(),
+          phone: controller.phoneController1.text.trim(),
+          serviceID: profileController.serviceController.text.trim(),
+          telcos: profileController.airtimeController.text.trim(),
 
-                // reference:
-                //     registorController.fetchAccount.value.data!.accountNumber.toString() +
-                //         DateTime.now().millisecondsSinceEpoch.toString(),
-                )
-            .then((value) {
+          // reference:
+          //     registorController.fetchAccount.value.data!.accountNumber.toString() +
+          //         DateTime.now().millisecondsSinceEpoch.toString(),
+        ).then((value) {
           log("response.body.....    $value");
           purchaseData1.value = value;
           if (value.status == true) {
@@ -99,8 +99,8 @@ class _SucessRechargePinState extends State<SucessRechargePin> {
             showToast(value.message.toString());
           }
         }
-                // showToast(value.message.toString());
-                );
+            // showToast(value.message.toString());
+            );
         statusOfSucess.value = RxStatus.success();
         showToast(value.message.toString());
       } else {

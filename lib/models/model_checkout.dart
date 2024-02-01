@@ -1,6 +1,6 @@
 class ModelCheckout {
   bool? status;
-  String? message;
+  dynamic message;
   Data? data;
 
   ModelCheckout({this.status, this.message, this.data});

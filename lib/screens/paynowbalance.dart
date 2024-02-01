@@ -6,7 +6,6 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
@@ -14,7 +13,6 @@ import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
 import '../models/model_beneficary_list.dart';
 import '../models/model_create_payout.dart';
-import '../models/model_get_binificery.dart';
 import '../models/save_transastion_model.dart';
 import '../repository/payout_repo.dart';
 import '../repository/save_buy_plan_repo.dart';
@@ -164,9 +162,11 @@ class _PayNowBalanceState extends State<PayNowBalance> {
                               height: 15,
                             ),
                             Text(
-                              profileController.currentBalanceModel.value.data!
-                                  .currentBalance
-                                  .toString(),
+                              NumberFormat('#,##0.00').format(profileController
+                                  .currentBalanceModel
+                                  .value
+                                  .data!
+                                  .currentBalance!),
                               style: GoogleFonts.poppins(
                                   color: const Color(0xFF1D1D1D),
                                   fontSize: 20,
@@ -215,7 +215,8 @@ class _PayNowBalanceState extends State<PayNowBalance> {
                         child: Text(
                           "Amount FEE " +
                               profileController.currentBalanceModel.value.data!
-                                  .fee!.payoutFee.toString(),
+                                  .fee!.payoutFee
+                                  .toString(),
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
                               fontSize: 15,
@@ -230,7 +231,8 @@ class _PayNowBalanceState extends State<PayNowBalance> {
                             decimal: true),
                         inputFormatters: [
                           // LengthLimitingTextInputFormatter(8),
-                          FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                          FilteringTextInputFormatter.allow(
+                              RegExp('[0-9]+\\.?[0-9]*')),
                         ],
                         onChanged: (value) {
                           _addNumbers();
@@ -362,11 +364,11 @@ class _PayNowBalanceState extends State<PayNowBalance> {
       }),
     );
   }
-  void _addNumbers()
-  {
+
+  void _addNumbers() {
     // Get the input values as strings
     String firstNumberString = RegistorController.amount1Controller.text;
-    String secondNumberString =   profileController
+    String secondNumberString = profileController
         .currentBalanceModel.value.data!.fee!.cashoutFee
         .toString();
 

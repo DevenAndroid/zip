@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
-import 'package:zip/screens/requestapayment.dart';
 import 'package:zip/widgets/common_colour.dart';
 
 import '../controller/update_user.dart';
@@ -29,13 +27,15 @@ class _AddAPayerState extends State<AddAPayer> {
     Size size = MediaQuery.of(context).size;
     double doubleVar;
     return Scaffold(
-      appBar: AppBar(toolbarHeight: 80,
+      appBar: AppBar(
+        toolbarHeight: 80,
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(4.0),
           child: Container(
             color: Colors.grey.shade300,
             height: 1.0,
-          ),),
+          ),
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
         leading: InkWell(
@@ -115,7 +115,8 @@ class _AddAPayerState extends State<AddAPayer> {
                       const TextInputType.numberWithOptions(decimal: true),
                   inputFormatters: [
                     LengthLimitingTextInputFormatter(12),
-                    FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                    FilteringTextInputFormatter.allow(
+                        RegExp('[0-9]+\\.?[0-9]*')),
                   ],
                   onChanged: (value) => doubleVar = double.parse(value),
                   validator: MultiValidator([

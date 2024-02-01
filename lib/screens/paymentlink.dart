@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/controller/profile_controller.dart';
@@ -125,7 +126,8 @@ class _VerifyPaymentLinkState extends State<VerifyPaymentLink> {
                               decimal: true),
                           inputFormatters: [
                             LengthLimitingTextInputFormatter(11),
-                            FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                            FilteringTextInputFormatter.allow(
+                                RegExp('[0-9]+\\.?[0-9]*')),
                           ],
                           onChanged: (value) => doubleVar = double.parse(value),
                           // validator: MultiValidator([
@@ -142,6 +144,18 @@ class _VerifyPaymentLinkState extends State<VerifyPaymentLink> {
                           //       r'(^(?:[+0]9)?[0-9]{10,12}$)',
                           //       errorText: '')
                           // ]),
+
+                          validator: MultiValidator([
+                            RangeValidator(
+                                min: 0,
+                                max: profileContrller.currentBalanceModel.value
+                                    .data!.currentBalance!
+                                    .toInt(),
+                                errorText:
+                                    "Can't add more than${profileContrller.currentBalanceModel.value.data!.currentBalance}"),
+                            RequiredValidator(
+                                errorText: 'Please enter amount '),
+                          ]),
                           controller: register.amountController,
                           obSecure: false,
                           hintText: "enter amount "),

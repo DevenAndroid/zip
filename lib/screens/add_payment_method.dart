@@ -164,37 +164,45 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            SvgPicture.asset('assets/images/mark.svg'),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                        padding: const EdgeInsets.only(left: 8.0, right: 8),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(color: Colors.grey)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
                               children: [
-                                Text(
-                                  'Add account',
-                                  style: GoogleFonts.poppins(
-                                    textStyle: const TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                        color: Color(0xFF1D1D1D)),
-                                  ),
+                                SvgPicture.asset('assets/images/mark.svg'),
+                                const SizedBox(
+                                  width: 10,
                                 ),
-                                Text(
-                                  'Send to already saved channels',
-                                  style: GoogleFonts.poppins(
-                                    textStyle: const TextStyle(
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.grey),
-                                  ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Add account',
+                                      style: GoogleFonts.poppins(
+                                        textStyle: const TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                            color: Color(0xFF1D1D1D)),
+                                      ),
+                                    ),
+                                    Text(
+                                      'Send to already saved channels',
+                                      style: GoogleFonts.poppins(
+                                        textStyle: const TextStyle(
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w400,
+                                            color: Colors.grey),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
-                          ],
+                          ),
                         ),
                       ),
                       const SizedBox(
@@ -219,7 +227,8 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
                             decimal: true),
                         inputFormatters: [
                           LengthLimitingTextInputFormatter(10),
-                          FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                          FilteringTextInputFormatter.allow(
+                              RegExp('[0-9]+\\.?[0-9]*')),
                         ],
                         onChanged: (value) {
                           if (value.length == 10) {
@@ -262,36 +271,45 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
                         height: 20,
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Save as Account',
-                              style: GoogleFonts.poppins(
-                                textStyle: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400,
-                                    color: Color(0xFF1D1D1D)),
-                              ),
+                        padding: const EdgeInsets.only(left: 5.0, right: 5),
+                        child: Container(
+                          padding: const EdgeInsets.all(6.0),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(13),
+                              border: Border.all(color: Colors.grey)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Save as Account',
+                                  style: GoogleFonts.poppins(
+                                    textStyle: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400,
+                                        color: Color(0xFF1D1D1D)),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 50,
+                                  height: 20,
+                                  child: CupertinoSwitch(
+                                    thumbColor: Colors.black,
+                                    value: profileController.isSwitched,
+                                    activeColor: const Color(0xffF0D75F),
+                                    onChanged: (value) {
+                                      setState(() {
+                                        profileController.isSwitched = value;
+                                        print(profileController.isSwitched);
+                                      });
+                                    },
+                                  ),
+                                ),
+                              ],
                             ),
-                            SizedBox(
-                              width: 50,
-                              height: 20,
-                              child: CupertinoSwitch(
-                                thumbColor: Colors.black,
-                                value: profileController.isSwitched,
-                                activeColor: const Color(0xffF0D75F),
-                                onChanged: (value) {
-                                  setState(() {
-                                    profileController.isSwitched = value;
-                                    print(profileController.isSwitched);
-                                  });
-                                },
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
                       ),
                       SizedBox(

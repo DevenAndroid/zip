@@ -282,7 +282,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
                       const TextInputType.numberWithOptions(decimal: true),
                   inputFormatters: [
                     LengthLimitingTextInputFormatter(12),
-                    FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                    FilteringTextInputFormatter.allow(
+                        RegExp('[0-9]+\\.?[0-9]*')),
                   ],
                   onChanged: (value) {
                     // Process the input and update the controller's text

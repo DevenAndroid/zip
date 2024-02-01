@@ -198,7 +198,8 @@ class _TelcosScreenState extends State<TelcosScreen> {
                           const TextInputType.numberWithOptions(decimal: true),
                       inputFormatters: [
                         LengthLimitingTextInputFormatter(11),
-                        FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                        FilteringTextInputFormatter.allow(
+                            RegExp('[0-9]+\\.?[0-9]*')),
                       ],
                       onChanged: (value) => doubleVar = double.parse(value),
                       validator: MultiValidator([
@@ -248,7 +249,8 @@ class _TelcosScreenState extends State<TelcosScreen> {
                       keyboardType:
                           const TextInputType.numberWithOptions(decimal: true),
                       inputFormatters: [
-                        FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                        FilteringTextInputFormatter.allow(
+                            RegExp('[0-9]+\\.?[0-9]*')),
                       ],
                       onChanged: (value) {
                         // _addNumbers();

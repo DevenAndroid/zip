@@ -140,7 +140,8 @@ class _TransferLimitState extends State<TransferLimit> {
                         const TextInputType.numberWithOptions(decimal: true),
                     inputFormatters: [
                       LengthLimitingTextInputFormatter(8),
-                      FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                      FilteringTextInputFormatter.allow(
+                          RegExp('[0-9]+\\.?[0-9]*')),
                     ],
                     onChanged: (value) => doubleVar = double.parse(value),
                     // validator: MultiValidator([
@@ -175,7 +176,7 @@ class _TransferLimitState extends State<TransferLimit> {
                 //     inputFormatters: [
                 //       LengthLimitingTextInputFormatter(8),
                 //       FilteringTextInputFormatter.allow(
-                //           RegExp('[0-9]+')),
+                //           RegExp('[0-9]+\\.?[0-9]*')),
                 //     ],
                 //     onChanged: (value) =>
                 //     doubleVar = double.parse(value),
@@ -195,7 +196,8 @@ class _TransferLimitState extends State<TransferLimit> {
                         const TextInputType.numberWithOptions(decimal: true),
                     inputFormatters: [
                       LengthLimitingTextInputFormatter(8),
-                      FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                      FilteringTextInputFormatter.allow(
+                          RegExp('[0-9]+\\.?[0-9]*')),
                     ],
                     onChanged: (value) => doubleVar = double.parse(value),
                     obSecure: false,

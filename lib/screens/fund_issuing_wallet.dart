@@ -75,7 +75,8 @@ class _FundIssuingWalletState extends State<FundIssuingWallet> {
                               decimal: true),
                           inputFormatters: [
                             LengthLimitingTextInputFormatter(11),
-                            FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                            FilteringTextInputFormatter.allow(
+                                RegExp('[0-9]+\\.?[0-9]*')),
                           ],
                           onChanged: (value) => doubleVar = double.parse(value),
                           validator: MultiValidator([

@@ -1,6 +1,4 @@
-import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -12,27 +10,17 @@ import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 
-import '../controller/number_controller.dart';
 import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
 import '../models/buy_energy_model.dart';
-import '../models/buy_plan_model.dart';
 import '../models/model_security_pin.dart';
-import '../models/model_setting.dart';
-import '../models/model_verify_africa.dart';
 import '../models/model_veryfy_meter.dart';
 import '../models/save_transastion_model.dart';
-import '../models/verify_africa.dart';
 import '../repository/buy_energy_repo.dart';
-import '../repository/repo_buy_plan.dart';
 import '../repository/save_buy_plan_repo.dart';
 import '../repository/security_pin_repo].dart';
-import '../repository/setting_repo.dart';
-import '../repository/verify_africa_b.dart';
 import '../repository/verify_meter_repo.dart';
 import '../resourses/api_constant.dart';
-
-import '../controller/update_user.dart';
 import 'meter_details.dart';
 
 class PurchaseRechargePin extends StatefulWidget {
@@ -86,8 +74,9 @@ class _PurchaseRechargePinState extends State<PurchaseRechargePin> {
       billersCode: controller.meterNo.text.toString(),
       variation_code: controller.provider1.text.trim(),
       serviceID: controller.idController1.text.toString(),
+      telcos: controller.provider.text.trim(),
       key: "pay",
-      amount:controller.result1.toString(),
+      amount: controller.result1.toString(),
       phone: controller.mobileNO.text.toString(),
       context: context,
     ).then((value) {
@@ -103,15 +92,16 @@ class _PurchaseRechargePinState extends State<PurchaseRechargePin> {
         showToast(value.message.toString());
       }
     }
-      // showToast(value.message.toString());
-    );
+        // showToast(value.message.toString());
+        );
   }
+
   meter() {
     verifyMeterRepo(
-        billersCode: controller.meterNo.text.toString(),
-        type: controller.provider1.text.trim(),
-        serviceID: controller.idController1.text,
-        key: "merchant-verify")
+            billersCode: controller.meterNo.text.toString(),
+            type: controller.provider1.text.trim(),
+            serviceID: controller.idController1.text,
+            key: "merchant-verify")
         .then((value) {
       verifyMeter.value = value;
       if (value.status == true) {
@@ -128,8 +118,8 @@ class _PurchaseRechargePinState extends State<PurchaseRechargePin> {
         showToast(value.message.toString());
       }
     }
-      // showToast(value.message.toString());
-    );
+            // showToast(value.message.toString());
+            );
   }
 
   verify() {

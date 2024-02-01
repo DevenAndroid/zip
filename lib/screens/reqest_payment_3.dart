@@ -112,12 +112,8 @@ class _RequestPayment3State extends State<RequestPayment3> {
                               height: 10,
                             ),
                             Text(
-                              registorController.fetchAccount.value.data!
-                                      .kYCInformation!.firstName
-                                      .toString() +
-                                  registorController.fetchAccount.value.data!
-                                      .kYCInformation!.lastName
-                                      .toString(),
+                              "${registorController.fetchAccount.value.data!.kYCInformation!.firstName.toString()} " +
+                                  "${registorController.fetchAccount.value.data!.kYCInformation!.lastName.toString()}",
                               style: GoogleFonts.poppins(
                                   color: Colors.black,
                                   fontSize: 22,

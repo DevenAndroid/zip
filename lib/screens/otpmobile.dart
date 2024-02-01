@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pinput/pinput.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
-import 'package:zip/widgets/common_textfield.dart';
 
 import '../controller/number_controller.dart';
 import '../models/model_userverify_otp.dart';
@@ -62,6 +61,16 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final defaultPinTheme = PinTheme(
+        width: 56,
+        height: 56,
+        textStyle: const TextStyle(
+          fontSize: 22,
+          color: Color.fromRGBO(30, 60, 87, 1),
+        ),
+        decoration: BoxDecoration(
+            border: Border.all(color: AppTheme.primaryColor, width: 1.5),
+            borderRadius: BorderRadius.circular(10)));
     double doubleVar;
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
@@ -89,58 +98,37 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 10.0),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: RichText(
-                              text: TextSpan(
-                                text: "Please enter 6 digits code we sent to  ",
-                                style: GoogleFonts.poppins(
-                                    color: const Color(0xFF1D1D1D),
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500),
-                                children: <TextSpan>[
-                                  TextSpan(
-                                    text: initStateBlank,
-                                    style: GoogleFonts.poppins(
-                                        color: const Color(0xFFB2802A),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )
-                        ],
+                      child: Text(
+                        "Please enter the 6 digits code we sent to email & number",
+                        style: GoogleFonts.poppins(
+                            color: const Color(0xFF1D1D1D),
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500),
                       ),
                     ),
                     const SizedBox(
                       height: 20,
                     ),
-                    CommonTextfield(
-                      inputFormatters: [
-                        LengthLimitingTextInputFormatter(6),
-                        FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
-                      ],
-                      onChanged: (value) => doubleVar = double.parse(value),
-                      validator: MultiValidator([
-                        RequiredValidator(errorText: 'Please enter your otp '),
-                        MinLengthValidator(6,
-                            errorText: 'Please enter   6 digit otp'),
-                        MaxLengthValidator(6,
-                            errorText: 'Please enter 6 digit otp'),
-                      ]),
-                      keyboardType:
-                          const TextInputType.numberWithOptions(decimal: true),
-                      controller: mobileOtpController,
-                      obSecure: false,
-                      hintText: "000-000",
+                    Padding(
+                      padding: const EdgeInsets.only(left: 25.0, right: 25),
+                      child: Center(
+                        child: Pinput(
+                          validator: MultiValidator([
+                            RequiredValidator(errorText: 'Enter 6 Digit Pin')
+                          ]),
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          controller: mobileOtpController,
+                          keyboardType: TextInputType.number,
+                          length: 6,
+                          defaultPinTheme: defaultPinTheme,
+                        ),
+                      ),
                     ),
                     const SizedBox(
                       height: 15,
                     ),
                     const SizedBox(
-                      height: 15,
+                      height: 25,
                     ),
                     InkWell(
                         onTap: () {
@@ -150,7 +138,7 @@ class _MobileOtpScreenState extends State<MobileOtpScreen> {
                           //  Get.toNamed(MyRouters.profileScreen);
                         },
                         child: const CustomOutlineButton(
-                          title: "Tap to Verify ",
+                          title: "Verify ",
                         )),
                     const SizedBox(
                       height: 15,

@@ -87,6 +87,7 @@ class _DataPurchasePinState extends State<DataPurchasePin> {
     commonBuyRepo(
       phone: profileController.phoneController.text.trim(),
       context: context,
+      telcos: initStateBlank2.toString(),
       amount: initStateBlank.toString(),
       key: "pay",
       billersCode: "08011111111",

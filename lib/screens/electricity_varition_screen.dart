@@ -188,74 +188,74 @@ class _ElectricityVariationScreenState
                                                 const SizedBox(
                                                   height: 10,
                                                 ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      "FixedPrice",
-                                                      style: GoogleFonts.poppins(
-                                                          color: const Color(
-                                                              0xFF1D1D1D),
-                                                          fontSize: 16,
-                                                          fontWeight:
-                                                              FontWeight.w500),
-                                                    ),
-                                                    Text(
-                                                      biller
-                                                          .value
-                                                          .data!
-                                                          .content!
-                                                          .varations![index]
-                                                          .fixedPrice
-                                                          .toString(),
-                                                      style: GoogleFonts.poppins(
-                                                          color: const Color(
-                                                              0xFF1D1D1D),
-                                                          fontSize: 15,
-                                                          fontWeight:
-                                                              FontWeight.w500),
-                                                    ),
-                                                  ],
-                                                ),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      "Variation Code",
-                                                      style: GoogleFonts.poppins(
-                                                          color: const Color(
-                                                              0xFF1D1D1D),
-                                                          fontSize: 15,
-                                                          fontWeight:
-                                                              FontWeight.w500),
-                                                    ),
-                                                    Text(
-                                                      biller
-                                                          .value
-                                                          .data!
-                                                          .content!
-                                                          .varations![index]
-                                                          .variationCode
-                                                          .toString(),
-                                                      style: GoogleFonts.poppins(
-                                                          color: const Color(
-                                                              0xFF1D1D1D),
-                                                          fontSize: 16,
-                                                          fontWeight:
-                                                              FontWeight.w500),
-                                                    ),
-                                                  ],
-                                                ),
-                                                const SizedBox(
-                                                  height: 15,
-                                                ),
+                                                // Row(
+                                                //   mainAxisAlignment:
+                                                //       MainAxisAlignment
+                                                //           .spaceBetween,
+                                                //   children: [
+                                                //     Text(
+                                                //       "FixedPrice",
+                                                //       style: GoogleFonts.poppins(
+                                                //           color: const Color(
+                                                //               0xFF1D1D1D),
+                                                //           fontSize: 16,
+                                                //           fontWeight:
+                                                //               FontWeight.w500),
+                                                //     ),
+                                                //     Text(
+                                                //       biller
+                                                //           .value
+                                                //           .data!
+                                                //           .content!
+                                                //           .varations![index]
+                                                //           .fixedPrice
+                                                //           .toString(),
+                                                //       style: GoogleFonts.poppins(
+                                                //           color: const Color(
+                                                //               0xFF1D1D1D),
+                                                //           fontSize: 15,
+                                                //           fontWeight:
+                                                //               FontWeight.w500),
+                                                //     ),
+                                                //   ],
+                                                // ),
+                                                // const SizedBox(
+                                                //   height: 10,
+                                                // ),
+                                                // Row(
+                                                //   mainAxisAlignment:
+                                                //       MainAxisAlignment
+                                                //           .spaceBetween,
+                                                //   children: [
+                                                //     Text(
+                                                //       "Variation Code",
+                                                //       style: GoogleFonts.poppins(
+                                                //           color: const Color(
+                                                //               0xFF1D1D1D),
+                                                //           fontSize: 15,
+                                                //           fontWeight:
+                                                //               FontWeight.w500),
+                                                //     ),
+                                                //     Text(
+                                                //       biller
+                                                //           .value
+                                                //           .data!
+                                                //           .content!
+                                                //           .varations![index]
+                                                //           .variationCode
+                                                //           .toString(),
+                                                //       style: GoogleFonts.poppins(
+                                                //           color: const Color(
+                                                //               0xFF1D1D1D),
+                                                //           fontSize: 16,
+                                                //           fontWeight:
+                                                //               FontWeight.w500),
+                                                //     ),
+                                                //   ],
+                                                // ),
+                                                // const SizedBox(
+                                                //   height: 15,
+                                                // ),
                                                 Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.center,

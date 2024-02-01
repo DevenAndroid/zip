@@ -132,7 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     inputFormatters: [
                                       LengthLimitingTextInputFormatter(12),
                                       FilteringTextInputFormatter.allow(
-                                          RegExp('[0-9]+')),
+                                          RegExp('[0-9]+\\.?[0-9]*')),
                                     ],
                                     onChanged: (value) =>
                                         doubleVar = double.parse(value),

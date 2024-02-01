@@ -144,43 +144,46 @@ class _SendCash2State extends State<SendCash2> {
                           onTap: () {
                             Get.toNamed(MyRouters.yourRecipient);
                           },
-                          child: Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                children: [
-                                  SvgPicture.asset('assets/images/mark.svg'),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Recipient',
-                                        style: GoogleFonts.poppins(
-                                          textStyle: const TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              color: Color(0xFF1D1D1D)),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 8.0, right: 8),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.grey),
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  children: [
+                                    SvgPicture.asset('assets/images/mark.svg'),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Recipient',
+                                          style: GoogleFonts.poppins(
+                                            textStyle: const TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                                color: Color(0xFF1D1D1D)),
+                                          ),
                                         ),
-                                      ),
-                                      Text(
-                                        'Send to already saved channels',
-                                        style: GoogleFonts.poppins(
-                                          textStyle: const TextStyle(
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.w400,
-                                              color: Colors.grey),
+                                        Text(
+                                          'Send to already saved channels',
+                                          style: GoogleFonts.poppins(
+                                            textStyle: const TextStyle(
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w400,
+                                                color: Colors.grey),
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -207,7 +210,8 @@ class _SendCash2State extends State<SendCash2> {
                               decimal: true),
                           inputFormatters: [
                             LengthLimitingTextInputFormatter(10),
-                            FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                            FilteringTextInputFormatter.allow(
+                                RegExp('[0-9]+\\.?[0-9]*')),
                           ],
                           onChanged: (value) {
                             if (value.length == 10) {
@@ -244,14 +248,14 @@ class _SendCash2State extends State<SendCash2> {
                           labelText: "Account Name",
                         ),
                         const SizedBox(
-                          height: 8,
+                          height: 16,
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.only(left: 5.0, right: 5),
                           child: Container(
-                            padding: const EdgeInsets.all(14),
+                            padding: const EdgeInsets.all(12),
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(12),
                                 border: Border.all(color: Colors.grey)),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,

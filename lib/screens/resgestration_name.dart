@@ -132,8 +132,8 @@ class _UserScreenState extends State<UserScreen> {
                         "Please enter your Full name as it’s shown on your government documents or BVN registration",
                         style: GoogleFonts.poppins(
                             color: Colors.grey,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w400),
                       ),
                     ),
                     SizedBox(

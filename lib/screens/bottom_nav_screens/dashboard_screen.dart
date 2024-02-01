@@ -380,255 +380,280 @@ class _DashBoardState extends State<DashBoard> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  InkWell(
-                                    onTap: () {
-                                      Get.toNamed(MyRouters.loanScreen);
-                                    },
-                                    child: Container(
-                                      padding: const EdgeInsets.all(8),
-                                      decoration: BoxDecoration(
-                                          color: const Color(0xFFFAFAFA),
-                                          border: Border.all(
-                                              color: const Color(0xFFD3D3D6)),
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                          boxShadow: const [
-                                            BoxShadow(
-                                              color: Colors.black26,
-                                              offset: Offset(
-                                                0.1,
-                                                0.1,
-                                              ), //Offset
-                                              blurRadius: 0.0,
-                                              spreadRadius: 0.0,
-                                            ), //BoxShadow
-                                          ]),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const SizedBox(
-                                            height: 6,
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 6.0),
-                                                child: SvgPicture.asset(
-                                                  "assets/images/banktransfer.svg",
-                                                  width: 40,
-                                                  height: 40,
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: () {
+                                        Get.toNamed(MyRouters.loanScreen);
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.all(8),
+                                        decoration: BoxDecoration(
+                                            color: const Color(0xFFFAFAFA),
+                                            border: Border.all(
+                                                color: const Color(0xFFD3D3D6)),
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                color: Colors.black26,
+                                                offset: Offset(
+                                                  0.1,
+                                                  0.1,
+                                                ), //Offset
+                                                blurRadius: 0.0,
+                                                spreadRadius: 0.0,
+                                              ), //BoxShadow
+                                            ]),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const SizedBox(
+                                              height: 6,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 6.0),
+                                                    child: SvgPicture.asset(
+                                                      "assets/images/banktransfer.svg",
+                                                      width: 40,
+                                                      height: 40,
+                                                    ),
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  width: 10,
+                                                ),
+                                                SvgPicture.asset(
+                                                  "assets/images/arrowr.svg",
+                                                  width: 25,
+                                                ),
+                                                const SizedBox(
+                                                  width: 10,
+                                                )
+                                              ],
+                                            ),
+                                            // SvgPicture.asset(
+                                            //   "assets/images/banktransfer.svg",
+                                            //   width: 30,
+                                            // ),
+                                            const SizedBox(
+                                              height: 8,
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 10.0),
+                                              child: Text(
+                                                'Loans\n',
+                                                style: GoogleFonts.poppins(
+                                                  textStyle: const TextStyle(
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      color: Color(0xFF1D1D1D)),
                                                 ),
                                               ),
-                                              const SizedBox(
-                                                width: 15,
-                                              ),
-                                              SvgPicture.asset(
-                                                "assets/images/arrowr.svg",
-                                                width: 25,
-                                              ),
-                                              const SizedBox(
-                                                width: 10,
-                                              )
-                                            ],
-                                          ),
-                                          // SvgPicture.asset(
-                                          //   "assets/images/banktransfer.svg",
-                                          //   width: 30,
-                                          // ),
-                                          const SizedBox(
-                                            height: 8,
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 10.0),
-                                            child: Text(
-                                              'Loans\n',
-                                              style: GoogleFonts.poppins(
-                                                textStyle: const TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: Color(0xFF1D1D1D)),
-                                              ),
                                             ),
-                                          ),
-                                          const SizedBox(
-                                            height: 8,
-                                          ),
-                                        ],
+                                            const SizedBox(
+                                              height: 8,
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
-                                  // SizedBox(width: 12,),
-                                  InkWell(
-                                    onTap: () {
-                                      Get.toNamed(MyRouters.supportScreen);
-                                    },
-                                    child: Container(
-                                      padding: const EdgeInsets.all(8),
-                                      decoration: BoxDecoration(
-                                          color: const Color(0xFFFAFAFA),
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                          border: Border.all(
-                                              color: const Color(0xFFD3D3D6)),
-                                          boxShadow: const [
-                                            BoxShadow(
-                                              color: Colors.black26,
-                                              offset: Offset(
-                                                0.1,
-                                                0.1,
-                                              ), //Offset
-                                              blurRadius: 0.0,
-                                              spreadRadius: 0.0,
-                                            ), //BoxShadow
-                                          ]),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const SizedBox(
-                                            height: 6,
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 6.0),
-                                                child: SvgPicture.asset(
-                                                  "assets/images/coustmersupport.svg",
-                                                  width: 40,
-                                                  height: 40,
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: () {
+                                        Get.toNamed(MyRouters.supportScreen);
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.all(8),
+                                        decoration: BoxDecoration(
+                                            color: const Color(0xFFFAFAFA),
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            border: Border.all(
+                                                color: const Color(0xFFD3D3D6)),
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                color: Colors.black26,
+                                                offset: Offset(
+                                                  0.1,
+                                                  0.1,
+                                                ), //Offset
+                                                blurRadius: 0.0,
+                                                spreadRadius: 0.0,
+                                              ), //BoxShadow
+                                            ]),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const SizedBox(
+                                              height: 6,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 6.0),
+                                                    child: SvgPicture.asset(
+                                                      "assets/images/coustmersupport.svg",
+                                                      width: 40,
+                                                      height: 40,
+                                                    ),
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  width: 15,
+                                                ),
+                                                SvgPicture.asset(
+                                                  "assets/images/arrowr.svg",
+                                                  width: 25,
+                                                ),
+                                                const SizedBox(
+                                                  width: 10,
+                                                )
+                                              ],
+                                            ),
+                                            const SizedBox(
+                                              height: 8,
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 10.0),
+                                              child: Text(
+                                                'Customer\nSupport',
+                                                style: GoogleFonts.poppins(
+                                                  textStyle: const TextStyle(
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      color: Color(0xFF1D1D1D)),
                                                 ),
                                               ),
-                                              const SizedBox(
-                                                width: 15,
-                                              ),
-                                              SvgPicture.asset(
-                                                "assets/images/arrowr.svg",
-                                                width: 25,
-                                              ),
-                                              const SizedBox(
-                                                width: 10,
-                                              )
-                                            ],
-                                          ),
-                                          const SizedBox(
-                                            height: 8,
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 10.0),
-                                            child: Text(
-                                              'Customer\nSupport',
-                                              style: GoogleFonts.poppins(
-                                                textStyle: const TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: Color(0xFF1D1D1D)),
-                                              ),
                                             ),
-                                          ),
-                                          const SizedBox(
-                                            height: 8,
-                                          ),
-                                        ],
+                                            const SizedBox(
+                                              height: 8,
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
-                                  // SizedBox(width: 12,),
-                                  InkWell(
-                                    onTap: () {
-                                      Get.toNamed(MyRouters.telcosScreen);
-                                    },
-                                    child: Container(
-                                      padding: const EdgeInsets.all(8),
-                                      decoration: BoxDecoration(
-                                          color: const Color(0xFFFAFAFA),
-                                          border: Border.all(
-                                              color: const Color(0xFFD3D3D6)),
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                          boxShadow: const [
-                                            BoxShadow(
-                                              color: Colors.black26,
-                                              offset: Offset(
-                                                0.1,
-                                                0.1,
-                                              ), //Offset
-                                              blurRadius: 0.0,
-                                              spreadRadius: 0.0,
-                                            ), //BoxShadow
-                                          ]),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const SizedBox(
-                                            height: 6,
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 6.0),
-                                                child: SvgPicture.asset(
-                                                  "assets/images/i3.svg",
-                                                  width: 40,
-                                                  height: 40,
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: () {
+                                        Get.toNamed(MyRouters.telcosScreen);
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.all(8),
+                                        decoration: BoxDecoration(
+                                            color: const Color(0xFFFAFAFA),
+                                            border: Border.all(
+                                                color: const Color(0xFFD3D3D6)),
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                color: Colors.black26,
+                                                offset: Offset(
+                                                  0.1,
+                                                  0.1,
+                                                ), //Offset
+                                                blurRadius: 0.0,
+                                                spreadRadius: 0.0,
+                                              ), //BoxShadow
+                                            ]),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const SizedBox(
+                                              height: 6,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 6.0),
+                                                    child: SvgPicture.asset(
+                                                      "assets/images/i3.svg",
+                                                      width: 40,
+                                                      height: 40,
+                                                    ),
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  width: 15,
+                                                ),
+                                                SvgPicture.asset(
+                                                  "assets/images/arrowr.svg",
+                                                  width: 25,
+                                                ),
+                                                const SizedBox(
+                                                  width: 8,
+                                                )
+                                              ],
+                                            ),
+                                            const SizedBox(
+                                              height: 8,
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 10.0),
+                                              child: Text(
+                                                'Buy\nAirtime',
+                                                style: GoogleFonts.poppins(
+                                                  textStyle: const TextStyle(
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      color: Color(0xFF1D1D1D)),
                                                 ),
                                               ),
-                                              const SizedBox(
-                                                width: 15,
-                                              ),
-                                              SvgPicture.asset(
-                                                "assets/images/arrowr.svg",
-                                                width: 25,
-                                              ),
-                                              const SizedBox(
-                                                width: 8,
-                                              )
-                                            ],
-                                          ),
-                                          const SizedBox(
-                                            height: 8,
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 10.0),
-                                            child: Text(
-                                              'Buy\nAirtime',
-                                              style: GoogleFonts.poppins(
-                                                textStyle: const TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: Color(0xFF1D1D1D)),
-                                              ),
                                             ),
-                                          ),
-                                          const SizedBox(
-                                            height: 8,
-                                          ),
-                                        ],
+                                            const SizedBox(
+                                              height: 8,
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -641,249 +666,277 @@ class _DashBoardState extends State<DashBoard> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  InkWell(
-                                    onTap: () {
-                                      Get.toNamed(MyRouters.meterVerifyScreen);
-                                    },
-                                    child: Container(
-                                      padding: const EdgeInsets.all(8),
-                                      decoration: BoxDecoration(
-                                          color: const Color(0xFFFAFAFA),
-                                          border: Border.all(
-                                              color: const Color(0xFFD3D3D6)),
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                          boxShadow: const [
-                                            BoxShadow(
-                                              color: Colors.black26,
-                                              offset: Offset(
-                                                0.1,
-                                                0.1,
-                                              ), //Offset
-                                              blurRadius: 0.0,
-                                              spreadRadius: 0.0,
-                                            ), //BoxShadow
-                                          ]),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const SizedBox(
-                                            height: 6,
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 6.0),
-                                                child: SvgPicture.asset(
-                                                  "assets/images/i4.svg",
-                                                  width: 40,
-                                                  height: 40,
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: () {
+                                        Get.toNamed(
+                                            MyRouters.meterVerifyScreen);
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.all(8),
+                                        decoration: BoxDecoration(
+                                            color: const Color(0xFFFAFAFA),
+                                            border: Border.all(
+                                                color: const Color(0xFFD3D3D6)),
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                color: Colors.black26,
+                                                offset: Offset(
+                                                  0.1,
+                                                  0.1,
+                                                ), //Offset
+                                                blurRadius: 0.0,
+                                                spreadRadius: 0.0,
+                                              ), //BoxShadow
+                                            ]),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const SizedBox(
+                                              height: 6,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 6.0),
+                                                    child: SvgPicture.asset(
+                                                      "assets/images/i4.svg",
+                                                      width: 40,
+                                                      height: 40,
+                                                    ),
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  width: 15,
+                                                ),
+                                                SvgPicture.asset(
+                                                  "assets/images/arrowr.svg",
+                                                  width: 25,
+                                                ),
+                                                const SizedBox(
+                                                  width: 10,
+                                                )
+                                              ],
+                                            ),
+                                            const SizedBox(
+                                              height: 8,
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 10.0),
+                                              child: Text(
+                                                'Buy\nElectricity',
+                                                style: GoogleFonts.poppins(
+                                                  textStyle: const TextStyle(
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      color: Color(0xFF1D1D1D)),
                                                 ),
                                               ),
-                                              const SizedBox(
-                                                width: 15,
-                                              ),
-                                              SvgPicture.asset(
-                                                "assets/images/arrowr.svg",
-                                                width: 25,
-                                              ),
-                                              const SizedBox(
-                                                width: 10,
-                                              )
-                                            ],
-                                          ),
-                                          const SizedBox(
-                                            height: 8,
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 10.0),
-                                            child: Text(
-                                              'Buy\nElectricity',
-                                              style: GoogleFonts.poppins(
-                                                textStyle: const TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: Color(0xFF1D1D1D)),
-                                              ),
                                             ),
-                                          ),
-                                          const SizedBox(
-                                            height: 8,
-                                          ),
-                                        ],
+                                            const SizedBox(
+                                              height: 8,
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
-                                  InkWell(
-                                    onTap: () {
-                                      Get.toNamed(MyRouters.cabelTvScreen);
-                                    },
-                                    child: Container(
-                                      padding: const EdgeInsets.all(8),
-                                      decoration: BoxDecoration(
-                                          color: const Color(0xFFFAFAFA),
-                                          border: Border.all(
-                                              color: const Color(0xFFD3D3D6)),
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                          boxShadow: const [
-                                            BoxShadow(
-                                              color: Colors.black26,
-                                              offset: Offset(
-                                                0.1,
-                                                0.1,
-                                              ), //Offset
-                                              blurRadius: 0.0,
-                                              spreadRadius: 0.0,
-                                            ), //BoxShadow
-                                          ]),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const SizedBox(
-                                            height: 6,
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 6.0),
-                                                child: SvgPicture.asset(
-                                                  "assets/images/cabeltv.svg",
-                                                  width: 40,
-                                                  height: 40,
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: () {
+                                        Get.toNamed(MyRouters.cabelTvScreen);
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.all(8),
+                                        decoration: BoxDecoration(
+                                            color: const Color(0xFFFAFAFA),
+                                            border: Border.all(
+                                                color: const Color(0xFFD3D3D6)),
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                color: Colors.black26,
+                                                offset: Offset(
+                                                  0.1,
+                                                  0.1,
+                                                ), //Offset
+                                                blurRadius: 0.0,
+                                                spreadRadius: 0.0,
+                                              ), //BoxShadow
+                                            ]),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const SizedBox(
+                                              height: 6,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 6.0),
+                                                    child: SvgPicture.asset(
+                                                      "assets/images/cabeltv.svg",
+                                                      width: 40,
+                                                      height: 40,
+                                                    ),
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  width: 15,
+                                                ),
+                                                SvgPicture.asset(
+                                                  "assets/images/arrowr.svg",
+                                                  width: 25,
+                                                ),
+                                                const SizedBox(
+                                                  width: 10,
+                                                )
+                                              ],
+                                            ),
+                                            const SizedBox(
+                                              height: 8,
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 10.0),
+                                              child: Text(
+                                                'Buy \nCable Tv',
+                                                style: GoogleFonts.poppins(
+                                                  textStyle: const TextStyle(
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      color: Color(0xFF1D1D1D)),
                                                 ),
                                               ),
-                                              const SizedBox(
-                                                width: 15,
-                                              ),
-                                              SvgPicture.asset(
-                                                "assets/images/arrowr.svg",
-                                                width: 25,
-                                              ),
-                                              const SizedBox(
-                                                width: 10,
-                                              )
-                                            ],
-                                          ),
-                                          const SizedBox(
-                                            height: 8,
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 10.0),
-                                            child: Text(
-                                              'Buy \nCable Tv',
-                                              style: GoogleFonts.poppins(
-                                                textStyle: const TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: Color(0xFF1D1D1D)),
-                                              ),
                                             ),
-                                          ),
-                                          const SizedBox(
-                                            height: 8,
-                                          ),
-                                        ],
+                                            const SizedBox(
+                                              height: 8,
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
-                                  InkWell(
-                                    onTap: () {
-                                      Get.toNamed(MyRouters.buyDataScreen);
-                                    },
-                                    child: Container(
-                                      padding: const EdgeInsets.all(8),
-                                      decoration: BoxDecoration(
-                                          color: const Color(0xFFFAFAFA),
-                                          border: Border.all(
-                                              color: const Color(0xFFD3D3D6)),
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                          boxShadow: const [
-                                            BoxShadow(
-                                              color: Colors.black26,
-                                              offset: Offset(
-                                                0.1,
-                                                0.1,
-                                              ), //Offset
-                                              blurRadius: 0.0,
-                                              spreadRadius: 0.0,
-                                            ), //BoxShadow
-                                          ]),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const SizedBox(
-                                            height: 6,
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 6.0),
-                                                child: SvgPicture.asset(
-                                                  "assets/images/i5.svg",
-                                                  width: 40,
-                                                  height: 40,
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: () {
+                                        Get.toNamed(MyRouters.buyDataScreen);
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.all(8),
+                                        decoration: BoxDecoration(
+                                            color: const Color(0xFFFAFAFA),
+                                            border: Border.all(
+                                                color: const Color(0xFFD3D3D6)),
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                color: Colors.black26,
+                                                offset: Offset(
+                                                  0.1,
+                                                  0.1,
+                                                ), //Offset
+                                                blurRadius: 0.0,
+                                                spreadRadius: 0.0,
+                                              ), //BoxShadow
+                                            ]),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const SizedBox(
+                                              height: 6,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 6.0),
+                                                    child: SvgPicture.asset(
+                                                      "assets/images/i5.svg",
+                                                      width: 40,
+                                                      height: 40,
+                                                    ),
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  width: 10,
+                                                ),
+                                                SvgPicture.asset(
+                                                  "assets/images/arrowr.svg",
+                                                  width: 25,
+                                                ),
+                                                const SizedBox(
+                                                  width: 10,
+                                                )
+                                              ],
+                                            ),
+                                            const SizedBox(
+                                              height: 8,
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 8.0),
+                                              child: Text(
+                                                'Buy Internet\nData',
+                                                style: GoogleFonts.poppins(
+                                                  textStyle: const TextStyle(
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      color: Color(0xFF1D1D1D)),
                                                 ),
                                               ),
-                                              const SizedBox(
-                                                width: 10,
-                                              ),
-                                              SvgPicture.asset(
-                                                "assets/images/arrowr.svg",
-                                                width: 25,
-                                              ),
-                                              const SizedBox(
-                                                width: 10,
-                                              )
-                                            ],
-                                          ),
-                                          const SizedBox(
-                                            height: 8,
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 8.0),
-                                            child: Text(
-                                              'Buy Internet\nData',
-                                              style: GoogleFonts.poppins(
-                                                textStyle: const TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: Color(0xFF1D1D1D)),
-                                              ),
                                             ),
-                                          ),
-                                          const SizedBox(
-                                            height: 8,
-                                          ),
-                                        ],
+                                            const SizedBox(
+                                              height: 8,
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),

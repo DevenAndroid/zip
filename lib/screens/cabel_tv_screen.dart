@@ -135,16 +135,36 @@ class _CabelTvScreenState extends State<CabelTvScreen> {
                                             ),
                                             InkWell(
                                                 onTap: () {
-                                                  Get.toNamed(
-                                                      MyRouters.providerScreen,
-                                                      arguments: [
-                                                        cabelList
-                                                            .value
-                                                            .data!
-                                                            .content![index]
-                                                            .serviceID
-                                                            .toString(),
-                                                      ]);
+                                                  if (cabelList.value.data!
+                                                          .content![index].name
+                                                          .toString() ==
+                                                      "ShowMax") {
+                                                    Get.toNamed(
+                                                        MyRouters
+                                                            .providerScreen,
+                                                        arguments: [
+                                                          cabelList
+                                                              .value
+                                                              .data!
+                                                              .content![index]
+                                                              .serviceID
+                                                              .toString(),
+                                                          ""
+                                                        ]);
+                                                  } else {
+                                                    Get.toNamed(
+                                                        MyRouters
+                                                            .providerScreen,
+                                                        arguments: [
+                                                          cabelList
+                                                              .value
+                                                              .data!
+                                                              .content![index]
+                                                              .serviceID
+                                                              .toString(),
+                                                          "Plan"
+                                                        ]);
+                                                  }
                                                 },
                                                 child: Container(
                                                     padding: const EdgeInsets

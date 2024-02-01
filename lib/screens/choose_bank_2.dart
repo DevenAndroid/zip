@@ -149,7 +149,7 @@ class _ChooseBank1State extends State<ChooseBank1> {
                                                     .toUpperCase();
                                             controller.idController1.text =
                                                 item.code.toString();
-                                            print("eetr" +
+                                            print("tget" +
                                                 controller.idController1.text);
                                             Get.toNamed(
                                                 MyRouters.addPaymentMethod,
@@ -158,12 +158,39 @@ class _ChooseBank1State extends State<ChooseBank1> {
                                                   item.code.toString()
                                                 ]);
                                           },
-                                          child: Text(
-                                            item.name.toString().toUpperCase(),
-                                            style: GoogleFonts.poppins(
-                                                color: const Color(0xFF1D1D1D),
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w500),
+                                          child: Row(
+                                            children: [
+                                              CircleAvatar(
+                                                backgroundColor: Colors.black,
+                                                maxRadius: 25,
+                                                child: Text(
+                                                  item.name!
+                                                      .toString()
+                                                      .substring(0, 1),
+                                                  style: const TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 13,
+                                              ),
+                                              Expanded(
+                                                child: Text(
+                                                  item.name
+                                                      .toString()
+                                                      .toUpperCase(),
+                                                  style: GoogleFonts.poppins(
+                                                      color: const Color(
+                                                          0xFF1D1D1D),
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                         const SizedBox(

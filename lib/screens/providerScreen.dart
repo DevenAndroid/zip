@@ -317,6 +317,7 @@ class _ProviderScreenState extends State<ProviderScreen> {
                                                                 .toString(),
                                                             initStateBlank
                                                                 .toString(),
+                                                            Get.arguments[1]
                                                           ]);
 
 // }

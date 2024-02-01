@@ -254,7 +254,8 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
                           const TextInputType.numberWithOptions(decimal: true),
                       inputFormatters: [
                         LengthLimitingTextInputFormatter(13),
-                        FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                        FilteringTextInputFormatter.allow(
+                            RegExp('[0-9]+\\.?[0-9]*')),
                       ],
                       onChanged: (value) => doubleVar = double.parse(value),
                       validator: MultiValidator([
@@ -280,7 +281,8 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
                           const TextInputType.numberWithOptions(decimal: true),
                       inputFormatters: [
                         LengthLimitingTextInputFormatter(11),
-                        FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                        FilteringTextInputFormatter.allow(
+                            RegExp('[0-9]+\\.?[0-9]*')),
                       ],
                       onChanged: (value) => doubleVar = double.parse(value),
                       validator: MultiValidator([
@@ -308,7 +310,8 @@ class _MeterVerifyScreenState extends State<MeterVerifyScreen> {
                           const TextInputType.numberWithOptions(decimal: true),
                       inputFormatters: [
                         LengthLimitingTextInputFormatter(10),
-                        FilteringTextInputFormatter.allow(RegExp('[0-9]+')),
+                        FilteringTextInputFormatter.allow(
+                            RegExp('[0-9]+\\.?[0-9]*')),
                       ],
                       onChanged: (value) {
                         String firstNumberString =

@@ -1,14 +1,11 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import '../models/modal_registor.dart';
+
 import '../models/model_checkout.dart';
-import '../models/model_security_pin.dart';
-import '../models/model_update_password.dart';
-import '../models/set_transfre_limit_model.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
@@ -37,14 +34,16 @@ Future<ModelCheckout> checkoutRepo(
   print(map);
   // try {
   http.Response response = await http.post(Uri.parse(ApiUrls.common),
-      headers: {
-        HttpHeaders.contentTypeHeader: 'application/json',
-        HttpHeaders.acceptHeader: 'application/json',
-      },
-      body: jsonEncode(map));
+      // headers: {
+      //   HttpHeaders.contentTypeHeader: 'application/json',
+      //   HttpHeaders.acceptHeader: 'application/json',
+      // },
+      body: jsonEncode(map),
+      headers: await getAuthHeader());
   log("Sign IN DATA${response.body}");
   // http.Response response = await http.post(Uri.parse(ApiUrls.loginUser),
-  //     headers: await getAuthHeader(),body: jsonEncode(map) );
+
+  // body: jsonEncode(map) );
 
   if (response.statusCode == 200 || response.statusCode == 201) {
     Helpers.hideLoader(loader);
@@ -52,7 +51,7 @@ Future<ModelCheckout> checkoutRepo(
     return ModelCheckout.fromJson(jsonDecode(response.body));
   } else {
     Helpers.hideLoader(loader);
-    print(jsonDecode(response.body));
+    // print(jsonDecode(response.body));
     return ModelCheckout(
         message: jsonDecode(response.body)["message"], status: false);
   }

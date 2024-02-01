@@ -54,7 +54,7 @@ class _CabelTvPinState extends State<CabelTvPin> {
   var initStateBlank = Get.arguments[0];
   var initStateBlank1 = Get.arguments[1];
   var initStateBlank2 = Get.arguments[2];
-  var initStateBlank3 = Get.arguments[3];
+  // var initStateBlank3 = Get.arguments[3];
   Rx<RxStatus> statusOfSave = RxStatus.empty().obs;
   Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
 
@@ -88,6 +88,7 @@ class _CabelTvPinState extends State<CabelTvPin> {
             amount: initStateBlank.toString(),
             phone: profileController.modal.value.data!.user!.phone.toString(),
             variation_code: initStateBlank1,
+            telcos: initStateBlank1,
             serviceID: initStateBlank2,
             context: context,
             billersCode: profileController.phone2Controller.text.trim(),
