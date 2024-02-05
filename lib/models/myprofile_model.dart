@@ -48,10 +48,22 @@ class User {
   String? phone;
   String? zipTag;
   String? dob;
+  String? bvn;
+  String? primaryPurpose;
+  String? gender;
+  String? nationality;
+  String? birthPlace;
+  String? pin;
+  String? businessId;
   String? countryCode;
   String? profileImage;
   bool? isProfileComplete;
   bool? status;
+  bool? isAfricaVerifed;
+  String? uniqueId;
+  String? freshworkId;
+  bool? enableSecurityLock;
+  Address? address;
 
   User(
       {this.id,
@@ -61,10 +73,22 @@ class User {
         this.phone,
         this.zipTag,
         this.dob,
+        this.bvn,
+        this.primaryPurpose,
+        this.gender,
+        this.nationality,
+        this.birthPlace,
+        this.pin,
+        this.businessId,
         this.countryCode,
         this.profileImage,
         this.isProfileComplete,
-        this.status});
+        this.status,
+        this.isAfricaVerifed,
+        this.uniqueId,
+        this.freshworkId,
+        this.enableSecurityLock,
+        this.address});
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -74,10 +98,23 @@ class User {
     phone = json['phone'];
     zipTag = json['zip_tag'];
     dob = json['dob'];
+    bvn = json['bvn'];
+    primaryPurpose = json['primary_purpose'];
+    gender = json['gender'];
+    nationality = json['nationality'];
+    birthPlace = json['birth_place'];
+    pin = json['pin'];
+    businessId = json['business_id'];
     countryCode = json['country_code'];
     profileImage = json['profile_image'];
     isProfileComplete = json['is_profile_complete'];
     status = json['status'];
+    isAfricaVerifed = json['is_africa_verifed'];
+    uniqueId = json['unique_id'];
+    freshworkId = json['freshwork_id'];
+    enableSecurityLock = json['enable_security_lock'];
+    address =
+    json['address'] != null ? new Address.fromJson(json['address']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -89,10 +126,85 @@ class User {
     data['phone'] = this.phone;
     data['zip_tag'] = this.zipTag;
     data['dob'] = this.dob;
+    data['bvn'] = this.bvn;
+    data['primary_purpose'] = this.primaryPurpose;
+    data['gender'] = this.gender;
+    data['nationality'] = this.nationality;
+    data['birth_place'] = this.birthPlace;
+    data['pin'] = this.pin;
+    data['business_id'] = this.businessId;
     data['country_code'] = this.countryCode;
     data['profile_image'] = this.profileImage;
     data['is_profile_complete'] = this.isProfileComplete;
     data['status'] = this.status;
+    data['is_africa_verifed'] = this.isAfricaVerifed;
+    data['unique_id'] = this.uniqueId;
+    data['freshwork_id'] = this.freshworkId;
+    data['enable_security_lock'] = this.enableSecurityLock;
+    if (this.address != null) {
+      data['address'] = this.address!.toJson();
+    }
+    return data;
+  }
+}
+
+class Address {
+  int? id;
+  int? userId;
+  String? streetName;
+  String? houseNumber;
+  dynamic additional;
+  int? postalCode;
+  String? state;
+  String? city;
+  String? country;
+  String? createdAt;
+  String? updatedAt;
+  dynamic deletedAt;
+
+  Address(
+      {this.id,
+        this.userId,
+        this.streetName,
+        this.houseNumber,
+        this.additional,
+        this.postalCode,
+        this.state,
+        this.city,
+        this.country,
+        this.createdAt,
+        this.updatedAt,
+        this.deletedAt});
+
+  Address.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    userId = json['user_id'];
+    streetName = json['street_name'];
+    houseNumber = json['house_number'];
+    additional = json['additional'];
+    postalCode = json['postal_code'];
+    state = json['state'];
+    city = json['city'];
+    country = json['country'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    deletedAt = json['deleted_at'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['user_id'] = this.userId;
+    data['street_name'] = this.streetName;
+    data['house_number'] = this.houseNumber;
+    data['additional'] = this.additional;
+    data['postal_code'] = this.postalCode;
+    data['state'] = this.state;
+    data['city'] = this.city;
+    data['country'] = this.country;
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
+    data['deleted_at'] = this.deletedAt;
     return data;
   }
 }

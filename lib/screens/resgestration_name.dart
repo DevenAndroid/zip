@@ -7,6 +7,7 @@ import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
+import '../controller/number_controller.dart';
 import '../controller/update_user.dart';
 
 class UserScreen extends StatefulWidget {
@@ -18,10 +19,31 @@ class UserScreen extends StatefulWidget {
 
 class _UserScreenState extends State<UserScreen> {
   final formKeyName = GlobalKey<FormState>();
+  final numbercontroller = Get.put(numberController());
+
   final registorController = Get.put(registerController());
+
+  @override
+  void initState() {
+    super.initState();
+    registorController.molileController.text = numbercontroller.number;
+    registorController.emailController.text = numbercontroller.email;
+    registorController.getData();
+  }
+
+  List<DropdownMenuItem<String>> get dropdownItemsm {
+    List<DropdownMenuItem<String>> menuItemsm = [
+      const DropdownMenuItem(value: "wema", child: Text("wema")),
+      const DropdownMenuItem(value: "providus", child: Text("providus")),
+      const DropdownMenuItem(value: "", child: Text("")),
+    ];
+    return menuItemsm;
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    double doubleVar;
     return Scaffold(
         backgroundColor: const Color(0xFFFFFFFF),
         appBar: AppBar(
@@ -64,9 +86,11 @@ class _UserScreenState extends State<UserScreen> {
                           RequiredValidator(
                               errorText: 'Please enter your first name '),
                         ]),
+                        readOnly: false,
                         controller: registorController.firstNameController,
                         obSecure: false,
-                        hintText: "Daniel"),
+                        // readOnly: true,
+                        hintText: "first name"),
                     const SizedBox(
                       height: 10,
                     ),
@@ -75,18 +99,53 @@ class _UserScreenState extends State<UserScreen> {
                           RequiredValidator(
                               errorText: 'Please enter your last name '),
                         ]),
+                        readOnly: false,
                         controller: registorController.lastNameController,
                         obSecure: false,
+                        // readOnly: true,
                         hintText: "Last Name"),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    CommonTextfield(
+                        keyboardType: const TextInputType.numberWithOptions(
+                            decimal: true),
+                        readOnly: true,
+                        controller: registorController.molileController,
+                        obSecure: false,
+                        hintText: "mobile number"),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    CommonTextfield(
+                        readOnly: true,
+                        validator: MultiValidator([
+                          RequiredValidator(
+                              errorText: 'Please enter your email'),
+                        ]),
+                        controller: registorController.emailController,
+                        obSecure: false,
+                        hintText: "email"),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0, right: 10),
+                      child: Text(
+                        "Please enter your Full name as it’s shown on your government documents or BVN registration",
+                        style: GoogleFonts.poppins(
+                            color: Colors.grey,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
                     SizedBox(
-                      height: size.height * .5,
+                      height: size.height * .18,
                     ),
                     GestureDetector(
                         onTap: () {
                           if (formKeyName.currentState!.validate()) {
-                            Get.toNamed(
-                              MyRouters.birthdayScreen,
-                            );
+                            // registorController.contactCreate1(context);
+                            Get.toNamed(MyRouters.birthdayScreen, arguments: [
+                              registorController.firstNameController.text.trim()
+                            ]);
                           }
                         },
                         child: const CustomOutlineButton(

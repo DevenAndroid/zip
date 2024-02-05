@@ -215,7 +215,9 @@ class _TransactionsFirstState extends State<TransactionsFirst> {
                         height: 20,
                       ),
                       SvgPicture.asset('assets/images/graph.svg'),
-                    SizedBox(height: 35,),
+                      const SizedBox(
+                        height: 35,
+                      ),
                       Text(
                         "Account Details",
                         style: GoogleFonts.poppins(
@@ -223,7 +225,9 @@ class _TransactionsFirstState extends State<TransactionsFirst> {
                             fontSize: 17,
                             fontWeight: FontWeight.w500),
                       ),
-                      SizedBox(height: 15,),
+                      const SizedBox(
+                        height: 15,
+                      ),
                       Container(
                         decoration: BoxDecoration(
                           color: const Color(0xFF212121),
@@ -262,7 +266,9 @@ class _TransactionsFirstState extends State<TransactionsFirst> {
                                             fontSize: 14,
                                             fontWeight: FontWeight.w400),
                                       ),
-                                      SizedBox(height: 5,),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
                                       Text(
                                         "Account number",
                                         style: GoogleFonts.poppins(
@@ -286,7 +292,8 @@ class _TransactionsFirstState extends State<TransactionsFirst> {
                                       shape: BoxShape.circle,
                                       color: Color(0xFFF0D75F),
                                     ),
-                                    child: const Icon(Icons.arrow_downward_sharp),
+                                    child:
+                                        const Icon(Icons.arrow_downward_sharp),
                                   ),
                                   const SizedBox(
                                     width: 10,
@@ -303,7 +310,9 @@ class _TransactionsFirstState extends State<TransactionsFirst> {
                                             fontSize: 14,
                                             fontWeight: FontWeight.w400),
                                       ),
-                                      SizedBox(height: 5,),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
                                       Text(
                                         "NGN 50,000",
                                         style: GoogleFonts.poppins(
@@ -344,7 +353,9 @@ class _TransactionsFirstState extends State<TransactionsFirst> {
                                             fontSize: 14,
                                             fontWeight: FontWeight.w400),
                                       ),
-                                      SizedBox(height: 5,),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
                                       Text(
                                         "NGN 5,700",
                                         style: GoogleFonts.poppins(
@@ -364,8 +375,9 @@ class _TransactionsFirstState extends State<TransactionsFirst> {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   InkWell(
-                                    onTap: (){
-                                      Get.toNamed(MyRouters.transactionsHistory);
+                                    onTap: () {
+                                      Get.toNamed(
+                                          MyRouters.transactionsHistory);
                                     },
                                     child: Text(
                                       "View",
@@ -378,11 +390,12 @@ class _TransactionsFirstState extends State<TransactionsFirst> {
                                 ],
                               ),
                             ),
-
                           ],
                         ),
                       ),
-                      SizedBox(height: 100,)
+                      const SizedBox(
+                        height: 100,
+                      )
                     ]))));
   }
 }

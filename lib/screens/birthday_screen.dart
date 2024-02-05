@@ -6,11 +6,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:zip/routers/my_routers.dart';
-import 'package:zip/widgets/common_boder_button.dart';
 import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
+import '../controller/profile_controller.dart';
 import '../controller/update_user.dart';
 
 class BirthdayScreen extends StatefulWidget {
@@ -21,10 +21,12 @@ class BirthdayScreen extends StatefulWidget {
 }
 
 class _BirthdayScreenState extends State<BirthdayScreen> {
+  var firstname = Get.arguments[0];
   var maskFormatter = MaskTextInputFormatter(
       mask: '####-##-##', filter: {"#": RegExp(r'[0-9]')});
   final registorController = Get.put(registerController());
   final formKeyBirthday = GlobalKey<FormState>();
+  final profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +50,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
             onTap: () {
               Get.back();
             },
-            child: Icon(
+            child: const Icon(
               Icons.arrow_back_rounded,
               color: AppTheme.primaryColor,
             ),
@@ -68,26 +70,19 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                       child: Row(
                         children: [
                           Text(
-                            "Welcome to Zip Daniel ",
+                            "Welcome to Zip " '${firstname} ',
                             style: GoogleFonts.poppins(
                                 color: const Color(0xFF1D1D1D),
-                                fontSize: 22,
+                                fontSize: 20,
                                 fontWeight: FontWeight.w500),
                           ),
                           SvgPicture.asset(
                             'assets/images/Hand.svg',
                           ),
-                          Text(
-                            " !",
-                            style: GoogleFonts.poppins(
-                                color: const Color(0xFF1D1D1D),
-                                fontSize: 22,
-                                fontWeight: FontWeight.w500),
-                          ),
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 4,
                     ),
                     Padding(
@@ -100,20 +95,21 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                             fontWeight: FontWeight.w500),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
                     CommonTextfield(
                       onTap: () async {
                         DateTime? pickedDate = await showDatePicker(
+                          initialEntryMode: DatePickerEntryMode.calendarOnly,
                           builder: (context, child) {
                             return Theme(
                               data: Theme.of(context).copyWith(
-                                colorScheme: ColorScheme.light(
-                                    primary: AppTheme
-                                        .primaryColor, // header background color
-                                    onPrimary:
-                                        Colors.white, // header text color
+                                colorScheme: const ColorScheme.light(
+                                    primary: AppTheme.primaryColor,
+                                    // header background color
+                                    onPrimary: Colors.white,
+                                    // header text color
                                     onSurface:
                                         AppTheme.buttonColor // body text color
                                     ),
@@ -136,12 +132,10 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                         );
 
                         if (pickedDate != null) {
-                          print(
-                              pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                          //pickedDate output format => 2021-03-10 00:00:00.000
                           String formattedDate =
-                              DateFormat('yyyy-MM-dd').format(pickedDate);
-                          print(
-                              formattedDate); //formatted date output using intl package =>  2021-03-16
+                              DateFormat('MM-dd-yyyy').format(pickedDate);
+                          //formatted date output using intl package =>  2021-03-16
                           setState(() {
                             registorController.dateOfBirthController.text =
                                 formattedDate; //set output date to TextField value.
@@ -177,19 +171,6 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                     const SizedBox(
                       height: 20,
                     ),
-                    InkWell(
-                      onTap: () {
-                        Get.toNamed(MyRouters.tagScreen);
-                      },
-                      child: CustomOutlineBoder(
-                        title: "Skip",
-                        backgroundColor: Colors.white,
-                        textColor: AppTheme.buttonColor,
-                        onPressed: () {
-                          Get.toNamed(MyRouters.enterEmailScreen);
-                        },
-                      ),
-                    )
                   ])),
         )));
   }

@@ -7,7 +7,6 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
@@ -30,6 +29,28 @@ class _UpdateProfileState extends State<UpdateProfile> {
   File image = File("");
 
   final profileController = Get.put(ProfileController());
+  void main() {
+    String phoneNumberWithPrefix =
+        profileController.mobileController.text.toString();
+
+    // Remove the "+234" prefix
+    String phoneNumberWithoutPrefix = removePrefix(phoneNumberWithPrefix);
+
+    print('Original phone number: $phoneNumberWithPrefix');
+    print('Phone number without prefix: $phoneNumberWithoutPrefix');
+  }
+
+  String removePrefix(String phoneNumber) {
+    // Check if the string starts with "+234" and has at least 3 additional characters
+    if (phoneNumber.startsWith('+234') && phoneNumber.length >= 7) {
+      // Remove the first 4 characters (including the "+")
+      return phoneNumber.substring(4);
+    } else {
+      // Return the original string if it doesn't match the expected format
+      return phoneNumber;
+    }
+  }
+
   Future pickImage() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -45,12 +66,19 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
   var maskFormatter = MaskTextInputFormatter(
       mask: '####-##-##', filter: {"#": RegExp(r'[0-9]')});
+
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     double doubleVar;
     return Scaffold(
       appBar: AppBar(
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(4.0),
+          child: Container(
+            color: Colors.grey.shade300,
+            height: 1.0,
+          ),
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
@@ -150,6 +178,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                 child: CommonTextfield(
                   controller: profileController.fNameController,
                   obSecure: false,
+                  readOnly: false,
                   hintText: "Manish",
                   labelText: "First Name",
                 ),
@@ -163,6 +192,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   controller: profileController.lNameController,
                   obSecure: false,
                   hintText: "Manish",
+                  readOnly: false,
                   labelText: "Last Name",
                 ),
               ),
@@ -172,49 +202,49 @@ class _UpdateProfileState extends State<UpdateProfile> {
               Padding(
                 padding: const EdgeInsets.only(left: 6, right: 6),
                 child: CommonTextfield(
-                  onTap: () async {
-                    DateTime? pickedDate = await showDatePicker(
-                      builder: (context, child) {
-                        return Theme(
-                          data: Theme.of(context).copyWith(
-                            colorScheme: ColorScheme.light(
-                                primary: AppTheme
-                                    .primaryColor, // header background color
-                                onPrimary: Colors.white, // header text color
-                                onSurface:
-                                    AppTheme.buttonColor // body text color
-                                ),
-                            textButtonTheme: TextButtonThemeData(
-                              style: TextButton.styleFrom(
-                                foregroundColor:
-                                    AppTheme.buttonColor, // button text color
-                              ),
-                            ),
-                          ),
-                          child: child!,
-                        );
-                      },
-
-                      context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime(1950),
-                      //DateTime.now() - not to allow to choose before today.
-                      lastDate: DateTime.now(),
-                    );
-
-                    if (pickedDate != null) {
-                      print(
-                          pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
-                      String formattedDate =
-                          DateFormat('yyyy-MM-dd').format(pickedDate);
-                      print(
-                          formattedDate); //formatted date output using intl package =>  2021-03-16
-                      setState(() {
-                        profileController.dobController.text =
-                            formattedDate; //set output date to TextField value.
-                      });
-                    } else {}
-                  },
+                  // onTap: () async {
+                  //   DateTime? pickedDate = await showDatePicker(
+                  //     builder: (context, child) {
+                  //       return Theme(
+                  //         data: Theme.of(context).copyWith(
+                  //           colorScheme: ColorScheme.light(
+                  //               primary: AppTheme
+                  //                   .primaryColor, // header background color
+                  //               onPrimary: Colors.white, // header text color
+                  //               onSurface:
+                  //                   AppTheme.buttonColor // body text color
+                  //               ),
+                  //           textButtonTheme: TextButtonThemeData(
+                  //             style: TextButton.styleFrom(
+                  //               foregroundColor:
+                  //                   AppTheme.buttonColor, // button text color
+                  //             ),
+                  //           ),
+                  //         ),
+                  //         child: child!,
+                  //       );
+                  //     },
+                  //     initialEntryMode: DatePickerEntryMode.calendarOnly,
+                  //     context: context,
+                  //     initialDate: DateTime.now(),
+                  //     firstDate: DateTime(1950),
+                  //     //DateTime.now() - not to allow to choose before today.
+                  //     lastDate: DateTime.now(),
+                  //   );
+                  //
+                  //   if (pickedDate != null) {
+                  //     print(
+                  //         pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                  //     String formattedDate =
+                  //         DateFormat('yyyy-MM-dd').format(pickedDate);
+                  //     print(
+                  //         formattedDate); //formatted date output using intl package =>  2021-03-16
+                  //     setState(() {
+                  //       profileController.dobController.text =
+                  //           formattedDate; //set output date to TextField value.
+                  //     });
+                  //   } else {}
+                  // },
                   keyboardType:
                       const TextInputType.numberWithOptions(decimal: true),
                   inputFormatters: [maskFormatter],
@@ -226,7 +256,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   readOnly: true,
                   obSecure: false,
                   hintText: "DOB",
-                  labelText: "15-09-2005",
+                  labelText: "Date of Birth",
                 ),
               ),
               const SizedBox(
@@ -248,11 +278,39 @@ class _UpdateProfileState extends State<UpdateProfile> {
               Padding(
                 padding: const EdgeInsets.only(left: 6, right: 6),
                 child: CommonTextfield(
-                  readOnly: true,
+                  keyboardType:
+                      const TextInputType.numberWithOptions(decimal: true),
+                  inputFormatters: [
+                    LengthLimitingTextInputFormatter(12),
+                    FilteringTextInputFormatter.allow(
+                        RegExp('[0-9]+\\.?[0-9]*')),
+                  ],
+                  onChanged: (value) {
+                    // Process the input and update the controller's text
+                    String phoneNumberWithoutPrefix = removePrefix(value);
+                    profileController.mobileController.value =
+                        profileController.mobileController.value.copyWith(
+                      text: phoneNumberWithoutPrefix,
+                      selection: TextSelection.collapsed(
+                          offset: phoneNumberWithoutPrefix.length),
+                    );
+                  },
+                  validator: MultiValidator([
+                    RequiredValidator(
+                        errorText: 'Please enter your contact number '),
+                    MinLengthValidator(10,
+                        errorText: 'Please enter minumum  11 digit number'),
+                    MaxLengthValidator(15,
+                        errorText: 'Please enter 12 digit number'),
+                    PatternValidator(r'(^(?:[+0]9)?[0-9]{10,12}$)',
+                        errorText: '')
+                  ]),
+                  readOnly: false,
                   controller: profileController.mobileController,
                   obSecure: false,
                   hintText: "7665096245",
-                  labelText: "Mobile Number",
+                  labelText: "Mobile no ",
+                  // labelText: "Mobile Number",
                 ),
               ),
               const SizedBox(
@@ -271,18 +329,18 @@ class _UpdateProfileState extends State<UpdateProfile> {
               const SizedBox(
                 height: 29,
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 20),
+              Center(
                 child: Align(
-                  alignment: Alignment.topRight,
+                  alignment: Alignment.center,
                   child: InkWell(
-                    onTap: (){
+                    onTap: () {
                       Get.toNamed(MyRouters.updatePassword);
                     },
                     child: Text(
                       "Change Password",
                       style: GoogleFonts.poppins(
                           color: const Color(0xFF1D1D1D),
+                          decoration: TextDecoration.underline,
                           fontSize: 20,
                           fontWeight: FontWeight.w500),
                     ),
@@ -303,6 +361,10 @@ class _UpdateProfileState extends State<UpdateProfile> {
                         profileController.lNameController.text.trim();
 
                     map['dob'] = profileController.dobController.text.trim();
+                    map['phone'] =
+                        profileController.mobileController.text.trim();
+                    map['email'] =
+                        profileController.emailController.text.trim();
 
                     UpdateProfileRepo(
                       fieldName1: 'profile_image',

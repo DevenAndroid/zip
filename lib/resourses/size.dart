@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 import '../widgets/common_colour.dart';
-
 
 class AddSize {
   static final screenHeight = Get.context!.height;
@@ -19,7 +17,6 @@ class AddSize {
   static double padding18 = screenHeight / 44.6666;
   static double padding15 = screenHeight / 53.6;
   static double padding20 = screenHeight / 40.2;
-
 
   ///width
 

@@ -1,15 +1,11 @@
-import 'package:get/get.dart';
-
 class ChooseBankList {
-  String? status;
-  String? message;
+  bool? success;
   List<Data>? data;
 
-  ChooseBankList({this.status, this.message, this.data});
+  ChooseBankList({this.success, this.data});
 
   ChooseBankList.fromJson(Map<String, dynamic> json) {
-    status = json['status'];
-    message = json['message'];
+    success = json['success'];
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
@@ -20,8 +16,7 @@ class ChooseBankList {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['message'] = this.message;
+    data['success'] = this.success;
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
@@ -30,16 +25,28 @@ class ChooseBankList {
 }
 
 class Data {
-  int? id;
-  String? code;
-  String? name;
-RxBool selected =false.obs;
-  Data({this.id, this.code, this.name});
+ dynamic id;
+ dynamic code;
+ dynamic name;
+  dynamic isMobileVerified;
+  dynamic branches;
+  bool? isCashPickUp;
+
+  Data(
+      {this.id,
+        this.code,
+        this.name,
+        this.isMobileVerified,
+        this.branches,
+        this.isCashPickUp});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     code = json['code'];
     name = json['name'];
+    isMobileVerified = json['isMobileVerified'];
+    branches = json['branches'];
+    isCashPickUp = json['isCashPickUp'];
   }
 
   Map<String, dynamic> toJson() {
@@ -47,6 +54,9 @@ RxBool selected =false.obs;
     data['id'] = this.id;
     data['code'] = this.code;
     data['name'] = this.name;
+    data['isMobileVerified'] = this.isMobileVerified;
+    data['branches'] = this.branches;
+    data['isCashPickUp'] = this.isCashPickUp;
     return data;
   }
 }

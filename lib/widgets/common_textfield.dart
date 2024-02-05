@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 
 import 'common_colour.dart';
 
-
 class CommonTextfield extends StatefulWidget {
   final TextEditingController? controller;
   final FormFieldValidator<String>? validator;
@@ -61,13 +60,11 @@ class _CommonTextfieldState extends State<CommonTextfield> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10.0,right: 10),
+      padding: const EdgeInsets.only(left: 6.0, right: 6),
       child: TextFormField(
-
-          style: const TextStyle(
-              color: AppTheme.primaryColor
-          ),
-          autofocus: false, textInputAction: TextInputAction.next,
+          style: const TextStyle(color: AppTheme.primaryColor),
+          autofocus: false,
+          textInputAction: TextInputAction.next,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           onFieldSubmitted: widget.onFieldSubmitted,
           inputFormatters: widget.inputFormatters,
@@ -83,7 +80,7 @@ class _CommonTextfieldState extends State<CommonTextfield> {
           controller: widget.controller,
           decoration: InputDecoration(
             counterStyle: const TextStyle(
-              color: AppTheme.primaryColor,
+              color: Color(0xFF777777),
               fontSize: 25,
             ),
             counter: const Offstage(),
@@ -97,36 +94,38 @@ class _CommonTextfieldState extends State<CommonTextfield> {
             prefixIcon: widget.prefix,
             suffixIcon: widget.suffixIcon,
             labelStyle: const TextStyle(
-              color: AppTheme.primaryColor,
+              color: Color(0xFF777777),
               fontSize: 15,
             ),
             hintStyle: const TextStyle(
-
-              color: AppTheme.primaryColor,
+              color: Color(0xFF777777),
               fontSize: 15,
             ),
             /*errorStyle: const TextStyle(
                 overflow: TextOverflow.clip,
               ),*/
-            contentPadding: const EdgeInsets.symmetric(vertical: 18,horizontal: 12),
+            contentPadding:
+                const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
             disabledBorder: OutlineInputBorder(
               borderSide:
-              const BorderSide(color: AppTheme.primaryColor, width: 1.5),
-              borderRadius: BorderRadius.circular(15),
+                  const BorderSide(color: Color(0xFFD3D3D6), width: 1.3),
+              borderRadius: BorderRadius.circular(10),
             ),
             focusedBorder: OutlineInputBorder(
               borderSide:
-              const BorderSide(color: AppTheme.secondaryColor, width: 1.5),
-              borderRadius: BorderRadius.circular(15),
+                  const BorderSide(color:Color(0xFFD3D3D6), width: 1.3),
+              borderRadius: BorderRadius.circular(10),
             ),
+
             enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color:AppTheme.primaryColor, width: 1.5),
-              borderRadius: BorderRadius.circular(15),
+              borderSide:
+                  const BorderSide(color:Color(0xFFD3D3D6), width: 1.3),
+              borderRadius: BorderRadius.circular(10),
             ),
             border: OutlineInputBorder(
-                borderSide:
-                const BorderSide(color: AppTheme.secondaryColor, width: 1.5),
-                borderRadius: BorderRadius.circular(15)),
+                borderSide: const BorderSide(
+                    color: Colors.grey, width: 1.3),
+                borderRadius: BorderRadius.circular(10)),
           ),
           validator: widget.validator),
     );

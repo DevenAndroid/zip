@@ -8,7 +8,8 @@ import '../models/modal_registor.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
-Future<ChangeZipPinModal> changeZipPinRepo({old_zip_pin, context, new_zip_pin}) async {
+Future<ChangeZipPinModal> changeZipPinRepo(
+    {old_zip_pin, context, new_zip_pin}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};

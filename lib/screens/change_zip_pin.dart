@@ -26,7 +26,6 @@ class _ChangeZipPinState extends State<ChangeZipPin> {
   TextEditingController oldZipController = TextEditingController();
   TextEditingController newZipController = TextEditingController();
 
-
   Rx<RxStatus> statusOfZipTag = RxStatus.empty().obs;
   Rx<ChangeZipPinModal> zipTag = ChangeZipPinModal().obs;
 
@@ -34,27 +33,21 @@ class _ChangeZipPinState extends State<ChangeZipPin> {
 
   changeZipPin() {
     if (formKeyTag.currentState!.validate()) {
-
       changeZipPinRepo(
-          context: context,
-          old_zip_pin: oldZipController.text.trim(),
-        new_zip_pin: newZipController.text.trim()
-      ).then((value) {
+              context: context,
+              old_zip_pin: oldZipController.text.trim(),
+              new_zip_pin: newZipController.text.trim())
+          .then((value) {
         zipTag.value = value;
         if (value.status == true) {
-
           Get.toNamed(MyRouters.setting);
           statusOfZipTag.value = RxStatus.success();
           showToast(value.message.toString());
         } else {
           statusOfZipTag.value = RxStatus.error();
           showToast(value.message.toString());
-
-
         }
-      }
-
-      );
+      });
     }
   }
 
@@ -103,11 +96,9 @@ class _ChangeZipPinState extends State<ChangeZipPin> {
                           RequiredValidator(
                               errorText: 'Please enter your old pin '),
                         ]),
-
                         controller: oldZipController,
                         obSecure: false,
                         hintText: "Enter your old pin"),
-
                     const SizedBox(
                       height: 20,
                     ),
@@ -116,10 +107,8 @@ class _ChangeZipPinState extends State<ChangeZipPin> {
                           RequiredValidator(
                               errorText: 'Please enter your new pin '),
                         ]),
-
                         controller: newZipController,
                         obSecure: false,
-
                         hintText: "Enter your new pin"),
                     SizedBox(
                       height: size.height * .40,

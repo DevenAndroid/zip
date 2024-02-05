@@ -23,21 +23,24 @@ class SettingModal {
 }
 
 class Data {
-  bool? allowNotification;
+  bool? pushNotification;
+  bool? emailNotification;
   bool? hideBalance;
   bool? enableSecurityLock;
   bool? transactionPin;
   bool? enableFingerprints;
 
   Data(
-      {this.allowNotification,
+      {this.pushNotification,
+        this.emailNotification,
         this.hideBalance,
         this.enableSecurityLock,
         this.transactionPin,
         this.enableFingerprints});
 
   Data.fromJson(Map<String, dynamic> json) {
-    allowNotification = json['allow_notification'];
+    pushNotification = json['push_notification'];
+    emailNotification = json['email_notification'];
     hideBalance = json['hide_balance'];
     enableSecurityLock = json['enable_security_lock'];
     transactionPin = json['transaction_pin'];
@@ -46,7 +49,8 @@ class Data {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['allow_notification'] = this.allowNotification;
+    data['push_notification'] = this.pushNotification;
+    data['email_notification'] = this.emailNotification;
     data['hide_balance'] = this.hideBalance;
     data['enable_security_lock'] = this.enableSecurityLock;
     data['transaction_pin'] = this.transactionPin;

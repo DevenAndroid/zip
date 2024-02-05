@@ -1,7 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:share_plus/share_plus.dart';
+
+import '../controller/update_user.dart';
 import '../widgets/common_button.dart';
 
 class SharePaymentLink extends StatefulWidget {
@@ -12,49 +13,69 @@ class SharePaymentLink extends StatefulWidget {
 }
 
 class _SharePaymentLinkState extends State<SharePaymentLink> {
+  final register = Get.put(registerController());
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-     body:  Column(
-       children: [
-         SizedBox(height: 140,),
-         Image.asset(
-           'assets/images/linkicon.png',
-           height: 51,
-         ),
-         SizedBox(
-           height: 30,
-         ),
-         Text(
-           "Payment link has been generated",
-           style: GoogleFonts.poppins(
-               color: const Color(0xFF1D1D1D),
-               fontSize: 18,
-               fontWeight: FontWeight.w500),
-         ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(
+            height: 140,
+          ),
+          Image.asset(
+            'assets/images/linkicon.png',
+            height: 51,
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          Text(
+            "Payment link has been generated",
+            style: GoogleFonts.poppins(
+                color: const Color(0xFF1D1D1D),
+                fontSize: 18,
+                fontWeight: FontWeight.w500),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Center(
+            child: Text(
+              "After it is paid, you will receive payment immediately",
+              style: GoogleFonts.poppins(
+                  color: const Color(0xFF1D1D1D),
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400),
+              textAlign: TextAlign.center,
+            ),
+          ),
 
-         Text(
-           "After it is paid, ypu will receive payment imediately",
-           style: GoogleFonts.poppins(
-               color: const Color(0xFF1D1D1D),
-               fontSize: 16,
-               fontWeight: FontWeight.w400),
-         ),
-         SizedBox(
-           height: size.height * .5,
-         ),
-         InkWell(
-           onTap: () {
-             Share.share('check out my website https://example.com', subject: 'Look what I made!');
-           },
-           child: CustomOutlineButton(
-             title: "Share payment link",
-           ),
-         ),
-       ],
-     ),
+          // Center(
+          //   child: Text(
+          //     "Link "+register.link1.toString(),
+          //     style: GoogleFonts.poppins(
+          //         color: const Color(0xFF1D1D1D),
+          //         fontSize: 16,
+          //         fontWeight: FontWeight.w400),textAlign: TextAlign.center,
+          //   ),
+          // ),
+          SizedBox(
+            height: size.height * .5,
+          ),
+          InkWell(
+            onTap: () {
+              register.cashCheckout1(context);
+            },
+            child: const CustomOutlineButton(
+              title: "Share payment link",
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
-

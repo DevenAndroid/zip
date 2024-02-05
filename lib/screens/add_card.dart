@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,7 +14,15 @@ class AddCard extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 80,
         backgroundColor: Colors.white,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(4.0),
+          child: Container(
+            color: Colors.grey.shade300,
+            height: 1.0,
+          ),
+        ),
         elevation: 0,
         title: Text(
           "Add Card",
@@ -26,10 +33,10 @@ class AddCard extends StatelessWidget {
         ),
         centerTitle: true,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Get.back();
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_rounded,
             color: AppTheme.primaryColor,
           ),
@@ -46,20 +53,22 @@ class AddCard extends StatelessWidget {
                 child: Text(
                   'To add your card as payment method please complete this deposit of NGN 10',
                   style: GoogleFonts.poppins(
-                      color: Color(0xff1D1D1D),
+                      color: const Color(0xff1D1D1D),
                       fontSize: 13,
                       fontWeight: FontWeight.w400),
                   textAlign: TextAlign.center,
                 ),
               ),
-              SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: Container(
                   height: 71,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(21),
-                      border: Border.all(color: Color(0xff1D1D1D))),
+                      border: Border.all(color: const Color(0xff1D1D1D))),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15, right: 15),
                     child: Row(
@@ -70,7 +79,7 @@ class AddCard extends StatelessWidget {
                           height: 45,
                           width: 44,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 5,
                         ),
                         Column(
@@ -80,27 +89,24 @@ class AddCard extends StatelessWidget {
                             Text(
                               'joanneDaniel@gmail.com',
                               style: GoogleFonts.poppins(
-                                  color: Color(0xff1D1D1D),
+                                  color: const Color(0xff1D1D1D),
                                   fontSize: 10,
                                   fontWeight: FontWeight.w400),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 4,
                             ),
                             Container(
                               decoration: BoxDecoration(
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                     colors: [
-
                                       Color(0xFFF0D75F),
                                       Color(0xFFB2802A),
                                     ],
                                     begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter
-                                ),
+                                    end: Alignment.bottomCenter),
                                 borderRadius: BorderRadius.circular(7),
                               ),
-
                               height: 25,
                               width: 110,
                               child: Center(
@@ -120,7 +126,9 @@ class AddCard extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
               Text(
                 "Enter your card details to pay",
                 style: GoogleFonts.poppins(
@@ -128,7 +136,7 @@ class AddCard extends StatelessWidget {
                     fontSize: 16,
                     fontWeight: FontWeight.w400),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 23,
               ),
               Padding(
@@ -139,7 +147,7 @@ class AddCard extends StatelessWidget {
                   labelText: "CARD NUMBER",
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 23,
               ),
               Padding(
@@ -168,7 +176,7 @@ class AddCard extends StatelessWidget {
                 onTap: () {
                   Get.to(MyCard());
                 },
-                child: CustomOutlineButton(
+                child: const CustomOutlineButton(
                   title: "Pay NGN 10",
                 ),
               ),

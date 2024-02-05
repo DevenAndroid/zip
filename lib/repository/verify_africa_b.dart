@@ -7,9 +7,8 @@ import '../models/verify_africa.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
-
-
-Future<ModelVerifyAfrica> verifyRepo({phone_email,context,selfie,fname,lname,dob,bvn}) async {
+Future<ModelVerifyAfrica> verifyRepo(
+    {phone_email, context, selfie, fname, lname, dob, bvn}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
@@ -20,13 +19,15 @@ Future<ModelVerifyAfrica> verifyRepo({phone_email,context,selfie,fname,lname,dob
   map['lname'] = lname;
   map['dob'] = dob;
   map['bvn'] = bvn;
+  print(map['phone_email']);
+  print(map['fname']);
+  print(map['lname']);
+  print(map['dob']);
+  print(map['bvn']);
 
-
-
-
-  print(map);
   // try {
-  http.Response response = await http.post(Uri.parse(ApiUrls.verificationAfrica),
+  http.Response response = await http.post(
+      Uri.parse(ApiUrls.verificationAfrica),
       headers: await getAuthHeader(),
       body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
@@ -37,11 +38,11 @@ Future<ModelVerifyAfrica> verifyRepo({phone_email,context,selfie,fname,lname,dob
     Helpers.hideLoader(loader);
 
     return ModelVerifyAfrica.fromJson(jsonDecode(response.body));
-
   } else {
     Helpers.hideLoader(loader);
-    print(jsonDecode(response.body));
-    return ModelVerifyAfrica(message: jsonDecode(response.body)["message"], );
+
+    return ModelVerifyAfrica(
+        message: jsonDecode(response.body)["message"], status: false);
   }
   // }  catch (e) {
   //   Helpers.hideLoader(loader);

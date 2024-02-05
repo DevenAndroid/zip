@@ -1,10 +1,23 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
-
+import '../controller/profile_controller.dart';
+import '../controller/update_user.dart';
+import '../models/model_beneficary_list.dart';
+import '../models/model_create_payout.dart';
+import '../models/save_transastion_model.dart';
+import '../repository/payout_repo.dart';
+import '../repository/save_buy_plan_repo.dart';
+import '../resourses/api_constant.dart';
+import '../resourses/details.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_textfield.dart';
 
@@ -16,9 +29,96 @@ class PayNowBalance extends StatefulWidget {
 }
 
 class _PayNowBalanceState extends State<PayNowBalance> {
+  final RegistorController = Get.put(registerController());
+  final details = Get.put(DetailsController());
+  Rx<RxStatus> statusOfpayout = RxStatus.empty().obs;
+  Rx<ModelPayout> payout = ModelPayout().obs;
+  final formKey4 = GlobalKey<FormState>();
+
+  Future CreatePayout() async {
+    if (formKey4.currentState!.validate()) {
+      payoutRepo(
+              amount: RegistorController.result4.toString(),
+              context: context,
+              key: "payouts",
+              bank_code: RegistorController.idController.text.trim(),
+              user_id: profileController.modal.value.data!.user!.id.toString(),
+              accountHolderName: data.accountHolderName.toString(),
+              accountNumber: data.destinationAddress.toString(),
+              destinationCurrency: "NGN",
+              about: "Pay Out",
+              customerReference: DateFormat.jm().format(DateTime.now()),
+// RegistorController.descriptionController.text.trim(),
+// destinationCurrencyController.text.trim() ,
+              sourceCurrency: "NGN",
+              // sourceCurrencyController.text.trim(),
+              description: RegistorController.descriptionController.text.trim(),
+              // email:data.email.toString(),
+              firstName: data.firstName.toString(),
+              // lastName:data.lastName.toString() ,
+              paymentDestination: "bank_account",
+              type: "individual",
+              business: details.businessID)
+          .then((value) {
+        payout.value = value;
+        if (value.success == true) {
+          statusOfpayout.value = RxStatus.success();
+          // saveList();
+          Get.toNamed(MyRouters.successRechargeScreen);
+          // Get.back();
+          showToast(value.message.toString());
+        } else {
+          statusOfpayout.value = RxStatus.success();
+          showToast(value.message.toString());
+        }
+        // showToast(value.message.toString());
+      });
+    }
+  }
+
+  BenificaryData data = BenificaryData();
+
+  @override
+  void initState() {
+    super.initState();
+    if (Get.arguments != null) {
+      data = Get.arguments;
+    }
+  }
+
+  Rx<RxStatus> statusOfSave = RxStatus.empty().obs;
+  Rx<ModelSaveTransastion> save = ModelSaveTransastion().obs;
+  final profileController = Get.put(ProfileController());
+
+  saveList() {
+    saveTransastionRepo(
+            user_id: profileController.modal.value.data!.user!.id.toString(),
+            amount: RegistorController.amount1Controller.text.trim(),
+            about: "Send Cash",
+            send_type: "otherusers ",
+            beneficiary_id: data.id.toString(),
+            // complete_response: purchaseData.value.data!.toJson(),
+            context: context,
+            description: RegistorController.descriptionController.text.trim(),
+            type: "dr")
+        .then((value) {
+      log("response.body.....    ${value}");
+      save.value = value;
+      if (value.status == true) {
+        statusOfSave.value = RxStatus.success();
+        Get.toNamed(MyRouters.successRechargeScreen);
+      } else {
+        statusOfSave.value = RxStatus.error();
+      }
+    }
+            // showToast(value.message.toString());
+            );
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    double doubleVar;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -32,118 +132,280 @@ class _PayNowBalanceState extends State<PayNowBalance> {
         ),
         centerTitle: true,
         leading: InkWell(
-          onTap: (){ Get.back();},
+          onTap: () {
+            Get.back();
+          },
           child: const Icon(
             Icons.arrow_back_rounded,
             color: AppTheme.primaryColor,
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              "\$276.00",
-              style: GoogleFonts.poppins(
-                  color: const Color(0xFF1D1D1D),
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500),
-            ),
-            Stack(
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(2),
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.white,
-                  ),
-                  margin: EdgeInsets.only(
-                      right: size.width * .01, left: size.width * .015),
-                  child: CircleAvatar(
-                    radius: size.height * .07,
-                    backgroundImage: const NetworkImage(
-                        'https://www.pngitem.com/pimgs/m/128-1284293_marina-circle-girl-picture-in-circle-png-transparent.png'),
-                  ),
-                ),
-                Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: InkWell(
-                    onTap: () {},
-                    child: Container(
-                      padding: const EdgeInsets.all(5),
-                      decoration: const BoxDecoration(
-                          color: Colors.white, shape: BoxShape.circle),
-                      child: Container(
-                        padding: const EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                            color: const Color(0xffF0D75F),
-                            borderRadius: BorderRadius.circular(5)),
-                        child: Icon(
-                          Icons.edit,
-                          color: Colors.black,
-                          size: size.height * .015,
+      body: Obx(() {
+        return profileController.currentBalanceModel.value.status == true
+            ? SingleChildScrollView(
+                child: Form(
+                  key: formKey4,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Image.network(
+                              "https://cdn-icons-png.flaticon.com/512/32/32974.png",
+                              color: Colors.black,
+                              width: 15,
+                              height: 15,
+                            ),
+                            Text(
+                              NumberFormat('#,##0.00').format(profileController
+                                  .currentBalanceModel
+                                  .value
+                                  .data!
+                                  .currentBalance!),
+                              style: GoogleFonts.poppins(
+                                  color: const Color(0xFF1D1D1D),
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ],
                         ),
                       ),
-                    ),
+                      Center(
+                        child: Stack(
+                          children: [
+                            Center(
+                              child: Container(
+                                padding: const EdgeInsets.all(2),
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.white,
+                                ),
+                                margin: EdgeInsets.only(
+                                    right: size.width * .01,
+                                    left: size.width * .015),
+                                child: CircleAvatar(
+                                  radius: size.height * .07,
+                                  backgroundImage: const NetworkImage(
+                                      'https://www.pngitem.com/pimgs/m/128-1284293_marina-circle-girl-picture-in-circle-png-transparent.png'),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Center(
+                        child: Text(
+                          data.accountHolderName.toString(),
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 20,
+                              fontWeight: FontWeight.w400),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 29,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15, right: 15),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Amount",
+                              style: GoogleFonts.poppins(
+                                  color: const Color(0xFF1D1D1D),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            Text(
+                              "FEE: " +
+                                  profileController.currentBalanceModel.value
+                                      .data!.fee!.payoutFee
+                                      .toString(),
+                              style: GoogleFonts.poppins(
+                                  color: const Color(0xFF1D1D1D),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 6,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 6, right: 6),
+                        child: CommonTextfield(
+                          keyboardType: const TextInputType.numberWithOptions(
+                              decimal: true),
+                          inputFormatters: [
+                            // LengthLimitingTextInputFormatter(8),
+                            FilteringTextInputFormatter.allow(
+                                RegExp('[0-9]+\\.?[0-9]*')),
+                          ],
+                          onChanged: (value) {
+                            _addNumbers();
+                          },
+                          validator: (value) {
+                            if (value!.trim().isEmpty) {
+                              return "Please enter amount";
+                            }
+                            if (double.tryParse(value.trim()) == null) {
+                              return "Enter valid amount";
+                            }
+                            if (double.parse(value.trim()) >
+                                (double.tryParse(profileController
+                                        .currentBalanceModel
+                                        .value
+                                        .data!
+                                        .currentBalance
+                                        .toString()) ??
+                                    0)) {
+                              return "Please enter amount less than balance ";
+                            }
+                          },
+                          controller: RegistorController.amount1Controller,
+                          obSecure: false,
+                          hintText: "Enter  Amount",
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15, right: 6),
+                        child: Text(
+                          "Account Number ",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 6,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 6, right: 6),
+                        child: CommonTextfield(
+                          readOnly: true,
+                          controller: RegistorController.accountNoController,
+                          obSecure: false,
+                          hintText: data.destinationAddress,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15, right: 6),
+                        child: Text(
+                          "Description ",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 6,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 6, right: 6),
+                        child: CommonTextfield(
+                          validator: MultiValidator([
+                            RequiredValidator(
+                                errorText: 'Please enter your description '),
+                          ]),
+                          controller: RegistorController.descriptionController,
+                          obSecure: false,
+                          hintText: "write a note",
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15, right: 6),
+                        child: Text(
+                          "Bank Name ",
+                          style: GoogleFonts.poppins(
+                              color: const Color(0xFF1D1D1D),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 6,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 6, right: 6),
+                        child: CommonTextfield(
+                          readOnly: true,
+                          obSecure: false,
+                          hintText: data.firstName,
+                        ),
+                      ),
+                      SizedBox(
+                        height: size.height * .07,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          // Get.toNamed(MyRouters.accountsInBank);
+                          CreatePayout();
+                        },
+                        child: const Padding(
+                          padding: EdgeInsets.only(left: 10, right: 8),
+                          child: CustomOutlineButton(
+                            title: "Send",
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      )
+                    ],
                   ),
-                )
-              ],
-            ),
-            Text(
-              "Joanne Daniel",
-              style: GoogleFonts.poppins(
-                  color: const Color(0xFF1D1D1D),
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400),
-            ),
-            Text(
-              "+234 xxxxxxxxxx",
-              style: GoogleFonts.poppins(
-                  color: const Color(0xFF1D1D1D),
-                  fontSize: 16,
-                  fontWeight: FontWeight.w300),
-            ),
-            const SizedBox(
-              height: 29,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 6,right: 6),
-              child: CommonTextfield(
-                obSecure: false,
-                hintText: "200",
-                labelText: "Amount",
-              ),
-            ),
-            const SizedBox(
-              height: 27,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 6,right: 6),
-              child: CommonTextfield(
-                obSecure: false,
-                hintText: "What is it for?",
-                labelText: "Note",
-              ),
-            ),
-            SizedBox(
-              height: size.height * .3,
-            ),
-            InkWell(
-              onTap: () {
-                Get.toNamed(MyRouters.accountsInBank);
-              },
-              child: const Padding(
-                padding: EdgeInsets.only(left: 10,right: 8),
-                child: CustomOutlineButton(
-                  title: "Send",
                 ),
-              ),
-            ),
-          ],
-        ),
-      ),
+              )
+            : Center(
+                child: CircularProgressIndicator(),
+              );
+      }),
     );
+  }
+
+  void _addNumbers() {
+    // Get the input values as strings
+    String firstNumberString = RegistorController.amount1Controller.text;
+    String secondNumberString = profileController
+        .currentBalanceModel.value.data!.fee!.cashoutFee
+        .toString();
+
+    // Check if both inputs are not empty
+    if (firstNumberString.isNotEmpty && secondNumberString.isNotEmpty) {
+      // Convert strings to integers
+      int firstNumber = int.parse(firstNumberString);
+      int secondNumber = int.parse(secondNumberString);
+
+      // Perform addition
+      int sum = firstNumber + secondNumber;
+
+      // Convert the result back to a string and update the UI
+      setState(() {
+        RegistorController.result4 = sum.toString();
+        print(RegistorController.result4.toString());
+      });
+    } else {
+      // Handle the case when one or both of the inputs are empty
+      setState(() {
+        RegistorController.result4 = 'Please enter valid numbers';
+      });
+    }
   }
 }

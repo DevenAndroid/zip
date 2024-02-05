@@ -1,33 +1,41 @@
-
-
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/model_choose_bank.dart';
 import '../resourses/api_constant.dart';
+import '../resourses/details.dart';
 
+final details = Get.put(DetailsController());
 
+Future<ChooseBankList> chooseBankRepo() async {
+  var map = <String, dynamic>{};
 
-Future<ChooseBankList> chooseBankRepo(id) async {
+  map['key'] = "banklist";
+  map['api-key'] = details.apiKey;
+  print(map);
   try {
-    http.Response response = await http.get(
-      Uri.parse("${ApiUrls.chooseBank}$id"),
-      headers: await getAuthHeader(),
-    );
+    http.Response response = await http.post(
+        // Uri.parse(ApiUrls.chooseBank+"currency=$currency&country=$country"),
+        Uri.parse(ApiUrls.common),
+        // headers: await getAuthHeader(),
+        headers: {
+          HttpHeaders.contentTypeHeader: 'application/json',
+          HttpHeaders.acceptHeader: 'application/json',
+        },
+        body: jsonEncode(map));
 
+    print(jsonDecode(response.body));
     if (response.statusCode == 200) {
-      print(jsonDecode(response.body));
       return ChooseBankList.fromJson(jsonDecode(response.body));
     } else {
       print(jsonDecode(response.body));
-      return ChooseBankList(
-          message: jsonDecode(response.body)["message"],
-
-          data: null);
+      return ChooseBankList(data: null);
     }
   } catch (e) {
-    return ChooseBankList(message: e.toString(), data: null);
+    throw Exception(e);
+    // return ChooseBankList(message: e.toString(), data: null);
   }
 }

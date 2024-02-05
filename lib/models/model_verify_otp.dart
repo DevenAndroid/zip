@@ -2,7 +2,7 @@
 class ModelVerifyOtp {
   String? status;
   String? message;
-  Null? data;
+  dynamic data;
 
   ModelVerifyOtp({this.status, this.message, this.data});
 

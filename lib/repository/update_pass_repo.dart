@@ -7,9 +7,12 @@ import '../models/model_update_password.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
-
-
-Future<ModelUpdatePassword> updatePassRepo({old_password,confirm_password,context,new_password,}) async {
+Future<ModelUpdatePassword> updatePassRepo({
+  old_password,
+  confirm_password,
+  context,
+  new_password,
+}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
@@ -18,17 +21,12 @@ Future<ModelUpdatePassword> updatePassRepo({old_password,confirm_password,contex
 
   map['new_password'] = new_password;
 
-
-  map['confirm_password'] =  confirm_password;
-
-
-
+  map['confirm_password'] = confirm_password;
 
   print(map);
   // try {
   http.Response response = await http.post(Uri.parse(ApiUrls.updatePassword),
-      headers: await getAuthHeader(),
-      body: jsonEncode(map));
+      headers: await getAuthHeader(), body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
   // http.Response response = await http.post(Uri.parse(ApiUrls.loginUser),
   //     headers: await getAuthHeader(),body: jsonEncode(map) );
@@ -37,11 +35,11 @@ Future<ModelUpdatePassword> updatePassRepo({old_password,confirm_password,contex
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
     return ModelUpdatePassword.fromJson(jsonDecode(response.body));
-
   } else {
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
-    return ModelUpdatePassword(message: jsonDecode(response.body)["message"],status: false );
+    return ModelUpdatePassword(
+        message: jsonDecode(response.body)["message"], status: false);
   }
   // }  catch (e) {
   //   Helpers.hideLoader(loader);
