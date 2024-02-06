@@ -75,7 +75,7 @@ class _MeterDetailsState extends State<MeterDetails> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Meter Number ',
+                            'Meter Number',
                             style: GoogleFonts.poppins(
                                 color: const Color(0xFF1D1D1D),
                                 fontSize: 16,
