@@ -157,6 +157,19 @@ class _TelcosScreenState extends State<TelcosScreen> {
           ),
           centerTitle: true,
         ),
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.only(left: 8.0, bottom: 13, right: 8),
+          child: InkWell(
+            onTap: () {
+              if (formKey4.currentState!.validate()) {
+                getProviderList();
+              }
+            },
+            child: const CustomOutlineButton(
+              title: "Continue",
+            ),
+          ),
+        ),
         body: SingleChildScrollView(
             child: Form(
           key: formKey4,
@@ -221,7 +234,7 @@ class _TelcosScreenState extends State<TelcosScreen> {
                       height: 20,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      padding: const EdgeInsets.only(left: 10, right: 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -270,19 +283,6 @@ class _TelcosScreenState extends State<TelcosScreen> {
                       obSecure: false,
                       hintText: "0",
                       labelText: "Amount",
-                    ),
-                    SizedBox(
-                      height: size.height * .26,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        if (formKey4.currentState!.validate()) {
-                          getProviderList();
-                        }
-                      },
-                      child: const CustomOutlineButton(
-                        title: "Continue",
-                      ),
                     ),
                   ])),
         )));

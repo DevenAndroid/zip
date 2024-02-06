@@ -145,7 +145,7 @@ class _ChooseBankState extends State<ChooseBank> {
                                                 item.name
                                                     .toString()
                                                     .toUpperCase();
-                                            controller.idController1.text =
+                                            controller.idController.text =
                                                 item.code.toString();
                                             print("tget" +
                                                 controller.idController1.text);

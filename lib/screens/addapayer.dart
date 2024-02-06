@@ -56,6 +56,19 @@ class _AddAPayerState extends State<AddAPayer> {
         ),
         centerTitle: true,
       ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(left: 8.0, bottom: 13, right: 8),
+        child: InkWell(
+          onTap: () {
+            if (formKey4.currentState!.validate()) {
+              Get.toNamed(MyRouters.requestPaymentLink);
+            }
+          },
+          child: const CustomOutlineButton(
+            title: "Next",
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Form(
           key: formKey4,
@@ -175,22 +188,6 @@ class _AddAPayerState extends State<AddAPayer> {
                   controller: register.AddEmailController,
                   labelText: "Email",
                 ),
-              ),
-              SizedBox(
-                height: size.height * .1,
-              ),
-              InkWell(
-                onTap: () {
-                  if (formKey4.currentState!.validate()) {
-                    Get.toNamed(MyRouters.requestPaymentLink);
-                  }
-                },
-                child: const CustomOutlineButton(
-                  title: "Next",
-                ),
-              ),
-              const SizedBox(
-                height: 30,
               ),
             ],
           ),

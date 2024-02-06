@@ -3,6 +3,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../controller/update_user.dart';
 import '../widgets/circular_progressindicator.dart';
@@ -171,7 +172,19 @@ class _RegularTransferState extends State<RegularTransfer> {
                             const SizedBox(
                               height: 18,
                             ),
-                            SvgPicture.asset('assets/images/share.svg'),
+                            InkWell(
+                                onTap: () {
+                                  Share.share(
+                                    "Account Number- ${registorController.fetchAccount.value.data!.accountNumber.toString()}, " +
+                                        "Bank Name-  ${registorController.fetchAccount.value.data!.accountInformation!.bankName.toString()}, " +
+                                        "Name-  ${registorController.fetchAccount.value.data!.kYCInformation!.firstName.toString()}",
+                                    subject: registorController
+                                        .fetchAccount.value.data!.accountNumber
+                                        .toString(),
+                                  );
+                                },
+                                child: SvgPicture.asset(
+                                    'assets/images/share.svg')),
                             const SizedBox(
                               height: 40,
                             ),

@@ -109,7 +109,7 @@ class _SendCashYourBalanceState extends State<SendCashYourBalance> {
                           height: 20,
                         ),
                         Text(
-                          "Cash Out to our preffered payment method ",
+                          "Withdraw funds to your preferred bank account",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
                               fontSize: 16,

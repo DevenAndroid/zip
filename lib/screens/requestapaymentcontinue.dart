@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zip/routers/my_routers.dart';
@@ -69,22 +70,40 @@ class _RequestAPaymentContiuneState extends State<RequestAPaymentContiune> {
             const SizedBox(
               height: 48,
             ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(30),
-              child: Image.asset(
-                'assets/images/right.png',
-                height: 121,
+            Center(
+              child: SvgPicture.asset(
+                'assets/images/verify.svg',
+                height: 90,
+                width: 90,
               ),
             ),
             const SizedBox(
               height: 25,
             ),
-            Text(
-              "Request Money \$ ${profileController.amountController.text.trim()}",
-              style: GoogleFonts.poppins(
-                  color: const Color(0xFF1D1D1D),
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Request Money ",
+                  style: GoogleFonts.poppins(
+                      color: const Color(0xFF1D1D1D),
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500),
+                ),
+                Image.network(
+                  "https://cdn-icons-png.flaticon.com/512/32/32974.png",
+                  color: Colors.black,
+                  width: 15,
+                  height: 15,
+                ),
+                Text(
+                  "${profileController.amountController.text.trim()}",
+                  style: GoogleFonts.poppins(
+                      color: const Color(0xFF1D1D1D),
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500),
+                ),
+              ],
             ),
             Text(
               "From" + "  ${initStateBlank}",

@@ -141,64 +141,64 @@ class _GeneratePaymentLinkState extends State<GeneratePaymentLink> {
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    const SizedBox(
-                      height: 25,
-                    ),
-                    const Divider(
-                      thickness: 1,
-                      color: Color(0x1A000000),
-                    ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 35),
-                      child: Text(
-                        "Add attachment",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFFF0D75F),
-                            fontSize: 11,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 35),
-                      child: Text(
-                        "Description",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 32, right: 32, top: 20, bottom: 32),
-                      child: Text(
-                        "Est expedita consequuntur repudiandae ducimus nulla eum. Nihil amet nulla necessitatibus. Quae delectus doloribus dolor. Cupiditate ut quae sit ipsam. Est expedita consequuntur repudiandae ducimus nulla eum. Nihil amet nulla necessitatibus. Quae delectus doloribus dolor.",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0x871D1D1D),
-                            fontSize: 9,
-                            fontWeight: FontWeight.w300),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 32, right: 32, bottom: 32),
-                      child: Text(
-                        "Est expedita consequuntur repudiandae ducimus nulla eum. Nihil amet nulla necessitatibus. Quae delectus doloribus dolor. Cupiditate ut quae sit ipsam. Est expedita consequuntur repudiandae ducimus nulla eum. Nihil amet nulla necessitatibus. Quae delectus doloribus dolor.",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0x871D1D1D),
-                            fontSize: 9,
-                            fontWeight: FontWeight.w300),
-                      ),
-                    ),
+                    // const SizedBox(
+                    //   height: 16,
+                    // ),
+                    // const SizedBox(
+                    //   height: 25,
+                    // ),
+                    // const Divider(
+                    //   thickness: 1,
+                    //   color: Color(0x1A000000),
+                    // ),
+                    // const SizedBox(
+                    //   height: 16,
+                    // ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 35),
+                    //   child: Text(
+                    //     "Add attachment",
+                    //     style: GoogleFonts.poppins(
+                    //         color: const Color(0xFFF0D75F),
+                    //         fontSize: 11,
+                    //         fontWeight: FontWeight.w400),
+                    //   ),
+                    // ),
+                    // const SizedBox(
+                    //   height: 20,
+                    // ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 35),
+                    //   child: Text(
+                    //     "Description",
+                    //     style: GoogleFonts.poppins(
+                    //         color: const Color(0xFF1D1D1D),
+                    //         fontSize: 13,
+                    //         fontWeight: FontWeight.w400),
+                    //   ),
+                    // ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(
+                    //       left: 32, right: 32, top: 20, bottom: 32),
+                    //   child: Text(
+                    //     "Est expedita consequuntur repudiandae ducimus nulla eum. Nihil amet nulla necessitatibus. Quae delectus doloribus dolor. Cupiditate ut quae sit ipsam. Est expedita consequuntur repudiandae ducimus nulla eum. Nihil amet nulla necessitatibus. Quae delectus doloribus dolor.",
+                    //     style: GoogleFonts.poppins(
+                    //         color: const Color(0x871D1D1D),
+                    //         fontSize: 9,
+                    //         fontWeight: FontWeight.w300),
+                    //   ),
+                    // ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(
+                    //       left: 32, right: 32, bottom: 32),
+                    //   child: Text(
+                    //     "Est expedita consequuntur repudiandae ducimus nulla eum. Nihil amet nulla necessitatibus. Quae delectus doloribus dolor. Cupiditate ut quae sit ipsam. Est expedita consequuntur repudiandae ducimus nulla eum. Nihil amet nulla necessitatibus. Quae delectus doloribus dolor.",
+                    //     style: GoogleFonts.poppins(
+                    //         color: const Color(0x871D1D1D),
+                    //         fontSize: 9,
+                    //         fontWeight: FontWeight.w300),
+                    //   ),
+                    // ),
                     const SizedBox(
                       height: 30,
                     ),

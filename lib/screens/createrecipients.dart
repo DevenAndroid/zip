@@ -179,6 +179,32 @@ class _CreateRecipientsState extends State<CreateRecipients>
             ],
           ),
         ),
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.only(left: 8.0, bottom: 15, right: 8),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              InkWell(
+                  onTap: () {
+                    profileController.nameController.text = "";
+                    profileController.phone1Controller.text = "";
+                    profileController.ziptag1Controller.text = "";
+                  },
+                  child: const CustomOutlineBoder(title: "Clear")),
+              const SizedBox(
+                height: 25,
+              ),
+              InkWell(
+                onTap: () {
+                  Get.toNamed(MyRouters.sendYourBalanceScreen);
+                },
+                child: const CustomOutlineButton(
+                  title: "Continue",
+                ),
+              ),
+            ],
+          ),
+        ),
         body: Padding(
             padding: const EdgeInsets.only(top: 18.0, right: 8, left: 8),
             child: TabBarView(controller: _tabController, children: [
@@ -242,27 +268,9 @@ class _CreateRecipientsState extends State<CreateRecipients>
                         labelText: "Phone",
                       ),
                     ),
-                    SizedBox(
-                      height: size.height * .04,
-                    ),
-                    InkWell(
-                        onTap: () {
-                          profileController.nameController.text = "";
-                          profileController.phone1Controller.text = "";
-                          profileController.ziptag1Controller.text = "";
-                        },
-                        child: const CustomOutlineBoder(title: "Clear")),
-                    const SizedBox(
-                      height: 25,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Get.toNamed(MyRouters.sendYourBalanceScreen);
-                      },
-                      child: const CustomOutlineButton(
-                        title: "Continue",
-                      ),
-                    ),
+                    // SizedBox(
+                    //   height: size.height * .04,
+                    // ),
                   ],
                 ),
               ),
@@ -343,27 +351,27 @@ class _CreateRecipientsState extends State<CreateRecipients>
                     const SizedBox(
                       height: 15,
                     ),
-                    SizedBox(
-                      height: size.height * .17,
-                    ),
-                    InkWell(
-                        onTap: () {
-                          email1Controller.text = "";
-                          phoneController.text = "";
-                          ziptagController.text = "";
-                        },
-                        child: const CustomOutlineBoder(title: "Clear")),
-                    const SizedBox(
-                      height: 25,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Get.toNamed(MyRouters.sendYourBalanceScreen);
-                      },
-                      child: const CustomOutlineButton(
-                        title: "Continue",
-                      ),
-                    ),
+                    // SizedBox(
+                    //   height: size.height * .17,
+                    // ),
+                    // InkWell(
+                    //     onTap: () {
+                    //       email1Controller.text = "";
+                    //       phoneController.text = "";
+                    //       ziptagController.text = "";
+                    //     },
+                    //     child: const CustomOutlineBoder(title: "Clear")),
+                    // const SizedBox(
+                    //   height: 25,
+                    // ),
+                    // InkWell(
+                    //   onTap: () {
+                    //     Get.toNamed(MyRouters.sendYourBalanceScreen);
+                    //   },
+                    //   child: const CustomOutlineButton(
+                    //     title: "Continue",
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

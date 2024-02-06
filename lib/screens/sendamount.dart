@@ -74,14 +74,33 @@ class _RequestPaymentContiuneState extends State<RequestPaymentContiune> {
           const SizedBox(
             height: 25,
           ),
-          Center(
-            child: Text(
-              "Send Money \$ " + profileController.amountController.text.trim(),
-              style: GoogleFonts.poppins(
-                  color: const Color(0xFF1D1D1D),
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500),
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "You Send ",
+                style: GoogleFonts.poppins(
+                    color: const Color(0xFF1D1D1D),
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500),
+              ),
+              Image.network(
+                "https://cdn-icons-png.flaticon.com/512/32/32974.png",
+                color: Colors.black,
+                width: 15,
+                height: 15,
+              ),
+              Text(
+                '${profileController.amountController.text.toString()}',
+                style: GoogleFonts.poppins(
+                    color: const Color(0xFF1D1D1D),
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 20,
           ),
           Text(
             "To" + "  ${profileController.nameController.text.toString()} ",

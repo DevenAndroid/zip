@@ -50,6 +50,21 @@ class _VerifyPaymentLink2State extends State<VerifyPaymentLink2> {
             ),
           ),
         ),
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.only(left: 8.0, bottom: 15, right: 8),
+          child: InkWell(
+              onTap: () {
+                // register.cashCheckout1(context);
+                if (formKey4.currentState!.validate()) {
+                  Get.toNamed(MyRouters.addAPayer);
+                }
+                // emailLogin();
+                //
+              },
+              child: const CustomOutlineButton(
+                title: "Request a Payment ",
+              )),
+        ),
         body: Obx(() {
           return profileController.modal.value.status == true
               ? SingleChildScrollView(
@@ -150,18 +165,6 @@ class _VerifyPaymentLink2State extends State<VerifyPaymentLink2> {
                             SizedBox(
                               height: MediaQuery.of(context).size.height * .3,
                             ),
-                            InkWell(
-                                onTap: () {
-                                  // register.cashCheckout1(context);
-                                  if (formKey4.currentState!.validate()) {
-                                    Get.toNamed(MyRouters.addAPayer);
-                                  }
-                                  // emailLogin();
-                                  //
-                                },
-                                child: const CustomOutlineButton(
-                                  title: "Request a Payment ",
-                                )),
                           ])),
                 ))
               : const Center(

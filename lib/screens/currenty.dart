@@ -184,20 +184,30 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
                             itemBuilder: (context, index) {
-                              String originalString = allConvert
-                                  .value.movementInfo![index].currency_rate
-                                  .toString();
+                              String originalString =
+                                  "${allConvert.value.movementInfo![index].currency_rate.toString()}.00";
 
-                              // Remove first 4 characters
-                              String step1 = originalString.substring(4);
+// Extract first 4 digits
+                              String extractedDigits =
+                                  originalString.substring(0, 4);
 
-                              // Find the index of '/' and remove everything before it
-                              String step2 =
-                                  step1.substring(step1.indexOf('/') + 1);
-
-                              // Remove the last 3 characters
-                              String finalResult =
-                                  step2.substring(0, step2.length - 3);
+// Remove any trailing characters after the first 4 digits
+                              String result =
+                                  extractedDigits.replaceAll(RegExp(r'\D'), '');
+                              // String originalString = allConvert
+                              //     .value.movementInfo![index].currency_rate
+                              //     .toString();
+                              //
+                              // // Remove first 4 characters
+                              // String step1 = originalString.substring(4);
+                              //
+                              // // Find the index of '/' and remove everything before it
+                              // String step2 =
+                              //     step1.substring(step1.indexOf('/') + 1);
+                              //
+                              // // Remove the last 3 characters
+                              // String finalResult =
+                              //     step2.substring(0, step2.length - 3);
 
                               return Column(
                                 children: [
@@ -328,8 +338,7 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
                                               CrossAxisAlignment.end,
                                           children: [
                                             Text(
-                                              "${finalResult.toString()}.00" +
-                                                  " NGN ",
+                                              "${result}.00" + " NGN ",
                                               style: GoogleFonts.poppins(
                                                   color:
                                                       const Color(0xFF1D1D1D),

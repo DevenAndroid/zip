@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_colour.dart';
@@ -86,9 +87,9 @@ class _YourBalanceScreenState extends State<YourBalanceScreen> {
                                     height: 15,
                                   ),
                                   Text(
-                                    profileController.currentBalanceModel.value
-                                        .data!.currentBalance
-                                        .toString(),
+                                    NumberFormat('#,##0.00').format(
+                                        profileController.currentBalanceModel
+                                            .value.data!.currentBalance!),
                                     style: GoogleFonts.poppins(
                                         color: const Color(0xFF1D1D1D),
                                         fontSize: 20,

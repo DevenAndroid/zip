@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -135,7 +134,8 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
         ),
         bottomNavigationBar: profileController.isSwitched == true
             ? Padding(
-                padding: const EdgeInsets.only(bottom: 20.0),
+                padding:
+                    const EdgeInsets.only(bottom: 20.0, left: 10, right: 10),
                 child: InkWell(
                   onTap: () {
                     payOutcontroller.save(context);
@@ -146,7 +146,8 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
                 ),
               )
             : Padding(
-                padding: const EdgeInsets.only(bottom: 20.0),
+                padding:
+                    const EdgeInsets.only(bottom: 20.0, left: 10, right: 10),
                 child: InkWell(
                   onTap: () {
                     Get.toNamed(MyRouters.withdrawlCash);
@@ -163,51 +164,51 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0, right: 8),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: Colors.grey)),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                SvgPicture.asset('assets/images/mark.svg'),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Add account',
-                                      style: GoogleFonts.poppins(
-                                        textStyle: const TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500,
-                                            color: Color(0xFF1D1D1D)),
-                                      ),
-                                    ),
-                                    Text(
-                                      'Send to already saved channels',
-                                      style: GoogleFonts.poppins(
-                                        textStyle: const TextStyle(
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.w400,
-                                            color: Colors.grey),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
+                      // Padding(
+                      //   padding: const EdgeInsets.only(left: 8.0, right: 8),
+                      //   child: Container(
+                      //     decoration: BoxDecoration(
+                      //         borderRadius: BorderRadius.circular(10),
+                      //         border: Border.all(color: Colors.grey)),
+                      //     child: Padding(
+                      //       padding: const EdgeInsets.all(8.0),
+                      //       child: Row(
+                      //         children: [
+                      //           SvgPicture.asset('assets/images/mark.svg'),
+                      //           const SizedBox(
+                      //             width: 10,
+                      //           ),
+                      //           Column(
+                      //             crossAxisAlignment: CrossAxisAlignment.start,
+                      //             children: [
+                      //               Text(
+                      //                 'Add account',
+                      //                 style: GoogleFonts.poppins(
+                      //                   textStyle: const TextStyle(
+                      //                       fontSize: 14,
+                      //                       fontWeight: FontWeight.w500,
+                      //                       color: Color(0xFF1D1D1D)),
+                      //                 ),
+                      //               ),
+                      //               Text(
+                      //                 'Send to already saved channels',
+                      //                 style: GoogleFonts.poppins(
+                      //                   textStyle: const TextStyle(
+                      //                       fontSize: 13,
+                      //                       fontWeight: FontWeight.w400,
+                      //                       color: Colors.grey),
+                      //                 ),
+                      //               ),
+                      //             ],
+                      //           ),
+                      //         ],
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
+                      // const SizedBox(
+                      //   height: 20,
+                      // ),
                       CommonTextfield(
                         onTap: () {
                           Get.toNamed(MyRouters.chooseBank1);

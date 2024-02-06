@@ -179,6 +179,34 @@ class _RequestMoney2State extends State<RequestMoney2>
             ],
           ),
         ),
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.only(left: 8.0, bottom: 15, right: 8),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              InkWell(
+                  onTap: () {
+                    email1Controller.text = "";
+                    phoneController.text = "";
+                    ziptagController.text = "";
+                  },
+                  child: const CustomOutlineBoder(title: "Clear")),
+              const SizedBox(
+                height: 25,
+              ),
+              InkWell(
+                onTap: () {
+                  if (formKey41.currentState!.validate()) {
+                    Get.toNamed(MyRouters.yourBalanceScreen);
+                  }
+                },
+                child: const CustomOutlineButton(
+                  title: "Continue",
+                ),
+              ),
+            ],
+          ),
+        ),
         body: Padding(
             padding: const EdgeInsets.only(
               top: 18.0,
@@ -260,27 +288,27 @@ class _RequestMoney2State extends State<RequestMoney2>
                       SizedBox(
                         height: size.height * .03,
                       ),
-                      InkWell(
-                          onTap: () {
-                            profileController.requestNameController.text = "";
-                            profileController.requestPhoneController.text = "";
-                            profileController.requestZiptag1Controller.text =
-                                "";
-                          },
-                          child: const CustomOutlineBoder(title: "Clear")),
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          if (formKey4.currentState!.validate()) {
-                            Get.toNamed(MyRouters.yourBalanceScreen);
-                          }
-                        },
-                        child: const CustomOutlineButton(
-                          title: "Continue",
-                        ),
-                      ),
+                      // InkWell(
+                      //     onTap: () {
+                      //       profileController.requestNameController.text = "";
+                      //       profileController.requestPhoneController.text = "";
+                      //       profileController.requestZiptag1Controller.text =
+                      //           "";
+                      //     },
+                      //     child: const CustomOutlineBoder(title: "Clear")),
+                      // const SizedBox(
+                      //   height: 25,
+                      // ),
+                      // InkWell(
+                      //   onTap: () {
+                      //     if (formKey4.currentState!.validate()) {
+                      //       Get.toNamed(MyRouters.yourBalanceScreen);
+                      //     }
+                      //   },
+                      //   child: const CustomOutlineButton(
+                      //     title: "Continue",
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
@@ -368,32 +396,9 @@ class _RequestMoney2State extends State<RequestMoney2>
                             )),
                       ),
                     ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    SizedBox(
-                      height: size.height * .03,
-                    ),
-                    InkWell(
-                        onTap: () {
-                          email1Controller.text = "";
-                          phoneController.text = "";
-                          ziptagController.text = "";
-                        },
-                        child: const CustomOutlineBoder(title: "Clear")),
-                    const SizedBox(
-                      height: 25,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        if (formKey41.currentState!.validate()) {
-                          Get.toNamed(MyRouters.yourBalanceScreen);
-                        }
-                      },
-                      child: const CustomOutlineButton(
-                        title: "Continue",
-                      ),
-                    ),
+                    // const SizedBox(
+                    //   height: 15,
+                    // ),
                   ],
                 ),
               ),

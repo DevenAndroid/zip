@@ -38,12 +38,12 @@ class _PayNow2State extends State<PayNow2> {
               context: context,
               key: "payouts",
               user_id: profileController.modal.value.data!.user!.id.toString(),
-              about: "Pay Out",
-              bank_code: RegistorController.idController1.text.toString(),
+              about: "Send Cash",
+              bank_code: RegistorController.idController.text.toString(),
               accountHolderName: accountHolder.toString(),
               accountNumber: destinationAddress.toString(),
               destinationCurrency: "NGN",
-              customerReference: DateFormat.jm().format(DateTime.now()),
+              // customerReference: DateFormat.jm().format(DateTime.now()),
 // RegistorController.descriptionController.text.trim(),
 // destinationCurrencyController.text.trim() ,
               sourceCurrency: "NGN",
@@ -59,6 +59,8 @@ class _PayNow2State extends State<PayNow2> {
         payout.value = value;
         if (value.success == true) {
           statusOfpayout.value = RxStatus.success();
+          accountHolder.toString() == "";
+          destinationAddress.toString() == "";
           // saveList();
           Get.toNamed(MyRouters.successRechargeScreen);
           // Get.back();
@@ -164,9 +166,11 @@ class _PayNow2State extends State<PayNow2> {
                               height: 15,
                             ),
                             Text(
-                              profileController.currentBalanceModel.value.data!
-                                  .currentBalance
-                                  .toString(),
+                              NumberFormat('#,##0.00').format(profileController
+                                  .currentBalanceModel
+                                  .value
+                                  .data!
+                                  .currentBalance!),
                               style: GoogleFonts.poppins(
                                   color: const Color(0xFF1D1D1D),
                                   fontSize: 20,
@@ -211,16 +215,28 @@ class _PayNow2State extends State<PayNow2> {
                         height: 29,
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 15, right: 6),
-                        child: Text(
-                          "Amount FEE: " +
-                              profileController.currentBalanceModel.value.data!
-                                  .fee!.payoutFee
-                                  .toString(),
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500),
+                        padding: const EdgeInsets.only(left: 15, right: 15),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Amount",
+                              style: GoogleFonts.poppins(
+                                  color: const Color(0xFF1D1D1D),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            Text(
+                              "FEE:" +
+                                  profileController.currentBalanceModel.value
+                                      .data!.fee!.payoutFee
+                                      .toString(),
+                              style: GoogleFonts.poppins(
+                                  color: const Color(0xFF1D1D1D),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ],
                         ),
                       ),
                       const SizedBox(

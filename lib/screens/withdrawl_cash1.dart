@@ -30,7 +30,7 @@ class _WithdrawlCashState extends State<WithdrawlCash> {
     Rx<RxStatus> statusOfpayout = RxStatus.empty().obs;
     Rx<ModelPayout> payout = ModelPayout().obs;
     payoutRepo(
-            amount: profileController.result5.toString().trim(),
+            amount: profileController.amountController.text.toString().trim(),
             context: context,
             bank_code: controller.idController1.text.toString(),
             user_id:
@@ -45,6 +45,7 @@ class _WithdrawlCashState extends State<WithdrawlCash> {
 // RegistorController.descriptionController.text.trim(),
 // destinationCurrencyController.text.trim() ,
             sourceCurrency: "NGN",
+
             // sourceCurrencyController.text.trim(),
             description: DateFormat.jm().format(DateTime.now()),
             // email:data.email.toString(),
@@ -57,6 +58,9 @@ class _WithdrawlCashState extends State<WithdrawlCash> {
       payout.value = value;
       if (value.success == true) {
         statusOfpayout.value = RxStatus.success();
+        controller.bankController1.text == "";
+        payOutcontroller.accountNo.text == "";
+        payOutcontroller.accountName.text == "";
         // saveList();
         Get.toNamed(MyRouters.success3Screen);
         // Get.back();
@@ -109,12 +113,30 @@ class _WithdrawlCashState extends State<WithdrawlCash> {
               height: 25,
             ),
 
-            Text(
-              "You requested \$ ${profileController.result5.trim()}",
-              style: GoogleFonts.poppins(
-                  color: const Color(0xFF1D1D1D),
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "You requested ",
+                  style: GoogleFonts.poppins(
+                      color: const Color(0xFF1D1D1D),
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500),
+                ),
+                Image.network(
+                  "https://cdn-icons-png.flaticon.com/512/32/32974.png",
+                  color: Colors.black,
+                  width: 15,
+                  height: 15,
+                ),
+                Text(
+                  '${profileController.amountController.text.toString()}',
+                  style: GoogleFonts.poppins(
+                      color: const Color(0xFF1D1D1D),
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500),
+                ),
+              ],
             ),
             // Text(
             //   "From  ${profileController.modal.value.data!.user!.fname.toString()}  ${profileController.modal.value.data!.user!.lname.toString()}",

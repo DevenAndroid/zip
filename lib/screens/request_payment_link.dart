@@ -12,7 +12,6 @@ import '../models/model_send_email.dart';
 import '../repository/repo_send_email.dart';
 import '../resourses/api_constant.dart';
 import '../widgets/circular_progressindicator.dart';
-import '../widgets/common_boder_button.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_error_widget.dart';
 
@@ -85,6 +84,23 @@ class _RequestPaymentLinkState extends State<RequestPaymentLink> {
               fontWeight: FontWeight.w500),
         ),
         centerTitle: true,
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(left: 8.0, bottom: 13, right: 8),
+        child: InkWell(
+            onTap: () {
+              // Get.toNamed(
+              //   MyRouters.sharePaymentLink,
+              // );
+              // register.saveEmails();
+              // send();
+              register.cashCheckout1(context);
+              // emailLogin();
+              //
+            },
+            child: const CustomOutlineButton(
+              title: "Request A Payment ",
+            )),
       ),
       body: Obx(() {
         return register.statusOfFetchAccount.value.isSuccess
@@ -173,6 +189,31 @@ class _RequestPaymentLinkState extends State<RequestPaymentLink> {
                     const SizedBox(
                       height: 16,
                     ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 35, right: 32),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Payer Phone Number",
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF1D1D1D),
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          Text(
+                            register.AddmobileController.text.toString(),
+                            style: GoogleFonts.poppins(
+                                color: const Color(0x851D1D1D),
+                                fontSize: 11,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
                     // Padding(
                     //   padding: const EdgeInsets.only(left: 35,right: 32),
                     //   child: Row(
@@ -195,61 +236,61 @@ class _RequestPaymentLinkState extends State<RequestPaymentLink> {
                     //     ],
                     //   ),
                     // ),
-                    const SizedBox(
-                      height: 25,
-                    ),
-                    const Divider(
-                      thickness: 1,
-                      color: Color(0x1A000000),
-                    ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 35),
-                      child: Text(
-                        "Add attachment",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFFF0D75F),
-                            fontSize: 11,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 35),
-                      child: Text(
-                        "Description",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 32, right: 32, top: 20, bottom: 32),
-                      child: Text(
-                        "Est expedita consequuntur repudiandae ducimus nulla eum. Nihil amet nulla necessitatibus. Quae delectus doloribus dolor. Cupiditate ut quae sit ipsam. Est expedita consequuntur repudiandae ducimus nulla eum. Nihil amet nulla necessitatibus. Quae delectus doloribus dolor.",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0x871D1D1D),
-                            fontSize: 9,
-                            fontWeight: FontWeight.w300),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 32, right: 32, bottom: 32),
-                      child: Text(
-                        "Est expedita consequuntur repudiandae ducimus nulla eum. Nihil amet nulla necessitatibus. Quae delectus doloribus dolor. Cupiditate ut quae sit ipsam. Est expedita consequuntur repudiandae ducimus nulla eum. Nihil amet nulla necessitatibus. Quae delectus doloribus dolor.",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0x871D1D1D),
-                            fontSize: 9,
-                            fontWeight: FontWeight.w300),
-                      ),
-                    ),
+                    // const SizedBox(
+                    //   height: 25,
+                    // ),
+                    // const Divider(
+                    //   thickness: 1,
+                    //   color: Color(0x1A000000),
+                    // ),
+                    // const SizedBox(
+                    //   height: 16,
+                    // ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 35),
+                    //   child: Text(
+                    //     "Add attachment",
+                    //     style: GoogleFonts.poppins(
+                    //         color: const Color(0xFFF0D75F),
+                    //         fontSize: 11,
+                    //         fontWeight: FontWeight.w400),
+                    //   ),
+                    // ),
+                    // const SizedBox(
+                    //   height: 20,
+                    // ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 35),
+                    //   child: Text(
+                    //     "Description",
+                    //     style: GoogleFonts.poppins(
+                    //         color: const Color(0xFF1D1D1D),
+                    //         fontSize: 13,
+                    //         fontWeight: FontWeight.w400),
+                    //   ),
+                    // ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(
+                    //       left: 32, right: 32, top: 20, bottom: 32),
+                    //   child: Text(
+                    //     "Est expedita consequuntur repudiandae ducimus nulla eum. Nihil amet nulla necessitatibus. Quae delectus doloribus dolor. Cupiditate ut quae sit ipsam. Est expedita consequuntur repudiandae ducimus nulla eum. Nihil amet nulla necessitatibus. Quae delectus doloribus dolor.",
+                    //     style: GoogleFonts.poppins(
+                    //         color: const Color(0x871D1D1D),
+                    //         fontSize: 9,
+                    //         fontWeight: FontWeight.w300),
+                    //   ),
+                    // ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(
+                    //       left: 32, right: 32, bottom: 32),
+                    //   child: Text(
+                    //     "Est expedita consequuntur repudiandae ducimus nulla eum. Nihil amet nulla necessitatibus. Quae delectus doloribus dolor. Cupiditate ut quae sit ipsam. Est expedita consequuntur repudiandae ducimus nulla eum. Nihil amet nulla necessitatibus. Quae delectus doloribus dolor.",
+                    //     style: GoogleFonts.poppins(
+                    //         color: const Color(0x871D1D1D),
+                    //         fontSize: 9,
+                    //         fontWeight: FontWeight.w300),
+                    //   ),
+                    // ),
                     // SizedBox(height: 15,),
                     // Padding(
                     //   padding: const EdgeInsets.only(left: 30.0),
@@ -326,38 +367,18 @@ class _RequestPaymentLinkState extends State<RequestPaymentLink> {
                     const SizedBox(
                       height: 30,
                     ),
-                    InkWell(
-                        onTap: () {
-                          // register.cashCheckout(context);
-                          // emailLogin();
-                          //
-                          Get.toNamed(
-                            MyRouters.sharePaymentLink,
-                          );
-                        },
-                        child: const CustomOutlineBoder(
-                          title: "Generate Payment Link",
-                        )),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    InkWell(
-                        onTap: () {
-                          Get.toNamed(
-                            MyRouters.sharePaymentLink,
-                          );
-                          // send();
-                          // register.cashCheckout(context);
-                          // emailLogin();
-                          //
-                        },
-                        child: const CustomOutlineButton(
-                          title: "Request A Payment ",
-                        )),
-
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    // InkWell(
+                    //     onTap: () {
+                    //       // register.cashCheckout(context);
+                    //       // emailLogin();
+                    //       //
+                    //       Get.toNamed(
+                    //         MyRouters.sharePaymentLink,
+                    //       );
+                    //     },
+                    //     child: const CustomOutlineBoder(
+                    //       title: "Generate Payment Link",
+                    //     )),
                   ],
                 ),
               )

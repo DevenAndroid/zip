@@ -513,8 +513,9 @@ class ProfileController extends GetxController {
   Rx<RxStatus> statusOfSendMail = RxStatus.empty().obs;
   Rx<ModelSendMail> sendMail = ModelSendMail().obs;
 
-  send() async {
+  send(context) async {
     sendMailRepo(
+            context: context,
             amount: amountController.text.trim(),
             zip_user_id: userId.toString(),
             type: "request")
@@ -534,8 +535,9 @@ class ProfileController extends GetxController {
             );
   }
 
-  send1() async {
+  send1(context) async {
     sendMailRepo(
+            context: context,
             amount: amountController.text.trim(),
             zip_user_id: userId.toString(),
             type: "send")
@@ -648,7 +650,7 @@ class ProfileController extends GetxController {
       save.value = value;
       if (value.status == true) {
         // saveList2(context);
-        send();
+        send(context);
         statusOfSave.value = RxStatus.success();
       } else {
         statusOfSave.value = RxStatus.error();
@@ -738,7 +740,7 @@ class ProfileController extends GetxController {
       if (value.status == true) {
         // saveList2(context);
         // send();
-        send1();
+        send1(context);
         statusOfSave.value = RxStatus.success();
       } else {
         statusOfSave.value = RxStatus.error();

@@ -67,139 +67,135 @@ class _MeterDetailsState extends State<MeterDetails> {
                 padding: const EdgeInsets.all(12.0),
                 child: FittedBox(
                   child: Row(
-                    //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     // crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      FittedBox(
-                        child: Column(
-                          // mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Meter Number ',
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              'Customer Name',
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              'Service',
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              'Product Name',
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              'Mobile number',
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              'Price',
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          ],
-                        ),
+                      Column(
+                        // mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Meter Number ',
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF1D1D1D),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'Customer Name',
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF1D1D1D),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'Service',
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF1D1D1D),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'Product Name',
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF1D1D1D),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'Mobile number',
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF1D1D1D),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'Price',
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF1D1D1D),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ],
                       ),
-                      FittedBox(
-                        child: Column(
-                          // mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text(
-                              controller1.meterNo.text.toString(),
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              controller1.CustomerNameController.text
-                                  .toString(),
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              controller1.idController1.text.toString(),
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              controller1.productNameController.text.toString(),
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              controller1.mobileNO.text.toString(),
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              controller1.amount.text.toString(),
-                              style: GoogleFonts.poppins(
-                                  color: const Color(0xFF1D1D1D),
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          ],
-                        ),
+                      Column(
+                        // mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            controller1.meterNo.text.toString(),
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF1D1D1D),
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            controller1.CustomerNameController.text
+                                .toString(),
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF1D1D1D),
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            controller1.idController1.text.toString(),
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF1D1D1D),
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            controller1.productNameController.text.toString(),
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF1D1D1D),
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            controller1.mobileNO.text.toString(),
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF1D1D1D),
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            controller1.amount.text.toString(),
+                            style: GoogleFonts.poppins(
+                                color: const Color(0xFF1D1D1D),
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ],
                       ),
                     ],
                   ),

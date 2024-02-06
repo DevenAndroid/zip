@@ -55,7 +55,7 @@ class _SendSuccessScreenState extends State<SendSuccessScreen> {
                       ),
                       Center(
                         child: Text(
-                          "Your cash out will be processed soon",
+                          "Your transaction will be processed soon",
                           style: GoogleFonts.poppins(
                               color: const Color(0xFF1D1D1D),
                               fontSize: 14,

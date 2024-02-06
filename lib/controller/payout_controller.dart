@@ -49,7 +49,7 @@ class PayoutController extends GetxController {
     await createBRepo(
             name: controller.bankController.text.trim().toString(),
             unique_id: uniqueIdentifier.toString(),
-            bank_code: controller.idController1.text.toString(),
+            bank_code: controller.idController.text.toString(),
             destinationAddress: accountNo.text.trim().toString(),
             firstName: accountName.text.trim().toString(),
             accountHolderName: accountName.text.trim().toString(),

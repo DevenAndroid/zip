@@ -101,7 +101,7 @@ class _RequestPayment3State extends State<RequestPayment3> {
                               height: 25,
                             ),
                             Text(
-                              "BENIFICIARY",
+                              "ACCOUNT NAME",
                               style: GoogleFonts.poppins(
                                   color: const Color(0xFF7D7D7D),
                                   fontSize: 16,

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../controller/update_user.dart';
 import '../widgets/circular_progressindicator.dart';
@@ -111,7 +113,7 @@ class _BankDetailsScreenState extends State<BankDetailsScreen> {
                               height: 10,
                             ),
                             Text(
-                              "${registorController.fetchAccount.value.data!.kYCInformation!.firstName.toString()}" +
+                              "${registorController.fetchAccount.value.data!.kYCInformation!.firstName.toString()} " +
                                   "${registorController.fetchAccount.value.data!.kYCInformation!.lastName.toString()}",
                               style: GoogleFonts.poppins(
                                   color: Colors.black,
@@ -167,8 +169,24 @@ class _BankDetailsScreenState extends State<BankDetailsScreen> {
                                   fontWeight: FontWeight.w700),
                               textAlign: TextAlign.center,
                             ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            InkWell(
+                                onTap: () {
+                                  Share.share(
+                                    "Account Number- ${registorController.fetchAccount.value.data!.accountNumber.toString()}, " +
+                                        "Bank Name-  ${registorController.fetchAccount.value.data!.accountInformation!.bankName.toString()}, " +
+                                        "Name-  ${registorController.fetchAccount.value.data!.kYCInformation!.firstName.toString()}",
+                                    subject: registorController
+                                        .fetchAccount.value.data!.accountNumber
+                                        .toString(),
+                                  );
+                                },
+                                child: SvgPicture.asset(
+                                    'assets/images/share.svg')),
                             const SizedBox(
-                              height: 40,
+                              height: 30,
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),

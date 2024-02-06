@@ -8,7 +8,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:zip/controller/profile_controller.dart';
@@ -1178,8 +1177,11 @@ class registerController extends GetxController {
       log("response.body.....    ${value}");
       saveMail.value = value;
       if (value.status == true) {
+        print("link:"+link1.value.toString());
         statusOfSave.value = RxStatus.success();
-        // Share.share(link1.value.toString());
+        Get.toNamed(
+          MyRouters.sharePaymentLink,
+        );
       } else {
         statusOfSave.value = RxStatus.error();
       }
@@ -1203,17 +1205,17 @@ class registerController extends GetxController {
       checkout.value = value;
       log(checkout.value.toString());
       if (value.status == true) {
-        link1.value = value.data!.link;
-        saveEmails();
 
-        Share.share(value.data!.link);
+        link1.value = value.data!.link;
+        // saveEmails();
 
         showToast(value.message.toString());
         statusOfCheckout.value = RxStatus.success();
         link1.value = value.data!.link;
         code.value = value.data!.payCode;
+        saveEmails();
         // Get.toNamed(MyRouters.paymentLink);
-
+        // Share.share(value.data!.link);
         showToast(value.message.toString());
       } else {
         showToast(value.message.toString());

@@ -41,7 +41,7 @@ class _PayNowBalanceState extends State<PayNowBalance> {
               amount: RegistorController.result4.toString(),
               context: context,
               key: "payouts",
-              bank_code: RegistorController.idController1.text.trim(),
+              bank_code: RegistorController.idController.text.trim(),
               user_id: profileController.modal.value.data!.user!.id.toString(),
               accountHolderName: data.accountHolderName.toString(),
               accountNumber: data.destinationAddress.toString(),
@@ -211,53 +211,68 @@ class _PayNowBalanceState extends State<PayNowBalance> {
                         height: 29,
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 15, right: 6),
-                        child: Text(
-                          "Amount FEE " +
-                              profileController.currentBalanceModel.value.data!
-                                  .fee!.payoutFee
-                                  .toString(),
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500),
+                        padding: const EdgeInsets.only(left: 15, right: 15),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Amount",
+                              style: GoogleFonts.poppins(
+                                  color: const Color(0xFF1D1D1D),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            Text(
+                              "FEE: " +
+                                  profileController.currentBalanceModel.value
+                                      .data!.fee!.payoutFee
+                                      .toString(),
+                              style: GoogleFonts.poppins(
+                                  color: const Color(0xFF1D1D1D),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ],
                         ),
                       ),
                       SizedBox(
                         height: 6,
                       ),
-                      CommonTextfield(
-                        keyboardType: const TextInputType.numberWithOptions(
-                            decimal: true),
-                        inputFormatters: [
-                          // LengthLimitingTextInputFormatter(8),
-                          FilteringTextInputFormatter.allow(
-                              RegExp('[0-9]+\\.?[0-9]*')),
-                        ],
-                        onChanged: (value) {
-                          _addNumbers();
-                        },
-                        validator: (value) {
-                          if (value!.trim().isEmpty) {
-                            return "Please enter amount";
-                          }
-                          if (double.tryParse(value.trim()) == null) {
-                            return "Enter valid amount";
-                          }
-                          if (double.parse(value.trim()) >
-                              (double.tryParse(profileController
-                                      .currentBalanceModel
-                                      .value
-                                      .data!
-                                      .currentBalance
-                                      .toString()) ??
-                                  0)) {
-                            return "Please enter amount less than balance ";
-                          }
-                        },
-                        controller: RegistorController.amount1Controller,
-                        obSecure: false,
-                        hintText: "Enter  Amount",
+                      Padding(
+                        padding: const EdgeInsets.only(left: 6, right: 6),
+                        child: CommonTextfield(
+                          keyboardType: const TextInputType.numberWithOptions(
+                              decimal: true),
+                          inputFormatters: [
+                            // LengthLimitingTextInputFormatter(8),
+                            FilteringTextInputFormatter.allow(
+                                RegExp('[0-9]+\\.?[0-9]*')),
+                          ],
+                          onChanged: (value) {
+                            _addNumbers();
+                          },
+                          validator: (value) {
+                            if (value!.trim().isEmpty) {
+                              return "Please enter amount";
+                            }
+                            if (double.tryParse(value.trim()) == null) {
+                              return "Enter valid amount";
+                            }
+                            if (double.parse(value.trim()) >
+                                (double.tryParse(profileController
+                                        .currentBalanceModel
+                                        .value
+                                        .data!
+                                        .currentBalance
+                                        .toString()) ??
+                                    0)) {
+                              return "Please enter amount less than balance ";
+                            }
+                          },
+                          controller: RegistorController.amount1Controller,
+                          obSecure: false,
+                          hintText: "Enter  Amount",
+                        ),
                       ),
                       const SizedBox(
                         height: 12,
@@ -337,7 +352,7 @@ class _PayNowBalanceState extends State<PayNowBalance> {
                         ),
                       ),
                       SizedBox(
-                        height: size.height * .12,
+                        height: size.height * .07,
                       ),
                       InkWell(
                         onTap: () {

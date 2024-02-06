@@ -32,7 +32,7 @@ class _SendCash2State extends State<SendCash2> {
   Future resolveData() async {
     await resolveRepo(
             accountNumber: payOutcontroller.accountNo.text.trim().toString(),
-            bankCode: controller.idController1.text.trim().trim(),
+            bankCode: controller.idController.text.trim().trim(),
             context: context)
         .then((value) {
       resolve.value = value;
@@ -81,6 +81,8 @@ class _SendCash2State extends State<SendCash2> {
           leading: InkWell(
             onTap: () {
               Get.back();
+              payOutcontroller.accountNo.toString() == "";
+              payOutcontroller.accountName.toString() == "";
             },
             child: const Icon(
               Icons.arrow_back_rounded, color: Colors.black,
@@ -253,39 +255,43 @@ class _SendCash2State extends State<SendCash2> {
                         Padding(
                           padding: const EdgeInsets.only(left: 5.0, right: 5),
                           child: Container(
-                            padding: const EdgeInsets.all(12),
+                            padding: const EdgeInsets.all(6.0),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
                                 border: Border.all(color: Colors.grey)),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Save recipient details',
-                                  style: GoogleFonts.poppins(
-                                    textStyle: const TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400,
-                                        color: Color(0xFF1D1D1D)),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Save recipient details',
+                                    style: GoogleFonts.poppins(
+                                      textStyle: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w400,
+                                          color: Color(0xFF1D1D1D)),
+                                    ),
                                   ),
-                                ),
-                                SizedBox(
-                                  width: 40,
-                                  height: 16,
-                                  child: CupertinoSwitch(
-                                    thumbColor: Colors.white,
-                                    value: isSwitched,
-                                    activeColor: Colors.black,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        isSwitched = value;
-                                        print(isSwitched);
-                                      });
-                                    },
+                                  SizedBox(
+                                    width: 40,
+                                    height: 16,
+                                    child: CupertinoSwitch(
+                                      thumbColor: Colors.white,
+                                      value: isSwitched,
+                                      activeColor: Colors.black,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          isSwitched = value;
+                                          print(isSwitched);
+                                        });
+                                      },
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),

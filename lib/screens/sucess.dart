@@ -67,7 +67,7 @@ class _SuccessScreenState extends State<SuccessScreen> {
                       ),
                       InkWell(
                           onTap: () {
-                            profileController.send();
+                            profileController.send(context);
                             // profileController.saveList(context);
                           },
                           child: const CustomOutlineButton(
