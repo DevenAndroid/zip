@@ -77,6 +77,7 @@ import '../screens/cabel_tv.dart';
 import '../screens/cabel_tv_screen.dart';
 import '../screens/card_details_screen.dart';
 import '../screens/card_sucess.dart';
+import '../screens/cashOut_1.dart';
 import '../screens/choose_bank_2.dart';
 import '../screens/contact_us_screen.dart';
 import '../screens/create_benificery_screen.dart';
@@ -305,6 +306,7 @@ class MyRouters {
   static var walletScreen1 = "/walletScreen1 ";
   static var cardSuccessScreen = "/cardSuccessScreen ";
   static var meterDetails = "/meterDetails ";
+  static var withdrawl1Cash = "/withdrawl1Cash ";
 
   static var route = [
     // GetPage(name: '/', page: () => ImageScreen()),
@@ -312,6 +314,7 @@ class MyRouters {
 
     GetPage(name: onBoardingScreen, page: () => const OnBoardingScreen()),
     GetPage(name: '/withdrawlCash', page: () => const WithdrawlCash()),
+    GetPage(name: '/withdrawl1Cash', page: () => const Withdrawl1Cash()),
     GetPage(name: '/walletScreen1', page: () => const WalletScreen1()),
     GetPage(name: '/cardSuccessScreen', page: () => const CardSuccessScreen()),
     GetPage(name: '/meterDetails', page: () => const MeterDetails()),

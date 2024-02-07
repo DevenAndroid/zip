@@ -160,6 +160,7 @@ class PayoutController extends GetxController {
       bank_name: controller.bankController1.text.trim(),
       destinationAddress: accountNo.text.trim(),
       firstName: accountName.text.trim(),
+      bank_code: controller.idController1.text.toString(),
       context: context,
     ).then((value) {
       saveBankDetails.value = value;
@@ -182,6 +183,7 @@ class PayoutController extends GetxController {
       bank_name: controller.bankController1.text.trim(),
       destinationAddress: accountNo.text.trim(),
       firstName: accountName.text.trim().toString(),
+      bank_code: controller.idController1.text.toString(),
       context: context,
     ).then((value) {
       saveBankDetails.value = value;

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:zip/routers/my_routers.dart';
+import 'package:zip/screens/cashOut_1.dart';
 import 'package:zip/widgets/common_button.dart';
 import 'package:zip/widgets/common_textfield.dart';
 
@@ -150,7 +151,7 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
                     const EdgeInsets.only(bottom: 20.0, left: 10, right: 10),
                 child: InkWell(
                   onTap: () {
-                    Get.toNamed(MyRouters.withdrawlCash);
+                    Get.to(()=> Withdrawl1Cash());
                   },
                   child: const CustomOutlineButton(
                     title: "Continue",

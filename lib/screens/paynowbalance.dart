@@ -38,24 +38,19 @@ class _PayNowBalanceState extends State<PayNowBalance> {
   Future CreatePayout() async {
     if (formKey4.currentState!.validate()) {
       payoutRepo(
-              amount: RegistorController.result4.toString(),
+              amount:  RegistorController.amount1Controller.text.trim(),
               context: context,
               key: "payouts",
-              bank_code: RegistorController.idController.text.trim(),
+              bank_code: data.bankCode.toString(),
               user_id: profileController.modal.value.data!.user!.id.toString(),
               accountHolderName: data.accountHolderName.toString(),
               accountNumber: data.destinationAddress.toString(),
               destinationCurrency: "NGN",
               about: "Pay Out",
-              customerReference: DateFormat.jm().format(DateTime.now()),
-// RegistorController.descriptionController.text.trim(),
-// destinationCurrencyController.text.trim() ,
+              customerReference: DateTime.now().millisecondsSinceEpoch.toString(),
               sourceCurrency: "NGN",
-              // sourceCurrencyController.text.trim(),
-              description: RegistorController.descriptionController.text.trim(),
-              // email:data.email.toString(),
-              firstName: data.firstName.toString(),
-              // lastName:data.lastName.toString() ,
+              description: RegistorController.descriptionController.text.trim().toString(),
+              firstName: data.bankName.toString(),
               paymentDestination: "bank_account",
               type: "individual",
               business: details.businessID)
@@ -348,7 +343,7 @@ class _PayNowBalanceState extends State<PayNowBalance> {
                         child: CommonTextfield(
                           readOnly: true,
                           obSecure: false,
-                          hintText: data.firstName,
+                          hintText: data.bankName,
                         ),
                       ),
                       SizedBox(

@@ -10,7 +10,7 @@ import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
 Future<ModelSaveBankDetails> saveBankRepo(
-    {destinationAddress, context, bank_name, firstName}) async {
+    {destinationAddress, context, bank_name, firstName,bank_code}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
@@ -18,6 +18,7 @@ Future<ModelSaveBankDetails> saveBankRepo(
   map['destinationAddress'] = destinationAddress;
   map['firstName'] = firstName;
   map['bank_name'] = bank_name;
+  map['bank_code'] = bank_code;
 
   http.Response response = await http.post(Uri.parse(ApiUrls.saveBankDetails),
       headers: await getAuthHeader(), body: jsonEncode(map));

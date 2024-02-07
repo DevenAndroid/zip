@@ -14,14 +14,14 @@ import '../repository/payout_repo.dart';
 import '../resourses/api_constant.dart';
 import '../widgets/common_button.dart';
 
-class WithdrawlCash extends StatefulWidget {
-  const WithdrawlCash({Key? key}) : super(key: key);
+class Withdrawl1Cash extends StatefulWidget {
+  const Withdrawl1Cash({Key? key}) : super(key: key);
 
   @override
-  State<WithdrawlCash> createState() => _WithdrawlCashState();
+  State<Withdrawl1Cash> createState() => _Withdrawl1CashState();
 }
 
-class _WithdrawlCashState extends State<WithdrawlCash> {
+class _Withdrawl1CashState extends State<Withdrawl1Cash> {
   final profileController = Get.put(ProfileController());
   final controller = Get.put(registerController());
   final payOutcontroller = Get.put(PayoutController());
@@ -30,29 +30,28 @@ class _WithdrawlCashState extends State<WithdrawlCash> {
     Rx<RxStatus> statusOfpayout = RxStatus.empty().obs;
     Rx<ModelPayout> payout = ModelPayout().obs;
     payoutRepo(
-            amount: profileController.amountController.text.toString().trim(),
-            context: context,
-            bank_code: bankCode.toString(),
-            user_id:
-                profileController.modal.value.data!.user!.id.toString().trim(),
-            key: "payouts",
-            accountHolderName:  firstName.toString().trim(),
-
-            accountNumber: accountNumber.toString(),
-            destinationCurrency: "NGN",
-            about: "Cash Out",
-            customerReference: DateTime.now().millisecondsSinceEpoch.toString(),
-            sourceCurrency: "NGN",
-            // sourceCurrencyController.text.trim(),
-            description: DateTime.now().millisecondsSinceEpoch.toString(),
-            // email:data.email.toString(),
-            firstName:bankName.toString(),
-
-
-            // lastName:data.lastName.toString() ,
-            paymentDestination: "bank_account",
-            type: "individual",
-            business: details.businessID)
+        amount: profileController.amountController.text.toString().trim(),
+        context: context,
+        bank_code:   controller.idController1.text.toString().trim(),
+        user_id:
+        profileController.modal.value.data!.user!.id.toString().trim(),
+        key: "payouts",
+        accountHolderName:
+        payOutcontroller.accountName.text.toString().trim(),
+        accountNumber:  payOutcontroller.accountNo.text.toString().trim(),
+        destinationCurrency: "NGN",
+        about: "Cash Out",
+        customerReference: DateTime.now().millisecondsSinceEpoch.toString(),
+        sourceCurrency: "NGN",
+        // sourceCurrencyController.text.trim(),
+        description: DateTime.now().millisecondsSinceEpoch.toString(),
+        // email:data.email.toString(),
+        firstName:controller.bankController1.text.toString().trim(),
+        // payOutcontroller.accountName.text.toString().trim(),
+        // lastName:data.lastName.toString() ,
+        paymentDestination: "bank_account",
+        type: "individual",
+        business: details.businessID)
         .then((value) {
       payout.value = value;
       if (value.success == true) {
@@ -71,10 +70,7 @@ class _WithdrawlCashState extends State<WithdrawlCash> {
       // showToast(value.message.toString());
     });
   }
-  String firstName = Get.arguments[0];
-  String accountNumber = Get.arguments[1];
-  String bankCode = Get.arguments[2];
-  String bankName = Get.arguments[3];
+
 
   @override
   Widget build(BuildContext context) {

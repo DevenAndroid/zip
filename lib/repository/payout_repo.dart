@@ -67,7 +67,7 @@ Future<ModelPayout> payoutRepo(
       },
       body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
-  log("Sign IN DATA${getAuthHeader()}");
+  // log("Sign IN DATA${getAuthHeader()}");
   // http.Response response = await http.post(Uri.parse(ApiUrls.loginUser),
   //     headers: await getAuthHeader(),body: jsonEncode(map) );
 
