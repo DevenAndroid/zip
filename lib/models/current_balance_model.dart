@@ -23,19 +23,29 @@ class CurrentBalanceModel {
 }
 
 class Data {
-  dynamic currentBalance;
+  double? currentBalance;
   Fee? fee;
   dynamic charges;
   Setting? setting;
+  bool? loanApplied;
+  bool? userCard;
 
-  Data({this.currentBalance, this.fee, this.charges, this.setting});
+  Data(
+      {this.currentBalance,
+      this.fee,
+      this.charges,
+      this.setting,
+      this.loanApplied,
+      this.userCard});
 
   Data.fromJson(Map<String, dynamic> json) {
     currentBalance = json['current_balance'];
     fee = json['fee'] != null ? new Fee.fromJson(json['fee']) : null;
     charges = json['charges'];
     setting =
-    json['setting'] != null ? new Setting.fromJson(json['setting']) : null;
+        json['setting'] != null ? new Setting.fromJson(json['setting']) : null;
+    loanApplied = json['loan_applied'];
+    userCard = json['user_card'];
   }
 
   Map<String, dynamic> toJson() {
@@ -48,25 +58,27 @@ class Data {
     if (this.setting != null) {
       data['setting'] = this.setting!.toJson();
     }
+    data['loan_applied'] = this.loanApplied;
+    data['user_card'] = this.userCard;
     return data;
   }
 }
 
 class Fee {
- dynamic payoutFee;
- dynamic cashoutFee;
- dynamic cashinFee;
- dynamic serviceFee;
- dynamic bridgeCardFee;
- dynamic fxRateFee;
+  dynamic payoutFee;
+  dynamic cashoutFee;
+  dynamic cashinFee;
+  dynamic serviceFee;
+  dynamic bridgeCardFee;
+  dynamic fxRateFee;
 
   Fee(
       {this.payoutFee,
-        this.cashoutFee,
-        this.cashinFee,
-        this.serviceFee,
-        this.bridgeCardFee,
-        this.fxRateFee});
+      this.cashoutFee,
+      this.cashinFee,
+      this.serviceFee,
+      this.bridgeCardFee,
+      this.fxRateFee});
 
   Fee.fromJson(Map<String, dynamic> json) {
     payoutFee = json['payout_fee'];
@@ -90,20 +102,20 @@ class Fee {
 }
 
 class Setting {
-  bool? hideBalance;
-  bool? enableSecurityLock;
-  bool? transactionPin;
-  bool? enableFingerprints;
-  bool? pushNotification;
-  bool? emailNotification;
+  dynamic hideBalance;
+  dynamic enableSecurityLock;
+  dynamic transactionPin;
+  dynamic enableFingerprints;
+  dynamic pushNotification;
+  dynamic emailNotification;
 
   Setting(
       {this.hideBalance,
-        this.enableSecurityLock,
-        this.transactionPin,
-        this.enableFingerprints,
-        this.pushNotification,
-        this.emailNotification});
+      this.enableSecurityLock,
+      this.transactionPin,
+      this.enableFingerprints,
+      this.pushNotification,
+      this.emailNotification});
 
   Setting.fromJson(Map<String, dynamic> json) {
     hideBalance = json['hide_balance'];

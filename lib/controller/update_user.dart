@@ -521,7 +521,10 @@ class registerController extends GetxController {
     updateContactRepo(
       cf_customer_id: uniqueIdentifier,
       mobile_number: profileController.mobileController.text.trim(),
-      cf_product_type: "Loan Application",
+      cf_product_type:
+          profileController.currentBalanceModel.value.data!.userCard == true
+              ? "New Customer;Loan Application;ZIP Virtual Card"
+              : "New Customer;Loan Application",
       id: profileController.saveIdController.text.trim(),
       context: context,
     ).then((value) {
@@ -541,7 +544,10 @@ class registerController extends GetxController {
     updateContactRepo(
       cf_customer_id: uniqueIdentifier,
       mobile_number: profileController.mobileController.text.trim(),
-      cf_product_type: "Virtual Card",
+      cf_product_type:
+          profileController.currentBalanceModel.value.data!.loanApplied == true
+              ? "New Customer;Loan Application;ZIP Virtual Card"
+              : "New Customer;ZIP Virtual Card",
       id: profileController.saveIdController.text.trim(),
       context: context,
     ).then((value) {
@@ -1177,7 +1183,7 @@ class registerController extends GetxController {
       log("response.body.....    ${value}");
       saveMail.value = value;
       if (value.status == true) {
-        print("link:"+link1.value.toString());
+        print("link:" + link1.value.toString());
         statusOfSave.value = RxStatus.success();
         Get.toNamed(
           MyRouters.sharePaymentLink,
@@ -1205,7 +1211,6 @@ class registerController extends GetxController {
       checkout.value = value;
       log(checkout.value.toString());
       if (value.status == true) {
-
         link1.value = value.data!.link;
         // saveEmails();
 
