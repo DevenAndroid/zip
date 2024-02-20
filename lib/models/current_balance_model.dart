@@ -23,7 +23,7 @@ class CurrentBalanceModel {
 }
 
 class Data {
-  double? currentBalance;
+  dynamic currentBalance;
   Fee? fee;
   dynamic charges;
   Setting? setting;

@@ -1,15 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:zip/routers/my_routers.dart';
-import 'package:zip/screens/update_profile_screen.dart';
 import 'package:zip/widgets/common_colour.dart';
 
 import '../controller/profile_controller.dart';
-import '../models/myprofile_model.dart';
 import '../repository/myprofile_repo.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -26,6 +23,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    profileController.getData();
     getData();
   }
 
@@ -40,15 +38,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String originalString =  profileController
-        .currentBalanceModel
-        .value
-        .data!
-        .currentBalance!
-        .toStringAsFixed(2);
-    double number = double.parse(originalString);
-
-    String formattedString = NumberFormat("#,###.##").format(number);
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Color(0xFFF3F0F7),
@@ -60,7 +49,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: Container(
             color: Colors.grey.shade300,
             height: 1.0,
-          ),),
+          ),
+        ),
         title: Text(
           "Profile",
           style: GoogleFonts.poppins(
@@ -88,6 +78,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
         // ],
       ),
       body: Obx(() {
+        // String formattedString = NumberFormat("#,###.##").format(number);
+        // String originalString = profileController
+        //     .currentBalanceModel.value.data!.currentBalance!.toStringAsFixed(2);
+        // double number = double.parse(originalString);
         if (profileController.modal.value.status == true &&
             profileController.currentBalanceModel.value.status == true) {
           return SingleChildScrollView(
@@ -113,9 +107,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           imageUrl: profileController
                               .modal.value.data!.user!.profileImage
                               .toString(),
-                          placeholder: (context, url) =>  const Icon(Icons.person, color: Colors.white,size: 40),
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.person,color: Colors.white,size: 40,),
+                          placeholder: (context, url) => const Icon(
+                              Icons.person,
+                              color: Colors.white,
+                              size: 40),
+                          errorWidget: (context, url, error) => const Icon(
+                            Icons.person,
+                            color: Colors.white,
+                            size: 40,
+                          ),
                         ),
                       ),
                     ),
@@ -180,7 +180,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       fontSize: 16,
                       fontWeight: FontWeight.w300),
                 ),
-             SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 InkWell(
                   onTap: () {
                     Get.toNamed(MyRouters.personalAddress);
@@ -188,7 +190,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Container(
-                     height: 60,
+                      height: 60,
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(10),
@@ -203,7 +205,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               spreadRadius: 0.0,
                             ), //BoxShadow
                           ]),
-                      child:        Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
@@ -227,7 +229,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   height: 15,
                                 ),
                                 Text(
-                                  formattedString,
+                                  NumberFormat('#,##0.00').format(
+                                      profileController.currentBalanceModel
+                                          .value.data!.currentBalance!),
                                   style: GoogleFonts.poppins(
                                       color: const Color(0xFF1D1D1D),
                                       fontSize: 20,
@@ -241,7 +245,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                 ),
-
 
                 // InkWell(
                 //   onTap: () {
@@ -331,9 +334,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Container(
-                  padding: EdgeInsets.all(3),
+                    padding: EdgeInsets.all(3),
                     decoration: BoxDecoration(
-
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
                         boxShadow: const [
@@ -351,7 +353,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(height: 9,),
+                        SizedBox(
+                          height: 9,
+                        ),
                         InkWell(
                           onTap: () {
                             Get.toNamed(MyRouters.personalScreen);
@@ -371,7 +375,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         fontSize: 15,
                                         fontWeight: FontWeight.w600),
                                   ),
-                                  SizedBox(height: 5,),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
                                   Text(
                                     "You can edit all your information here",
                                     style: GoogleFonts.poppins(
@@ -421,7 +427,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         fontSize: 15,
                                         fontWeight: FontWeight.w600),
                                   ),
-                                  SizedBox(height: 5,),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
                                   Text(
                                     "View Daily Foreign Exchange Rates here",
                                     style: GoogleFonts.poppins(
@@ -565,7 +573,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         fontSize: 15,
                                         fontWeight: FontWeight.w600),
                                   ),
-                                  SizedBox(height: 5,),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
                                   Text(
                                     "View previously used Bill payments",
                                     style: GoogleFonts.poppins(
@@ -615,7 +625,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         fontSize: 15,
                                         fontWeight: FontWeight.w600),
                                   ),
-                                  SizedBox(height: 5,),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
                                   Text(
                                     "Access your saved recipients",
                                     style: GoogleFonts.poppins(
@@ -745,7 +757,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         fontSize: 15,
                                         fontWeight: FontWeight.w600),
                                   ),
-                                  SizedBox(height: 5,),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
                                   Text(
                                     "Control your notification and security settings",
                                     style: GoogleFonts.poppins(
@@ -766,12 +780,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ],
                           ),
                         ),
-                        SizedBox(height: 13,),
+                        SizedBox(
+                          height: 13,
+                        ),
                       ],
                     ),
                   ),
                 ),
-
 
                 const SizedBox(
                   height: 130,

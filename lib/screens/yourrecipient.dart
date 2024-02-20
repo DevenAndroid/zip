@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:zip/models/delete_benificery_model.dart';
+import 'package:zip/repository/delete_benificery_repo.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 import 'package:zip/widgets/common_textfield.dart';
@@ -9,7 +11,9 @@ import 'package:zip/widgets/common_textfield.dart';
 import '../controller/payout_controller.dart';
 import '../models/model_beneficary_list.dart';
 import '../models/model_favorite_benificery.dart';
+import '../resourses/api_constant.dart';
 import '../widgets/circular_progressindicator.dart';
+import '../widgets/common_button.dart';
 import '../widgets/common_error_widget.dart';
 
 class YourRecipient extends StatefulWidget {
@@ -24,7 +28,8 @@ class _YourRecipientState extends State<YourRecipient>
   final payoutController = Get.put(PayoutController());
   final TextEditingController searchController = TextEditingController();
   final TextEditingController searchController1 = TextEditingController();
-
+  Rx<DeleteBenificeryModel> deleteBenificery = DeleteBenificeryModel().obs;
+  Rx<RxStatus> statusOfDelete = RxStatus.empty().obs;
   @override
   void initState() {
     // TODO: implement initState
@@ -192,44 +197,31 @@ class _YourRecipientState extends State<YourRecipient>
                               final item = data[index];
                               return Column(
                                 children: [
-                                  InkWell(
-                                    onTap: () async {
-                                      SharedPreferences pref =
-                                          await SharedPreferences.getInstance();
-                                      if (pref.getBool('TransistionPin') ==
-                                          true) {
-                                        Get.toNamed(MyRouters.beneficeryPin,
-                                            arguments: item);
-                                      } else {
-                                        Get.toNamed(
-                                          MyRouters.payNowBalance,
-                                          arguments: item,
-                                        );
-                                      }
-                                    },
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        const SizedBox(
-                                          width: 17,
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      const SizedBox(
+                                        width: 17,
+                                      ),
+                                      CircleAvatar(
+                                        backgroundColor: Colors.black,
+                                        maxRadius: 25,
+                                        child: Text(
+                                          item.firstName!
+                                              .toString()
+                                              .substring(0, 1),
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
                                         ),
-                                        CircleAvatar(
-                                          backgroundColor: Colors.black,
-                                          maxRadius: 25,
-                                          child: Text(
-                                            item.firstName!
-                                                .toString()
-                                                .substring(0, 1),
-                                            style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Column(
+                                      ),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Expanded(
+                                        flex: 4,
+                                        child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           mainAxisAlignment:
@@ -253,17 +245,196 @@ class _YourRecipientState extends State<YourRecipient>
                                             )
                                           ],
                                         ),
-                                        const Spacer(),
-                                        const Padding(
-                                          padding: EdgeInsets.only(
-                                              right: 10.0, top: 16),
-                                          child: Icon(
-                                            Icons.arrow_forward_ios,
-                                            size: 20,
-                                          ),
-                                        )
-                                      ],
-                                    ),
+                                      ),
+                                      const Spacer(),
+                                      InkWell(
+                                          onTap: () {
+                                            showDialog(
+                                              context: context,
+                                              builder: (ctx) => AlertDialog(
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10)),
+                                                icon: Icon(
+                                                  Icons.delete,
+                                                  color: Colors.black,
+                                                  size: 50,
+                                                ),
+                                                title: const Text(
+                                                  "Delete!",
+                                                  style: TextStyle(
+                                                      fontFamily: "Graphite",
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color: Color(0xFF262E39),
+                                                      fontSize: 26),
+                                                ),
+                                                content: const Text(
+                                                  "You want to delete your beneficiary",
+                                                  style: TextStyle(
+                                                      fontFamily: "Graphite",
+                                                      fontWeight:
+                                                          FontWeight.w300,
+                                                      color: Color(0xFF262E39),
+                                                      fontSize: 16),
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                                actions: <Widget>[
+                                                  Expanded(
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        SizedBox(
+                                                          width: 100,
+                                                          child:
+                                                              CustomOutlineButton(
+                                                            title: "No",
+                                                            onPressed: () {
+                                                              Get.back();
+                                                            },
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                          width: 20,
+                                                        ),
+                                                        SizedBox(
+                                                          width: 100,
+                                                          child:
+                                                              CustomOutlineButton(
+                                                            title: "Yes",
+                                                            onPressed: () {
+                                                              deleteBeneficiaryRepo(
+                                                                      context:
+                                                                          context,
+                                                                      beneficiary_id: item
+                                                                          .id
+                                                                          .toString())
+                                                                  .then(
+                                                                      (value) {
+                                                                deleteBenificery
+                                                                        .value =
+                                                                    value;
+                                                                if (value
+                                                                        .status ==
+                                                                    true) {
+                                                                  statusOfDelete
+                                                                          .value =
+                                                                      RxStatus
+                                                                          .success();
+                                                                  payoutController
+                                                                      .getDataList1();
+                                                                  payoutController
+                                                                      .getDataList2();
+                                                                  Get.back();
+                                                                  showToast(value
+                                                                      .message
+                                                                      .toString());
+                                                                  // getDataList();
+                                                                } else {
+                                                                  statusOfDelete
+                                                                          .value =
+                                                                      RxStatus
+                                                                          .success();
+                                                                  showToast(value
+                                                                      .message
+                                                                      .toString());
+                                                                }
+                                                                // showToast(value.message.toString());
+                                                              });
+                                                              // Get.to(() => BottomNavbar());
+                                                            },
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                          child: Container(
+                                              padding: EdgeInsets.all(5),
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(4),
+                                                  color: Colors.black,
+                                                  boxShadow: const [
+                                                    BoxShadow(
+                                                      color: Colors.black26,
+                                                      offset: Offset(
+                                                        0.5,
+                                                        0.5,
+                                                      ), //Offset
+                                                      blurRadius: 0.5,
+                                                      spreadRadius: 0.0,
+                                                    ), //BoxShadow
+                                                  ]),
+                                              child: Icon(
+                                                Icons.delete,
+                                                color: Colors.white,
+                                                size: 20,
+                                              ))),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      InkWell(
+                                          onTap: () async {
+                                            SharedPreferences pref =
+                                                await SharedPreferences
+                                                    .getInstance();
+                                            if (pref.getBool(
+                                                    'TransistionPin') ==
+                                                true) {
+                                              Get.toNamed(
+                                                  MyRouters.beneficeryPin,
+                                                  arguments: item);
+                                            } else {
+                                              Get.toNamed(
+                                                MyRouters.payNowBalance,
+                                                arguments: item,
+                                              );
+                                            }
+                                          },
+                                          child: Container(
+                                              padding: EdgeInsets.all(5),
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(4),
+                                                  color: Colors.black,
+                                                  boxShadow: const [
+                                                    BoxShadow(
+                                                      color: Colors.black26,
+                                                      offset: Offset(
+                                                        0.5,
+                                                        0.5,
+                                                      ), //Offset
+                                                      blurRadius: 0.5,
+                                                      spreadRadius: 0.0,
+                                                    ), //BoxShadow
+                                                  ]),
+                                              child: Icon(
+                                                Icons.remove_red_eye_outlined,
+                                                color: Colors.white,
+                                                size: 20,
+                                              ))),
+                                      SizedBox(
+                                        width: 10,
+                                      )
+                                      // const Padding(
+                                      //   padding: EdgeInsets.only(
+                                      //       right: 10.0, top: 16),
+                                      //   child: Icon(
+                                      //     Icons.arrow_forward_ios,
+                                      //     size: 20,
+                                      //   ),
+                                      // )
+                                    ],
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
@@ -377,46 +548,31 @@ class _YourRecipientState extends State<YourRecipient>
                               final item = data[index];
                               return Column(
                                 children: [
-                                  InkWell(
-                                    onTap: () async {
-                                      Get.toNamed(MyRouters.favourateBalance,
-                                          arguments: item);
-                                      // SharedPreferences pref =
-                                      // await SharedPreferences.getInstance();
-                                      // if (pref.getBool('TransistionPin') == true) {
-                                      //   Get.toNamed(MyRouters.beneficeryPin,
-                                      //       arguments: item);
-                                      // } else {
-                                      //   Get.toNamed(
-                                      //     MyRouters.payNowBalance,
-                                      //     arguments: item,
-                                      //   );
-                                      // }
-                                    },
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        const SizedBox(
-                                          width: 17,
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      const SizedBox(
+                                        width: 17,
+                                      ),
+                                      CircleAvatar(
+                                        backgroundColor: Colors.black,
+                                        maxRadius: 25,
+                                        child: Text(
+                                          item.firstName!
+                                              .toString()
+                                              .substring(0, 1),
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
                                         ),
-                                        CircleAvatar(
-                                          backgroundColor: Colors.black,
-                                          maxRadius: 25,
-                                          child: Text(
-                                            item.firstName!
-                                                .toString()
-                                                .substring(0, 1),
-                                            style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Column(
+                                      ),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Expanded(
+                                        flex: 4,
+                                        child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           mainAxisAlignment:
@@ -440,17 +596,176 @@ class _YourRecipientState extends State<YourRecipient>
                                             )
                                           ],
                                         ),
-                                        const Spacer(),
-                                        const Padding(
-                                          padding: EdgeInsets.only(
-                                              right: 10.0, top: 16),
-                                          child: Icon(
-                                            Icons.arrow_forward_ios,
-                                            size: 20,
-                                          ),
-                                        )
-                                      ],
-                                    ),
+                                      ),
+                                      const Spacer(),
+                                      InkWell(
+                                          onTap: () {
+                                            showDialog(
+                                              context: context,
+                                              builder: (ctx) => AlertDialog(
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10)),
+                                                icon: Icon(
+                                                  Icons.delete,
+                                                  color: Colors.black,
+                                                  size: 50,
+                                                ),
+                                                title: const Text(
+                                                  "Delete!",
+                                                  style: TextStyle(
+                                                      fontFamily: "Graphite",
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color: Color(0xFF262E39),
+                                                      fontSize: 26),
+                                                ),
+                                                content: const Text(
+                                                  "You want to delete your beneficiary",
+                                                  style: TextStyle(
+                                                      fontFamily: "Graphite",
+                                                      fontWeight:
+                                                          FontWeight.w300,
+                                                      color: Color(0xFF262E39),
+                                                      fontSize: 16),
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                                actions: <Widget>[
+                                                  Expanded(
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        SizedBox(
+                                                          width: 100,
+                                                          child:
+                                                              CustomOutlineButton(
+                                                            title: "No",
+                                                            onPressed: () {
+                                                              Get.back();
+                                                            },
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                          width: 20,
+                                                        ),
+                                                        SizedBox(
+                                                          width: 100,
+                                                          child:
+                                                              CustomOutlineButton(
+                                                            title: "Yes",
+                                                            onPressed: () {
+                                                              deleteBeneficiaryRepo(
+                                                                      context:
+                                                                          context,
+                                                                      beneficiary_id: item
+                                                                          .id
+                                                                          .toString())
+                                                                  .then(
+                                                                      (value) {
+                                                                deleteBenificery
+                                                                        .value =
+                                                                    value;
+                                                                if (value
+                                                                        .status ==
+                                                                    true) {
+                                                                  statusOfDelete
+                                                                          .value =
+                                                                      RxStatus
+                                                                          .success();
+                                                                  payoutController
+                                                                      .getDataList1();
+                                                                  payoutController
+                                                                      .getDataList2();
+                                                                  Get.back();
+                                                                  showToast(value
+                                                                      .message
+                                                                      .toString());
+                                                                  // getDataList();
+                                                                } else {
+                                                                  statusOfDelete
+                                                                          .value =
+                                                                      RxStatus
+                                                                          .success();
+                                                                  showToast(value
+                                                                      .message
+                                                                      .toString());
+                                                                }
+                                                                // showToast(value.message.toString());
+                                                              });
+                                                              // Get.to(() => BottomNavbar());
+                                                            },
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                          child: Container(
+                                              padding: EdgeInsets.all(5),
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(4),
+                                                  color: Colors.black,
+                                                  boxShadow: const [
+                                                    BoxShadow(
+                                                      color: Colors.black26,
+                                                      offset: Offset(
+                                                        0.5,
+                                                        0.5,
+                                                      ), //Offset
+                                                      blurRadius: 0.5,
+                                                      spreadRadius: 0.0,
+                                                    ), //BoxShadow
+                                                  ]),
+                                              child: Icon(
+                                                Icons.delete,
+                                                color: Colors.white,
+                                                size: 20,
+                                              ))),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      InkWell(
+                                          onTap: () async {
+                                            Get.toNamed(
+                                                MyRouters.favourateBalance,
+                                                arguments: item);
+                                          },
+                                          child: Container(
+                                              padding: EdgeInsets.all(5),
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(4),
+                                                  color: Colors.black,
+                                                  boxShadow: const [
+                                                    BoxShadow(
+                                                      color: Colors.black26,
+                                                      offset: Offset(
+                                                        0.5,
+                                                        0.5,
+                                                      ), //Offset
+                                                      blurRadius: 0.5,
+                                                      spreadRadius: 0.0,
+                                                    ), //BoxShadow
+                                                  ]),
+                                              child: Icon(
+                                                Icons.remove_red_eye_outlined,
+                                                color: Colors.white,
+                                                size: 20,
+                                              ))),
+                                      SizedBox(
+                                        width: 10,
+                                      )
+                                    ],
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),

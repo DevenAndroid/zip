@@ -107,7 +107,7 @@ class _LoanScreenState extends State<LoanScreen> {
                     Padding(
                       padding: const EdgeInsets.only(top: 4.0),
                       child: Text(
-                        "Monday in minutes. if eligible",
+                        "Money in minutes. if eligible",
                         style: GoogleFonts.poppins(
                             color: const Color(0xFF1D1D1D),
                             fontSize: 15,
