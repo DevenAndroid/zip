@@ -52,6 +52,7 @@ class _CreateRecipientsState extends State<CreateRecipients>
         profileController.zipUserController.text =
             (value.data!.id ?? "").toString();
         profileController.userId = value.data!.id.toString();
+        profileController.image = value.data!.profileImage.toString();
 
         print(value.data!.email.toString());
       } else {
@@ -115,10 +116,14 @@ class _CreateRecipientsState extends State<CreateRecipients>
       if (value.status == true) {
         statusOfSearch1.value = RxStatus.success();
         showToast(value.message.toString());
+        profileController.nameController.text =
+            "${value.data!.fname.toString()} " +
+                "${value.data!.lname.toString()}";
         email1Controller.text = (value.data!.email ?? "").toString();
         phoneController.text = (value.data!.phone ?? "").toString();
         ziptagController.text = (value.data!.zipTag ?? "").toString();
         profileController.userId = value.data!.id.toString();
+        profileController.image = value.data!.profileImage.toString();
 
         print(value.data!.email.toString());
       } else {

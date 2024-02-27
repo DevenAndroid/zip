@@ -32,7 +32,7 @@ class _LoanScreenState extends State<LoanScreen> {
                 Get.back();
               },
               child: const Padding(
-                padding: EdgeInsets.only(top: 15, left: 12.0),
+                padding: EdgeInsets.only(top: 18, left: 12.0),
                 child: Icon(Icons.arrow_back),
               ),
             ),
@@ -53,29 +53,26 @@ class _LoanScreenState extends State<LoanScreen> {
               height: 20,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 25.0, right: 13),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SvgPicture.asset("assets/images/right.svg"),
-                    const SizedBox(
-                      width: 15,
+              padding: const EdgeInsets.only(left: 25.0, right: 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SvgPicture.asset("assets/images/right.svg"),
+                  const SizedBox(
+                    width: 15,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4.0),
+                    child: Text(
+                      "Apply in a few taps",
+                      style: GoogleFonts.poppins(
+                          color: const Color(0xFF1D1D1D),
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 4.0),
-                      child: Text(
-                        "Apply in a few taps",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    )
-                  ],
-                ),
+                  )
+                ],
               ),
             ),
             const SizedBox(
@@ -83,39 +80,36 @@ class _LoanScreenState extends State<LoanScreen> {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 25.0, right: 13),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SvgPicture.asset(
-                      'assets/images/watch.svg',
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SvgPicture.asset(
+                    'assets/images/watch.svg',
+                  ),
+                  // Container(
+                  //   padding: EdgeInsets.all(3),
+                  //   decoration: BoxDecoration(
+                  //     shape: BoxShape.circle,
+                  //     color: AppTheme.secondaryColor,
+                  //
+                  //   ),
+                  //   child:Icon(Icons.clock,color: Colors.white,)
+                  // ),
+                  const SizedBox(
+                    width: 15,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4.0),
+                    child: Text(
+                      "Money in minutes. if eligible",
+                      style: GoogleFonts.poppins(
+                          color: const Color(0xFF1D1D1D),
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500),
                     ),
-                    // Container(
-                    //   padding: EdgeInsets.all(3),
-                    //   decoration: BoxDecoration(
-                    //     shape: BoxShape.circle,
-                    //     color: AppTheme.secondaryColor,
-                    //
-                    //   ),
-                    //   child:Icon(Icons.clock,color: Colors.white,)
-                    // ),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 4.0),
-                      child: Text(
-                        "Money in minutes. if eligible",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    )
-                  ],
-                ),
+                  )
+                ],
               ),
             ),
             const SizedBox(
@@ -123,30 +117,27 @@ class _LoanScreenState extends State<LoanScreen> {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 25.0, right: 13),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SvgPicture.asset(
-                      'assets/images/calender.svg',
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SvgPicture.asset(
+                    'assets/images/calender.svg',
+                  ),
+                  const SizedBox(
+                    width: 15,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4.0),
+                    child: Text(
+                      "Flexible payment terms",
+                      style: GoogleFonts.poppins(
+                          color: const Color(0xFF1D1D1D),
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500),
                     ),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 4.0),
-                      child: Text(
-                        "Flexible payment terms",
-                        style: GoogleFonts.poppins(
-                            color: const Color(0xFF1D1D1D),
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    )
-                  ],
-                ),
+                  )
+                ],
               ),
             ),
             const SizedBox(
@@ -260,25 +251,32 @@ class _LoanScreenState extends State<LoanScreen> {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 1.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Image.asset(
-                        "assets/images/lck.png",
-                        color: Colors.black,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 4.0),
-                        child: Text(
-                          "   We will check for your credit worthiness",
-                          style: GoogleFonts.poppins(
-                              color: const Color(0xFF1D1D1D),
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500),
+                  child: Expanded(
+                    child: Row(
+                      // mainAxisAlignment: MainAxisAlignment.start,
+                      // crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Image.asset(
+                          "assets/images/lck.png",
+                          color: Colors.black,
                         ),
-                      ),
-                    ],
+                        SizedBox(width: 10,),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 4.0),
+                            child: Expanded(
+                              child: Text(
+                                "We will check for your credit worthiness",
+                                style: GoogleFonts.poppins(
+                                    color: const Color(0xFF1D1D1D),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

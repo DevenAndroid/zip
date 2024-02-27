@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -179,28 +180,17 @@ class _PayNow2State extends State<PayNow2> {
                           ],
                         ),
                       ),
+                      SizedBox(
+                        height: 10,
+                      ),
                       Center(
-                        child: Stack(
-                          children: [
-                            Center(
-                              child: Container(
-                                padding: const EdgeInsets.all(2),
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.white,
-                                ),
-                                margin: EdgeInsets.only(
-                                    right: size.width * .01,
-                                    left: size.width * .015),
-                                child: CircleAvatar(
-                                  radius: size.height * .07,
-                                  backgroundImage: const NetworkImage(
-                                      'https://www.pngitem.com/pimgs/m/128-1284293_marina-circle-girl-picture-in-circle-png-transparent.png'),
-                                ),
-                              ),
-                            ),
-                          ],
+                        child: SvgPicture.asset(
+                          "assets/images/logo.svg",
+                          height: 100,
                         ),
+                      ),
+                      SizedBox(
+                        height: 10,
                       ),
                       Center(
                         child: Text(

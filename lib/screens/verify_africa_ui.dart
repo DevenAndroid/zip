@@ -141,12 +141,14 @@ class _VerifyAfricaScreenState extends State<VerifyAfricaScreen> {
                                       const SizedBox(
                                         width: 20,
                                       ),
-                                      Text(
-                                        "Please make sure the image is clear",
-                                        style: GoogleFonts.poppins(
-                                            color: const Color(0xFF1D1D1D),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400),
+                                      Expanded(
+                                        child: Text(
+                                          "Please make sure the image is clear",
+                                          style: GoogleFonts.poppins(
+                                              color: const Color(0xFF1D1D1D),
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w400),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -168,12 +170,14 @@ class _VerifyAfricaScreenState extends State<VerifyAfricaScreen> {
                                       const SizedBox(
                                         width: 20,
                                       ),
-                                      Text(
-                                        "Please look directly into the camera\nand stand still",
-                                        style: GoogleFonts.poppins(
-                                            color: const Color(0xFF1D1D1D),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400),
+                                      Expanded(
+                                        child: Text(
+                                          "Please look directly into the camera and stand still",
+                                          style: GoogleFonts.poppins(
+                                              color: const Color(0xFF1D1D1D),
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w400),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -195,12 +199,14 @@ class _VerifyAfricaScreenState extends State<VerifyAfricaScreen> {
                                       const SizedBox(
                                         width: 20,
                                       ),
-                                      Text(
-                                        "Please make sure the background is\nwhite or a plain colour",
-                                        style: GoogleFonts.poppins(
-                                            color: const Color(0xFF1D1D1D),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400),
+                                      Expanded(
+                                        child: Text(
+                                          "Please make sure the background is white or a plain colour",
+                                          style: GoogleFonts.poppins(
+                                              color: const Color(0xFF1D1D1D),
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w400),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -222,12 +228,14 @@ class _VerifyAfricaScreenState extends State<VerifyAfricaScreen> {
                                       const SizedBox(
                                         width: 20,
                                       ),
-                                      Text(
-                                        "Remove any eye glasses ",
-                                        style: GoogleFonts.poppins(
-                                            color: const Color(0xFF1D1D1D),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400),
+                                      Expanded(
+                                        child: Text(
+                                          "Remove any eye glasses ",
+                                          style: GoogleFonts.poppins(
+                                              color: const Color(0xFF1D1D1D),
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w400),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -249,12 +257,14 @@ class _VerifyAfricaScreenState extends State<VerifyAfricaScreen> {
                                       const SizedBox(
                                         width: 20,
                                       ),
-                                      Text(
-                                        "Remove any face caps, head coverings,\nhats or face masks",
-                                        style: GoogleFonts.poppins(
-                                            color: const Color(0xFF1D1D1D),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400),
+                                      Expanded(
+                                        child: Text(
+                                          "Remove any face caps, head coverings,hats or face masks",
+                                          style: GoogleFonts.poppins(
+                                              color: const Color(0xFF1D1D1D),
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w400),
+                                        ),
                                       ),
                                     ],
                                   ),

@@ -213,7 +213,7 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
                                 children: [
                                   Container(
                                     padding: const EdgeInsets.all(8),
-                                    height: 70,
+                                    height: 80,
                                     decoration: BoxDecoration(
                                         color: Colors.white,
                                         borderRadius: BorderRadius.circular(10),
@@ -268,92 +268,107 @@ class _CurrencyConvertState extends State<CurrencyConvert> {
                                         const SizedBox(
                                           width: 20,
                                         ),
-                                        Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              allConvert
-                                                  .value
-                                                  .movementInfo![index]
-                                                  .currency_name
-                                                  .toString(),
-                                              style: GoogleFonts.poppins(
-                                                  color:
-                                                      const Color(0xFF1D1D1D),
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                            if (allConvert
+                                        Expanded(
+                                          flex: 5,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              SizedBox(
+                                                height: 5,
+                                              ),
+                                              Text(
+                                                allConvert
                                                     .value
                                                     .movementInfo![index]
-                                                    .currency_name ==
-                                                "EUR")
-                                              Text(
-                                                "Euro",
+                                                    .currency_name
+                                                    .toString(),
                                                 style: GoogleFonts.poppins(
                                                     color:
-                                                        const Color(0xFF777777),
-                                                    fontSize: 14,
+                                                        const Color(0xFF1D1D1D),
+                                                    fontSize: 20,
                                                     fontWeight:
-                                                        FontWeight.w400),
+                                                        FontWeight.w500),
                                               ),
-                                            if (allConvert
-                                                    .value
-                                                    .movementInfo![index]
-                                                    .currency_name ==
-                                                "GBP")
-                                              Text(
-                                                "British Pounds ",
-                                                style: GoogleFonts.poppins(
-                                                    color:
-                                                        const Color(0xFF777777),
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                              ),
-                                            if (allConvert
-                                                    .value
-                                                    .movementInfo![index]
-                                                    .currency_name ==
-                                                "USD")
-                                              Text(
-                                                "US Dollar",
-                                                style: GoogleFonts.poppins(
-                                                    color:
-                                                        const Color(0xFF777777),
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                              ),
-                                          ],
+                                              if (allConvert
+                                                      .value
+                                                      .movementInfo![index]
+                                                      .currency_name ==
+                                                  "EUR")
+                                                Text(
+                                                  "Euro",
+                                                  style: GoogleFonts.poppins(
+                                                      color: const Color(
+                                                          0xFF777777),
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                ),
+                                              if (allConvert
+                                                      .value
+                                                      .movementInfo![index]
+                                                      .currency_name ==
+                                                  "GBP")
+                                                Text(
+                                                  "British Pounds ",
+                                                  style: GoogleFonts.poppins(
+                                                      color: const Color(
+                                                          0xFF777777),
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                ),
+                                              if (allConvert
+                                                      .value
+                                                      .movementInfo![index]
+                                                      .currency_name ==
+                                                  "USD")
+                                                Text(
+                                                  "US Dollar",
+                                                  style: GoogleFonts.poppins(
+                                                      color: const Color(
+                                                          0xFF777777),
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                ),
+                                            ],
+                                          ),
                                         ),
                                         const Spacer(),
-                                        Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.end,
-                                          children: [
-                                            Text(
-                                              "${result}.00" + " NGN ",
-                                              style: GoogleFonts.poppins(
-                                                  color:
-                                                      const Color(0xFF1D1D1D),
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w400),
-                                            ),
-                                            Text(
-                                              "Naira ",
-                                              style: GoogleFonts.poppins(
-                                                  color:
-                                                      const Color(0xFF777777),
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w400),
-                                            ),
-                                          ],
+                                        Expanded(
+                                          flex: 5,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.end,
+                                            children: [
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Text(
+                                                "${result}.00" + " NGN ",
+                                                style: GoogleFonts.poppins(
+                                                    color:
+                                                        const Color(0xFF1D1D1D),
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                              ),
+                                              Text(
+                                                "Naira ",
+                                                style: GoogleFonts.poppins(
+                                                    color:
+                                                        const Color(0xFF777777),
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                         Image.asset(
                                           "assets/images/ng.png",

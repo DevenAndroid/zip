@@ -53,6 +53,10 @@ class _RequestMoney2State extends State<RequestMoney2>
             (value.data!.email ?? "").toString();
         // profileController.zipUserController.text = (value.data!.id??"").toString()
         profileController.userId = value.data!.id.toString();
+        profileController.image = value.data!.profileImage.toString();
+        print(
+          profileController.image.toString(),
+        );
       } else {
         statusOfSearch.value = RxStatus.error();
         showToast(value.message.toString());
@@ -83,12 +87,18 @@ class _RequestMoney2State extends State<RequestMoney2>
       if (value.status == true) {
         statusOfSearch1.value = RxStatus.success();
         showToast(value.message.toString());
+        profileController.requestNameController.text =
+            "${value.data!.fname.toString()} ${value.data!.lname}";
         email1Controller.text = (value.data!.email ?? "").toString();
         phoneController.text = (value.data!.phone ?? "").toString();
         ziptagController.text = (value.data!.zipTag ?? "").toString();
         profileController.userId = value.data!.id.toString();
+        profileController.image = value.data!.profileImage.toString();
 
         print(value.data!.email.toString());
+        print(
+          profileController.image.toString(),
+        );
       } else {
         statusOfSearch1.value = RxStatus.error();
         showToast(value.message.toString());
@@ -104,7 +114,7 @@ class _RequestMoney2State extends State<RequestMoney2>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
     _appBarTitle =
         'Enter your mobile number to continue'; // Set the initial title
     _tabController.addListener(_updateAppBarTitle);
@@ -186,6 +196,9 @@ class _RequestMoney2State extends State<RequestMoney2>
             children: [
               InkWell(
                   onTap: () {
+                    profileController.requestZiptag1Controller.text = "";
+                    profileController.requestNameController.text = "";
+                    profileController.requestPhoneController.text = "";
                     email1Controller.text = "";
                     phoneController.text = "";
                     ziptagController.text = "";
@@ -197,7 +210,7 @@ class _RequestMoney2State extends State<RequestMoney2>
               InkWell(
                 onTap: () {
                   // if (formKey41.currentState!.validate()) {
-                    Get.toNamed(MyRouters.yourBalanceScreen);
+                  Get.toNamed(MyRouters.yourBalanceScreen);
                   // }
                 },
                 child: const CustomOutlineButton(

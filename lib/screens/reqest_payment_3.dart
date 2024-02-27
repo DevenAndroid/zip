@@ -90,7 +90,7 @@ class _RequestPayment3State extends State<RequestPayment3> {
                               height: 30,
                             ),
                             Text(
-                              "Share these account details who request for money ",
+                              "Make a bank transfer from another account using these details",
                               style: GoogleFonts.poppins(
                                   color: const Color(0xFF565656),
                                   fontSize: 16,
@@ -235,7 +235,7 @@ class _RequestPayment3State extends State<RequestPayment3> {
                                             height: 5,
                                           ),
                                           Text(
-                                            "pay your salary into your Manzo account\n and say goodbye to individual transfers.",
+                                            "You can use your ZIP Virtual Bank\nAccount just like any other regular\nbank account.",
                                             style: GoogleFonts.poppins(
                                                 color: const Color(0xFF343434),
                                                 fontSize: 12,

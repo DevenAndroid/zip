@@ -314,6 +314,9 @@ class _YourRecipientState extends State<YourRecipient>
                                                                           context,
                                                                       beneficiary_id: item
                                                                           .id
+                                                                          .toString(),
+                                                                      accountNumber: item
+                                                                          .destinationAddress
                                                                           .toString())
                                                                   .then(
                                                                       (value) {
@@ -665,6 +668,9 @@ class _YourRecipientState extends State<YourRecipient>
                                                                           context,
                                                                       beneficiary_id: item
                                                                           .id
+                                                                          .toString(),
+                                                                      accountNumber: item
+                                                                          .destinationAddress
                                                                           .toString())
                                                                   .then(
                                                                       (value) {

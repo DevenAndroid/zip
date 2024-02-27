@@ -28,14 +28,21 @@ class ModelFetchSaveBankDetails {
 }
 
 class Data {
+  dynamic id;
   dynamic bankCode;
   dynamic bankName;
   dynamic destinationAddress;
   dynamic firstName;
 
-  Data({this.bankCode, this.bankName, this.destinationAddress, this.firstName});
+  Data(
+      {this.id,
+        this.bankCode,
+        this.bankName,
+        this.destinationAddress,
+        this.firstName});
 
   Data.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     bankCode = json['bank_code'];
     bankName = json['bank_name'];
     destinationAddress = json['destinationAddress'];
@@ -44,6 +51,7 @@ class Data {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
     data['bank_code'] = this.bankCode;
     data['bank_name'] = this.bankName;
     data['destinationAddress'] = this.destinationAddress;

@@ -50,7 +50,6 @@ import 'package:zip/screens/your_balance_screen.dart';
 import 'package:zip/screens/yourrecipient.dart';
 import 'package:zip/screens/zipTag)_screen.dart';
 
-import '../main.dart';
 import '../screens/Cardlimit.dart';
 import '../screens/add_fund_card_screen.dart';
 import '../screens/add_fund_exchange.dart';
@@ -96,7 +95,6 @@ import '../screens/forgot_email.dart';
 import '../screens/forgot_otp.dart';
 import '../screens/freshchat.dart';
 import '../screens/fund_issuing_wallet.dart';
-import '../screens/image.dart';
 import '../screens/internet_screen.dart';
 import '../screens/limit_screen.dart';
 import '../screens/list_biller_screen.dart';

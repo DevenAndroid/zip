@@ -16,6 +16,7 @@ import '../repository/delete_user_repo.dart';
 import '../repository/signout_repo.dart';
 import '../resourses/api_constant.dart';
 import '../routers/my_routers.dart';
+import '../widgets/common_button.dart';
 
 class Setting extends StatefulWidget {
   const Setting({Key? key}) : super(key: key);
@@ -324,30 +325,34 @@ class _SettingState extends State<Setting> {
                               height: 12,
                             ),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 const SizedBox(
                                   width: 30,
                                 ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Hide Balance",
-                                      style: GoogleFonts.poppins(
-                                          color: const Color(0xFF1D1D1D),
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                    Text(
-                                      "Hide your balance on the home screen",
-                                      style: GoogleFonts.poppins(
-                                          color: const Color(0xFF1D1D1D),
-                                          fontSize: 9,
-                                          fontWeight: FontWeight.w300),
-                                    ),
-                                  ],
+                                Expanded(
+                                  flex: 5,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Hide Balance",
+                                        style: GoogleFonts.poppins(
+                                            color: const Color(0xFF1D1D1D),
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                      Text(
+                                        "Hide your balance on the home screen",
+                                        style: GoogleFonts.poppins(
+                                            color: const Color(0xFF1D1D1D),
+                                            fontSize: 9,
+                                            fontWeight: FontWeight.w300),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                const Spacer(),
                                 CupertinoSwitch(
                                   value:
                                       modalGetSetting.value.data!.hideBalance!,
@@ -376,37 +381,42 @@ class _SettingState extends State<Setting> {
                               height: 12,
                             ),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 const SizedBox(
                                   width: 30,
                                 ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    InkWell(
-                                      onTap: () async {
-                                        SharedPreferences pref =
-                                            await SharedPreferences
-                                                .getInstance();
-                                      },
-                                      child: Text(
-                                        "Enable Security Lock",
+                                Expanded(
+                                  flex: 5,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      InkWell(
+                                        onTap: () async {
+                                          SharedPreferences pref =
+                                              await SharedPreferences
+                                                  .getInstance();
+                                        },
+                                        child: Text(
+                                          "Enable Security Lock",
+                                          style: GoogleFonts.poppins(
+                                              color: const Color(0xFF1D1D1D),
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                      ),
+                                      Text(
+                                        "Will require your PIN when you close the app",
                                         style: GoogleFonts.poppins(
                                             color: const Color(0xFF1D1D1D),
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.w400),
+                                            fontSize: 9,
+                                            fontWeight: FontWeight.w300),
                                       ),
-                                    ),
-                                    Text(
-                                      "Will require your PIN when you close the app",
-                                      style: GoogleFonts.poppins(
-                                          color: const Color(0xFF1D1D1D),
-                                          fontSize: 9,
-                                          fontWeight: FontWeight.w300),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                                const Spacer(),
+                                // const Spacer(),
                                 CupertinoSwitch(
                                   value: modalGetSetting
                                       .value.data!.enableSecurityLock!,
@@ -436,37 +446,41 @@ class _SettingState extends State<Setting> {
                               height: 12,
                             ),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 const SizedBox(
                                   width: 30,
                                 ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    InkWell(
-                                      onTap: () async {
-                                        SharedPreferences pref =
-                                            await SharedPreferences
-                                                .getInstance();
-                                      },
-                                      child: Text(
-                                        "Transaction PIN",
+                                Expanded(
+                                  flex: 5,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      InkWell(
+                                        onTap: () async {
+                                          SharedPreferences pref =
+                                              await SharedPreferences
+                                                  .getInstance();
+                                        },
+                                        child: Text(
+                                          "Transaction PIN",
+                                          style: GoogleFonts.poppins(
+                                              color: const Color(0xFF1D1D1D),
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                      ),
+                                      Text(
+                                        "Will require your PIN before each transaction",
                                         style: GoogleFonts.poppins(
                                             color: const Color(0xFF1D1D1D),
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.w400),
+                                            fontSize: 9,
+                                            fontWeight: FontWeight.w300),
                                       ),
-                                    ),
-                                    Text(
-                                      "Will require your PIN before each transaction",
-                                      style: GoogleFonts.poppins(
-                                          color: const Color(0xFF1D1D1D),
-                                          fontSize: 9,
-                                          fontWeight: FontWeight.w300),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                                const Spacer(),
                                 CupertinoSwitch(
                                   value: modalGetSetting
                                       .value.data!.transactionPin!,
@@ -496,35 +510,39 @@ class _SettingState extends State<Setting> {
                               height: 12,
                             ),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 const SizedBox(
                                   width: 30,
                                 ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Enable Fingerprints",
-                                      style: GoogleFonts.poppins(
-                                          color: const Color(0xFF1D1D1D),
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        authenticate();
-                                      },
-                                      child: Text(
-                                        "Control which devices have access to your account",
+                                Expanded(
+                                  flex: 5,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Enable Fingerprints",
                                         style: GoogleFonts.poppins(
                                             color: const Color(0xFF1D1D1D),
-                                            fontSize: 9,
-                                            fontWeight: FontWeight.w300),
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w400),
                                       ),
-                                    ),
-                                  ],
+                                      InkWell(
+                                        onTap: () {
+                                          authenticate();
+                                        },
+                                        child: Text(
+                                          "Control which devices have access to your account",
+                                          style: GoogleFonts.poppins(
+                                              color: const Color(0xFF1D1D1D),
+                                              fontSize: 9,
+                                              fontWeight: FontWeight.w300),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                const Spacer(),
                                 CupertinoSwitch(
                                   value: modalGetSetting
                                       .value.data!.enableFingerprints!,
@@ -558,31 +576,35 @@ class _SettingState extends State<Setting> {
                                 Get.toNamed(MyRouters.sendOtpForPinScreen);
                               },
                               child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   const SizedBox(
                                     width: 30,
                                   ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Change ZIP PIN",
-                                        style: GoogleFonts.poppins(
-                                            color: const Color(0xFF1D1D1D),
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                      Text(
-                                        "Change your ZIP PIN and set new one",
-                                        style: GoogleFonts.poppins(
-                                            color: const Color(0xFF1D1D1D),
-                                            fontSize: 9,
-                                            fontWeight: FontWeight.w300),
-                                      ),
-                                    ],
+                                  Expanded(
+                                    flex: 5,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Change ZIP PIN",
+                                          style: GoogleFonts.poppins(
+                                              color: const Color(0xFF1D1D1D),
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                        Text(
+                                          "Change your ZIP PIN and set new one",
+                                          style: GoogleFonts.poppins(
+                                              color: const Color(0xFF1D1D1D),
+                                              fontSize: 9,
+                                              fontWeight: FontWeight.w300),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  const Spacer(),
                                   const Icon(
                                     Icons.arrow_forward_ios,
                                     size: 15,
@@ -689,7 +711,70 @@ class _SettingState extends State<Setting> {
                             children: [
                               InkWell(
                                 onTap: () {
-                                  signOut();
+                                  showDialog(
+                                    context: context,
+                                    builder: (ctx) => AlertDialog(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      icon: Icon(
+                                        Icons.exit_to_app,
+                                        color: Colors.black,
+                                        size: 50,
+                                      ),
+                                      title: const Text(
+                                        "Logout!",
+                                        style: TextStyle(
+                                            fontFamily: "Graphite",
+                                            fontWeight: FontWeight.w500,
+                                            color: Color(0xFF262E39),
+                                            fontSize: 26),
+                                      ),
+                                      content: const Text(
+                                        "You want to logout from app ",
+                                        style: TextStyle(
+                                            fontFamily: "Graphite",
+                                            fontWeight: FontWeight.w300,
+                                            color: Color(0xFF262E39),
+                                            fontSize: 16),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      actions: <Widget>[
+                                        Expanded(
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              SizedBox(
+                                                width: 100,
+                                                child: CustomOutlineButton(
+                                                  title: "No",
+                                                  onPressed: () {
+                                                    Get.back();
+                                                  },
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: 20,
+                                              ),
+                                              SizedBox(
+                                                width: 100,
+                                                child: CustomOutlineButton(
+                                                  title: "Yes",
+                                                  onPressed: () {
+                                                    signOut();
+                                                    // Get.to(() => BottomNavbar());
+                                                  },
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.only(left: 18.0),
@@ -724,10 +809,73 @@ class _SettingState extends State<Setting> {
                                 ), //BoxShadow
                               ]),
                           child: Padding(
-                            padding: const EdgeInsets.only(left: 29),
+                            padding: const EdgeInsets.only(left: 20),
                             child: InkWell(
                               onTap: () {
-                                deleteAccount();
+                                showDialog(
+                                  context: context,
+                                  builder: (ctx) => AlertDialog(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    icon: Icon(
+                                      Icons.delete,
+                                      color: Colors.black,
+                                      size: 50,
+                                    ),
+                                    title: const Text(
+                                      "Delete !",
+                                      style: TextStyle(
+                                          fontFamily: "Graphite",
+                                          fontWeight: FontWeight.w500,
+                                          color: Color(0xFF262E39),
+                                          fontSize: 26),
+                                    ),
+                                    content: const Text(
+                                      "You want to delete account",
+                                      style: TextStyle(
+                                          fontFamily: "Graphite",
+                                          fontWeight: FontWeight.w300,
+                                          color: Color(0xFF262E39),
+                                          fontSize: 16),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    actions: <Widget>[
+                                      Expanded(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            SizedBox(
+                                              width: 100,
+                                              child: CustomOutlineButton(
+                                                title: "No",
+                                                onPressed: () {
+                                                  Get.back();
+                                                },
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 20,
+                                            ),
+                                            SizedBox(
+                                              width: 100,
+                                              child: CustomOutlineButton(
+                                                title: "Yes",
+                                                onPressed: () {
+                                                  deleteAccount();
+                                                  // Get.to(() => BottomNavbar());
+                                                },
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
                               },
                               child: Row(
                                 children: [

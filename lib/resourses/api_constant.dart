@@ -16,6 +16,8 @@ class ApiUrls {
   static const String resetPassword = "${apiBaseUrl}reset-password";
   static const String bridgeCard = "${apiBaseUrl}bridge-card";
   static const String deleteBeneficiary = "${apiBaseUrl}delete-beneficiary";
+  static const String deleteBank = "${apiBaseUrl}delete-bank-account";
+  static const String insertErrorLog = "${apiBaseUrl}insert-error-log";
   static const String applyLoan = "${apiBaseUrl}apply-loan";
   static const String saveCardInfo = "${apiBaseUrl}save-card-info";
   static const String seveRequestMail = "${apiBaseUrl}send-email-globle";

@@ -11,7 +11,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../resourses/api_constant.dart';
-import '../routers/my_routers.dart';
 import '../widgets/common_colour.dart';
 
 class SupportScreen extends StatefulWidget {
@@ -485,8 +484,14 @@ class _SupportScreenState extends State<SupportScreen> {
                     height: 10,
                   ),
                   InkWell(
-                    onTap: () {
-                      Get.toNamed(MyRouters.fAQScreens);
+                    onTap: () async {
+                      try {
+                        await launch(
+                            "https://support.usezipcash.com/support/home");
+                      } catch (e) {
+                        print('Error launching URL: $e');
+                      }
+                      // Get.toNamed(MyRouters.fAQScreens);
                     },
                     child: Row(
                       children: [

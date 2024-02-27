@@ -166,7 +166,10 @@ class PayoutController extends GetxController {
       saveBankDetails.value = value;
       if (value.status == true) {
         statusOfSaveDetails.value = RxStatus.success();
-
+        accountNo.text = "";
+        controller.bankController1.text = "";
+        accountName.text = "";
+        controller.idController1.text = "";
         Get.toNamed(MyRouters.sendCashYourBalance);
 
         showToast(value.message.toString());
@@ -189,7 +192,10 @@ class PayoutController extends GetxController {
       saveBankDetails.value = value;
       if (value.status == true) {
         statusOfSaveDetails.value = RxStatus.success();
-
+        controller.idController1.text == "";
+        accountName.text == "";
+        accountNo.text == "";
+        controller.bankController1.text == "";
         Get.toNamed(MyRouters.success3Screen);
 
         showToast(value.message.toString());

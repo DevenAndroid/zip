@@ -665,27 +665,35 @@ class _WalletScreen1State extends State<WalletScreen1> {
                                     const SizedBox(
                                       width: 10,
                                     ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'Get your Virtual Card',
-                                          style: GoogleFonts.poppins(
-                                              color: const Color(0xff1D1D1D),
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                        Text(
-                                          'Rem nemo rerum sint dolor quae repellat.',
-                                          style: GoogleFonts.poppins(
-                                              color: const Color(0xff1D1D1D),
-                                              fontSize: 10,
-                                              fontWeight: FontWeight.w300),
-                                        )
-                                      ],
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          Text(
+                                            'Get your Virtual Card',
+                                            style: GoogleFonts.poppins(
+                                                color: const Color(0xff1D1D1D),
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              'Rem nemo rerum sint dolor quae repellat.',
+                                              style: GoogleFonts.poppins(
+                                                  color:
+                                                      const Color(0xff1D1D1D),
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.w300),
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     )
                                   ],
                                 ),
@@ -814,7 +822,7 @@ class _WalletScreen1State extends State<WalletScreen1> {
                                       if (controller1.currentBalanceModel.value
                                               .data!.currentBalance! >
                                           controller1.currentBalanceModel.value
-                                              .data!.fee!.bridgeCardFee!) {
+                                              .data!.convertedFees!) {
                                         controller1.create(context);
                                       } else {
                                         showToast(
@@ -830,9 +838,9 @@ class _WalletScreen1State extends State<WalletScreen1> {
                                 : InkWell(
                                     onTap: () {
                                       if (controller1.currentBalanceModel.value
-                                              .data!.fee!.bridgeCardFee! <=
+                                              .data!.currentBalance! >
                                           controller1.currentBalanceModel.value
-                                              .data!.currentBalance!) {
+                                              .data!.convertedFees!) {
                                         controller1.create1(context);
                                       } else {
                                         showToast(

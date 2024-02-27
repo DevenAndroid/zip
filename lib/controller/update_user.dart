@@ -11,6 +11,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:zip/controller/profile_controller.dart';
+import 'package:zip/models/errorLogModel.dart';
 
 import '../models/africa_verify_model.dart';
 import '../models/create_virtual_account_model.dart';
@@ -38,6 +39,7 @@ import '../repository/africa_verify_repo.dart';
 import '../repository/create_card_holder_repo.dart';
 import '../repository/create_card_repo.dart';
 import '../repository/create_contact_repo.dart';
+import '../repository/errorLogRepo.dart';
 import '../repository/fetch_account_repo.dart';
 import '../repository/get_africaDetails_repo.dart';
 import '../repository/get_live_image_repo.dart';
@@ -256,6 +258,8 @@ class registerController extends GetxController {
     });
   }
 
+  Rx<ErrorLogModel> insertError = ErrorLogModel().obs;
+  Rx<RxStatus> statusOfInsertError = RxStatus.empty().obs;
   liveAfricaDetails(context) {
     africaLiveRepo(
             verificationType: "PASSIVE-LIVELINESS-VERIFICATION",
@@ -263,8 +267,10 @@ class registerController extends GetxController {
             context: context)
         .then((value) {
       liveAfricaModel.value = value;
-      // if (value.description == "Success") {
-      if (value.response!.popScore! < 60.00) {
+      if (value.description == "Success") {
+        errorLogRepo(responses: value, context: context);
+        // if (value.response!.popScore! < 60.00) {
+
         statusOfLiveAfrica.value = RxStatus.success();
         showToast(value.response!.popScore!.toString());
         liveAfricaMatch(context);
@@ -341,7 +347,7 @@ class registerController extends GetxController {
         .then((value) {
       africaFace.value = value;
 
-      if (value.response!.message == "Match") {
+      if (value.response!.faceMatch == true) {
         statusOfMatch.value = RxStatus.success();
 
         accountVritual(context);
@@ -779,18 +785,18 @@ class registerController extends GetxController {
   getData() {
     getAfricaApiRepo(Id: userId1.toString()).then((value) async {
       modal.value = value;
-      if (value.status == true) {
-        firstNameController.text = modal.value.data!.firstName.toString();
-        lastNameController.text = modal.value.data!.lastName.toString();
-        dateOfBirthController.text = modal.value.data!.dob.toString();
-        molileController.text = modal.value.data!.phone.toString();
-        countryController.text = modal.value.data!.country.toString();
-        nationalController.text = modal.value.data!.nationality.toString();
-        streetController.text = modal.value.data!.stateOfResidence.toString();
-        stateController.text = modal.value.data!.stateOfOrigin.toString();
-        cityController.text = modal.value.data!.lgaOfResidence.toString();
-        firstNameController.text = modal.value.data!.firstName.toString();
-        regionController.text = modal.value.data!.lgaOfOrigin.toString();
+      if (value.data != null) {
+        firstNameController.text = modal.value.data!.firstName ?? " ";
+        lastNameController.text = modal.value.data!.lastName ?? " ";
+        dateOfBirthController.text = modal.value.data!.dob ?? " ";
+        molileController.text = modal.value.data!.phone ?? " ";
+        countryController.text = modal.value.data!.country ?? " ";
+        nationalController.text = modal.value.data!.nationality ?? " ";
+        streetController.text = modal.value.data!.stateOfResidence ?? " ";
+        stateController.text = modal.value.data!.stateOfOrigin ?? " ";
+        cityController.text = modal.value.data!.lgaOfResidence ?? " ";
+        firstNameController.text = modal.value.data!.firstName ?? " ";
+        regionController.text = modal.value.data!.lgaOfOrigin ?? " ";
         avtar = modal.value.data!.avatar.toString();
         //     (await networkImageToBase64( modal.value.data!.avatar.toString())) ?? "";
         // if(avtar.isNotEmpty){

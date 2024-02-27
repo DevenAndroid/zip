@@ -89,6 +89,10 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
       if (value.success == true) {
         statusOfpayout.value = RxStatus.success();
         // saveList();
+        payOutcontroller.accountNo.text = "";
+        controller.bankController1.text = "";
+        payOutcontroller.accountName.text = "";
+
         payOutcontroller.saveDetails1(context);
         // Get.back();
         showToast(value.message.toString());
@@ -139,7 +143,7 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
                     const EdgeInsets.only(bottom: 20.0, left: 10, right: 10),
                 child: InkWell(
                   onTap: () {
-                    payOutcontroller.save(context);
+                    payOutcontroller.saveDetails(context);
                   },
                   child: const CustomOutlineButton(
                     title: "Continue",
@@ -151,7 +155,7 @@ class _AddPaymentMethodState extends State<AddPaymentMethod> {
                     const EdgeInsets.only(bottom: 20.0, left: 10, right: 10),
                 child: InkWell(
                   onTap: () {
-                    Get.to(()=> Withdrawl1Cash());
+                    Get.to(() => Withdrawl1Cash());
                   },
                   child: const CustomOutlineButton(
                     title: "Continue",

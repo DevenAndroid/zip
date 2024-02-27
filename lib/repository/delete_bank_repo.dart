@@ -3,21 +3,21 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-import 'package:zip/models/delete_benificery_model.dart';
+import 'package:zip/models/bank_delete_model.dart';
 
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
 
-Future<DeleteBenificeryModel> deleteBeneficiaryRepo(
-    {beneficiary_id, accountNumber, context}) async {
+Future<deleteBankModel> deleteBankRepo(
+    {bank_id, accountNumber, context}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
   Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
-  map['beneficiary_id'] = beneficiary_id;
+  map['bank_id'] = bank_id;
   map['accountNumber'] = accountNumber;
 
   log(map.toString());
-  http.Response response = await http.post(Uri.parse(ApiUrls.deleteBeneficiary),
+  http.Response response = await http.post(Uri.parse(ApiUrls.deleteBank),
       headers: await getAuthHeader(), body: jsonEncode(map));
   log("Sign IN DATA${response.body}");
   log("Sign IN DATA${response.statusCode}");
@@ -25,12 +25,12 @@ Future<DeleteBenificeryModel> deleteBeneficiaryRepo(
 
   if (response.statusCode == 200 || response.statusCode == 201) {
     Helpers.hideLoader(loader);
-    return DeleteBenificeryModel.fromJson(
+    return deleteBankModel.fromJson(
       jsonDecode(response.body),
     );
   } else {
     Helpers.hideLoader(loader);
-    return DeleteBenificeryModel(
+    return deleteBankModel(
         message: jsonDecode(response.body)["message"], status: false);
   }
 }

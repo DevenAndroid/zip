@@ -26,6 +26,7 @@ class Data {
   dynamic currentBalance;
   Fee? fee;
   dynamic charges;
+  dynamic convertedFees;
   Setting? setting;
   bool? loanApplied;
   bool? userCard;
@@ -34,6 +35,7 @@ class Data {
       {this.currentBalance,
       this.fee,
       this.charges,
+      this.convertedFees,
       this.setting,
       this.loanApplied,
       this.userCard});
@@ -42,6 +44,7 @@ class Data {
     currentBalance = json['current_balance'];
     fee = json['fee'] != null ? new Fee.fromJson(json['fee']) : null;
     charges = json['charges'];
+    convertedFees = json['converted_fees'];
     setting =
         json['setting'] != null ? new Setting.fromJson(json['setting']) : null;
     loanApplied = json['loan_applied'];
@@ -59,6 +62,7 @@ class Data {
       data['setting'] = this.setting!.toJson();
     }
     data['loan_applied'] = this.loanApplied;
+    data['converted_fees'] = this.convertedFees;
     data['user_card'] = this.userCard;
     return data;
   }

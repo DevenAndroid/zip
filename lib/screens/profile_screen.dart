@@ -747,27 +747,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               const SizedBox(
                                 width: 20,
                               ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Settings",
-                                    style: GoogleFonts.poppins(
-                                        color: const Color(0xFF1D1D1D),
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    "Control your notification and security settings",
-                                    style: GoogleFonts.poppins(
-                                        color: const Color(0xFF1D1D1D),
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                ],
+                              Expanded(
+                                flex: 6,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Settings",
+                                      style: GoogleFonts.poppins(
+                                          color: const Color(0xFF1D1D1D),
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      "Control your notification and security settings",
+                                      style: GoogleFonts.poppins(
+                                          color: const Color(0xFF1D1D1D),
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                  ],
+                                ),
                               ),
                               const Spacer(),
                               const Icon(

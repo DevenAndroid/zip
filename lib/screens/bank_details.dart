@@ -91,7 +91,7 @@ class _BankDetailsScreenState extends State<BankDetailsScreen> {
                               height: 30,
                             ),
                             Text(
-                              "make a bank transfer from another account using these details",
+                              "Make a bank transfer from another account using these details",
                               style: GoogleFonts.poppins(
                                   color: const Color(0xFF565656),
                                   fontSize: 16,

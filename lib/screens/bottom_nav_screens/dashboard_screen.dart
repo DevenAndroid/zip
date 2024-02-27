@@ -155,18 +155,21 @@ class _DashBoardState extends State<DashBoard> {
                                           const SizedBox(
                                             height: 9,
                                           ),
-                                          InkWell(
-                                            onTap: () {
-                                              Get.toNamed(
-                                                  MyRouters.accountsInBank);
-                                            },
-                                            child: Text(
-                                              "Current Balance",
-                                              style: GoogleFonts.poppins(
-                                                  color:
-                                                      const Color(0xFF2E2E2E),
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w500),
+                                          FittedBox(
+                                            child: InkWell(
+                                              onTap: () {
+                                                Get.toNamed(
+                                                    MyRouters.accountsInBank);
+                                              },
+                                              child: Text(
+                                                "Current Balance",
+                                                style: GoogleFonts.poppins(
+                                                    color:
+                                                        const Color(0xFF2E2E2E),
+                                                    fontSize: 18,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              ),
                                             ),
                                           ),
                                           const SizedBox(
@@ -184,40 +187,46 @@ class _DashBoardState extends State<DashBoard> {
                                                         .setting!
                                                         .hideBalance! !=
                                                     true
-                                                ? Row(
-                                                    children: [
-                                                      Image.network(
-                                                        "https://cdn-icons-png.flaticon.com/512/32/32974.png",
-                                                        color: Colors.black,
-                                                        width: 20,
-                                                        height: 20,
+                                                ? Expanded(
+                                                    child: FittedBox(
+                                                      child: Row(
+                                                        children: [
+                                                          Image.network(
+                                                            "https://cdn-icons-png.flaticon.com/512/32/32974.png",
+                                                            color: Colors.black,
+                                                            width: 20,
+                                                            height: 20,
+                                                          ),
+                                                          FittedBox(
+                                                            child: Expanded(
+                                                              child: Text(
+                                                                // profileController
+                                                                //     .currentBalanceModel
+                                                                //     .value
+                                                                //     .data!
+                                                                //     .currentBalance!
+                                                                //     .toStringAsFixed(2),
+                                                                NumberFormat(
+                                                                        '#,##0.00')
+                                                                    .format(profileController
+                                                                        .currentBalanceModel
+                                                                        .value
+                                                                        .data!
+                                                                        .currentBalance!),
+                                                                style: GoogleFonts.poppins(
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize:
+                                                                        25,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
-                                                      FittedBox(
-                                                        child: Text(
-                                                          // profileController
-                                                          //     .currentBalanceModel
-                                                          //     .value
-                                                          //     .data!
-                                                          //     .currentBalance!
-                                                          //     .toStringAsFixed(2),
-                                                          NumberFormat(
-                                                                  '#,##0.00')
-                                                              .format(profileController
-                                                                  .currentBalanceModel
-                                                                  .value
-                                                                  .data!
-                                                                  .currentBalance!),
-                                                          style: GoogleFonts
-                                                              .poppins(
-                                                                  color: Colors
-                                                                      .black,
-                                                                  fontSize: 25,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500),
-                                                        ),
-                                                      ),
-                                                    ],
+                                                    ),
                                                   )
                                                 : Text(
                                                     "",

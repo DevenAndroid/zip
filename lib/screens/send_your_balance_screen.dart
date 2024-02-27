@@ -122,8 +122,7 @@ class _SendYourBalanceScreenState extends State<SendYourBalanceScreen> {
                                           width: 120,
                                           height: 120,
                                           fit: BoxFit.cover,
-                                          imageUrl: profileController.modal
-                                              .value.data!.user!.profileImage
+                                          imageUrl: profileController.image
                                               .toString(),
                                           placeholder: (context, url) =>
                                               const Icon(

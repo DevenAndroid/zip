@@ -137,6 +137,7 @@ class ProfileController extends GetxController {
   }
 
   String userId = "";
+  String image = "";
   final formKeyFund = GlobalKey<FormState>();
   final formKeyFund1 = GlobalKey<FormState>();
   TextEditingController amount1Controller = TextEditingController();

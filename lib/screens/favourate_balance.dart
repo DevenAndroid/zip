@@ -43,7 +43,7 @@ class _FavourateBalanceState extends State<FavourateBalance> {
               amount: amountController.text.trim(),
               context: context,
               user_id: profileController.modal.value.data!.user!.id.toString(),
-              bank_code: RegistorController.idController1.text.toString(),
+              bank_code: RegistorController.idController1.text,
               accountHolderName: data.accountHolderName.toString(),
               accountNumber: data.destinationAddress.toString(),
               destinationCurrency: "NGN",

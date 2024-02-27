@@ -31,14 +31,16 @@ class _AddRecipientStartState extends State<AddRecipientStart> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(toolbarHeight: 80,
+      appBar: AppBar(
+        toolbarHeight: 80,
         backgroundColor: Colors.white,
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(4.0),
           child: Container(
             color: Colors.grey.shade300,
             height: 1.0,
-          ),),
+          ),
+        ),
         elevation: 0,
         title: Text(
           "Add Fund ",
@@ -67,132 +69,139 @@ class _AddRecipientStartState extends State<AddRecipientStart> {
               height: 39,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 15.0,right: 15),
+              padding: const EdgeInsets.only(left: 15.0, right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  InkWell(
-                    onTap: () {
-                      Get.toNamed(MyRouters.accountsInBank);
-                    },
-                    child: Container(
-                      height: 167,
-                      width: 167,
-                      decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey,
-                              offset: Offset(0.0, 0.0), //(x,y)
-                              blurRadius: 0.0,
-                            ),
-                          ],
-                          color:  Colors.white,
-                          border: Border.all(color: Color(0xFFD3D3D6)),
-                          borderRadius: BorderRadius.circular(21)),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 13.0),
-                                child: SvgPicture.asset(
-                                  'assets/images/blacklogo.svg',
-                                  height: 55,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(right: 20, top: 0),
-                                child: SvgPicture.asset("assets/images/arrowr.svg"),
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        Get.toNamed(MyRouters.accountsInBank);
+                      },
+                      child: Container(
+                        height: 167,
+                        width: 167,
+                        decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey,
+                                offset: Offset(0.0, 0.0), //(x,y)
+                                blurRadius: 0.0,
                               ),
                             ],
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 14.0),
-                            child: Text(
-                              "Zip\nAccount",
-                              style: GoogleFonts.poppins(
-                                height: 1.4,
-                                  color: const Color(0xFF2E2E2E),
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500),
+                            color: Colors.white,
+                            border: Border.all(color: Color(0xFFD3D3D6)),
+                            borderRadius: BorderRadius.circular(21)),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(
+                              height: 20,
                             ),
-                          ),
-                        ],
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 13.0),
+                                  child: SvgPicture.asset(
+                                    'assets/images/blacklogo.svg',
+                                    height: 55,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(right: 20, top: 0),
+                                  child: SvgPicture.asset(
+                                      "assets/images/arrowr.svg"),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 14.0),
+                              child: Text(
+                                "Zip\nAccount",
+                                style: GoogleFonts.poppins(
+                                    height: 1.4,
+                                    color: const Color(0xFF2E2E2E),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                  InkWell(
-                    onTap: () {
-                      Get.toNamed(MyRouters.regularTransfer);
-                    },
-                    child: Container(
-                      height: 167,
-                      width: 167,
-                      decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey,
-                              offset: Offset(0.0, 0.0), //(x,y)
-                              blurRadius: 0.0,
-                            ),
-                          ],
-                          color:  Colors.white,border: Border.all(color: Color(0xFFD3D3D6)),
-                          borderRadius: BorderRadius.circular(21)),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-
-                              Padding(
-                                padding: const EdgeInsets.only(left: 13.0),
-                                child: SvgPicture.asset(
-                                  'assets/images/banklogo.svg',
-                                  height: 55,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(right: 20, top: 0),
-                                child: SvgPicture.asset("assets/images/arrowr.svg"),
+                  SizedBox(
+                    width: 15,
+                  ),
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        Get.toNamed(MyRouters.regularTransfer);
+                      },
+                      child: Container(
+                        height: 167,
+                        width: 167,
+                        decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey,
+                                offset: Offset(0.0, 0.0), //(x,y)
+                                blurRadius: 0.0,
                               ),
                             ],
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 14.0),
-                            child: Text(
-                              "Bank\nAccount",
-                              style: GoogleFonts.poppins(
-                                  height: 1.4,
-                                  color: const Color(0xFF2E2E2E),
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500),
+                            color: Colors.white,
+                            border: Border.all(color: Color(0xFFD3D3D6)),
+                            borderRadius: BorderRadius.circular(21)),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(
+                              height: 20,
                             ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                        ],
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 13.0),
+                                  child: SvgPicture.asset(
+                                    'assets/images/banklogo.svg',
+                                    height: 55,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(right: 20, top: 0),
+                                  child: SvgPicture.asset(
+                                      "assets/images/arrowr.svg"),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 14.0),
+                              child: Text(
+                                "Bank\nAccount",
+                                style: GoogleFonts.poppins(
+                                    height: 1.4,
+                                    color: const Color(0xFF2E2E2E),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -209,8 +218,8 @@ class _AddRecipientStartState extends State<AddRecipientStart> {
                   Get.toNamed(MyRouters.verifyPaymentLink);
                 },
                 child: Container(
-                height: 167,
-                  width: 167,
+                  height: 167,
+                  width: 160,
                   decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
@@ -219,16 +228,14 @@ class _AddRecipientStartState extends State<AddRecipientStart> {
                           blurRadius: 0.0,
                         ),
                       ],
-                      color:  Colors.white,border: Border.all(color: Color(0xFFD3D3D6)),
+                      color: Colors.white,
+                      border: Border.all(color: Color(0xFFD3D3D6)),
                       borderRadius: BorderRadius.circular(21)),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-
-                      const SizedBox(
-                        height: 20
-                      ),
+                      const SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,

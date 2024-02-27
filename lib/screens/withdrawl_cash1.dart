@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zip/routers/my_routers.dart';
 
@@ -36,8 +35,7 @@ class _WithdrawlCashState extends State<WithdrawlCash> {
             user_id:
                 profileController.modal.value.data!.user!.id.toString().trim(),
             key: "payouts",
-            accountHolderName:  firstName.toString().trim(),
-
+            accountHolderName: firstName.toString().trim(),
             accountNumber: accountNumber.toString(),
             destinationCurrency: "NGN",
             about: "Cash Out",
@@ -46,8 +44,7 @@ class _WithdrawlCashState extends State<WithdrawlCash> {
             // sourceCurrencyController.text.trim(),
             description: DateTime.now().millisecondsSinceEpoch.toString(),
             // email:data.email.toString(),
-            firstName:bankName.toString(),
-
+            firstName: bankName.toString(),
 
             // lastName:data.lastName.toString() ,
             paymentDestination: "bank_account",
@@ -57,6 +54,10 @@ class _WithdrawlCashState extends State<WithdrawlCash> {
       payout.value = value;
       if (value.success == true) {
         statusOfpayout.value = RxStatus.success();
+        firstName == "";
+        bankName == "";
+        accountNumber == "";
+        bankCode == "";
         // controller.bankController1.text == "";
         // payOutcontroller.accountNo.text == "";
         // payOutcontroller.accountName.text == "";
@@ -71,6 +72,7 @@ class _WithdrawlCashState extends State<WithdrawlCash> {
       // showToast(value.message.toString());
     });
   }
+
   String firstName = Get.arguments[0];
   String accountNumber = Get.arguments[1];
   String bankCode = Get.arguments[2];
@@ -99,12 +101,11 @@ class _WithdrawlCashState extends State<WithdrawlCash> {
         ),
         centerTitle: true,
       ),
-      bottomNavigationBar:     Padding(
+      bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(10.0),
         child: InkWell(
           onTap: () async {
-            SharedPreferences pref =
-            await SharedPreferences.getInstance();
+            SharedPreferences pref = await SharedPreferences.getInstance();
             if (pref.getBool('TransistionPin') == true) {
               Get.toNamed(MyRouters.securityOtpScreen1);
             } else {
@@ -169,7 +170,6 @@ class _WithdrawlCashState extends State<WithdrawlCash> {
             SizedBox(
               height: size.height * .4,
             ),
-
           ],
         ),
       ),
