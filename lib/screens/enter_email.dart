@@ -11,10 +11,12 @@ import 'package:zip/widgets/common_textfield.dart';
 
 import '../controller/number_controller.dart';
 import '../controller/update_user.dart';
+import '../models/errorLogModel.dart';
 import '../models/modal_registor.dart';
 import '../models/model_detail_africa.dart';
 import '../models/model_save_africa_details.dart';
 import '../repository/africa_save_repo.dart';
+import '../repository/errorLogRepo.dart';
 import '../repository/live_deails_africa_repo.dart';
 import '../repository/registor_repo.dart';
 import '../resourses/api_constant.dart';
@@ -37,7 +39,8 @@ class _EmailScreenState extends State<EmailScreen> {
   final formKey5 = GlobalKey<FormState>();
   Rx<RxStatus> statusOfAfricaDetails = RxStatus.empty().obs;
   Rx<ModelLiveDetails> africaDetails = ModelLiveDetails().obs;
-
+  Rx<ErrorLogModel> error = ErrorLogModel().obs;
+  Rx<RxStatus> statusOfError = RxStatus.empty().obs;
   liveAfrica(context) {
     africaLiveDetailsRepo(
             verificationType: "BVN-FULL-DETAILS",
@@ -47,11 +50,46 @@ class _EmailScreenState extends State<EmailScreen> {
       africaDetails.value = value;
       if (value.description == "Successful") {
         save1(context);
+        Controller.firstNameController.text =
+            africaDetails.value.response!.firstName.toString();
+        Controller.lastNameController.text =
+            africaDetails.value.response!.lastName.toString();
+        Controller.dateOfBirthController.text =
+            africaDetails.value.response!.dob.toString();
+        Controller.molileController.text =
+            africaDetails.value.response!.phone.toString();
+        Controller.countryController.text =
+            africaDetails.value.response!.country.toString();
+        Controller.nationalController.text =
+            africaDetails.value.response!.country.toString();
+        Controller.streetController.text =
+            africaDetails.value.response!.addressLine3.toString();
+        Controller.stateController.text =
+            africaDetails.value.response!.stateOfOrigin.toString();
+        Controller.cityController.text =
+            africaDetails.value.response!.stateOfOrigin.toString();
+        Controller.firstNameController.text =
+            africaDetails.value.response!.firstName.toString();
+        Controller.regionController.text =
+            africaDetails.value.response!.addressLine3.toString();
+        Controller.avtar = africaDetails.value.response!.avatar.toString();
 
         statusOfAfricaDetails.value = RxStatus.success();
 
         showToast(value.description.toString());
       } else {
+        errorLogRepo(
+                responses: "BVN-FULL-DETAILS else",
+                context: context,
+                type: "BVN-FULL-DETAILS else")
+            .then((value) {
+          error.value = value;
+          if (value.status == true) {
+            statusOfError.value = RxStatus.success();
+          } else {
+            statusOfError.value = RxStatus.error();
+          }
+        });
         statusOfAfricaDetails.value = RxStatus.error();
         showToast(value.description.toString());
       }
@@ -63,40 +101,65 @@ class _EmailScreenState extends State<EmailScreen> {
 
   save1(context) {
     africaDetailsRepo(
-            userid: Controller.userId1,
+            userid: Controller.userId1.toString(),
             email: africaDetails.value.response!.email.toString(),
             phone: africaDetails.value.response!.phone.toString(),
             last_name: africaDetails.value.response!.lastName.toString(),
             first_name: africaDetails.value.response!.firstName.toString(),
             country: africaDetails.value.response!.country.toString(),
             address_line_2:
-                africaDetails.value.response!.addressLine2.toString(),
+                africaDetails.value.response!.addressLine3.toString(),
             address_line_3:
                 africaDetails.value.response!.addressLine3.toString(),
             alternate_phone:
                 africaDetails.value.response!.alternatePhone.toString(),
             avatar: africaDetails.value.response!.avatar.toString(),
-            bvn: africaDetails.value.response!.bvn.toString(),
+            bvn: Controller.BVNController.text.trim(),
             dob: africaDetails.value.response!.dob.toString(),
-            full_name: africaDetails.value.response!.fullName.toString(),
+            full_name: africaDetails.value.response!.firstName.toString(),
             gender: africaDetails.value.response!.gender.toString(),
-            lga_of_origin: africaDetails.value.response!.lgaOfOrigin.toString(),
-            lga_of_residence:
-                africaDetails.value.response!.lgaOfResidence.toString(),
+            lga_of_origin:
+                africaDetails.value.response!.addressLine3.toString(),
+            lga_of_residence: africaDetails.value.response!.country.toString(),
             marital_status:
                 africaDetails.value.response!.maritalStatus.toString(),
             middle_name: africaDetails.value.response!.maritalStatus.toString(),
-            nationality: africaDetails.value.response!.nationality.toString(),
+            nationality: africaDetails.value.response!.country.toString(),
             nin: africaDetails.value.response!.nin.toString(),
             state_of_origin:
                 africaDetails.value.response!.stateOfOrigin.toString(),
             state_of_residence:
-                africaDetails.value.response!.stateOfResidence.toString(),
+                africaDetails.value.response!.stateOfOrigin.toString(),
             context: context)
         .then((value) {
       saveDetails.value = value;
       if (value.status == true) {
+        Controller.firstNameController.text =
+            africaDetails.value.response!.firstName.toString();
+        Controller.lastNameController.text =
+            africaDetails.value.response!.lastName.toString();
+        Controller.dateOfBirthController.text =
+            africaDetails.value.response!.dob.toString();
+        Controller.molileController.text =
+            africaDetails.value.response!.phone.toString();
+        Controller.countryController.text =
+            africaDetails.value.response!.country.toString();
+        Controller.nationalController.text =
+            africaDetails.value.response!.country.toString();
+        Controller.streetController.text =
+            africaDetails.value.response!.addressLine3.toString();
+        Controller.stateController.text =
+            africaDetails.value.response!.stateOfOrigin.toString();
+        Controller.cityController.text =
+            africaDetails.value.response!.stateOfOrigin.toString();
+        Controller.firstNameController.text =
+            africaDetails.value.response!.firstName.toString();
+        Controller.regionController.text =
+            africaDetails.value.response!.addressLine3.toString();
+        Controller.avtar = africaDetails.value.response!.avatar.toString();
+
         Controller.targetImage = saveDetails.value.data!.avatar.toString();
+
         Get.toNamed(MyRouters.otpEmailScreen,
             arguments: [Controller.emailNoController.text]);
 
@@ -104,6 +167,18 @@ class _EmailScreenState extends State<EmailScreen> {
 
         showToast(value.message.toString());
       } else {
+        errorLogRepo(
+                responses: value.toString(),
+                context: context,
+                type: "else save bvn details")
+            .then((value) {
+          error.value = value;
+          if (value.status == true) {
+            statusOfError.value = RxStatus.success();
+          } else {
+            statusOfError.value = RxStatus.error();
+          }
+        });
         statusOfSavedDetails.value = RxStatus.error();
         showToast(value.message.toString());
       }
@@ -136,6 +211,8 @@ class _EmailScreenState extends State<EmailScreen> {
           statusOfemailregister.value = RxStatus.success();
           Controller.userId1 = emailregister.value.data!.user!.id.toString();
           showToast(value.data!.otp.toString());
+          // showToast(count.toString());
+
           liveAfrica(context);
 // Get.toNamed(
 //     MyRouters.otpEmailScreen, arguments: [Controller.emailNoController.text]);

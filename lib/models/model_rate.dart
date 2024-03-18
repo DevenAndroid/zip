@@ -1,6 +1,6 @@
 class ModelRate {
-  String? status;
-  String? message;
+  dynamic status;
+  dynamic message;
   Data? data;
 
   ModelRate({this.status, this.message, this.data});

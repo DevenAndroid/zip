@@ -125,7 +125,7 @@ class _VerifyPaymentLinkState extends State<VerifyPaymentLink> {
                           keyboardType: const TextInputType.numberWithOptions(
                               decimal: true),
                           inputFormatters: [
-                            LengthLimitingTextInputFormatter(11),
+                            // LengthLimitingTextInputFormatter(11),
                             FilteringTextInputFormatter.allow(
                                 RegExp('[0-9]+\\.?[0-9]*')),
                           ],
@@ -146,13 +146,13 @@ class _VerifyPaymentLinkState extends State<VerifyPaymentLink> {
                           // ]),
 
                           validator: MultiValidator([
-                            RangeValidator(
-                                min: 0,
-                                max: profileContrller.currentBalanceModel.value
-                                    .data!.currentBalance!
-                                    .toInt(),
-                                errorText:
-                                    "Can't add more than${profileContrller.currentBalanceModel.value.data!.currentBalance}"),
+                            // RangeValidator(
+                            //     min: 0,
+                            //     max: profileContrller.currentBalanceModel.value
+                            //         .data!.currentBalance!
+                            //         .toInt(),
+                            //     errorText:
+                            //         "Can't add more than${profileContrller.currentBalanceModel.value.data!.currentBalance}"),
                             RequiredValidator(
                                 errorText: 'Please enter amount '),
                           ]),

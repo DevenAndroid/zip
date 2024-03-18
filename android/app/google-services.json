@@ -1,36 +1,26 @@
 {
   "project_info": {
-    "project_number": "10451207806",
-    "project_id": "zipfintech",
-    "storage_bucket": "zipfintech.appspot.com"
+    "project_number": "365207403996",
+    "project_id": "zipfintech-265db",
+    "storage_bucket": "zipfintech-265db.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:10451207806:android:fea9adebfdcfe38b4c7a2f",
+        "mobilesdk_app_id": "1:365207403996:android:e51c08867cf889ba1be319",
         "android_client_info": {
-          "package_name": "com.example.zip"
+          "package_name": "com.zipFintech.zipe"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "10451207806-p92lodp25d9g9ojdr47t3kt4h0lvu2fk.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCsOxO5e1XlZvtajHo9PGnIHuXPvuHUGYc"
+          "current_key": "AIzaSyAqvHLYTkgL7gfTdtpRTGwTZ8FXHGkkhqQ"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "10451207806-p92lodp25d9g9ojdr47t3kt4h0lvu2fk.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

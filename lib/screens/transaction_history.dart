@@ -171,7 +171,7 @@ class _TransactionsHistoryState extends State<TransactionsHistory>
                     text: "Sent",
                   ),
                   Tab(
-                    text: "Recevied",
+                    text: "Received",
                   ),
                 ],
               ),

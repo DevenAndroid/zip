@@ -18,6 +18,7 @@ class ApiUrls {
   static const String deleteBeneficiary = "${apiBaseUrl}delete-beneficiary";
   static const String deleteBank = "${apiBaseUrl}delete-bank-account";
   static const String insertErrorLog = "${apiBaseUrl}insert-error-log";
+  static const String insertPopScore = "${apiBaseUrl}insert-pop-score";
   static const String applyLoan = "${apiBaseUrl}apply-loan";
   static const String saveCardInfo = "${apiBaseUrl}save-card-info";
   static const String seveRequestMail = "${apiBaseUrl}send-email-globle";
@@ -62,8 +63,7 @@ class ApiUrls {
       "https://issuecards-api-bridgecard-co.relay.evervault.com/v1/issuing/sandbox/cards/get_card_details?card_id=";
   static const String getCardBalance =
       "https://issuecards.api.bridgecard.co/v1/issuing/sandbox/cards/get_card_balance?card_id=";
-  static const String getRate =
-      "https://issuecards.api.bridgecard.co/v1/issuing/cards/fx-rate";
+  static const String getRate = 'http://178.128.83.16/api/fx-rate';
   static const String freezeCard =
       "https://issuecards.api.bridgecard.co/v1/issuing/sandbox/cards/freeze_card?card_id=";
   static const String deleteCard =

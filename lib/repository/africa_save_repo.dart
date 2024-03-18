@@ -1,13 +1,18 @@
 import 'dart:convert';
 import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import '../models/login_model.dart';
-import '../models/modal_registor.dart';
+
+import '../models/errorLogModel.dart';
 import '../models/model_save_africa_details.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/helper.dart';
+import 'errorLogRepo.dart';
 
+Rx<ErrorLogModel> error = ErrorLogModel().obs;
+Rx<RxStatus> statusOfError = RxStatus.empty().obs;
 Future<ModelSaveDetailsAfrica> africaDetailsRepo(
     {email,
     gender,
@@ -70,6 +75,18 @@ Future<ModelSaveDetailsAfrica> africaDetailsRepo(
   //     headers: await getAuthHeader(),body: jsonEncode(map) );
 
   if (response.statusCode == 200) {
+    errorLogRepo(
+            responses: response.body,
+            context: context,
+            type: "BVN-FULL-DETAILS")
+        .then((value) {
+      error.value = value;
+      if (value.status == true) {
+        statusOfError.value = RxStatus.success();
+      } else {
+        statusOfError.value = RxStatus.error();
+      }
+    });
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
     return ModelSaveDetailsAfrica.fromJson(jsonDecode(response.body));

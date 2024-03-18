@@ -49,6 +49,7 @@ import 'package:zip/screens/wallet_screen.dart';
 import 'package:zip/screens/your_balance_screen.dart';
 import 'package:zip/screens/yourrecipient.dart';
 import 'package:zip/screens/zipTag)_screen.dart';
+import 'package:zip/splash1.dart';
 
 import '../screens/Cardlimit.dart';
 import '../screens/add_fund_card_screen.dart';
@@ -148,7 +149,6 @@ import '../screens/transastion_screen.dart';
 import '../screens/update_password.dart';
 import '../screens/verify_africa_ui.dart';
 import '../screens/withdrawl_cash1.dart';
-import '../splash1.dart';
 
 class MyRouters {
   static var splash = "/splash";

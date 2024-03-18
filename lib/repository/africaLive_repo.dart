@@ -1,18 +1,19 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import '../models/create_benificiary.dart';
-import '../models/modal_registor.dart';
-import '../models/modelAfricaLive.dart';
-import '../models/model_detail_africa.dart';
-import '../models/model_update_password.dart';
-import '../resourses/api_constant.dart';
-import '../resourses/details.dart';
-import '../resourses/helper.dart';
 
+import '../models/errorLogModel.dart';
+import '../models/modelAfricaLive.dart';
+import '../resourses/api_constant.dart';
+import '../resourses/helper.dart';
+import 'errorLogRepo.dart';
+
+Rx<ErrorLogModel> error = ErrorLogModel().obs;
+Rx<RxStatus> statusOfError = RxStatus.empty().obs;
 Future<ModelAfricaLive> africaLiveRepo({
   selfie,
   verificationType,
@@ -41,10 +42,34 @@ Future<ModelAfricaLive> africaLiveRepo({
 
   if (response.statusCode == 200) {
     Helpers.hideLoader(loader);
+    errorLogRepo(
+            responses: response.body,
+            context: context,
+            type: "PASSIVE-LIVELINESS-VERIFICATION")
+        .then((value) {
+      error.value = value;
+      if (value.status == true) {
+        statusOfError.value = RxStatus.success();
+      } else {
+        statusOfError.value = RxStatus.error();
+      }
+    });
     print(jsonDecode(response.body));
     return ModelAfricaLive.fromJson(jsonDecode(response.body));
   } else {
     Helpers.hideLoader(loader);
+    errorLogRepo(
+            responses: response.body,
+            context: context,
+            type: "PASSIVE-LIVELINESS-VERIFICATION")
+        .then((value) {
+      error.value = value;
+      if (value.status == true) {
+        statusOfError.value = RxStatus.success();
+      } else {
+        statusOfError.value = RxStatus.error();
+      }
+    });
     print(jsonDecode(response.body));
     return ModelAfricaLive();
   }

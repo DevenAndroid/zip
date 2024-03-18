@@ -8,9 +8,6 @@ import '../controller/update_user.dart';
 import '../models/model_signout.dart';
 import '../repository/signout_repo.dart';
 import '../routers/my_routers.dart';
-import '../widgets/common_boder_button.dart';
-import '../widgets/common_button.dart';
-import '../widgets/common_colour.dart';
 
 class NotVerifyAfricaScreen extends StatefulWidget {
   const NotVerifyAfricaScreen({Key? key}) : super(key: key);
@@ -30,9 +27,9 @@ class _NotVerifyAfricaScreenState extends State<NotVerifyAfricaScreen> {
       signout.value = value;
       if (value.status == true) {
         statusOfsignout.value = RxStatus.success();
-       SharedPreferences pref = await SharedPreferences.getInstance();
+        SharedPreferences pref = await SharedPreferences.getInstance();
         Get.offAllNamed(MyRouters.onBoardingScreen);
-  pref.clear();
+        pref.clear();
         showToast(value.message.toString());
       } else {
         statusOfsignout.value = RxStatus.error();
@@ -61,7 +58,7 @@ class _NotVerifyAfricaScreenState extends State<NotVerifyAfricaScreen> {
           ],
           centerTitle: true,
           title: Text(
-            "Not Verify With Your Photo please verify again ",
+            "Not Verify",
             style: GoogleFonts.poppins(
                 color: const Color(0xFF1D1D1D),
                 fontSize: 22,
@@ -85,10 +82,10 @@ class _NotVerifyAfricaScreenState extends State<NotVerifyAfricaScreen> {
                                 const EdgeInsets.only(left: 10.0, right: 10),
                             child: Center(
                               child: Text(
-                                "Click on Icon to take picture",
+                                "Customer support ",
                                 style: GoogleFonts.poppins(
                                     color: const Color(0xFF1D1D1D),
-                                    fontSize: 18,
+                                    fontSize: 25,
                                     fontWeight: FontWeight.w500),
                               ),
                             ),
@@ -96,58 +93,72 @@ class _NotVerifyAfricaScreenState extends State<NotVerifyAfricaScreen> {
                           const SizedBox(
                             height: 40,
                           ),
-                          Center(
-                            child: Container(
-                              width: 180,
-                              height: 180,
-                              padding: const EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                      color: AppTheme.primaryColor, width: 3)),
-                              child: Center(
-                                child: InkWell(
-                                    onTap: () {
-                                      registorController
-                                          .pickImage()
-                                          .then((value) {
-                                        setState(() {});
-                                      });
-                                    },
-
-                                    // child: image.path != ""
-                                    //     ?
-                                    //
-                                    child: ClipOval(
-                                      child: Image.file(
-                                        registorController.image,
-                                        width: 200,
-                                        height: 200,
-                                        fit: BoxFit.cover,
-                                        errorBuilder: (_, __, ___) =>
-                                            const Icon(
-                                          Icons.person,
-                                          size: 50,
-                                        ),
-                                      ),
-                                    )),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(left: 10.0, right: 10),
+                            child: Center(
+                              child: Text(
+                                "Contact to admin",
+                                style: GoogleFonts.poppins(
+                                    color: const Color(0xFF1D1D1D),
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.w500),
                               ),
                             ),
                           ),
-                          SizedBox(
-                            height: size.height * .4,
-                          ),
-                          InkWell(
-                              onTap: () {
-                                if (registorController.image.path != "") {
-                                  registorController.saveImage1(context);
-                                } else {
-                                  showToast("please add photo for verify ");
-                                }
-                              },
-                              child: const CustomOutlineButton(
-                                title: "Verify",
-                              )),
+
+                          // Center(
+                          //   child: Container(
+                          //     width: 180,
+                          //     height: 180,
+                          //     padding: const EdgeInsets.all(5),
+                          //     decoration: BoxDecoration(
+                          //         shape: BoxShape.circle,
+                          //         border: Border.all(
+                          //             color: AppTheme.primaryColor, width: 3)),
+                          //     child: Center(
+                          //       child: InkWell(
+                          //           onTap: () {
+                          //             registorController
+                          //                 .pickImage()
+                          //                 .then((value) {
+                          //               setState(() {});
+                          //             });
+                          //           },
+                          //
+                          //           // child: image.path != ""
+                          //           //     ?
+                          //           //
+                          //           child: ClipOval(
+                          //             child: Image.file(
+                          //               registorController.image,
+                          //               width: 200,
+                          //               height: 200,
+                          //               fit: BoxFit.cover,
+                          //               errorBuilder: (_, __, ___) =>
+                          //                   const Icon(
+                          //                  Icons.person,
+                          //                 size: 50,
+                          //               ),
+                          //             ),
+                          //           )),
+                          //     ),
+                          //   ),
+                          // ),
+                          // SizedBox(
+                          //   height: size.height * .4,
+                          // ),
+                          // InkWell(
+                          //     onTap: () {
+                          //       if (registorController.image.path != "") {
+                          //         registorController.saveImage1(context);
+                          //       } else {
+                          //         showToast("please add photo for verify ");
+                          //       }
+                          //     },
+                          //     child: const CustomOutlineButton(
+                          //       title: "Verify",
+                          //     )),
                         ])))));
   }
 }

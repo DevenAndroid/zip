@@ -587,7 +587,7 @@ class _SupportScreenState extends State<SupportScreen> {
                                   fontWeight: FontWeight.w500),
                             ),
                             Text(
-                              "Get A solution beamed to yo ur inbox",
+                              "Get A solution beamed to your inbox",
                               style: GoogleFonts.poppins(
                                   color: Colors.grey,
                                   fontSize: 12,

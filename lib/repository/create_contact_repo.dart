@@ -1,16 +1,21 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+
+import '../models/errorLogModel.dart';
 import '../models/model_create_contact.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
+import 'errorLogRepo.dart';
 
 final details = Get.put(DetailsController());
-
+Rx<ErrorLogModel> error = ErrorLogModel().obs;
+Rx<RxStatus> statusOfError = RxStatus.empty().obs;
 Future<ModelCreateContact> createContactRepo(
     {first_name,
     last_name,
@@ -47,11 +52,31 @@ Future<ModelCreateContact> createContactRepo(
   print(map);
 
   if (response.statusCode == 200) {
+    errorLogRepo(
+            responses: response.body, context: context, type: "create contact")
+        .then((value) {
+      error.value = value;
+      if (value.status == true) {
+        statusOfError.value = RxStatus.success();
+      } else {
+        statusOfError.value = RxStatus.error();
+      }
+    });
     Helpers.hideLoader(loader);
     return ModelCreateContact.fromJson(
       jsonDecode(response.body),
     );
   } else {
+    errorLogRepo(
+            responses: response.body, context: context, type: "create contact")
+        .then((value) {
+      error.value = value;
+      if (value.status == true) {
+        statusOfError.value = RxStatus.success();
+      } else {
+        statusOfError.value = RxStatus.error();
+      }
+    });
     Helpers.hideLoader(loader);
     return ModelCreateContact.fromJson(
       jsonDecode(response.body),

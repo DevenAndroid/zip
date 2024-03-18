@@ -1,6 +1,6 @@
 class ModelFreezeCard {
-  String? status;
-  String? message;
+  dynamic status;
+  dynamic message;
   Data? data;
 
   ModelFreezeCard({this.status, this.message, this.data});

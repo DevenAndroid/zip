@@ -7,12 +7,15 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/create_virtual_account_model.dart';
+import '../models/errorLogModel.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
+import 'errorLogRepo.dart';
 
 final details = Get.put(DetailsController());
-
+Rx<ErrorLogModel> error = ErrorLogModel().obs;
+Rx<RxStatus> statusOfError = RxStatus.empty().obs;
 Future<CreateVirtualAccountModel> accountRepo(
     {bvn, phonenumber, dateOfBirth, context, firstName, lastName}) async {
   OverlayEntry loader = Helpers.overlayLoader(context);
@@ -45,9 +48,28 @@ Future<CreateVirtualAccountModel> accountRepo(
 
   if (response.statusCode == 200) {
     Helpers.hideLoader(loader);
-
+    errorLogRepo(
+            responses: response.body, context: context, type: "vritual account")
+        .then((value) {
+      error.value = value;
+      if (value.status == true) {
+        statusOfError.value = RxStatus.success();
+      } else {
+        statusOfError.value = RxStatus.error();
+      }
+    });
     return CreateVirtualAccountModel.fromJson(jsonDecode(response.body));
   } else {
+    errorLogRepo(
+            responses: response.body, context: context, type: "vritual account")
+        .then((value) {
+      error.value = value;
+      if (value.status == true) {
+        statusOfError.value = RxStatus.success();
+      } else {
+        statusOfError.value = RxStatus.error();
+      }
+    });
     Helpers.hideLoader(loader);
     // print(jsonDecode(response.body));
     return CreateVirtualAccountModel(

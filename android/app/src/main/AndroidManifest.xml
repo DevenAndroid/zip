@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.zip">
+    package="com.zipFintech.zipe">
 
     <uses-permission android:name="android.permission.INTERNET"/>
         <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
@@ -37,7 +37,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.zip.provider"
+            android:authorities="com.zipFintech.zipe.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

@@ -1,17 +1,19 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import '../models/create_benificiary.dart';
-import '../models/modal_registor.dart';
-import '../models/model_detail_africa.dart';
-import '../models/model_update_password.dart';
-import '../resourses/api_constant.dart';
-import '../resourses/details.dart';
-import '../resourses/helper.dart';
 
+import '../models/errorLogModel.dart';
+import '../models/model_detail_africa.dart';
+import '../resourses/api_constant.dart';
+import '../resourses/helper.dart';
+import 'errorLogRepo.dart';
+
+Rx<ErrorLogModel> error = ErrorLogModel().obs;
+Rx<RxStatus> statusOfError = RxStatus.empty().obs;
 Future<ModelLiveDetails> africaLiveDetailsRepo({
   searchParameter,
   verificationType,
@@ -39,6 +41,18 @@ Future<ModelLiveDetails> africaLiveDetailsRepo({
   //     headers: await getAuthHeader(),body: jsonEncode(map) );
 
   if (response.statusCode == 200) {
+    errorLogRepo(
+            responses: response.body,
+            context: context,
+            type: "BVN-FULL-DETAILS")
+        .then((value) {
+      error.value = value;
+      if (value.status == true) {
+        statusOfError.value = RxStatus.success();
+      } else {
+        statusOfError.value = RxStatus.error();
+      }
+    });
     Helpers.hideLoader(loader);
     print(jsonDecode(response.body));
     return ModelLiveDetails.fromJson(jsonDecode(response.body));

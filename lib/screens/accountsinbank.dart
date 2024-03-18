@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zip/resourses/api_constant.dart';
 import 'package:zip/routers/my_routers.dart';
 import 'package:zip/widgets/common_colour.dart';
 
@@ -111,8 +112,10 @@ class _AccountsInBankState extends State<AccountsInBank> {
                 InkWell(
                   onTap: () {
                     _selectedCurrency;
-                    Get.toNamed(MyRouters.exchangeMoney,
-                        arguments: [_selectedCurrency]);
+
+                    showToast("Only NG Naira is available at the moment");
+                    // Get.toNamed(MyRouters.exchangeMoney,
+                    //     arguments: [_selectedCurrency]);
                   },
                   child: const CustomOutlineButton(
                     title: "Create new account",

@@ -1,6 +1,6 @@
 class ModelUnfreezCard {
-  String? status;
-  String? message;
+  dynamic status;
+  dynamic message;
   Data? data;
 
   ModelUnfreezCard({this.status, this.message, this.data});

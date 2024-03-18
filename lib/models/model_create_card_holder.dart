@@ -1,5 +1,5 @@
 class ModelCreateCardHolder {
-  String? status;
+  dynamic status;
   String? message;
   Data? data;
 

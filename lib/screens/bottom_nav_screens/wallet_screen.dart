@@ -682,16 +682,16 @@ class _WalletScreen1State extends State<WalletScreen1> {
                                                 fontSize: 13,
                                                 fontWeight: FontWeight.w400),
                                           ),
-                                          Expanded(
-                                            child: Text(
-                                              'Rem nemo rerum sint dolor quae repellat.',
-                                              style: GoogleFonts.poppins(
-                                                  color:
-                                                      const Color(0xff1D1D1D),
-                                                  fontSize: 10,
-                                                  fontWeight: FontWeight.w300),
-                                            ),
-                                          )
+                                          // Expanded(
+                                          //   child: Text(
+                                          //     'Rem nemo rerum sint dolor quae repellat.',
+                                          //     style: GoogleFonts.poppins(
+                                          //         color:
+                                          //             const Color(0xff1D1D1D),
+                                          //         fontSize: 10,
+                                          //         fontWeight: FontWeight.w300),
+                                          //   ),
+                                          // )
                                         ],
                                       ),
                                     )

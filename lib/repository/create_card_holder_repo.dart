@@ -1,23 +1,21 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import '../models/buy_cabel_model.dart';
-import '../models/buy_plan_model.dart';
-import '../models/modal_send_otp_for_pin.dart';
-import '../models/model_buy_interNet.dart';
-import '../models/model_cabel_providers.dart';
+
+import '../models/errorLogModel.dart';
 import '../models/model_create_card_holder.dart';
-import '../models/model_data_paln.dart';
 import '../resourses/api_constant.dart';
 import '../resourses/details.dart';
 import '../resourses/helper.dart';
+import 'errorLogRepo.dart';
 
 final details = Get.put(DetailsController());
-
+Rx<ErrorLogModel> error = ErrorLogModel().obs;
+Rx<RxStatus> statusOfError = RxStatus.empty().obs;
 Future<ModelCreateCardHolder> cardHolderRepo({
   first_name,
   selfie_image,
@@ -35,8 +33,11 @@ Future<ModelCreateCardHolder> cardHolderRepo({
   phone,
   email_address,
   id_type,
+  context,
   bvn,
 }) async {
+  OverlayEntry loader = Helpers.overlayLoader(context);
+  Overlay.of(context)!.insert(loader);
   var map = <String, dynamic>{};
   var map1 = <String, dynamic>{};
   var map2 = <String, dynamic>{};
@@ -64,6 +65,7 @@ Future<ModelCreateCardHolder> cardHolderRepo({
   map3['card_brand'] = card_brand;
   http.Response response = await http.post(Uri.parse(ApiUrls.bridgeCard),
       headers: await getAuthHeader(), body: jsonEncode(map));
+
   log("Sign IN DATA${response.body}");
   log("Sign IN DATA${response.statusCode}");
   log("Sign IN DATA $map");
@@ -72,6 +74,17 @@ Future<ModelCreateCardHolder> cardHolderRepo({
   }
 
   if (response.statusCode == 200 || response.statusCode == 201) {
+    Helpers.hideLoader(loader);
+    errorLogRepo(
+            responses: response.body, context: context, type: "card holder")
+        .then((value) {
+      error.value = value;
+      if (value.status == true) {
+        statusOfError.value = RxStatus.success();
+      } else {
+        statusOfError.value = RxStatus.error();
+      }
+    });
     return ModelCreateCardHolder.fromJson(
       jsonDecode(response.body),
     );

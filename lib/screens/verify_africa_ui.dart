@@ -285,6 +285,7 @@ class _VerifyAfricaScreenState extends State<VerifyAfricaScreen> {
                           InkWell(
                               onTap: () {
                                 if (registorController.image.path != "") {
+                                  // registorController.saveImage(context);
                                   registorController.saveUserImage(context);
                                   // registorController.   contactCreate(context) ;
                                 } else {

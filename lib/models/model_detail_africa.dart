@@ -12,21 +12,25 @@ class ModelLiveDetails {
   Null? paymentRef;
   Response? response;
   Null? faceMatch;
+  Null? licenseSessionId;
+  Null? remainingLicenseSessionRound;
 
   ModelLiveDetails(
       {this.responseCode,
-        this.description,
-        this.verificationType,
-        this.verificationStatus,
-        this.transactionStatus,
-        this.transactionReference,
-        this.transactionDate,
-        this.searchParameter,
-        this.callBackUrl,
-        this.livenessScore,
-        this.paymentRef,
-        this.response,
-        this.faceMatch});
+      this.description,
+      this.verificationType,
+      this.verificationStatus,
+      this.transactionStatus,
+      this.transactionReference,
+      this.transactionDate,
+      this.searchParameter,
+      this.callBackUrl,
+      this.livenessScore,
+      this.paymentRef,
+      this.response,
+      this.faceMatch,
+      this.licenseSessionId,
+      this.remainingLicenseSessionRound});
 
   ModelLiveDetails.fromJson(Map<String, dynamic> json) {
     responseCode = json['responseCode'];
@@ -44,6 +48,8 @@ class ModelLiveDetails {
         ? new Response.fromJson(json['response'])
         : null;
     faceMatch = json['faceMatch'];
+    licenseSessionId = json['licenseSessionId'];
+    remainingLicenseSessionRound = json['remainingLicenseSessionRound'];
   }
 
   Map<String, dynamic> toJson() {
@@ -63,119 +69,85 @@ class ModelLiveDetails {
       data['response'] = this.response!.toJson();
     }
     data['faceMatch'] = this.faceMatch;
+    data['licenseSessionId'] = this.licenseSessionId;
+    data['remainingLicenseSessionRound'] = this.remainingLicenseSessionRound;
     return data;
   }
 }
 
 class Response {
-  dynamic email;
-  dynamic gender;
-  dynamic dob;
-  dynamic phone;
-  dynamic country;
-  dynamic nin;
-  dynamic bvn;
-  dynamic nationality;
-  bool? watchlisted;
-  dynamic avatar;
-  dynamic fullName;
   dynamic firstName;
   dynamic middleName;
   dynamic lastName;
+  dynamic dob;
+  dynamic registrationDate;
+  dynamic email;
+  dynamic gender;
+  dynamic phone;
   dynamic alternatePhone;
+  dynamic country;
   dynamic stateOfOrigin;
-  dynamic stateOfResidence;
-  dynamic lgaOfOrigin;
-  dynamic lgaOfResidence;
-  dynamic addressLine2;
   dynamic addressLine3;
   dynamic maritalStatus;
-  dynamic enrollmentBank;
-  dynamic enrollmentBranch;
-  dynamic accountLevel;
+  dynamic nin;
+  dynamic avatar;
+  dynamic watchListed;
 
   Response(
-      {this.email,
-        this.gender,
-        this.dob,
-        this.phone,
-        this.country,
-        this.nin,
-        this.bvn,
-        this.nationality,
-        this.watchlisted,
-        this.avatar,
-        this.fullName,
-        this.firstName,
-        this.middleName,
-        this.lastName,
-        this.alternatePhone,
-        this.stateOfOrigin,
-        this.stateOfResidence,
-        this.lgaOfOrigin,
-        this.lgaOfResidence,
-        this.addressLine2,
-        this.addressLine3,
-        this.maritalStatus,
-        this.enrollmentBank,
-        this.enrollmentBranch,
-        this.accountLevel});
+      {this.firstName,
+      this.middleName,
+      this.lastName,
+      this.dob,
+      this.registrationDate,
+      this.email,
+      this.gender,
+      this.phone,
+      this.alternatePhone,
+      this.country,
+      this.stateOfOrigin,
+      this.addressLine3,
+      this.maritalStatus,
+      this.nin,
+      this.avatar,
+      this.watchListed});
 
   Response.fromJson(Map<String, dynamic> json) {
+    firstName = json['firstName'];
+    middleName = json['middleName'];
+    lastName = json['lastName'];
+    dob = json['dob'];
+    registrationDate = json['registrationDate'];
     email = json['email'];
     gender = json['gender'];
-    dob = json['dob'];
     phone = json['phone'];
+    alternatePhone = json['alternatePhone'];
     country = json['country'];
+    stateOfOrigin = json['stateOfOrigin'];
+    addressLine3 = json['addressLine3'];
+    maritalStatus = json['maritalStatus'];
     nin = json['nin'];
-    bvn = json['bvn'];
-    nationality = json['nationality'];
-    watchlisted = json['watchlisted'];
     avatar = json['avatar'];
-    fullName = json['full_name'];
-    firstName = json['first_name'];
-    middleName = json['middle_name'];
-    lastName = json['last_name'];
-    alternatePhone = json['alternate_phone'];
-    stateOfOrigin = json['state_of_origin'];
-    stateOfResidence = json['state_of_residence'];
-    lgaOfOrigin = json['lga_of_origin'];
-    lgaOfResidence = json['lga_of_residence'];
-    addressLine2 = json['address_line_2'];
-    addressLine3 = json['address_line_3'];
-    maritalStatus = json['marital_status'];
-    enrollmentBank = json['enrollment_bank'];
-    enrollmentBranch = json['enrollment_branch'];
-    accountLevel = json['account_level'];
+    watchListed = json['watchListed'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['firstName'] = this.firstName;
+    data['middleName'] = this.middleName;
+    data['lastName'] = this.lastName;
+    data['dob'] = this.dob;
+    data['registrationDate'] = this.registrationDate;
     data['email'] = this.email;
     data['gender'] = this.gender;
-    data['dob'] = this.dob;
     data['phone'] = this.phone;
+    data['alternatePhone'] = this.alternatePhone;
     data['country'] = this.country;
+    data['stateOfOrigin'] = this.stateOfOrigin;
+    data['addressLine3'] = this.addressLine3;
+    data['maritalStatus'] = this.maritalStatus;
     data['nin'] = this.nin;
-    data['bvn'] = this.bvn;
-    data['nationality'] = this.nationality;
-    data['watchlisted'] = this.watchlisted;
     data['avatar'] = this.avatar;
-    data['full_name'] = this.fullName;
-    data['first_name'] = this.firstName;
-    data['middle_name'] = this.middleName;
-    data['last_name'] = this.lastName;
-    data['alternate_phone'] = this.alternatePhone;
-    data['state_of_origin'] = this.stateOfOrigin;
-    data['state_of_residence'] = this.stateOfResidence;
-    data['lga_of_origin'] = this.lgaOfOrigin;
-    data['lga_of_residence'] = this.lgaOfResidence;
-    data['address_line_2'] = this.addressLine2;
-    data['address_line_3'] = this.addressLine3;
-    data['marital_status'] = this.maritalStatus;
-    data['enrollment_bank'] = this.enrollmentBank;
-    data['enrollment_branch'] = this.enrollmentBranch;
-    data['account_level'] = this.accountLevel;
+    data['watchListed'] = this.watchListed;
     return data;
   }
 }
