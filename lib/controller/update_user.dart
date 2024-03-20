@@ -64,8 +64,10 @@ import 'loan_controller.dart';
 import 'number_controller.dart';
 
 class registerController extends GetxController {
+  // String? storeVersion;
   ////meter details
   String result = '';
+  String storeVersion = '';
   String result1 = '';
   String result2 = '';
   String result3 = '';

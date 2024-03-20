@@ -1,7 +1,9 @@
 import 'dart:developer';
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:html/dom.dart';
@@ -10,9 +12,20 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:upgrader/upgrader.dart';
 import 'package:zip/routers/my_routers.dart';
 
+import 'controller/update_user.dart';
+
 Future<void> main(context) async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+  FlutterError.onError = (errorDetails) {
+    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+  };
+  // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
   PackageInfo packageInfo = await PackageInfo.fromPlatform();
   String appVersion = packageInfo.version;
   print('app version is${appVersion.toString()}');
@@ -23,25 +36,28 @@ Future<void> main(context) async {
 }
 
 Future<String?> getStoreVersion(String myAppBundleId) async {
-  String? storeVersion;
+  // String? storeVersion;
   if (Platform.isAndroid) {
     PlayStoreSearchAPI playStoreSearchAPI = PlayStoreSearchAPI();
     Document? result =
         await playStoreSearchAPI.lookupById(myAppBundleId, country: 'US');
-    if (result != null) storeVersion = playStoreSearchAPI.version(result);
-    log('PlayStore version: $storeVersion}');
+    if (result != null)
+      controller.storeVersion = playStoreSearchAPI.version(result)!;
+    log('PlayStore version:' + controller.storeVersion);
   } else if (Platform.isIOS) {
     ITunesSearchAPI iTunesSearchAPI = ITunesSearchAPI();
     Map<dynamic, dynamic>? result =
         await iTunesSearchAPI.lookupByBundleId(myAppBundleId, country: 'US');
-    if (result != null) storeVersion = iTunesSearchAPI.version(result);
-    log('AppStore version: $storeVersion}');
+    if (result != null)
+      controller.storeVersion = iTunesSearchAPI.version(result)!;
+    log('AppStore version: ' + controller.storeVersion);
   } else {
-    storeVersion = null;
+    controller.storeVersion = "";
   }
-  return storeVersion;
+  return controller.storeVersion;
 }
 
+final controller = Get.put(registerController());
 void checkForUpdates(context) async {
   String myAppBundleId = 'com.example.myapp'; // Replace with your app bundle ID
   String? storeVersion = await getStoreVersion(myAppBundleId);
