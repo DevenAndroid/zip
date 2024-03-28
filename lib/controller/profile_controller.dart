@@ -163,7 +163,7 @@ class ProfileController extends GetxController {
         getCurrentBalance();
         showToast(value.message.toString());
       } else {
-        showToast("insufficient funds");
+        showToast(value.message.toString());
       }
       // showToast(value.message.toString());
     });

@@ -690,207 +690,197 @@ class _SettingState extends State<Setting> {
                       ),
                     ),
                     Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: 60,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Colors.black26,
-                                  offset: Offset(
-                                    0.5,
-                                    0.5,
-                                  ), //Offset
-                                  blurRadius: 0.5,
-                                  spreadRadius: 0.0,
-                                ), //BoxShadow
-                              ]),
-                          child: Row(
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (ctx) => AlertDialog(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      icon: Icon(
-                                        Icons.exit_to_app,
-                                        color: Colors.black,
-                                        size: 50,
-                                      ),
-                                      title: const Text(
-                                        "Logout!",
-                                        style: TextStyle(
-                                            fontFamily: "Graphite",
-                                            fontWeight: FontWeight.w500,
-                                            color: Color(0xFF262E39),
-                                            fontSize: 26),
-                                      ),
-                                      content: const Text(
-                                        "You want to logout from app ",
-                                        style: TextStyle(
-                                            fontFamily: "Graphite",
-                                            fontWeight: FontWeight.w300,
-                                            color: Color(0xFF262E39),
-                                            fontSize: 16),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                      actions: <Widget>[
-                                        Expanded(
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              SizedBox(
-                                                width: 100,
-                                                child: CustomOutlineButton(
-                                                  title: "No",
-                                                  onPressed: () {
-                                                    Get.back();
-                                                  },
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width: 20,
-                                              ),
-                                              SizedBox(
-                                                width: 100,
-                                                child: CustomOutlineButton(
-                                                  title: "Yes",
-                                                  onPressed: () {
-                                                    signOut();
-                                                    // Get.to(() => BottomNavbar());
-                                                  },
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 18.0),
-                                  child: Text(
-                                    "Sign Out",
-                                    style: GoogleFonts.poppins(
-                                        color: const Color(0xFFF0D75F),
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        )),
-                    Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: 60,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Colors.black26,
-                                  offset: Offset(
-                                    0.5,
-                                    0.5,
-                                  ), //Offset
-                                  blurRadius: 0.5,
-                                  spreadRadius: 0.0,
-                                ), //BoxShadow
-                              ]),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 20),
-                            child: InkWell(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        height: 60,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Colors.black26,
+                              offset: Offset(0.5, 0.5),
+                              blurRadius: 0.5,
+                              spreadRadius: 0.0,
+                            ),
+                          ],
+                        ),
+                        child: Row(
+                          children: [
+                            InkWell(
                               onTap: () {
                                 showDialog(
                                   context: context,
                                   builder: (ctx) => AlertDialog(
                                     shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
                                     icon: Icon(
-                                      Icons.delete,
+                                      Icons.exit_to_app,
                                       color: Colors.black,
                                       size: 50,
                                     ),
                                     title: const Text(
-                                      "Delete !",
+                                      "Logout!",
                                       style: TextStyle(
-                                          fontFamily: "Graphite",
-                                          fontWeight: FontWeight.w500,
-                                          color: Color(0xFF262E39),
-                                          fontSize: 26),
+                                        fontFamily: "Graphite",
+                                        fontWeight: FontWeight.w500,
+                                        color: Color(0xFF262E39),
+                                        fontSize: 26,
+                                      ),
                                     ),
                                     content: const Text(
-                                      "You want to delete account",
+                                      "You want to logout from app ",
                                       style: TextStyle(
-                                          fontFamily: "Graphite",
-                                          fontWeight: FontWeight.w300,
-                                          color: Color(0xFF262E39),
-                                          fontSize: 16),
+                                        fontFamily: "Graphite",
+                                        fontWeight: FontWeight.w300,
+                                        color: Color(0xFF262E39),
+                                        fontSize: 16,
+                                      ),
                                       textAlign: TextAlign.center,
                                     ),
                                     actions: <Widget>[
-                                      Expanded(
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            SizedBox(
-                                              width: 100,
-                                              child: CustomOutlineButton(
-                                                title: "No",
-                                                onPressed: () {
-                                                  Get.back();
-                                                },
-                                              ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          SizedBox(
+                                            width: 100,
+                                            child: CustomOutlineButton(
+                                              title: "No",
+                                              onPressed: () {
+                                                Get.back();
+                                              },
                                             ),
-                                            SizedBox(
-                                              width: 20,
+                                          ),
+                                          SizedBox(width: 20),
+                                          SizedBox(
+                                            width: 100,
+                                            child: CustomOutlineButton(
+                                              title: "Yes",
+                                              onPressed: () {
+                                                signOut();
+                                              },
                                             ),
-                                            SizedBox(
-                                              width: 100,
-                                              child: CustomOutlineButton(
-                                                title: "Yes",
-                                                onPressed: () {
-                                                  deleteAccount();
-                                                  // Get.to(() => BottomNavbar());
-                                                },
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),
                                 );
                               },
-                              child: Row(
-                                children: [
-                                  Text(
-                                    "Delete Account",
-                                    style: GoogleFonts.poppins(
-                                        color: Colors.red,
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w500),
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 18.0),
+                                child: Text(
+                                  "Sign Out",
+                                  style: GoogleFonts.poppins(
+                                    color: const Color(0xFFF0D75F),
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w500,
                                   ),
-                                ],
+                                ),
                               ),
                             ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        height: 60,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Colors.black26,
+                              offset: Offset(0.5, 0.5),
+                              blurRadius: 0.5,
+                              spreadRadius: 0.0,
+                            ),
+                          ],
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: InkWell(
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (ctx) => AlertDialog(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  icon: Icon(
+                                    Icons.delete,
+                                    color: Colors.black,
+                                    size: 50,
+                                  ),
+                                  title: const Text(
+                                    "Delete !",
+                                    style: TextStyle(
+                                      fontFamily: "Graphite",
+                                      fontWeight: FontWeight.w500,
+                                      color: Color(0xFF262E39),
+                                      fontSize: 26,
+                                    ),
+                                  ),
+                                  content: const Text(
+                                    "You want to delete account",
+                                    style: TextStyle(
+                                      fontFamily: "Graphite",
+                                      fontWeight: FontWeight.w300,
+                                      color: Color(0xFF262E39),
+                                      fontSize: 16,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  actions: <Widget>[
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+                                          width: 100,
+                                          child: CustomOutlineButton(
+                                            title: "No",
+                                            onPressed: () {
+                                              Get.back();
+                                            },
+                                          ),
+                                        ),
+                                        SizedBox(width: 20),
+                                        SizedBox(
+                                          width: 100,
+                                          child: CustomOutlineButton(
+                                            title: "Yes",
+                                            onPressed: () {
+                                              deleteAccount();
+                                            },
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                            child: Row(
+                              children: [
+                                Text(
+                                  "Delete Account",
+                                  style: GoogleFonts.poppins(
+                                    color: Colors.red,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        )),
+                        ),
+                      ),
+                    ),
                     const SizedBox(
                       height: 30,
                     ),
